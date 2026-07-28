@@ -1,0 +1,515 @@
+{
+  "audit": {
+    "batch_index": 2,
+    "from_cache": false,
+    "latency_ms": 71196,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "b54498ef77b80887ddc3dc0ea8aa984554c529c77830a881a126d53136feb835",
+    "response_sha256": "ca684e4051a9c209694be166d634867bff1b310e7afdd6668b32bf4cdadf4e8a",
+    "usage": {
+      "input_tokens": 6171,
+      "output_tokens": 3801,
+      "reasoning_tokens": null,
+      "total_tokens": 9972
+    }
+  },
+  "input_request_sha256": "b265db12521153d44c54513518f5cf0352fbebd0e6caf303abe0b7dce1b5f163",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "common technical rendering",
+            "target_vi": "sự không chắc chắn"
+          },
+          {
+            "formation_reason": "technical nominal variant",
+            "target_vi": "tính bất định"
+          },
+          {
+            "formation_reason": "measurement-like wording used with magnitude/level",
+            "target_vi": "độ không chắc chắn"
+          },
+          {
+            "formation_reason": "close nominal alternative to recorded candidate",
+            "target_vi": "sự bất định"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_45b8a459ecccebb193b7d570",
+            "context_type": "C2",
+            "reason_code": "general conceptual mention of uncertainty",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_e7697bfcdc8c8d5ccbb78a65",
+            "context_type": "C2",
+            "reason_code": "uncertainty as motivation for probability language",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_dabb91193e9646a54768ead2",
+            "context_type": "C3",
+            "reason_code": "prediction uncertainty in neural networks",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_24231d5e4f53e2fed10ee784",
+            "context_type": "C2",
+            "reason_code": "computational and statistical uncertainty in a process",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_d9d4e1e8372876c3a0bf9c2f",
+            "context_type": "C3",
+            "reason_code": "optimization noise described as uncertainty",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_47b329913c771cfa32340120",
+            "context_type": "C2",
+            "reason_code": "uncertainty in estimated values from statistics",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_b7c61fc74173e5004c850c59",
+            "context_type": "C2",
+            "reason_code": "one notion of uncertainty via class probability magnitude",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_923ebaa50c2bbcd9a6a3ab6c",
+            "context_type": "C2",
+            "reason_code": "estimators lacking uncertainty information",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "lack of certainty about a value, outcome, estimate, or prediction.",
+        "definition_evidence_context_ids": [
+          "ctx_e7697bfcdc8c8d5ccbb78a65",
+          "ctx_dabb91193e9646a54768ead2",
+          "ctx_47b329913c771cfa32340120",
+          "ctx_923ebaa50c2bbcd9a6a3ab6c"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_45b8a459ecccebb193b7d570",
+          "ctx_dabb91193e9646a54768ead2",
+          "ctx_a5bf53f3daed100d0d815e2a"
+        ],
+        "sense_id": "d2lce_73dbe839de3f1d00bf1226f0",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "personal doubt or hesitation in a nontechnical everyday sense.",
+          "rationale": "No supplied context shows a genuinely different sense; all are technical uses of the same noun.",
+          "source_text": "Synthetic: In everyday speech, uncertainty can mean personal hesitation rather than statistical or predictive uncertainty."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "concise hypothesis-testing term for default baseline statement",
+            "target_vi": "giả thuyết gốc"
+          },
+          {
+            "formation_reason": "plausible statistics rendering aligned with rejection-testing context",
+            "target_vi": "giả thuyết vô hiệu"
+          },
+          {
+            "formation_reason": "directly reflects default statement wording in context",
+            "target_vi": "giả thuyết mặc định"
+          },
+          {
+            "formation_reason": "symbol-based shorthand tied to supplied contexts",
+            "target_vi": "giả thuyết H0"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.88,
+            "context_id": "ctx_78f8341f577bbf7e3922131c",
+            "context_type": "C2",
+            "reason_code": "historical mention of who introduced null hypothesis",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_22557e183923aa9f4d962fb5",
+            "context_type": "C2",
+            "reason_code": "defined against alternative hypothesis",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_3b89d2852c572ba5f6a4df35",
+            "context_type": "C2",
+            "reason_code": "describes typical form of a null hypothesis",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_a5a1f0f18709f7fa8442aea2",
+            "context_type": "C1",
+            "reason_code": "explicit definition as default statement H0",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_e4f5d547b5a2e976a337fefd",
+            "context_type": "C3",
+            "reason_code": "example instantiation in comparing two groups",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_f4392f740a7e9df79b8c5e6a",
+            "context_type": "C3",
+            "reason_code": "practical rejection decision involving null hypothesis",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_4a439805e5ee6481bd8ca2d7",
+            "context_type": "C3",
+            "reason_code": "appears in type I error explanation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_0c97ab4184b145c22144afa1",
+            "context_type": "C3",
+            "reason_code": "true null hypothesis in significance level explanation",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "the default hypothesis in significance testing that is tested for possible rejection using observed data.",
+        "definition_evidence_context_ids": [
+          "ctx_a5a1f0f18709f7fa8442aea2",
+          "ctx_22557e183923aa9f4d962fb5",
+          "ctx_f4392f740a7e9df79b8c5e6a"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_22557e183923aa9f4d962fb5",
+          "ctx_a5a1f0f18709f7fa8442aea2",
+          "ctx_4a439805e5ee6481bd8ca2d7"
+        ],
+        "sense_id": "d2lce_11e1c294000ac67785408dcd",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a general hypothesis or explanatory claim, not specifically the default H0 in significance testing.",
+          "rationale": "Supplied contexts consistently use the statistical testing sense only.",
+          "source_text": "Synthetic: A scientific hypothesis can be any proposed explanation, but a null hypothesis is the specific default claim tested for rejection."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "natural quantity expression matching informal explanatory tone",
+            "target_vi": "một chút"
+          },
+          {
+            "formation_reason": "common small-amount rendering",
+            "target_vi": "một ít"
+          },
+          {
+            "formation_reason": "plausible when bit modifies adjectives/comparatives",
+            "target_vi": "hơi"
+          },
+          {
+            "formation_reason": "slight-amount variant",
+            "target_vi": "chút ít"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_bc735116b032003b647bf1d5",
+            "context_type": "C3",
+            "reason_code": "a little bit of calculus = small amount",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_a08fef290a47362d440d8409",
+            "context_type": "C3",
+            "reason_code": "a bit better = slightly better",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_6bf5da537a25d356b2e5e0ac",
+            "context_type": "C3",
+            "reason_code": "a bit like = somewhat like",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_decede697ad47b1366644611",
+            "context_type": "C3",
+            "reason_code": "a bit differently = slightly differently",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_296377e3411a5f06ef38c871",
+            "context_type": "C3",
+            "reason_code": "a bit more complicated = slightly more complicated",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_30cb9519a863d7ebe60dd4e0",
+            "context_type": "C3",
+            "reason_code": "a bit of mathematics = small amount",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_48fb92c20348628ff3c83349",
+            "context_type": "C3",
+            "reason_code": "a bit more deeply = slightly more deeply",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_5717eff884f463a81a21a526",
+            "context_type": "C3",
+            "reason_code": "a bit trickier = slightly trickier",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.91,
+        "definition_en": "a small amount; used informally to mean slightly or somewhat.",
+        "definition_evidence_context_ids": [
+          "ctx_bc735116b032003b647bf1d5",
+          "ctx_30cb9519a863d7ebe60dd4e0",
+          "ctx_48fb92c20348628ff3c83349"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.9,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_bc735116b032003b647bf1d5",
+          "ctx_6bf5da537a25d356b2e5e0ac",
+          "ctx_5717eff884f463a81a21a526"
+        ],
+        "sense_id": "d2lce_53c32398310471fac3dacf35",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "the binary unit of information in computing or information theory.",
+          "rationale": "Supplied contexts all use the informal quantifier/adverbial sense, not the technical information unit.",
+          "source_text": "Synthetic: In information theory, a bit is a unit of information rather than just a small amount."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "compact technical equivalent widely plausible in CNN context",
+            "target_vi": "đa kênh"
+          },
+          {
+            "formation_reason": "makes data/model channel sense explicit",
+            "target_vi": "nhiều kênh dữ liệu"
+          },
+          {
+            "formation_reason": "explicit descriptive variant from contexts",
+            "target_vi": "các kênh đầu vào/đầu ra nhiều hơn một"
+          },
+          {
+            "formation_reason": "plausible when referring to hidden representations/features",
+            "target_vi": "nhiều kênh đặc trưng"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_54f8c3cb816277ace430df97",
+            "context_type": "C2",
+            "reason_code": "chapter overview listing multiple channels as CNN topic",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.7,
+            "context_id": "ctx_ba2a299168416499932ae161",
+            "context_type": "C4",
+            "reason_code": "hardware memory channels rather than CNN data/model channels",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_7c6a965613332587c6fca111",
+            "context_type": "C2",
+            "reason_code": "section title on padding strides and multiple channels",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_3ca9380a219c00402d68c678",
+            "context_type": "C3",
+            "reason_code": "1D convolution kernel must match number of input channels",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_017659fee16b4b1352f9f1b5",
+            "context_type": "C3",
+            "reason_code": "formal tensor definition supporting multiple channels",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_516a4df8d34c7a0c4415302b",
+            "context_type": "C1",
+            "reason_code": "explicitly names convolutional layer definition for multiple channels",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_7a827358f51118bb50e2b2a8",
+            "context_type": "C2",
+            "reason_code": "explains image RGB channels and input/output channel simplification",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_3972c87ed9f0cc305dbef415",
+            "context_type": "C3",
+            "reason_code": "construction rule for convolution kernel with matching input channels",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "more than one channel in data or a model, such as multiple input, output, or color channels in convolutional networks.",
+        "definition_evidence_context_ids": [
+          "ctx_7a827358f51118bb50e2b2a8",
+          "ctx_3972c87ed9f0cc305dbef415",
+          "ctx_516a4df8d34c7a0c4415302b"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_54f8c3cb816277ace430df97",
+          "ctx_3ca9380a219c00402d68c678",
+          "ctx_3972c87ed9f0cc305dbef415"
+        ],
+        "sense_id": "d2lce_ccf7d0a5109d86ee76a75b9c",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "several communication or hardware transmission channels, not feature/image channels in CNNs.",
+          "rationale": "One supplied context already hints at hardware memory channels, contrasting with the dominant CNN sense.",
+          "source_text": "Synthetic: In a communications system, multiple channels can mean several transmission paths rather than tensor channels in a neural network."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "semantic expansion of the class/layer name",
+            "target_vi": "Chuẩn hóa theo lô"
+          },
+          {
+            "formation_reason": "explicit layer interpretation from contexts",
+            "target_vi": "lớp chuẩn hóa theo lô"
+          },
+          {
+            "formation_reason": "hybrid form plausible in code-oriented pedagogy",
+            "target_vi": "chuẩn hóa batch"
+          },
+          {
+            "formation_reason": "full English expansion of abbreviated API name",
+            "target_vi": "Batch Normalization"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_8f8f50278fcee237079dc232",
+            "context_type": "C1",
+            "reason_code": "explicitly creates a proper BatchNorm layer",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_2bba7bfd16dd89a39a9179f1",
+            "context_type": "C3",
+            "reason_code": "instantiation and comparison with LayerNorm",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_97626c8a07aa5d9bfd5cd128",
+            "context_type": "C3",
+            "reason_code": "used as layer component in ResNet code",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_2a4b835e03acf05a36784e49",
+            "context_type": "C3",
+            "reason_code": "used in down-sampling block code",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_a112ae80926b023797d45e91",
+            "context_type": "C3",
+            "reason_code": "member variable holding BatchNorm layer in GAN block",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_5799f6d95cc38b1ae654394a",
+            "context_type": "C2",
+            "reason_code": "class header comment describing BatchNorm features",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_a70b42d220709405815636f8",
+            "context_type": "C2",
+            "reason_code": "PyTorch class definition for BatchNorm",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_cc13b838430cc6b65f7256c9",
+            "context_type": "C2",
+            "reason_code": "TensorFlow layer implementation with gamma beta and moving statistics",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "the layer or class name for batch normalization.",
+        "definition_evidence_context_ids": [
+          "ctx_8f8f50278fcee237079dc232",
+          "ctx_2bba7bfd16dd89a39a9179f1",
+          "ctx_cc13b838430cc6b65f7256c9"
+        ],
+        "part_of_speech": "proper_noun",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_8f8f50278fcee237079dc232",
+          "ctx_97626c8a07aa5d9bfd5cd128",
+          "ctx_a112ae80926b023797d45e91"
+        ],
+        "sense_id": "d2lce_4abd762bcd34d370b4fe6498",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "the general batch-normalization method rather than the exact API/class identifier.",
+          "rationale": "Supplied contexts consistently show the code-level class/layer name.",
+          "source_text": "Synthetic: batch norm describes the normalization technique in general, while BatchNorm here is the specific layer/class name used in code."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

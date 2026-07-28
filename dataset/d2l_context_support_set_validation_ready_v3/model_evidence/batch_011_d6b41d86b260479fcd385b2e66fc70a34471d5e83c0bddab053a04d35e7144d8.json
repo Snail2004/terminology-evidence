@@ -1,0 +1,512 @@
+{
+  "audit": {
+    "batch_index": 11,
+    "from_cache": false,
+    "latency_ms": 68078,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "cc56ef10e4b74f09e957cccaca67dae1f76ad79dd7c0c71f8eacabe809a7d58e",
+    "response_sha256": "f27c44a98d837c073f786af11e79058fb7000a609476685a017b68eca2fb4f06",
+    "usage": {
+      "input_tokens": 5197,
+      "output_tokens": 3641,
+      "reasoning_tokens": null,
+      "total_tokens": 8838
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "d6b41d86b260479fcd385b2e66fc70a34471d5e83c0bddab053a04d35e7144d8",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "established_technical_term",
+            "target_vi": "sai số bình phương trung bình"
+          },
+          {
+            "formation_reason": "literal_variant",
+            "target_vi": "lỗi bình phương trung bình"
+          },
+          {
+            "formation_reason": "compact_technical_variant",
+            "target_vi": "trung bình bình phương sai số"
+          },
+          {
+            "formation_reason": "metric_focused_variant",
+            "target_vi": "độ lệch bình phương trung bình"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_aa9bf66af57b4d0277adf479",
+            "context_type": "C1",
+            "reason_code": "loss_function_name_in_linear_regression",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_51976c239578153593bf6e10",
+            "context_type": "C1",
+            "reason_code": "optimization_metric_between_predictions_and_targets",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_8773b84dd0e7621c8e9964bc",
+            "context_type": "C2",
+            "reason_code": "statistical_evaluation_measure",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_21ccd6b472be7b8886dfc5ba",
+            "context_type": "C1",
+            "reason_code": "objective_linked_to_mle_under_gaussian_noise",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_d54f045d576ae356763b52df",
+            "context_type": "C3",
+            "reason_code": "framework_class_name_for_same_metric",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_85127e11fd3023a9623643bf",
+            "context_type": "C3",
+            "reason_code": "framework_class_name_for_same_metric",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_f394e4eeabb8358a5b205328",
+            "context_type": "C1",
+            "reason_code": "objective_in_linear_regression",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_a3b09c164d6fc85a35c1c018",
+            "context_type": "C2",
+            "reason_code": "section_title_for_metric",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "The average of squared differences between predicted or estimated values and the true values, used as an error metric or loss.",
+        "definition_evidence_context_ids": [
+          "ctx_aa9bf66af57b4d0277adf479",
+          "ctx_51976c239578153593bf6e10",
+          "ctx_8773b84dd0e7621c8e9964bc",
+          "ctx_21ccd6b472be7b8886dfc5ba"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_a3b09c164d6fc85a35c1c018",
+          "ctx_d54f045d576ae356763b52df"
+        ],
+        "sense_id": "d2lce_49603071e9c21eb4bcbdf1e7",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A hypothetical phrase for the average of values after squaring them, without involving errors or residuals.",
+          "rationale": "No supplied context shows a genuine different sense, so a synthetic boundary sentence distinguishes the error-metric sense from a generic arithmetic reading.",
+          "source_text": "Synthetic: In this note, mean squared error refers to prediction error, not to the mean of arbitrary squared numbers."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "established_technical_term",
+            "target_vi": "hồi quy"
+          },
+          {
+            "formation_reason": "expanded_academic_variant",
+            "target_vi": "phân tích hồi quy"
+          },
+          {
+            "formation_reason": "method_focused_variant",
+            "target_vi": "phương pháp hồi quy"
+          },
+          {
+            "formation_reason": "modeling_focused_variant",
+            "target_vi": "mô hình hồi quy"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.87,
+            "context_id": "ctx_3644f67a4a402cab9ab7890d",
+            "context_type": "C2",
+            "reason_code": "linear_regression_as_topic_name",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_07ef3e035c8693916453144f",
+            "context_type": "C2",
+            "reason_code": "section_heading_for_general_task",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_f1ff669290faa81e574f5c8e",
+            "context_type": "C1",
+            "reason_code": "general_learning_technique_name",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_9ee09ec62e9e9e56a663ed36",
+            "context_type": "C1",
+            "reason_code": "softmax_regression_algorithm_name",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_b600daa6c4d490532e107adf",
+            "context_type": "C1",
+            "reason_code": "softmax_regression_model_name",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_1422ef1a795655cc30790982",
+            "context_type": "C1",
+            "reason_code": "softmax_regression_as_model_family",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_a4c83a54ae7da02ba9f87078",
+            "context_type": "C1",
+            "reason_code": "regression_model_for_numeric_prediction",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_13e112e8272712c2b81ca907",
+            "context_type": "C1",
+            "reason_code": "kernel_regression_method_name",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "A predictive modeling task or method that estimates continuous numerical outputs from input variables.",
+        "definition_evidence_context_ids": [
+          "ctx_07ef3e035c8693916453144f",
+          "ctx_f1ff669290faa81e574f5c8e",
+          "ctx_a4c83a54ae7da02ba9f87078",
+          "ctx_13e112e8272712c2b81ca907"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_07ef3e035c8693916453144f",
+          "ctx_f1ff669290faa81e574f5c8e"
+        ],
+        "sense_id": "d2lce_3b6a75bdbf023ea1f3ed2cc8",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A statistical equation or fitted line itself, rather than the general prediction task or method.",
+          "rationale": "Supplied contexts consistently use the general machine-learning/statistical method sense.",
+          "source_text": "Synthetic: Here, regression means the predictive method, not just the specific fitted formula written after training."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "established_technical_term",
+            "target_vi": "tỷ lệ khung hình"
+          },
+          {
+            "formation_reason": "literal_shape_variant",
+            "target_vi": "tỷ lệ chiều rộng trên chiều cao"
+          },
+          {
+            "formation_reason": "concise_technical_variant",
+            "target_vi": "tỷ lệ rộng-cao"
+          },
+          {
+            "formation_reason": "layout_variant",
+            "target_vi": "tỷ lệ hình dạng"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_2ef83967671b4c94ed02f565",
+            "context_type": "C1",
+            "reason_code": "image_shape_property",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_88bff3b8804e23bebb2d55a1",
+            "context_type": "C1",
+            "reason_code": "cropping_parameter_for_image_shape",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_49d0624ce664cb21c21aefb1",
+            "context_type": "C1",
+            "reason_code": "anchor_box_shape_parameter",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_ec292af69704274aef814a00",
+            "context_type": "C4",
+            "reason_code": "explicit_definition_as_width_to_height_ratio",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_c073292947644f0178d4e119",
+            "context_type": "C1",
+            "reason_code": "anchor_box_generation_parameter",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_edee5fe2e1661000bfa4fb46",
+            "context_type": "C1",
+            "reason_code": "series_of_shape_parameters_for_boxes",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_1771d4213211e7f2f5001fa2",
+            "context_type": "C1",
+            "reason_code": "input_parameter_list_for_anchor_boxes",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_b48760685d8ba1fd7b94cf59",
+            "context_type": "C1",
+            "reason_code": "specific_box_shape_value",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "The ratio of width to height of an image, crop, or bounding box shape.",
+        "definition_evidence_context_ids": [
+          "ctx_ec292af69704274aef814a00",
+          "ctx_2ef83967671b4c94ed02f565",
+          "ctx_49d0624ce664cb21c21aefb1"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_ec292af69704274aef814a00",
+          "ctx_1771d4213211e7f2f5001fa2"
+        ],
+        "sense_id": "d2lce_ddf8557de1cd5ff23b86e10e",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A hypothetical notion of screen display format category rather than the numeric width-to-height ratio parameter.",
+          "rationale": "All supplied contexts use the numeric geometric ratio sense.",
+          "source_text": "Synthetic: In these examples, aspect ratio means the numeric width-to-height ratio, not a named media format category."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "established_technical_term",
+            "target_vi": "biến ngẫu nhiên rời rạc"
+          },
+          {
+            "formation_reason": "word_order_variant",
+            "target_vi": "biến rời rạc ngẫu nhiên"
+          },
+          {
+            "formation_reason": "expanded_explanatory_variant",
+            "target_vi": "biến ngẫu nhiên nhận giá trị rời rạc"
+          },
+          {
+            "formation_reason": "compact_variant",
+            "target_vi": "đại lượng ngẫu nhiên rời rạc"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_dcc2558c83757b30c8a58c12",
+            "context_type": "C4",
+            "reason_code": "explicit_definition_by_possible_values",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_35cd85b391dd71dfd55cf5b7",
+            "context_type": "C5",
+            "reason_code": "contrast_with_continuous_random_variables",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_ddc48912aae8d4e18d86b760",
+            "context_type": "C5",
+            "reason_code": "contrast_with_continuous_and_mixtures",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_b4043b79b40224019aa27e38",
+            "context_type": "C5",
+            "reason_code": "baseline_case_before_continuous_case",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_be8318b49ee8de45eb672658",
+            "context_type": "C5",
+            "reason_code": "compared_against_continuous_variables",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_f2b3de5d26527ae31c4c6363",
+            "context_type": "C5",
+            "reason_code": "assumed_discrete_before_switching_to_continuous",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_e7f67dd37287b32e45850474",
+            "context_type": "C1",
+            "reason_code": "information_theory_statement_for_discrete_pair",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_631db6dfad58f0e98ac2eeaa",
+            "context_type": "C1",
+            "reason_code": "information_theory_statement_for_discrete_pair",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "Random variables that take values from a finite set or from countable values such as the integers.",
+        "definition_evidence_context_ids": [
+          "ctx_dcc2558c83757b30c8a58c12",
+          "ctx_35cd85b391dd71dfd55cf5b7",
+          "ctx_ddc48912aae8d4e18d86b760"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_dcc2558c83757b30c8a58c12",
+          "ctx_e7f67dd37287b32e45850474"
+        ],
+        "sense_id": "d2lce_e1a7c8e04c91b48272b3b5ee",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "Continuous random variables that can vary over a continuum of values.",
+          "rationale": "The supplied contexts explicitly contrast this sense with continuous random variables.",
+          "source_text": "Synthetic: Unlike discrete random variables, continuous random variables can take values across an interval."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "established_technical_term",
+            "target_vi": "số chiều"
+          },
+          {
+            "formation_reason": "literal_academic_variant",
+            "target_vi": "tính chiều"
+          },
+          {
+            "formation_reason": "expanded_variant",
+            "target_vi": "độ chiều"
+          },
+          {
+            "formation_reason": "feature_space_variant",
+            "target_vi": "số lượng chiều"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_305c430849e3734c0aa7afaf",
+            "context_type": "C4",
+            "reason_code": "explicit_definition_as_constant_vector_length",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_9a25a4253bc511ca8268d02a",
+            "context_type": "C2",
+            "reason_code": "section_heading_term",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_571461d7592e0eb07fae9808",
+            "context_type": "C4",
+            "reason_code": "explicit_equation_to_number_of_inputs",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_cf2fee46db0f41e6ec64a579",
+            "context_type": "C1",
+            "reason_code": "problem_dimension_parameter_d",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_4d511a9e270716621c12b480",
+            "context_type": "C1",
+            "reason_code": "input_dimension_of_network",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_3923942a6da07182f6169b13",
+            "context_type": "C1",
+            "reason_code": "number_of_dimensions_of_representations",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_bc1664e975977f0d9d0df8c9",
+            "context_type": "C1",
+            "reason_code": "reduction_in_number_of_dimensions",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_e9947a95d89c9d79c07f1e69",
+            "context_type": "C1",
+            "reason_code": "hidden_state_dimension_count",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "The number of components, features, or axes used to represent data or an internal representation.",
+        "definition_evidence_context_ids": [
+          "ctx_305c430849e3734c0aa7afaf",
+          "ctx_571461d7592e0eb07fae9808",
+          "ctx_e9947a95d89c9d79c07f1e69"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_305c430849e3734c0aa7afaf",
+          "ctx_9a25a4253bc511ca8268d02a"
+        ],
+        "sense_id": "d2lce_f3dedf5fcd54a46940474022",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "Physical size or measurement length rather than the count of representational dimensions.",
+          "rationale": "All supplied contexts refer to representational dimension count in data or neural states.",
+          "source_text": "Synthetic: Here, dimensionality means how many features or axes represent the data, not the physical length of an object."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

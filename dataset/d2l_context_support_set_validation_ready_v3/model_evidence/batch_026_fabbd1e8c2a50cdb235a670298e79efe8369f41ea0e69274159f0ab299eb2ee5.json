@@ -1,0 +1,515 @@
+{
+  "audit": {
+    "batch_index": 26,
+    "from_cache": false,
+    "latency_ms": 131156,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "67793c28acdcbbebe64742ee24b3383fa9f0132aec14ddc097f5b6baf23d7875",
+    "response_sha256": "2fd355e2ea0cd33bb714e777ce5017c76f511eece4c9b452193a7784bb38edb6",
+    "usage": {
+      "input_tokens": 5768,
+      "output_tokens": 3777,
+      "reasoning_tokens": null,
+      "total_tokens": 9545
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "fabbd1e8c2a50cdb235a670298e79efe8369f41ea0e69274159f0ab299eb2ee5",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "canonical singular technical rendering",
+            "target_vi": "cổng cập nhật"
+          },
+          {
+            "formation_reason": "plural form matching plural surface",
+            "target_vi": "các cổng cập nhật"
+          },
+          {
+            "formation_reason": "adds explicit state-update nuance seen in contexts",
+            "target_vi": "cổng cập nhật trạng thái"
+          },
+          {
+            "formation_reason": "context-grounded explicit model reference",
+            "target_vi": "cổng cập nhật của GRU"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_0bbf3a04a91397bf545fe5dc",
+            "context_type": "C1",
+            "reason_code": "section heading naming the GRU component",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_3143c3d658da09d8181b666c",
+            "context_type": "C1",
+            "reason_code": "direct introduction of the reset gate and the update gate",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_91acf4e9a95c2577a48f754e",
+            "context_type": "C3",
+            "reason_code": "functional explanation of controlling copied old state",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_2856d35ae63ae8dbd84d644d",
+            "context_type": "C2",
+            "reason_code": "describes inputs to reset and update gates in a GRU",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_e468e6c3444203918151241e",
+            "context_type": "C2",
+            "reason_code": "figure caption about computing the update gate in GRU",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_d739879531fc4668a9d14f93",
+            "context_type": "C3",
+            "reason_code": "states the update gate variable and computation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_2d3d087fad253f4d69369b59",
+            "context_type": "C4",
+            "reason_code": "mentions update gate affecting candidate state integration",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_57c90277e1fd8433f386654b",
+            "context_type": "C3",
+            "reason_code": "explains how the update gate mixes previous and candidate hidden states",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "a GRU gate that controls how much of the previous hidden state is kept versus replaced by the candidate state",
+        "definition_evidence_context_ids": [
+          "ctx_91acf4e9a95c2577a48f754e",
+          "ctx_d739879531fc4668a9d14f93",
+          "ctx_57c90277e1fd8433f386654b"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_0bbf3a04a91397bf545fe5dc",
+          "ctx_3143c3d658da09d8181b666c",
+          "ctx_d739879531fc4668a9d14f93"
+        ],
+        "sense_id": "d2lce_a47c0fa6efae6f5b3c950575",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a literal or game-world gate associated with updating, not a GRU mechanism",
+          "rationale": "No supplied context shows a different sense; synthetic boundary clarifies the term is a neural-network component.",
+          "source_text": "Synthetic: In the castle simulation game, the update gate opens only when engineers install a new software patch."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "compact established technical rendering",
+            "target_vi": "lớp gộp"
+          },
+          {
+            "formation_reason": "plural form matching plural surface",
+            "target_vi": "các lớp gộp"
+          },
+          {
+            "formation_reason": "common borrowing preserving exact ML sense",
+            "target_vi": "lớp pooling"
+          },
+          {
+            "formation_reason": "captures local aggregation function in context",
+            "target_vi": "lớp tổng hợp cục bộ"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_2caa9497e1430c49c9c6179e",
+            "context_type": "C2",
+            "reason_code": "lists pooling layers among CNN architectural components",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_5e4de4eeef8a8e535e757172",
+            "context_type": "C2",
+            "reason_code": "specific use of maximum pooling layers in architecture",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_8e23dd2d6763c4ee696bb066",
+            "context_type": "C2",
+            "reason_code": "contrasts attention mechanisms with pooling layers",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_d73510d8bcc8b4db2d674358",
+            "context_type": "C2",
+            "reason_code": "mentions removing the maximum pooling layer from a network",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_fc7040b8bb11e8f5908a5b2e",
+            "context_type": "C3",
+            "reason_code": "explains reduced sensitivity to target position",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_e3ef71ac342723539664fb0b",
+            "context_type": "C2",
+            "reason_code": "code comment describing max-over-time pooling layer",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_5b2b6c454358b72cbc4ddf00",
+            "context_type": "C3",
+            "reason_code": "gives core purposes of pooling layers",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_f99c821572f5bad6256c826c",
+            "context_type": "C3",
+            "reason_code": "states the pooling layer has no parameters",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "a neural network layer that aggregates nearby values, typically reducing spatial sensitivity and downsampling without learnable kernel parameters",
+        "definition_evidence_context_ids": [
+          "ctx_fc7040b8bb11e8f5908a5b2e",
+          "ctx_5b2b6c454358b72cbc4ddf00",
+          "ctx_f99c821572f5bad6256c826c"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_2caa9497e1430c49c9c6179e",
+          "ctx_d73510d8bcc8b4db2d674358",
+          "ctx_f99c821572f5bad6256c826c"
+        ],
+        "sense_id": "d2lce_2b9f63478b6ef59511a4f930",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a literal physical layer related to a pool, not a neural-network layer",
+          "rationale": "No supplied context presents a different sense; synthetic contrast marks the ML architecture sense.",
+          "source_text": "Synthetic: The resort's pooling layer is the final tile coating applied inside the swimming pool."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "direct mathematical rendering of kernel in convolution",
+            "target_vi": "nhân chập"
+          },
+          {
+            "formation_reason": "supported by context equating kernel with filter",
+            "target_vi": "bộ lọc tích chập"
+          },
+          {
+            "formation_reason": "literal technical calque still plausible in exact sense",
+            "target_vi": "hạt nhân tích chập"
+          },
+          {
+            "formation_reason": "emphasizes operator/filter role in convolution",
+            "target_vi": "bộ nhân chập"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_324283e43fc62ecd24e2a923",
+            "context_type": "C3",
+            "reason_code": "explicitly defines convolution kernel as filter/weights",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_553b80dd5ccbf185fe342d46",
+            "context_type": "C2",
+            "reason_code": "discusses sizes of convolution kernels",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_f1e496939bf84efa5b0055a2",
+            "context_type": "C2",
+            "reason_code": "mentions using a smaller convolution kernel in architecture",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_3ef46376e083fc08200cbde9",
+            "context_type": "C3",
+            "reason_code": "uses a concrete 2x2 convolution kernel in computation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_62a689a27a8ee80eaa82689e",
+            "context_type": "C3",
+            "reason_code": "describes cross-correlation with the convolution kernel",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_3a70b91cc809a88026050552",
+            "context_type": "C2",
+            "reason_code": "talks about kernel size as a property of convolution kernel",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_6bfd2b1f7968c3e4e607ba4a",
+            "context_type": "C3",
+            "reason_code": "states what the convolution kernel implements in a limiting case",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_f2e17ee567b215267ffa2690",
+            "context_type": "C3",
+            "reason_code": "relates output size to convolution kernel dimensions",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "the learnable filter tensor used in a convolution or cross-correlation operation",
+        "definition_evidence_context_ids": [
+          "ctx_324283e43fc62ecd24e2a923",
+          "ctx_3ef46376e083fc08200cbde9",
+          "ctx_f2e17ee567b215267ffa2690"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_324283e43fc62ecd24e2a923",
+          "ctx_553b80dd5ccbf185fe342d46",
+          "ctx_f1e496939bf84efa5b0055a2"
+        ],
+        "sense_id": "d2lce_7c27fa40b039d07e81508741",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a non-technical nickname, not the CNN filter tensor",
+          "rationale": "All supplied contexts point to the CNN/filter sense, so a synthetic nontechnical contrast is used.",
+          "source_text": "Synthetic: The chef named his new sauce the convolution kernel, but it was only a menu joke."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "standard probability-focused rendering",
+            "target_vi": "phân phối"
+          },
+          {
+            "formation_reason": "broad technical rendering covering values/data characteristics",
+            "target_vi": "phân bố"
+          },
+          {
+            "formation_reason": "more explicit for the dominant probability sense",
+            "target_vi": "phân phối xác suất"
+          },
+          {
+            "formation_reason": "nominalized form fitting general spread/drift uses",
+            "target_vi": "sự phân bố"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.24,
+            "context_id": "ctx_f1dca10462ef375780339aec",
+            "context_type": "NONE",
+            "reason_code": "the term itself does not appear in this context",
+            "sense_relation": "INVALID"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_2606fc94edd8ad29a05c47bb",
+            "context_type": "C3",
+            "reason_code": "formal notation entry for probability distribution",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_4110fd6b0cfb72d128594a20",
+            "context_type": "C4",
+            "reason_code": "distribution shift refers to changed data distribution between train and test",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_22ee6c085ab714120f38865d",
+            "context_type": "C3",
+            "reason_code": "numbers sampled from a specific distribution",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_1641e82199eae62cda1187c0",
+            "context_type": "C3",
+            "reason_code": "Gaussian distribution of noise",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_adfc32dfad2c16e59d906c41",
+            "context_type": "C3",
+            "reason_code": "valid probability distribution for outputs",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_fee67727bfbe4157c5c6994e",
+            "context_type": "C3",
+            "reason_code": "uniform distribution used for initialization",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_d9e926841554c7c006b73e6d",
+            "context_type": "C4",
+            "reason_code": "distribution drift of variables in batch normalization",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.89,
+        "definition_en": "the way probability mass, density, values, or data characteristics are spread over possible outcomes or examples",
+        "definition_evidence_context_ids": [
+          "ctx_2606fc94edd8ad29a05c47bb",
+          "ctx_22ee6c085ab714120f38865d",
+          "ctx_4110fd6b0cfb72d128594a20"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_2606fc94edd8ad29a05c47bb",
+          "ctx_22ee6c085ab714120f38865d",
+          "ctx_d9e926841554c7c006b73e6d"
+        ],
+        "sense_id": "d2lce_c47822c187c02e12aa499ec6",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "physical allocation of items across locations, not the probabilistic/data-spread sense used here",
+          "rationale": "Supplied contexts center on probability/data-spread usage; synthetic contrast marks a logistical sense boundary.",
+          "source_text": "Synthetic: The company changed the distribution of books across its retail stores last month."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "canonical ML verb",
+            "target_vi": "huấn luyện"
+          },
+          {
+            "formation_reason": "common alternative in Vietnamese technical usage",
+            "target_vi": "đào tạo"
+          },
+          {
+            "formation_reason": "less standard but still plausible metaphorical optimization sense",
+            "target_vi": "rèn luyện"
+          },
+          {
+            "formation_reason": "context-grounded paraphrastic rendering of fitting process",
+            "target_vi": "tối ưu hóa khi huấn luyện"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.89,
+            "context_id": "ctx_c59d1952fd176678e6067a09",
+            "context_type": "C2",
+            "reason_code": "mentions engineering techniques required to train models efficiently",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_ea5790fe6044cd61bc133385",
+            "context_type": "C3",
+            "reason_code": "directly says we train our model with data",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_9282f3ace8d089f60898e962",
+            "context_type": "C3",
+            "reason_code": "explains training as successive updates using more data",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_71176d223ed033be9203e626",
+            "context_type": "C3",
+            "reason_code": "discusses figuring out how to train difficult models",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_6b5fc1533573098a302c2aa6",
+            "context_type": "C3",
+            "reason_code": "training high-capacity models and overfitting risk",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_929bfbfdad0e6f80c43c25a6",
+            "context_type": "C2",
+            "reason_code": "instruction to construct an MLP and train it",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_d6a61508bc9d44444618bd65",
+            "context_type": "C3",
+            "reason_code": "successful training of CNNs via backpropagation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_732118a0817f428f0428816a",
+            "context_type": "C3",
+            "reason_code": "to train a classifier after obtaining representations",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "to fit or optimize a machine learning model using data",
+        "definition_evidence_context_ids": [
+          "ctx_ea5790fe6044cd61bc133385",
+          "ctx_9282f3ace8d089f60898e962",
+          "ctx_d6a61508bc9d44444618bd65"
+        ],
+        "part_of_speech": "verb",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_ea5790fe6044cd61bc133385",
+          "ctx_9282f3ace8d089f60898e962",
+          "ctx_71176d223ed033be9203e626"
+        ],
+        "sense_id": "d2lce_d1ca2fd5568e11a79b1b3366",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "to practice physically for sport, not to fit a machine learning model",
+          "rationale": "All supplied contexts use the ML sense only, so a synthetic human-training contrast is needed.",
+          "source_text": "Synthetic: They train every morning for the marathon before sunrise."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

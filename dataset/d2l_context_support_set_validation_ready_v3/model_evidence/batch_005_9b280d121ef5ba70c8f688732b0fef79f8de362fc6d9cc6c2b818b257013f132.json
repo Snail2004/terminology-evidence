@@ -1,0 +1,515 @@
+{
+  "audit": {
+    "batch_index": 5,
+    "from_cache": false,
+    "latency_ms": 67882,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "33c2b98ecece27313711533c8991edf39c883a0021b91a6055b219409a8c7961",
+    "response_sha256": "19050d9037d751a362c658b19c98e0d9251e353cd1c7eee71464ced485612a9b",
+    "usage": {
+      "input_tokens": 5864,
+      "output_tokens": 3642,
+      "reasoning_tokens": null,
+      "total_tokens": 9506
+    }
+  },
+  "input_request_sha256": "9b280d121ef5ba70c8f688732b0fef79f8de362fc6d9cc6c2b818b257013f132",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "borrowed_symbol",
+            "target_vi": "beta"
+          },
+          {
+            "formation_reason": "expanded_symbol_role",
+            "target_vi": "tham số beta"
+          },
+          {
+            "formation_reason": "expanded_math_symbol",
+            "target_vi": "hệ số beta"
+          },
+          {
+            "formation_reason": "contextual_function",
+            "target_vi": "tham số dịch beta"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_4cfe5e8d436f58421a53ed72",
+            "context_type": "C1",
+            "reason_code": "batchnorm_shift_symbol",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.83,
+            "context_id": "ctx_ba0d4cc04149820abe45bc7c",
+            "context_type": "C1",
+            "reason_code": "greek_letter_variable",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.86,
+            "context_id": "ctx_14774fa1cfce5a1a3478275f",
+            "context_type": "C1",
+            "reason_code": "greek_letter_vector_symbol",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.89,
+            "context_id": "ctx_89205c55ccfdb1cec5251eea",
+            "context_type": "C1",
+            "reason_code": "fixed_vector_symbol",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_60049e1f8e96ead596f5d3a2",
+            "context_type": "C1",
+            "reason_code": "learned_parameter_symbol",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_6c3c6612ebc8fab20277caea",
+            "context_type": "C1",
+            "reason_code": "shift_parameter_symbol",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_7f55c44f2cea0740cebddf92",
+            "context_type": "C1",
+            "reason_code": "code_scale_shift_symbol",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_878c161653cd7f18ca9484fb",
+            "context_type": "C1",
+            "reason_code": "function_argument_symbol",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "Greek letter used as a mathematical symbol; in batch normalization, it denotes the learnable shift parameter.",
+        "definition_evidence_context_ids": [
+          "ctx_60049e1f8e96ead596f5d3a2",
+          "ctx_6c3c6612ebc8fab20277caea",
+          "ctx_7f55c44f2cea0740cebddf92",
+          "ctx_4cfe5e8d436f58421a53ed72"
+        ],
+        "part_of_speech": "symbol",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_4cfe5e8d436f58421a53ed72",
+          "ctx_ba0d4cc04149820abe45bc7c",
+          "ctx_89205c55ccfdb1cec5251eea"
+        ],
+        "sense_id": "d2lce_20a7e6887718c68fb6b88a05",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A pre-release stage of software testing.",
+          "rationale": "No supplied context shows a genuinely different sense; all uses are symbolic/math-related.",
+          "source_text": "Synthetic: In software versioning, beta refers to a pre-release testing stage, not a mathematical parameter symbol."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded_candidate",
+            "target_vi": "các điểm cực tiểu"
+          },
+          {
+            "formation_reason": "shorter_math_term",
+            "target_vi": "các cực tiểu"
+          },
+          {
+            "formation_reason": "plain_math_variant",
+            "target_vi": "các điểm tối thiểu"
+          },
+          {
+            "formation_reason": "descriptive_variant",
+            "target_vi": "các điểm đạt giá trị nhỏ nhất"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_2023e0a03e715e57f08e87ce",
+            "context_type": "C1",
+            "reason_code": "loss_surface_minima",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_3edadaa9e9bdcfa46667a9cc",
+            "context_type": "C1",
+            "reason_code": "local_minima_optimization",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_a9e253f896a3bbfcfaf951f0",
+            "context_type": "C1",
+            "reason_code": "function_minimum_points",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_9fe845c8f1250f89a8604169",
+            "context_type": "C1",
+            "reason_code": "section_title_local_minima",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_005ac3ba6b11534979ff46ad",
+            "context_type": "C1",
+            "reason_code": "escape_local_minima",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_14e7d3c859708f8f0ea7212c",
+            "context_type": "C1",
+            "reason_code": "contrast_with_saddle_points",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_eef3a0e3a150b78b03b45d89",
+            "context_type": "C1",
+            "reason_code": "compare_frequency_of_minima",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_245348373fcf03e11c87da71",
+            "context_type": "C1",
+            "reason_code": "many_local_minima",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "Points or values where a function reaches a minimum, especially on an optimization or loss surface.",
+        "definition_evidence_context_ids": [
+          "ctx_2023e0a03e715e57f08e87ce",
+          "ctx_9fe845c8f1250f89a8604169",
+          "ctx_245348373fcf03e11c87da71",
+          "ctx_a9e253f896a3bbfcfaf951f0"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_2023e0a03e715e57f08e87ce",
+          "ctx_3edadaa9e9bdcfa46667a9cc"
+        ],
+        "sense_id": "d2lce_455f2de181035ca8388c30b0",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "Downward letter strokes in typography.",
+          "rationale": "All supplied contexts use the mathematical/optimization sense only.",
+          "source_text": "Synthetic: In typography, minima can refer to the short downward strokes of letters, not optimization points."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded_candidate",
+            "target_vi": "ma trận tương tác"
+          },
+          {
+            "formation_reason": "domain_specific_expansion",
+            "target_vi": "ma trận tương tác người-mục"
+          },
+          {
+            "formation_reason": "explicit_role_variant",
+            "target_vi": "ma trận tương tác người-dùng–mặt-hàng"
+          },
+          {
+            "formation_reason": "descriptive_variant",
+            "target_vi": "ma trận biểu diễn tương tác"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_04dd6ec44fd039cb21d5367d",
+            "context_type": "C1",
+            "reason_code": "sparsity_of_interaction_matrix",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_5565f012ff929a17a39b50a3",
+            "context_type": "C1",
+            "reason_code": "constructed_user_item_matrix",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_7288cb7b7bb4df7b76d25aeb",
+            "context_type": "C1",
+            "reason_code": "equated_with_rating_matrix",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_8d54eee9a00c6d0088c74e34",
+            "context_type": "C1",
+            "reason_code": "factorizing_interaction_matrix",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_5614646f2d0d26ef6a76ee86",
+            "context_type": "C1",
+            "reason_code": "user_item_matrix_factorization",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_b138719571716898b8d88624",
+            "context_type": "C1",
+            "reason_code": "matrix_R_with_ratings",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_a8d97fb4a07460b132bbdf0d",
+            "context_type": "C1",
+            "reason_code": "input_output_matrix_in_autorec",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_e1b68dcd92df41c824d6b973",
+            "context_type": "C1",
+            "reason_code": "partially_observed_input_matrix",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "A matrix whose entries represent observed user-item interactions, such as ratings, in a recommender system.",
+        "definition_evidence_context_ids": [
+          "ctx_5565f012ff929a17a39b50a3",
+          "ctx_7288cb7b7bb4df7b76d25aeb",
+          "ctx_b138719571716898b8d88624",
+          "ctx_5614646f2d0d26ef6a76ee86"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_5565f012ff929a17a39b50a3",
+          "ctx_b138719571716898b8d88624"
+        ],
+        "sense_id": "d2lce_c01c503b792019c6e3827ac0",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A matrix of interactions in a non-recommender scientific domain.",
+          "rationale": "All supplied contexts are recommender-system uses of the same matrix concept.",
+          "source_text": "Synthetic: In chemistry, an interaction matrix could summarize interactions among molecules, not user-item data."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded_candidate",
+            "target_vi": "MSE"
+          },
+          {
+            "formation_reason": "expanded_acronym",
+            "target_vi": "sai số bình phương trung bình (MSE)"
+          },
+          {
+            "formation_reason": "common_ml_variant",
+            "target_vi": "lỗi bình phương trung bình"
+          },
+          {
+            "formation_reason": "metric_framing",
+            "target_vi": "độ lỗi bình phương trung bình"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_4c0db4110edeb70b3ce069e5",
+            "context_type": "NONE",
+            "reason_code": "lr_means_learning_rate_not_mse",
+            "sense_relation": "INVALID"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_591781cd7583666007c98134",
+            "context_type": "C1",
+            "reason_code": "mse_loss_for_regression",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_5df9fbccc96715edeb610c55",
+            "context_type": "C1",
+            "reason_code": "explicit_mean_squared_error_definition",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_a9382217a06a988f0ecb9234",
+            "context_type": "C1",
+            "reason_code": "formula_for_mse",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_fdf0e7090cf0502e217b65eb",
+            "context_type": "C1",
+            "reason_code": "property_of_mse",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_bc89daf7fd2f4eb40d457f44",
+            "context_type": "C1",
+            "reason_code": "mse_as_metric",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_1a29813f7324a6438bb8baa2",
+            "context_type": "C1",
+            "reason_code": "bias_variance_decomposition_of_mse",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_426bea20b9dba9336b04c813",
+            "context_type": "C1",
+            "reason_code": "code_function_named_mse",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "Mean squared error; a non-negative metric or loss equal to the average squared difference between an estimate or prediction and the true value.",
+        "definition_evidence_context_ids": [
+          "ctx_5df9fbccc96715edeb610c55",
+          "ctx_a9382217a06a988f0ecb9234",
+          "ctx_fdf0e7090cf0502e217b65eb",
+          "ctx_426bea20b9dba9336b04c813"
+        ],
+        "part_of_speech": "symbol",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_a9382217a06a988f0ecb9234",
+          "ctx_fdf0e7090cf0502e217b65eb"
+        ],
+        "sense_id": "d2lce_ceb82e896665f8c0cd942ed6",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "An unrelated acronym used as a name or code.",
+          "rationale": "Supplied valid contexts consistently use the statistical/ML acronym sense; one supplied context is invalid.",
+          "source_text": "Synthetic: In a company dashboard, MSE could be an internal project code, not mean squared error."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded_candidate",
+            "target_vi": "đối xứng"
+          },
+          {
+            "formation_reason": "property_noun_variant",
+            "target_vi": "tính đối xứng"
+          },
+          {
+            "formation_reason": "nominalized_variant",
+            "target_vi": "sự đối xứng"
+          },
+          {
+            "formation_reason": "specific_subtype_from_context",
+            "target_vi": "đối xứng hoán vị"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_4dd93f52590658e6a0b3f22f",
+            "context_type": "C1",
+            "reason_code": "symmetry_in_probability_expression",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_59c1a647fd4efce460391040",
+            "context_type": "C1",
+            "reason_code": "point_symmetry_of_function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_0a972e21da1bd8980d3dde3a",
+            "context_type": "C1",
+            "reason_code": "non_symmetry_contrast",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_3e360f75f7c8e4a72dec0489",
+            "context_type": "C1",
+            "reason_code": "breaking_the_symmetry_section",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_85ece440cd707c90543755ee",
+            "context_type": "C1",
+            "reason_code": "symmetry_in_parametrization",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_a0e3164176dc4db7e9acaf04",
+            "context_type": "C1",
+            "reason_code": "permutation_symmetry_subtype",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_2c7d7b724cf59c3bde70e182",
+            "context_type": "C1",
+            "reason_code": "dropout_breaks_symmetry",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_77dc2db84932a4949515fe0d",
+            "context_type": "C1",
+            "reason_code": "failure_to_break_symmetry",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "A property of remaining unchanged under a transformation or exchange; in neural networks, it can refer to interchangeable parameterizations that must be broken.",
+        "definition_evidence_context_ids": [
+          "ctx_4dd93f52590658e6a0b3f22f",
+          "ctx_59c1a647fd4efce460391040",
+          "ctx_85ece440cd707c90543755ee",
+          "ctx_77dc2db84932a4949515fe0d"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_59c1a647fd4efce460391040",
+          "ctx_85ece440cd707c90543755ee"
+        ],
+        "sense_id": "d2lce_00c0e4f7d0d5537d738af8a7",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "Visual balance in artistic design.",
+          "rationale": "Supplied contexts stay within mathematical/function/probabilistic and neural-network invariance uses.",
+          "source_text": "Synthetic: In everyday design, symmetry can mean visual balance in a logo, not mathematical or parameter-exchange invariance."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

@@ -1,0 +1,45 @@
+{
+  "schema_id": "D2LCSTStageASourceBindingsV1_4",
+  "schema_version": "1.4.0",
+  "policy_id": "d2l_cst_three_reviewer_human_review_v1_4",
+  "unit_field": "sense_id",
+  "source_fields": [
+    "workflow_policy_id",
+    "annotation_unit",
+    "term_id",
+    "sense_id",
+    "split",
+    "stratum",
+    "source_term",
+    "model_definition_en",
+    "model_definition_confidence",
+    "model_part_of_speech",
+    "model_part_of_speech_confidence",
+    "definition_evidence_context_ids",
+    "part_of_speech_evidence_context_ids",
+    "source_record_sha256"
+  ],
+  "rows": {
+    "d2lce_270e1a75bb70807d9c2dd507": {
+      "source_payload_sha256": "f8f037322d5f1a509e24403c883115a4e19b19293a29854d7a90435f88633f3f",
+      "source_record_sha256": "b0060face2ffbf56ef5addc856cb52005ccc63e75b57672695dc7396f73facde"
+    },
+    "d2lce_73c8ce2915c4c64a52fab4a2": {
+      "source_payload_sha256": "5debfce25265f503599c72008bcb66d6e8796972ecca896b3323d3fe24d58972",
+      "source_record_sha256": "20c565451c2699e26af8a60f6c68ca6e8c5193531f12db33d783f8dee6dbe278"
+    },
+    "d2lce_776fd3328d5e31aeebe484ec": {
+      "source_payload_sha256": "bc8b3e99fe2c6306560c908304d3841398f3538d140f397dc1852a227ba92dc0",
+      "source_record_sha256": "ea66935c9094cdaff06d426913c7f02d7f353c6c2b3c05bf942c399661654ae4"
+    },
+    "d2lce_ccf7d0a5109d86ee76a75b9c": {
+      "source_payload_sha256": "c925bb722477a34e61c10570533c01be6ecb58f2fdf04c2c3326d4bffd7d8001",
+      "source_record_sha256": "b62857b51929f01352f52fdc8695cff14ad4248007bc2be9799855947c4060c6"
+    },
+    "d2lce_dbb300a90e4b0f8b815b5e12": {
+      "source_payload_sha256": "9d185e1c135270c51b3ffd42d12d28bd8dca5c4ad9559773a66c0c67e22304fb",
+      "source_record_sha256": "fe14890a5636cd391387c5cdb2d7b8b80c888afc5a00cdbd9d3ced2638fa24c0"
+    }
+  },
+  "source_bindings_sha256": "681511b2b9d20c7cbe72f1f78a0a3af52cc9433a6c62ca4ae740c8cf3788909a"
+}

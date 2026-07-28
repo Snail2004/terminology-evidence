@@ -1,0 +1,510 @@
+{
+  "audit": {
+    "batch_index": 12,
+    "from_cache": false,
+    "latency_ms": 70735,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "6be5917c5474b4fcce34cae217969f07f31f59d9d3ca99e16c1da36db1182479",
+    "response_sha256": "e941ab535c399ea4bbbe9557d6eb4d132d8d01eb687f3679d1314e5f2d9968d3",
+    "usage": {
+      "input_tokens": 5367,
+      "output_tokens": 3769,
+      "reasoning_tokens": null,
+      "total_tokens": 9136
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "01980027e39b64807cc882da1f0de78d05e7328d62768a238aa514fc3d49eccc",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "common technical calque using size→quy mô",
+            "target_vi": "quy mô minibatch"
+          },
+          {
+            "formation_reason": "explicit paraphrase of the counted quantity",
+            "target_vi": "số mẫu trong một lô nhỏ"
+          },
+          {
+            "formation_reason": "near-synonymous rendering of size in training context",
+            "target_vi": "độ lớn lô nhỏ"
+          },
+          {
+            "formation_reason": "short technical variant for batch-size style terms",
+            "target_vi": "cỡ lô nhỏ"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_7fc6f12ab12ca9a7f0af8274",
+            "context_type": "C1",
+            "reason_code": "states minibatch size as a numeric training parameter",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_78da4af66f0cedb5ae1b160d",
+            "context_type": "C1",
+            "reason_code": "links minibatch size to tensor shape and example count",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_dc5cb3bfdafeb7c4a403e8a9",
+            "context_type": "C1",
+            "reason_code": "uses minibatch size to determine number of minibatches",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_1e4dd1bfa6ccb1046784076e",
+            "context_type": "C1",
+            "reason_code": "numeric minibatch size from distributed hardware setup",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_39af2ece89443cd7fa86dfc2",
+            "context_type": "C1",
+            "reason_code": "discusses increasing minibatch size and learning rate",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_c15f9d27aeea9362be91cca2",
+            "context_type": "C1",
+            "reason_code": "direct assignment of minibatch size to one",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_d6ab75565ebd010dfbf7b992",
+            "context_type": "C1",
+            "reason_code": "equates minibatch size with total number of examples",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_a212b34897ea9058b36ef4f4",
+            "context_type": "C1",
+            "reason_code": "compares runtimes for different minibatch sizes",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "the number of examples contained in one minibatch during training",
+        "definition_evidence_context_ids": [
+          "ctx_78da4af66f0cedb5ae1b160d",
+          "ctx_d6ab75565ebd010dfbf7b992",
+          "ctx_a212b34897ea9058b36ef4f4"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_7fc6f12ab12ca9a7f0af8274",
+          "ctx_c15f9d27aeea9362be91cca2"
+        ],
+        "sense_id": "d2lce_152a9bcc9b8b5f6cc5586c54",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "minibatch: the actual set of training examples in one small batch, not the number of examples",
+          "rationale": "supplied contexts only show the parameter sense; this contrasts it with the related term minibatch",
+          "source_text": "[Synthetic] The minibatch size stayed fixed at 32, but the minibatch contents changed every iteration."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "singular/plural-neutral technical rendering matching method class",
+            "target_vi": "phương pháp huấn luyện xấp xỉ"
+          },
+          {
+            "formation_reason": "technique-focused variant supported by method contexts",
+            "target_vi": "các kỹ thuật huấn luyện xấp xỉ"
+          },
+          {
+            "formation_reason": "shorter approximation-focused rendering",
+            "target_vi": "huấn luyện gần đúng"
+          },
+          {
+            "formation_reason": "alternative with gần đúng for approximate",
+            "target_vi": "các phương pháp huấn luyện gần đúng"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_23465c1f0b2d1114ed78c140",
+            "context_type": "C2",
+            "reason_code": "section heading naming the concept",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_3ac4117865b320b21d1179ce",
+            "context_type": "C1",
+            "reason_code": "explicitly defines two approximate training methods",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_3ef031323fb6394442845745",
+            "context_type": "C2",
+            "reason_code": "refers back to the two approximate training methods",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_12eba5ccda65530aa7ad9f62",
+            "context_type": "C1",
+            "reason_code": "describes hierarchical softmax as an alternative approximate training method",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_edcd80c52e50572aaffd0ddf",
+            "context_type": "C2",
+            "reason_code": "figure caption situating hierarchical softmax within approximate training",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_255f8d1d0d00e96535232367",
+            "context_type": "C3",
+            "reason_code": "states computational benefit relative to no approximate training",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_85acded56d4e4fc62d1ebf6b",
+            "context_type": "C2",
+            "reason_code": "mentions implementations of approximate training methods",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_d114388fd9000ff629d180ce",
+            "context_type": "C3",
+            "reason_code": "gives negative sampling as the chosen approximate training approach",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "training methods that reduce computation by using approximations instead of the full exact objective",
+        "definition_evidence_context_ids": [
+          "ctx_3ac4117865b320b21d1179ce",
+          "ctx_12eba5ccda65530aa7ad9f62",
+          "ctx_255f8d1d0d00e96535232367"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.95,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_23465c1f0b2d1114ed78c140",
+          "ctx_85acded56d4e4fc62d1ebf6b"
+        ],
+        "sense_id": "d2lce_28ab2b419f6b871a62a06060",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "exact training: training without approximation-based shortcuts",
+          "rationale": "no genuine different sense of the source term appears in supplied contexts",
+          "source_text": "[Synthetic] Approximate training cuts computation, whereas exact training evaluates the full objective each step."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "expanded mathematical name of tanh",
+            "target_vi": "hàm tang hyperbolic"
+          },
+          {
+            "formation_reason": "borrowing-based mathematical variant",
+            "target_vi": "hàm hyperbolic tan"
+          },
+          {
+            "formation_reason": "full Vietnamese math rendering of tanh",
+            "target_vi": "hàm tiếp tuyến hyperbolic"
+          },
+          {
+            "formation_reason": "hybrid technical variant preserving tanh",
+            "target_vi": "hàm tanh hyperbolic"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_c985b1faee54cf1ba7064dca",
+            "context_type": "C2",
+            "reason_code": "section heading naming the function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_fd599f0c3c95a18b0f5b16da",
+            "context_type": "C1",
+            "reason_code": "states tanh output range [-1,1]",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_72c288a96527180e7730ec3d",
+            "context_type": "C3",
+            "reason_code": "describes near-zero linear behavior",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_a57f35de660fe1e76b9815a6",
+            "context_type": "C2",
+            "reason_code": "introduces plot of the function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_c92778674f8f7766091d01d2",
+            "context_type": "C3",
+            "reason_code": "describes symmetry relative to sigmoid",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_8bd905bd87e3d1f74a1769c5",
+            "context_type": "C1",
+            "reason_code": "introduces derivative formula of the function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_004316e859832b3cfcf7035e",
+            "context_type": "C2",
+            "reason_code": "references plotted derivative of the tanh function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_9f96534b3ab6f71f9412e1e5",
+            "context_type": "C3",
+            "reason_code": "describes derivative approaching zero away from origin",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "the hyperbolic tangent function, often used to map values to the range [-1, 1]",
+        "definition_evidence_context_ids": [
+          "ctx_fd599f0c3c95a18b0f5b16da",
+          "ctx_c92778674f8f7766091d01d2",
+          "ctx_8bd905bd87e3d1f74a1769c5"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_c985b1faee54cf1ba7064dca",
+          "ctx_a57f35de660fe1e76b9815a6"
+        ],
+        "sense_id": "d2lce_658174b1687c73f5aa1957ab",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "identity function: a linear pass-through function, not hyperbolic tangent",
+          "rationale": "all supplied contexts refer to the same mathematical function sense",
+          "source_text": "[Synthetic] The tanh function is nonlinear, unlike the identity function y = x."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "core mathematical term for the concept",
+            "target_vi": "tích phân"
+          },
+          {
+            "formation_reason": "operation-focused variant",
+            "target_vi": "phép tính tích phân"
+          },
+          {
+            "formation_reason": "plausible in theory-oriented contexts though narrower",
+            "target_vi": "lý thuyết tích phân"
+          },
+          {
+            "formation_reason": "process-oriented paraphrase",
+            "target_vi": "phép lấy tích phân"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_120ab796647cfa98fd7b49b6",
+            "context_type": "NONE",
+            "reason_code": "uses integration in software/algorithmic incorporation sense, not calculus",
+            "sense_relation": "INVALID"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_970ad81dffba31509dfed788",
+            "context_type": "C1",
+            "reason_code": "explicitly defines integration via area under a curve in calculus",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_d9da221e4355bc0151ecdeae",
+            "context_type": "NONE",
+            "reason_code": "continuous integration testing is a software engineering sense",
+            "sense_relation": "INVALID"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_6cb98f8df6d9db9e167c2f2f",
+            "context_type": "C3",
+            "reason_code": "talks about understanding integration in machine learning math background",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_11630da8af693e077d8637e6",
+            "context_type": "C3",
+            "reason_code": "states a basis for studying integration",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_2d9c07e4c64cbce4f4a725e5",
+            "context_type": "C3",
+            "reason_code": "mentions theory of integration",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_1be847f50e09bfac7f900b8d",
+            "context_type": "C3",
+            "reason_code": "refers to a fact in the theory of integration",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_0720de93acc3b5ddc9c08fc8",
+            "context_type": "C3",
+            "reason_code": "describes developing the theory of integration",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.94,
+        "definition_en": "the branch or operation of calculus concerned with accumulation, such as area under a curve",
+        "definition_evidence_context_ids": [
+          "ctx_970ad81dffba31509dfed788",
+          "ctx_6cb98f8df6d9db9e167c2f2f",
+          "ctx_11630da8af693e077d8637e6"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.93,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_970ad81dffba31509dfed788",
+          "ctx_0720de93acc3b5ddc9c08fc8"
+        ],
+        "sense_id": "d2lce_9372cdb5752db6ba6fa38fbd",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "software integration / continuous integration rather than the calculus concept",
+          "rationale": "supplied contexts contain a genuine different sense in software-engineering usage",
+          "source_text": "The team set up continuous integration, but no one computed an integration over a curve."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "common dimensional rendering for tensors and images",
+            "target_vi": "kích thước"
+          },
+          {
+            "formation_reason": "short form-oriented rendering plausible for functions and objects",
+            "target_vi": "dạng"
+          },
+          {
+            "formation_reason": "hybrid technical variant covering dimensional form",
+            "target_vi": "kích dạng"
+          },
+          {
+            "formation_reason": "axis-length-focused paraphrase for tensor contexts",
+            "target_vi": "các chiều"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_0ca0c7867a08cb23a7e74953",
+            "context_type": "C3",
+            "reason_code": "refers to image resolution or shape as visual form",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_eaaf8f351dd451d99604be0e",
+            "context_type": "C1",
+            "reason_code": "explicitly defines tensor shape as length along each axis",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_178ff737d193d16c637c5384",
+            "context_type": "C3",
+            "reason_code": "uses y.shape property in code",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_0485eb5efda3441a68d374c6",
+            "context_type": "C3",
+            "reason_code": "describes the shape of a mathematical function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_f57f479949897e554691786b",
+            "context_type": "C3",
+            "reason_code": "states output may have different shape from input",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_0f178aa4816b9e54f151c714",
+            "context_type": "C3",
+            "reason_code": "says tensors X and H have the same shape",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_662c35c799f161b9c9cc657e",
+            "context_type": "C3",
+            "reason_code": "convolution window shape as 5x5 then 3x3 dimensions",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_5a8d5f2e80e768f19b56cf52",
+            "context_type": "C3",
+            "reason_code": "uses Xs.shape index in sequence batching code",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.96,
+        "definition_en": "the dimensions or form of an object, especially the length along each axis of a tensor or array",
+        "definition_evidence_context_ids": [
+          "ctx_eaaf8f351dd451d99604be0e",
+          "ctx_f57f479949897e554691786b",
+          "ctx_0f178aa4816b9e54f151c714"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_eaaf8f351dd451d99604be0e",
+          "ctx_0485eb5efda3441a68d374c6"
+        ],
+        "sense_id": "d2lce_7d91b65d1e0031ab994be237",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "visual form of a curve versus axis-dimension tuple of a tensor",
+          "rationale": "supplied contexts include both general-form and tensor-dimension uses within one broad sense boundary",
+          "source_text": "[Synthetic] The shape of the tensor is (2, 3), whereas the shape of the curve is S-like."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

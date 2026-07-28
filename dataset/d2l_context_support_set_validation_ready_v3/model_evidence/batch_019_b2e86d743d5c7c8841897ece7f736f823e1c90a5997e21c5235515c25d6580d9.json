@@ -1,0 +1,511 @@
+{
+  "audit": {
+    "batch_index": 19,
+    "from_cache": false,
+    "latency_ms": 72524,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "e11652636bd859ef7a8b9980079a7f033d349efeb7362d3ee61aa91e5b0bfdbf",
+    "response_sha256": "dfb3ee45ea300b8aaa6f6a6b1ac2fa423d605432ef3d537d1dd16f429c688a68",
+    "usage": {
+      "input_tokens": 5390,
+      "output_tokens": 3867,
+      "reasoning_tokens": null,
+      "total_tokens": 9257
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "b2e86d743d5c7c8841897ece7f736f823e1c90a5997e21c5235515c25d6580d9",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "compact technical calque plausible for training-data unit",
+            "target_vi": "tiểu lô"
+          },
+          {
+            "formation_reason": "explicitly names a small data batch in the training sense",
+            "target_vi": "lô dữ liệu nhỏ"
+          },
+          {
+            "formation_reason": "focuses on a small group of examples processed together",
+            "target_vi": "nhóm mẫu nhỏ"
+          },
+          {
+            "formation_reason": "plausible batch-processing metaphor for grouped data",
+            "target_vi": "mẻ dữ liệu nhỏ"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_9d859bd559e44bb8d2a5c8c9",
+            "context_type": "C1",
+            "reason_code": "SGD explicitly relies on small minibatches of data",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_a7783902acdf15b7a77e6d41",
+            "context_type": "C1",
+            "reason_code": "describes minibatches as grouped data examples along tensor axis",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_c84f58f5911e68e47bc8ede6",
+            "context_type": "C2",
+            "reason_code": "section title naming the optimization method built around minibatches",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_deac78418a7fa068946c9bc4",
+            "context_type": "C1",
+            "reason_code": "defines a minibatch as n examples with d inputs",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_4323c72305899d396f01af5d",
+            "context_type": "C1",
+            "reason_code": "loss is computed for every minibatch during training",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_07f682f0725bb71453b6f6c0",
+            "context_type": "C1",
+            "reason_code": "each example in the minibatch is flattened",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_0365fe98277f3f0623b7477b",
+            "context_type": "C1",
+            "reason_code": "current minibatch provides statistics for batch normalization",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_5ab34383333d1d2b61729c04",
+            "context_type": "C1",
+            "reason_code": "reading minibatches of features and labels at random",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "a small batch of training examples processed together in one step of learning or computation",
+        "definition_evidence_context_ids": [
+          "ctx_9d859bd559e44bb8d2a5c8c9",
+          "ctx_deac78418a7fa068946c9bc4",
+          "ctx_5ab34383333d1d2b61729c04"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.96,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_c84f58f5911e68e47bc8ede6",
+          "ctx_deac78418a7fa068946c9bc4"
+        ],
+        "sense_id": "d2lce_04b7107b328dedc7c1f9af65",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a small production run in manufacturing or printing",
+          "rationale": "No supplied context shows a genuine different sense, so a synthetic boundary sentence separates the ML sense from a non-ML batching sense.",
+          "source_text": "Synthetic: In printing, a minibatch means a small production run rather than a group of training examples."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "direct and natural rendering of a change in underlying concept meaning",
+            "target_vi": "sự thay đổi khái niệm"
+          },
+          {
+            "formation_reason": "technical alternative emphasizing alteration of concept definitions",
+            "target_vi": "biến đổi khái niệm"
+          },
+          {
+            "formation_reason": "makes explicit that label meaning changes",
+            "target_vi": "sự dịch chuyển nghĩa của nhãn"
+          },
+          {
+            "formation_reason": "close to the explicit explanation in context",
+            "target_vi": "sự thay đổi định nghĩa nhãn"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_30ad642fb487987fba85babd",
+            "context_type": "C2",
+            "reason_code": "section heading introducing the concept",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_877769c7d10adbd8a43011a6",
+            "context_type": "C1",
+            "reason_code": "explicitly says label definitions can change",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_a28b330881ada6423af8128e",
+            "context_type": "C1",
+            "reason_code": "regional name usage illustrates changed category conventions",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_a37d035d836b9e4a6c867c99",
+            "context_type": "C1",
+            "reason_code": "examples where what counts under a concept changes",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_dcc02d9a71dc0b1466d0d8f2",
+            "context_type": "C2",
+            "reason_code": "figure caption naming the same concept-shift example",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_4422b292ae2706ac3853e015",
+            "context_type": "C1",
+            "reason_code": "discusses situations where covariate or concept shift may occur",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_65ee0c7626e807bcbfcdf1cf",
+            "context_type": "C1",
+            "reason_code": "lists concept shift alongside other distribution shifts",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_661ce5b03c03edebdfde8f55",
+            "context_type": "C2",
+            "reason_code": "section heading for correcting concept shift",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "a change in what labels or categories mean, so the definition of the prediction target shifts",
+        "definition_evidence_context_ids": [
+          "ctx_877769c7d10adbd8a43011a6",
+          "ctx_a37d035d836b9e4a6c867c99",
+          "ctx_4422b292ae2706ac3853e015"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_30ad642fb487987fba85babd",
+          "ctx_661ce5b03c03edebdfde8f55"
+        ],
+        "sense_id": "d2lce_6239b2ef1cec1800e3d6f13f",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "covariate shift, where the input distribution changes but label meaning stays the same",
+          "rationale": "Supplied contexts contrast concept shift with other shifts but do not provide a full alternative-sense use of the exact term.",
+          "source_text": "Synthetic: A concept shift happens when the meaning of the target label changes, not merely when input features become more common or rare."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "short established task-style rendering",
+            "target_vi": "hỏi đáp"
+          },
+          {
+            "formation_reason": "plausible task name emphasizing producing answers",
+            "target_vi": "giải đáp câu hỏi"
+          },
+          {
+            "formation_reason": "makes the reading-comprehension setup explicit",
+            "target_vi": "trả lời câu hỏi dựa trên văn bản"
+          },
+          {
+            "formation_reason": "common Vietnamese ML phrasing for a task",
+            "target_vi": "bài toán trả lời câu hỏi"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_c7b698a638aebbd9047e3e6d",
+            "context_type": "C1",
+            "reason_code": "lists question answering as one NLP task category",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_be8e51744f5a141736986bff",
+            "context_type": "C1",
+            "reason_code": "identifies question answering as a token-level application",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_fbdaf8cf3c95a1d855ee6d1f",
+            "context_type": "C1",
+            "reason_code": "includes question answering among evaluated NLP tasks",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_e5e0cc83210d92e8eeb9732e",
+            "context_type": "C1",
+            "reason_code": "question answering named as a broad application category",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_b5380097a093ff4bebcff9db",
+            "context_type": "C1",
+            "reason_code": "mentions open-domain question answering as an application",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_3d9da592d08d2b52b664985b",
+            "context_type": "C1",
+            "reason_code": "question answering introduced as a token-level application",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.91,
+            "context_id": "ctx_f478a8fd9500cc043c25cf47",
+            "context_type": "C2",
+            "reason_code": "section heading naming the task",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_0e18119fa086c3cb92ff4aba",
+            "context_type": "C1",
+            "reason_code": "explicitly links question answering to reading comprehension",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "an NLP task where a system reads text and produces answers to questions about it",
+        "definition_evidence_context_ids": [
+          "ctx_0e18119fa086c3cb92ff4aba",
+          "ctx_e5e0cc83210d92e8eeb9732e",
+          "ctx_b5380097a093ff4bebcff9db"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_f478a8fd9500cc043c25cf47",
+          "ctx_0e18119fa086c3cb92ff4aba"
+        ],
+        "sense_id": "d2lce_41109297e6bf8f44d9bb9178",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "ordinary conversational or classroom answering of questions outside the technical NLP task sense",
+          "rationale": "All supplied contexts use the technical NLP-task sense only.",
+          "source_text": "Synthetic: In this chapter, question answering means an NLP task, not a classroom habit of students answering a teacher’s questions."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "natural general-noun rendering for focused notice",
+            "target_vi": "sự tập trung"
+          },
+          {
+            "formation_reason": "plausible nominal variant often used in technical discussion",
+            "target_vi": "mức độ chú ý"
+          },
+          {
+            "formation_reason": "captures what receives focused attention",
+            "target_vi": "trọng tâm chú ý"
+          },
+          {
+            "formation_reason": "concise plausible nominal rendering in explanatory prose",
+            "target_vi": "chú tâm"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.88,
+            "context_id": "ctx_dcce5005701acc61787285d0",
+            "context_type": "C1",
+            "reason_code": "refers to models based on attention mechanisms as an architecture family",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.91,
+            "context_id": "ctx_05ff6c3d6948601de78e83f7",
+            "context_type": "C1",
+            "reason_code": "states what attention mechanisms solved in modeling terms",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_d3a8f97d05a86148d6da3339",
+            "context_type": "NONE",
+            "reason_code": "idiomatic phrase 'turn our attention' is not the technical term entry",
+            "sense_relation": "INVALID"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_57d1c92e88f53d95296c38af",
+            "context_type": "NONE",
+            "reason_code": "general historical focus shift, not the term sense being curated",
+            "sense_relation": "INVALID"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_6b4538e13f992accaeacc9f0",
+            "context_type": "NONE",
+            "reason_code": "general public notice in 'capture wide attention', not the technical term",
+            "sense_relation": "INVALID"
+          },
+          {
+            "confidence": 0.78,
+            "context_id": "ctx_9b75794de1b3d229a80c72a0",
+            "context_type": "C1",
+            "reason_code": "uses the core noun meaning of focused notice/concentration",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_31a4a8b87d7c576fc191dfeb",
+            "context_type": "C2",
+            "reason_code": "chapter heading naming attention mechanisms",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.83,
+            "context_id": "ctx_0226e0426283375d7ada52a5",
+            "context_type": "C1",
+            "reason_code": "general noun meaning of paying attention to overfitting",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.77,
+        "definition_en": "focused notice or concentration; in this book also the named modeling idea behind attention mechanisms",
+        "definition_evidence_context_ids": [
+          "ctx_31a4a8b87d7c576fc191dfeb",
+          "ctx_05ff6c3d6948601de78e83f7",
+          "ctx_9b75794de1b3d229a80c72a0"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_31a4a8b87d7c576fc191dfeb",
+          "ctx_0226e0426283375d7ada52a5"
+        ],
+        "sense_id": "d2lce_4a5f20bb32b66b1f07d9f37a",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "urgent care or service given to someone, as in medical attention",
+          "rationale": "Supplied contexts mix general focus and ML usage, but none show the service/care sense.",
+          "source_text": "Synthetic: Here, attention refers to a focus-weighting idea in models, not to legal or medical emergency attention."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "describes the practical effect of standardization on feature scale",
+            "target_vi": "đưa về thang đo chuẩn"
+          },
+          {
+            "formation_reason": "explicitly reflects zero-mean unit-variance operation",
+            "target_vi": "chuẩn hoá theo trung bình và phương sai"
+          },
+          {
+            "formation_reason": "plausible concise noun-like alternative for data normalization by standard scale",
+            "target_vi": "quy chuẩn dữ liệu"
+          },
+          {
+            "formation_reason": "verb-like alternative matching standardize in preprocessing steps",
+            "target_vi": "làm chuẩn dữ liệu"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_460b67cc0b1f1dd67fa8444a",
+            "context_type": "C1",
+            "reason_code": "explicitly defines standardize as rescaling to zero mean and unit variance",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_328006017870b26dd1187448",
+            "context_type": "C1",
+            "reason_code": "input features are standardized to mean zero and variance one",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_ed7839f97c63c1b48869a6f0",
+            "context_type": "C1",
+            "reason_code": "RGB channel values are standardized channel by channel",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_3a785df09f9744986fcf3844",
+            "context_type": "C1",
+            "reason_code": "discusses reasons for standardizing the data",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_6ffc67805f59c483874ce07b",
+            "context_type": "C1",
+            "reason_code": "asks about omitting standardization of numerical features",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_8df7153a3f4e71ce745ec7c3",
+            "context_type": "C1",
+            "reason_code": "refers to this standardization helping optimization by similar scale",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_a167d13f629e1ae8dac46d3f",
+            "context_type": "C1",
+            "reason_code": "after standardization the minibatch has zero mean and unit variance",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_637765a4cacd9fb038d7eff2",
+            "context_type": "C1",
+            "reason_code": "code comment and formula explicitly implement standardization",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "the operation of rescaling data so values are on a common scale, typically with zero mean and unit variance",
+        "definition_evidence_context_ids": [
+          "ctx_460b67cc0b1f1dd67fa8444a",
+          "ctx_328006017870b26dd1187448",
+          "ctx_a167d13f629e1ae8dac46d3f"
+        ],
+        "part_of_speech": "other",
+        "part_of_speech_confidence": 0.94,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_460b67cc0b1f1dd67fa8444a",
+          "ctx_3a785df09f9744986fcf3844",
+          "ctx_8df7153a3f4e71ce745ec7c3"
+        ],
+        "sense_id": "d2lce_d53294d467b28b07bf000b10",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "the act of making practices conform to an external standard or rule",
+          "rationale": "Supplied contexts consistently use the numeric preprocessing sense only.",
+          "source_text": "Synthetic: In these contexts, standardization means rescaling numeric data, not enforcing a social or industrial standard."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

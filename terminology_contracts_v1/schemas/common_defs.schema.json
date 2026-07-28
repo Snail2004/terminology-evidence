@@ -1,0 +1,261 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesis.local/terminology-contracts/v1/common_defs.schema.json",
+  "title": "Terminology Contracts Common Definitions V1",
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "identifier": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[A-Za-z0-9._:@/+-]+$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "score01": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "dateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "candidateKey": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "candidate_version",
+        "source_term",
+        "candidate_vi",
+        "sense_id",
+        "scope_id",
+        "sense_inventory_version",
+        "dataset_manifest_sha256",
+        "effective_sense_contract_sha256"
+      ],
+      "properties": {
+        "candidate_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "candidate_version": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "source_term": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "candidate_vi": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "sense_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "scope_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "sense_inventory_version": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "dataset_manifest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "effective_sense_contract_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "self_sha256"
+      ],
+      "properties": {
+        "self_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "evidenceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "evidence_type",
+        "uri",
+        "sha256"
+      ],
+      "properties": {
+        "evidence_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "evidence_type": {
+          "enum": [
+            "CONTEXT",
+            "CONTRASTIVE_CONTEXT",
+            "ATTESTATION_SOURCE",
+            "PROVIDER_RESPONSE",
+            "SUPPORT_SET",
+            "REVIEW_ARTIFACT",
+            "CALIBRATION_ARTIFACT",
+            "DECISION_PACKAGE",
+            "OTHER"
+          ]
+        },
+        "uri": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "flag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "severity",
+        "evidence_refs"
+      ],
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/identifier"
+        },
+        "severity": {
+          "enum": [
+            "INFO",
+            "WARNING",
+            "ERROR",
+            "CRITICAL"
+          ]
+        },
+        "message": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4096
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidenceRef"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "modelRoute": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider_id",
+        "model_id",
+        "model_family",
+        "independence_group"
+      ],
+      "properties": {
+        "provider_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "model_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "model_family": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "independence_group": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "run_id",
+        "started_at",
+        "component_id",
+        "component_version",
+        "policy_version",
+        "prompt_hashes",
+        "model_routes",
+        "source_artifact_hashes"
+      ],
+      "properties": {
+        "run_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "started_at": {
+          "$ref": "#/$defs/dateTime"
+        },
+        "completed_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/dateTime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "component_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "component_version": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "policy_version": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "prompt_hashes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/sha256"
+          }
+        },
+        "model_routes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/modelRoute"
+          }
+        },
+        "source_artifact_hashes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/sha256"
+          }
+        },
+        "raw_ledger_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/evidenceRef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4096
+        }
+      }
+    }
+  }
+}

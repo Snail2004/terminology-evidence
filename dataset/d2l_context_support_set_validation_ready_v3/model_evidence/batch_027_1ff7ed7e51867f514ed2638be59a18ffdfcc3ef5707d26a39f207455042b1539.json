@@ -1,0 +1,515 @@
+{
+  "audit": {
+    "batch_index": 27,
+    "from_cache": false,
+    "latency_ms": 71683,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "32be74be52b8ad4dd9a41d461db2d47d182d829a6c181ff35239372f311c1b7f",
+    "response_sha256": "792c829fd0adb12d775a3a09989c4475faffdc3e1122829d6959669c6a260c12",
+    "usage": {
+      "input_tokens": 5162,
+      "output_tokens": 3841,
+      "reasoning_tokens": null,
+      "total_tokens": 9003
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "1ff7ed7e51867f514ed2638be59a18ffdfcc3ef5707d26a39f207455042b1539",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded canonical translation used directly for the named mathematical/activation function",
+            "target_vi": "hàm sigmoid"
+          },
+          {
+            "formation_reason": "plausible transliterated Vietnamese rendering of the named function",
+            "target_vi": "hàm xích ma"
+          },
+          {
+            "formation_reason": "supported by repeated activation-function framing in context",
+            "target_vi": "hàm kích hoạt sigmoid"
+          },
+          {
+            "formation_reason": "plausible alternative for the exact formula/function shown in context",
+            "target_vi": "hàm logistic"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_677a8cad69668bf7ea4b032d",
+            "context_type": "C1",
+            "reason_code": "section title explicitly names the same function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_0c2556749af5509e2a8a0d38",
+            "context_type": "C1",
+            "reason_code": "explicit activation function use in a convolutional block",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_83aa1ec70a5aa698b67dadb3",
+            "context_type": "C1",
+            "reason_code": "bare sigmoid contrasted with ReLU as activation function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_b1671787eb98927f1ad13a78",
+            "context_type": "C1",
+            "reason_code": "explicit sigmoid activation function for gates",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_26b5e8bf7b8da7042c80bc48",
+            "context_type": "C1",
+            "reason_code": "bare sigmoid used as activation choice in model description",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_5998384435b11da31468fd92",
+            "context_type": "C1",
+            "reason_code": "references the definition of the sigmoid activation function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_cf0365ae6ea1bcdfd1296ed3",
+            "context_type": "C1",
+            "reason_code": "encoder activation set to sigmoid",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_6fba33e1194891da74822687",
+            "context_type": "C1",
+            "reason_code": "explicit formula 1/(1+e^-o) identifies the sigmoid function",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "an S-shaped activation function that maps a real-valued input to a value between 0 and 1",
+        "definition_evidence_context_ids": [
+          "ctx_0c2556749af5509e2a8a0d38",
+          "ctx_b1671787eb98927f1ad13a78",
+          "ctx_6fba33e1194891da74822687"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.96,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_677a8cad69668bf7ea4b032d",
+          "ctx_0c2556749af5509e2a8a0d38",
+          "ctx_6fba33e1194891da74822687"
+        ],
+        "sense_id": "d2lce_00f50f89defd8652bb8c429e",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a broader S-shaped function mentioned outside the specific neural-network activation framing",
+          "rationale": "all supplied contexts point to the same activation/function sense, so the boundary is synthetic",
+          "source_text": "Synthetic: In medicine, a sigmoid function could be discussed as an S-shaped dose-response curve rather than specifically as a neural-network activation."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "general candidate matching uncertainty, harm, and application-level usage",
+            "target_vi": "rủi ro"
+          },
+          {
+            "formation_reason": "optimization context explicitly contrasts risk with empirical risk as dataset-wide expected loss",
+            "target_vi": "sai số khái quát hóa"
+          },
+          {
+            "formation_reason": "directly plausible for contexts defining risk as expected loss",
+            "target_vi": "tổn thất kỳ vọng"
+          },
+          {
+            "formation_reason": "plausible alternative in application and consequence-oriented contexts",
+            "target_vi": "nguy cơ"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.86,
+            "context_id": "ctx_399193474e26307c198edb25",
+            "context_type": "C1",
+            "reason_code": "general possible loss of information fits the uncertainty/harm sense",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_a548badbf36a46c4f9452839",
+            "context_type": "C1",
+            "reason_code": "loan default risk is standard uncertainty/harm sense",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_2c2639ba429795d2935fc5d5",
+            "context_type": "C1",
+            "reason_code": "risk of overfitting is potential negative outcome",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_7cbe29eaa7c1116fd7a5e733",
+            "context_type": "C2",
+            "reason_code": "technical optimization usage defines risk as expected loss over the population",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_a99932a01269042b25d04a4b",
+            "context_type": "C1",
+            "reason_code": "larger fluctuation representing larger risk keeps the same uncertainty/loss sense",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_f4a2c74c968df044ff098382",
+            "context_type": "C1",
+            "reason_code": "risk models used for lending refers to models about harmful uncertain outcomes",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_09d73755e2ce9336c387813d",
+            "context_type": "C2",
+            "reason_code": "explicitly defines expected risk as loss weighted by probability and consequence",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.89,
+            "context_id": "ctx_2fc169f6489bcc78299b417f",
+            "context_type": "C1",
+            "reason_code": "uncertain risk outweighing benefit is still the harm/uncertainty sense",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.86,
+        "definition_en": "possible harm, error, or expected loss associated with an uncertain outcome or model performance",
+        "definition_evidence_context_ids": [
+          "ctx_7cbe29eaa7c1116fd7a5e733",
+          "ctx_09d73755e2ce9336c387813d",
+          "ctx_157199781ed5147360a98494"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_399193474e26307c198edb25",
+          "ctx_2c2639ba429795d2935fc5d5",
+          "ctx_7cbe29eaa7c1116fd7a5e733"
+        ],
+        "sense_id": "d2lce_c9e2beab505998c5b3b560b5",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "application-level danger or uncertainty rather than the narrow optimization notion of expected loss",
+          "rationale": "supplied contexts include both broad real-world risk and the narrower technical expected-loss use",
+          "source_text": "Synthetic: In finance, the risk of default was estimated before approving the loan."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "broad modular-unit translation fitting architecture and computation contexts",
+            "target_vi": "khối"
+          },
+          {
+            "formation_reason": "plausible for moved matrix chunks in cache-oriented computation context",
+            "target_vi": "khối dữ liệu"
+          },
+          {
+            "formation_reason": "plausible for grouped architectural components",
+            "target_vi": "khối thành phần"
+          },
+          {
+            "formation_reason": "plausible alternative where blocks function as modular building units",
+            "target_vi": "mô-đun"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_f7e9706f82de50c8f6380d6c",
+            "context_type": "C1",
+            "reason_code": "coarser architectural building units in network design",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_8e452eff442f6f0cb419316b",
+            "context_type": "C1",
+            "reason_code": "convolutional blocks as model components",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_26916f0b3985aa996c0cee2c",
+            "context_type": "C1",
+            "reason_code": "repeating blocks of elements in network architecture",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_b9ce0a059491eaaa6fbf542f",
+            "context_type": "C2",
+            "reason_code": "matrix blocks are data/computation chunks moved into cache",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_0c72a2d7feb8a2a7f2b17bfd",
+            "context_type": "C1",
+            "reason_code": "blocks as software/model abstractions alongside sequential models",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_6481a5fd90279243349a9cd9",
+            "context_type": "C1",
+            "reason_code": "multiscale feature map blocks are model components",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_20b4a3b3e9da0f80ed6d5279",
+            "context_type": "C1",
+            "reason_code": "transformer encoder blocks are named architecture modules",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_46d4831aad13e3c413d4aaef",
+            "context_type": "C1",
+            "reason_code": "basic blocks in generator are repeated modular units",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.84,
+        "definition_en": "modular units or chunks treated as grouped components in a model, program, or computation",
+        "definition_evidence_context_ids": [
+          "ctx_f7e9706f82de50c8f6380d6c",
+          "ctx_8e452eff442f6f0cb419316b",
+          "ctx_b9ce0a059491eaaa6fbf542f"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_f7e9706f82de50c8f6380d6c",
+          "ctx_8e452eff442f6f0cb419316b",
+          "ctx_b9ce0a059491eaaa6fbf542f"
+        ],
+        "sense_id": "d2lce_20c658fd4e221ee551790ec2",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "physical city blocks rather than grouped computational or architectural units",
+          "rationale": "supplied contexts stay within computational and model-component uses",
+          "source_text": "Synthetic: The city planner divided the street into blocks for navigation."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "standard direct rendering of the computing action",
+            "target_vi": "đồng bộ hóa"
+          },
+          {
+            "formation_reason": "shorter plausible verb form in code/performance discussion",
+            "target_vi": "đồng bộ"
+          },
+          {
+            "formation_reason": "captures the wait-until-complete behavior stated in the CUDA explanation",
+            "target_vi": "chờ đồng bộ"
+          },
+          {
+            "formation_reason": "plausible causative phrasing for forcing synchronization",
+            "target_vi": "làm đồng bộ"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_dc63ee4d41dfd51ccd1fb78f",
+            "context_type": "C1",
+            "reason_code": "code explicitly calls synchronize on a CUDA device",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_680c9412dce02a05d32cc50f",
+            "context_type": "C1",
+            "reason_code": "recommends synchronizing each minibatch in async computation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_2893e1c5ddd69213232296e5",
+            "context_type": "C1",
+            "reason_code": "perform instructions then synchronize for intermediate result",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_120834caecae7353d11a2c24",
+            "context_type": "C1",
+            "reason_code": "defines synchronize as waiting for kernels to complete",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_885cc737774521b311183188",
+            "context_type": "C1",
+            "reason_code": "device argument specifies which device to synchronize",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_4023c93849b7225177573487",
+            "context_type": "C1",
+            "reason_code": "benchmark code synchronizes each GPU device",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_800ddb30c90771d6eb717131",
+            "context_type": "C1",
+            "reason_code": "removing synchronize allows automatic parallelization",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_bd29e9f4d01a7d3837c15019",
+            "context_type": "C1",
+            "reason_code": "final synchronize call after running tasks on two GPUs",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.96,
+        "definition_en": "to make asynchronous computation wait so operations on a device or stream reach a coordinated completion point",
+        "definition_evidence_context_ids": [
+          "ctx_120834caecae7353d11a2c24",
+          "ctx_680c9412dce02a05d32cc50f",
+          "ctx_2893e1c5ddd69213232296e5"
+        ],
+        "part_of_speech": "verb",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_dc63ee4d41dfd51ccd1fb78f",
+          "ctx_680c9412dce02a05d32cc50f",
+          "ctx_120834caecae7353d11a2c24"
+        ],
+        "sense_id": "d2lce_1edc567804c90f134219a8f0",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "to coordinate actions in a general real-world sense rather than waiting for device computation to finish",
+          "rationale": "all supplied contexts are the computing/performance sense",
+          "source_text": "Synthetic: The dancers tried to synchronize their steps before the performance."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "canonical singular mathematical translation",
+            "target_vi": "hàm lồi"
+          },
+          {
+            "formation_reason": "matches explicit plural/title uses in context",
+            "target_vi": "các hàm lồi"
+          },
+          {
+            "formation_reason": "plausible fuller mathematical phrasing in Vietnamese",
+            "target_vi": "hàm số lồi"
+          },
+          {
+            "formation_reason": "plausible descriptive alternative for the same mathematical property",
+            "target_vi": "hàm có tính lồi"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_b12e31c5344ac1b417f474e4",
+            "context_type": "C1",
+            "reason_code": "characterizes convex functions via Hessian eigenvalues",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_31af6599f592fa61978eda00",
+            "context_type": "C1",
+            "reason_code": "-log x explicitly cited as a convex function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_8e344cf296b5641fb066c073",
+            "context_type": "C1",
+            "reason_code": "defines convex sets and convex functions",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_7bee0abcb221cab547cc2608",
+            "context_type": "C1",
+            "reason_code": "section title names convex functions",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_901801bd834259cc113d20db",
+            "context_type": "C1",
+            "reason_code": "introduces convex functions formally",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_bacc572c06a4d91414ef51a6",
+            "context_type": "C1",
+            "reason_code": "Jensen's inequality applied to a convex function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_79f335a2e1adffa9d03d4429",
+            "context_type": "C1",
+            "reason_code": "states expectation property of a convex function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_69f7abf7e90b1e8df21abc19",
+            "context_type": "C1",
+            "reason_code": "general statement about properties of convex functions",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "a function whose graph lies below every line segment connecting two points on it",
+        "definition_evidence_context_ids": [
+          "ctx_8e344cf296b5641fb066c073",
+          "ctx_901801bd834259cc113d20db",
+          "ctx_bacc572c06a4d91414ef51a6"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_b12e31c5344ac1b417f474e4",
+          "ctx_31af6599f592fa61978eda00",
+          "ctx_901801bd834259cc113d20db"
+        ],
+        "sense_id": "d2lce_0a19e86b29b5e64f79a45ddc",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a non-mathematical use of the word convex rather than the mathematical function class",
+          "rationale": "all supplied contexts use the mathematical optimization sense",
+          "source_text": "Synthetic: The mirror had a convex function in the decorative engraving, but no mathematical meaning was intended."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

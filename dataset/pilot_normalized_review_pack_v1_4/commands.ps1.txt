@@ -1,0 +1,6 @@
+python validate_stage_a.py . --pilot-root ..\pilot_dev_only_v1_1
+python validate_stage_a.py . --pilot-root ..\pilot_dev_only_v1_1 --require-complete
+python freeze_sense_contract.py . --pilot-root ..\pilot_dev_only_v1_1 --output-root ..\pilot_reviewed_sense_contract_v1 --completed-at 2026-07-28T00:00:00Z
+python generate_stage_b.py --pilot-root ..\pilot_dev_only_v1_1 --sense-contract-root ..\pilot_reviewed_sense_contract_v1 --output-root ..\pilot_stage_b_annotations_v1
+python validate_stage_b.py ..\pilot_stage_b_annotations_v1 --pilot-root ..\pilot_dev_only_v1_1 --sense-contract-root ..\pilot_reviewed_sense_contract_v1 --require-complete
+python finalize_annotations.py --workflow-root . --pilot-root ..\pilot_dev_only_v1_1 --sense-contract-root ..\pilot_reviewed_sense_contract_v1 --stage-b-root ..\pilot_stage_b_annotations_v1 --output-root ..\pilot_human_annotations_v1 --completed-at 2026-07-28T00:00:00Z

@@ -1,0 +1,99 @@
+{
+  "schema_id": "D2LCSTParallelThreeReviewPackV1_2",
+  "schema_version": "1.2.0",
+  "policy_id": "d2l_cst_parallel_three_review_files_v1_1",
+  "status": "THREE_PARALLEL_REVIEW_FILES_READY",
+  "source_pack": {
+    "schema_id": "D2LCSTAIStageAPreReviewPackV1_2",
+    "manifest_sha256": "a4abfb9ce2a2989d0beb2b38f0aed6b12ce564063a30800bffe0c73962af52d1",
+    "manifest_file_sha256": "6e7fb9d64842f1a0b44329c71b7fad500d6fe23257ca0e9581edfedd17c93479"
+  },
+  "review_files": [
+    "ai_1.jsonl",
+    "ai_2.jsonl",
+    "ai_3.jsonl"
+  ],
+  "case_count_per_file": 5,
+  "completion_metadata_required": false,
+  "merge_policy": "CORE_DECISION_EXACT_3_OF_3_OR_2_OF_3_SCOPE_NOTE_AUDIT",
+  "files": {
+    "ai_1.jsonl": {
+      "ref": "ai_1.jsonl",
+      "sha256": "e45bbf89845fa8967b5216ef41b6d0896ca9d5613bf98963d57f54d1b704b730",
+      "mutable_after_annotation": true
+    },
+    "ai_2.jsonl": {
+      "ref": "ai_2.jsonl",
+      "sha256": "e45bbf89845fa8967b5216ef41b6d0896ca9d5613bf98963d57f54d1b704b730",
+      "mutable_after_annotation": true
+    },
+    "ai_3.jsonl": {
+      "ref": "ai_3.jsonl",
+      "sha256": "e45bbf89845fa8967b5216ef41b6d0896ca9d5613bf98963d57f54d1b704b730",
+      "mutable_after_annotation": true
+    },
+    "merge_three_reviews.py": {
+      "ref": "merge_three_reviews.py",
+      "sha256": "57b60569991d406e3ff616c47e13c6d32f33414c0cf6a4012e400754383532e0",
+      "mutable_after_annotation": false
+    },
+    "MESSAGE_TO_REVIEWER_1.md": {
+      "ref": "MESSAGE_TO_REVIEWER_1.md",
+      "sha256": "fde6bd008a3b7c1d91634636d3cac1e6c40e616b3dcbb4f95a3cade969d83447",
+      "mutable_after_annotation": false
+    },
+    "MESSAGE_TO_REVIEWER_2.md": {
+      "ref": "MESSAGE_TO_REVIEWER_2.md",
+      "sha256": "25bb7f130a77430cd9d218dbdd8177ff0b7d89e19b4581c5b1814d9fc1f401ca",
+      "mutable_after_annotation": false
+    },
+    "MESSAGE_TO_REVIEWER_3.md": {
+      "ref": "MESSAGE_TO_REVIEWER_3.md",
+      "sha256": "3b579b4326e5cd1c3d121dbcfc5f63a5656c310a782fd554ef271a1f0dbc40d7",
+      "mutable_after_annotation": false
+    },
+    "README.md": {
+      "ref": "README.md",
+      "sha256": "6273853611827a07c83f1804073d912b6a98578cad8d81d9d66fd690a93612c0",
+      "mutable_after_annotation": false
+    },
+    "REVIEW_INSTRUCTIONS.md": {
+      "ref": "REVIEW_INSTRUCTIONS.md",
+      "sha256": "53e511cd381702cb221b44b8803820d9a194e7e4c9ed56f0f0b1b64051b327c7",
+      "mutable_after_annotation": false
+    },
+    "review_output.schema.json": {
+      "ref": "review_output.schema.json",
+      "sha256": "61e517765fb38a69f2222489fed8a22320cc9fa52e9b6c35cad9a34ef507076a",
+      "mutable_after_annotation": false
+    },
+    "SENSE_CASEBOOK.md": {
+      "ref": "SENSE_CASEBOOK.md",
+      "sha256": "2f82f02440205a6f1ffc20100df54dd8a988d13b547df50c36a36a0f5337e143",
+      "mutable_after_annotation": false
+    },
+    "sense_review_cases.jsonl": {
+      "ref": "sense_review_cases.jsonl",
+      "sha256": "738f5539d648ada2cdbd7b05a490220c5da4f30264d7431bba102ea996c3e275",
+      "mutable_after_annotation": false
+    },
+    "validate_review.py": {
+      "ref": "validate_review.py",
+      "sha256": "ce9fb89e64a2dc99a582ef28acc9456b6a060c2d2aa73b7a17338095e1874258",
+      "mutable_after_annotation": false
+    },
+    "MERGE_POLICY.md": {
+      "ref": "MERGE_POLICY.md",
+      "sha256": "7b6c7e5adb10d369ffe5b937134c329ad675dfbd9cb3e0b67b8a67934f7a79b2",
+      "mutable_after_annotation": false
+    },
+    "test_merge_three_reviews.py": {
+      "ref": "test_merge_three_reviews.py",
+      "sha256": "0bee252e62e4ed689da2ac6ff3dbff7c240fe88b5abc889e29e37c7a85b099c8",
+      "mutable_after_annotation": false
+    }
+  },
+  "merge_policy_id": "d2l_cst_core_decision_consensus_v1",
+  "merged_record_schema_id": "D2LCSTMergedThreeReviewRecordV2",
+  "manifest_sha256": "14a532d957cfdc98fcf4bfea0f488f9896766e8b351d300fa59e18475b53af1a"
+}

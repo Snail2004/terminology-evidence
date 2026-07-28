@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesis.local/terminology-contracts/v1/global_decision_package.schema.json",
+  "title": "Global Terminology Decision Package V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "candidate_key",
+    "input_contract_sha256",
+    "context_evidence_sha256",
+    "attestation_evidence_sha256",
+    "gate_results",
+    "decision_features",
+    "approval_score",
+    "decision",
+    "decision_reasons",
+    "decision_policy",
+    "certificate_ref",
+    "integrity"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "GlobalDecisionPackageV1"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "candidate_key": {
+      "$ref": "common_defs.schema.json#/$defs/candidateKey"
+    },
+    "input_contract_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "context_evidence_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "attestation_evidence_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "gate_results": {
+      "$ref": "gate_result_set.schema.json"
+    },
+    "decision_features": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "approval_score": {
+      "anyOf": [
+        {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "decision": {
+      "enum": [
+        "AUTO_APPROVED",
+        "PROVISIONAL",
+        "HUMAN_REVIEW",
+        "REJECTED",
+        "SPLIT_REQUIRED"
+      ]
+    },
+    "decision_reasons": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "common_defs.schema.json#/$defs/identifier"
+      },
+      "uniqueItems": true
+    },
+    "decision_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy_id",
+        "policy_version",
+        "mode",
+        "calibration_artifact_sha256",
+        "threshold"
+      ],
+      "properties": {
+        "policy_id": {
+          "$ref": "common_defs.schema.json#/$defs/identifier"
+        },
+        "policy_version": {
+          "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+        },
+        "mode": {
+          "enum": [
+            "DEVELOPMENT_HEURISTIC",
+            "FROZEN_CALIBRATED"
+          ]
+        },
+        "calibration_artifact_sha256": {
+          "anyOf": [
+            {
+              "$ref": "common_defs.schema.json#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "threshold": {
+          "anyOf": [
+            {
+              "$ref": "common_defs.schema.json#/$defs/score01"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "certificate_ref": {
+      "anyOf": [
+        {
+          "$ref": "common_defs.schema.json#/$defs/evidenceRef"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "integrity": {
+      "$ref": "common_defs.schema.json#/$defs/integrity"
+    }
+  }
+}

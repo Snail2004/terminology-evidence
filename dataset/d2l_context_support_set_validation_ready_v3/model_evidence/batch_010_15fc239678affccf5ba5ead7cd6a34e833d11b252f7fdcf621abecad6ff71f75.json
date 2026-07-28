@@ -1,0 +1,510 @@
+{
+  "audit": {
+    "batch_index": 10,
+    "from_cache": false,
+    "latency_ms": 66893,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "b099a80821477afc26d74db22b75a20356a30c4f920f9404d322ef85b2ef1f63",
+    "response_sha256": "60c8f08c9e464101a01a2d121c25b444b30e5c1f0e09557944856ad78b21fa62",
+    "usage": {
+      "input_tokens": 5468,
+      "output_tokens": 3582,
+      "reasoning_tokens": null,
+      "total_tokens": 9050
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "15fc239678affccf5ba5ead7cd6a34e833d11b252f7fdcf621abecad6ff71f75",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "established_technical_term",
+            "target_vi": "nhúng từ"
+          },
+          {
+            "formation_reason": "calque_from_definition",
+            "target_vi": "biểu diễn từ bằng vectơ"
+          },
+          {
+            "formation_reason": "descriptive_technical_variant",
+            "target_vi": "phép nhúng từ"
+          },
+          {
+            "formation_reason": "model_family_variant_from_contexts",
+            "target_vi": "mô hình nhúng từ"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_6fa666b3c596ae376a5d62df",
+            "context_type": "C1",
+            "reason_code": "section_title_names_concept",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_6a9b720f95aced72357fb01b",
+            "context_type": "C2",
+            "reason_code": "general_statement_about_field_concept",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_817ac1f3936900a301ec3337",
+            "context_type": "C1",
+            "reason_code": "explicit_definition",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_a2831abdb2ca55617b3dda12",
+            "context_type": "C1",
+            "reason_code": "explicit_definition_repeat",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_bb5ae27beb47e44884fd922c",
+            "context_type": "C2",
+            "reason_code": "training_object_plural_variant",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.88,
+            "context_id": "ctx_f749ad3cd3bc4c80f1a78ce4",
+            "context_type": "C2",
+            "reason_code": "section_title_for_model_family",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_108640f605901673bf814009",
+            "context_type": "C2",
+            "reason_code": "pretraining_model_reference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.89,
+            "context_id": "ctx_a988c294df2c935abfa24586",
+            "context_type": "C2",
+            "reason_code": "model_training_reference",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "a technique or model family that maps words to real-valued vectors for representing them in NLP",
+        "definition_evidence_context_ids": [
+          "ctx_817ac1f3936900a301ec3337",
+          "ctx_a2831abdb2ca55617b3dda12",
+          "ctx_108640f605901673bf814009"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.96,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_817ac1f3936900a301ec3337",
+          "ctx_108640f605901673bf814009"
+        ],
+        "sense_id": "d2lce_ce222dd206341f61f2986f7a",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "embedding as inserting one object inside another physical object, not vector representation of words",
+          "rationale": "no genuine different sense appears in the supplied contexts",
+          "source_text": "Synthetic: In graphic design, the artist used word embedding to place text objects inside a logo shape."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "established_acronym_expansion_translation",
+            "target_vi": "túi từ liên tục"
+          },
+          {
+            "formation_reason": "explicit_model_form",
+            "target_vi": "mô hình túi từ liên tục"
+          },
+          {
+            "formation_reason": "more_literal_but_less_idiomatic",
+            "target_vi": "mô hình bao từ liên tục"
+          },
+          {
+            "formation_reason": "descriptive_functional_variant",
+            "target_vi": "mô hình dự đoán từ trung tâm từ ngữ cảnh"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_27620623f1cb8074d3971cbc",
+            "context_type": "C1",
+            "reason_code": "model_name_in_enumeration",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_8ae5ddde35de799cd4b51696",
+            "context_type": "C2",
+            "reason_code": "paired_model_reference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_c5722940f2ea3be48a188764",
+            "context_type": "C1",
+            "reason_code": "subsection_title_names_model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_3e4d253c9ff11b6a3080d990",
+            "context_type": "C1",
+            "reason_code": "operational_description_of_model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_7592d6eb1986a0c2bd965c36",
+            "context_type": "C1",
+            "reason_code": "distinguishing_description_vs_skipgram",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_9539bbe8c2ac486d267b808a",
+            "context_type": "C1",
+            "reason_code": "explicit_model_identification",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_ba4bc22bf919f20441dc05b2",
+            "context_type": "C3",
+            "reason_code": "figure_caption_summarizes_model_behavior",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_500e392a6212984ed97679b6",
+            "context_type": "C2",
+            "reason_code": "implementation_detail_of_model",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "a word2vec model that predicts a center word from its surrounding context words",
+        "definition_evidence_context_ids": [
+          "ctx_3e4d253c9ff11b6a3080d990",
+          "ctx_7592d6eb1986a0c2bd965c36",
+          "ctx_ba4bc22bf919f20441dc05b2"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_27620623f1cb8074d3971cbc",
+          "ctx_c5722940f2ea3be48a188764"
+        ],
+        "sense_id": "d2lce_dc193feb1eeef3a1349d9b74",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a generic collection of words without the specific CBOW predictive model meaning",
+          "rationale": "no supplied context shows a different sense; contrast is constructed to mark the model-specific boundary",
+          "source_text": "Synthetic: The phrase continuous bag of words here refers to a named prediction model, not just any continuously updated bag of vocabulary items."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "common_technical_rendering",
+            "target_vi": "gradient tiêu biến"
+          },
+          {
+            "formation_reason": "problem_form_from_context",
+            "target_vi": "vấn đề gradient tiêu biến"
+          },
+          {
+            "formation_reason": "literal_variant",
+            "target_vi": "gradient biến mất"
+          },
+          {
+            "formation_reason": "alternative_word_order",
+            "target_vi": "sự tiêu biến của gradient"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.91,
+            "context_id": "ctx_0c2cf2fa2cea5d19f1f0a29b",
+            "context_type": "C2",
+            "reason_code": "general_training_pathology_reference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_69b854938dd969b726eb92a0",
+            "context_type": "C2",
+            "reason_code": "contrasted_with_gradient_explosion",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_ccefa9dc79f5be995f8d5599",
+            "context_type": "C2",
+            "reason_code": "problem_reference_in_rnns",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_2b3bad1bba3a00bca408c517",
+            "context_type": "C2",
+            "reason_code": "optimization_issue_listing",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_e1fa0d830f4e4018432efd83",
+            "context_type": "C2",
+            "reason_code": "paired_with_exploding_gradients",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_26abf38904bfba2529b1ab9a",
+            "context_type": "C1",
+            "reason_code": "explicit_explanation_as_excessively_small_gradients",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_9a06089aea8285a7f38f5e36",
+            "context_type": "C1",
+            "reason_code": "subsection_title_names_problem",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_3c0646bacb04e52b12ad59ca",
+            "context_type": "C2",
+            "reason_code": "cause_of_problem_reference",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "a training problem where gradients become extremely small, so parameters barely update and learning becomes difficult",
+        "definition_evidence_context_ids": [
+          "ctx_26abf38904bfba2529b1ab9a",
+          "ctx_69b854938dd969b726eb92a0",
+          "ctx_3c0646bacb04e52b12ad59ca"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_26abf38904bfba2529b1ab9a",
+          "ctx_9a06089aea8285a7f38f5e36"
+        ],
+        "sense_id": "d2lce_d7976d0b101e65c34c011871",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "gradients visually fading in an image, not the optimization problem in neural network training",
+          "rationale": "all supplied contexts use the machine-learning pathology sense only",
+          "source_text": "Synthetic: In the poster, the designer created vanishing gradients as a color effect from dark blue to white."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "literal_technical_translation",
+            "target_vi": "phép tương quan chéo hai chiều"
+          },
+          {
+            "formation_reason": "operation_marked_variant",
+            "target_vi": "phép toán tương quan chéo hai chiều"
+          },
+          {
+            "formation_reason": "calque_with_dimensional_adjective_fronted",
+            "target_vi": "phép tương quan chéo 2 chiều"
+          },
+          {
+            "formation_reason": "less_compact_but_precise",
+            "target_vi": "thao tác tương quan chéo trên hai chiều"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_8378b0547c4e75e694d743d8",
+            "context_type": "C3",
+            "reason_code": "figure_caption_fragment",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_868efbddfe140e3e02c5c89d",
+            "context_type": "C2",
+            "reason_code": "equivalence_statement_plural_variant",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_31af545156a8abd1def5ed1d",
+            "context_type": "C1",
+            "reason_code": "example_of_operation_output",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_c347d897c071e45dc443bc15",
+            "context_type": "C1",
+            "reason_code": "procedural_description_of_operation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_72a1c4b96b8dcbf9713e5a69",
+            "context_type": "C2",
+            "reason_code": "implementation_validation_reference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_876dc1724c5a190419098d85",
+            "context_type": "C1",
+            "reason_code": "explicit_core_computation_statement",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_d5cacde964394c13f3443d68",
+            "context_type": "C3",
+            "reason_code": "figure_caption_with_padding_variant",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_0540231b9dc01be0b46e98a0",
+            "context_type": "C2",
+            "reason_code": "stride_variant_reference",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "an operation that slides a kernel over a 2D input and computes outputs from elementwise products and sums at each position",
+        "definition_evidence_context_ids": [
+          "ctx_c347d897c071e45dc443bc15",
+          "ctx_31af545156a8abd1def5ed1d",
+          "ctx_876dc1724c5a190419098d85"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_c347d897c071e45dc443bc15",
+          "ctx_876dc1724c5a190419098d85"
+        ],
+        "sense_id": "d2lce_963a14fc5042969e330bb020",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a statistical cross-correlation concept mentioned abstractly, not the specific sliding-kernel computation over a 2D input tensor",
+          "rationale": "no different sense is present in the supplied contexts",
+          "source_text": "Synthetic: In this chapter, two-dimensional cross-correlation refers to the sliding kernel computation on a matrix, not a broad statistical similarity measure."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded_core_term",
+            "target_vi": "từ nhiễu"
+          },
+          {
+            "formation_reason": "negative_sampling_explicit_variant",
+            "target_vi": "từ âm"
+          },
+          {
+            "formation_reason": "descriptive_variant_from_sampling_role",
+            "target_vi": "từ mẫu nhiễu"
+          },
+          {
+            "formation_reason": "full_phrase_for_clarity",
+            "target_vi": "các từ nhiễu được lấy mẫu"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_c2cff6800a035ffeaff0c52d",
+            "context_type": "C1",
+            "reason_code": "explicit_definition_by_sampling_role",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_20ec226227eb3377a4675027",
+            "context_type": "C2",
+            "reason_code": "training_cost_reference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_8a60b064bcb2036082395b15",
+            "context_type": "C2",
+            "reason_code": "sampling_question_reference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_6c68ff8f58bf4e101cf66d9f",
+            "context_type": "C1",
+            "reason_code": "explicit_sampling_description",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_e871cab6ee40803901bb1ec7",
+            "context_type": "C1",
+            "reason_code": "explicit_random_sampling_statement",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_8ee1967b4d544ce02f2d1be9",
+            "context_type": "C1",
+            "reason_code": "code_comment_and_constraint_define_role",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_bd85a6abb1abf1675645f0ec",
+            "context_type": "C1",
+            "reason_code": "function_docstring_definition",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_fad78fb3a08530724c4b2aef",
+            "context_type": "C2",
+            "reason_code": "batch_construction_reference",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "words sampled from a predefined distribution as negative examples, excluding the true context words",
+        "definition_evidence_context_ids": [
+          "ctx_c2cff6800a035ffeaff0c52d",
+          "ctx_6c68ff8f58bf4e101cf66d9f",
+          "ctx_8ee1967b4d544ce02f2d1be9"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_c2cff6800a035ffeaff0c52d",
+          "ctx_bd85a6abb1abf1675645f0ec"
+        ],
+        "sense_id": "d2lce_5c270f3b3ebe4f0059649e18",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "irrelevant or corrupted words in raw text generally, not the specifically sampled negatives used in training",
+          "rationale": "all supplied contexts point to the negative-sampling sense only",
+          "source_text": "Synthetic: Here, noise words are sampled negative examples rather than merely messy or misspelled words in a corpus."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

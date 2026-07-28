@@ -1,0 +1,541 @@
+{
+  "audit": {
+    "batch_index": 20,
+    "from_cache": false,
+    "latency_ms": 76432,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "04d9ad686f7becbac4d05c05613fcb1b7cda59337f8418c049427894db6ce56e",
+    "response_sha256": "99a931e8deb0d8538f7cb37fcac56d97285e4672fa5e2b1fcfe42bf4febe758d",
+    "usage": {
+      "input_tokens": 6421,
+      "output_tokens": 4114,
+      "reasoning_tokens": null,
+      "total_tokens": 10535
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "7ab77b929b0f84674bb61843d431de911a920dfcf3d42fa1bee02774aa7e6cd0",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "core technical noun used across all contexts",
+            "target_vi": "độ lệch"
+          },
+          {
+            "formation_reason": "plausible noun emphasizing amount of displacement",
+            "target_vi": "khoảng lệch"
+          },
+          {
+            "formation_reason": "plausible for predicted/labeled numeric displacement values",
+            "target_vi": "giá trị bù"
+          },
+          {
+            "formation_reason": "plausible broader displacement term in vision/sequence contexts",
+            "target_vi": "dịch chuyển"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_7c03da734cfb73140f39675c",
+            "context_type": "C1",
+            "reason_code": "spatial index displacement in image coordinates",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.91,
+            "context_id": "ctx_8b947d5e873543c5099e853b",
+            "context_type": "C1",
+            "reason_code": "sequence-position displacement for subsequence splitting",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_00060c0d518148705d609385",
+            "context_type": "C1",
+            "reason_code": "anchor-center displacement to pixel center",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.88,
+            "context_id": "ctx_f8448e2bed424bbc3037f2af",
+            "context_type": "C1",
+            "reason_code": "index offsets added to feature ids",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_9af45708693a272ccbee02ce",
+            "context_type": "C1",
+            "reason_code": "same anchor-center displacement as parallel implementation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_993688889952b7346efdcaf7",
+            "context_type": "C2",
+            "reason_code": "predicted box-coordinate displacement values",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_fa4857a0dd6e85e72fbd8c3a",
+            "context_type": "C2",
+            "reason_code": "section heading for training labels of classes and box offsets",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_11250deeba2dfb3a9290f422",
+            "context_type": "C2",
+            "reason_code": "relative position/size displacement values in detection labeling",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.93,
+        "definition_en": "values or positional shifts that indicate displacement relative to a reference, such as pixel centers, sequence positions, or box coordinates",
+        "definition_evidence_context_ids": [
+          "ctx_7c03da734cfb73140f39675c",
+          "ctx_8b947d5e873543c5099e853b",
+          "ctx_00060c0d518148705d609385",
+          "ctx_f8448e2bed424bbc3037f2af",
+          "ctx_9af45708693a272ccbee02ce",
+          "ctx_993688889952b7346efdcaf7",
+          "ctx_fa4857a0dd6e85e72fbd8c3a",
+          "ctx_11250deeba2dfb3a9290f422"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_7c03da734cfb73140f39675c",
+          "ctx_00060c0d518148705d609385",
+          "ctx_993688889952b7346efdcaf7"
+        ],
+        "sense_id": "d2lce_e749bbd007351d6963f2bbd0",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "financial balancing amounts, not positional displacements",
+          "rationale": "No supplied context shows a genuine different sense; synthetic boundary probes the non-spatial/non-index meaning.",
+          "source_term": "offsets",
+          "source_text": "Synthetic: In accounting, offsets are balancing entries that reduce a debt rather than position shifts."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "direct rendering of the phrase",
+            "target_vi": "đầu vào cảm giác"
+          },
+          {
+            "formation_reason": "plausible expanded form emphasizing informational content",
+            "target_vi": "thông tin cảm giác đầu vào"
+          },
+          {
+            "formation_reason": "plausible alternative focusing on signal-like input",
+            "target_vi": "tín hiệu cảm giác đầu vào"
+          },
+          {
+            "formation_reason": "plausible in ML framing where inputs are treated as data",
+            "target_vi": "dữ liệu cảm giác đầu vào"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_718ca2aa7353cfe6ec7be41e",
+            "context_type": "C1",
+            "reason_code": "literal sensory information entering the visual system",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_a3dea1caaff77f50a3d722b3",
+            "context_type": "C1",
+            "reason_code": "plural sensory inputs in biological/attention setup",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_84826f7dac9a86c191985d21",
+            "context_type": "C2",
+            "reason_code": "attention selects over sensory inputs computationally",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_5116b5fdf318003ffedaf8df",
+            "context_type": "C2",
+            "reason_code": "sensory inputs aligned with intermediate feature representations",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_c118b6fc83c7f0f86f025bbe",
+            "context_type": "C2",
+            "reason_code": "single sensory input paired with a key in attention",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_cc74ec1d4759c01b8c2aeb02",
+            "context_type": "C2",
+            "reason_code": "values explicitly glossed as sensory inputs",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_f2f9bdd4c1c0ac5391f9f713",
+            "context_type": "C3",
+            "reason_code": "terminological mapping from sensory inputs to values",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_94ce02b7241c9ce39ca2bbb4",
+            "context_type": "C2",
+            "reason_code": "figure caption repeating attention selection over sensory inputs",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "incoming sensory information considered as items to be selected or weighted by attention",
+        "definition_evidence_context_ids": [
+          "ctx_718ca2aa7353cfe6ec7be41e",
+          "ctx_a3dea1caaff77f50a3d722b3",
+          "ctx_84826f7dac9a86c191985d21",
+          "ctx_5116b5fdf318003ffedaf8df",
+          "ctx_c118b6fc83c7f0f86f025bbe",
+          "ctx_cc74ec1d4759c01b8c2aeb02",
+          "ctx_f2f9bdd4c1c0ac5391f9f713",
+          "ctx_94ce02b7241c9ce39ca2bbb4"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_718ca2aa7353cfe6ec7be41e",
+          "ctx_a3dea1caaff77f50a3d722b3"
+        ],
+        "sense_id": "d2lce_bc240ce7b3e0abeb18f82a6b",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "raw sensor feed in engineering hardware, not specifically the attention-values framing",
+          "rationale": "Supplied contexts stay within biological/attention framing; synthetic probe marks a nearby but distinct engineering usage.",
+          "source_term": "sensory input",
+          "source_text": "Synthetic: The robot lost sensory input from its temperature sensor after the cable broke."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "general target/reference value across tasks",
+            "target_vi": "giá trị thực tế"
+          },
+          {
+            "formation_reason": "close calque, plausible technical borrowing",
+            "target_vi": "sự thật chuẩn"
+          },
+          {
+            "formation_reason": "plausible expanded rendering for evaluation reference",
+            "target_vi": "giá trị chuẩn tham chiếu"
+          },
+          {
+            "formation_reason": "plausible broad translation spanning label and numeric cases",
+            "target_vi": "nhãn hoặc giá trị đúng"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_402ad881d704f837dad6a500",
+            "context_type": "C1",
+            "reason_code": "correct labels/reference outcomes for classification evaluation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_5eba9c50bd8fa646fabf027e",
+            "context_type": "C1",
+            "reason_code": "true observations as optimization target",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_fbe202aec2a07cda6debbc1e",
+            "context_type": "C2",
+            "reason_code": "ground-truth labels in supervised training",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_aa597eb85dc276f00236d01e",
+            "context_type": "C2",
+            "reason_code": "true label category in confusion matrix",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_7c41c1ee9c3bc8a94bf6a5b7",
+            "context_type": "C1",
+            "reason_code": "true target sequence for comparison",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_f81b65ecf8b2145ff73b3d4b",
+            "context_type": "C1",
+            "reason_code": "true function outputs for test examples",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_ae395d237a3a9a8e71e5f2ac",
+            "context_type": "C3",
+            "reason_code": "specific instance: true bounding boxes in detection",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_9833851b704f88b40f938e09",
+            "context_type": "C2",
+            "reason_code": "true labels for masked token prediction",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "the true observed target or correct reference value used to evaluate predictions",
+        "definition_evidence_context_ids": [
+          "ctx_402ad881d704f837dad6a500",
+          "ctx_5eba9c50bd8fa646fabf027e",
+          "ctx_fbe202aec2a07cda6debbc1e",
+          "ctx_aa597eb85dc276f00236d01e",
+          "ctx_7c41c1ee9c3bc8a94bf6a5b7",
+          "ctx_f81b65ecf8b2145ff73b3d4b",
+          "ctx_ae395d237a3a9a8e71e5f2ac",
+          "ctx_9833851b704f88b40f938e09"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_402ad881d704f837dad6a500",
+          "ctx_5eba9c50bd8fa646fabf027e"
+        ],
+        "sense_id": "d2lce_d0b3a65c5f21e6064395a475",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "literal on-site reality/recording, not the ML reference target",
+          "rationale": "All supplied contexts use the ML evaluation sense only.",
+          "source_term": "ground truth",
+          "source_text": "Synthetic: In filmmaking, ground truth referred to footage shot on location rather than annotated targets."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "standard technical term for neural computation",
+            "target_vi": "lan truyền thuận"
+          },
+          {
+            "formation_reason": "plausible synonymous rendering",
+            "target_vi": "lan truyền xuôi"
+          },
+          {
+            "formation_reason": "plausible when referring to one pass",
+            "target_vi": "bước truyền thuận"
+          },
+          {
+            "formation_reason": "plausible code-oriented rendering for method/function contexts",
+            "target_vi": "hàm forward"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_4f8a2ab7305e5e99ddf848a4",
+            "context_type": "C1",
+            "reason_code": "explicit model computation to generate predictions and loss",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_e3686abbec23ffeb19f2dfef",
+            "context_type": "C1",
+            "reason_code": "forward propagation during layer computation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_18f5c52c0937b1589d8a6782",
+            "context_type": "C2",
+            "reason_code": "forward propagation function as method definition",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_072a83737808daf5abee6df6",
+            "context_type": "C2",
+            "reason_code": "named forward propagation function in layer implementation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_f29b2527186fc4269271140f",
+            "context_type": "NONE",
+            "reason_code": "uses forward as general adverb/direction, not neural computation",
+            "sense_relation": "INVALID"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_03e673345da8ef1f57e6f522",
+            "context_type": "NONE",
+            "reason_code": "forward in time denotes temporal direction only",
+            "sense_relation": "INVALID"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_d126e74d5ab3240a96363756",
+            "context_type": "C3",
+            "reason_code": "forward recurrent computations contrasted with backward ones",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_041277e59fc9e3b32469b673",
+            "context_type": "C2",
+            "reason_code": "code method named forward producing outputs",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "the computation that carries inputs through a model to produce outputs; in code, the corresponding forward method",
+        "definition_evidence_context_ids": [
+          "ctx_4f8a2ab7305e5e99ddf848a4",
+          "ctx_e3686abbec23ffeb19f2dfef",
+          "ctx_18f5c52c0937b1589d8a6782",
+          "ctx_072a83737808daf5abee6df6",
+          "ctx_d126e74d5ab3240a96363756",
+          "ctx_041277e59fc9e3b32469b673"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.9,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_4f8a2ab7305e5e99ddf848a4",
+          "ctx_e3686abbec23ffeb19f2dfef",
+          "ctx_18f5c52c0937b1589d8a6782"
+        ],
+        "sense_id": "d2lce_fbe9efe0d390976cb31e5af7",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "physical direction or movement, not model computation",
+          "rationale": "Supplied contexts include invalid directional uses; synthetic probe gives a crisp boundary sentence with the exact form.",
+          "source_term": "forward",
+          "source_text": "Synthetic: She leaned forward to read the screen more closely."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "core general technical term",
+            "target_vi": "khởi tạo"
+          },
+          {
+            "formation_reason": "plausible nominalized form for the act/process",
+            "target_vi": "việc khởi tạo"
+          },
+          {
+            "formation_reason": "plausible broader rendering for initial setup",
+            "target_vi": "thiết lập ban đầu"
+          },
+          {
+            "formation_reason": "plausible when the source refers to methods/heuristics",
+            "target_vi": "phương pháp khởi tạo"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_6c651c750bd61ecf09196999",
+            "context_type": "C2",
+            "reason_code": "methods for parameter initialization",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_bf60034bed8fac717862447e",
+            "context_type": "C1",
+            "reason_code": "parameter initialization as general training concept",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_1bc308a263836f4fc041f231",
+            "context_type": "C1",
+            "reason_code": "chapter topic includes parameter access and initialization",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_d4f8f201e33ddd0184655f6b",
+            "context_type": "C3",
+            "reason_code": "verb form initializes layer weights before computation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_cdcb81a3ee9a5abda1a9e0ce",
+            "context_type": "C2",
+            "reason_code": "initialization heuristics as training trick",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_e826a9c4223fe2ac0df99dd6",
+            "context_type": "C3",
+            "reason_code": "hidden state at initialization",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_ee12194666632f9d5902d342",
+            "context_type": "C2",
+            "reason_code": "hidden state initialization function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_08a00e100653d14a0ddf6485",
+            "context_type": "C1",
+            "reason_code": "good parameter initialization in optimization",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.96,
+        "definition_en": "the act or method of setting initial values or initial state before computation or training",
+        "definition_evidence_context_ids": [
+          "ctx_6c651c750bd61ecf09196999",
+          "ctx_bf60034bed8fac717862447e",
+          "ctx_1bc308a263836f4fc041f231",
+          "ctx_d4f8f201e33ddd0184655f6b",
+          "ctx_cdcb81a3ee9a5abda1a9e0ce",
+          "ctx_e826a9c4223fe2ac0df99dd6",
+          "ctx_ee12194666632f9d5902d342",
+          "ctx_08a00e100653d14a0ddf6485"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.95,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_6c651c750bd61ecf09196999",
+          "ctx_bf60034bed8fac717862447e",
+          "ctx_1bc308a263836f4fc041f231"
+        ],
+        "sense_id": "d2lce_8373decbb6e405f0386ec8a0",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "general software startup/setup, not specifically parameter or state initialization for learning computation",
+          "rationale": "Supplied contexts stay within ML parameter/state setup; synthetic probe marks the broader software sense.",
+          "source_term": "Initialization",
+          "source_text": "Synthetic: During software setup, initialization only created a default configuration file and no model parameters."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

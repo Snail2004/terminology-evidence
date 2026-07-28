@@ -1,0 +1,93 @@
+{
+  "schema_id": "D2LCSTDevelopmentOnlyPilotV1_1",
+  "schema_version": "1.1.0",
+  "pilot_policy_id": "d2l_cst_development_corpus_contrastive_pilot_5_v1_1",
+  "created_at": "2026-07-28T12:00:00Z",
+  "status": "DEVELOPMENT_PILOT_HUMAN_REVIEW_REQUIRED",
+  "supersedes": {
+    "schema_id": "D2LCSTDevelopmentOnlyPilotV1",
+    "manifest_sha256": "1218181bb4f2a205278bb319724e8e08d53b88ce0e40e40954d3448bf1f5a609",
+    "manifest_file_sha256": "d99af7912a6924c0d1ba6b82257956b86e7880de0751241b4925fb68bd2e6805",
+    "required_patch": "CLOSE_REFERENCED_BACKUP_CONTEXTS"
+  },
+  "source_v3": {
+    "schema_id": "D2LContextSupportSetValidationReadyV3",
+    "dataset_version": "d2l_context_support_set_validation_ready_v3",
+    "manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+    "manifest_file_sha256": "b5f2067427c6b88344109f2c62f8db02ac61b0cef76f193d5285f378ff5f96a8",
+    "source_ref": "E:/Data-KL/d2l_context_support_set_validation_ready_v3"
+  },
+  "split_policy": {
+    "allowed_split": "development",
+    "validation_records_included": 0,
+    "test_records_included": 0
+  },
+  "context_policy": {
+    "primary_same_sense_count": 25,
+    "backup_same_sense_count": 8,
+    "corpus_contrastive_count": 5,
+    "unselected_contexts_included": 0,
+    "synthetic_contexts_included": 0,
+    "reference_closure_required": true
+  },
+  "sense_count": 5,
+  "candidate_count": 15,
+  "context_count": 38,
+  "sense_ids": [
+    "d2lce_270e1a75bb70807d9c2dd507",
+    "d2lce_73c8ce2915c4c64a52fab4a2",
+    "d2lce_776fd3328d5e31aeebe484ec",
+    "d2lce_ccf7d0a5109d86ee76a75b9c",
+    "d2lce_dbb300a90e4b0f8b815b5e12"
+  ],
+  "source_terms": [
+    "channels",
+    "Generator",
+    "keys",
+    "multiple channels",
+    "hypothesis"
+  ],
+  "method_development_allowed": true,
+  "selector_development_allowed": false,
+  "threshold_calibration_allowed": false,
+  "human_review_complete": false,
+  "validation": {
+    "schema_id": "D2LCSTDevelopmentPilotValidationReportV1_1",
+    "schema_version": "1.1.0",
+    "status": "PASS",
+    "sense_count": 5,
+    "candidate_count": 15,
+    "context_count": 38,
+    "context_role_counts": {
+      "BACKUP": 8,
+      "CONTRASTIVE": 5,
+      "PRIMARY": 25
+    },
+    "required_context_reference_count": 38,
+    "missing_context_reference_count": 0,
+    "errors": []
+  },
+  "files": {
+    "candidate_instances.jsonl": {
+      "ref": "candidate_instances.jsonl",
+      "sha256": "3e54c6194c1142b81480a2cb46e554a7ed64eb638e45c7cb26421345f2c6803a"
+    },
+    "contexts.jsonl": {
+      "ref": "contexts.jsonl",
+      "sha256": "c24bfdf7e6c9ed41dcbdb19df6c49f653ad8380a9f439a2966c31bd07dad468f"
+    },
+    "README.md": {
+      "ref": "README.md",
+      "sha256": "f9ed66f09c04ee3ddaead799e9425d4a1ae305774a95fa7b952367492a3a69c9"
+    },
+    "term_senses.jsonl": {
+      "ref": "term_senses.jsonl",
+      "sha256": "718afaf846b087265362bb899174ad6369e657f2be1d9e76d887a548bfed7deb"
+    },
+    "validation_report.json": {
+      "ref": "validation_report.json",
+      "sha256": "cb973c358f33f2c76de10269c20f53a90bc7eab654bd3aec4a555ba4ff7eff9f"
+    }
+  },
+  "manifest_sha256": "599692d33f9cc162698bc0e8fc0bf60cce1715cb0f34214fec499f14c1364eb5"
+}

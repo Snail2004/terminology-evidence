@@ -1,0 +1,515 @@
+{
+  "audit": {
+    "batch_index": 24,
+    "from_cache": false,
+    "latency_ms": 72924,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "264a0b42d0c5e4ec760b9cdc91bab29ce41cc40368453ae17ec51976cfcdfcff",
+    "response_sha256": "5c3bc6095573962a43a4f6af69b1815902092a6565f4de69c7e52a8e676e8183",
+    "usage": {
+      "input_tokens": 5401,
+      "output_tokens": 3859,
+      "reasoning_tokens": null,
+      "total_tokens": 9260
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "30471cbb6938efc4865392d16dc27d0e19f6eea16f9b554059ae5381f09913bd",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "near_synonym",
+            "target_vi": "dấu hiệu không tự nguyện"
+          },
+          {
+            "formation_reason": "descriptive",
+            "target_vi": "tín hiệu thu hút chú ý không chủ ý"
+          },
+          {
+            "formation_reason": "semantic_calque",
+            "target_vi": "gợi ý không tự nguyện"
+          },
+          {
+            "formation_reason": "near_synonym",
+            "target_vi": "manh mối không tự nguyện"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_d4a06af98b28daa12e898464",
+            "context_type": "C1",
+            "reason_code": "paired_with_volitional_cue_in_attention_framework",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_1078723c87f441d3c978087a",
+            "context_type": "C1",
+            "reason_code": "explicit_definition_via_saliency_and_conspicuity",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_b24d7938abbc76287221b851",
+            "context_type": "C4",
+            "reason_code": "figure_caption_illustrates_involuntary_attention_direction",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_6f54563163ae90a7881eb6fe",
+            "context_type": "C2",
+            "reason_code": "plural_usage_in_simplified_case",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_6e3c3388630aea54771ba51c",
+            "context_type": "C3",
+            "reason_code": "maps_term_to_keys_in_attention_pooling",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_d3cdd3abd54093da62a2cc19",
+            "context_type": "C3",
+            "reason_code": "conceptual_mapping_of_key_to_nonvolitional_cue",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_b5ad8a4aa3e90970b3a0f97a",
+            "context_type": "C4",
+            "reason_code": "figure_caption_restates_query_key_value_mapping",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_f0330e5bbe33531cd9316565",
+            "context_type": "C4",
+            "reason_code": "summary_bullet_restates_query_key_value_mapping",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.96,
+        "definition_en": "an attention cue arising automatically from salient sensory input rather than deliberate intention",
+        "definition_evidence_context_ids": [
+          "ctx_d4a06af98b28daa12e898464",
+          "ctx_1078723c87f441d3c978087a",
+          "ctx_6e3c3388630aea54771ba51c",
+          "ctx_d3cdd3abd54093da62a2cc19"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_d4a06af98b28daa12e898464",
+          "ctx_1078723c87f441d3c978087a"
+        ],
+        "sense_id": "d2lce_abae8f75b732ffe9c8a965c0",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a deliberately chosen instruction or goal signal that guides attention",
+          "rationale": "All supplied contexts support one sense only; this synthetic boundary contrasts automatic saliency-driven cueing with deliberate volitional guidance.",
+          "source_text": "Synthetic: In psychology, a nonvolitional cue can pull attention to a bright object even when the observer intends to look elsewhere."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "descriptive",
+            "target_vi": "mô hình phân tích nhân tố ma trận"
+          },
+          {
+            "formation_reason": "descriptive",
+            "target_vi": "mô hình nhân tố ẩn ma trận"
+          },
+          {
+            "formation_reason": "descriptive",
+            "target_vi": "phương pháp phân rã ma trận cho gợi ý"
+          },
+          {
+            "formation_reason": "descriptive",
+            "target_vi": "mô hình phân rã ma trận tương tác"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_85322039ea0d616c001b09d4",
+            "context_type": "C1",
+            "reason_code": "explicitly_a_model_based_cf_example",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.68,
+            "context_id": "ctx_aa3b7268d2031526ca7948bd",
+            "context_type": "C2",
+            "reason_code": "general_mathematics_reference_but_still_same_factorization_term",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_cfcea364b99854c40c41a050",
+            "context_type": "C4",
+            "reason_code": "section_title_for_recommender_method",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_76456008737e2fa2778ac72c",
+            "context_type": "C1",
+            "reason_code": "states_it_is_an_algorithm_in_recommender_systems",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_9a721a5919d4be82909eca25",
+            "context_type": "C2",
+            "reason_code": "mentions_algorithm_role_in_netflix_blend",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_a65e2f61252cb7f76af3a6db",
+            "context_type": "C3",
+            "reason_code": "describes_factorizing_the_interaction_matrix",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_a9b72a28dee34e2910a4ca47",
+            "context_type": "C2",
+            "reason_code": "refers_to_details_of_the_model_and_implementation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_36554f5312ed2da8c360daae",
+            "context_type": "C4",
+            "reason_code": "subsection_title_for_model",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.93,
+        "definition_en": "a latent-factor recommendation model that represents interactions by factorizing an interaction matrix",
+        "definition_evidence_context_ids": [
+          "ctx_85322039ea0d616c001b09d4",
+          "ctx_76456008737e2fa2778ac72c",
+          "ctx_a65e2f61252cb7f76af3a6db",
+          "ctx_a9b72a28dee34e2910a4ca47"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_cfcea364b99854c40c41a050",
+          "ctx_76456008737e2fa2778ac72c"
+        ],
+        "sense_id": "d2lce_bbf89ef89c96205886255dcf",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a general linear-algebra decomposition of a matrix without the recommender-model meaning",
+          "rationale": "The supplied set is centered on the recommender-system sense, with one broader math mention; the probe sharpens the intended latent-factor modeling sense.",
+          "source_text": "Synthetic: In this chapter, matrix factorization predicts user–item preferences by learning latent factors from an interaction matrix."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "near_synonym",
+            "target_vi": "tầng khuất"
+          },
+          {
+            "formation_reason": "descriptive",
+            "target_vi": "lớp trung gian ẩn"
+          },
+          {
+            "formation_reason": "descriptive",
+            "target_vi": "tầng nơ-ron ẩn"
+          },
+          {
+            "formation_reason": "descriptive",
+            "target_vi": "lớp ẩn bên trong"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_8ed3baee31960a19edc33212",
+            "context_type": "C4",
+            "reason_code": "section_title_naming_the_concept",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_3d2a354dd3b2ef13260bccd4",
+            "context_type": "C1",
+            "reason_code": "explicit_network_description_with_one_hidden_layer",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_cc2d203b8ac0da03a68a1c0d",
+            "context_type": "C2",
+            "reason_code": "discusses_size_of_hidden_layer_and_hidden_units",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_16722c9212846d6101148dbf",
+            "context_type": "C2",
+            "reason_code": "counts_fully_connected_hidden_layers_in_alexnet",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_76cea9317d218e58cde5ce34",
+            "context_type": "C3",
+            "reason_code": "links_hidden_layers_with_hidden_units_conceptually",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_49bbc63fc9e139f356412fba",
+            "context_type": "C2",
+            "reason_code": "mentions_multiple_hidden_layers_in_deep_architectures",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_a137b3c09b9f9c51930d5371",
+            "context_type": "C2",
+            "reason_code": "single_hidden_layer_in_mlp_for_attention_scoring",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_7758e78a8a47d48b3d911192",
+            "context_type": "C2",
+            "reason_code": "simple_mlp_with_single_hidden_layer",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "an internal neural network layer between input and output layers where hidden units compute intermediate representations",
+        "definition_evidence_context_ids": [
+          "ctx_3d2a354dd3b2ef13260bccd4",
+          "ctx_cc2d203b8ac0da03a68a1c0d",
+          "ctx_76cea9317d218e58cde5ce34",
+          "ctx_7758e78a8a47d48b3d911192"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_8ed3baee31960a19edc33212",
+          "ctx_3d2a354dd3b2ef13260bccd4"
+        ],
+        "sense_id": "d2lce_401e038a0835f7c5733a9857",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a visible input or output layer rather than an internal intermediate layer",
+          "rationale": "No different sense appears in the supplied contexts; the probe contrasts the internal-layer meaning with non-hidden network layers.",
+          "source_text": "Synthetic: The hidden layer transforms inputs into intermediate features before the output layer produces predictions."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "near_synonym",
+            "target_vi": "lớp tích chập đảo"
+          },
+          {
+            "formation_reason": "semantic_calque",
+            "target_vi": "lớp chuyển vị tích chập"
+          },
+          {
+            "formation_reason": "descriptive",
+            "target_vi": "lớp tích chập ngược chuyển vị"
+          },
+          {
+            "formation_reason": "descriptive",
+            "target_vi": "lớp tích chập dùng để phóng lớn đặc trưng"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_700b11b81ca2e72692a5a10b",
+            "context_type": "C1",
+            "reason_code": "defines_shape_relationship_with_convolutional_layer",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_6bfa4b829229eac81f6930d5",
+            "context_type": "C2",
+            "reason_code": "compares_hyperparameters_with_generator_block_layer",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_9b15a3bec2eb4c48b77389f6",
+            "context_type": "C3",
+            "reason_code": "explains_operation_via_swapped_forward_and_backpropagation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_0065bebfdcf4a9b6ce79df26",
+            "context_type": "C4",
+            "reason_code": "summary_bullet_restates_shape_relationship",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_d91e676cce0a871ea754a783",
+            "context_type": "C4",
+            "reason_code": "summary_bullet_restates_operational_characterization",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_8d6f6ef23f8bdcf7a45e53a7",
+            "context_type": "C2",
+            "reason_code": "application_in_fully_convolutional_network_for_restoring_spatial_size",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_c31c40505234fb275a371e68",
+            "context_type": "C2",
+            "reason_code": "practical_construction_with_stride_kernel_padding",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_8ce15c1d9039adf76ce88c55",
+            "context_type": "C4",
+            "reason_code": "subsection_title_on_initializing_plural_layers",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "a neural network layer that performs transposed convolution, often used to increase the spatial size of feature maps",
+        "definition_evidence_context_ids": [
+          "ctx_700b11b81ca2e72692a5a10b",
+          "ctx_9b15a3bec2eb4c48b77389f6",
+          "ctx_8d6f6ef23f8bdcf7a45e53a7",
+          "ctx_c31c40505234fb275a371e68"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_700b11b81ca2e72692a5a10b",
+          "ctx_9b15a3bec2eb4c48b77389f6"
+        ],
+        "sense_id": "d2lce_b63485c15ac13f80b0d98676",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a standard convolutional layer that typically maps inputs forward without this transpose-based upsampling role",
+          "rationale": "All supplied contexts support one sense; the probe contrasts it with ordinary convolutional layers.",
+          "source_text": "Synthetic: The transposed convolutional layer upsamples a feature map so its height and width move back toward the input image size."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "descriptive",
+            "target_vi": "mục đích tối ưu hóa"
+          },
+          {
+            "formation_reason": "descriptive",
+            "target_vi": "đại lượng mục tiêu"
+          },
+          {
+            "formation_reason": "near_synonym",
+            "target_vi": "tiêu chí mục tiêu"
+          },
+          {
+            "formation_reason": "short_string",
+            "target_vi": "đích tối ưu"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_e8877b610c0af1e834561705",
+            "context_type": "C1",
+            "reason_code": "explicit_goal_of_adjusting_parameters_to_optimize",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_654d5b054d1a8a6629be86be",
+            "context_type": "C2",
+            "reason_code": "objective_used_for_squared_loss_goal",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_3b91b2f9f2875a350642ef75",
+            "context_type": "C1",
+            "reason_code": "contrasts_original_and_new_optimization_goals",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_71e1b52a108cecca970b6aef",
+            "context_type": "C3",
+            "reason_code": "links_objective_to_objective_function_of_interest",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_2fe7c674ada36093ebc54726",
+            "context_type": "C2",
+            "reason_code": "objective_function_in_optimization_assumption",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_622b0a2786bbcaf9095a093c",
+            "context_type": "C2",
+            "reason_code": "minimize_objective_functions_in_optimization_setting",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_254e012e0fc7f6d2b7e12488",
+            "context_type": "C2",
+            "reason_code": "objective_function_for_detection_training",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_6f97e9a634e8f6551250acc0",
+            "context_type": "C3",
+            "reason_code": "modifies_original_objective_function_in_training",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "the goal being optimized in learning or optimization; often the quantity expressed by an objective function",
+        "definition_evidence_context_ids": [
+          "ctx_e8877b610c0af1e834561705",
+          "ctx_3b91b2f9f2875a350642ef75",
+          "ctx_71e1b52a108cecca970b6aef",
+          "ctx_6f97e9a634e8f6551250acc0"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.96,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_e8877b610c0af1e834561705",
+          "ctx_3b91b2f9f2875a350642ef75"
+        ],
+        "sense_id": "d2lce_cf168d11faf5e675efa7e0a3",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a broad real-world aim not formalized as an optimization target in a model",
+          "rationale": "Supplied contexts consistently use the optimization sense, often via objective function; the probe contrasts this technical sense with a nontechnical general aim.",
+          "source_text": "Synthetic: The training objective is to minimize prediction error plus regularization."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

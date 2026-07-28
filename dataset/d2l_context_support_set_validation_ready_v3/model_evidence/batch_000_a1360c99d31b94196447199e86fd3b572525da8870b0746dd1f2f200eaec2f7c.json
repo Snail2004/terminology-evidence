@@ -1,0 +1,509 @@
+{
+  "audit": {
+    "batch_index": 0,
+    "from_cache": false,
+    "latency_ms": 68299,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "7f8eeec614959421149c7c618f3e28871d456484c193f85f2c05b9d7f26bd5fa",
+    "response_sha256": "22bbc3150a64d41f3988626e5db42a9044c2979b6f875d92549ac072d83602cb",
+    "usage": {
+      "input_tokens": 5502,
+      "output_tokens": 3596,
+      "reasoning_tokens": null,
+      "total_tokens": 9098
+    }
+  },
+  "input_request_sha256": "a1360c99d31b94196447199e86fd3b572525da8870b0746dd1f2f200eaec2f7c",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "standard_statistical_phrase",
+            "target_vi": "trung bình bằng 0"
+          },
+          {
+            "formation_reason": "explicit_technical_paraphrase",
+            "target_vi": "có giá trị trung bình bằng không"
+          },
+          {
+            "formation_reason": "distribution_focused_alternative",
+            "target_vi": "kỳ vọng bằng 0"
+          },
+          {
+            "formation_reason": "recorded_standard_candidate",
+            "target_vi": "trung bình bằng không"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_6fbe686636eef2e18f361982",
+            "context_type": "C1",
+            "reason_code": "random_weight_initialization_distribution_property",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_26d890099027986105691faa",
+            "context_type": "C1",
+            "reason_code": "gaussian_noise_distribution_property",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_7c400e0ce4ae692c14fd57fb",
+            "context_type": "C1",
+            "reason_code": "standardized_minibatch_statistical_property",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_61a2ce5d13e9164d72ba2a8e",
+            "context_type": "C1",
+            "reason_code": "normal_noise_distribution_property",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_a0f2cf276864d055204f2564",
+            "context_type": "C1",
+            "reason_code": "prior_distribution_property",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_216f6113933e493b68ce8ad9",
+            "context_type": "C1",
+            "reason_code": "assumed_distribution_property",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_4638d23246a5ab6b7fa414b4",
+            "context_type": "C1",
+            "reason_code": "input_variable_distribution_property",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_2aa7827d7befde055f8781f4",
+            "context_type": "C1",
+            "reason_code": "xavier_initialization_distribution_property",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "having an average value of 0 in a distribution or dataset",
+        "definition_evidence_context_ids": [
+          "ctx_7c400e0ce4ae692c14fd57fb",
+          "ctx_26d890099027986105691faa",
+          "ctx_2aa7827d7befde055f8781f4"
+        ],
+        "part_of_speech": "adjective_phrase",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_7c400e0ce4ae692c14fd57fb",
+          "ctx_4638d23246a5ab6b7fa414b4"
+        ],
+        "sense_id": "d2lce_eae5d94b4d2b73165c5d8795",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a single observed value equal to zero rather than a distributional average of zero",
+          "rationale": "No supplied context shows a genuine different sense; all use the same statistical property.",
+          "source_text": "Synthetic: In this toy example, the phrase zero mean describes a distribution centered at 0, not a zero-valued sample."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "standard_ml_parameter_term",
+            "target_vi": "các hệ số chệch"
+          },
+          {
+            "formation_reason": "explicit_parameter_framing",
+            "target_vi": "các tham số chệch"
+          },
+          {
+            "formation_reason": "additive_term_framing",
+            "target_vi": "các số hạng chệch"
+          },
+          {
+            "formation_reason": "recorded_candidate_literal",
+            "target_vi": "các độ lệch"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_cc6c6f7b38edd14783c3c98a",
+            "context_type": "C1",
+            "reason_code": "nn_parameters_weights_or_biases",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_e3bf9e80bcc3730f9ba86f3f",
+            "context_type": "C1",
+            "reason_code": "layer_bias_parameters_named",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_8220d3cebdb8d8496afc7dec",
+            "context_type": "C1",
+            "reason_code": "layer_parameters_weights_and_biases",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_c0e733027b5b88c5c367bd09",
+            "context_type": "C1",
+            "reason_code": "formal_expression_of_layer_with_biases",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_226004d4a6485dcdc36de876",
+            "context_type": "C1",
+            "reason_code": "example_of_trainable_parameters",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_cb7a2a5d97750af95eae7a46",
+            "context_type": "C3",
+            "reason_code": "verb_biases_means_skews_estimate_not_nn_parameter",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_f39416c0356d035abdc7883d",
+            "context_type": "C1",
+            "reason_code": "rnn_bias_parameters_named",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_099f24b82e0d670010409a81",
+            "context_type": "C3",
+            "reason_code": "verb_biases_means_influences_selection_not_nn_parameter",
+            "sense_relation": "CONTRASTIVE"
+          }
+        ],
+        "definition_confidence": 0.94,
+        "definition_en": "additive parameter terms in a model or layer, separate from weights",
+        "definition_evidence_context_ids": [
+          "ctx_e3bf9e80bcc3730f9ba86f3f",
+          "ctx_f39416c0356d035abdc7883d",
+          "ctx_8220d3cebdb8d8496afc7dec"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_e3bf9e80bcc3730f9ba86f3f",
+          "ctx_f39416c0356d035abdc7883d"
+        ],
+        "sense_id": "d2lce_ad13d119a140210b487eeb9c",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "verb meaning influences or skews a judgment or estimate",
+          "rationale": "Supplied contexts include both the neural-network parameter noun and a different verbal sense.",
+          "source_text": "The coffee biases you toward one choice, but the layer biases are trainable additive parameters."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "gan_specific_model_term",
+            "target_vi": "mạng sinh"
+          },
+          {
+            "formation_reason": "function_explicit_translation",
+            "target_vi": "bộ tạo dữ liệu giả"
+          },
+          {
+            "formation_reason": "general_generative_model_term",
+            "target_vi": "mô hình sinh"
+          },
+          {
+            "formation_reason": "recorded_short_candidate",
+            "target_vi": "bộ sinh"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_5d72b2df1342abae0b28f0c9",
+            "context_type": "C3",
+            "reason_code": "RandomGenerator_class_for_sampling_not_gan_model",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_2cc55c7c27ecd856fe623eec",
+            "context_type": "C1",
+            "reason_code": "data_generator_in_gan_training",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_5b966a1024783f92c10a4b61",
+            "context_type": "C3",
+            "reason_code": "RandomGenerator_sampling_utility_not_gan_model",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_ce5770ebbcecab9cd14b31d1",
+            "context_type": "C1",
+            "reason_code": "gan_generator_contrasted_with_real_data",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_111ebd3664347c4b99a35b2e",
+            "context_type": "C1",
+            "reason_code": "explicit_generator_network_name",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_2aca2894517926700f9e34d1",
+            "context_type": "C1",
+            "reason_code": "generator_network_updated_during_training",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_33e923407e067945b2c17e33",
+            "context_type": "C1",
+            "reason_code": "generator_network_fools_discriminator",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_545710fbceae0d3428fd3a00",
+            "context_type": "C1",
+            "reason_code": "generator_as_source_of_fake_inputs",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "the model in a GAN that produces fake data samples to resemble real data",
+        "definition_evidence_context_ids": [
+          "ctx_ce5770ebbcecab9cd14b31d1",
+          "ctx_111ebd3664347c4b99a35b2e",
+          "ctx_545710fbceae0d3428fd3a00"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.93,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_111ebd3664347c4b99a35b2e",
+          "ctx_33e923407e067945b2c17e33"
+        ],
+        "sense_id": "d2lce_73c8ce2915c4c64a52fab4a2",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a generic random-sampling utility rather than the GAN model component",
+          "rationale": "Supplied contexts include both the GAN model sense and a different utility-class sense.",
+          "source_text": "Synthetic: In GANs, the generator tries to create fake samples, unlike a RandomGenerator that merely draws indices from a list."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "concise_technical_phrase",
+            "target_vi": "GPU đơn"
+          },
+          {
+            "formation_reason": "expanded_hardware_term",
+            "target_vi": "một bộ xử lý đồ họa"
+          },
+          {
+            "formation_reason": "emphasis_on_only_one",
+            "target_vi": "chỉ một GPU"
+          },
+          {
+            "formation_reason": "recorded_direct_candidate",
+            "target_vi": "một GPU"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_c3033b3efa90016d4c7a6711",
+            "context_type": "C1",
+            "reason_code": "single_gpu_capacity_limit",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_87e8e11751488aa4967c115a",
+            "context_type": "C1",
+            "reason_code": "single_gpu_reference_in_parallelism",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_da18a43d55f851433ec66477",
+            "context_type": "C1",
+            "reason_code": "operator_runs_on_single_gpu",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_f416911a3fe34d06b66e6afd",
+            "context_type": "C1",
+            "reason_code": "contrast_with_multi_gpu_capacity",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_0137ba0f0626d6bffd760691",
+            "context_type": "C1",
+            "reason_code": "contrast_single_gpu_vs_four_gpus",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_12f206d4c0b5b5d7a27319b1",
+            "context_type": "C1",
+            "reason_code": "workload_compared_to_training_on_single_gpu",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_bbf05b50c650923e2f670c8e",
+            "context_type": "C1",
+            "reason_code": "evaluation_done_on_single_gpu",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_44a715e0fcd0718a579ce239",
+            "context_type": "C1",
+            "reason_code": "explicit_on_a_single_gpu",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "using only one graphics processing unit for computation or training",
+        "definition_evidence_context_ids": [
+          "ctx_f416911a3fe34d06b66e6afd",
+          "ctx_12f206d4c0b5b5d7a27319b1",
+          "ctx_44a715e0fcd0718a579ce239"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.96,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_87e8e11751488aa4967c115a",
+          "ctx_44a715e0fcd0718a579ce239"
+        ],
+        "sense_id": "d2lce_e014da89e120449f8881dd5b",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "distributed execution over more than one GPU",
+          "rationale": "No supplied context shows a different lexical sense; all refer to the one-GPU setup.",
+          "source_text": "Synthetic: The model runs on a single GPU, not across multiple GPUs."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "concise_standard_phrase",
+            "target_vi": "kích hoạt ReLU"
+          },
+          {
+            "formation_reason": "function_explicit_translation",
+            "target_vi": "hàm kích hoạt ReLU"
+          },
+          {
+            "formation_reason": "technical_variant",
+            "target_vi": "phép hoạt hóa ReLU"
+          },
+          {
+            "formation_reason": "recorded_candidate",
+            "target_vi": "phép kích hoạt ReLU"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_bd4860d3d44e08593cf1c9fd",
+            "context_type": "C1",
+            "reason_code": "implement_relu_activation_directly",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_7c7d5d50af4eb953a4e181ba",
+            "context_type": "C1",
+            "reason_code": "layer_with_relu_activation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_42d57a5ddede95c06600e690",
+            "context_type": "C1",
+            "reason_code": "relu_activation_function_in_training",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_9fd1fe552d657e4fbfcf9abd",
+            "context_type": "C1",
+            "reason_code": "mlp_uses_relu_activation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_6d18c54fb03ed4d0a466cdac",
+            "context_type": "C1",
+            "reason_code": "introduction_of_relu_activation_function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_f9d71dcb8bd80dd6e5eeb4f5",
+            "context_type": "C1",
+            "reason_code": "generator_block_followed_by_relu_activation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_1c92074d454d9307635f4319",
+            "context_type": "C1",
+            "reason_code": "hidden_layer_applies_relu_activation_function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_8c4194ab74302b6b3fccfd63",
+            "context_type": "C1",
+            "reason_code": "relu_activation_functions_general_property",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "the use of the ReLU function as the activation applied in a neural network layer",
+        "definition_evidence_context_ids": [
+          "ctx_7c7d5d50af4eb953a4e181ba",
+          "ctx_42d57a5ddede95c06600e690",
+          "ctx_1c92074d454d9307635f4319"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_bd4860d3d44e08593cf1c9fd",
+          "ctx_f9d71dcb8bd80dd6e5eeb4f5"
+        ],
+        "sense_id": "d2lce_42900db05a19228ce33eafe0",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "parameter initialization rather than an activation function",
+          "rationale": "No supplied context shows a genuine different sense; all refer to the same neural-network activation usage.",
+          "source_text": "Synthetic: ReLU activation names the layer’s nonlinearity, not the weight initialization scheme."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

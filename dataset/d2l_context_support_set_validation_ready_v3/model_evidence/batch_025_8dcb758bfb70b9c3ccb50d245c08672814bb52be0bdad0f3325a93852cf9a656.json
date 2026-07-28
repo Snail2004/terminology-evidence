@@ -1,0 +1,741 @@
+{
+  "audit": {
+    "batch_index": 25,
+    "from_cache": false,
+    "latency_ms": 64265,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "9d8e6d6fa2db1dc4a2e2a32b7d5ccaab317750a9456c5f1dac5739b506d4dc11",
+    "response_sha256": "0001f93d556047ddd03604d30a8db26c75a568e62551349539bf24b6f7f2d2f6",
+    "usage": {
+      "input_tokens": 5737,
+      "output_tokens": 3429,
+      "reasoning_tokens": null,
+      "total_tokens": 9166
+    },
+    "validation_repairs": [
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_33631d6a969125ba846d82b3].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_aff4cfc9f37da2ffa5e529e9].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_0d6ec66184ff5ae327958de1].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_79e409e6abf55603a0394035].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_a062cf75c1abb1a0801f30f6].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_c20a0ec2bc47e48846e7ed5b].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_0d8072fac44a71369c278f26].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_504a913a4f4a11022e5c30ad].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_a7105fea7b2b3447548b6d7a"
+      },
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_42da1c5cbf75c04eb158271d].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_e05b549ae3fe27be9cac0d99].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_92458627d052b6a13dbc26f4].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_ccb879141ca0cea21709bd26].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_05c2a4c1509fd139937710c2].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_490d42eed993591209b3f212].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_3300f63f7d694e08f6eab024].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_cff5672d4e8d42484c26fd68].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_c3c46748b1a49e32c07ca9d7"
+      },
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_f11208ffa6d465fe135750ee].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_77274f381fb856ef3c8e17d8].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_06aa5c9830a79f6132f4e41e].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_700213fde2209115e3d7cfe0].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_e5f07ff7564002cf0a876394].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_e6c6794a381193953f6e941b].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_6ff3b3d4b6e66d2fc939f8c0].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_f250a8f9c758c2ea0187f79a].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_10d4d01fa40b67d92527e5ed"
+      },
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_3abb4265df9a90360405c9fc].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_edef178f074ab52163e1ff73].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_811d4c5e733d701bc5da5664].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_90a09c1c1d26d6c29e8dc76a].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_0a197bcf827b2c90050f9542].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_f50d0e155359e097e4dd53f9].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_3a8bc7234edcdcf52ec4704f].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_9ad5e74698b23886119deb3e].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_4f85955c4fd10e184dc97d32"
+      },
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_c1c142be01a5b299b70337c6].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_4a335ba3f1c5504d0ae19024].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_788a11fa6efa6cbc9a413253].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_3c67ae78c4b02de37fc6d11f].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_62a5ada5f1792020bc23cde5].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_849b80c6ea299773a2e4a5c4].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_087386cdea1dae5d6dcc3ff7].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_e40cd2162abe8f988abaddfb].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_0ac8f3308547fb001c31e869"
+      }
+    ]
+  },
+  "input_request_sha256": "8dcb758bfb70b9c3ccb50d245c08672814bb52be0bdad0f3325a93852cf9a656",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "plausible technical variant",
+            "target_vi": "mô hình ngôn ngữ học"
+          },
+          {
+            "formation_reason": "sense-explicit paraphrase",
+            "target_vi": "mô hình dự đoán ngôn ngữ"
+          },
+          {
+            "formation_reason": "related nominal rendering",
+            "target_vi": "mô hình hóa ngôn ngữ"
+          },
+          {
+            "formation_reason": "plausible narrower technical variant",
+            "target_vi": "mô hình ngôn ngữ thống kê"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_33631d6a969125ba846d82b3",
+            "context_type": "C1",
+            "reason_code": "chapter topic in NLP",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_aff4cfc9f37da2ffa5e529e9",
+            "context_type": "C1",
+            "reason_code": "RNN-based text model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_0d6ec66184ff5ae327958de1",
+            "context_type": "C1",
+            "reason_code": "training setup for same model type",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_79e409e6abf55603a0394035",
+            "context_type": "C1",
+            "reason_code": "listed as NLP technique/model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_a062cf75c1abb1a0801f30f6",
+            "context_type": "C1",
+            "reason_code": "used to generate text",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_c20a0ec2bc47e48846e7ed5b",
+            "context_type": "C1",
+            "reason_code": "RNN language model predicting next character",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_0d8072fac44a71369c278f26",
+            "context_type": "C1",
+            "reason_code": "perplexity defined for this model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_504a913a4f4a11022e5c30ad",
+            "context_type": "C1",
+            "reason_code": "basic concept of same NLP model",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "a model that estimates or predicts sequences of words or characters in text",
+        "definition_evidence_context_ids": [
+          "ctx_33631d6a969125ba846d82b3",
+          "ctx_aff4cfc9f37da2ffa5e529e9",
+          "ctx_c20a0ec2bc47e48846e7ed5b",
+          "ctx_0d8072fac44a71369c278f26"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_33631d6a969125ba846d82b3",
+          "ctx_aff4cfc9f37da2ffa5e529e9"
+        ],
+        "sense_id": "d2lce_a7105fea7b2b3447548b6d7a",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a person's informal mental conception of language, not a computational NLP model",
+          "rationale": "No supplied context shows a genuine different sense, so a synthetic boundary example separates the technical NLP sense from a nontechnical use.",
+          "source_text": "Synthetic: In philosophy, a person's language model of the world may shape how they speak."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "common algorithmic variant",
+            "target_vi": "bước lặp"
+          },
+          {
+            "formation_reason": "plausible process-oriented variant",
+            "target_vi": "vòng lặp"
+          },
+          {
+            "formation_reason": "countable event rendering",
+            "target_vi": "lượt lặp"
+          },
+          {
+            "formation_reason": "cycle-focused variant",
+            "target_vi": "chu kỳ lặp"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_42da1c5cbf75c04eb158271d",
+            "context_type": "C1",
+            "reason_code": "single minibatch training step",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_e05b549ae3fe27be9cac0d99",
+            "context_type": "C2",
+            "reason_code": "epoch-level repetition mention",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_92458627d052b6a13dbc26f4",
+            "context_type": "C1",
+            "reason_code": "single repeated update/computation step",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_ccb879141ca0cea21709bd26",
+            "context_type": "C1",
+            "reason_code": "training step cost",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_05c2a4c1509fd139937710c2",
+            "context_type": "C1",
+            "reason_code": "adjacent minibatches during training step sequence",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_490d42eed993591209b3f212",
+            "context_type": "C1",
+            "reason_code": "numerical optimization step",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_3300f63f7d694e08f6eab024",
+            "context_type": "C1",
+            "reason_code": "any training step on GPUs",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_cff5672d4e8d42484c26fd68",
+            "context_type": "C1",
+            "reason_code": "during one training step",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "one repeated step or cycle in an algorithm, training process, or numerical procedure",
+        "definition_evidence_context_ids": [
+          "ctx_42da1c5cbf75c04eb158271d",
+          "ctx_92458627d052b6a13dbc26f4",
+          "ctx_ccb879141ca0cea21709bd26",
+          "ctx_490d42eed993591209b3f212"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_42da1c5cbf75c04eb158271d",
+          "ctx_92458627d052b6a13dbc26f4"
+        ],
+        "sense_id": "d2lce_c3c46748b1a49e32c07ca9d7",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a revised version of a creative work, not specifically an algorithmic or numerical step",
+          "rationale": "Supplied contexts stay within repeated computational steps, so the synthetic example marks a broader nontechnical usage boundary.",
+          "source_text": "Synthetic: In literary editing, the second iteration of the poem changed its tone."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "plausible linear-algebra variant",
+            "target_vi": "khai triển trị riêng"
+          },
+          {
+            "formation_reason": "operation-explicit variant",
+            "target_vi": "phép phân rã trị riêng"
+          },
+          {
+            "formation_reason": "representation-focused variant",
+            "target_vi": "biểu diễn trị riêng"
+          },
+          {
+            "formation_reason": "form-focused variant",
+            "target_vi": "dạng phân rã trị riêng"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_f11208ffa6d465fe135750ee",
+            "context_type": "C1",
+            "reason_code": "refers to Hessian eigenvalues via same decomposition topic",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_77274f381fb856ef3c8e17d8",
+            "context_type": "C1",
+            "reason_code": "basics of same matrix decomposition",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_06aa5c9830a79f6132f4e41e",
+            "context_type": "C1",
+            "reason_code": "explicit matrix factorization formula",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_700213fde2209115e3d7cfe0",
+            "context_type": "C4",
+            "reason_code": "table-of-contents title use",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_e5f07ff7564002cf0a876394",
+            "context_type": "C4",
+            "reason_code": "section heading title use",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_e6c6794a381193953f6e941b",
+            "context_type": "C1",
+            "reason_code": "introduces same decomposition concept",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_6ff3b3d4b6e66d2fc939f8c0",
+            "context_type": "C1",
+            "reason_code": "operations on same decomposition",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_f250a8f9c758c2ea0187f79a",
+            "context_type": "C1",
+            "reason_code": "matrix powers via same decomposition",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "a factorization of a matrix into eigenvalues and eigenvectors",
+        "definition_evidence_context_ids": [
+          "ctx_f11208ffa6d465fe135750ee",
+          "ctx_06aa5c9830a79f6132f4e41e",
+          "ctx_e6c6794a381193953f6e941b",
+          "ctx_f250a8f9c758c2ea0187f79a"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_06aa5c9830a79f6132f4e41e",
+          "ctx_e6c6794a381193953f6e941b"
+        ],
+        "sense_id": "d2lce_10d4d01fa40b67d92527e5ed",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "general decomposition, not specifically into eigenvalues and eigenvectors",
+          "rationale": "No supplied context shows another sense of the exact term, so the synthetic boundary contrasts it with a broader decomposition notion.",
+          "source_text": "Synthetic: The sound engineer discussed the decomposition of the audio signal, not its eigendecomposition."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "dataset-oriented variant",
+            "target_vi": "mẫu quan sát"
+          },
+          {
+            "formation_reason": "measurement-focused variant",
+            "target_vi": "giá trị quan sát"
+          },
+          {
+            "formation_reason": "data-oriented paraphrase",
+            "target_vi": "dữ liệu quan sát"
+          },
+          {
+            "formation_reason": "instance-focused variant",
+            "target_vi": "trường hợp quan sát"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_3abb4265df9a90360405c9fc",
+            "context_type": "C3",
+            "reason_code": "single observed case tied to label",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_edef178f074ab52163e1ff73",
+            "context_type": "NONE",
+            "reason_code": "source term absent from sentence",
+            "sense_relation": "INVALID"
+          },
+          {
+            "context_id": "ctx_811d4c5e733d701bc5da5664",
+            "context_type": "C1",
+            "reason_code": "noise on observed data points",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_90a09c1c1d26d6c29e8dc76a",
+            "context_type": "C3",
+            "reason_code": "estimate compared with observed value",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_0a197bcf827b2c90050f9542",
+            "context_type": "C5",
+            "reason_code": "general noticing/finding, not dataset instance",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_f50d0e155359e097e4dd53f9",
+            "context_type": "C1",
+            "reason_code": "existing observed data points in statistics",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_3a8bc7234edcdcf52ec4704f",
+            "context_type": "C1",
+            "reason_code": "first observation as sequence data element",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_9ad5e74698b23886119deb3e",
+            "context_type": "C1",
+            "reason_code": "sampled observations from distribution",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.93,
+        "definition_en": "a data point or measured/observed instance in a dataset or statistical setting",
+        "definition_evidence_context_ids": [
+          "ctx_3abb4265df9a90360405c9fc",
+          "ctx_811d4c5e733d701bc5da5664",
+          "ctx_f50d0e155359e097e4dd53f9",
+          "ctx_9ad5e74698b23886119deb3e"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_3abb4265df9a90360405c9fc",
+          "ctx_811d4c5e733d701bc5da5664"
+        ],
+        "sense_id": "d2lce_4f85955c4fd10e184dc97d32",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a remark or comment, not a data point or observed instance",
+          "rationale": "Supplied contexts mostly support statistical/data senses, so the synthetic example separates that from the everyday comment sense.",
+          "source_text": "Synthetic: Her observation about the lecture was insightful."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "acronym-preserving variant",
+            "target_vi": "mạng MLP"
+          },
+          {
+            "formation_reason": "model-oriented variant",
+            "target_vi": "mô hình MLP"
+          },
+          {
+            "formation_reason": "expanded technical variant",
+            "target_vi": "perceptron đa lớp"
+          },
+          {
+            "formation_reason": "near-synonymous expanded variant",
+            "target_vi": "mạng perceptron nhiều lớp"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_c1c142be01a5b299b70337c6",
+            "context_type": "C4",
+            "reason_code": "table-of-contents abbreviation use",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_4a335ba3f1c5504d0ae19024",
+            "context_type": "C1",
+            "reason_code": "implemented neural network model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_788a11fa6efa6cbc9a413253",
+            "context_type": "C1",
+            "reason_code": "MLP parameters in model comparison",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_3c67ae78c4b02de37fc6d11f",
+            "context_type": "C1",
+            "reason_code": "use an MLP on channels",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_62a5ada5f1792020bc23cde5",
+            "context_type": "C1",
+            "reason_code": "simple MLP architecture code example",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_849b80c6ea299773a2e4a5c4",
+            "context_type": "C1",
+            "reason_code": "candidate hidden state as result of an MLP",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_087386cdea1dae5d6dcc3ff7",
+            "context_type": "C1",
+            "reason_code": "MLP with a single hidden layer",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_e40cd2162abe8f988abaddfb",
+            "context_type": "C1",
+            "reason_code": "simple MLP architecture in optimization discussion",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "a multilayer perceptron neural network",
+        "definition_evidence_context_ids": [
+          "ctx_4a335ba3f1c5504d0ae19024",
+          "ctx_62a5ada5f1792020bc23cde5",
+          "ctx_087386cdea1dae5d6dcc3ff7",
+          "ctx_e40cd2162abe8f988abaddfb"
+        ],
+        "part_of_speech": "proper_noun",
+        "part_of_speech_confidence": 0.88,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_4a335ba3f1c5504d0ae19024",
+          "ctx_62a5ada5f1792020bc23cde5"
+        ],
+        "sense_id": "d2lce_0ac8f3308547fb001c31e869",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "an unrelated abbreviation/string, not multilayer perceptron",
+          "rationale": "All supplied contexts use the neural-network abbreviation, so the synthetic example marks a non-neural-network boundary.",
+          "source_text": "Synthetic: The file extension .mlp here does not refer to an MLP neural network."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

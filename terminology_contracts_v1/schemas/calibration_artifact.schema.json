@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesis.local/terminology-contracts/v1/calibration_artifact.schema.json",
+  "title": "Sealed Global Calibration Artifact V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "development_dataset_sha256",
+    "validation_dataset_sha256",
+    "feature_contract_version",
+    "gate_policy_version",
+    "metric_target",
+    "model",
+    "operating_point",
+    "calibration_results",
+    "created_at",
+    "integrity"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "CalibrationArtifactV1"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "development_dataset_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "validation_dataset_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "feature_contract_version": {
+      "const": "1.0.0"
+    },
+    "gate_policy_version": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "metric_target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "auto_approval_precision_target",
+        "confidence_level"
+      ],
+      "properties": {
+        "auto_approval_precision_target": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "confidence_level": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        }
+      }
+    },
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model_type",
+        "parameters",
+        "feature_names"
+      ],
+      "properties": {
+        "model_type": {
+          "enum": [
+            "RULE_SET",
+            "LOGISTIC_REGRESSION",
+            "ISOTONIC",
+            "OTHER"
+          ]
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "feature_names": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "operating_point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "threshold",
+        "observed_precision",
+        "coverage",
+        "precision_lower_bound"
+      ],
+      "properties": {
+        "threshold": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "observed_precision": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "coverage": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "precision_lower_bound": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        }
+      }
+    },
+    "calibration_results": {
+      "type": "object"
+    },
+    "created_at": {
+      "$ref": "common_defs.schema.json#/$defs/dateTime"
+    },
+    "integrity": {
+      "$ref": "common_defs.schema.json#/$defs/integrity"
+    }
+  }
+}

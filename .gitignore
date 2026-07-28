@@ -1,0 +1,26 @@
+# Credentials and local secrets
+API-Key/
+.env
+.env.*
+!.env.example
+*.key
+
+# Python caches and local test output
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local runtime artifacts
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Operating-system metadata
+.DS_Store
+Thumbs.db
+Desktop.ini

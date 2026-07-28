@@ -1,0 +1,510 @@
+{
+  "audit": {
+    "batch_index": 9,
+    "from_cache": false,
+    "latency_ms": 79025,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "dc0e99afd3b32695a528373afc9e8a46e9806004a4ab3e370d50a0af0f31b93b",
+    "response_sha256": "8a5f11de7c1180582f9caa7afd1c4a0b2f94503fbaa5c732e7e73c2454662a87",
+    "usage": {
+      "input_tokens": 5166,
+      "output_tokens": 3981,
+      "reasoning_tokens": null,
+      "total_tokens": 9147
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "7c66fa7364395c37a0ede744257885afe32468db592f01223e0990bc477e1dac",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded technical calque used in contexts about overflow/underflow pairs",
+            "target_vi": "tràn dưới"
+          },
+          {
+            "formation_reason": "plausible descriptive rendering emphasizing values becoming too small to represent",
+            "target_vi": "tụt dưới ngưỡng số học"
+          },
+          {
+            "formation_reason": "plausible explanatory translation matching rounding-to-zero behavior",
+            "target_vi": "mất chính xác do quá nhỏ"
+          },
+          {
+            "formation_reason": "plausible context-specific paraphrase grounded in the examples",
+            "target_vi": "hiện tượng số học bị làm tròn về 0"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_f33974c8e2ea51a218101f34",
+            "context_type": "C2",
+            "reason_code": "implementation warning mentions numerical overflow or underflow from very small matrix elements",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_2667f83ba76468ba1a7c23ce",
+            "context_type": "C2",
+            "reason_code": "numerical underflow from multiplying many probabilities is the same computing phenomenon",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_927dfa6b607b0cdb7925b702",
+            "context_type": "C2",
+            "reason_code": "higher precision is needed to avoid numerical underflow or overflow",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_5d3d4728c7288bca4bf4f624",
+            "context_type": "C1",
+            "reason_code": "explicit definition says small numbers become smaller until rounded down to zero",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_f6a47145f376202745ec79b1",
+            "context_type": "C1",
+            "reason_code": "states finite precision rounds values to zero, i.e. underflow",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_eb00b5802d52495b67261199",
+            "context_type": "C3",
+            "reason_code": "code label demonstrates underflow with a**784 producing an extremely small value",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_c429e44e5290244ff93a70cb",
+            "context_type": "C3",
+            "reason_code": "same code example illustrating underflow in PyTorch tab",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_9348532807a8c96895b92b49",
+            "context_type": "C3",
+            "reason_code": "same code example illustrating underflow in TensorFlow tab",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "a numerical computing condition where a value becomes too small to represent and is rounded to zero",
+        "definition_evidence_context_ids": [
+          "ctx_5d3d4728c7288bca4bf4f624",
+          "ctx_f6a47145f376202745ec79b1",
+          "ctx_927dfa6b607b0cdb7925b702"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.95,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_f6a47145f376202745ec79b1",
+          "ctx_5d3d4728c7288bca4bf4f624"
+        ],
+        "sense_id": "d2lce_9bd5113780f8e8160a24e6ad",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "physical flow underneath something, not a numerical representation failure",
+          "rationale": "No supplied context shows a different sense, so a synthetic boundary sentence isolates a non-computing use of underflow.",
+          "source_text": "Synthetic: In fluid dynamics, underflow beneath a dam changed the riverbed."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded standard mathematical term matching all contexts",
+            "target_vi": "đạo hàm bậc hai"
+          },
+          {
+            "formation_reason": "plausible near-synonymous mathematical phrasing",
+            "target_vi": "đạo hàm cấp hai"
+          },
+          {
+            "formation_reason": "plausible descriptive translation emphasizing differentiating twice",
+            "target_vi": "đạo hàm lần hai"
+          },
+          {
+            "formation_reason": "plausible technical alternative in calculus contexts",
+            "target_vi": "vi phân bậc hai"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_1f8898813854f010ead57a18",
+            "context_type": "C2",
+            "reason_code": "asks about computational cost of the second derivative versus first derivative",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_5b8b82c37cbbe2526e94e29e",
+            "context_type": "C2",
+            "reason_code": "compares variance result to the second derivative computed earlier",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_7882197b45dfa30a41481b4e",
+            "context_type": "C2",
+            "reason_code": "asks for a kernel form corresponding to the second derivative operator",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_20c88126cf28f7c6338fd7ce",
+            "context_type": "C2",
+            "reason_code": "states first and second derivative vanish at x=0",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_4a0757f79d783bf9dfd3591b",
+            "context_type": "C1",
+            "reason_code": "explicitly names this quantity as the second derivative of f",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_c63be52377fb45f394c67865",
+            "context_type": "C2",
+            "reason_code": "requests computing the second derivative of cross-entropy loss",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_48009dd3fb027cf7c0d50839",
+            "context_type": "C2",
+            "reason_code": "uses existence of second derivative to check convexity",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_8a430806097a3e11f597ee65",
+            "context_type": "C1",
+            "reason_code": "formal statement identifies convexity via second derivative f'' >= 0",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "the derivative obtained by differentiating a function twice",
+        "definition_evidence_context_ids": [
+          "ctx_4a0757f79d783bf9dfd3591b",
+          "ctx_8a430806097a3e11f597ee65",
+          "ctx_48009dd3fb027cf7c0d50839"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_4a0757f79d783bf9dfd3591b",
+          "ctx_c63be52377fb45f394c67865"
+        ],
+        "sense_id": "d2lce_bee01b92f7b0b02cc1d77bd7",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "the phrase is being referenced as a label, not actively describing a computed calculus quantity in model analysis",
+          "rationale": "No genuine alternate sense appears in the supplied contexts; synthetic probe marks a boundary usage.",
+          "source_text": "Synthetic: The second derivative in a pricing spreadsheet was left blank because no calculus was being applied."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded direct technical translation of max pooling layer",
+            "target_vi": "lớp gộp cực đại"
+          },
+          {
+            "formation_reason": "plausible descriptive rendering of the operation performed",
+            "target_vi": "lớp gộp lấy giá trị lớn nhất"
+          },
+          {
+            "formation_reason": "plausible hybrid borrowing commonly aligned with deep learning terminology",
+            "target_vi": "lớp pooling cực đại"
+          },
+          {
+            "formation_reason": "plausible shorter variant preserving the same subtype distinction",
+            "target_vi": "lớp gộp tối đa"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_3201c5fa0f12832e74500d2f",
+            "context_type": "C2",
+            "reason_code": "describes what a 2x2 maximum pooling layer can still detect after small shifts",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_801d83970e9b56293ca7ce56",
+            "context_type": "C1",
+            "reason_code": "defines VGG block as convolution sequence followed by a maximum pooling layer for downsampling",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_14f76eec1290dbfe141ac161",
+            "context_type": "C2",
+            "reason_code": "mentions removing the maximum pooling layer from a model design",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_ac295765755512cf5030affb",
+            "context_type": "C2",
+            "reason_code": "specifies downsampling block ending with a 2x2 maximum pooling layer with stride 2",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_f02e4c6150e91731a4b448a8",
+            "context_type": "C3",
+            "reason_code": "uses input tensor to validate output of the two-dimensional maximum pooling layer",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_5e90143b3f597bea613c706a",
+            "context_type": "C3",
+            "reason_code": "demonstrates built-in two-dimensional maximum pooling layer with padding and strides",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_d2068bc0172a126a547418aa",
+            "context_type": "C2",
+            "reason_code": "lists maximum pooling layer as an example subtype of pooling layer in classic CNN blocks",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_690cb0198616ce9356c3d7dd",
+            "context_type": "C2",
+            "reason_code": "states each NiN block is followed by a maximum pooling layer with given stride and window",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "a pooling layer that outputs the maximum value within each local window, often for downsampling",
+        "definition_evidence_context_ids": [
+          "ctx_801d83970e9b56293ca7ce56",
+          "ctx_5e90143b3f597bea613c706a",
+          "ctx_ac295765755512cf5030affb"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_801d83970e9b56293ca7ce56",
+          "ctx_f02e4c6150e91731a4b448a8"
+        ],
+        "sense_id": "d2lce_c343a692fe9bdfdabefe7687",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a non-technical literal use of pooling/layer, not a neural-network component",
+          "rationale": "All supplied contexts use the CNN sense only, so a synthetic non-ML sentence provides contrast.",
+          "source_text": "Synthetic: The maximum pooling layer of blankets on the bed made the room look untidy."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded broad translation fitting CNN height-width dimensions",
+            "target_vi": "các chiều không gian"
+          },
+          {
+            "formation_reason": "plausible variant emphasizing size axes in feature maps",
+            "target_vi": "các kích thước không gian"
+          },
+          {
+            "formation_reason": "plausible context-specific rendering grounded in repeated height and width glosses",
+            "target_vi": "các chiều cao-rộng"
+          },
+          {
+            "formation_reason": "plausible technical alternative when referring to axes of feature maps",
+            "target_vi": "các trục không gian"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_5bc9eb4631e8433a066db266",
+            "context_type": "C1",
+            "reason_code": "explicitly glosses spatial dimensions as width and height of learned representations",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_a70641e48916c52b08510cd2",
+            "context_type": "C2",
+            "reason_code": "describes correspondence at the same spatial dimensions of feature maps",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_d637282791dad50a10d04580",
+            "context_type": "C2",
+            "reason_code": "maximum pooling reduces spatial dimensions such as width and height",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_3987a234779617d234e91796",
+            "context_type": "C2",
+            "reason_code": "counts anchor boxes for each unit along spatial dimensions of feature maps",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_d32243af852da68a154db964",
+            "context_type": "C2",
+            "reason_code": "each unit along spatial dimensions receives a new feature vector",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_951d5a5b4ee251243063d6b8",
+            "context_type": "C1",
+            "reason_code": "explicitly glosses spatial dimensions as height and width of input in CNN layers",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_d51d07967447de6bcbe89cba",
+            "context_type": "C2",
+            "reason_code": "requires input and output to have the same spatial dimensions in segmentation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_123d1f12ef7f7d7f33ef5e08",
+            "context_type": "C2",
+            "reason_code": "transposed convolution increases spatial dimensions of intermediate feature maps",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "the height-and-width axes of an input, output, or feature map in a neural network",
+        "definition_evidence_context_ids": [
+          "ctx_951d5a5b4ee251243063d6b8",
+          "ctx_d51d07967447de6bcbe89cba",
+          "ctx_5bc9eb4631e8433a066db266"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_5bc9eb4631e8433a066db266",
+          "ctx_951d5a5b4ee251243063d6b8"
+        ],
+        "sense_id": "d2lce_5300144b7f5b4ce29dd12ec6",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "general physical-space dimensions, not specifically CNN height and width axes",
+          "rationale": "Supplied contexts all point to the neural-network sense, so a synthetic general-space use provides the contrast.",
+          "source_text": "Synthetic: In urban planning, spatial dimensions of the park included walking distance and visual openness."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded direct translation widely aligned with the modeling concept in the contexts",
+            "target_vi": "tương tác đặc trưng"
+          },
+          {
+            "formation_reason": "plausible expanded phrasing making plurality explicit",
+            "target_vi": "sự tương tác giữa các đặc trưng"
+          },
+          {
+            "formation_reason": "plausible variant emphasizing relational aspect",
+            "target_vi": "quan hệ tương tác giữa đặc trưng"
+          },
+          {
+            "formation_reason": "plausible descriptive rendering for combined effects among features",
+            "target_vi": "các kết hợp tương tác của đặc trưng"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_2aa16b95d94946e5cd854397",
+            "context_type": "C1",
+            "reason_code": "states some feature interactions are understandable and can be designed by experts",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_733d5a1b31d277da5bd2d2ec",
+            "context_type": "C2",
+            "reason_code": "modeling feature interactions automatically reduces feature engineering effort",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_9238bc67b0ba4c1dae5edfe0",
+            "context_type": "C2",
+            "reason_code": "many feature interactions are hidden in data and hard to identify",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_28fec5561cc94064400b1c46",
+            "context_type": "C1",
+            "reason_code": "defines factorization machines as modeling feature interactions such as bilinear interactions",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_8f299ed874eca81dd1cb992d",
+            "context_type": "C2",
+            "reason_code": "mentions second-order feature interactions used in practice",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_aae65f26294db8e10b63b72f",
+            "context_type": "C2",
+            "reason_code": "deep neural networks can learn sophisticated feature interactions",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_a472d799fb6e0d324456f48d",
+            "context_type": "C2",
+            "reason_code": "FM component models low-order feature interactions",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_e7740f3e3eacd0600fc7f1e8",
+            "context_type": "C2",
+            "reason_code": "deep component captures high-order feature interactions and nonlinearities",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "relationships or combined effects between multiple features that a model tries to capture",
+        "definition_evidence_context_ids": [
+          "ctx_2aa16b95d94946e5cd854397",
+          "ctx_28fec5561cc94064400b1c46",
+          "ctx_e7740f3e3eacd0600fc7f1e8"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_733d5a1b31d277da5bd2d2ec",
+          "ctx_28fec5561cc94064400b1c46"
+        ],
+        "sense_id": "d2lce_8de4d36bcb2f1ad2291dd52e",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "interactions among visible properties in a general descriptive sense, not machine-learning input features",
+          "rationale": "No alternate supplied sense exists; the synthetic sentence contrasts with the model-feature sense.",
+          "source_text": "Synthetic: The museum exhibit focused on feature interactions between carved surfaces and light, not data fields."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

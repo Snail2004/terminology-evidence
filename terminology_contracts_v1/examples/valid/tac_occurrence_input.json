@@ -1,0 +1,69 @@
+{
+  "schema_id": "TACOccurrenceInputV1",
+  "schema_version": "1.0.0",
+  "occurrence_id": "d2l-ch03-s002-term01",
+  "source_text": "During inference, the model processes new data.",
+  "target_text": "Trong quá trình suy luận, mô hình xử lý dữ liệu mới.",
+  "source_term_span": {
+    "start": 7,
+    "end": 16
+  },
+  "certificate": {
+    "schema_id": "TerminologyCertificateV1",
+    "schema_version": "1.0.0",
+    "certificate_id": "cert-inference-001",
+    "certificate_version": "1",
+    "candidate_key": {
+      "candidate_id": "cand-inference-vi-01",
+      "candidate_version": "1",
+      "source_term": "inference",
+      "candidate_vi": "suy luận",
+      "sense_id": "model_execution",
+      "scope_id": "machine_learning",
+      "sense_inventory_version": "sense-v1",
+      "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "effective_sense_contract_sha256": "82eedc4661ad441fd7e1925b61738b3ad97af9c2eacb9ce99f2209b45fe1dd0b"
+    },
+    "status": "AUTO_APPROVED",
+    "allowed_variants": [
+      "quá trình suy luận"
+    ],
+    "forbidden_candidates": [
+      "suy diễn logic"
+    ],
+    "scope_note": "Machine-learning model execution on new inputs.",
+    "validity_context_refs": [
+      {
+        "evidence_id": "ctx-1",
+        "evidence_type": "CONTEXT",
+        "uri": "artifact://context/ctx-1",
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      }
+    ],
+    "evidence_summary": {
+      "context_evidence_sha256": "b25632808311efdef1fce79843acdcf6f314c4e8aa9ff921395a674d44a12389",
+      "attestation_evidence_sha256": "90781725036accdff0bef48dc391f44d8648c1d6ab7c1049d6e11850944228ec",
+      "C_mean": 0.88,
+      "E_features": {
+        "E_authority": 0.75,
+        "E_independence": 0.67,
+        "E_domain": 1.0,
+        "E_concept": 0.83,
+        "E_conventionality": 0.6,
+        "E_coverage": 0.8
+      }
+    },
+    "gate_summary": [],
+    "decision_package_sha256": "facc19566a870474729763866726e4a9d2dbf841df4e31019a88c7ebad07afdf",
+    "policy_version": "global-v1",
+    "issued_at": "2026-07-28T11:30:00+00:00",
+    "integrity": {
+      "self_sha256": "bd444739feb25b7f01db364e9943c1e2290bcb15bdf5a60b8a3a0214fc00b178"
+    }
+  },
+  "glossary_version": "glossary-v1",
+  "tac_policy_version": "tac-v1",
+  "integrity": {
+    "self_sha256": "b862f95478ef12b0d3ba608557bda35abec1f793f215e6c8f9c47b603280077f"
+  }
+}

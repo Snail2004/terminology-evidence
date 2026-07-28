@@ -1,0 +1,506 @@
+{
+  "audit": {
+    "batch_index": 4,
+    "from_cache": false,
+    "latency_ms": 63106,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "c418ce6aa20c7293894f2f207291abc461fb159c498dcab84d5b431d16eebc96",
+    "response_sha256": "2e72c0e715dd48ce5370406dc3437490e141ad4a0e1b5724c9218964ea8c2c1e",
+    "usage": {
+      "input_tokens": 7211,
+      "output_tokens": 3380,
+      "reasoning_tokens": null,
+      "total_tokens": 10591
+    }
+  },
+  "input_request_sha256": "5d316c5c9fa9dc0e62ced83c0bf946b27a595890c42c36cb1227558ac7537b7e",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded_term",
+            "target_vi": "phân loại nhị phân"
+          },
+          {
+            "formation_reason": "semantic_calque",
+            "target_vi": "phép phân loại nhị phân"
+          },
+          {
+            "formation_reason": "technical_variant",
+            "target_vi": "bài toán phân loại hai lớp"
+          },
+          {
+            "formation_reason": "descriptive_variant",
+            "target_vi": "phân loại hai lớp"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_fd7b1833cfe32e71286ed088",
+            "context_type": "C1",
+            "reason_code": "direct_definition",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_0c105541407715dba3c8320d",
+            "context_type": "C2",
+            "reason_code": "task_usage",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_1f8c290f8b62295034a6b072",
+            "context_type": "C2",
+            "reason_code": "task_usage",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_aa5c3843ce520012c58d91a8",
+            "context_type": "C2",
+            "reason_code": "task_usage",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_d33537b0253739563730301e",
+            "context_type": "C2",
+            "reason_code": "problem_setup",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.86,
+            "context_id": "ctx_01284a3b6932dfc4de14bac9",
+            "context_type": "C3",
+            "reason_code": "comparative_mention",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_3ac83e193e5c8c27fd8e98a3",
+            "context_type": "C2",
+            "reason_code": "example_usage",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_7c5d108c05077e7e7939d072",
+            "context_type": "C2",
+            "reason_code": "model_relation",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "classification with exactly two possible classes or labels.",
+        "definition_evidence_context_ids": [
+          "ctx_fd7b1833cfe32e71286ed088",
+          "ctx_3ac83e193e5c8c27fd8e98a3"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_fd7b1833cfe32e71286ed088",
+          "ctx_1f8c290f8b62295034a6b072"
+        ],
+        "sense_id": "d2lce_bb2aa6e567ff5ce9563e209b",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a binary image or file format rather than a machine-learning classification task",
+          "rationale": "No supplied context shows a different sense, so a synthetic boundary sentence is used.",
+          "source_text": "Synthetic: This parser reads a binary classification header from the file format specification."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded_term",
+            "target_vi": "mô hình phát hiện đối tượng"
+          },
+          {
+            "formation_reason": "semantic_calque",
+            "target_vi": "mô hình dò tìm đối tượng"
+          },
+          {
+            "formation_reason": "technical_variant",
+            "target_vi": "mô hình phát hiện vật thể"
+          },
+          {
+            "formation_reason": "descriptive_variant",
+            "target_vi": "mô hình nhận diện đối tượng"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_a91676d4a36f289125221b76",
+            "context_type": "C2",
+            "reason_code": "design_target",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_ae46b94d1a1ad441b6292470",
+            "context_type": "C1",
+            "reason_code": "training_requirements",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_8e94e3fe2eccae4e18df81ce",
+            "context_type": "C2",
+            "reason_code": "prediction_behavior",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_19f05cc4fb14916ea6c8830b",
+            "context_type": "C2",
+            "reason_code": "prediction_behavior",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_a80a0f96555a881e8a2d64e2",
+            "context_type": "C2",
+            "reason_code": "instance_introduction",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_75539ee50da6b74f48edbf25",
+            "context_type": "C1",
+            "reason_code": "functional_description",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.89,
+            "context_id": "ctx_d86d6e76e7a6fb556d8b58fe",
+            "context_type": "C4",
+            "reason_code": "figure_caption",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_37042d54237b28f1a02cd33b",
+            "context_type": "C3",
+            "reason_code": "summary_statement",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "a model that detects objects in an image by predicting their classes and locations.",
+        "definition_evidence_context_ids": [
+          "ctx_ae46b94d1a1ad441b6292470",
+          "ctx_75539ee50da6b74f48edbf25"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_a91676d4a36f289125221b76",
+          "ctx_a80a0f96555a881e8a2d64e2"
+        ],
+        "sense_id": "d2lce_1cc990a2aa4f03a55ea8c851",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "the general task of object detection rather than a specific model that performs it",
+          "rationale": "Supplied contexts stay within one sense; the boundary is drawn synthetically.",
+          "source_text": "Synthetic: Object detection is the task, while an object detection model is the trained network that performs it."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded_term",
+            "target_vi": "cổng đầu ra"
+          },
+          {
+            "formation_reason": "semantic_calque",
+            "target_vi": "cổng xuất"
+          },
+          {
+            "formation_reason": "technical_variant",
+            "target_vi": "cổng điều khiển đầu ra"
+          },
+          {
+            "formation_reason": "descriptive_variant",
+            "target_vi": "cổng kiểm soát đầu ra"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.88,
+            "context_id": "ctx_6143b29417b0fe55f7875c10",
+            "context_type": "C3",
+            "reason_code": "term_introduction",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_1236c8eedefbed662cef9104",
+            "context_type": "C3",
+            "reason_code": "section_heading",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.87,
+            "context_id": "ctx_4a8ce9c7f087c3d08d32ccad",
+            "context_type": "C4",
+            "reason_code": "figure_caption",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_044bf29b52339083b6accce1",
+            "context_type": "C1",
+            "reason_code": "formal_definition",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_ba0d3fd808401fd086323e3f",
+            "context_type": "C2",
+            "reason_code": "functional_role",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_df998c3c68076fd4dfeea859",
+            "context_type": "C1",
+            "reason_code": "behavior_explanation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.91,
+            "context_id": "ctx_ce0994b03956d4032b57ec95",
+            "context_type": "C2",
+            "reason_code": "parameter_usage",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.91,
+            "context_id": "ctx_83304deb770138c0273a3f19",
+            "context_type": "C2",
+            "reason_code": "parameter_usage",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.96,
+        "definition_en": "the LSTM gate that controls how much memory information is exposed to the output at a time step.",
+        "definition_evidence_context_ids": [
+          "ctx_044bf29b52339083b6accce1",
+          "ctx_df998c3c68076fd4dfeea859"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_6143b29417b0fe55f7875c10",
+          "ctx_044bf29b52339083b6accce1"
+        ],
+        "sense_id": "d2lce_c6b4477a845e2e0e0e02f088",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a hardware or digital logic output gate rather than an LSTM gating unit",
+          "rationale": "No genuine alternate sense appears in the supplied contexts.",
+          "source_text": "Synthetic: In digital electronics, an output gate may refer to a circuit output stage, not an LSTM component."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded_term",
+            "target_vi": "dịch chuyển nhãn"
+          },
+          {
+            "formation_reason": "semantic_calque",
+            "target_vi": "sự dịch chuyển nhãn"
+          },
+          {
+            "formation_reason": "technical_variant",
+            "target_vi": "lệch phân bố nhãn"
+          },
+          {
+            "formation_reason": "descriptive_variant",
+            "target_vi": "thay đổi phân bố nhãn"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_251af3f6de41101b4a0f5e27",
+            "context_type": "C3",
+            "reason_code": "section_heading",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.88,
+            "context_id": "ctx_123ccd1b9cae341c69cfb9a3",
+            "context_type": "C3",
+            "reason_code": "assumption_reference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_2d01370b0dfb51002ecac107",
+            "context_type": "C1",
+            "reason_code": "causal_explanation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.87,
+            "context_id": "ctx_bd65044c0d3799c1e578573b",
+            "context_type": "C2",
+            "reason_code": "method_relation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_e46954f1823711a2d1112200",
+            "context_type": "C1",
+            "reason_code": "problem_description",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_fb69017e7a227340fe43b097",
+            "context_type": "C1",
+            "reason_code": "assumption_definition",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.89,
+            "context_id": "ctx_3eb0a985163fee2ce2dc895b",
+            "context_type": "C3",
+            "reason_code": "derived_topic_heading",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_ef837c5a48f145a0fcf4a0e0",
+            "context_type": "C2",
+            "reason_code": "property_usage",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "distribution shift where the label distribution changes, typically under the assumption that labels cause the observed features.",
+        "definition_evidence_context_ids": [
+          "ctx_fb69017e7a227340fe43b097",
+          "ctx_2d01370b0dfb51002ecac107",
+          "ctx_e46954f1823711a2d1112200"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_251af3f6de41101b4a0f5e27",
+          "ctx_3eb0a985163fee2ce2dc895b"
+        ],
+        "sense_id": "d2lce_a5537c415bcbe54cdd82a669",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a physical shifting of a printed label rather than a machine-learning distribution shift",
+          "rationale": "All supplied contexts use the machine-learning sense only.",
+          "source_text": "Synthetic: The package was rejected because of label shift on the sticker, not because of a data distribution issue."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded_term",
+            "target_vi": "động lượng"
+          },
+          {
+            "formation_reason": "semantic_calque",
+            "target_vi": "hệ số động lượng"
+          },
+          {
+            "formation_reason": "technical_variant",
+            "target_vi": "tham số động lượng"
+          },
+          {
+            "formation_reason": "descriptive_variant",
+            "target_vi": "trung bình động có trọng số mũ của gradient quá khứ"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_3630463c4fd1b1974674bd51",
+            "context_type": "C2",
+            "reason_code": "moving_average_update",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.82,
+            "context_id": "ctx_8fa7f6c2ca736e617dfa8130",
+            "context_type": "C3",
+            "reason_code": "topic_listing",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.91,
+            "context_id": "ctx_f1d2db847faaa16d40367e41",
+            "context_type": "C2",
+            "reason_code": "optimizer_parameter",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_d437426b9a49d27a6fb2a2c3",
+            "context_type": "C1",
+            "reason_code": "explicit_explanation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_500ae062c5d8dcb9953ef236",
+            "context_type": "C2",
+            "reason_code": "function_parameter",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_06f4771cf594f1bbed3246e8",
+            "context_type": "C2",
+            "reason_code": "moving_average_update",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.91,
+            "context_id": "ctx_3ccd2fb56cb762a513ca604f",
+            "context_type": "C2",
+            "reason_code": "function_parameter",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_6ac1f400ae1b3195245dc883",
+            "context_type": "C2",
+            "reason_code": "layer_parameter_usage",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.91,
+        "definition_en": "a parameter or mechanism that uses an exponentially weighted average of past values, especially past gradients, to smooth updates.",
+        "definition_evidence_context_ids": [
+          "ctx_d437426b9a49d27a6fb2a2c3",
+          "ctx_3630463c4fd1b1974674bd51",
+          "ctx_06f4771cf594f1bbed3246e8"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_8fa7f6c2ca736e617dfa8130",
+          "ctx_d437426b9a49d27a6fb2a2c3"
+        ],
+        "sense_id": "d2lce_addfcc9899bef06c500b6b0e",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "physical momentum in mechanics rather than the optimization/statistical averaging notion",
+          "rationale": "Supplied contexts consistently support the ML/averaging sense only.",
+          "source_text": "Synthetic: The ball’s momentum increased after the collision, which is a physics sense unrelated to optimization."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

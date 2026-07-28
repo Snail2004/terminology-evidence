@@ -1,0 +1,738 @@
+{
+  "audit": {
+    "batch_index": 14,
+    "from_cache": false,
+    "latency_ms": 64597,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "d5d3428c92d557449e66dc6946b4c11c436a1b9e3e19830096aef3ba58e52bf9",
+    "response_sha256": "77f3ae3f7836cc4e432c0b303e4424442f595f498097e78dd65454e696049b7f",
+    "usage": {
+      "input_tokens": 6307,
+      "output_tokens": 3436,
+      "reasoning_tokens": null,
+      "total_tokens": 9743
+    },
+    "validation_repairs": [
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_73c90581e009fa46017ce4ac].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_d6d0b1ea059aae00cde5e9fc].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_39675d05889cacc1f1ffdf06].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_48e44a2af0f53ee5fa7c2a13].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_5834bda7132436c8ef52cebd].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_368170831130d1827fe9f440].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_22622fdadf6bcfc02e71f0bc].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_a40d24f872fa062513992a23].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_dbb300a90e4b0f8b815b5e12"
+      },
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_c4a7169a641a791c71788313].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_207e82bfd83c7a4eca664a58].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_ebc0a0797c85b97bb1f894e1].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_347324cc4f55f0de9822bf6d].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_7ab76b6d9c4d288c677f1a0b].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_f06f07b9418a51a6b9edecab].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_3e3799ff4270de82290185f5].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_0a0c93e8ea720026fc3f62e7].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_ca2ca961829e131bbc0fd92b"
+      },
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_172790809649156a7e055295].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_881a115cc0a3059593925a60].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_9cde2630c518ac4fbc4f9a3d].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_37f65cfdd3725f0a5fd41ed1].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_a8b86db91ddc0d9b0d2daffc].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_c6574094eae517b78bf15473].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_c82ca11246013bc71c70683e].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_f544543d23373dd72d348b73].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_2e41378b04489016bfe5707a"
+      },
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_061ed2ce35d54d5df8e71544].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_167b091ef55430ca8f9a74c1].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_b623c596d3c134838c86f0ba].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_d3ee9a0901707fef51f604cc].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_8b3dbbc201dd9f141734c7f2].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_a111db6cfdc3af70e259eae0].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_623445579aad7a2214e0e1e3].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_d958615e5797dcf7dbebc74d].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_eba859df6c63311dce4a5eb7"
+      },
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_754e86fadaba7fa070d1450f].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_ad04343cea039cb88b7c242b].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_67945819158e624599917329].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_5d537fed6f7e355aeaeefdaa].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_04a4e4586094507de76cea7e].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_8d6f5ef7a077c6f9eec43e01].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_571cde5a917f9708d42556a6].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_897ec61828c3518836961df7].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_91002293cea2184b43995f47"
+      }
+    ]
+  },
+  "input_request_sha256": "e6246f34fc85615caf336319ee21c1c469c718117d123dc7ed395b2a986f65be",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "more explicit NLI-specific rendering",
+            "target_vi": "mệnh đề giả thuyết"
+          },
+          {
+            "formation_reason": "plausible sequence-level rendering in NLI",
+            "target_vi": "câu giả thuyết"
+          },
+          {
+            "formation_reason": "claim-focused rendering matching judged text content",
+            "target_vi": "phát biểu giả thuyết"
+          },
+          {
+            "formation_reason": "recorded concise default term",
+            "target_vi": "giả thuyết"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_73c90581e009fa46017ce4ac",
+            "context_type": "C1",
+            "reason_code": "direct definition in NLI pairing",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_d6d0b1ea059aae00cde5e9fc",
+            "context_type": "C3",
+            "reason_code": "statistical testing sense, not NLI text-sequence sense",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "context_id": "ctx_39675d05889cacc1f1ffdf06",
+            "context_type": "C2",
+            "reason_code": "defined via contradiction relation in NLI",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_48e44a2af0f53ee5fa7c2a13",
+            "context_type": "C2",
+            "reason_code": "defined via entailment relation in NLI",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_5834bda7132436c8ef52cebd",
+            "context_type": "C2",
+            "reason_code": "example sentence labeled using hypothesis-premise relation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_368170831130d1827fe9f440",
+            "context_type": "C2",
+            "reason_code": "example hypothesis text in NLI pair",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_22622fdadf6bcfc02e71f0bc",
+            "context_type": "C2",
+            "reason_code": "example hypothesis text in NLI pair",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_a40d24f872fa062513992a23",
+            "context_type": "C2",
+            "reason_code": "example hypothesis text in NLI pair",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.94,
+        "definition_en": "a sentence or claim paired with a premise in natural language inference, whose relation to the premise is judged",
+        "definition_evidence_context_ids": [
+          "ctx_73c90581e009fa46017ce4ac",
+          "ctx_39675d05889cacc1f1ffdf06",
+          "ctx_48e44a2af0f53ee5fa7c2a13"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.96,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_73c90581e009fa46017ce4ac",
+          "ctx_368170831130d1827fe9f440",
+          "ctx_22622fdadf6bcfc02e71f0bc"
+        ],
+        "sense_id": "d2lce_dbb300a90e4b0f8b815b5e12",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a proposed statistical claim tested with data",
+          "rationale": "Supplied contexts include a real contrastive statistical sense; this probe sharpens the boundary using the exact source term.",
+          "source_text": "Synthetic: In statistics, the hypothesis is tested with a confidence interval rather than paired with a premise."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "common NLI/logical relation label in Vietnamese",
+            "target_vi": "kéo theo"
+          },
+          {
+            "formation_reason": "plain-language rendering of inferability from premise",
+            "target_vi": "suy ra được"
+          },
+          {
+            "formation_reason": "plausible semantic/logical relation term",
+            "target_vi": "hàm ý"
+          },
+          {
+            "formation_reason": "recorded concise label",
+            "target_vi": "hệ quả"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_c4a7169a641a791c71788313",
+            "context_type": "C1",
+            "reason_code": "direct definition of NLI relation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_207e82bfd83c7a4eca664a58",
+            "context_type": "C2",
+            "reason_code": "worked example of entailment label",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_ebc0a0797c85b97bb1f894e1",
+            "context_type": "C2",
+            "reason_code": "task alias recognizing textual entailment",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_347324cc4f55f0de9822bf6d",
+            "context_type": "C2",
+            "reason_code": "dataset label name in code",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_7ab76b6d9c4d288c677f1a0b",
+            "context_type": "C2",
+            "reason_code": "label listing for premise-hypothesis pairs",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_f06f07b9418a51a6b9edecab",
+            "context_type": "C2",
+            "reason_code": "class label distribution mention",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_3e3799ff4270de82290185f5",
+            "context_type": "C2",
+            "reason_code": "summary of NLI relationship types",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_0a0c93e8ea720026fc3f62e7",
+            "context_type": "C2",
+            "reason_code": "model output class among three NLI labels",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.96,
+        "definition_en": "the natural language inference label meaning the hypothesis follows from the premise",
+        "definition_evidence_context_ids": [
+          "ctx_c4a7169a641a791c71788313",
+          "ctx_207e82bfd83c7a4eca664a58",
+          "ctx_3e3799ff4270de82290185f5"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.95,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_c4a7169a641a791c71788313",
+          "ctx_f06f07b9418a51a6b9edecab",
+          "ctx_3e3799ff4270de82290185f5"
+        ],
+        "sense_id": "d2lce_ca2ca961829e131bbc0fd92b",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a broader formal logical consequence relation outside the specific NLI labeling setup",
+          "rationale": "No supplied context shows a different sense; synthetic probe marks the boundary from the NLI-label use.",
+          "source_text": "Synthetic: In logic class, entailment is discussed as a formal relation, while here entailment is a dataset label between premise and hypothesis."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "focuses on dividing image into semantic regions",
+            "target_vi": "phân vùng ngữ nghĩa"
+          },
+          {
+            "formation_reason": "explicit pixel-level task rendering",
+            "target_vi": "gán nhãn ngữ nghĩa theo điểm ảnh"
+          },
+          {
+            "formation_reason": "image-task oriented paraphrase",
+            "target_vi": "phân đoạn ảnh theo ngữ nghĩa"
+          },
+          {
+            "formation_reason": "recorded standard term",
+            "target_vi": "phân đoạn ngữ nghĩa"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_172790809649156a7e055295",
+            "context_type": "C2",
+            "reason_code": "task named among computer vision applications",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_881a115cc0a3059593925a60",
+            "context_type": "C2",
+            "reason_code": "used with fully convolutional networks",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_9cde2630c518ac4fbc4f9a3d",
+            "context_type": "C2",
+            "reason_code": "listed as computer vision task",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_37f65cfdd3725f0a5fd41ed1",
+            "context_type": "C1",
+            "reason_code": "section title introducing the task",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_a8b86db91ddc0d9b0d2daffc",
+            "context_type": "C1",
+            "reason_code": "direct explanation emphasizing pixel-level labeling",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_c6574094eae517b78bf15473",
+            "context_type": "C2",
+            "reason_code": "example of labels in segmentation output",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_c82ca11246013bc71c70683e",
+            "context_type": "C1",
+            "reason_code": "direct problem statement defining semantic classes by region",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_f544543d23373dd72d348b73",
+            "context_type": "C2",
+            "reason_code": "contrast with object detection at pixel borders",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "the computer vision task of assigning semantic class labels to image regions or pixels",
+        "definition_evidence_context_ids": [
+          "ctx_a8b86db91ddc0d9b0d2daffc",
+          "ctx_c82ca11246013bc71c70683e",
+          "ctx_f544543d23373dd72d348b73"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_37f65cfdd3725f0a5fd41ed1",
+          "ctx_881a115cc0a3059593925a60",
+          "ctx_c82ca11246013bc71c70683e"
+        ],
+        "sense_id": "d2lce_2e41378b04489016bfe5707a",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "object detection rather than pixel-level class assignment",
+          "rationale": "No supplied context gives a genuine different sense of the term itself; probe distinguishes it from a nearby vision task.",
+          "source_text": "Synthetic: Semantic segmentation labels every pixel, whereas object detection only draws boxes around objects."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "full Vietnamese expansion of the acronym",
+            "target_vi": "mạng nơ-ron tích chập"
+          },
+          {
+            "formation_reason": "concise standard shorthand",
+            "target_vi": "mạng tích chập"
+          },
+          {
+            "formation_reason": "common mixed-form technical rendering",
+            "target_vi": "mạng neural tích chập"
+          },
+          {
+            "formation_reason": "recorded acronym form used directly in Vietnamese technical writing",
+            "target_vi": "CNN"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_061ed2ce35d54d5df8e71544",
+            "context_type": "C2",
+            "reason_code": "CNN-based architectures in vision",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_167b091ef55430ca8f9a74c1",
+            "context_type": "C1",
+            "reason_code": "directly names CNNs as architecture family",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_b623c596d3c134838c86f0ba",
+            "context_type": "C2",
+            "reason_code": "diagram comparing CNN with other architectures",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_d3ee9a0901707fef51f604cc",
+            "context_type": "C2",
+            "reason_code": "CNN-based detection method mention",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_8b3dbbc201dd9f141734c7f2",
+            "context_type": "C2",
+            "reason_code": "chapter/topic name sentiment-analysis-cnn",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_a111db6cfdc3af70e259eae0",
+            "context_type": "C2",
+            "reason_code": "popular CNN architectures mention",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_623445579aad7a2214e0e1e3",
+            "context_type": "C2",
+            "reason_code": "deeper CNN with convolutional layer",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_d958615e5797dcf7dbebc74d",
+            "context_type": "C1",
+            "reason_code": "states assembling a fully functional CNN",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "a convolutional neural network; a neural network architecture based on convolutional layers",
+        "definition_evidence_context_ids": [
+          "ctx_167b091ef55430ca8f9a74c1",
+          "ctx_623445579aad7a2214e0e1e3",
+          "ctx_d958615e5797dcf7dbebc74d"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.95,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_167b091ef55430ca8f9a74c1",
+          "ctx_b623c596d3c134838c86f0ba",
+          "ctx_d958615e5797dcf7dbebc74d"
+        ],
+        "sense_id": "d2lce_eba859df6c63311dce4a5eb7",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "an RNN, a different neural network architecture family",
+          "rationale": "No supplied context shows another sense of the acronym; probe separates CNN from a nearby architecture term.",
+          "source_text": "Synthetic: The CNN uses convolutional layers, unlike an RNN that processes sequences recurrently."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "explicit networking/hardware device rendering",
+            "target_vi": "thiết bị chuyển mạch"
+          },
+          {
+            "formation_reason": "plausible device-centered alternative",
+            "target_vi": "bộ mạch chuyển"
+          },
+          {
+            "formation_reason": "borrowed form commonly used in technical Vietnamese",
+            "target_vi": "switch"
+          },
+          {
+            "formation_reason": "recorded standard translation",
+            "target_vi": "bộ chuyển mạch"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_754e86fadaba7fa070d1450f",
+            "context_type": "NONE",
+            "reason_code": "verb phrase about turning on light switches, not the device sense targeted",
+            "sense_relation": "INVALID"
+          },
+          {
+            "context_id": "ctx_ad04343cea039cb88b7c242b",
+            "context_type": "NONE",
+            "reason_code": "physical light switch in a room, different sense",
+            "sense_relation": "INVALID"
+          },
+          {
+            "context_id": "ctx_67945819158e624599917329",
+            "context_type": "NONE",
+            "reason_code": "verb phrase switch off bias, not noun device sense",
+            "sense_relation": "INVALID"
+          },
+          {
+            "context_id": "ctx_5d537fed6f7e355aeaeefdaa",
+            "context_type": "NONE",
+            "reason_code": "verb phrase switch from using matrices, not noun device sense",
+            "sense_relation": "INVALID"
+          },
+          {
+            "context_id": "ctx_04a4e4586094507de76cea7e",
+            "context_type": "C1",
+            "reason_code": "direct mention of network switches as devices",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_8d6f5ef7a077c6f9eec43e01",
+            "context_type": "NONE",
+            "reason_code": "verb switch to summing logarithms, not noun device sense",
+            "sense_relation": "INVALID"
+          },
+          {
+            "context_id": "ctx_571cde5a917f9708d42556a6",
+            "context_type": "NONE",
+            "reason_code": "verb phrase switch on coffee machine, not noun device sense",
+            "sense_relation": "INVALID"
+          },
+          {
+            "context_id": "ctx_897ec61828c3518836961df7",
+            "context_type": "NONE",
+            "reason_code": "verb phrase switch off bias, not noun device sense",
+            "sense_relation": "INVALID"
+          }
+        ],
+        "definition_confidence": 0.73,
+        "definition_en": "a device that connects multiple endpoints and forwards communication between them",
+        "definition_evidence_context_ids": [
+          "ctx_04a4e4586094507de76cea7e"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.88,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_ad04343cea039cb88b7c242b",
+          "ctx_04a4e4586094507de76cea7e"
+        ],
+        "sense_id": "d2lce_91002293cea2184b43995f47",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "the verb meaning to change or turn something on/off",
+          "rationale": "Supplied contexts include many verb uses and a light-switch noun use; the probe highlights the targeted hardware-device sense.",
+          "source_text": "Synthetic: The network switch connects devices, but to switch off the bias means to disable a model setting."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

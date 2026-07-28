@@ -1,0 +1,513 @@
+{
+  "audit": {
+    "batch_index": 8,
+    "from_cache": false,
+    "latency_ms": 70247,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "3aa25693b81b4b159bed976258006440d8b89c7e6ea50a9c3c1c1c75cc548d16",
+    "response_sha256": "67d6cbf2067ecc2f69f6feb0985f344babee9ed5bed8aecc001bc258521abb39",
+    "usage": {
+      "input_tokens": 5546,
+      "output_tokens": 3777,
+      "reasoning_tokens": null,
+      "total_tokens": 9323
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "e5c8640413fa06a45df2b8f9515589064568523f36bacbca22266a19cde1b955",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "common probabilistic wording matching general and technical uses in the contexts",
+            "target_vi": "xác suất"
+          },
+          {
+            "formation_reason": "technical wording for probability assigned to an observation/sequence/class",
+            "target_vi": "độ khả dĩ"
+          },
+          {
+            "formation_reason": "general wording for chance that something happens or is true",
+            "target_vi": "mức độ có khả năng"
+          },
+          {
+            "formation_reason": "broad everyday-statistical rendering plausible in all listed contexts",
+            "target_vi": "khả năng"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.87,
+            "context_id": "ctx_a9a2e6cdf046a082edaa6d37",
+            "context_type": "C2",
+            "reason_code": "probability-density wording for observing a value",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_d8e44ad4ce4225eacb553a6a",
+            "context_type": "C1",
+            "reason_code": "explicit statistical probability of observed y given x",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.83,
+            "context_id": "ctx_3ac692608d8f389e24ac043e",
+            "context_type": "C2",
+            "reason_code": "general chance of repayment",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.86,
+            "context_id": "ctx_1dca2fe578193f22e1672147",
+            "context_type": "C2",
+            "reason_code": "chance that image patch contains target",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_2c4ae473914607dda7f7837f",
+            "context_type": "C1",
+            "reason_code": "sequence probability assigned by model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.91,
+            "context_id": "ctx_a28361adfa9c45838015504f",
+            "context_type": "C1",
+            "reason_code": "prediction probability over next token",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.8,
+            "context_id": "ctx_abe99fc2cabdf28c0c793b55",
+            "context_type": "C2",
+            "reason_code": "general probability that some eigenvalues are negative",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_6d80c41ae40afac77df593a2",
+            "context_type": "C1",
+            "reason_code": "predicted class probability",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.93,
+        "definition_en": "the probability or degree of chance that a data value, event, class, or sequence is observed or occurs",
+        "definition_evidence_context_ids": [
+          "ctx_d8e44ad4ce4225eacb553a6a",
+          "ctx_2c4ae473914607dda7f7837f",
+          "ctx_6d80c41ae40afac77df593a2",
+          "ctx_a28361adfa9c45838015504f"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_d8e44ad4ce4225eacb553a6a",
+          "ctx_2c4ae473914607dda7f7837f"
+        ],
+        "sense_id": "d2lce_a1d9f9c783c09cc52dedbe55",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a formal objective function of parameters proportional to the probability of observed data, viewed specifically as a function of parameters",
+          "rationale": "Supplied contexts use the general probability/chance sense, not an explicitly parameterized likelihood function as a distinct mathematical object.",
+          "source_text": "Synthetic: In maximum likelihood estimation, the likelihood is treated as a function of the model parameters."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "common OOP/programming term parallel to recorded candidate",
+            "target_vi": "phương thức khởi tạo"
+          },
+          {
+            "formation_reason": "direct technical rendering for class initialization routine",
+            "target_vi": "bộ khởi tạo"
+          },
+          {
+            "formation_reason": "explicit code-oriented paraphrase tied to __init__",
+            "target_vi": "hàm tạo"
+          },
+          {
+            "formation_reason": "broader but plausible programming phrasing",
+            "target_vi": "hàm dựng"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_cdfc7e2c9d284b99240ac4e4",
+            "context_type": "C2",
+            "reason_code": "argument passed to layer constructor",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_7fa9447905f17f25b43e1bbf",
+            "context_type": "C1",
+            "reason_code": "explicitly equated with __init__ function in Python",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_7a88eb1b4219d42a945874f2",
+            "context_type": "C1",
+            "reason_code": "constructor function declares parameters",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.89,
+            "context_id": "ctx_e484e6d55d0193ab9cfe2285",
+            "context_type": "C2",
+            "reason_code": "class constructor taking sequence-length argument",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_54000812f62f7bf37881febb",
+            "context_type": "C1",
+            "reason_code": "calling parent class constructor for initialization",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_27c8a3f3418b0aec81720a7a",
+            "context_type": "C1",
+            "reason_code": "calling parent class constructor for initialization",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_45e7aa8bb2892e1512df16ec",
+            "context_type": "C1",
+            "reason_code": "calling parent class constructor for initialization",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.91,
+            "context_id": "ctx_8b948684ac54a83a4d0f3076",
+            "context_type": "C2",
+            "reason_code": "layers instantiated in constructor",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "the class method or function that initializes an object when it is created",
+        "definition_evidence_context_ids": [
+          "ctx_7fa9447905f17f25b43e1bbf",
+          "ctx_54000812f62f7bf37881febb",
+          "ctx_8b948684ac54a83a4d0f3076"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_7fa9447905f17f25b43e1bbf",
+          "ctx_7a88eb1b4219d42a945874f2"
+        ],
+        "sense_id": "d2lce_7d7b617aacd41c76538d06af",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a person or company that builds something physical",
+          "rationale": "All supplied contexts are about object-oriented programming, not the everyday agent noun sense.",
+          "source_text": "Synthetic: The bridge constructor finished the project ahead of schedule."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "technical ML/recommender rendering close to standard usage",
+            "target_vi": "yếu tố tiềm ẩn"
+          },
+          {
+            "formation_reason": "common statistical/ML alternative using variable terminology",
+            "target_vi": "biến tiềm ẩn"
+          },
+          {
+            "formation_reason": "compact technical variant preserving hidden-dimension meaning",
+            "target_vi": "thành phần tiềm ẩn"
+          },
+          {
+            "formation_reason": "plausible factorization-oriented wording",
+            "target_vi": "nhân tử tiềm ẩn"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_09c1b7b99119034d4bf50391",
+            "context_type": "C1",
+            "reason_code": "describes hidden dimensions represented by factors",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_d34d70bc2ec444d75355979e",
+            "context_type": "C1",
+            "reason_code": "dimension k of latent factors in model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_e23c66fedee3dfe32279366e",
+            "context_type": "C1",
+            "reason_code": "user and item latent factors created as embeddings",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_270d955700b7c53c38a3878e",
+            "context_type": "C2",
+            "reason_code": "size of latent factors as model hyperparameter",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_f7640ef083e72312572602e6",
+            "context_type": "C2",
+            "reason_code": "asks effect of latent-factor size on performance",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_fa891237430b0fc11cd6280f",
+            "context_type": "C1",
+            "reason_code": "elementwise product of user/item latent factors",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.91,
+            "context_id": "ctx_2843dc47b0a0e6aafb8597c7",
+            "context_type": "C2",
+            "reason_code": "asks impact of latent-factor size on performance",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_729f0a12fd676ffe5cb7d8a9",
+            "context_type": "C1",
+            "reason_code": "defines k as dimensionality of latent factors",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "hidden learned dimensions or features used to represent users, items, or variables in a factorized model",
+        "definition_evidence_context_ids": [
+          "ctx_09c1b7b99119034d4bf50391",
+          "ctx_d34d70bc2ec444d75355979e",
+          "ctx_fa891237430b0fc11cd6280f",
+          "ctx_729f0a12fd676ffe5cb7d8a9"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_d34d70bc2ec444d75355979e",
+          "ctx_e23c66fedee3dfe32279366e"
+        ],
+        "sense_id": "d2lce_f7c1845f1d67dcb386e8fc22",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "causal or background factors that are hidden in a nontechnical everyday explanation, not learned embeddings or factor dimensions",
+          "rationale": "All supplied contexts are the recommender/factorization sense in machine learning.",
+          "source_text": "Synthetic: Social pressure and fear were latent factors behind the decision."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "common technical variant with similar meaning",
+            "target_vi": "tham số của mô hình"
+          },
+          {
+            "formation_reason": "more formal technical wording",
+            "target_vi": "tham biến mô hình"
+          },
+          {
+            "formation_reason": "broader but plausible ML phrasing",
+            "target_vi": "biến tham số của mô hình"
+          },
+          {
+            "formation_reason": "compact alternative used in technical prose",
+            "target_vi": "tham số học được của mô hình"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_fbb8b66ce00e1ca91661df77",
+            "context_type": "C2",
+            "reason_code": "parameter initialization in model training context",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_23b189c0f5c5598741fa92a6",
+            "context_type": "C1",
+            "reason_code": "explicit contrast with weight that is not a model parameter",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.91,
+            "context_id": "ctx_3c33a18dd04e08da418034a3",
+            "context_type": "C2",
+            "reason_code": "parameter sizes across architectures",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_af69401169f9749c9e888c35",
+            "context_type": "C1",
+            "reason_code": "model parameter as optimization variable x",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_712b9e024f4bb6ad1f3f5876",
+            "context_type": "C1",
+            "reason_code": "model parameter as optimization variable x",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_7a8590cce9481296230c2d35",
+            "context_type": "C2",
+            "reason_code": "parameter initialization in framework module description",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_352eb05d2112f610b0c4b6b2",
+            "context_type": "C2",
+            "reason_code": "parameter initialization in framework module description",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_345e280a6afc1f3131a69523",
+            "context_type": "C2",
+            "reason_code": "parameter initialization in framework module description",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "a variable of a model whose value defines the model and is typically initialized and updated during training",
+        "definition_evidence_context_ids": [
+          "ctx_23b189c0f5c5598741fa92a6",
+          "ctx_af69401169f9749c9e888c35",
+          "ctx_712b9e024f4bb6ad1f3f5876",
+          "ctx_fbb8b66ce00e1ca91661df77"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_23b189c0f5c5598741fa92a6",
+          "ctx_af69401169f9749c9e888c35"
+        ],
+        "sense_id": "d2lce_ed44d125cc1110c1c39f7b3e",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a parameter controlling a model family in a broader scientific or mathematical sense, not necessarily a learnable neural-network variable",
+          "rationale": "Supplied contexts consistently refer to trainable or initialized parameters within machine-learning models.",
+          "source_text": "Synthetic: In the climate model, cloud cover was treated as a fixed model parameter chosen by the researchers."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "standard Vietnamese rendering of the architecture name",
+            "target_vi": "mạng VGG"
+          },
+          {
+            "formation_reason": "more explicit architecture wording",
+            "target_vi": "kiến trúc VGG"
+          },
+          {
+            "formation_reason": "formal technical variant",
+            "target_vi": "mô hình mạng VGG"
+          },
+          {
+            "formation_reason": "transliterated-plus-generic phrasing plausible in explanatory prose",
+            "target_vi": "mạng nơ-ron VGG"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_cb058f206f42d3b06990201c",
+            "context_type": "C2",
+            "reason_code": "listed among major CNN architectures",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_d44b321b97faec6a56ab5c33",
+            "context_type": "C2",
+            "reason_code": "used as backbone before classification layer",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 1.0,
+            "context_id": "ctx_a33fa21e3115491f18e2796d",
+            "context_type": "C1",
+            "reason_code": "section title naming the architecture",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_ece546a2d6d19914a8d8e91c",
+            "context_type": "C1",
+            "reason_code": "describes structural partition of the VGG network",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_bcaefb51afe4e2f9d849b9e3",
+            "context_type": "C1",
+            "reason_code": "describes fully connected part of VGG",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_63a7e0037fac12cc4fdcdd35",
+            "context_type": "C1",
+            "reason_code": "describes original VGG convolutional blocks",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_5de6c0208178676906d2a0d9",
+            "context_type": "C1",
+            "reason_code": "references VGG having 5 convolutional blocks",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_b148bf8074b973465bfd0498",
+            "context_type": "C2",
+            "reason_code": "uses VGG layers for feature extraction",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "a named convolutional neural network architecture with stacked convolutional blocks and fully connected layers",
+        "definition_evidence_context_ids": [
+          "ctx_a33fa21e3115491f18e2796d",
+          "ctx_ece546a2d6d19914a8d8e91c",
+          "ctx_63a7e0037fac12cc4fdcdd35"
+        ],
+        "part_of_speech": "proper_noun",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_a33fa21e3115491f18e2796d",
+          "ctx_ece546a2d6d19914a8d8e91c"
+        ],
+        "sense_id": "d2lce_7be1455c48134d411f51fe7c",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a nontechnical organization or product named VGG rather than the neural-network architecture",
+          "rationale": "All supplied contexts clearly use the architecture name in deep learning.",
+          "source_text": "Synthetic: VGG network sponsored the event as a media company."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

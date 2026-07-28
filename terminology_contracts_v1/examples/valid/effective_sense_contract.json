@@ -1,0 +1,58 @@
+{
+  "schema_id": "EffectiveSenseContractV1",
+  "schema_version": "1.0.0",
+  "sense_id": "model_execution",
+  "scope_id": "machine_learning",
+  "source_term": "inference",
+  "effective_definition_en": "The process of applying a trained model to new inputs.",
+  "effective_part_of_speech": "noun",
+  "scope_note": "Machine-learning model execution on new inputs.",
+  "domain_profile": {
+    "domain_id": "machine_learning",
+    "anchors_en": [
+      "model",
+      "prediction"
+    ],
+    "anchors_vi": [
+      "mô hình",
+      "dự đoán"
+    ]
+  },
+  "definition_source": "HUMAN_CORRECTED",
+  "review_status": "ADJUDICATED",
+  "sense_inventory_version": "sense-v1",
+  "parent_dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "review_artifact_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+  "provenance": {
+    "run_id": "run-demo-001",
+    "started_at": "2026-07-28T10:00:00+00:00",
+    "completed_at": "2026-07-28T10:01:00+00:00",
+    "component_id": "sense-review",
+    "component_version": "1.0.0",
+    "policy_version": "demo-policy-v1",
+    "prompt_hashes": {
+      "main": "9999999999999999999999999999999999999999999999999999999999999999"
+    },
+    "model_routes": [
+      {
+        "provider_id": "provider-demo",
+        "model_id": "model-demo",
+        "model_family": "family-demo",
+        "independence_group": "group-demo"
+      }
+    ],
+    "source_artifact_hashes": {
+      "dataset": "1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "raw_ledger_ref": {
+      "evidence_id": "ledger-001",
+      "evidence_type": "OTHER",
+      "uri": "artifact://runs/run-demo-001",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "notes": null
+  },
+  "integrity": {
+    "self_sha256": "82eedc4661ad441fd7e1925b61738b3ad97af9c2eacb9ce99f2209b45fe1dd0b"
+  }
+}

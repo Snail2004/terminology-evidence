@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "D2LCSTParallelReviewRecordV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "policy_id",
+    "term_id",
+    "sense_id",
+    "source_payload_sha256",
+    "case_sha256",
+    "definition_status",
+    "effective_definition_en",
+    "part_of_speech_status",
+    "effective_part_of_speech",
+    "scope_note",
+    "evidence_context_ids",
+    "confidence",
+    "rationale",
+    "risk_flags"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "D2LCSTParallelReviewRecordV1"
+    },
+    "policy_id": {
+      "const": "d2l_cst_parallel_three_review_files_v1_1"
+    },
+    "term_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sense_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_payload_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "case_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "definition_status": {
+      "enum": [
+        "",
+        "ACCEPTED",
+        "CORRECTED",
+        "REJECTED"
+      ]
+    },
+    "effective_definition_en": {
+      "type": "string"
+    },
+    "part_of_speech_status": {
+      "enum": [
+        "",
+        "ACCEPTED",
+        "CORRECTED",
+        "REJECTED",
+        "UNCERTAIN"
+      ]
+    },
+    "effective_part_of_speech": {
+      "type": "string"
+    },
+    "scope_note": {
+      "type": "string"
+    },
+    "evidence_context_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "confidence": {
+      "type": [
+        "string",
+        "number"
+      ]
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "risk_flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema_id": "D2LCSTMergedThreeReviewSummaryV2",
+  "merge_policy_id": "d2l_cst_core_decision_consensus_v1",
+  "consensus_fields": [
+    "definition_status",
+    "effective_definition_en",
+    "part_of_speech_status",
+    "effective_part_of_speech"
+  ],
+  "non_voting_audit_fields": [
+    "scope_note"
+  ],
+  "status": "PASS",
+  "review_file_sha256": {
+    "reviewer_1": "9b491520a3d620e40213ef0c1f01d5cd97e952fe989b89aac2a81dcaea96c3dc",
+    "reviewer_2": "1988bf99159f11baf39567002127770ab2f75f83f15a78b60e3b301e74ab3b88",
+    "reviewer_3": "714c9dc3aa90962cc5a1735ffdbd0848641a97a12255195d6935ef26b05395d1"
+  },
+  "sense_count": 5,
+  "resolution_counts": {
+    "AGREEMENT_3_OF_3": 5
+  },
+  "adjudication_required": 0,
+  "merged_output": "D:\\temp\\d2l_parallel_review_merge_v12_19e1160156e3480ca75deb359d8b4733\\merged_three_reviews.jsonl"
+}

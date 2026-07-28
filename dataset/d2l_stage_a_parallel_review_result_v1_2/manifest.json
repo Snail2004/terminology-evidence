@@ -1,0 +1,36 @@
+{
+  "schema_id": "D2LCSTParallelReviewResultManifestV1",
+  "schema_version": "1.0.0",
+  "status": "PILOT_CORE_CONSENSUS_COMPLETE",
+  "source_pack_schema_id": "D2LCSTParallelThreeReviewPackV1_2",
+  "source_pack_manifest_sha256": "14a532d957cfdc98fcf4bfea0f488f9896766e8b351d300fa59e18475b53af1a",
+  "merge_policy_id": "d2l_cst_core_decision_consensus_v1",
+  "sense_count": 5,
+  "resolution_counts": {
+    "AGREEMENT_3_OF_3": 5
+  },
+  "adjudication_required": 0,
+  "files": {
+    "ai_1.jsonl": {
+      "ref": "ai_1.jsonl",
+      "sha256": "9b491520a3d620e40213ef0c1f01d5cd97e952fe989b89aac2a81dcaea96c3dc"
+    },
+    "ai_2.jsonl": {
+      "ref": "ai_2.jsonl",
+      "sha256": "1988bf99159f11baf39567002127770ab2f75f83f15a78b60e3b301e74ab3b88"
+    },
+    "ai_3.jsonl": {
+      "ref": "ai_3.jsonl",
+      "sha256": "714c9dc3aa90962cc5a1735ffdbd0848641a97a12255195d6935ef26b05395d1"
+    },
+    "merged_three_reviews.jsonl": {
+      "ref": "merged_three_reviews.jsonl",
+      "sha256": "679624965bbf89b6584e7c586f61b71c088a8d0451823d7b083e524769777df2"
+    },
+    "review_summary.json": {
+      "ref": "review_summary.json",
+      "sha256": "19fba324de0a49f600c1fa61ff371def85e42946ef17596d5fbe46bf4a6ff1da"
+    }
+  },
+  "manifest_sha256": "973631289c50400d773c62f11baa9d040b65dab52ff971094de3a2c1b5c8019c"
+}

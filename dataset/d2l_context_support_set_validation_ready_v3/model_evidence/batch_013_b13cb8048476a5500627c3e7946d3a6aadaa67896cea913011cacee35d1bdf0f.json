@@ -1,0 +1,737 @@
+{
+  "audit": {
+    "batch_index": 13,
+    "from_cache": false,
+    "latency_ms": 67666,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "90fda3da2340247c0a7f8e02b5ff586bb1eda50c547cb4da5781aaf2f812433d",
+    "response_sha256": "6bc49d405241b483c19e019b3e07a618ce2641210ca5238042ccf6b17455e7cf",
+    "usage": {
+      "input_tokens": 6233,
+      "output_tokens": 3370,
+      "reasoning_tokens": null,
+      "total_tokens": 9603
+    },
+    "validation_repairs": [
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_96fce7b6560a010f307443f6].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_607c4610b2fb0f15081b64d0].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_0b0937e42c26b6b23b5692f4].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_aa0eae6611908af9c05e40d3].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_47a2796ead7d2454fdc45f64].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_9d639b375fad74fc47d1c470].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_f4c012def8b4623e96d4ac12].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_12113aa551b0b7a0b905e6bf].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_c6d5679eb20ff0719dfc35b2"
+      },
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_6ffe6a41763c493d385a9d08].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_4da4c97d28bf6a81e6e7e0fb].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_be13633e5269ebd62d16e8f2].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_f66d6f0f60f34de0d401b86a].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_97859a8cd0781c52d0d6f199].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_e8b4b42870033c825829a5f6].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_251a0545759171bb473405d4].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_a262d765aa2b98acc9fb0307].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_80f4d6555a6ea1d2e5e881a1"
+      },
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_eafeb346f16534dd44c4414d].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_403adb70f5312a0fa35b95be].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_8ce751d21f2cb72d502c47b8].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_faa4efe019d52f783381c40a].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_1f4f955fd892e6791b4aeef3].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_f4fa216c07f2cf0249eb37ca].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_58323905b57101ea133ca2d9].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_28b17b3a0950632e4ac5d1f9].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_98b37a7bcb47cd2ef2e5f296"
+      },
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_de10a7bd62da5f1e825f4704].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_9f1f16a2e87c55fefeca14cc].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_b6400546a59e2de8affe4df3].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_4f1b397454dc88cdcdbef294].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_c342d715dab448d66b1d2523].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_c6fcdab6fbdb3c34121fe727].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_1c119086288473d0d261b1ba].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_7ccf7eaa8a3ccdf7fa2896fd].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_d8d3db5e12791f4de99286be"
+      },
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_24f466c62d7260f34d827513].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_1a32b3cdb3a737c06828ee2f].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_f0652b693aa1982997b28188].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_e9575e9da1e8984c39373503].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_7f90783f82a63497dbe94ff4].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_20ba0f30e6bab2976ab96ef1].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_588eb8c0e1f9b0a69e338bcf].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_08bfc24bcb84e8fd751de7ed].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_e8992d8478a28e673fe551dc"
+      }
+    ]
+  },
+  "input_request_sha256": "b13cb8048476a5500627c3e7946d3a6aadaa67896cea913011cacee35d1bdf0f",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded_abbreviation_retained",
+            "target_vi": "SSD"
+          },
+          {
+            "formation_reason": "hardware_expansion",
+            "target_vi": "ổ cứng thể rắn"
+          },
+          {
+            "formation_reason": "hardware_gloss",
+            "target_vi": "ổ lưu trữ SSD"
+          },
+          {
+            "formation_reason": "cv_model_gloss",
+            "target_vi": "mô hình SSD"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_96fce7b6560a010f307443f6",
+            "context_type": "C2",
+            "reason_code": "hardware_controller_firmware",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_607c4610b2fb0f15081b64d0",
+            "context_type": "C2",
+            "reason_code": "cv_toc_entry_ssd",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_0b0937e42c26b6b23b5692f4",
+            "context_type": "C2",
+            "reason_code": "hardware_buy_an_ssd",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_aa0eae6611908af9c05e40d3",
+            "context_type": "C2",
+            "reason_code": "hardware_write_performance",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_47a2796ead7d2454fdc45f64",
+            "context_type": "C2",
+            "reason_code": "hardware_ssd_controller",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_9d639b375fad74fc47d1c470",
+            "context_type": "C2",
+            "reason_code": "hardware_nvme_sata_ssd_latency",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_f4c012def8b4623e96d4ac12",
+            "context_type": "C2",
+            "reason_code": "cv_full_form_given",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_12113aa551b0b7a0b905e6bf",
+            "context_type": "C2",
+            "reason_code": "cv_figure_label_ssd",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "abbreviation for either a solid-state drive in hardware contexts or Single Shot Multibox Detection in computer-vision contexts",
+        "definition_evidence_context_ids": [
+          "ctx_96fce7b6560a010f307443f6",
+          "ctx_0b0937e42c26b6b23b5692f4",
+          "ctx_f4c012def8b4623e96d4ac12",
+          "ctx_12113aa551b0b7a0b905e6bf"
+        ],
+        "part_of_speech": "symbol",
+        "part_of_speech_confidence": 0.95,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_96fce7b6560a010f307443f6",
+          "ctx_f4c012def8b4623e96d4ac12"
+        ],
+        "sense_id": "d2lce_c6d5679eb20ff0719dfc35b2",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "the object-detection model sense of SSD contrasted with the storage-device sense",
+          "rationale": "The supplied contexts show two genuine senses under the same surface form, so a synthetic boundary sentence clarifies the ambiguity.",
+          "source_text": "Synthetic: In this chapter, SSD refers to Single Shot Multibox Detection, not a storage drive."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded_translation",
+            "target_vi": "RNN hai chiều"
+          },
+          {
+            "formation_reason": "expanded_technical_term",
+            "target_vi": "mạng nơ-ron hồi quy hai chiều"
+          },
+          {
+            "formation_reason": "concise_directional_variant",
+            "target_vi": "RNN song hướng"
+          },
+          {
+            "formation_reason": "mixed_form_variant",
+            "target_vi": "mạng RNN hai hướng"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_6ffe6a41763c493d385a9d08",
+            "context_type": "C1",
+            "reason_code": "architecture_reference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_4da4c97d28bf6a81e6e7e0fb",
+            "context_type": "C1",
+            "reason_code": "nlp_encoder_use",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_be13633e5269ebd62d16e8f2",
+            "context_type": "C1",
+            "reason_code": "definition_backward_direction",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_f66d6f0f60f34de0d401b86a",
+            "context_type": "C4",
+            "reason_code": "figure_caption_only",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_97859a8cd0781c52d0d6f199",
+            "context_type": "C3",
+            "reason_code": "historical_note",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_e8b4b42870033c825829a5f6",
+            "context_type": "C1",
+            "reason_code": "deep_architecture_extension",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_251a0545759171bb473405d4",
+            "context_type": "C1",
+            "reason_code": "key_feature_both_ends",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_a262d765aa2b98acc9fb0307",
+            "context_type": "C1",
+            "reason_code": "training_future_past_information",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "a recurrent neural network architecture that processes a sequence in both forward and backward directions",
+        "definition_evidence_context_ids": [
+          "ctx_be13633e5269ebd62d16e8f2",
+          "ctx_251a0545759171bb473405d4",
+          "ctx_a262d765aa2b98acc9fb0307"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_6ffe6a41763c493d385a9d08",
+          "ctx_be13633e5269ebd62d16e8f2"
+        ],
+        "sense_id": "d2lce_80f4d6555a6ea1d2e5e881a1",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a recurrent network that uses only one temporal direction",
+          "rationale": "No different sense of the same term appears in the supplied contexts, so a synthetic boundary sentence distinguishes it from the nearby unidirectional architecture.",
+          "source_text": "Synthetic: A bidirectional RNN reads the sequence in both directions, unlike a unidirectional RNN."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded_translation",
+            "target_vi": "các lớp kết nối đầy đủ"
+          },
+          {
+            "formation_reason": "near_synonym_ket_noi_lien_ket",
+            "target_vi": "các lớp liên kết đầy đủ"
+          },
+          {
+            "formation_reason": "lop_to_tang_variant",
+            "target_vi": "các tầng kết nối đầy đủ"
+          },
+          {
+            "formation_reason": "loanword_hybrid",
+            "target_vi": "các lớp fully-connected"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_eafeb346f16534dd44c4414d",
+            "context_type": "C1",
+            "reason_code": "section_heading_term",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_403adb70f5312a0fa35b95be",
+            "context_type": "C1",
+            "reason_code": "stack_layers_in_mlp",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_8ce751d21f2cb72d502c47b8",
+            "context_type": "C1",
+            "reason_code": "instances_of_linear_class",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_faa4efe019d52f783381c40a",
+            "context_type": "C1",
+            "reason_code": "contrast_with_convolutions",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_1f4f955fd892e6791b4aeef3",
+            "context_type": "C1",
+            "reason_code": "large_parameter_count",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_f4fa216c07f2cf0249eb37ca",
+            "context_type": "C1",
+            "reason_code": "mlp_architecture_description",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_58323905b57101ea133ca2d9",
+            "context_type": "C1",
+            "reason_code": "gates_given_by_fc_layers",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_28b17b3a0950632e4ac5d1f9",
+            "context_type": "C3",
+            "reason_code": "comparison_with_attention",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "layers in which each output unit is connected to all input units from the previous layer",
+        "definition_evidence_context_ids": [
+          "ctx_403adb70f5312a0fa35b95be",
+          "ctx_faa4efe019d52f783381c40a",
+          "ctx_1f4f955fd892e6791b4aeef3"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_eafeb346f16534dd44c4414d",
+          "ctx_403adb70f5312a0fa35b95be"
+        ],
+        "sense_id": "d2lce_98b37a7bcb47cd2ef2e5f296",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "convolutional layers rather than fully connected ones",
+          "rationale": "No alternate sense of the same term is present; the nearest boundary in the supplied material is the contrast with convolutions.",
+          "source_text": "Synthetic: Fully-connected layers connect every unit to all units in the previous layer, unlike convolutional layers with local receptive fields."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded_translation",
+            "target_vi": "hồi quy tuyến tính"
+          },
+          {
+            "formation_reason": "method_emphasis",
+            "target_vi": "phép hồi quy tuyến tính"
+          },
+          {
+            "formation_reason": "model_emphasis",
+            "target_vi": "mô hình hồi quy tuyến tính"
+          },
+          {
+            "formation_reason": "problem_framing_variant",
+            "target_vi": "bài toán hồi quy tuyến tính"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_de10a7bd62da5f1e825f4704",
+            "context_type": "C3",
+            "reason_code": "textbook_topic_reference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_9f1f16a2e87c55fefeca14cc",
+            "context_type": "C1",
+            "reason_code": "high_level_idea_reference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_b6400546a59e2de8affe4df3",
+            "context_type": "C1",
+            "reason_code": "chapter_title",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_4f1b397454dc88cdcdbef294",
+            "context_type": "C1",
+            "reason_code": "explicit_problem_statement",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_c342d715dab448d66b1d2523",
+            "context_type": "C1",
+            "reason_code": "model_initialization_training",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_c6fcdab6fbdb3c34121fe727",
+            "context_type": "C1",
+            "reason_code": "bounding_box_prediction_model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_1c119086288473d0d261b1ba",
+            "context_type": "C3",
+            "reason_code": "comparison_with_generalization",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_7ccf7eaa8a3ccdf7fa2896fd",
+            "context_type": "C3",
+            "reason_code": "simple_model_example",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "a regression method or model that predicts an output as a linear function of input features",
+        "definition_evidence_context_ids": [
+          "ctx_b6400546a59e2de8affe4df3",
+          "ctx_4f1b397454dc88cdcdbef294",
+          "ctx_c342d715dab448d66b1d2523"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_b6400546a59e2de8affe4df3",
+          "ctx_9f1f16a2e87c55fefeca14cc"
+        ],
+        "sense_id": "d2lce_d8d3db5e12791f4de99286be",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "logistic regression used for classification",
+          "rationale": "The supplied contexts keep one sense only; a synthetic sentence marks a nearby conceptual boundary without introducing unsupported details beyond contrast.",
+          "source_text": "Synthetic: Here, linear regression means predicting with a linear function of features, not logistic regression for classification."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded_translation",
+            "target_vi": "phân hoạch tuần tự"
+          },
+          {
+            "formation_reason": "process_focused_variant",
+            "target_vi": "chia đoạn tuần tự"
+          },
+          {
+            "formation_reason": "general_variant",
+            "target_vi": "phân chia tuần tự"
+          },
+          {
+            "formation_reason": "order_preserving_gloss",
+            "target_vi": "phân hoạch theo thứ tự"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_24f466c62d7260f34d827513",
+            "context_type": "C3",
+            "reason_code": "introduced_as_one_of_two_strategies",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_1a32b3cdb3a737c06828ee2f",
+            "context_type": "C1",
+            "reason_code": "subsection_title",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_f0652b693aa1982997b28188",
+            "context_type": "C1",
+            "reason_code": "explicit_definition_order_preserving",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_e9575e9da1e8984c39373503",
+            "context_type": "C1",
+            "reason_code": "function_docstring_and_code",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_7f90783f82a63497dbe94ff4",
+            "context_type": "C1",
+            "reason_code": "tensorflow_function_docstring_and_code",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_20ba0f30e6bab2976ab96ef1",
+            "context_type": "C1",
+            "reason_code": "example_output_for_strategy",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_588eb8c0e1f9b0a69e338bcf",
+            "context_type": "C3",
+            "reason_code": "summary_choice_list",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_08bfc24bcb84e8fd751de7ed",
+            "context_type": "C3",
+            "reason_code": "contrast_with_random_sampling_hidden_state_effect",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "a way of splitting sequence data into minibatches so adjacent subsequences remain adjacent across iteration",
+        "definition_evidence_context_ids": [
+          "ctx_f0652b693aa1982997b28188",
+          "ctx_e9575e9da1e8984c39373503",
+          "ctx_588eb8c0e1f9b0a69e338bcf"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_1a32b3cdb3a737c06828ee2f",
+          "ctx_f0652b693aa1982997b28188"
+        ],
+        "sense_id": "d2lce_e8992d8478a28e673fe551dc",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "random sampling of subsequences",
+          "rationale": "Only one sense is attested, so the synthetic sentence contrasts it with the alternative strategy explicitly mentioned in the supplied contexts.",
+          "source_text": "Synthetic: With sequential partitioning, neighboring minibatches keep neighboring subsequences from the original sequence, unlike random sampling."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

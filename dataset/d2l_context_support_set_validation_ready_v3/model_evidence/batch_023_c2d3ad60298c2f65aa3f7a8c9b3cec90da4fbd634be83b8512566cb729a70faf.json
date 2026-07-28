@@ -1,0 +1,504 @@
+{
+  "audit": {
+    "batch_index": 23,
+    "from_cache": false,
+    "latency_ms": 68405,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "038527606b4328cd257c654f2259df7167478212a594f25d6e833552401900c0",
+    "response_sha256": "d62dde4647a6a9fe192969daf2e21be6efdd46ccbc911fdcf891275661b8a63c",
+    "usage": {
+      "input_tokens": 5587,
+      "output_tokens": 3630,
+      "reasoning_tokens": null,
+      "total_tokens": 9217
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "c2d3ad60298c2f65aa3f7a8c9b3cec90da4fbd634be83b8512566cb729a70faf",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "domain-specific expansion matching the attention/QKV sense",
+            "target_vi": "khóa chú ý"
+          },
+          {
+            "formation_reason": "explicitly disambiguates from keyboard and dictionary senses",
+            "target_vi": "khóa trong cơ chế chú ý"
+          },
+          {
+            "formation_reason": "plural-marked variant for plural surface uses",
+            "target_vi": "các khóa chú ý"
+          },
+          {
+            "formation_reason": "plausible technical calque within the query-key-value framework",
+            "target_vi": "phần khóa"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_8a0bb471a0a435399c5293f9",
+            "context_type": "C1",
+            "reason_code": "QKV heading; technical attention sense",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_2d690f0922be1eb4be420c9d",
+            "context_type": "C3",
+            "reason_code": "dictionary keys, not attention",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_d36d6da37bfad4ff6a95cb88",
+            "context_type": "C3",
+            "reason_code": "typewriter keys, not attention",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 1.0,
+            "context_id": "ctx_3c14b0a0feee3453249740d4",
+            "context_type": "C1",
+            "reason_code": "explicitly defines keys as nonvolitional cues in attention",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_a91d32742b0c4bd9260a1334",
+            "context_type": "C1",
+            "reason_code": "figure caption repeats attention/QKV sense",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_cac33728aec4217e211eb0da",
+            "context_type": "C1",
+            "reason_code": "weights computed between query and keys",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_9dd2818707ebbd9b97accac9",
+            "context_type": "C1",
+            "reason_code": "tensor dimension named number of keys in attention",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_01b68302bb447eeeccec65cb",
+            "context_type": "C1",
+            "reason_code": "heatmap axis label Keys in attention visualization",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "items in attention mechanisms that interact with queries to determine weights over values.",
+        "definition_evidence_context_ids": [
+          "ctx_3c14b0a0feee3453249740d4",
+          "ctx_cac33728aec4217e211eb0da",
+          "ctx_9dd2818707ebbd9b97accac9"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_8a0bb471a0a435399c5293f9",
+          "ctx_3c14b0a0feee3453249740d4"
+        ],
+        "sense_id": "d2lce_776fd3328d5e31aeebe484ec",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "physical buttons on a keyboard or typewriter",
+          "rationale": "Supplied contexts include genuine contrasting senses; probe marks the non-attention boundary explicitly.",
+          "source_text": "Synthetic: On a keyboard, several keys were stuck after coffee spilled on them."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "close technical rendering of statistical power",
+            "target_vi": "độ mạnh thống kê"
+          },
+          {
+            "formation_reason": "definition-like translation for the exact statistical sense",
+            "target_vi": "khả năng phát hiện của kiểm định"
+          },
+          {
+            "formation_reason": "plausible technical alternative used for test power",
+            "target_vi": "công suất kiểm định"
+          },
+          {
+            "formation_reason": "transparent descriptive alternative",
+            "target_vi": "sức mạnh của phép kiểm định"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_886359a0115580e42e4e3d5b",
+            "context_type": "C3",
+            "reason_code": "GPUs on a machine; hardware power-related context",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_7b95f462a61c593367cfba2e",
+            "context_type": "C3",
+            "reason_code": "computational power, not statistics",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_8002262631762e3d6d0b7617",
+            "context_type": "C3",
+            "reason_code": "power rule in calculus, unrelated sense",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.64,
+            "context_id": "ctx_e35e3b1e2bfeb5965b0bd614",
+            "context_type": "C1",
+            "reason_code": "discusses expressive power in statistics-related prose; closest support for the intended statistical-test notion is limited",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_9fe858e4e7de1068d9a9f39a",
+            "context_type": "C3",
+            "reason_code": "power user idiom, not statistics",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_46209c337eb72da7b6db819f",
+            "context_type": "C3",
+            "reason_code": "power consumption sense",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_af5947b3e3bdba373bbe46b5",
+            "context_type": "C3",
+            "reason_code": "np.power exponentiation function",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_d6e0903c3cbb70f3bb37dd1e",
+            "context_type": "C3",
+            "reason_code": "full power of vectorization; capability sense",
+            "sense_relation": "CONTRASTIVE"
+          }
+        ],
+        "definition_confidence": 0.72,
+        "definition_en": "the probability that a statistical test detects a real effect.",
+        "definition_evidence_context_ids": [
+          "ctx_e35e3b1e2bfeb5965b0bd614"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.92,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_e35e3b1e2bfeb5965b0bd614"
+        ],
+        "sense_id": "d2lce_2b76c0f26436945cdf880aed",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "general strength, electricity, computation, or exponentiation",
+          "rationale": "The supplied contexts mostly show other senses of power; this probe pins down the intended statistical-test sense.",
+          "source_text": "Synthetic: A test with higher statistical power is more likely to detect a true effect."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "natural technical paraphrase of scoring in attention",
+            "target_vi": "hàm cho điểm chú ý"
+          },
+          {
+            "formation_reason": "emphasizes score computation",
+            "target_vi": "hàm tính điểm chú ý"
+          },
+          {
+            "formation_reason": "compact noun-phrase alternative",
+            "target_vi": "hàm điểm số chú ý"
+          },
+          {
+            "formation_reason": "explicit disambiguation for shortened surface scoring function",
+            "target_vi": "hàm chấm điểm trong cơ chế chú ý"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 1.0,
+            "context_id": "ctx_c42a588ea67a1ab12765c55d",
+            "context_type": "C1",
+            "reason_code": "full term explicitly introduced and shortened",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_aff8a66e4ec4b4cda7dbdf1b",
+            "context_type": "C1",
+            "reason_code": "denotes attention scoring function by a",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 1.0,
+            "context_id": "ctx_8116f867673a73f0e047a71a",
+            "context_type": "C1",
+            "reason_code": "maps query and key vectors to a scalar for attention weight",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_320122f21daa284575796213",
+            "context_type": "C1",
+            "reason_code": "different choices affect attention pooling behavior",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_4619262486ac659e6273c135",
+            "context_type": "C1",
+            "reason_code": "additive attention scoring function subtype",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_ceff1252a50a323ce62c83d4",
+            "context_type": "C1",
+            "reason_code": "shortened scoring function still in same attention context",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_c47eb631641cbc20179e654c",
+            "context_type": "C1",
+            "reason_code": "scaled dot-product attention scoring function subtype",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_d5c7268c2ea127e80cfdfb47",
+            "context_type": "C1",
+            "reason_code": "shortened scoring function in same attention discussion",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "a function that maps a query and key to a score used to compute attention weights.",
+        "definition_evidence_context_ids": [
+          "ctx_c42a588ea67a1ab12765c55d",
+          "ctx_8116f867673a73f0e047a71a"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_c42a588ea67a1ab12765c55d",
+          "ctx_aff8a66e4ec4b4cda7dbdf1b"
+        ],
+        "sense_id": "d2lce_18c3da2d5bdd6d05a83982fa",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a general scoring function outside attention mechanisms",
+          "rationale": "Supplied contexts also use the shortened form scoring function; probe shows the boundary from the broader non-attention sense.",
+          "source_text": "Synthetic: In this recommender, the scoring function ranks products but is not used for attention weights."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "expanded Vietnamese gloss of the acronym",
+            "target_vi": "mạng R-CNN dựa trên vùng"
+          },
+          {
+            "formation_reason": "plausible term in explanatory prose",
+            "target_vi": "mô hình R-CNN"
+          },
+          {
+            "formation_reason": "semi-translated variant preserving acronym",
+            "target_vi": "R-CNN dựa trên vùng"
+          },
+          {
+            "formation_reason": "full descriptive expansion",
+            "target_vi": "mạng nơ-ron tích chập theo vùng R-CNN"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_b71e137a4385ced462547be2",
+            "context_type": "C1",
+            "reason_code": "section title naming the model family",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 1.0,
+            "context_id": "ctx_04626b072f9bfbcc966fac5c",
+            "context_type": "C1",
+            "reason_code": "defines region-based CNNs / regions with CNN features",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_7b2934db82a8f5e942551192",
+            "context_type": "C1",
+            "reason_code": "lists R-CNN and its variants",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_42a91e8bb6e0449e3926152e",
+            "context_type": "C1",
+            "reason_code": "subsection title R-CNNs",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 1.0,
+            "context_id": "ctx_82a716f88498c45284012fbc",
+            "context_type": "C1",
+            "reason_code": "describes the R-CNN procedure with region proposals",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_c3e2e6f9a837a104a2ffaacc",
+            "context_type": "C1",
+            "reason_code": "figure caption for the R-CNN model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_281feac9e302997ea88b1aea",
+            "context_type": "C1",
+            "reason_code": "R-CNN consists of four steps",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_824f6a3ffdf2593aacbb41d4",
+            "context_type": "C1",
+            "reason_code": "references the R-CNN model figure",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "a region-based convolutional neural network method for object detection.",
+        "definition_evidence_context_ids": [
+          "ctx_04626b072f9bfbcc966fac5c",
+          "ctx_82a716f88498c45284012fbc"
+        ],
+        "part_of_speech": "proper_noun",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_b71e137a4385ced462547be2",
+          "ctx_42a91e8bb6e0449e3926152e"
+        ],
+        "sense_id": "d2lce_ad0d7cbd5f90ad33075e89aa",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "other object detection architectures such as SSD rather than the R-CNN family",
+          "rationale": "No genuine different sense appears in supplied contexts; probe draws a model-family boundary.",
+          "source_text": "Synthetic: Unlike SSD, the R-CNN first generates region proposals before classification."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "concise cue translation highlighting deliberate control",
+            "target_vi": "tín hiệu chủ ý"
+          },
+          {
+            "formation_reason": "plausible alternative lexicalization of cue",
+            "target_vi": "dấu hiệu tự nguyện"
+          },
+          {
+            "formation_reason": "captures deliberate, task-dependent direction of attention",
+            "target_vi": "tín hiệu điều khiển có chủ đích"
+          },
+          {
+            "formation_reason": "weaker but plausible cue-like rendering in cognitive-attention context",
+            "target_vi": "manh mối chủ ý"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_6e5eabbf33032ac2428b591c",
+            "context_type": "C1",
+            "reason_code": "paired with nonvolitional cue in attention framework",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_31ee4f7a5863ed678a04e350",
+            "context_type": "C1",
+            "reason_code": "described as deliberate and based on selection criteria",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_0196df223b107d63e312df82",
+            "context_type": "C1",
+            "reason_code": "figure caption gives task-dependent volitional cue example",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_0018248a05d490e292afdea5",
+            "context_type": "C1",
+            "reason_code": "attention mechanisms include volitional cues",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_61e1112cbf2424e69a7a2487",
+            "context_type": "C1",
+            "reason_code": "query explicitly identified as volitional cue",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 1.0,
+            "context_id": "ctx_6733f9355787febdfa53f095",
+            "context_type": "C1",
+            "reason_code": "direct definition: volitional cues are queries",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_495329d7ea08710cf266062c",
+            "context_type": "C1",
+            "reason_code": "figure caption maps queries to volitional cues",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_187de8cd1e12dd890c442ade",
+            "context_type": "C1",
+            "reason_code": "summary statement repeats inclusion of volitional cues",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "a task-dependent cue that deliberately directs attention; in attention mechanisms, it corresponds to a query.",
+        "definition_evidence_context_ids": [
+          "ctx_31ee4f7a5863ed678a04e350",
+          "ctx_6733f9355787febdfa53f095"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_6e5eabbf33032ac2428b591c",
+          "ctx_31ee4f7a5863ed678a04e350"
+        ],
+        "sense_id": "d2lce_ad03ff147d19eb2ea47d5b0e",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a nonvolitional cue that redirects attention automatically",
+          "rationale": "Supplied contexts contrast volitional with nonvolitional cues; probe makes the boundary explicit.",
+          "source_text": "Synthetic: A sudden flash acts as a cue, but not a volitional cue, because it captures attention involuntarily."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

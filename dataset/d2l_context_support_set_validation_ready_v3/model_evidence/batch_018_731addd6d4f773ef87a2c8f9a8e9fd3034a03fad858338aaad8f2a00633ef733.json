@@ -1,0 +1,517 @@
+{
+  "audit": {
+    "batch_index": 18,
+    "from_cache": false,
+    "latency_ms": 77001,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "b786b60e51f9d1847834e7b9a1ea249a8f904c614ff0e661901aeb3c90c47a6b",
+    "response_sha256": "4a859a77c2a5410c210e6f460dcbe35a3affc144a6e934ad7d0e8355b51edcd4",
+    "usage": {
+      "input_tokens": 5615,
+      "output_tokens": 4133,
+      "reasoning_tokens": null,
+      "total_tokens": 9748
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "731addd6d4f773ef87a2c8f9a8e9fd3034a03fad858338aaad8f2a00633ef733",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded candidate; matches operation/update done on existing object or memory location, and broader figurative 'with ... in place' setup sense in supplied contexts",
+            "target_vi": "tại chỗ"
+          },
+          {
+            "formation_reason": "plausible technical alternative for updates/operations performed directly on existing data",
+            "target_vi": "trực tiếp trên dữ liệu hiện có"
+          },
+          {
+            "formation_reason": "plausible broader alternative covering both memory-update and 'already set up' contexts",
+            "target_vi": "ngay trên đối tượng hiện có"
+          },
+          {
+            "formation_reason": "plausible concise alternative for established/setup state in figurative uses, weaker for coding uses but still possible across exact contexts",
+            "target_vi": "sẵn sàng tại chỗ"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.8,
+            "context_id": "ctx_b28630d61d9d7f640c9a5483",
+            "context_type": "C4",
+            "reason_code": "figurative setup sense: recommendation algorithm currently in place = currently established/used",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_dd4385b29dac92b049208df2",
+            "context_type": "C1",
+            "reason_code": "direct technical use: perform updates in place on existing memory/object",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.86,
+            "context_id": "ctx_3b646f556dedb3e0fad436ed",
+            "context_type": "C4",
+            "reason_code": "figurative setup sense: all parts in place = all components arranged/ready",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.82,
+            "context_id": "ctx_25b94844ba885d1f978af59d",
+            "context_type": "C4",
+            "reason_code": "figurative setup sense: activation functions in place = added and available",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_51b702393d86c10055ec9803",
+            "context_type": "C1",
+            "reason_code": "explicit code comment: in-place updates via slicing",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_537ed43953ead18faf55b24e",
+            "context_type": "C1",
+            "reason_code": "explicit technical contrast with rewritten non-in-place operations",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_f813489a437efb8e7e42d969",
+            "context_type": "C1",
+            "reason_code": "explains in-place update as preserving memory location for references",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_3d152d0258e0fc757b4f6fc6",
+            "context_type": "C1",
+            "reason_code": "explicit phrase 'in-place operations' in array programming",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.87,
+        "definition_en": "done directly on the existing object, memory, or arrangement rather than creating a separate replacement; by extension, already established or set up.",
+        "definition_evidence_context_ids": [
+          "ctx_dd4385b29dac92b049208df2",
+          "ctx_51b702393d86c10055ec9803",
+          "ctx_f813489a437efb8e7e42d969",
+          "ctx_b28630d61d9d7f640c9a5483"
+        ],
+        "part_of_speech": "adverb",
+        "part_of_speech_confidence": 0.81,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_dd4385b29dac92b049208df2",
+          "ctx_3d152d0258e0fc757b4f6fc6",
+          "ctx_b28630d61d9d7f640c9a5483"
+        ],
+        "sense_id": "d2lce_2684090fd4500122fec2a334",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "located in the original physical position without moving elsewhere",
+          "rationale": "No supplied context gives a clearly different sense; this synthetic boundary highlights a purely physical-location reading absent from the D2L examples.",
+          "source_text": "Synthetic: The statue remained in place during the storm."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded candidate; direct calque matching recommender-systems term in all contexts",
+            "target_vi": "lọc cộng tác"
+          },
+          {
+            "formation_reason": "plausible alternative emphasizing the recommendation method based on users helping infer preferences",
+            "target_vi": "phương pháp lọc cộng tác"
+          },
+          {
+            "formation_reason": "plausible descriptive alternative; slightly longer but exact in recommender-system contexts",
+            "target_vi": "lọc dựa trên cộng tác"
+          },
+          {
+            "formation_reason": "plausible academic-style variant using recommendation wording; weaker because less fixed as a term",
+            "target_vi": "cộng tác trong lọc khuyến nghị"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.72,
+            "context_id": "ctx_b163c5e1230dbed8d61eda33",
+            "context_type": "C3",
+            "reason_code": "application-area mention of personalized collaborative filtering without definition",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_75434b30d17229e486daa408",
+            "context_type": "C2",
+            "reason_code": "section title introducing the core term",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_bb4169d27d43ea9f72386558",
+            "context_type": "C2",
+            "reason_code": "explicit definition and origin of the term in recommender systems",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_f875ab990af98aaf8fbc46b2",
+            "context_type": "C2",
+            "reason_code": "states it is a key concept in recommendation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_6f061caa3cf5adf9643ce3cf",
+            "context_type": "C3",
+            "reason_code": "mentions matrix factorization as a class of collaborative filtering models",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_3ef068df4dff9397568c05a1",
+            "context_type": "C3",
+            "reason_code": "uses CF abbreviation in a model description",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_8f9b78e1ec3bfbc4e8e8f524",
+            "context_type": "C3",
+            "reason_code": "names a neural network collaborative filtering model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_6c1b00ba70e27b85908261c3",
+            "context_type": "C3",
+            "reason_code": "chapter title for neural collaborative filtering variant",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "a recommendation approach that filters or predicts preferences using patterns derived from multiple users’ interactions or feedback.",
+        "definition_evidence_context_ids": [
+          "ctx_bb4169d27d43ea9f72386558",
+          "ctx_f875ab990af98aaf8fbc46b2",
+          "ctx_6f061caa3cf5adf9643ce3cf"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_75434b30d17229e486daa408",
+          "ctx_bb4169d27d43ea9f72386558",
+          "ctx_6f061caa3cf5adf9643ce3cf"
+        ],
+        "sense_id": "d2lce_fb9ad6a6ac7e4ba9167913e1",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a human workflow where people manually screen content together, not the recommender-system technical term",
+          "rationale": "All supplied contexts use the recommender-systems concept only; the synthetic sentence marks a nearby nontechnical reading.",
+          "source_text": "Synthetic: The moderators used collaborative filtering to jointly sort spam emails by hand."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded candidate; direct and natural rendering of data organized as sequences",
+            "target_vi": "dữ liệu chuỗi"
+          },
+          {
+            "formation_reason": "plausible technical alternative emphasizing ordered temporal/serial structure",
+            "target_vi": "dữ liệu dạng chuỗi"
+          },
+          {
+            "formation_reason": "plausible descriptive alternative when sequences unfold over steps or time",
+            "target_vi": "dữ liệu theo trình tự"
+          },
+          {
+            "formation_reason": "plausible alternative highlighting ordered sequence structure; weaker but still fits exact contexts",
+            "target_vi": "dữ liệu tuần tự"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_8710926068d0f1fb4746e134",
+            "context_type": "C2",
+            "reason_code": "introduces preprocessing techniques for sequence data",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_23bae34b7c7a3e597d0cac0d",
+            "context_type": "C3",
+            "reason_code": "RNNs handle sequence data; characteristic usage context",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_b6036c566fcf4ded24d31bee",
+            "context_type": "C3",
+            "reason_code": "example statement about sequence data beyond movie ratings",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_48778feb4f6b4e043ea02087",
+            "context_type": "C2",
+            "reason_code": "states need for tools and architectures to deal with sequence data",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_283a25d9322a8783b9c51766",
+            "context_type": "C3",
+            "reason_code": "sequence data in forecasting over time steps",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_57e94c23a338288414c30cf1",
+            "context_type": "C3",
+            "reason_code": "constructs synthetic sequence data from a sine function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_12a769b04e422d6f6739fc5c",
+            "context_type": "C3",
+            "reason_code": "reviews tools and challenges for sequence data",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_49c9f549ad2f64ca91888fd2",
+            "context_type": "C2",
+            "reason_code": "sets up text preprocessing for experiments with sequence data",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.96,
+        "definition_en": "data whose observations are arranged in an ordered sequence, often across positions or time steps.",
+        "definition_evidence_context_ids": [
+          "ctx_48778feb4f6b4e043ea02087",
+          "ctx_283a25d9322a8783b9c51766",
+          "ctx_57e94c23a338288414c30cf1"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_8710926068d0f1fb4746e134",
+          "ctx_48778feb4f6b4e043ea02087",
+          "ctx_49c9f549ad2f64ca91888fd2"
+        ],
+        "sense_id": "d2lce_b85d9a7a642afee03175796f",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a dataset listed in arbitrary order with no meaningful sequential dependency",
+          "rationale": "No supplied context shows a different sense; this synthetic probe contrasts ordered sequential data with merely batched records.",
+          "source_text": "Synthetic: Although stored in a table, these customer records are not sequence data because the row order carries no meaning."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded candidate; concise direct translation for special tokens added to fill sequence length",
+            "target_vi": "token đệm"
+          },
+          {
+            "formation_reason": "plausible alternative using common NLP loanword order",
+            "target_vi": "token chèn đệm"
+          },
+          {
+            "formation_reason": "plausible Vietnamese-heavy phrasing emphasizing fill function in sequences",
+            "target_vi": "mã thông báo đệm"
+          },
+          {
+            "formation_reason": "plausible descriptive alternative for exact masking/loss contexts; weaker as a fixed term",
+            "target_vi": "phần tử đệm"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_d8aa0be85777a629e809fc47",
+            "context_type": "C3",
+            "reason_code": "length computed excluding padding tokens",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_05cde72313ed2987ab19ac0d",
+            "context_type": "C3",
+            "reason_code": "padding tokens excluded in attention via valid length",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_b9a74a0f4d6af5455b521e4e",
+            "context_type": "C3",
+            "reason_code": "prediction of padding tokens excluded from loss",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_be96ec1f7ec2e0237f326eab",
+            "context_type": "C2",
+            "reason_code": "explicitly explains padding tokens are appended to equalize sequence lengths in minibatches",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_12f79eaad5bc278a9b83706f",
+            "context_type": "C3",
+            "reason_code": "valid lengths excluding padding tokens used in masking example",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_451ef79974ff5019b4225f46",
+            "context_type": "C3",
+            "reason_code": "mask entries for padding tokens set to zero",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_92a3a25f66c701ea53cc38e8",
+            "context_type": "C3",
+            "reason_code": "padding-token predictions filtered out in loss",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_a2d3def650d89773da69782d",
+            "context_type": "C3",
+            "reason_code": "figure caption notes omission of padding tokens",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "special tokens added to sequences to make them a common length, usually ignored by masking, attention, or loss computation.",
+        "definition_evidence_context_ids": [
+          "ctx_be96ec1f7ec2e0237f326eab",
+          "ctx_05cde72313ed2987ab19ac0d",
+          "ctx_92a3a25f66c701ea53cc38e8"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_be96ec1f7ec2e0237f326eab",
+          "ctx_b9a74a0f4d6af5455b521e4e",
+          "ctx_451ef79974ff5019b4225f46"
+        ],
+        "sense_id": "d2lce_b967af36e17c22a478eaed6d",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "ordinary tokens in the true input content, not artificial fillers added for equal-length batching",
+          "rationale": "All supplied contexts use the special filler-token sense only; the synthetic probe marks the boundary against normal content tokens.",
+          "source_text": "Synthetic: In the sentence itself, the final period is a real token, not a padding token."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded candidate; exact source-form borrowing used in all contexts",
+            "target_vi": "CUDA"
+          },
+          {
+            "formation_reason": "plausible expanded form to clarify it is a software/platform item in installation and version contexts",
+            "target_vi": "nền tảng CUDA"
+          },
+          {
+            "formation_reason": "plausible descriptive alternative emphasizing toolkit/installable software aspect",
+            "target_vi": "bộ công cụ CUDA"
+          },
+          {
+            "formation_reason": "plausible infrastructure-oriented alternative for GPU-enabled environments; weaker but still fits installation contexts",
+            "target_vi": "môi trường CUDA"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_88d4ac7e32b65e492b2dbc3a",
+            "context_type": "C3",
+            "reason_code": "CUDA mentioned as installed requirement for GPU-enabled version",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_d5e3c3872235604218a2a839",
+            "context_type": "C3",
+            "reason_code": "download NVIDIA driver and CUDA; installation/setup use",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.71,
+            "context_id": "ctx_7f3025aa974fb8d15e3804a4",
+            "context_type": "C3",
+            "reason_code": "appears as name component in cuda-convnet reference, indirectly invoking same platform association",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.78,
+            "context_id": "ctx_6fcdbf49cf1b09495f5babfd",
+            "context_type": "C3",
+            "reason_code": "torch.cuda API use points to CUDA-backed GPU execution context",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_c8b662075f19ab652ddcc0b9",
+            "context_type": "C3",
+            "reason_code": "install CUDA or use preinstalled AMI",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_dae4dda67205c6e9b5831f82",
+            "context_type": "C3",
+            "reason_code": "version checking commands for CUDA installation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_df035bcc5db7501785c43a7e",
+            "context_type": "C2",
+            "reason_code": "asks what version of CUDA is installed; term treated as named software/platform",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_f0c64b01d15f034d29c1d6ce",
+            "context_type": "C3",
+            "reason_code": "example assumes CUDA 10.1 installed",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.84,
+        "definition_en": "the named NVIDIA GPU computing software platform/version referenced for installing and running GPU-enabled deep learning code.",
+        "definition_evidence_context_ids": [
+          "ctx_88d4ac7e32b65e492b2dbc3a",
+          "ctx_d5e3c3872235604218a2a839",
+          "ctx_df035bcc5db7501785c43a7e",
+          "ctx_f0c64b01d15f034d29c1d6ce"
+        ],
+        "part_of_speech": "proper_noun",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_88d4ac7e32b65e492b2dbc3a",
+          "ctx_df035bcc5db7501785c43a7e",
+          "ctx_f0c64b01d15f034d29c1d6ce"
+        ],
+        "sense_id": "d2lce_ebd36388b50538b928ebbb4a",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a generic label for any GPU library, rather than this specific named NVIDIA platform/version",
+          "rationale": "Supplied contexts only show the proper-name software/platform sense; the synthetic probe contrasts it with a nonspecific generic reading.",
+          "source_text": "Synthetic: This project runs on any GPU library, so 'CUDA' here would not refer to the specific NVIDIA platform."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

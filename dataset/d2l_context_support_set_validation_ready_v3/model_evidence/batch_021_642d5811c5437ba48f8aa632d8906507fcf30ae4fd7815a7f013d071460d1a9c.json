@@ -1,0 +1,510 @@
+{
+  "audit": {
+    "batch_index": 21,
+    "from_cache": false,
+    "latency_ms": 71516,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "3aa1772383cf52458cce2b6d68e978eeb5c21d20b37d3772c757d101a60e17c2",
+    "response_sha256": "46cf81a8f9ab30bfd77de8ed78ed503eede1e58724ac3f74d79809188a40e847",
+    "usage": {
+      "input_tokens": 6199,
+      "output_tokens": 3835,
+      "reasoning_tokens": null,
+      "total_tokens": 10034
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "642d5811c5437ba48f8aa632d8906507fcf30ae4fd7815a7f013d071460d1a9c",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "canonical full-form technical translation for the model family named in chapter titles and explanatory prose",
+            "target_vi": "mạng nơ-ron tích chập"
+          },
+          {
+            "formation_reason": "pluralized full-form variant matching plural source uses",
+            "target_vi": "các mạng nơ-ron tích chập"
+          },
+          {
+            "formation_reason": "common acronym borrowing matching acronym-only contexts",
+            "target_vi": "CNN"
+          },
+          {
+            "formation_reason": "plural acronym borrowing matching CNNs contexts",
+            "target_vi": "các CNN"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_ae21d86ceba363f31d12fca3",
+            "context_type": "C1",
+            "reason_code": "chapter-overview full-form technical model family",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_9ddb8f2418fda4eee49c9494",
+            "context_type": "C1",
+            "reason_code": "historical mention of the same deep-learning architecture family",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_654cb542dec605b7a07f0d38",
+            "context_type": "C1",
+            "reason_code": "reference to addressing the same architecture family",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_7d255ebc2d354c8e85c00cb4",
+            "context_type": "C1",
+            "reason_code": "chapter title naming the architecture family",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_d32ca634c60e5bdb199798a6",
+            "context_type": "C1",
+            "reason_code": "chapter title for modern variants of the same architecture family",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_ffd36cb1d841c0421cbd90cc",
+            "context_type": "C1",
+            "reason_code": "acronym CNNs contrasted with RNNs but same model family",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_cba7a66d443fedea8b0f37bf",
+            "context_type": "C1",
+            "reason_code": "acronym CNNs used for sequence encoding; same architecture family",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_d72570c9e0d6a16eed3d4320",
+            "context_type": "C1",
+            "reason_code": "chapter reference to convolutional neural networks via code comment",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "A class of neural networks that use convolution operations, especially for processing spatial data such as images.",
+        "definition_evidence_context_ids": [
+          "ctx_ae21d86ceba363f31d12fca3",
+          "ctx_7d255ebc2d354c8e85c00cb4",
+          "ctx_ffd36cb1d841c0421cbd90cc"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_ae21d86ceba363f31d12fca3",
+          "ctx_7d255ebc2d354c8e85c00cb4"
+        ],
+        "sense_id": "d2lce_c4e87e5ee47d3e26ba618290",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A convolutional neural network as a single model instance rather than the architecture family in plural/general reference.",
+          "rationale": "No supplied context shows a genuinely different sense; only number and acronym/full-form variation appear.",
+          "source_text": "Synthetic: This paper trains one convolutional neural network, while related work compares several convolutional neural networks."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "broad canonical translation covering learned or engineered form of encoded information",
+            "target_vi": "biểu diễn"
+          },
+          {
+            "formation_reason": "slightly more explicit variant for explanatory contexts about how data is represented",
+            "target_vi": "cách biểu diễn"
+          },
+          {
+            "formation_reason": "feature-oriented technical variant plausible in deep learning contexts",
+            "target_vi": "biểu diễn đặc trưng"
+          },
+          {
+            "formation_reason": "compact technical variant for internal model states or learned encodings",
+            "target_vi": "đặc trưng biểu diễn"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_252c35105ca972372bb2c810",
+            "context_type": "C1",
+            "reason_code": "language representation models use representation in the encoding/feature sense",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.87,
+            "context_id": "ctx_cb76cb4b95e46eb37730ea64",
+            "context_type": "C2",
+            "reason_code": "general explanatory mention of numerical representation of data",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_d36c794f5cb48c84cfeb1ae0",
+            "context_type": "C2",
+            "reason_code": "specific way labels are represented numerically",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_5f24690542e3c0e46ba4cc69",
+            "context_type": "C1",
+            "reason_code": "learned hidden-layer representation in deep networks",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_d01d38e638f7b5b3665a55bd",
+            "context_type": "C1",
+            "reason_code": "hidden representation produced by a network",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_12689008f7e03f4832cb6a99",
+            "context_type": "C1",
+            "reason_code": "hidden representation in CNN notation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.89,
+            "context_id": "ctx_b91f8656a74c323310072798",
+            "context_type": "C1",
+            "reason_code": "visual representation discussed in learned-vs-mechanical feature context",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_0f6b002a2460b36bc8bbacd6",
+            "context_type": "C2",
+            "reason_code": "one-hot encoding identified as a representation form",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.96,
+        "definition_en": "A way of encoding or expressing data, labels, or internal features so they can be used by a model.",
+        "definition_evidence_context_ids": [
+          "ctx_5f24690542e3c0e46ba4cc69",
+          "ctx_d01d38e638f7b5b3665a55bd",
+          "ctx_cb76cb4b95e46eb37730ea64"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_cb76cb4b95e46eb37730ea64",
+          "ctx_5f24690542e3c0e46ba4cc69"
+        ],
+        "sense_id": "d2lce_f33d434f8362f23d43285427",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A political representative or other person acting on behalf of others.",
+          "rationale": "No supplied context shows a genuinely different sense; all uses concern encoding, hidden features, or numerical form.",
+          "source_text": "Synthetic: The representation from the hidden layer improved classification, but the elected representation changed after the vote."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "canonical translation for the statistics concept named explicitly in contexts",
+            "target_vi": "suy luận thống kê"
+          },
+          {
+            "formation_reason": "shorter translation plausible where the statistical frame is already clear",
+            "target_vi": "suy luận"
+          },
+          {
+            "formation_reason": "bookish but plausible equivalent for inference as deriving conclusions from data",
+            "target_vi": "phép suy luận thống kê"
+          },
+          {
+            "formation_reason": "more explicit technical paraphrase matching statistics contexts",
+            "target_vi": "quy nạp thống kê"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_5fcee3eae8b5c9088386725a",
+            "context_type": "C1",
+            "reason_code": "probability and inference named as a statistics-related subject area",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.58,
+            "context_id": "ctx_fb04cc0ce9370004208a4fe6",
+            "context_type": "C4",
+            "reason_code": "prediction-time inference in ML, not specifically statistical inference",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.62,
+            "context_id": "ctx_9da76510076ac845d1b3b0b1",
+            "context_type": "C4",
+            "reason_code": "training versus inference cost refers to deployment/prediction phase",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_a7b6edbe0047f5e1d803d9a2",
+            "context_type": "C1",
+            "reason_code": "explicit parenthetical use of statistical inference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.65,
+            "context_id": "ctx_8f972d6d8f3c6798bb8a093a",
+            "context_type": "C4",
+            "reason_code": "hardware optimized for inference means model execution for predictions",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.7,
+            "context_id": "ctx_e929021ac3cc878dcab6d00f",
+            "context_type": "C5",
+            "reason_code": "natural language inference is a task name unrelated to statistical inference",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.72,
+            "context_id": "ctx_3cca6631d5799589a1c90086",
+            "context_type": "C5",
+            "reason_code": "natural language inference is an NLP task label, not the statistics concept",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_2321277fc92b0af89415e01e",
+            "context_type": "C1",
+            "reason_code": "explicit taxonomy term statistical inference in statistics",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "The branch of statistics concerned with drawing conclusions about populations or processes from data.",
+        "definition_evidence_context_ids": [
+          "ctx_a7b6edbe0047f5e1d803d9a2",
+          "ctx_2321277fc92b0af89415e01e",
+          "ctx_5fcee3eae8b5c9088386725a"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_a7b6edbe0047f5e1d803d9a2",
+          "ctx_2321277fc92b0af89415e01e"
+        ],
+        "sense_id": "d2lce_1ff0c13e857af8ab6956fc96",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "Inference as running a trained model to produce predictions, rather than the statistics discipline.",
+          "rationale": "Supplied contexts contain a genuine contrasted sense: training-versus-inference ML usage.",
+          "source_text": "During inference, the trained model predicts labels for new images."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "canonical translation for notation and subword-token contexts",
+            "target_vi": "ký hiệu"
+          },
+          {
+            "formation_reason": "pluralized variant matching source plural form",
+            "target_vi": "các ký hiệu"
+          },
+          {
+            "formation_reason": "token-oriented variant plausible in subword and vocabulary contexts",
+            "target_vi": "mã hiệu"
+          },
+          {
+            "formation_reason": "weaker but plausible alternative in generic notation contexts",
+            "target_vi": "dấu hiệu"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_8e3bb715a8f1e73fa1eb0a44",
+            "context_type": "C1",
+            "reason_code": "notation symbols as placeholders in mathematical writing",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_2d4f025f72fe9d0fa22226d7",
+            "context_type": "C1",
+            "reason_code": "mathematical symbols d/dx and D",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_51424ecedde5d77018ac09c3",
+            "context_type": "C2",
+            "reason_code": "BPE uses symbols as token units merged into longer units",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.87,
+            "context_id": "ctx_742a5b289d740929a1de20f2",
+            "context_type": "C3",
+            "reason_code": "symbols as emitted outcomes in information-theory example",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_90c426ac663609212af0b8fc",
+            "context_type": "C1",
+            "reason_code": "notation symbols as placeholders or references",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_af8ee08c589d3eaf854b7001",
+            "context_type": "C2",
+            "reason_code": "symbols used as subwords for segmentation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_bc0e8683233a7f81d8fcb9f1",
+            "context_type": "C2",
+            "reason_code": "common symbols within a word in BPE",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_8fbcd8bc50f3f91b245b89ba",
+            "context_type": "C2",
+            "reason_code": "vocabulary of symbols including characters and special tokens",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "Written marks or token units used in notation or as basic units in text processing.",
+        "definition_evidence_context_ids": [
+          "ctx_8e3bb715a8f1e73fa1eb0a44",
+          "ctx_51424ecedde5d77018ac09c3",
+          "ctx_8fbcd8bc50f3f91b245b89ba"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_8e3bb715a8f1e73fa1eb0a44",
+          "ctx_51424ecedde5d77018ac09c3"
+        ],
+        "sense_id": "d2lce_6f20c5222ebea4830603817b",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A financial stock ticker symbol rather than notation marks or text units.",
+          "rationale": "No supplied context shows a genuinely different sense; all uses remain within notation, tokens, or emitted signs.",
+          "source_text": "Synthetic: The symbols in byte pair encoding differ from the stock symbols shown on the exchange screen."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "canonical mathematical translation",
+            "target_vi": "chuẩn"
+          },
+          {
+            "formation_reason": "explicit mathematical variant",
+            "target_vi": "chuẩn hóa độ dài"
+          },
+          {
+            "formation_reason": "pluralized form matching plural chapter headings",
+            "target_vi": "các chuẩn"
+          },
+          {
+            "formation_reason": "technical variant tied to vector/matrix size measures",
+            "target_vi": "độ chuẩn"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_d8032e46013fa0aad8a8e8f9",
+            "context_type": "C1",
+            "reason_code": "notation list explicitly defines Lp norm and L2 norm",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_9ffc871958a632f807c9d3f7",
+            "context_type": "C1",
+            "reason_code": "section title on mathematical norms",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_3637a629ea39c9358f83dfd8",
+            "context_type": "C1",
+            "reason_code": "chapter section title norms in regularization context",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_f8a8c5c0211fed297689abc4",
+            "context_type": "C1",
+            "reason_code": "specific L1 norm condition in computation example",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.0,
+            "context_id": "ctx_b94a9ffb7490286907de4b1a",
+            "context_type": "NONE",
+            "reason_code": "toc entry batch-norm contains substring but not the target term usage itself",
+            "sense_relation": "INVALID"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_a20bb02df73cb967f9453f6c",
+            "context_type": "C1",
+            "reason_code": "gradient norm in clipping discussion",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.55,
+            "context_id": "ctx_08b62bef2e6aa8d336e45cb8",
+            "context_type": "C5",
+            "reason_code": "add & norm refers to normalization component name, not mathematical norm as quantity",
+            "sense_relation": "CONTRASTIVE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_8668691d65db41f7ae5d3e67",
+            "context_type": "C1",
+            "reason_code": "p-norm in convexity definition",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "A mathematical function that measures the size or length of a vector, matrix, or related object.",
+        "definition_evidence_context_ids": [
+          "ctx_d8032e46013fa0aad8a8e8f9",
+          "ctx_f8a8c5c0211fed297689abc4",
+          "ctx_8668691d65db41f7ae5d3e67"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_d8032e46013fa0aad8a8e8f9",
+          "ctx_9ffc871958a632f807c9d3f7"
+        ],
+        "sense_id": "d2lce_3e633e212e54590ca20bfc99",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "Norm as a normalization layer/component name rather than a mathematical size measure.",
+          "rationale": "Supplied contexts include a genuine contrasted use in the phrase add & norm.",
+          "source_text": "In the transformer block, the norm comes after the residual addition."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

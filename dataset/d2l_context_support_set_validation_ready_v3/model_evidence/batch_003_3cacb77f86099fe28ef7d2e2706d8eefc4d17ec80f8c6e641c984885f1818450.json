@@ -1,0 +1,508 @@
+{
+  "audit": {
+    "batch_index": 3,
+    "from_cache": false,
+    "latency_ms": 66956,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "275cae6dee569d09944eb609872ad5a0d09114515be0cda160ac21a1f2452ca3",
+    "response_sha256": "54c016153e6f8529396a9d21613cdb98ded1860a5540900b2822fd81d8033f41",
+    "usage": {
+      "input_tokens": 6184,
+      "output_tokens": 3563,
+      "reasoning_tokens": null,
+      "total_tokens": 9747
+    }
+  },
+  "input_request_sha256": "3cacb77f86099fe28ef7d2e2706d8eefc4d17ec80f8c6e641c984885f1818450",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "common technical calque",
+            "target_vi": "xén gradient"
+          },
+          {
+            "formation_reason": "descriptive technical rendering",
+            "target_vi": "giới hạn gradient"
+          },
+          {
+            "formation_reason": "method-focused rendering",
+            "target_vi": "phép chặn gradient"
+          },
+          {
+            "formation_reason": "recorded compact loan-translation",
+            "target_vi": "cắt gradient"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_5f804b816c9a3019d5cd256d",
+            "context_type": "C1",
+            "reason_code": "section_title_introduces_term",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_a47529e99ab8712183c51ba6",
+            "context_type": "C2",
+            "reason_code": "implementation_trick_for_same_technique",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_68f2a29f1bb704c9ddabeaf1",
+            "context_type": "C2",
+            "reason_code": "cross_reference_to_prior_discussion",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_44fd28002fe36b13e2dc8adf",
+            "context_type": "C4",
+            "reason_code": "states_function_of_term",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_76aaadbd846db473944f5737",
+            "context_type": "C4",
+            "reason_code": "states_capability_and_limit",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_58e268b908c3d7ae474df7c8",
+            "context_type": "C2",
+            "reason_code": "question_about_need_for_technique",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_4464d445a080f2a1433e80df",
+            "context_type": "C4",
+            "reason_code": "states_importance_for_convergence",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_e70f2e4fd3f749f374288b7a",
+            "context_type": "C4",
+            "reason_code": "contrasts_with_other_methods_for_same_problem",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "A training technique that limits gradient size to prevent exploding gradients and improve stable convergence.",
+        "definition_evidence_context_ids": [
+          "ctx_44fd28002fe36b13e2dc8adf",
+          "ctx_76aaadbd846db473944f5737",
+          "ctx_4464d445a080f2a1433e80df"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_5f804b816c9a3019d5cd256d",
+          "ctx_a47529e99ab8712183c51ba6"
+        ],
+        "sense_id": "d2lce_8d226b48ba7ec1493faa4ec8",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A video-editing action that trims a color gradient image rather than limiting optimization gradients.",
+          "rationale": "No genuine alternate sense appears in the supplied contexts.",
+          "source_text": "[Synthetic] The designer used Gradient Clipping to crop the color ramp at both ends of the poster."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "standard math rendering",
+            "target_vi": "phép biến đổi affine"
+          },
+          {
+            "formation_reason": "common variant without diacritic-sensitive foreign spelling",
+            "target_vi": "phép biến đổi afin"
+          },
+          {
+            "formation_reason": "descriptive rendering from contexts",
+            "target_vi": "phép biến đổi tuyến tính kèm tịnh tiến"
+          },
+          {
+            "formation_reason": "bias-explicit paraphrase",
+            "target_vi": "phép biến đổi tuyến tính cộng độ lệch"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_7121f7a9fa4ce1bf37a4b411",
+            "context_type": "C4",
+            "reason_code": "explicit definition with components",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_0cbe39511747c15a73cb01c5",
+            "context_type": "C4",
+            "reason_code": "restates definition succinctly",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_8cc78c2ac5c8304bb46fbe21",
+            "context_type": "C2",
+            "reason_code": "refers to outputs of same transformation in models",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_a9050a3dc5a8ccd5afb793f7",
+            "context_type": "C4",
+            "reason_code": "ties term to linear models",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_fb1febc2efebf2be14297c4f",
+            "context_type": "C4",
+            "reason_code": "applies term in softmax regression explanation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_77b69954271f4ff69e4986ca",
+            "context_type": "C2",
+            "reason_code": "hypothetical relation between labels and inputs",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_a3223aad900f9e33b14c8db7",
+            "context_type": "C2",
+            "reason_code": "describes model architecture using term",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_107aaac926dcdc82c5d33f4c",
+            "context_type": "C2",
+            "reason_code": "term used as step preceding activation",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "A mapping that applies a linear transformation and then adds a bias or translation.",
+        "definition_evidence_context_ids": [
+          "ctx_7121f7a9fa4ce1bf37a4b411",
+          "ctx_0cbe39511747c15a73cb01c5"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_7121f7a9fa4ce1bf37a4b411",
+          "ctx_a3223aad900f9e33b14c8db7"
+        ],
+        "sense_id": "d2lce_539543a2360129e2a2fa1b6d",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A casual social change in attitude, not a mathematical mapping.",
+          "rationale": "No alternate sense is supplied; all contexts are mathematical/modeling uses.",
+          "source_text": "[Synthetic] Her affine transformation after the vacation made her much more patient with students."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "hardware-calque",
+            "target_vi": "làn PCIe"
+          },
+          {
+            "formation_reason": "more explicit hardware channel rendering",
+            "target_vi": "đường truyền PCIe"
+          },
+          {
+            "formation_reason": "slot-link rendering",
+            "target_vi": "đường làn PCIe"
+          },
+          {
+            "formation_reason": "recorded short form",
+            "target_vi": "làn"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_abcdc959b15b58506d6056ee",
+            "context_type": "C4",
+            "reason_code": "describes what lanes are attached to",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_6f956d52b9739e7911277754",
+            "context_type": "C4",
+            "reason_code": "specifies count in PCIe slots",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_b9752907cbaeda87a3b404e3",
+            "context_type": "C4",
+            "reason_code": "defines per-lane transfer capability",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_6bd7c851fbe0b08184549738",
+            "context_type": "C4",
+            "reason_code": "states device can use up to four PCIe lanes",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_2ff75bd2aba0b559e0372b89",
+            "context_type": "C4",
+            "reason_code": "connectivity bandwidth implication for GPUs",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_416fd3e179861109b82badde",
+            "context_type": "C2",
+            "reason_code": "mentions switching same hardware resource",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_b9233db2688cfcdeb5ffd609",
+            "context_type": "C4",
+            "reason_code": "counts available lanes on processors",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_f3748c61eb87a6d37adb7d42",
+            "context_type": "C4",
+            "reason_code": "too few PCIe lanes for direct GPU connections",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "Individual PCIe data channels used to connect devices and determine available bandwidth.",
+        "definition_evidence_context_ids": [
+          "ctx_b9752907cbaeda87a3b404e3",
+          "ctx_2ff75bd2aba0b559e0372b89",
+          "ctx_b9233db2688cfcdeb5ffd609"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.9,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_6f956d52b9739e7911277754",
+          "ctx_b9233db2688cfcdeb5ffd609"
+        ],
+        "sense_id": "d2lce_54e0621e7c3812cb511231dc",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "Traffic lanes on a road rather than PCIe communication channels.",
+          "rationale": "All supplied contexts are about computer hardware interconnects.",
+          "source_text": "[Synthetic] The city added two new lanes to reduce rush-hour congestion downtown."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "shape-expansion calque",
+            "target_vi": "phát quảng kích thước"
+          },
+          {
+            "formation_reason": "operation-focused rendering",
+            "target_vi": "cơ chế quảng bá"
+          },
+          {
+            "formation_reason": "descriptive tensor-operation paraphrase",
+            "target_vi": "phép mở rộng theo broadcasting"
+          },
+          {
+            "formation_reason": "recorded descriptive rendering",
+            "target_vi": "phép lan truyền kích thước"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_55af151b5d571b0a523981a9",
+            "context_type": "C1",
+            "reason_code": "section_title_introduces_term",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_6b24258694566dc3b24b4311",
+            "context_type": "C2",
+            "reason_code": "term referenced during summation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_bcf04980bdfe689c9e1c560b",
+            "context_type": "C4",
+            "reason_code": "explains resulting vector length via broadcasting",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_326dc3e07d0b8de256dd37c6",
+            "context_type": "C4",
+            "reason_code": "states shape maintenance so broadcasting can occur",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_84ba03c3c9e4d38df60e0aac",
+            "context_type": "C2",
+            "reason_code": "same referenced operation during summation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_7b2efc8bfbd4cce59d02222e",
+            "context_type": "C2",
+            "reason_code": "same referenced operation triggered during summation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_d3acc09e8a6080e3399bae77",
+            "context_type": "C4",
+            "reason_code": "used to add expanded query and key tensors",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_84ca6088137d56c32c100be2",
+            "context_type": "C4",
+            "reason_code": "explicit mechanism definition with shape expansion",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "A tensor operation that automatically expands one or both arrays so elementwise operations can be performed despite differing shapes.",
+        "definition_evidence_context_ids": [
+          "ctx_84ca6088137d56c32c100be2",
+          "ctx_bcf04980bdfe689c9e1c560b",
+          "ctx_326dc3e07d0b8de256dd37c6"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_6b24258694566dc3b24b4311",
+          "ctx_84ca6088137d56c32c100be2"
+        ],
+        "sense_id": "d2lce_499fa9391d57e930a19f1b19",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "Radio or media transmission to a wide audience, not tensor shape expansion.",
+          "rationale": "No non-technical sense appears in the supplied contexts.",
+          "source_text": "[Synthetic] The broadcasting reached millions of listeners across the country that night."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "keep original proper name",
+            "target_vi": "Caser"
+          },
+          {
+            "formation_reason": "expanded model-name rendering",
+            "target_vi": "mô hình Caser"
+          },
+          {
+            "formation_reason": "acronym-explicit rendering from expansion",
+            "target_vi": "mô hình khuyến nghị nhúng chuỗi tích chập"
+          },
+          {
+            "formation_reason": "descriptive short rendering",
+            "target_vi": "mô hình khuyến nghị chuỗi dùng tích chập"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_c48fb3f822f811ccbb8750b6",
+            "context_type": "C4",
+            "reason_code": "introduces and expands model name",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_efedd61e884ed0fdc81eff25",
+            "context_type": "C4",
+            "reason_code": "describes main components of model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_a07c31185d557a9cba947172",
+            "context_type": "C4",
+            "reason_code": "states goal of model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_27b2e4936143566a8ca5e421",
+            "context_type": "C2",
+            "reason_code": "references architecture of same model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_26a6365155d601f3009c3236",
+            "context_type": "C2",
+            "reason_code": "image caption for same model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_89f8785f0d47f0a72eb28a8d",
+            "context_type": "C2",
+            "reason_code": "implementation section for same model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_b400985b05d02328a55f0c52",
+            "context_type": "C4",
+            "reason_code": "class definition implementing model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_f3d1cfd65cb60c18b67864a5",
+            "context_type": "C2",
+            "reason_code": "instantiation and training of same model",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "A convolution-based sequential recommendation model that captures recent activity patterns and user preferences.",
+        "definition_evidence_context_ids": [
+          "ctx_c48fb3f822f811ccbb8750b6",
+          "ctx_efedd61e884ed0fdc81eff25",
+          "ctx_a07c31185d557a9cba947172"
+        ],
+        "part_of_speech": "proper_noun",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_c48fb3f822f811ccbb8750b6",
+          "ctx_b400985b05d02328a55f0c52"
+        ],
+        "sense_id": "d2lce_52085fef12f840d2350b2049",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A person's nickname rather than the recommender model.",
+          "rationale": "All supplied contexts use Caser as the model name.",
+          "source_text": "[Synthetic] Everyone in the lab called him Caser because he always carried old cassette cases."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

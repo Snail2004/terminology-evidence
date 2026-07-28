@@ -1,0 +1,39 @@
+{
+  "schema": "terminology_evidence_architecture_boundaries_v1",
+  "max_direct_python_modules": 12,
+  "domains": {
+    "context_substitution": {
+      "status": "implemented",
+      "version": "v2",
+      "production_root": "pipeline/eval/terminology_evidence/context_substitution",
+      "script_root": "pipeline/scripts/terminology_evidence/context_substitution",
+      "test_root": "pipeline/tests/terminology_evidence/context_substitution",
+      "public_import": "pipeline.eval.terminology_evidence.context_substitution.v2",
+      "forbidden_import_prefixes": [
+        "pipeline.eval.terminology_evidence.vietnamese_attestation"
+      ]
+    },
+    "vietnamese_attestation": {
+      "status": "reserved",
+      "version": "v1",
+      "production_root": "pipeline/eval/terminology_evidence/vietnamese_attestation",
+      "script_root": "pipeline/scripts/terminology_evidence/vietnamese_attestation",
+      "test_root": "pipeline/tests/terminology_evidence/vietnamese_attestation",
+      "public_import": "pipeline.eval.terminology_evidence.vietnamese_attestation.v1",
+      "forbidden_import_prefixes": [
+        "pipeline.eval.terminology_evidence.context_substitution"
+      ]
+    },
+    "legacy_term_evidence": {
+      "status": "frozen_compatibility",
+      "version": "v1",
+      "production_root": "pipeline/eval/terminology_evidence/legacy_term_evidence",
+      "script_root": "pipeline/scripts/terminology_evidence/legacy_term_evidence",
+      "test_root": "pipeline/tests/terminology_evidence/legacy_term_evidence",
+      "public_import": "pipeline.eval.terminology_evidence.legacy_term_evidence.v1",
+      "forbidden_import_prefixes": [
+        "pipeline.eval.terminology_evidence.vietnamese_attestation"
+      ]
+    }
+  }
+}

@@ -1,0 +1,468 @@
+{
+  "audit": {
+    "batch_index": 7,
+    "from_cache": false,
+    "latency_ms": 65077,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "2b302708ecc40ab8751cc0f27b24f007dea057eb4845a2a765b2d8feb86035a7",
+    "response_sha256": "d6ad351c580ef2ae8dc8a0eb979a5c6dbc5ba5ecc130030ee84cb78ab30d467b",
+    "usage": {
+      "input_tokens": 6080,
+      "output_tokens": 3458,
+      "reasoning_tokens": null,
+      "total_tokens": 9538
+    }
+  },
+  "input_request_sha256": "1e96eef1c0c5797f2bab3b81f1fda47d8d8dc1e793c7571e5253299942b3dd64",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "common_statistics_term",
+            "target_vi": "quần thể"
+          },
+          {
+            "formation_reason": "literal_definition_based",
+            "target_vi": "toàn bộ tập hợp"
+          },
+          {
+            "formation_reason": "statistics_paraphrase",
+            "target_vi": "tập tổng thể"
+          },
+          {
+            "formation_reason": "data_domain_specific_paraphrase",
+            "target_vi": "toàn bộ dữ liệu gốc"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_af2c71ffd6f18dbe3bbd7f68",
+            "context_type": "C3",
+            "reason_code": "human_population_instance",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_004cf67c0773c334bdf33ee0",
+            "context_type": "C2",
+            "reason_code": "underlying_source_set_for_training_sample",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_b2d863a949f46400d0a77de1",
+            "context_type": "C2",
+            "reason_code": "entire_population_of_data",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_da8d72d320801f2f4f91758b",
+            "context_type": "NONE",
+            "reason_code": "different_programming_attribute_population_list",
+            "sense_relation": "INVALID"
+          },
+          {
+            "context_id": "ctx_1db659b4a818a285e5f8298b",
+            "context_type": "C1",
+            "reason_code": "explicit_definition_of_statistical_population",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_6df8135b377047f7113ec544",
+            "context_type": "C3",
+            "reason_code": "health_status_of_a_population",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_3e80e5eac46165ae80b271a0",
+            "context_type": "C3",
+            "reason_code": "target_group_in_nursing_home_population",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_106d744b93d4b2d0472f0c4f",
+            "context_type": "C2",
+            "reason_code": "population_of_data_from_true_distribution",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "the entire set of individuals, items, or data points from which samples or training data are drawn",
+        "definition_evidence_context_ids": [
+          "ctx_1db659b4a818a285e5f8298b",
+          "ctx_b2d863a949f46400d0a77de1",
+          "ctx_004cf67c0773c334bdf33ee0"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_1db659b4a818a285e5f8298b",
+          "ctx_b2d863a949f46400d0a77de1"
+        ],
+        "sense_id": "d2lce_b0fd0234a2a3049734e8011c",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a programming collection of selectable elements used by a sampler",
+          "rationale": "One supplied context uses a code attribute named population for a list of indices, which is a distinct implementation sense.",
+          "source_text": "Synthetic: In the sampler, population means the list of candidate indices rather than the full statistical population under study."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "direct_semantic_rendering",
+            "target_vi": "không phụ thuộc tuyến tính"
+          },
+          {
+            "formation_reason": "explicit_relational_paraphrase",
+            "target_vi": "độc lập tuyến tính lẫn nhau"
+          },
+          {
+            "formation_reason": "vector_focused_phrase",
+            "target_vi": "các vectơ độc lập tuyến tính"
+          },
+          {
+            "formation_reason": "matrix_column_focused_phrase",
+            "target_vi": "các cột độc lập tuyến tính"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_b614df5afd99a56025590e12",
+            "context_type": "C1",
+            "reason_code": "explicit_definition_by_absence_of_linear_dependence",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_f07eed0f884f117c57662fd2",
+            "context_type": "C2",
+            "reason_code": "matrix_columns_property_for_invertible_operation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_162d9dc7044c91d56d63078a",
+            "context_type": "C2",
+            "reason_code": "used_in_rank_definition_for_columns",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_ea72ec8122738d9978381416",
+            "context_type": "C2",
+            "reason_code": "example_of_columns_being_linearly_independent",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_12f080ce042dec5729904025",
+            "context_type": "C2",
+            "reason_code": "rank_defined_via_largest_linearly_independent_subset",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_14cc1dcbd3a77f9fc840d257",
+            "context_type": "C2",
+            "reason_code": "question_about_sets_of_vectors",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_87d3bb237e3e364754aca75a",
+            "context_type": "C2",
+            "reason_code": "eigenvectors_need_to_be_linearly_independent",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_fb0bce3ae7d50e936e3d1fd2",
+            "context_type": "C2",
+            "reason_code": "restatement_in_matrix_rank_context",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "having no linear dependence among the vectors or columns considered",
+        "definition_evidence_context_ids": [
+          "ctx_b614df5afd99a56025590e12",
+          "ctx_162d9dc7044c91d56d63078a"
+        ],
+        "part_of_speech": "adjective_phrase",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_b614df5afd99a56025590e12",
+          "ctx_f07eed0f884f117c57662fd2"
+        ],
+        "sense_id": "d2lce_e246c0d41c7b8bc2c145f69a",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "independent in probability or statistics rather than in linear algebra",
+          "rationale": "No supplied context shows a different sense, so a boundary sentence contrasts linear-algebraic independence with statistical independence.",
+          "source_text": "Synthetic: These measurements are statistically independent, but not linearly independent as vectors."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "acronym_based_short_form",
+            "target_vi": "lớp gộp RoI"
+          },
+          {
+            "formation_reason": "close_literal_rendering",
+            "target_vi": "lớp gộp trên vùng quan tâm"
+          },
+          {
+            "formation_reason": "function_based_paraphrase",
+            "target_vi": "lớp gộp vùng quan tâm cố định kích thước"
+          },
+          {
+            "formation_reason": "layer_tang_variant",
+            "target_vi": "tầng gộp vùng quan tâm"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_788954d63cedc392831d5044",
+            "context_type": "C1",
+            "reason_code": "introduced_as_specific_layer_in_fast_rcnn",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_808752f6de5f09f78b2ac2c6",
+            "context_type": "C2",
+            "reason_code": "output_shape_specification_property",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_18b4f72effde16746e8f5bd5",
+            "context_type": "C2",
+            "reason_code": "extracts_same_shape_features_from_varied_rois",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_23e5008854737fe4bc296b60",
+            "context_type": "C2",
+            "reason_code": "example_of_using_2x2_roi_pooling_layer",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_1ad01f8bfdd4e76617b7a827",
+            "context_type": "C2",
+            "reason_code": "figure_caption_for_same_layer",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_5091b8db5e4618b9d88151b8",
+            "context_type": "C2",
+            "reason_code": "computation_demonstration_of_layer",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_6e7571c8f722862870d999c0",
+            "context_type": "C2",
+            "reason_code": "uses_region_proposals_as_inputs_to_layer",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_06e708938888799ff3a5dffa",
+            "context_type": "C4",
+            "reason_code": "contrasted_with_roi_alignment_layer",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "a neural network layer that pools features from each region of interest into a fixed output shape",
+        "definition_evidence_context_ids": [
+          "ctx_788954d63cedc392831d5044",
+          "ctx_18b4f72effde16746e8f5bd5",
+          "ctx_808752f6de5f09f78b2ac2c6"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_788954d63cedc392831d5044",
+          "ctx_06e708938888799ff3a5dffa"
+        ],
+        "sense_id": "d2lce_88251c1ff8b5d3756955ca7b",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a standard pooling layer not tied to explicit regions of interest",
+          "rationale": "Supplied contexts contrast this layer with standard pooling and RoI alignment, but not as a separate attested sense of the term itself.",
+          "source_text": "Synthetic: The region of interest pooling layer pools each proposed box, whereas ordinary pooling layers pool over a regular feature map neighborhood."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "expanded_name_translation",
+            "target_vi": "xếp hạng cá nhân hóa Bayes"
+          },
+          {
+            "formation_reason": "method_label_paraphrase",
+            "target_vi": "phương pháp xếp hạng cá nhân hóa Bayes"
+          },
+          {
+            "formation_reason": "usage_specific_loss_rendering",
+            "target_vi": "hàm mất mát BPR"
+          },
+          {
+            "formation_reason": "objective_criterion_paraphrase",
+            "target_vi": "tiêu chuẩn BPR"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_020ebd08a41a2d0d0dde5114",
+            "context_type": "C1",
+            "reason_code": "explicit_expansion_and_definition_of_bpr",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_6ea774a351b38a9d8f40a14a",
+            "context_type": "C2",
+            "reason_code": "training_data_for_bpr",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_0e9fc9f8cf5ab30d22fb84b2",
+            "context_type": "C2",
+            "reason_code": "bayesian_formulation_of_bpr",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_db5da8d2cb5b6ed6e11f95de",
+            "context_type": "C2",
+            "reason_code": "bpr_optimization_objective",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_6702f17fcaa78157880ba4f3",
+            "context_type": "C2",
+            "reason_code": "implementation_of_bpr_loss",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_9ece3b19ead5f1ddd09582aa",
+            "context_type": "C2",
+            "reason_code": "comparison_with_another_pairwise_objective",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_22cd914b3325a8ea0708cb22",
+            "context_type": "C2",
+            "reason_code": "mentions_models_using_bpr",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_fb0f1c491294165f833df59e",
+            "context_type": "C2",
+            "reason_code": "mentions_variants_of_bpr",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "Bayesian personalized ranking, a pairwise ranking objective or loss for recommender systems",
+        "definition_evidence_context_ids": [
+          "ctx_020ebd08a41a2d0d0dde5114",
+          "ctx_0e9fc9f8cf5ab30d22fb84b2",
+          "ctx_6702f17fcaa78157880ba4f3"
+        ],
+        "part_of_speech": "proper_noun",
+        "part_of_speech_confidence": 0.86,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_020ebd08a41a2d0d0dde5114",
+          "ctx_6702f17fcaa78157880ba4f3"
+        ],
+        "sense_id": "d2lce_0dbb5a3cc045f69a43d09a7a",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "an unrelated expansion of the same acronym outside recommender systems",
+          "rationale": "No supplied context provides another in-domain sense; the probe disambiguates the acronym boundary.",
+          "source_text": "Synthetic: Here BPR names the Bayesian personalized ranking objective, not a generic business process rule."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "loanword_based_nlp_term",
+            "target_vi": "token không xác định"
+          },
+          {
+            "formation_reason": "symbol_linked_variant",
+            "target_vi": "mã thông báo unk"
+          },
+          {
+            "formation_reason": "word_focused_paraphrase",
+            "target_vi": "ký hiệu từ chưa biết"
+          },
+          {
+            "formation_reason": "function_based_paraphrase",
+            "target_vi": "token đặc biệt cho từ không biết"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_ac378e36b0f6cf28b40354ae",
+            "context_type": "NONE",
+            "reason_code": "token_means_general_text_unit_not_unknown_token",
+            "sense_relation": "INVALID"
+          },
+          {
+            "context_id": "ctx_c9714080bd2e308c662b5227",
+            "context_type": "C2",
+            "reason_code": "infrequent_tokens_mapped_to_unknown_token",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_9fad57a59804035d85ae8028",
+            "context_type": "C2",
+            "reason_code": "unknown_token_excluded_in_vocabulary_indices",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_ea66b3ce575e4204be2d5f9e",
+            "context_type": "C1",
+            "reason_code": "explicit_definition_and_mapping_to_unk",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_086aada07e0f520a618cc583",
+            "context_type": "C2",
+            "reason_code": "vocab_code_defines_unknown_token_index",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_3866a3d1dc9bad289462f97a",
+            "context_type": "C2",
+            "reason_code": "vocabulary_contains_special_unknown_token",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_1d2e9339e55b93263b732ad7",
+            "context_type": "C2",
+            "reason_code": "pretrained_vocabulary_contains_unknown_token",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_c924c2013dba4600e46dd8f8",
+            "context_type": "C2",
+            "reason_code": "unknown_token_excluded_from_similarity_search",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "a special vocabulary token used to represent unseen, removed, or excluded items",
+        "definition_evidence_context_ids": [
+          "ctx_ea66b3ce575e4204be2d5f9e",
+          "ctx_c9714080bd2e308c662b5227",
+          "ctx_086aada07e0f520a618cc583"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_ea66b3ce575e4204be2d5f9e",
+          "ctx_086aada07e0f520a618cc583"
+        ],
+        "sense_id": "d2lce_9e5c3dd254843c7ec95d4960",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a general token in text processing, not specifically the special unknown placeholder",
+          "rationale": "One supplied context uses token in the broader NLP sense, so the probe marks the boundary clearly.",
+          "source_text": "Synthetic: A token can be any wordpiece, but the unknown token is the special placeholder for out-of-vocabulary items."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

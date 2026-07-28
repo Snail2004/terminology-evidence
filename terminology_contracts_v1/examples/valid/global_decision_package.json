@@ -1,0 +1,80 @@
+{
+  "schema_id": "GlobalDecisionPackageV1",
+  "schema_version": "1.0.0",
+  "candidate_key": {
+    "candidate_id": "cand-inference-vi-01",
+    "candidate_version": "1",
+    "source_term": "inference",
+    "candidate_vi": "suy luận",
+    "sense_id": "model_execution",
+    "scope_id": "machine_learning",
+    "sense_inventory_version": "sense-v1",
+    "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "effective_sense_contract_sha256": "82eedc4661ad441fd7e1925b61738b3ad97af9c2eacb9ce99f2209b45fe1dd0b"
+  },
+  "input_contract_sha256": "ad9888fdb98fba49d6a7b50f30d8749694e28c89a5dd3f7fdea0ae490ccdf704",
+  "context_evidence_sha256": "b25632808311efdef1fce79843acdcf6f314c4e8aa9ff921395a674d44a12389",
+  "attestation_evidence_sha256": "90781725036accdff0bef48dc391f44d8648c1d6ab7c1049d6e11850944228ec",
+  "gate_results": {
+    "schema_id": "GateResultSetV1",
+    "schema_version": "1.0.0",
+    "candidate_key": {
+      "candidate_id": "cand-inference-vi-01",
+      "candidate_version": "1",
+      "source_term": "inference",
+      "candidate_vi": "suy luận",
+      "sense_id": "model_execution",
+      "scope_id": "machine_learning",
+      "sense_inventory_version": "sense-v1",
+      "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "effective_sense_contract_sha256": "82eedc4661ad441fd7e1925b61738b3ad97af9c2eacb9ce99f2209b45fe1dd0b"
+    },
+    "input_contract_sha256": "ad9888fdb98fba49d6a7b50f30d8749694e28c89a5dd3f7fdea0ae490ccdf704",
+    "gate_policy_version": "gates-v1",
+    "observations": [
+      {
+        "gate_id": "wrong_sense",
+        "triggered": false,
+        "action": "NONE",
+        "reason_codes": [],
+        "evidence_refs": []
+      },
+      {
+        "gate_id": "insufficient_evidence",
+        "triggered": false,
+        "action": "NONE",
+        "reason_codes": [],
+        "evidence_refs": []
+      }
+    ],
+    "integrity": {
+      "self_sha256": "77879fc95231662c0500547ad70710767c1cb98a7841f45f883a730aaeecf86b"
+    }
+  },
+  "decision_features": {
+    "C_mean": 0.88,
+    "C_min": 0.7,
+    "E_authority": 0.75,
+    "E_independence": 0.67,
+    "E_domain": 1.0,
+    "E_concept": 0.83,
+    "E_conventionality": 0.6,
+    "E_coverage": 0.8
+  },
+  "approval_score": 0.91,
+  "decision": "AUTO_APPROVED",
+  "decision_reasons": [
+    "CALIBRATED_SCORE_ABOVE_THRESHOLD"
+  ],
+  "decision_policy": {
+    "policy_id": "global-validator",
+    "policy_version": "global-v1",
+    "mode": "FROZEN_CALIBRATED",
+    "calibration_artifact_sha256": "cff82b79f5a100bc868ba0f6e7d98c54677f960114f3f87feff1dcac2ae3e7a2",
+    "threshold": 0.84
+  },
+  "certificate_ref": null,
+  "integrity": {
+    "self_sha256": "facc19566a870474729763866726e4a9d2dbf841df4e31019a88c7ebad07afdf"
+  }
+}

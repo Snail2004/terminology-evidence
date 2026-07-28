@@ -1,0 +1,515 @@
+{
+  "audit": {
+    "batch_index": 15,
+    "from_cache": false,
+    "latency_ms": 74887,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "a93636005eeddd724256038b4785dcc2cf133657d06f701c4d1bf3c760a84fec",
+    "response_sha256": "2c7df487111dc3ce28bde6a26a90c6280ae41bdc2d90a6ee3e67cd44aeed7e71",
+    "usage": {
+      "input_tokens": 5624,
+      "output_tokens": 3834,
+      "reasoning_tokens": null,
+      "total_tokens": 9458
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "0e093cefb701173c02d8f54a491686e5dc658eb46e0e6bc787668b2d17a9ab6e",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "common technical rendering from the described CV method/task",
+            "target_vi": "chuyển phong cách"
+          },
+          {
+            "formation_reason": "emphasizes applying one image's style to another image",
+            "target_vi": "chuyển đổi phong cách"
+          },
+          {
+            "formation_reason": "explicitly ties the term to image synthesis in context",
+            "target_vi": "truyền phong cách ảnh"
+          },
+          {
+            "formation_reason": "more literal but still plausible for the exact neural image-processing sense",
+            "target_vi": "chuyển giao kiểu cách"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_654e7ba25bac02b376751b46",
+            "context_type": "C1",
+            "reason_code": "listed as a computer vision task",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_d719b8db05528e808274fcea",
+            "context_type": "C2",
+            "reason_code": "mentions using style transfer techniques to generate images",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_deae144867e9bfadbffe6cf7",
+            "context_type": "C1",
+            "reason_code": "section title naming the concept",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_6b687a2d2cfec26c4434d515",
+            "context_type": "C3",
+            "reason_code": "direct definition: apply style of one image to another",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_e9df20e49655a73442ecc990",
+            "context_type": "C3",
+            "reason_code": "figure caption states input-output behavior of the method",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_0c23b9cfe24725bd1e388026",
+            "context_type": "C2",
+            "reason_code": "refers to CNN-based style transfer method",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_e603f93a871e9ee36882fbe5",
+            "context_type": "C4",
+            "reason_code": "describes optimization variable during the style transfer process",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_1f5ec6ced6190e5f15225183",
+            "context_type": "C2",
+            "reason_code": "figure title naming the process",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "A computer vision technique that synthesizes an image by applying the visual style of one image to the content of another.",
+        "definition_evidence_context_ids": [
+          "ctx_6b687a2d2cfec26c4434d515",
+          "ctx_e9df20e49655a73442ecc990",
+          "ctx_d719b8db05528e808274fcea"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.96,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_654e7ba25bac02b376751b46",
+          "ctx_d719b8db05528e808274fcea",
+          "ctx_deae144867e9bfadbffe6cf7"
+        ],
+        "sense_id": "d2lce_041add3a2f3aa452408a5384",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "Transfer of artistic style between people or organizations, not between images in a CNN-based method.",
+          "rationale": "All supplied contexts use the computer-vision sense only.",
+          "source_text": "Synthetic: The museum studied style transfer across generations of painters, without generating any images computationally."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "natural calque matching the software artifact used to edit and run code",
+            "target_vi": "sổ ghi chép Jupyter"
+          },
+          {
+            "formation_reason": "tool-oriented rendering consistent with notebook software usage",
+            "target_vi": "notebook Jupyter"
+          },
+          {
+            "formation_reason": "emphasizes interactive working document in the contexts",
+            "target_vi": "vở lệnh Jupyter"
+          },
+          {
+            "formation_reason": "slightly broader but plausible for the exact coding environment sense",
+            "target_vi": "tài liệu notebook Jupyter"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.82,
+            "context_id": "ctx_80bb0597f481e29198ef67ab",
+            "context_type": "C2",
+            "reason_code": "lists Jupyter notebooks among tools used in the project",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_76220c9bc5e4ee7672fc78b2",
+            "context_type": "C3",
+            "reason_code": "describes environment for running Jupyter notebooks",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_d2b6cce11380684abd029f58",
+            "context_type": "C4",
+            "reason_code": "describes a notebook-specific interaction using ?",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.88,
+            "context_id": "ctx_57a080760ad64870f38e1944",
+            "context_type": "C2",
+            "reason_code": "introduces chapter section about Jupyter notebook as a tool",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_d28271aea73210f0b70b3d21",
+            "context_type": "C4",
+            "reason_code": "refers to starting the Jupyter notebook server",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_db36af02cb86a821cf97f72d",
+            "context_type": "C4",
+            "reason_code": "command to launch notebook server",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_4ce0dadb094ebab58d15ccc9",
+            "context_type": "C4",
+            "reason_code": "mentions ? and ?? in Jupyter notebooks for documentation lookup",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_c491125cb400cc10a6b89d1f",
+            "context_type": "C3",
+            "reason_code": "explicitly says Jupyter Notebooks are used to edit and run code",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "An interactive notebook environment used to write, edit, run, and inspect code and related text or documentation.",
+        "definition_evidence_context_ids": [
+          "ctx_c491125cb400cc10a6b89d1f",
+          "ctx_76220c9bc5e4ee7672fc78b2",
+          "ctx_d2b6cce11380684abd029f58"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_80bb0597f481e29198ef67ab",
+          "ctx_57a080760ad64870f38e1944",
+          "ctx_c491125cb400cc10a6b89d1f"
+        ],
+        "sense_id": "d2lce_1a91fdded89249a5cd89ec14",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A physical paper notebook branded or nicknamed Jupyter, rather than the software environment.",
+          "rationale": "All supplied contexts point to the software/tool sense.",
+          "source_text": "Synthetic: She bought a Jupyter notebook to sketch ideas by hand during class."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "direct technical variant preserving the notion of model error on unseen data",
+            "target_vi": "sai số khái quát hóa"
+          },
+          {
+            "formation_reason": "uses a common ML word for predictive error",
+            "target_vi": "lỗi tổng quát hóa"
+          },
+          {
+            "formation_reason": "more explanatory but still concise and plausible",
+            "target_vi": "sai số khi khái quát hóa"
+          },
+          {
+            "formation_reason": "slightly literal alternative for the same statistical sense",
+            "target_vi": "lỗi khái quát"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_dc0382ebdca048c1b0714c3e",
+            "context_type": "C1",
+            "reason_code": "section heading naming the concept",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_0737ea14d11a1ebada12a0eb",
+            "context_type": "C2",
+            "reason_code": "states reducing generalization error as a goal",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_584bed2e44864afc9655baf9",
+            "context_type": "C3",
+            "reason_code": "explicit formal definition of the error",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_b89311738d29fd53e93c2b6b",
+            "context_type": "C2",
+            "reason_code": "contrasts it with training error",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_7edf6686ee0adbdd3a986dfc",
+            "context_type": "C4",
+            "reason_code": "explains estimation via an independent test set",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_bfb4aa499a19b3c234af5b7e",
+            "context_type": "C4",
+            "reason_code": "states exact calculation is impossible in practice",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_54088257ccb95a4974f91f90",
+            "context_type": "C4",
+            "reason_code": "relates it to training error as data increases",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_8cd3de6c9b491391cc9a6104",
+            "context_type": "C4",
+            "reason_code": "uses the term in comparative performance discussion",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "The expected error of a model on new data drawn from the same underlying distribution as the original sample.",
+        "definition_evidence_context_ids": [
+          "ctx_584bed2e44864afc9655baf9",
+          "ctx_7edf6686ee0adbdd3a986dfc",
+          "ctx_bfb4aa499a19b3c234af5b7e"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_dc0382ebdca048c1b0714c3e",
+          "ctx_b89311738d29fd53e93c2b6b",
+          "ctx_0737ea14d11a1ebada12a0eb"
+        ],
+        "sense_id": "d2lce_9199c3ba27076b186a42df23",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A general ability to generalize, rather than the specific error measure of a model.",
+          "rationale": "All provided contexts use the quantitative error sense.",
+          "source_text": "Synthetic: The child's generalization error in storytelling was not measured statistically."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "common programming translation for branching/loop execution structure",
+            "target_vi": "dòng điều khiển"
+          },
+          {
+            "formation_reason": "slightly more formal rendering used for execution logic",
+            "target_vi": "cấu trúc điều khiển"
+          },
+          {
+            "formation_reason": "emphasizes execution path decisions in code",
+            "target_vi": "tiến trình điều khiển"
+          },
+          {
+            "formation_reason": "plausible broader programming phrasing for the exact sense",
+            "target_vi": "cơ chế điều khiển luồng"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_eaf1420ee977982e7eb8baf6",
+            "context_type": "C1",
+            "reason_code": "section heading naming the concept",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_404061e58e2c4cb0d3631319",
+            "context_type": "C3",
+            "reason_code": "Python's control flow within forward propagation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.88,
+            "context_id": "ctx_57d8f326884934a0af1fb2b4",
+            "context_type": "C2",
+            "reason_code": "mentions control flow as an aspect of model flexibility",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_0da3afb393686e85b578238a",
+            "context_type": "C3",
+            "reason_code": "explicitly exemplifies conditionals, loops, and function calls",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.86,
+            "context_id": "ctx_2ba928581bca7998708eb201",
+            "context_type": "C2",
+            "reason_code": "exercise reference to gradient of the control flow",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_cb1896b0540e303727e896ea",
+            "context_type": "C4",
+            "reason_code": "discusses behavior changes in the control flow example",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_bc0786f0d324cf5127b590f1",
+            "context_type": "C3",
+            "reason_code": "code comment and while loop instantiate control flow",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_e859a0568c857a572640c892",
+            "context_type": "C3",
+            "reason_code": "parallel code example with explicit control flow comment",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "The branching and looping behavior in a program that determines the order of execution, such as conditionals and loops.",
+        "definition_evidence_context_ids": [
+          "ctx_0da3afb393686e85b578238a",
+          "ctx_404061e58e2c4cb0d3631319",
+          "ctx_bc0786f0d324cf5127b590f1"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_eaf1420ee977982e7eb8baf6",
+          "ctx_404061e58e2c4cb0d3631319",
+          "ctx_57d8f326884934a0af1fb2b4"
+        ],
+        "sense_id": "d2lce_6c7e95cd232fb7fcca6b3bdc",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "The management of traffic or physical movement, not program execution logic.",
+          "rationale": "Every supplied context is about programming behavior in code/models.",
+          "source_text": "Synthetic: Police improved control flow at the intersection during rush hour."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "common variant with the same distributed training meaning",
+            "target_vi": "huấn luyện nhiều GPU"
+          },
+          {
+            "formation_reason": "slightly more explicit wording about using several GPUs",
+            "target_vi": "huấn luyện trên nhiều GPU"
+          },
+          {
+            "formation_reason": "focuses on parallel training setup across GPUs",
+            "target_vi": "huấn luyện song song bằng nhiều GPU"
+          },
+          {
+            "formation_reason": "broader but still exact for training distributed across GPUs",
+            "target_vi": "đào tạo đa GPU"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_27e6509f7df6da2429702955",
+            "context_type": "C2",
+            "reason_code": "introduces the concept to be illustrated",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_9d1a3070565f618918c563b1",
+            "context_type": "C1",
+            "reason_code": "section heading naming the concept",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_dd876433a4a31b49da5e3474",
+            "context_type": "C3",
+            "reason_code": "states basic operations needed for efficient multi-GPU training",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_b75db9e35adbaaf1637e9f5b",
+            "context_type": "C3",
+            "reason_code": "describes implementation on a single minibatch",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_e3dc582632a5a667da04879d",
+            "context_type": "C4",
+            "reason_code": "code example performing training across multiple GPUs",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_d06cbf1985e80a5cb41f32fc",
+            "context_type": "C4",
+            "reason_code": "parallel code example for multiple GPUs",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_190c6414d9d03e42a057ce97",
+            "context_type": "C4",
+            "reason_code": "discusses performance limitations of the implementation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_a790a4f33d4d1ca57797120f",
+            "context_type": "C4",
+            "reason_code": "describes a variant involving gradient aggregation and parameter redistribution",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "Training a model using multiple GPUs, typically by splitting work and coordinating gradients or parameters across devices.",
+        "definition_evidence_context_ids": [
+          "ctx_dd876433a4a31b49da5e3474",
+          "ctx_b75db9e35adbaaf1637e9f5b",
+          "ctx_a790a4f33d4d1ca57797120f"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_27e6509f7df6da2429702955",
+          "ctx_9d1a3070565f618918c563b1",
+          "ctx_dd876433a4a31b49da5e3474"
+        ],
+        "sense_id": "d2lce_6898a7f7f35ca368f75fda48",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "Training people to use multiple GPUs, rather than training a model on multiple GPUs.",
+          "rationale": "All supplied contexts refer to machine learning model training.",
+          "source_text": "Synthetic: The workshop offered multi-GPU training for new lab technicians learning hardware maintenance."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

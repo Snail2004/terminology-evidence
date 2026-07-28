@@ -1,0 +1,142 @@
+﻿"case_sha256","term_id","sense_id","context_id","context_groups","block_id","chapter_id","sentence_id","context_role","context_slot","context_type_proposal","sense_relation","matched_surface_exact","content_sha256","context_sha256","source_text"
+"033f556bf2ed07a190dd84f9543669c590a2f6db41b405e25cb7b9155040ed2b","d2lce_270e1a75bb70807d9c2dd507","d2lce_270e1a75bb70807d9c2dd507","ctx_0f6cacd1df0fd9a1a8c5ed8d","contrastive","d2l_computational_performance_hardware_b012","d2l_computational_performance","sentence_3a738a5e9091a497fc1c5d6a","CONTRASTIVE","X1","C2","CONTRASTIVE","channels","3a6bb882b6721de46d6a4a2dc67d3ebd5f79320c8b7b05837e6030277141e8ee","61064b872e49b6a6e2bff0847a7d6b5bdfce9af3dab3de7153e2e96f411eef8c","CPUs have between 2 and 4 memory channels, i.e., they have between 4 0GB/s and 100 GB/s peak memory bandwidth."
+"033f556bf2ed07a190dd84f9543669c590a2f6db41b405e25cb7b9155040ed2b","d2lce_270e1a75bb70807d9c2dd507","d2lce_270e1a75bb70807d9c2dd507","ctx_4bb23f20ff0fa67bc6c1be83","primary;definition;part_of_speech","d2l_preliminaries_linear_algebra_b060","d2l_preliminaries","sentence_f6f1f806e59cd3b9f03ea426","PRIMARY","C2","C1","SAME_SENSE","channels","bdffd524bbd8a5b5033d99ced5c6a7692a426dc377fde64e386ca251bc0fc715","ec0f0c8e48f743fc12a00cc67b5c8356a3f53c12df5097b3881af50fbd2c06b6","Tensors will become more important when we start working with images,
+ which arrive as $n$-dimensional arrays with 3 axes corresponding to the height, width, and a *channel* axis for stacking the color channels (red, green, and blue)."
+"033f556bf2ed07a190dd84f9543669c590a2f6db41b405e25cb7b9155040ed2b","d2lce_270e1a75bb70807d9c2dd507","d2lce_270e1a75bb70807d9c2dd507","ctx_50b02cc418dce008fb37b2ea","primary;definition;part_of_speech","d2l_linear_networks_image_classification_dataset_b015","d2l_linear_networks","sentence_780ae211bf62df9f14ff8a9b","PRIMARY","C1","C1","SAME_SENSE","channels","d9cfeb935b830b2b5f9285399c2234408ab760dca2d41a43fb5a4f09cdbff8a9","85604937309ed0d987b5523bdc4fc674e83344828af6b53bb1f855ab35c1bb3d","Note that the dataset consists of grayscale images, whose number of channels is 1."
+"033f556bf2ed07a190dd84f9543669c590a2f6db41b405e25cb7b9155040ed2b","d2lce_270e1a75bb70807d9c2dd507","d2lce_270e1a75bb70807d9c2dd507","ctx_79213e2c4e36b995f90f0b30","primary;definition;part_of_speech","d2l_introduction_index_b024","d2l_introduction","sentence_f17192445be442b75c04dad4","PRIMARY","C3","C1","SAME_SENSE","channels","470b16244bb9fe3305eee8cdca73bb85c2e0c2c6ac8da554b8705d7c863e7d24","ba6ec342999aecb305a64929a5db6a203049617d44200cd5df3e178e161b6f84","A $200\times 200$ color photograph would consist of $200\times200\times3=120000$
+numerical values, corresponding to the brightness
+of the red, green, and blue channels for each spatial location."
+"033f556bf2ed07a190dd84f9543669c590a2f6db41b405e25cb7b9155040ed2b","d2lce_270e1a75bb70807d9c2dd507","d2lce_270e1a75bb70807d9c2dd507","ctx_93be4d86c465d785ac0a0ec1","backup;definition","d2l_attention_mechanisms_self_attention_and_positional_encoding_b018","d2l_attention_mechanisms","sentence_94a8b62946763f26e742db54","BACKUP","B2","C1","SAME_SENSE","channels","c69aa6283b72c21af7c9fd330574d65ee54faefb1da390e5df2caea71eda777b","9564c9c16a72d6896988845e19549b5e28bcab6a4134d416596e19ed8180e846","For now,
+we only need to know that
+since the sequence length is $n$,
+the numbers of input and output channels are both $d$,
+the computational complexity of the convolutional layer is $\mathcal{O}(knd^2)$."
+"033f556bf2ed07a190dd84f9543669c590a2f6db41b405e25cb7b9155040ed2b","d2lce_270e1a75bb70807d9c2dd507","d2lce_270e1a75bb70807d9c2dd507","ctx_e066da075985b1450c0cd804","primary;definition;part_of_speech","d2l_convolutional_neural_networks_index_b005","d2l_convolutional_neural_networks","sentence_27f3e0ec9d14cbd6108f4db0","PRIMARY","C4","C1","SAME_SENSE","channels","797545d4829d49809c4ef85ee3d9c7449e00ed9ce8b949f0b99dbcb71e1abd60","36c1c5fd649bca69b3149222c774242001cf01b7c09c018f75792db45b458890","These include the convolutional layers themselves,
+nitty-gritty details including padding and stride,
+the pooling layers used to aggregate information
+across adjacent spatial regions,
+the use of multiple channels  at each layer,
+and a careful discussion of the structure of modern architectures."
+"033f556bf2ed07a190dd84f9543669c590a2f6db41b405e25cb7b9155040ed2b","d2lce_270e1a75bb70807d9c2dd507","d2lce_270e1a75bb70807d9c2dd507","ctx_e7437fb0f0bdad9c3645e83b","primary;definition","d2l_convolutional_modern_alexnet_b030","d2l_convolutional_modern","sentence_ec2876b3a76c818267c2da4a","PRIMARY","C5","C1","SAME_SENSE","channels","76716911374742231da950761217f574873ccc46d9147ea75de333d80057972c","d086acf8c49c1788b9872727b259c4ffb1c423b45153341ad91fc2db7d570011","Moreover, AlexNet has ten times more convolution channels than LeNet."
+"033f556bf2ed07a190dd84f9543669c590a2f6db41b405e25cb7b9155040ed2b","d2lce_270e1a75bb70807d9c2dd507","d2lce_270e1a75bb70807d9c2dd507","ctx_e7ad2905fd773a830f6b4c43","backup;definition","d2l_optimization_lr_scheduler_b007","d2l_optimization","sentence_f1351f02c1b8d1a32749acc0","BACKUP","B1","C1","SAME_SENSE","channels","b07bb86b33969fd39776a647de0d44169a466df14bef5926b05603c97bf4270e","6ac8758ac6e79af836cdb9cac87e1acd9dd7e1dec905a9ebfbdd5f6484564376","```{.python .input}
+%matplotlib inline
+from d2l import mxnet as d2l
+from mxnet import autograd, gluon, init, lr_scheduler, np, npx
+from mxnet.gluon import nn
+npx.set_np()
+
+net = nn.HybridSequential()
+net.add(nn.Conv2D(channels=6, kernel_size=5, padding=2, activation='relu'),
+        nn.MaxPool2D(pool_size=2, strides=2),
+        nn.Conv2D(channels=16, kernel_size=5, activation='relu'),
+        nn.MaxPool2D(pool_size=2, strides=2),
+        nn.Dense(120, activation='relu'),
+        nn.Dense(84, activation='relu'),
+        nn.Dense(10))
+net.hybridize()
+loss = gluon.loss.SoftmaxCrossEntropyLoss()
+device = d2l.try_gpu()
+
+batch_size = 256
+train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size=batch_size)
+
+# The code is almost identical to `d2l.train_ch6` defined in the 
+# lenet section of chapter convolutional neural networks
+def train(net, train_iter, test_iter, num_epochs, loss, trainer, device):
+    net.initialize(force_reinit=True, ctx=device, init=init.Xavier())
+    animator = d2l.Animator(xlabel='epoch', xlim=[0, num_epochs],
+                            legend=['train loss', 'train acc', 'test acc'])
+    for epoch in range(num_epochs):
+        metric = d2l.Accumulator(3)  # train_loss, train_acc, num_examples
+        for i, (X, y) in enumerate(train_iter):
+            X, y = X.as_in_ctx(device), y.as_in_ctx(device)
+            with autograd.record():
+                y_hat = net(X)
+                l = loss(y_hat, y)
+            l.backward()
+            trainer.step(X.shape[0])
+            metric.add(l.sum(), d2l.accuracy(y_hat, y), X.shape[0])
+            train_loss = metric[0] / metric[2]
+            train_acc = metric[1] / metric[2]
+            if (i + 1) % 50 == 0:
+                animator.add(epoch + i / len(train_iter),
+                             (train_loss, train_acc, None))
+        test_acc = d2l.evaluate_accuracy_gpu(net, test_iter)
+        animator.add(epoch + 1, (None, None, test_acc))
+    print(f'train loss {train_loss:.3f}, train acc {train_acc:.3f}, '
+          f'test acc {test_acc:.3f}')
+```"
+"4a5e425051cd0459b251dad8e72e2eb4ec3728360b019f848f105e471e090931","d2lce_73c8ce2915c4c64a52fab4a2","d2lce_73c8ce2915c4c64a52fab4a2","ctx_111ebd3664347c4b99a35b2e","primary;definition;part_of_speech","d2l_generative_adversarial_networks_gan_b007","d2l_generative_adversarial_networks","sentence_ef0c432371de43008c187951","PRIMARY","C2","C1","SAME_SENSE","generator","366dcf4bec1d94f19680237085f37e6cf925cf5f073e6130ffff8075ddea5c18","9d62424fd49bddc5322ca97fef4b11c45cd0acc5699bb6385bf22f8f2679502c","We call this the generator network."
+"4a5e425051cd0459b251dad8e72e2eb4ec3728360b019f848f105e471e090931","d2lce_73c8ce2915c4c64a52fab4a2","d2lce_73c8ce2915c4c64a52fab4a2","ctx_2aca2894517926700f9e34d1","primary","d2l_generative_adversarial_networks_gan_b007","d2l_generative_adversarial_networks","sentence_56b42587f984dab5f63f8fb2","PRIMARY","C3","C1","SAME_SENSE","generator","7c3e96597e2b4681d57b70c8f2b1b30b706f5c37b1a1be1f494210a1943f2d82","76d0f7e008f69448b14d1ec63e723b808da87cff44300bf6f5f2aaa9b0d83822","This information, in turn is used to improve the generator network, and so on."
+"4a5e425051cd0459b251dad8e72e2eb4ec3728360b019f848f105e471e090931","d2lce_73c8ce2915c4c64a52fab4a2","d2lce_73c8ce2915c4c64a52fab4a2","ctx_2cc55c7c27ecd856fe623eec","backup","d2l_generative_adversarial_networks_gan_b005","d2l_generative_adversarial_networks","sentence_4dd57ac80e5036eb182ea463","BACKUP","B1","C1","SAME_SENSE","generator","4420e088ff6dfc098dcaeab5c04ef4d4efd78c4ee40f8717da35bb2a515fad2e","848a8fec59ee7db652ff77f45f55feefedf0ad376cc9e85f3eef733682921394","This allows us to improve the data generator until it generates something that resembles the real data."
+"4a5e425051cd0459b251dad8e72e2eb4ec3728360b019f848f105e471e090931","d2lce_73c8ce2915c4c64a52fab4a2","d2lce_73c8ce2915c4c64a52fab4a2","ctx_33e923407e067945b2c17e33","primary;part_of_speech","d2l_generative_adversarial_networks_gan_b007","d2l_generative_adversarial_networks","sentence_e2ab610a2bfaf42a279db17f","PRIMARY","C4","C1","SAME_SENSE","generator","598a9fecaf2409502d7261f2568078bd16a6d902dd4d8ae7312402776f19bdd9","eeea61c72e6f16ae8b7c32747c8085a8ea6ba1e06d0414b4daa809f49b4a8d8e","The generator network attempts to fool the discriminator network."
+"4a5e425051cd0459b251dad8e72e2eb4ec3728360b019f848f105e471e090931","d2lce_73c8ce2915c4c64a52fab4a2","d2lce_73c8ce2915c4c64a52fab4a2","ctx_545710fbceae0d3428fd3a00","primary;definition","d2l_generative_adversarial_networks_gan_b008","d2l_generative_adversarial_networks","sentence_acdc94766cb933ef5156bc2f","PRIMARY","C5","C1","SAME_SENSE","generator","cbd65d93d67c8ad4b49928f1487efe286af2001057a3f5abcbe37e96f145c575","74b274a1bdfc0756274f53f2b5da7768668502dbd52ae92f3249fe19f74a8a8b","The discriminator is a binary classifier to distinguish if the input $x$ is real (from real data) or fake (from the generator)."
+"4a5e425051cd0459b251dad8e72e2eb4ec3728360b019f848f105e471e090931","d2lce_73c8ce2915c4c64a52fab4a2","d2lce_73c8ce2915c4c64a52fab4a2","ctx_5b966a1024783f92c10a4b61","contrastive","d2l_natural_language_processing_pretraining_word_embedding_dataset_b036","d2l_natural_language_processing_pretraining","sentence_7f0fe73e5b161f316b5dc88c","CONTRASTIVE","X1","C3","CONTRASTIVE","generator","9b1223d4d83f7eb5c58e1f46a906e83bd9534b795817d3d8920c4efc9af1e2db","a2207c9201b4448a74ed7a71044b251cee3ce7b389e0b5aadfe01171d2543156","(index 0 is the
+    # excluded unknown token) in the vocabulary
+    sampling_weights = [counter[vocab.to_tokens(i)]**0.75
+                        for i in range(1, len(vocab))]
+    all_negatives, generator = [], RandomGenerator(sampling_weights)
+    for contexts in all_contexts:
+        negatives = []
+        while len(negatives) < len(contexts) * K:
+            neg = generator.draw()
+            # Noise words cannot be context words
+            if neg not in contexts:
+                negatives.append(neg)
+        all_negatives.append(negatives)
+    return all_negatives
+
+all_negatives = get_negatives(all_contexts, vocab, counter, 5)
+```"
+"4a5e425051cd0459b251dad8e72e2eb4ec3728360b019f848f105e471e090931","d2lce_73c8ce2915c4c64a52fab4a2","d2lce_73c8ce2915c4c64a52fab4a2","ctx_ce5770ebbcecab9cd14b31d1","primary;definition","d2l_generative_adversarial_networks_gan_b005","d2l_generative_adversarial_networks","sentence_dddfdcc606098836390e143f","PRIMARY","C1","C1","SAME_SENSE","generator","b357b9f9b72bce2a3b7fb7fbe63e93bbf96adcd41cf1c589df53c3da1ec09137","43e472f010a5c63fca8544e0476b9efcecd17e67f3bd0b9e13a933d5e851d07b","At their heart, GANs rely on the idea that a data generator is good if we cannot tell fake data apart from real data."
+"43bf93dcc9f7b04c197c7be4aa77acbada94cba221805c3c6090539f2fde2ac9","d2lce_776fd3328d5e31aeebe484ec","d2lce_776fd3328d5e31aeebe484ec","ctx_01b68302bb447eeeccec65cb","primary","d2l_attention_mechanisms_attention_cues_b025","d2l_attention_mechanisms","sentence_f9c47ae8915c09bfb16fad06","PRIMARY","C5","C1","SAME_SENSE","Keys","e47a86bb2e219502c3dce1e20472d079845459046df95eb554c86dd043a62765","f55c40e7bf3d046a69c72e7eb39a629fe82ec897245f68a7d85358dcb7e0cdf6","```{.python .input}
+#@tab all
+attention_weights = d2l.reshape(d2l.eye(10), (1, 1, 10, 10))
+show_heatmaps(attention_weights, xlabel='Keys', ylabel='Queries')
+```"
+"43bf93dcc9f7b04c197c7be4aa77acbada94cba221805c3c6090539f2fde2ac9","d2lce_776fd3328d5e31aeebe484ec","d2lce_776fd3328d5e31aeebe484ec","ctx_2d690f0922be1eb4be420c9d","contrastive","d2l_natural_language_processing_pretraining_subword_embedding_b014","d2l_natural_language_processing_pretraining","sentence_245949d0fcbb60aa8a647e00","CONTRASTIVE","X1","C3","CONTRASTIVE","keys","210bb58ce8d7a8ccc636e16976c0721111e8313908cb2c2c13b18824c90f9ecc","904f4acb3828ac16412519c78eb39ca9f0a86dda1716ec19b650f49d052aca83","Since we start the merging process from a vocabulary of only single characters and special symbols, space is inserted between every pair of consecutive characters within each word (keys of the dictionary `token_freqs`)."
+"43bf93dcc9f7b04c197c7be4aa77acbada94cba221805c3c6090539f2fde2ac9","d2lce_776fd3328d5e31aeebe484ec","d2lce_776fd3328d5e31aeebe484ec","ctx_3c14b0a0feee3453249740d4","primary;definition;part_of_speech","d2l_attention_mechanisms_attention_cues_b014","d2l_attention_mechanisms","sentence_148cff5fea05df5b2c3e4f97","PRIMARY","C1","C1","SAME_SENSE","keys","50bb6186751528e70bb467c5ec3ef6bbc62a8b3aa4f24d3afdf02ed8fcb78a1d","8dc6d6af35650d23464795121e11bf67a53db6f3a8e32456bbd2178f4d5667e5","As shown in :numref:`fig_qkv`,
+we can design attention pooling
+so that the given query (volitional cue) can interact with keys (nonvolitional cues),
+which guides bias selection over values (sensory inputs)."
+"43bf93dcc9f7b04c197c7be4aa77acbada94cba221805c3c6090539f2fde2ac9","d2lce_776fd3328d5e31aeebe484ec","d2lce_776fd3328d5e31aeebe484ec","ctx_8a0bb471a0a435399c5293f9","primary;part_of_speech","d2l_attention_mechanisms_attention_cues_b011","d2l_attention_mechanisms","sentence_8ad63badeb83373acafa6f6f","PRIMARY","C2","C1","SAME_SENSE","Keys","020dad4f71a716d7b21f8ce020ca83300b7e75fecd747e4ee3c41367888371ee","ee42fe8e43d1a23d4a584cc14a1a5fb6a11f598793b6ddf249d3f1b952eb3297","## Queries, Keys, and Values"
+"43bf93dcc9f7b04c197c7be4aa77acbada94cba221805c3c6090539f2fde2ac9","d2lce_776fd3328d5e31aeebe484ec","d2lce_776fd3328d5e31aeebe484ec","ctx_9dd2818707ebbd9b97accac9","backup;definition","d2l_attention_mechanisms_attention_cues_b022","d2l_attention_mechanisms","sentence_bdf0d1b0c8c18c36c677dbf8","BACKUP","B1","C1","SAME_SENSE","keys","f8a6fa3d69cc8daaeaeeb567fc9c17ac5e8d2bdd7785fa63ed5b23ed5ecca1dc","22d7300f7023becdb57528fa8dcae4fd31dd7f1801e10d5265a092c0dadb2853","Its input `matrices` has the shape (number of rows for display, number of columns for display, number of queries, number of keys)."
+"43bf93dcc9f7b04c197c7be4aa77acbada94cba221805c3c6090539f2fde2ac9","d2lce_776fd3328d5e31aeebe484ec","d2lce_776fd3328d5e31aeebe484ec","ctx_a91d32742b0c4bd9260a1334","primary","d2l_attention_mechanisms_attention_cues_b015","d2l_attention_mechanisms","sentence_51f0ad7dd12913eb59a39972","PRIMARY","C3","C1","SAME_SENSE","keys","a271eab92195cab05498787c0ae5102830efc8c3e485b8c21ef7d36edbdeb983","b5760a511aa4b24f0033630cf8b49f3922e047e771d1b68a66780fe934752a60","![Attention mechanisms bias selection over values (sensory inputs) via attention pooling, which incorporates queries (volitional cues) and keys (nonvolitional cues).](../img/qkv.svg)
+:label:`fig_qkv`"
+"43bf93dcc9f7b04c197c7be4aa77acbada94cba221805c3c6090539f2fde2ac9","d2lce_776fd3328d5e31aeebe484ec","d2lce_776fd3328d5e31aeebe484ec","ctx_cac33728aec4217e211eb0da","primary;definition","d2l_attention_mechanisms_attention_cues_b018","d2l_attention_mechanisms","sentence_5171914ec0223429c8fc28f8","PRIMARY","C4","C1","SAME_SENSE","keys","3f189fdcc8b00611891cda6d89e6e3795c5666bdb3da9e1f39db78887c04df51","6e274aaf0cbd665ea51d6e5548c635f27f0befe07853f72d0514fb1abb0ded83","In practice,
+attention pooling aggregates values using weighted average, where weights are computed between the given query and different keys."
+"0daa1b2db66b6d27003b08b3aad945da2b24a7790f999cd68024aefd33aadc1a","d2lce_ccf7d0a5109d86ee76a75b9c","d2lce_ccf7d0a5109d86ee76a75b9c","ctx_017659fee16b4b1352f9f1b5","primary","d2l_convolutional_neural_networks_why_conv_b039","d2l_convolutional_neural_networks","sentence_5cd498b77e4773058cec9c99","PRIMARY","C4","C3","SAME_SENSE","multiple channels","dbb149e6e4b5dbe64ec5dfb58d42f29c13b9e73d9aeac770d59c29f47e9ba2b6","93a9b23aea56652ebbe6f8ae8d3999de879a577084893f3dee890eb8d27e7796","To support multiple channels in both inputs ($\mathsf{X}$) and hidden representations ($\mathsf{H}$),
+we can add a fourth coordinate to $\mathsf{V}$: $[\mathsf{V}]_{a, b, c, d}$."
+"0daa1b2db66b6d27003b08b3aad945da2b24a7790f999cd68024aefd33aadc1a","d2lce_ccf7d0a5109d86ee76a75b9c","d2lce_ccf7d0a5109d86ee76a75b9c","ctx_3972c87ed9f0cc305dbef415","primary;definition;part_of_speech","d2l_convolutional_neural_networks_channels_b005","d2l_convolutional_neural_networks","sentence_d0e3e7a4e3d16a4ce2e845e8","PRIMARY","C3","C3","SAME_SENSE","multiple channels","97fec598084a82fd7a88d3787a0c5f096effd73ab989ac9efb3766e6b1f30c85","503fb012959da8c0a6b76f92879deed8537839c0cd062d9c2c9659013109e4c5","When the input data contain multiple channels,
+we need to construct a convolution kernel
+with the same number of input channels as the input data,
+so that it can perform cross-correlation with the input data."
+"0daa1b2db66b6d27003b08b3aad945da2b24a7790f999cd68024aefd33aadc1a","d2lce_ccf7d0a5109d86ee76a75b9c","d2lce_ccf7d0a5109d86ee76a75b9c","ctx_3ca9380a219c00402d68c678","primary;part_of_speech","d2l_natural_language_processing_applications_sentiment_analysis_cnn_b015","d2l_natural_language_processing_applications","sentence_3c394edc4ba7c1cb1494e805","PRIMARY","C5","C3","SAME_SENSE","multiple channels","9f32e35824d0414f982c7e03dcc11ad820bb6f8a816106c8a3148bcf8f579304","0d23af19abae3e8301ae77f70a18376053476b192984febcd67580a9faddd2b5","For any
+one-dimensional input with multiple channels,
+the convolution kernel
+needs to have the same number of input channels."
+"0daa1b2db66b6d27003b08b3aad945da2b24a7790f999cd68024aefd33aadc1a","d2lce_ccf7d0a5109d86ee76a75b9c","d2lce_ccf7d0a5109d86ee76a75b9c","ctx_516a4df8d34c7a0c4415302b","primary;definition","d2l_convolutional_neural_networks_why_conv_b041","d2l_convolutional_neural_networks","sentence_57f2398d4946c29ecd8c3a58","PRIMARY","C1","C1","SAME_SENSE","multiple channels","31d017163384910f6463c79b70e5ec004f074b0e514097b8723d65b7ef7f290f","8be839e0754c6883185b3e3003b93d3afe2b65cca833283011d15848ac694f3e","Being more general,
+:eqref:`eq_conv-layer-channels` is
+the definition of a convolutional layer for multiple channels, where $\mathsf{V}$ is a kernel or filter of the layer."
+"0daa1b2db66b6d27003b08b3aad945da2b24a7790f999cd68024aefd33aadc1a","d2lce_ccf7d0a5109d86ee76a75b9c","d2lce_ccf7d0a5109d86ee76a75b9c","ctx_54f8c3cb816277ace430df97","backup;part_of_speech","d2l_convolutional_neural_networks_index_b005","d2l_convolutional_neural_networks","sentence_27f3e0ec9d14cbd6108f4db0","BACKUP","B2","C2","SAME_SENSE","multiple channels","797545d4829d49809c4ef85ee3d9c7449e00ed9ce8b949f0b99dbcb71e1abd60","802bf37ab3e509cd61f00e3c54cdb2c5f85c2d5f8855084e502845be21aa0a8c","These include the convolutional layers themselves,
+nitty-gritty details including padding and stride,
+the pooling layers used to aggregate information
+across adjacent spatial regions,
+the use of multiple channels  at each layer,
+and a careful discussion of the structure of modern architectures."
+"0daa1b2db66b6d27003b08b3aad945da2b24a7790f999cd68024aefd33aadc1a","d2lce_ccf7d0a5109d86ee76a75b9c","d2lce_ccf7d0a5109d86ee76a75b9c","ctx_7a827358f51118bb50e2b2a8","primary;definition","d2l_convolutional_neural_networks_channels_b002","d2l_convolutional_neural_networks","sentence_91b5f8bd289018160e44e66d","PRIMARY","C2","C2","SAME_SENSE","multiple channels","9e9886f279a4497375374a55f1782f356011209da08ab22b43b25a0d1ec18c25","33e400ad7193f1848c742ab9ce7b011f6d8d44631fbcee309164d962f0d4af9e","While we have described the multiple channels
+that comprise each image (e.g., color images have the standard RGB channels
+to indicate the amount of red, green and blue) and convolutional layers for multiple channels in :numref:`subsec_why-conv-channels`,
+until now, we simplified all of our numerical examples
+by working with just a single input and a single output channel."
+"0daa1b2db66b6d27003b08b3aad945da2b24a7790f999cd68024aefd33aadc1a","d2lce_ccf7d0a5109d86ee76a75b9c","d2lce_ccf7d0a5109d86ee76a75b9c","ctx_7c6a965613332587c6fca111","backup","d2l_computer_vision_transposed_conv_b017","d2l_computer_vision","sentence_a0998ace497a7cd7b9a2737e","BACKUP","B1","C2","SAME_SENSE","Multiple Channels","058459f5c07a7ddc15c0171926a5a55d1df61fd79c137e87874dd2592891fdfc","dc3af1cda2332277f149b4e2520575765839a31fe226ecdea294abc3b9742bce","## [**Padding, Strides, and Multiple Channels**]"
+"0daa1b2db66b6d27003b08b3aad945da2b24a7790f999cd68024aefd33aadc1a","d2lce_ccf7d0a5109d86ee76a75b9c","d2lce_ccf7d0a5109d86ee76a75b9c","ctx_ba2a299168416499932ae161","contrastive","d2l_computational_performance_hardware_b012","d2l_computational_performance","sentence_f550204cc50dc417135582aa","CONTRASTIVE","X1","C4","CONTRASTIVE","multiple channels","019f668b09d2996e0bb94a30756658487232b4b44b5d5cb26b25e7f17bf1fb0a","702e5f6cbf098db7baae2cbd0a87f5c985426445df670ca0e03beefacf92015e","Typically pairs of memory modules are used to allow for multiple channels."
+"5b164671267317ffcbaab93f09f6c773b780eaac404fcabe1158912d2ef464f4","d2lce_dbb300a90e4b0f8b815b5e12","d2lce_dbb300a90e4b0f8b815b5e12","ctx_22622fdadf6bcfc02e71f0bc","primary;part_of_speech","d2l_natural_language_processing_applications_natural_language_inference_and_dataset_b011","d2l_natural_language_processing_applications","sentence_0383ee77a42af2db46a839f6","PRIMARY","C3","C2","SAME_SENSE","Hypothesis","879b8ea3f6009a40f88d79a0d442337ef573ba917aa6ae0ee51a0cdfa7a94a12","699fec25d01adae4281b6b8d0e5b713f6fb3088f4bffee5c9ca6e44f606408e2","> Hypothesis: The man is sleeping."
+"5b164671267317ffcbaab93f09f6c773b780eaac404fcabe1158912d2ef464f4","d2lce_dbb300a90e4b0f8b815b5e12","d2lce_dbb300a90e4b0f8b815b5e12","ctx_368170831130d1827fe9f440","primary;part_of_speech","d2l_natural_language_processing_applications_natural_language_inference_and_dataset_b008","d2l_natural_language_processing_applications","sentence_53f83f8ae9a24adc94d4bb05","PRIMARY","C4","C2","SAME_SENSE","Hypothesis","f45807d9668a4d43baae7e880edcc9d191b12120cef853174fad1698bb92bbb0","a75e708049ec86f06f312b2bc169bffbbe48c82e6e6991fbabb47997d48436d2","> Hypothesis: Two women are showing affection."
+"5b164671267317ffcbaab93f09f6c773b780eaac404fcabe1158912d2ef464f4","d2lce_dbb300a90e4b0f8b815b5e12","d2lce_dbb300a90e4b0f8b815b5e12","ctx_39675d05889cacc1f1ffdf06","primary;definition","d2l_natural_language_processing_applications_natural_language_inference_and_dataset_b005","d2l_natural_language_processing_applications","sentence_a151910f5f4bc31abf6d3612","PRIMARY","C5","C2","SAME_SENSE","hypothesis","0a00c76734ed86d2fbc1d2bb932efdb2814603a8a4dc4d7dc32d312c12418d3a","a63dbb6abe67c7337aaaf25ce0e76707d52ce54c3c54010558ee9a37dfc2d810","* *Contradiction*: the negation of the hypothesis can be inferred from the premise."
+"5b164671267317ffcbaab93f09f6c773b780eaac404fcabe1158912d2ef464f4","d2lce_dbb300a90e4b0f8b815b5e12","d2lce_dbb300a90e4b0f8b815b5e12","ctx_48e44a2af0f53ee5fa7c2a13","backup;definition","d2l_natural_language_processing_applications_natural_language_inference_and_dataset_b005","d2l_natural_language_processing_applications","sentence_dbe9e5325c5e82620bce9224","BACKUP","B1","C2","SAME_SENSE","hypothesis","e54b2366296c8382d94bd161eec82d12f1da7c595c67ad729050c5fecc0a6cb0","eeb80c86f8ea10b13c49f7f9fa11a1c6f9bc68b0643c69a633f35f85f68cf45a","* *Entailment*: the hypothesis can be inferred from the premise."
+"5b164671267317ffcbaab93f09f6c773b780eaac404fcabe1158912d2ef464f4","d2lce_dbb300a90e4b0f8b815b5e12","d2lce_dbb300a90e4b0f8b815b5e12","ctx_5834bda7132436c8ef52cebd","backup","d2l_natural_language_processing_applications_natural_language_inference_and_dataset_b006","d2l_natural_language_processing_applications","sentence_de3c6f83198b791596ac5d76","BACKUP","B2","C2","SAME_SENSE","hypothesis","2ab2c075e4d8e87709575b22a589a747a8495771c13cf1141b95c8bbc009651a","f5afb5d4c9dc8b235b67ac72faab188ebb5b31539ab35ddebbf97ae2ad4341ee","For example, the following pair will be labeled as *entailment* because ""showing affection"" in the hypothesis can be inferred from ""hugging one another"" in the premise."
+"5b164671267317ffcbaab93f09f6c773b780eaac404fcabe1158912d2ef464f4","d2lce_dbb300a90e4b0f8b815b5e12","d2lce_dbb300a90e4b0f8b815b5e12","ctx_73c90581e009fa46017ce4ac","primary;definition;part_of_speech","d2l_natural_language_processing_applications_natural_language_inference_and_dataset_b004","d2l_natural_language_processing_applications","sentence_15631fecd9d5bbc41e58f09f","PRIMARY","C1","C1","SAME_SENSE","hypothesis","8c810c92401599bc914fd6718442c9a9b9ed4b7a5c603c43cae1f01aa4e0e4ae","24a764b2bc1e96061f45d1beea019bf67b6fc51b6ad87db7f2d944700d603ce0","*Natural language inference* studies whether a *hypothesis*
+can be inferred from a *premise*, where both are a text sequence."
+"5b164671267317ffcbaab93f09f6c773b780eaac404fcabe1158912d2ef464f4","d2lce_dbb300a90e4b0f8b815b5e12","d2lce_dbb300a90e4b0f8b815b5e12","ctx_a40d24f872fa062513992a23","primary","d2l_natural_language_processing_applications_natural_language_inference_and_dataset_b014","d2l_natural_language_processing_applications","sentence_dadb033ae4de0fa13717a8c1","PRIMARY","C2","C2","SAME_SENSE","Hypothesis","e58906e6becb4203945492d7d1aff4d88c30e983f4650e6025ff5aaf075545a9","7177bf644d2f624c21d6e73a1a81e849af91767c32b9238ce085da9af7f1dc4e","> Hypothesis: The musicians are famous."
+"5b164671267317ffcbaab93f09f6c773b780eaac404fcabe1158912d2ef464f4","d2lce_dbb300a90e4b0f8b815b5e12","d2lce_dbb300a90e4b0f8b815b5e12","ctx_d6d0b1ea059aae00cde5e9fc","contrastive","d2l_appendix_mathematics_for_deep_learning_index_b009","d2l_appendix_mathematics_for_deep_learning","sentence_e9917252e155b0954d165f7a","CONTRASTIVE","X1","C3","CONTRASTIVE","hypothesis","770a37cf5300410cb393f466286d28aa9f1420d2bb9b75266fbd13f1a075aca5","6e95628334e56f5105c67a072847005e22b62636cc8d46ad01777510ee440609","While statistics is far too large a field to do justice in a short section, we will introduce fundamental concepts that all machine learning practitioners should be aware of, in particular: evaluating and comparing estimators, conducting hypothesis tests, and constructing confidence intervals."

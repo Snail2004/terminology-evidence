@@ -1,0 +1,15 @@
+{
+  "schema_id": "D2LCSTStageAValidationReportV1_4",
+  "schema_version": "1.4.0",
+  "status": "PASS",
+  "mode": "PARTIAL_OR_TEMPLATE",
+  "row_count": 5,
+  "resolution_counts": {
+    "AGREEMENT": 0,
+    "MAJORITY": 0,
+    "ADJUDICATED": 0,
+    "PENDING": 5
+  },
+  "error_count": 0,
+  "errors": []
+}

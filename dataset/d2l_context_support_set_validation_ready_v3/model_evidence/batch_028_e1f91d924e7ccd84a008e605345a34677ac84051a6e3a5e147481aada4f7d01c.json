@@ -1,0 +1,508 @@
+{
+  "audit": {
+    "batch_index": 28,
+    "from_cache": false,
+    "latency_ms": 68413,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "124ea7ae3deb3728835c4ec2fe1acebd5ca747219bc5fa692f5b8a17a6531e2b",
+    "response_sha256": "7212db3d4379ece17c5833d1caa80f3d98a7c63dc286523a7a267293e0d9edff",
+    "usage": {
+      "input_tokens": 5758,
+      "output_tokens": 3657,
+      "reasoning_tokens": null,
+      "total_tokens": 9415
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "e1f91d924e7ccd84a008e605345a34677ac84051a6e3a5e147481aada4f7d01c",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "general mathematical term used across contexts, distinct from matrix-specific phrasing",
+            "target_vi": "phép nghịch đảo"
+          },
+          {
+            "formation_reason": "adjectival/noun use for opposite operation or reciprocal-like notion",
+            "target_vi": "đảo ngược"
+          },
+          {
+            "formation_reason": "compact technical rendering for inverse in math/transform contexts",
+            "target_vi": "hàm ngược"
+          },
+          {
+            "formation_reason": "broad math/technical shorthand, plausible but weaker across all contexts",
+            "target_vi": "đảo"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_b25612872c99360702920048",
+            "context_type": "C1",
+            "reason_code": "explicit notation for X^{-1} as matrix inverse",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.8,
+            "context_id": "ctx_75eb945ba12ad0637aee80b1",
+            "context_type": "C2",
+            "reason_code": "general opposite-direction relation, not matrix-specific",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.74,
+            "context_id": "ctx_a3264cf3bd2a35a74a627146",
+            "context_type": "C2",
+            "reason_code": "inverse used adjectivally in inverse norm",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.85,
+            "context_id": "ctx_9860b0e4dbe6809813dc296b",
+            "context_type": "C2",
+            "reason_code": "inverse square root means reciprocal square root",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.88,
+            "context_id": "ctx_8cf7fef52d9596f550b824ee",
+            "context_type": "C2",
+            "reason_code": "inverse transformation/offset operation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_f3b8e197930d717e638aae95",
+            "context_type": "C2",
+            "reason_code": "general inverse operation that undoes a mapping",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_47dd346896be4b4baac91c16",
+            "context_type": "C1",
+            "reason_code": "explicit inverse matrix term",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_5c43b025af57aef403bb8489",
+            "context_type": "C2",
+            "reason_code": "inverse as recover/undoing quantity in linear algebra discussion",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.87,
+        "definition_en": "an operation, quantity, or object that reverses another; in linear algebra, especially a matrix that undoes multiplication",
+        "definition_evidence_context_ids": [
+          "ctx_b25612872c99360702920048",
+          "ctx_f3b8e197930d717e638aae95",
+          "ctx_47dd346896be4b4baac91c16"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.84,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_47dd346896be4b4baac91c16",
+          "ctx_5c43b025af57aef403bb8489"
+        ],
+        "sense_id": "d2lce_98211ac6b2c27c6359ce6dae",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "synthetic: a grammatical inversion in word order rather than a mathematical or reversing operation",
+          "rationale": "all supplied contexts stay within a technical reversing/undoing sense family; no genuine separate sense is attested",
+          "source_text": "Synthetic: In the sentence, the inverse word order sounds poetic."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "full expanded technical term matching acronym meaning",
+            "target_vi": "ổ đĩa thể rắn"
+          },
+          {
+            "formation_reason": "common Vietnamese borrowing for the device class",
+            "target_vi": "ổ cứng thể rắn"
+          },
+          {
+            "formation_reason": "concise acronym-preserving plural-compatible rendering",
+            "target_vi": "các ổ SSD"
+          },
+          {
+            "formation_reason": "more formal hardware term, plausible though less common",
+            "target_vi": "thiết bị lưu trữ thể rắn"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_571553d886295f4729859f52",
+            "context_type": "C1",
+            "reason_code": "explicitly defines SSDs as solid state drives",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_aeabd68e0656c4863b7b2e43",
+            "context_type": "C2",
+            "reason_code": "continues reference to the same storage devices",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_f9902516e49104afd3afe24a",
+            "context_type": "C2",
+            "reason_code": "performance comparison of SSDs vs HDDs",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_3f1cc59dfa423c8dcd335761",
+            "context_type": "C2",
+            "reason_code": "storage-block behavior of SSDs",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_705c90ebb1cd32c03359a437",
+            "context_type": "C2",
+            "reason_code": "wear characteristics of SSD memory cells",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_bfd113ac65a2d763da1c337d",
+            "context_type": "C2",
+            "reason_code": "write-speed behavior for SSD variants",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_cd56410dc228003d2dde79bc",
+            "context_type": "C2",
+            "reason_code": "system attachment of SSDs to PCIe bus",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_f6224c38623494a8a418203b",
+            "context_type": "C2",
+            "reason_code": "recommended usage constraints for SSDs",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "solid state drives; persistent storage devices based on flash memory",
+        "definition_evidence_context_ids": [
+          "ctx_571553d886295f4729859f52"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_571553d886295f4729859f52",
+          "ctx_f9902516e49104afd3afe24a"
+        ],
+        "sense_id": "d2lce_355f5686f2178281893eb6cb",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "synthetic: an unrelated abbreviation not meaning solid state drives",
+          "rationale": "all supplied contexts consistently use the hardware storage acronym only",
+          "source_text": "Synthetic: In a different document, SSDs could name a software subsystem, not storage drives."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "common singular technical equivalent distinct from recorded forms",
+            "target_vi": "lớp chập"
+          },
+          {
+            "formation_reason": "emphasizes operation-based nature of the neural network layer",
+            "target_vi": "lớp tích lũy chập"
+          },
+          {
+            "formation_reason": "more explicit but still plausible technical paraphrase",
+            "target_vi": "lớp thực hiện phép tích chập"
+          },
+          {
+            "formation_reason": "acronym-preserving Vietnamese technical usage, weaker but plausible",
+            "target_vi": "lớp convolution"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_1c4e159780d719c00ce3022e",
+            "context_type": "C2",
+            "reason_code": "plural mention of convolutional layers in CNN overview",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_3a83fa91846a046a5913f179",
+            "context_type": "C2",
+            "reason_code": "plural reference to calculating convolutional layers",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_3a787d4bd1c1d0430072fda6",
+            "context_type": "C1",
+            "reason_code": "explicit singular convolutional layer",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_bf6f31236287c027cde6c33f",
+            "context_type": "C1",
+            "reason_code": "explicit singular convolutional layer in CNN behavior",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_63c1cf674ecc0c73541e5bad",
+            "context_type": "C2",
+            "reason_code": "plural recurrent layers replaced with convolutional layers",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_122d659e4bf66f4b335db6fb",
+            "context_type": "C1",
+            "reason_code": "explicit horizontal and vertical convolutional layer",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_807d458f1292afa6921eb40d",
+            "context_type": "C3",
+            "reason_code": "uses convolution layer rather than convolutional layer but same architectural object",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_5e631862394a07c36c8b145d",
+            "context_type": "C1",
+            "reason_code": "direct statement that an equation is a convolutional layer",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "a neural network layer that applies convolution filters to its input",
+        "definition_evidence_context_ids": [
+          "ctx_3a787d4bd1c1d0430072fda6",
+          "ctx_122d659e4bf66f4b335db6fb",
+          "ctx_5e631862394a07c36c8b145d"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_3a787d4bd1c1d0430072fda6",
+          "ctx_5e631862394a07c36c8b145d"
+        ],
+        "sense_id": "d2lce_d2bfc7b3a0a02ddfd71b3526",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "synthetic: a geological layer formed by compressed sediment rather than a neural-network component",
+          "rationale": "all supplied contexts are the machine-learning architectural sense only",
+          "source_text": "Synthetic: This convolutional layer of rock was formed over millions of years."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "standard computing hardware translation distinct from recorded mixed forms",
+            "target_vi": "bus dữ liệu"
+          },
+          {
+            "formation_reason": "widely used Vietnamese hardware term",
+            "target_vi": "đường truyền"
+          },
+          {
+            "formation_reason": "more formal system-architecture rendering",
+            "target_vi": "kênh bus"
+          },
+          {
+            "formation_reason": "broader interconnect phrasing, plausible in these hardware contexts",
+            "target_vi": "đường bus"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_9c7cb530892c541864a886a0",
+            "context_type": "C2",
+            "reason_code": "memory buses in GPU/CPU hardware bandwidth discussion",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_7349ee9d9b4a8278ad2c5a30",
+            "context_type": "C1",
+            "reason_code": "explicit PCI-Express bus bandwidth",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.0,
+            "context_id": "ctx_bcb592e349656cc3e190002c",
+            "context_type": "NONE",
+            "reason_code": "contains class label bus as an object category, not hardware interconnect sense",
+            "sense_relation": "INVALID"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_e19d49bc2dd4e4708089da67",
+            "context_type": "C2",
+            "reason_code": "memory buses on graphics memory hardware",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_78a920407a1e59b211a91a2e",
+            "context_type": "C1",
+            "reason_code": "explicit bus between CPU and GPUs as hardware resource",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_b44942e2470ad6fe760cd183",
+            "context_type": "C1",
+            "reason_code": "explicit PCIe bus for storage connection",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_e8008e6c726f8c456dd13670",
+            "context_type": "C1",
+            "reason_code": "explicit expansion bus PCIe",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_31d9d345d8772a7d7d3b2609",
+            "context_type": "C1",
+            "reason_code": "explicit PCIe bus connecting components to CPU",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "a hardware communication channel that connects computer components and carries data between them",
+        "definition_evidence_context_ids": [
+          "ctx_7349ee9d9b4a8278ad2c5a30",
+          "ctx_e8008e6c726f8c456dd13670",
+          "ctx_31d9d345d8772a7d7d3b2609"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_7349ee9d9b4a8278ad2c5a30",
+          "ctx_31d9d345d8772a7d7d3b2609"
+        ],
+        "sense_id": "d2lce_0e100796a86968fbdb5730e8",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a road vehicle used to transport passengers",
+          "rationale": "one supplied context is an invalid object-class occurrence of bus, contrasting with the hardware interconnect sense",
+          "source_text": "The bus stopped in front of the station."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "general software-architecture counterpart to backend",
+            "target_vi": "giao diện người dùng"
+          },
+          {
+            "formation_reason": "common borrowed technical term in Vietnamese",
+            "target_vi": "frontend"
+          },
+          {
+            "formation_reason": "more explicit system-facing paraphrase",
+            "target_vi": "lớp giao tiếp phía trước"
+          },
+          {
+            "formation_reason": "emphasizes language/API side facing users",
+            "target_vi": "phần giao tiếp với người dùng"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_33c4a5d0c030d071cbc4dffd",
+            "context_type": "C1",
+            "reason_code": "frontend contrasted with backend returning control to Python",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_b19abb42c07be4849d43a0c0",
+            "context_type": "C1",
+            "reason_code": "same frontend/backend framework architecture in PyTorch",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_0dd3e0d0f7d3391d566ae6d8",
+            "context_type": "C2",
+            "reason_code": "operations issued by frontend language",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_358982713ee189170b08992f",
+            "context_type": "C2",
+            "reason_code": "frontend languages users write programs in",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_a2db8ce33d67077666585b97",
+            "context_type": "C1",
+            "reason_code": "explicit definition of frontend for direct user interactions",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_eda09302351a178011612455",
+            "context_type": "C2",
+            "reason_code": "contrasts frontend programming language with backend execution",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_5e61307935b8e7d87220e6f3",
+            "context_type": "C1",
+            "reason_code": "explicit definition in PyTorch context",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_c97c57c246feef065fb19e6c",
+            "context_type": "C2",
+            "reason_code": "frontend languages for PyTorch",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "the user-facing part of a software framework or the language interface through which users issue operations",
+        "definition_evidence_context_ids": [
+          "ctx_a2db8ce33d67077666585b97",
+          "ctx_5e61307935b8e7d87220e6f3",
+          "ctx_0dd3e0d0f7d3391d566ae6d8"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_a2db8ce33d67077666585b97",
+          "ctx_5e61307935b8e7d87220e6f3"
+        ],
+        "sense_id": "d2lce_24988c975f984ef488776c0b",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "synthetic: the visible facade of a building rather than a software interface layer",
+          "rationale": "all supplied contexts use the software architecture sense only",
+          "source_text": "Synthetic: The frontend of the building was renovated last year."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

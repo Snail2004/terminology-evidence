@@ -1,0 +1,520 @@
+{
+  "audit": {
+    "batch_index": 16,
+    "from_cache": false,
+    "latency_ms": 71218,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "2e6c9ee4f51618e057d0b4210f25c1c01fd6bf1943f074873c9e7120d747ef1b",
+    "response_sha256": "8cdc6970f8ffc53abced3cdbb738d1b9a13852a9e5226a1e0f05360542770f69",
+    "usage": {
+      "input_tokens": 5158,
+      "output_tokens": 3766,
+      "reasoning_tokens": null,
+      "total_tokens": 8924
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "d22e83f3dbe606eb3d6ee80b3c3c51eeedcf18d141a102a781f812e048eeba05",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "semantic_calque",
+            "target_vi": "mô hình gram bỏ qua"
+          },
+          {
+            "formation_reason": "sense_based_paraphrase",
+            "target_vi": "mô hình dự đoán ngữ cảnh từ từ trung tâm"
+          },
+          {
+            "formation_reason": "orthographic_variant",
+            "target_vi": "mô hình Skip Gram"
+          },
+          {
+            "formation_reason": "domain_specific_paraphrase",
+            "target_vi": "mô hình nhúng từ Skip-Gram"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_408899a3fd525147fbd6f4e6",
+            "context_type": "C1",
+            "reason_code": "section_header_naming_term",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_7ab8e2d37def67d0148f52d5",
+            "context_type": "C2",
+            "reason_code": "explicit_function_description",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_bfaedeed2ce02517e3497cb8",
+            "context_type": "C2",
+            "reason_code": "figure_caption_defines_mechanism",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_08609f360a045dec1b2c96f2",
+            "context_type": "C3",
+            "reason_code": "architectural_property",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_9afa421e80e79b49583f6bb8",
+            "context_type": "C2",
+            "reason_code": "likelihood_objective_description",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_35d82b9dff7df8ff9a2c49cd",
+            "context_type": "C3",
+            "reason_code": "parameter_description",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_67062c99a9f339aaec98d9aa",
+            "context_type": "C4",
+            "reason_code": "application_usage_of_model_outputs",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_0cbd6b544c567ce5e0d6a15e",
+            "context_type": "C5",
+            "reason_code": "contrast_with_cbow",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "A word embedding model that predicts surrounding context words from a center word.",
+        "definition_evidence_context_ids": [
+          "ctx_7ab8e2d37def67d0148f52d5",
+          "ctx_bfaedeed2ce02517e3497cb8",
+          "ctx_9afa421e80e79b49583f6bb8",
+          "ctx_0cbd6b544c567ce5e0d6a15e"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_408899a3fd525147fbd6f4e6",
+          "ctx_08609f360a045dec1b2c96f2",
+          "ctx_35d82b9dff7df8ff9a2c49cd"
+        ],
+        "sense_id": "d2lce_9cee0f2f668259a2568b89f4",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A non-NLP interpretation involving skipped printed letter groups rather than predicting context words from a center word.",
+          "rationale": "No supplied context shows a genuine different sense; synthetic boundary added.",
+          "source_text": "Synthetic: In typography, a skip-gram model could be misread as a layout pattern that skips printed letter groups, not a word embedding model."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "field_explicit_paraphrase",
+            "target_vi": "ngành xử lý ngôn ngữ tự nhiên"
+          },
+          {
+            "formation_reason": "field_label_variant",
+            "target_vi": "lĩnh vực xử lý ngôn ngữ tự nhiên"
+          },
+          {
+            "formation_reason": "application_oriented_variant",
+            "target_vi": "công nghệ xử lý ngôn ngữ tự nhiên"
+          },
+          {
+            "formation_reason": "near_synonymous_domain_variant",
+            "target_vi": "xử lý ngữ liệu ngôn ngữ tự nhiên"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_db7608ae418801ae81a4cf5c",
+            "context_type": "C2",
+            "reason_code": "field_listing_application_area",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_21a455b6628cf522b79a5f32",
+            "context_type": "C2",
+            "reason_code": "field_named_as_innovation_area",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_f89df5c093f024523f393168",
+            "context_type": "C2",
+            "reason_code": "domain_reference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_4606fac8f850444f6ad9ec05",
+            "context_type": "C3",
+            "reason_code": "subfield_relation_language_models",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_e596c2db961d7da1d125a384",
+            "context_type": "C3",
+            "reason_code": "subfield_relation_language_models",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_7ce4cad6244e99bb3c578b48",
+            "context_type": "C4",
+            "reason_code": "task_domain_context",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_3a53b83e0b10536984dc1341",
+            "context_type": "C1",
+            "reason_code": "chapter_title_naming_field",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_957202f18613badf579e7070",
+            "context_type": "C1",
+            "reason_code": "chapter_title_naming_field",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "The field of methods for enabling computers to process and work with human language.",
+        "definition_evidence_context_ids": [
+          "ctx_db7608ae418801ae81a4cf5c",
+          "ctx_21a455b6628cf522b79a5f32",
+          "ctx_4606fac8f850444f6ad9ec05",
+          "ctx_957202f18613badf579e7070"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_db7608ae418801ae81a4cf5c",
+          "ctx_3a53b83e0b10536984dc1341",
+          "ctx_957202f18613badf579e7070"
+        ],
+        "sense_id": "d2lce_609638f74bc5b32d32469bbc",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "Informal improvement of ordinary language use rather than the computational field.",
+          "rationale": "No supplied context shows a genuine different sense; synthetic boundary added.",
+          "source_text": "Synthetic: The phrase natural language processing here refers to a computing field, not to a person informally polishing everyday speech."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "common_variant",
+            "target_vi": "hàm hoạt hóa"
+          },
+          {
+            "formation_reason": "property_explicit_paraphrase",
+            "target_vi": "hàm kích hoạt phi tuyến"
+          },
+          {
+            "formation_reason": "less_common_technical_variant",
+            "target_vi": "hàm tác hoạt"
+          },
+          {
+            "formation_reason": "sense_based_paraphrase",
+            "target_vi": "hàm biến đổi kích hoạt"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_42efd998d80ced9a64e32ec8",
+            "context_type": "C2",
+            "reason_code": "explicit_definition_with_role",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_5f040cdbc06a01d2f5cc4d87",
+            "context_type": "C3",
+            "reason_code": "architecture_component_specification",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_6ba311f80c075eceefec2cba",
+            "context_type": "C3",
+            "reason_code": "design_choice_reference_plural",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_6882a07f8f604f30a2c75617",
+            "context_type": "C4",
+            "reason_code": "historical_training_trick_reference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_733d98a23bc0d5e7b59bd272",
+            "context_type": "C2",
+            "reason_code": "symbolic_definition_of_function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_12cee07dbdee67f6be90da20",
+            "context_type": "C3",
+            "reason_code": "specific_instance_sigmoid",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_34ee6d32a2ff535ee2d88bde",
+            "context_type": "C3",
+            "reason_code": "specific_instance_tanh",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_2970e39beda737feef2164c9",
+            "context_type": "C4",
+            "reason_code": "historical_reference_relu",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "A function applied in a neural network layer or unit to introduce nonlinear transformation of its output.",
+        "definition_evidence_context_ids": [
+          "ctx_42efd998d80ced9a64e32ec8",
+          "ctx_5f040cdbc06a01d2f5cc4d87",
+          "ctx_733d98a23bc0d5e7b59bd272",
+          "ctx_2970e39beda737feef2164c9"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_42efd998d80ced9a64e32ec8",
+          "ctx_5f040cdbc06a01d2f5cc4d87",
+          "ctx_12cee07dbdee67f6be90da20"
+        ],
+        "sense_id": "d2lce_e0c693366d811581abbb9e74",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "An act of turning on or enabling something rather than a neural-network function.",
+          "rationale": "No supplied context shows a genuine different sense; synthetic boundary added.",
+          "source_text": "Synthetic: In this chapter, activation function means a mathematical mapping in a neural network, not the act of activating a software feature."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "sense_based_paraphrase",
+            "target_vi": "dữ liệu dùng để huấn luyện"
+          },
+          {
+            "formation_reason": "dataset_explicit_variant",
+            "target_vi": "tập dữ liệu huấn luyện"
+          },
+          {
+            "formation_reason": "near_synonymous_training_variant",
+            "target_vi": "dữ liệu đào tạo mô hình"
+          },
+          {
+            "formation_reason": "domain_explicit_paraphrase",
+            "target_vi": "dữ liệu học máy để huấn luyện"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_c5e59f5a1a3a5b62dda17291",
+            "context_type": "C4",
+            "reason_code": "dataset_bias_reference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_ab61947a37276da02a409618",
+            "context_type": "C2",
+            "reason_code": "explicit_exclusion_from_training_set",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_464f6dce8ce133a02dd86a13",
+            "context_type": "C2",
+            "reason_code": "overfitting_defined_against_training_data",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_305668478b1cbfbf4e284ab4",
+            "context_type": "C3",
+            "reason_code": "model_fit_reference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_e3bd3e8dcc83a702caf288d2",
+            "context_type": "C3",
+            "reason_code": "generation_of_training_examples",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_5a59e7c2b380f093af715db7",
+            "context_type": "C3",
+            "reason_code": "increase_amount_of_training_data",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_b035055ba332f55c6df9256e",
+            "context_type": "C2",
+            "reason_code": "finite_amount_for_learning",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_1ff425af2f5e658c4e18ce61",
+            "context_type": "C5",
+            "reason_code": "systems_transfer_storage_context",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "The data used to fit or train a machine learning model.",
+        "definition_evidence_context_ids": [
+          "ctx_ab61947a37276da02a409618",
+          "ctx_464f6dce8ce133a02dd86a13",
+          "ctx_e3bd3e8dcc83a702caf288d2",
+          "ctx_b035055ba332f55c6df9256e"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_c5e59f5a1a3a5b62dda17291",
+          "ctx_ab61947a37276da02a409618",
+          "ctx_1ff425af2f5e658c4e18ce61"
+        ],
+        "sense_id": "d2lce_d30763678be8999b747cf0ee",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "Information used in employee training rather than machine learning model fitting.",
+          "rationale": "No supplied context shows a genuine different sense; synthetic boundary added.",
+          "source_text": "Synthetic: Here, training data means examples used to fit a model, not data for training human staff."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "close_synonym",
+            "target_vi": "khả năng tổng quát hóa"
+          },
+          {
+            "formation_reason": "property_noun_variant",
+            "target_vi": "tính khái quát hóa"
+          },
+          {
+            "formation_reason": "ability_variant",
+            "target_vi": "năng lực khái quát hóa"
+          },
+          {
+            "formation_reason": "sense_based_paraphrase",
+            "target_vi": "khả năng suy rộng ra dữ liệu chưa thấy"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_d988f2e78cbcb34054757424",
+            "context_type": "C2",
+            "reason_code": "explicit_definition_beyond_training_examples",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_cefb047015d9e81a2c90b5bc",
+            "context_type": "C2",
+            "reason_code": "explicit_unseen_data_performance",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_0d5f7d63c599ed1c30109497",
+            "context_type": "C1",
+            "reason_code": "section_header_related_term",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_51719f5f7eab3e50160fe2f8",
+            "context_type": "C3",
+            "reason_code": "ability_to_generalize_reference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_ac57e9818b2139850b558ce7",
+            "context_type": "C3",
+            "reason_code": "generalization_error_reference",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_d3d2588eb63ac28e8bacb42b",
+            "context_type": "C4",
+            "reason_code": "methods_to_improve_generalization",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_1fca5384cb1428f234ec9bab",
+            "context_type": "NONE",
+            "reason_code": "different_mathematical_sense_model_extension",
+            "sense_relation": "INVALID"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_c4f5f815fd20ef39886a1bf0",
+            "context_type": "NONE",
+            "reason_code": "different_mathematical_sense_geometric_extension",
+            "sense_relation": "INVALID"
+          }
+        ],
+        "definition_confidence": 0.93,
+        "definition_en": "A model's ability to perform well on unseen data beyond the examples used for training.",
+        "definition_evidence_context_ids": [
+          "ctx_d988f2e78cbcb34054757424",
+          "ctx_cefb047015d9e81a2c90b5bc",
+          "ctx_51719f5f7eab3e50160fe2f8",
+          "ctx_d3d2588eb63ac28e8bacb42b"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_d988f2e78cbcb34054757424",
+          "ctx_cefb047015d9e81a2c90b5bc",
+          "ctx_d3d2588eb63ac28e8bacb42b"
+        ],
+        "sense_id": "d2lce_22496a6fabe26e046ad5d5ac",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "Extension of a mathematical object to a broader form, not a model's ability to perform well on unseen data.",
+          "rationale": "Supplied contexts include a genuine different sense of generalization as mathematical extension.",
+          "source_text": "A hyperplane is a generalization to higher dimensions of a line or a plane."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

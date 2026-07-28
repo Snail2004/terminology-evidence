@@ -1,0 +1,33 @@
+{
+  "schema_id": "D2LCSTCorpusContrastivePilotV1",
+  "schema_version": "1.0.0",
+  "pilot_policy_id": "d2l_cst_corpus_contrastive_pilot_8_v1",
+  "created_at": "2026-07-28T12:00:00Z",
+  "sense_count": 8,
+  "candidate_count": 24,
+  "context_count": 48,
+  "human_review_complete": false,
+  "files": {
+    "candidate_instances.jsonl": {
+      "ref": "candidate_instances.jsonl",
+      "sha256": "b97cfb91a943286f7c3b260b2465e8a64e0e5d3ef108418ddacb2e212d26e4a5"
+    },
+    "contexts.jsonl": {
+      "ref": "contexts.jsonl",
+      "sha256": "f910beb83c5fab0cb3cfde08c004d2cae6a1d26ce8759da88c03c83c27bf1a74"
+    },
+    "human_review_sheet.csv": {
+      "ref": "human_review_sheet.csv",
+      "sha256": "7d30cda299dd8276b83e0f6549c887cb10a3086d25b3fc31d841bfaa0c89f8a6"
+    },
+    "README.md": {
+      "ref": "README.md",
+      "sha256": "6bf51ad0fce61c244fe44c3f074d256c32f77ae65d0434fce2edc027afdc57da"
+    },
+    "term_senses.jsonl": {
+      "ref": "term_senses.jsonl",
+      "sha256": "c314317f793273037eccdfdb7cc02870b13e1d53af5bb369d28c7baf326781cf"
+    }
+  },
+  "manifest_sha256": "a3dc5b7a1e6751813a14c90bdba892fb056a4ae1d4dda2327a4b4121bc2531ab"
+}

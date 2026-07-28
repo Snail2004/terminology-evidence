@@ -1,0 +1,216 @@
+{
+  "package_id": "TerminologyInterModuleContractsV1",
+  "package_version": "1.0.0",
+  "created_at": "2026-07-28T00:00:00+00:00",
+  "authority": "schemas/*.schema.json",
+  "files": [
+    {
+      "path": "AGENT_RULES.md",
+      "size_bytes": 1581,
+      "sha256": "7a10375c7c6829e01dc0a78f919d62b9d7ef4fe917db7689d953488504c0efdc"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "size_bytes": 241,
+      "sha256": "89889b13897bd9117a78d783d23b705045d0117a00d44e227e29c93b05b2f901"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 2102,
+      "sha256": "d08830a0f08c0503bff2827ce99182135ed43ccb6617642d996123886a0bd8d1"
+    },
+    {
+      "path": "VERSION_MATRIX.md",
+      "size_bytes": 855,
+      "sha256": "b4f2ff88c0bf3ad3a4102d48c2b72a347087e50550cf8b3da7778e6d93a0b97f"
+    },
+    {
+      "path": "docs/INTEGRATION_GUIDE.md",
+      "size_bytes": 1234,
+      "sha256": "60164e7bbcdffd68124320609ada92ddc7bd13c3e2c6115fca1eab122d99046b"
+    },
+    {
+      "path": "examples/invalid/README.md",
+      "size_bytes": 403,
+      "sha256": "4f3b0cb8a4e7f08e8205e5befb06114b34cd83bebeee95af201e2c74c6e9702f"
+    },
+    {
+      "path": "examples/invalid/attested_without_evidence.json",
+      "size_bytes": 2733,
+      "sha256": "6f7a1c7ae89f19aeb6c871b630456244b994a105092747a38dfb7899defc8a4d"
+    },
+    {
+      "path": "examples/invalid/context_bad_counts.json",
+      "size_bytes": 2847,
+      "sha256": "87234006d75454f1a8034b3d84c34527cb299cfd433470a8530d02a5e4ed952f"
+    },
+    {
+      "path": "examples/invalid/dev_policy_auto_approved.json",
+      "size_bytes": 2720,
+      "sha256": "ce9261195d8177d787d6ed90d3e06a6da0eff45c728b466de13e6f95805c409a"
+    },
+    {
+      "path": "examples/invalid/global_input_mismatched_candidate.json",
+      "size_bytes": 6984,
+      "sha256": "6346b41edfa23150b4a9ca96da7a6e3b92bbbcbc4846ef405bab4f0a203bb950"
+    },
+    {
+      "path": "examples/valid/attestation_evidence_package.json",
+      "size_bytes": 2951,
+      "sha256": "1d5ee14c8b4b85f7e1c7d22e5792b4937e435ed1eb1b6687dfe31c3fac66df53"
+    },
+    {
+      "path": "examples/valid/calibration_artifact.json",
+      "size_bytes": 1181,
+      "sha256": "089c9b7ed93c25185019b681be0d392c02b5d73ecf9c61c1578a562d6e405139"
+    },
+    {
+      "path": "examples/valid/context_evidence_package.json",
+      "size_bytes": 2847,
+      "sha256": "6ce6ec906d6d9deedbc6634006dfda8cd65956bdfe005b424a3f0dae197017d6"
+    },
+    {
+      "path": "examples/valid/effective_sense_contract.json",
+      "size_bytes": 1917,
+      "sha256": "5179bd25c9b3c38594a51d4cadc4af54d2434fbec54fb10f1979724cbc32e973"
+    },
+    {
+      "path": "examples/valid/frozen_candidate_contract.json",
+      "size_bytes": 2261,
+      "sha256": "7c3347ddb7ba7361e415e0b95e61e28570b5ddf7c2b69f1a41ea4597e1fa7bdb"
+    },
+    {
+      "path": "examples/valid/gate_result_set.json",
+      "size_bytes": 1119,
+      "sha256": "6e28dd307194d4cbe75258ee87c39ef2512524993caa9dce5b3fc10d2d8601ac"
+    },
+    {
+      "path": "examples/valid/global_decision_package.json",
+      "size_bytes": 2795,
+      "sha256": "6be80cef016080c0b1ad1454b59e7358b2c7577ba00f63f0312c133dc86e9a26"
+    },
+    {
+      "path": "examples/valid/global_validator_input.json",
+      "size_bytes": 6988,
+      "sha256": "f688943392e68f4a7cfd7742cef8dfaa97349712f7d4cf19319dd6a72de4b9a3"
+    },
+    {
+      "path": "examples/valid/tac_occurrence_input.json",
+      "size_bytes": 2448,
+      "sha256": "113c037a5dc1ea765f184a1476942f957c4255229acf9bbfade307833d12fc7b"
+    },
+    {
+      "path": "examples/valid/terminology_certificate.json",
+      "size_bytes": 1818,
+      "sha256": "292ec4409f9b14ee534719710fe2082288321a7022f744822e043fbf385cf667"
+    },
+    {
+      "path": "pyproject.toml",
+      "size_bytes": 465,
+      "sha256": "f8b313dbe2a3fe9a48ac08789b1274aba502541e0521a142d3abf95219d6d425"
+    },
+    {
+      "path": "python/terminology_contracts/__init__.py",
+      "size_bytes": 79,
+      "sha256": "530938398c5088f3fcc0c047e5f695d71920cf74b3810185bf7a701781c67e61"
+    },
+    {
+      "path": "python/terminology_contracts/canonical.py",
+      "size_bytes": 732,
+      "sha256": "654ba667b7b1502e4aea415752cbc61f0b5d5eba7804d936e103274634e72679"
+    },
+    {
+      "path": "python/terminology_contracts/cli.py",
+      "size_bytes": 1825,
+      "sha256": "b74b87c9a1f9a669af4fdb0b1c11b8638a4ff1ca6038416e7eab06a156c34069"
+    },
+    {
+      "path": "python/terminology_contracts/manifest.py",
+      "size_bytes": 646,
+      "sha256": "37bd6c31fc8a72392601e5825a53d3b9efb6d8cca78d95f2ec5b8f7bf6d56e84"
+    },
+    {
+      "path": "python/terminology_contracts/validation.py",
+      "size_bytes": 7998,
+      "sha256": "4968d260e13c7720221812434d4c27775136c3590150a50bc0fe1ea2308cfdd6"
+    },
+    {
+      "path": "requirements-dev.txt",
+      "size_bytes": 33,
+      "sha256": "338e84a2a0490b62354f314f3c1aa4aa11ce783a7eaba02acdd250f8bdb5eecb"
+    },
+    {
+      "path": "schemas/attestation_evidence_package.schema.json",
+      "size_bytes": 4618,
+      "sha256": "27fb830347c2515a6c06641241b3dfafe991a2b4983e7f60a41f65ab4c93f4f6"
+    },
+    {
+      "path": "schemas/calibration_artifact.schema.json",
+      "size_bytes": 2990,
+      "sha256": "f8feff839aa1af337142e976046996db851e03f63447dd0b02ab1f49137deb17"
+    },
+    {
+      "path": "schemas/common_defs.schema.json",
+      "size_bytes": 5940,
+      "sha256": "267c55531d095af7e4b6f3400cb8b6d9cc83e232647ea768573c8028d557b85c"
+    },
+    {
+      "path": "schemas/context_evidence_package.schema.json",
+      "size_bytes": 4278,
+      "sha256": "ecb8a2c455d58074eba8cc7381525376951012c12a4560b0ff8daeffd4b4eb8a"
+    },
+    {
+      "path": "schemas/effective_sense_contract.schema.json",
+      "size_bytes": 2748,
+      "sha256": "56715c0a263e32abc44d09b33969b3fa92531bc44afc596473b62766f6db764c"
+    },
+    {
+      "path": "schemas/frozen_candidate_contract.schema.json",
+      "size_bytes": 2796,
+      "sha256": "176bdc6cc46b04c557876b2a7abe74e1616cf61af5fe650fea3be79a0a4ba86b"
+    },
+    {
+      "path": "schemas/gate_result_set.schema.json",
+      "size_bytes": 2305,
+      "sha256": "3aebc9d884a65d9f287003ef863f5113561337cd9b0e24522ff0c1428216d0e8"
+    },
+    {
+      "path": "schemas/global_decision_package.schema.json",
+      "size_bytes": 3180,
+      "sha256": "0b4a936f0b274255ccb991a06296509bd8d8c830b8999a99a0cde6e5fe8af3df"
+    },
+    {
+      "path": "schemas/global_validator_input.schema.json",
+      "size_bytes": 1201,
+      "sha256": "1aa351436c74ac0b07f3a2efa2cc977a4d94c29610ada913ec0fae6a187395c5"
+    },
+    {
+      "path": "schemas/optional_probe_package.schema.json",
+      "size_bytes": 1522,
+      "sha256": "859fd35452a20b42ebd4dff30c0ff36880013a404de2de148c6c0793d2e46da5"
+    },
+    {
+      "path": "schemas/tac_occurrence_input.schema.json",
+      "size_bytes": 1582,
+      "sha256": "f4a7b8054d8132e87fea6fd8f6b2417af43398b845ede7c0f067a58e55fe5047"
+    },
+    {
+      "path": "schemas/terminology_certificate.schema.json",
+      "size_bytes": 2940,
+      "sha256": "73be7db7541c50eaae1e301f741c54e2d9079c233f3215a654cd7ef02296a9d5"
+    },
+    {
+      "path": "tests/test_contracts.py",
+      "size_bytes": 1480,
+      "sha256": "0da15dd6fae8ac632ab24a3a73fce5a28de29a52847fc7790c9d8bd8df734d5a"
+    },
+    {
+      "path": "tools/validate_all.py",
+      "size_bytes": 526,
+      "sha256": "450aee0d300b3724be83d9399defd0fb225d3f0618fb159dce56ab52c4256c8f"
+    }
+  ],
+  "integrity": {
+    "manifest_sha256": "ec13f04fc4ff8ec3d13f8cab277ba791a40259765f3374466ecbba110423e3f7"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesis.local/terminology-contracts/v1/optional_probe_package.schema.json",
+  "title": "Optional R/Q Probe Package V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "candidate_key",
+    "input_contract_sha256",
+    "probe_type",
+    "status",
+    "features",
+    "flags",
+    "provenance",
+    "final_glossary_decision",
+    "integrity"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "OptionalProbePackageV1"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "candidate_key": {
+      "$ref": "common_defs.schema.json#/$defs/candidateKey"
+    },
+    "input_contract_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "probe_type": {
+      "enum": [
+        "R",
+        "Q"
+      ]
+    },
+    "status": {
+      "enum": [
+        "AVAILABLE",
+        "UNAVAILABLE",
+        "UNJUDGEABLE",
+        "DISABLED"
+      ]
+    },
+    "features": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "common_defs.schema.json#/$defs/score01"
+      }
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "$ref": "common_defs.schema.json#/$defs/flag"
+      }
+    },
+    "provenance": {
+      "$ref": "common_defs.schema.json#/$defs/provenance"
+    },
+    "final_glossary_decision": {
+      "type": "null"
+    },
+    "integrity": {
+      "$ref": "common_defs.schema.json#/$defs/integrity"
+    }
+  }
+}

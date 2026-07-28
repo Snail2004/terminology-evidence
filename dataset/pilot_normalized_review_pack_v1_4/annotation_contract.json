@@ -1,0 +1,66 @@
+{
+  "schema_id": "D2LCSTReviewWorkflowContractV1_4",
+  "schema_version": "1.4.0",
+  "policy_id": "d2l_cst_three_reviewer_human_review_v1_4",
+  "source_pilot_manifest_sha256": "599692d33f9cc162698bc0e8fc0bf60cce1715cb0f34214fec499f14c1364eb5",
+  "workflow": {
+    "stage_a": "DEFINITION_POS_REVIEW",
+    "stage_a_output": "D2LReviewedSenseContractV1",
+    "stage_b": "CONTEXT_CONTRASTIVE_CANDIDATE_REVIEW",
+    "stage_b_requires_stage_a_output": true,
+    "final_output": "D2LPilotHumanAnnotationsV1"
+  },
+  "adjudication_policy": "MAJORITY_2_OF_3_ELSE_ADJUDICATION",
+  "reviewer_policy": {
+    "independent_reviewer_count": 3,
+    "reviewer_ids_must_differ": true,
+    "adjudicator_must_be_distinct_from_reviewers": true,
+    "adjudication_timestamp_after_reviews": true
+  },
+  "stage_a": {
+    "filename": "stage_a/sense_contract_review.csv",
+    "unit_field": "sense_id",
+    "source_fields": [
+      "workflow_policy_id",
+      "annotation_unit",
+      "term_id",
+      "sense_id",
+      "split",
+      "stratum",
+      "source_term",
+      "model_definition_en",
+      "model_definition_confidence",
+      "model_part_of_speech",
+      "model_part_of_speech_confidence",
+      "definition_evidence_context_ids",
+      "part_of_speech_evidence_context_ids",
+      "source_record_sha256"
+    ],
+    "signature_fields": [
+      "definition_status",
+      "effective_definition_en",
+      "part_of_speech_status",
+      "effective_part_of_speech",
+      "scope_note"
+    ],
+    "optional_signature_fields": [
+      "effective_definition_en",
+      "effective_part_of_speech",
+      "scope_note"
+    ],
+    "definition_status_labels": [
+      "ACCEPTED",
+      "CORRECTED",
+      "REJECTED"
+    ],
+    "part_of_speech_status_labels": [
+      "ACCEPTED",
+      "CORRECTED",
+      "UNCERTAIN",
+      "REJECTED"
+    ]
+  },
+  "group_ranking_policy": "RANK_INDEPENDENT_NON_REJECTED_ONLY",
+  "threshold_calibration_allowed": false,
+  "contract_sha256": "2867e16fa6dba2e698f62227239fe57f04101f95879e8ecf4ba5bc7f534ef1f7"
+}

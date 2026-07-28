@@ -1,0 +1,52 @@
+{
+  "schema_id": "D2LContextSupportValidationReportV3",
+  "schema_version": "3.0.0",
+  "dataset_version": "d2l_context_support_set_validation_ready_v3",
+  "status": "VALIDATION_READY_HUMAN_REVIEW_REQUIRED",
+  "verdicts": {
+    "structural_integrity": "PASS",
+    "balance_50_50_50": "PASS",
+    "candidate_completeness": "PASS",
+    "offset_coordinate_contract": "PASS",
+    "sentence_level_split_leakage": "PASS",
+    "exploratory_pilot": "READY_FOR_HUMAN_REVIEW",
+    "official_cst": "BLOCKED",
+    "official_calibration_C_E": "BLOCKED"
+  },
+  "counts": {
+    "term_senses": 150,
+    "candidate_instances": 450,
+    "contexts": 1340,
+    "split_counts": {
+      "validation": 25,
+      "development": 100,
+      "test": 25
+    },
+    "split_stratum_counts": {
+      "development:clear": 34,
+      "development:ambiguous": 33,
+      "development:collision_or_multi_target": 33,
+      "validation:clear": 8,
+      "validation:ambiguous": 9,
+      "validation:collision_or_multi_target": 8,
+      "test:clear": 8,
+      "test:ambiguous": 8,
+      "test:collision_or_multi_target": 9
+    },
+    "sentence_components": 79,
+    "largest_sentence_component": 24,
+    "sentence_cross_split_leaks": 0,
+    "cross_split_block_diagnostics": 48,
+    "proposed_all_C1_C5_senses": 1,
+    "pilot_senses": 8,
+    "pilot_candidates": 24,
+    "human_annotations_completed": 0
+  },
+  "remaining_human_work": {
+    "definition_reviews": 150,
+    "contrastive_reviews": 150,
+    "synthetic_contrastive_reviews": 140,
+    "context_type_rows": 1148,
+    "candidate_annotations": 450
+  }
+}

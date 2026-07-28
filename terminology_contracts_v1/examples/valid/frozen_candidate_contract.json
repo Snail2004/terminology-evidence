@@ -1,0 +1,74 @@
+{
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.0.0",
+  "candidate_key": {
+    "candidate_id": "cand-inference-vi-01",
+    "candidate_version": "1",
+    "source_term": "inference",
+    "candidate_vi": "suy luận",
+    "sense_id": "model_execution",
+    "scope_id": "machine_learning",
+    "sense_inventory_version": "sense-v1",
+    "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "effective_sense_contract_sha256": "82eedc4661ad441fd7e1925b61738b3ad97af9c2eacb9ce99f2209b45fe1dd0b"
+  },
+  "effective_definition_en": "The process of applying a trained model to new inputs.",
+  "effective_part_of_speech": "noun",
+  "scope_note": "Machine-learning model execution on new inputs.",
+  "domain_profile": {
+    "domain_id": "machine_learning",
+    "anchors_en": [
+      "model",
+      "prediction"
+    ],
+    "anchors_vi": [
+      "mô hình",
+      "dự đoán"
+    ]
+  },
+  "surfaces": {
+    "canonical_vi": "suy luận",
+    "validated_variants_vi": [
+      "quá trình suy luận"
+    ],
+    "rejected_variants_vi": [
+      "suy diễn logic"
+    ]
+  },
+  "alternatives_vi": [
+    "suy diễn",
+    "thực hiện mô hình"
+  ],
+  "input_provenance": {
+    "run_id": "run-demo-001",
+    "started_at": "2026-07-28T10:00:00+00:00",
+    "completed_at": "2026-07-28T10:01:00+00:00",
+    "component_id": "candidate-freezer",
+    "component_version": "1.0.0",
+    "policy_version": "demo-policy-v1",
+    "prompt_hashes": {
+      "main": "9999999999999999999999999999999999999999999999999999999999999999"
+    },
+    "model_routes": [
+      {
+        "provider_id": "provider-demo",
+        "model_id": "model-demo",
+        "model_family": "family-demo",
+        "independence_group": "group-demo"
+      }
+    ],
+    "source_artifact_hashes": {
+      "dataset": "1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "raw_ledger_ref": {
+      "evidence_id": "ledger-001",
+      "evidence_type": "OTHER",
+      "uri": "artifact://runs/run-demo-001",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "notes": null
+  },
+  "integrity": {
+    "self_sha256": "ad9888fdb98fba49d6a7b50f30d8749694e28c89a5dd3f7fdea0ae490ccdf704"
+  }
+}

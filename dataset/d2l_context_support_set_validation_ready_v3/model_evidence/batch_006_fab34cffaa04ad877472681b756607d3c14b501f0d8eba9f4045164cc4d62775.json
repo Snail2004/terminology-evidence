@@ -1,0 +1,509 @@
+{
+  "audit": {
+    "batch_index": 6,
+    "from_cache": false,
+    "latency_ms": 71300,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "a4cebf1d2c7cd13212d60e75b3d53e5a88bbd9a59a4e23b642e23477c559c853",
+    "response_sha256": "768886babe5c8023e348b3aefdb187d6cb74775c33eae93d351f2f1eef114605",
+    "usage": {
+      "input_tokens": 5942,
+      "output_tokens": 3843,
+      "reasoning_tokens": null,
+      "total_tokens": 9785
+    }
+  },
+  "input_request_sha256": "fab34cffaa04ad877472681b756607d3c14b501f0d8eba9f4045164cc4d62775",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded technical equivalent",
+            "target_vi": "chuyển vị"
+          },
+          {
+            "formation_reason": "common verb phrase for performing the operation",
+            "target_vi": "lấy chuyển vị"
+          },
+          {
+            "formation_reason": "explicit paraphrase from the linear algebra explanation",
+            "target_vi": "hoán đổi hàng và cột"
+          },
+          {
+            "formation_reason": "plausible tensor-oriented rendering in shape-manipulation contexts",
+            "target_vi": "đảo các chiều"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_ca28cbd449972202e89c8206a6cf0b7b",
+            "context_type": "C3",
+            "reason_code": "notation entry defines the transpose symbol as the operation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_8b4f9d8a2db0a1027760532e",
+            "context_type": "C1",
+            "reason_code": "direct definition by exchanging rows and columns",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_d57bee107ebd48e4888a2c07",
+            "context_type": "C4",
+            "reason_code": "code call uses transpose on input matrix",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_b0979095fea4bcd28cf2ac0f",
+            "context_type": "C1",
+            "reason_code": "explains why input is transposed to change tensor shape order",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_f5d11ac90b12d0ac504bdbf3",
+            "context_type": "C1",
+            "reason_code": "comment explains transpose swaps dimensions of keys",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_0f35f327e3ffb1af62c20c1c",
+            "context_type": "C4",
+            "reason_code": "dataset code transposes image dimensions",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_282dbeb511791085b7d7db24",
+            "context_type": "C1",
+            "reason_code": "text explains rearranging tensor dimensions via transpose",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.91,
+            "context_id": "ctx_2514212c3b726616b6545c2c",
+            "context_type": "C4",
+            "reason_code": "code transposes image batch dimensions for display",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "To swap the rows and columns of a matrix or corresponding axes of a tensor.",
+        "definition_evidence_context_ids": [
+          "ctx_8b4f9d8a2db0a1027760532e",
+          "ctx_b0979095fea4bcd28cf2ac0f",
+          "ctx_f5d11ac90b12d0ac504bdbf3"
+        ],
+        "part_of_speech": "verb",
+        "part_of_speech_confidence": 0.95,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_b0979095fea4bcd28cf2ac0f",
+          "ctx_f5d11ac90b12d0ac504bdbf3"
+        ],
+        "sense_id": "d2lce_6b1b75f43b72ec9bace62065",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "To shift a piece of music to a different key rather than swapping matrix rows, columns, or tensor axes.",
+          "rationale": "No supplied context shows a different sense, so a boundary example was created.",
+          "source_text": "Synthetic: In music, transpose a melody up by two semitones."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded technical equivalent",
+            "target_vi": "bộ mã hóa–giải mã RNN"
+          },
+          {
+            "formation_reason": "explicitly marks it as a model architecture",
+            "target_vi": "mô hình mã hóa–giải mã RNN"
+          },
+          {
+            "formation_reason": "architecture-focused rendering supported by layer diagrams",
+            "target_vi": "kiến trúc encoder–decoder dùng RNN"
+          },
+          {
+            "formation_reason": "plausible concise rendering tied to sequence-to-sequence context",
+            "target_vi": "mô hình seq2seq RNN"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_048676a8e033f03b9ca75239",
+            "context_type": "C1",
+            "reason_code": "summary sentence identifies layers in the model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.92,
+            "context_id": "ctx_730d49c45382c426ab34a6d9",
+            "context_type": "C3",
+            "reason_code": "references the RNN encoder-decoder below as the model being described",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_349b7a6daf79dfdfbe18c705",
+            "context_type": "C2",
+            "reason_code": "figure caption names the model directly",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_b827a98a327b101be2d2365a",
+            "context_type": "C1",
+            "reason_code": "describes creating and training the model for seq2seq learning",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.91,
+            "context_id": "ctx_747765494dea2a90d593a3e5",
+            "context_type": "C2",
+            "reason_code": "figure caption shows prediction with the RNN encoder-decoder",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_6c8b329324bfcbe371ac4b63",
+            "context_type": "C1",
+            "reason_code": "uses the trained RNN encoder-decoder for translation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_0858d2ceaa592e5540d8e056",
+            "context_type": "C1",
+            "reason_code": "contrasts vanilla RNN encoder-decoder architecture with attention variant",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_1ce3513d343c75746b293253",
+            "context_type": "C2",
+            "reason_code": "figure caption names the RNN encoder-decoder model with Bahdanau attention",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "An RNN-based sequence-to-sequence model composed of an encoder and a decoder.",
+        "definition_evidence_context_ids": [
+          "ctx_048676a8e033f03b9ca75239",
+          "ctx_b827a98a327b101be2d2365a",
+          "ctx_0858d2ceaa592e5540d8e056"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_048676a8e033f03b9ca75239",
+          "ctx_b827a98a327b101be2d2365a"
+        ],
+        "sense_id": "d2lce_43488a3e1f15598ac9b1b6bc",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A general encoder-decoder system outside recurrent neural networks and sequence modeling.",
+          "rationale": "No supplied context provides a genuine alternate sense.",
+          "source_text": "Synthetic: The encoder-decoder for JPEG compression is not an RNN encoder-decoder."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded technical equivalent",
+            "target_vi": "độ chệch thống kê"
+          },
+          {
+            "formation_reason": "plausible technical alternative using a common Vietnamese term for bias/deviation",
+            "target_vi": "sai lệch thống kê"
+          },
+          {
+            "formation_reason": "makes the estimator-focused meaning explicit",
+            "target_vi": "độ chệch của ước lượng"
+          },
+          {
+            "formation_reason": "plausible alternative wording for statistical bias",
+            "target_vi": "thiên lệch thống kê"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_98e49b6d58da3c32d077b667",
+            "context_type": "C1",
+            "reason_code": "introduces statistical bias as one of the methods for evaluating estimators",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_83a38c0d5607709e21e74429",
+            "context_type": "C2",
+            "reason_code": "section heading naming the concept",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_562aba8242b13a890c3a0d27",
+            "context_type": "C1",
+            "reason_code": "states the mathematical definition of statistical bias for an estimator",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_daa159ed8725f271c864051c",
+            "context_type": "C1",
+            "reason_code": "mentions implementing statistical bias as one evaluated quantity",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_759986abc69fc46f3dc20bba",
+            "context_type": "C4",
+            "reason_code": "code defines stat_bias as mean estimate minus true value",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_ef578138a49d3927c6563ea2",
+            "context_type": "C4",
+            "reason_code": "PyTorch code implements the same statistical bias formula",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_e165d697ee1e17ec619ac2fb",
+            "context_type": "C4",
+            "reason_code": "TensorFlow code implements the same statistical bias formula",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.88,
+            "context_id": "ctx_7d0011328d40612e41406231",
+            "context_type": "C1",
+            "reason_code": "summary list includes statistical bias among common estimator measures",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "The difference between the expected or average value of an estimator and the true parameter value.",
+        "definition_evidence_context_ids": [
+          "ctx_562aba8242b13a890c3a0d27",
+          "ctx_759986abc69fc46f3dc20bba",
+          "ctx_98e49b6d58da3c32d077b667"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_98e49b6d58da3c32d077b667",
+          "ctx_83a38c0d5607709e21e74429"
+        ],
+        "sense_id": "d2lce_b5d6207f8142a696435e27e0",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A social or ideological bias rather than the estimator bias defined in statistics.",
+          "rationale": "No supplied context contains a different sense.",
+          "source_text": "Synthetic: The news article discussed political bias, not statistical bias."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded technical equivalent",
+            "target_vi": "hàm kích hoạt sigmoid"
+          },
+          {
+            "formation_reason": "common Vietnamese variant for activation function",
+            "target_vi": "hàm hoạt hóa sigmoid"
+          },
+          {
+            "formation_reason": "plausible alternative tied to the same sigmoid mapping",
+            "target_vi": "hàm kích hoạt logistic"
+          },
+          {
+            "formation_reason": "explicit paraphrase preserving the exact role in the model",
+            "target_vi": "hàm sigmoid dùng làm kích hoạt"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_2e8cc79d478165e2fadbde2b",
+            "context_type": "C1",
+            "reason_code": "describes it as a basic unit in a convolutional block",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_4049427e7cba44c6a4d86b2f",
+            "context_type": "C1",
+            "reason_code": "contrasts sigmoid activation function with ReLU activation function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_fb27ea5cc8cb345d667494e6",
+            "context_type": "C1",
+            "reason_code": "states gates use a sigmoid activation function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_81a329be9d149269cbb9e238",
+            "context_type": "C1",
+            "reason_code": "points to the mathematical definition of the sigmoid activation function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_b4869503275a2fafa7ed121c",
+            "context_type": "C1",
+            "reason_code": "uses sigmoid activation function after projection",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_a57ada1779c485390423ba15",
+            "context_type": "C1",
+            "reason_code": "states each convolutional layer uses a sigmoid activation function",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_7440cb039806378db99b4cf3",
+            "context_type": "C1",
+            "reason_code": "explains vanishing-gradient behavior when sigmoid outputs are near 0 or 1",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_85f3e69f989b8ba0e6c34543",
+            "context_type": "C1",
+            "reason_code": "mentions exponentiation operation in the sigmoid activation function",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "An activation function that applies the sigmoid mapping, producing outputs between 0 and 1.",
+        "definition_evidence_context_ids": [
+          "ctx_81a329be9d149269cbb9e238",
+          "ctx_7440cb039806378db99b4cf3",
+          "ctx_2e8cc79d478165e2fadbde2b"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_2e8cc79d478165e2fadbde2b",
+          "ctx_4049427e7cba44c6a4d86b2f"
+        ],
+        "sense_id": "d2lce_2485cc2d1b2606bcc62d63c1",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A different nonlinear activation that outputs discrete thresholds rather than the smooth sigmoid mapping.",
+          "rationale": "No supplied context shows a genuine alternate sense.",
+          "source_text": "Synthetic: The sigmoid activation function should not be confused with a hard threshold step function."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded technical equivalent",
+            "target_vi": "BERT được tiền huấn luyện"
+          },
+          {
+            "formation_reason": "explicit model-oriented phrasing",
+            "target_vi": "mô hình BERT đã tiền huấn luyện"
+          },
+          {
+            "formation_reason": "shorter natural rendering of pretrained status",
+            "target_vi": "BERT huấn luyện sẵn"
+          },
+          {
+            "formation_reason": "plain Vietnamese paraphrase matching the same sense",
+            "target_vi": "BERT được huấn luyện trước"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_9c41d73d1f8f74867815db48",
+            "context_type": "C1",
+            "reason_code": "refers to an off-the-shelf pretrained BERT model for domain applications",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_813b90db2df77652f38c4a00",
+            "context_type": "C1",
+            "reason_code": "describes fine-tuning a pretrained BERT model for NLP applications",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_e76e266186271f4f56e42317",
+            "context_type": "C1",
+            "reason_code": "uses pretrained BERT as source of encoded sentence-pair representation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_f04ed703e48d432f4e1b350f",
+            "context_type": "C1",
+            "reason_code": "states pretrained BERT will be fine-tuned for downstream applications",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_74919ba83ca740fcf7b7b49e",
+            "context_type": "C1",
+            "reason_code": "explains all parameters in the pretrained BERT model are fine-tuned",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_0e2749a4df879a5753e93ab9",
+            "context_type": "C1",
+            "reason_code": "summary bullet repeats the fine-tuning use of pretrained BERT model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.9,
+            "context_id": "ctx_c7d454145ac2ddadd1c48e11",
+            "context_type": "C2",
+            "reason_code": "figure caption says pretrained BERT is fed into an architecture",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.93,
+            "context_id": "ctx_e2c73661a87aaf8cdb54006d",
+            "context_type": "C2",
+            "reason_code": "section heading explicitly names loading pretrained BERT",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "A BERT model that has already been trained beforehand and is then used for encoding or fine-tuning on downstream tasks.",
+        "definition_evidence_context_ids": [
+          "ctx_813b90db2df77652f38c4a00",
+          "ctx_f04ed703e48d432f4e1b350f",
+          "ctx_74919ba83ca740fcf7b7b49e"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_9c41d73d1f8f74867815db48",
+          "ctx_e2c73661a87aaf8cdb54006d"
+        ],
+        "sense_id": "d2lce_e27a9787bb13f8580103adc4",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A BERT architecture without prior training, unlike the already trained model used for encoding or fine-tuning.",
+          "rationale": "No supplied context provides a true alternate sense.",
+          "source_text": "Synthetic: A BERT model initialized randomly is not pretrained BERT."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

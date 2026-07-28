@@ -1,0 +1,741 @@
+{
+  "audit": {
+    "batch_index": 17,
+    "from_cache": false,
+    "latency_ms": 68606,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "b8e8db0318fe98527e71c3283222c131ca87aa0399001c590b7f17230fea3d9a",
+    "response_sha256": "1d1ae414bd4875208f75198edc6ba8ac347ff981fe247b80d823382e9acb797f",
+    "usage": {
+      "input_tokens": 6977,
+      "output_tokens": 3562,
+      "reasoning_tokens": null,
+      "total_tokens": 10539
+    },
+    "validation_repairs": [
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_5892bf8285ca8e0bad16bd33].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_feb069ef1ecb8e58ef71c482].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_c4effad022bd5e216d2eaf51].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_3c4a7aaec02b50911df8c766].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_5c812a90177b5b129b327432].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_4a985a7867b0862e601aa744].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_58c0a9351bd98055ea39a9a0].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_724a58cef32d03f9a90cc4d9].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_7ef8ed3f93210606a27312a4"
+      },
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_e9402aa6f9b633df0ecf9fc4].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_e103354145e998be1861c7f8].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_b8d101968126191ff892ca33].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_981520000f6c76ee266ec54f].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_f9057a408bf3295c1dcc296d].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_e31d70fd51aadff019c9601e].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_19e916efd49f7b3c9be7b919].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_a3cd664e61e3be597eb099e5].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_20dc13bc32661f00e7c68b89"
+      },
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_6bf957c26c6e143256cdd035].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_07d0a92774325109338bead5].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_560fdd2106e8a9d780a76535].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_19f6562b721592fe470608b6].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_8e04ca81f5cd4758904ce28b].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_aba6fee7580baba0771a58d2].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_11cbd62463e49bc8907aefef].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_2b750c7f5d33f647672795c7].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_a3e7228aef125ec437a840fa"
+      },
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_6c4a5e45653e72a9298bb89a].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_ce7390efff0801a27a6b6619].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_39e45ec1b48aa92cec021d14].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_e8375363c7b7a5c455de05c5].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_4d3789e25e89cb28e438e10a].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_510e5b25c036f0aedb8ecff2].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_ac1bebe3f69e61f23a9f9382].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_7bedce5463902490acfee1a7].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_cc4cb853eff638abcbdf7691"
+      },
+      {
+        "repairs": [
+          {
+            "field": "contexts[ctx_786ab0275c9497181a0db4d7].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_4948ac0797bf6c281ee7ac67].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_3e14117a045ebf17876f5d0d].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_de121275094e0872769613f6].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_4a91c71a44a35cb9a603e221].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_1c286a6e0465f52ed228797c].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_a696a38512dc75f186238bd7].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          },
+          {
+            "field": "contexts[ctx_ff12d4c3104d93606bf7aad1].confidence",
+            "from": "null",
+            "reason": "MISSING_CONFIDENCE_TO_ZERO",
+            "to": "0.0"
+          }
+        ],
+        "sense_id": "d2lce_40a50503f2fdc79aa0a549fc"
+      }
+    ]
+  },
+  "input_request_sha256": "a92e371d3d4324b16cc043b4adac101293022ef709dd3fa2dc9030f3c73f783b",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "standard model/algorithm name retained",
+            "target_vi": "Adam"
+          },
+          {
+            "formation_reason": "explicit technical expansion from contexts calling it an optimization algorithm/optimizer",
+            "target_vi": "thuật toán tối ưu Adam"
+          },
+          {
+            "formation_reason": "framework-oriented wording supported by trainer/optimizer code contexts",
+            "target_vi": "bộ tối ưu Adam"
+          },
+          {
+            "formation_reason": "plausible paraphrase for the named training method",
+            "target_vi": "phương pháp tối ưu Adam"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_5892bf8285ca8e0bad16bd33",
+            "context_type": "NONE",
+            "reason_code": "person-name list; not the optimization algorithm",
+            "sense_relation": "INVALID"
+          },
+          {
+            "context_id": "ctx_feb069ef1ecb8e58ef71c482",
+            "context_type": "C1",
+            "reason_code": "direct prose naming Adam optimizer for training",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_c4effad022bd5e216d2eaf51",
+            "context_type": "C1",
+            "reason_code": "code instantiates Adam optimizer across frameworks",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_3c4a7aaec02b50911df8c766",
+            "context_type": "C1",
+            "reason_code": "trainer uses 'adam' in sequence-to-sequence training code",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_5c812a90177b5b129b327432",
+            "context_type": "C2",
+            "reason_code": "lists Adam as a named optimization procedure alongside SGD",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_4a985a7867b0862e601aa744",
+            "context_type": "C1",
+            "reason_code": "states Adam is used as the optimization algorithm",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_58c0a9351bd98055ea39a9a0",
+            "context_type": "C1",
+            "reason_code": "training code creates adam trainer",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_724a58cef32d03f9a90cc4d9",
+            "context_type": "C1",
+            "reason_code": "trainer initialization uses 'adam'",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "An adaptive gradient-based optimization algorithm used to train models.",
+        "definition_evidence_context_ids": [
+          "ctx_feb069ef1ecb8e58ef71c482",
+          "ctx_c4effad022bd5e216d2eaf51",
+          "ctx_5c812a90177b5b129b327432",
+          "ctx_4a985a7867b0862e601aa744"
+        ],
+        "part_of_speech": "proper_noun",
+        "part_of_speech_confidence": 0.95,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_feb069ef1ecb8e58ef71c482",
+          "ctx_c4effad022bd5e216d2eaf51"
+        ],
+        "sense_id": "d2lce_7ef8ed3f93210606a27312a4",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A person's given name or identifier.",
+          "rationale": "Supplied contexts include an invalid name-list occurrence but no full alternate technical sense.",
+          "source_text": "Synthetic: Adam appears in the contributor list as a person's name, not as an optimizer."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "standard architecture name retained",
+            "target_vi": "DenseNet"
+          },
+          {
+            "formation_reason": "common Vietnamese framing for named neural architectures",
+            "target_vi": "mạng DenseNet"
+          },
+          {
+            "formation_reason": "translated from 'densely connected networks' heading and description",
+            "target_vi": "mạng kết nối dày đặc"
+          },
+          {
+            "formation_reason": "full descriptive rendering from dense convolutional network context",
+            "target_vi": "mạng nơ-ron tích chập kết nối dày đặc"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_e9402aa6f9b633df0ecf9fc4",
+            "context_type": "C1",
+            "reason_code": "introduces DenseNet as a computer vision architecture",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_e103354145e998be1861c7f8",
+            "context_type": "C1",
+            "reason_code": "table of contents entry for densenet chapter/topic",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_b8d101968126191ff892ca33",
+            "context_type": "C1",
+            "reason_code": "chapter title names Densely Connected Networks (DenseNet)",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_981520000f6c76ee266ec54f",
+            "context_type": "C2",
+            "reason_code": "gives appositive explanation 'dense convolutional network'",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_f9057a408bf3295c1dcc296d",
+            "context_type": "C3",
+            "reason_code": "section frames DenseNet in contrast with ResNet",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_e31d70fd51aadff019c9601e",
+            "context_type": "C1",
+            "reason_code": "refers to DenseNet as a solution/model",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_19e916efd49f7b3c9be7b919",
+            "context_type": "C4",
+            "reason_code": "figure label for DenseNet block",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_a3cd664e61e3be597eb099e5",
+            "context_type": "C3",
+            "reason_code": "explains DenseNet by contrasting concatenation with ResNet addition",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "A densely connected convolutional neural network architecture with cross-layer concatenation.",
+        "definition_evidence_context_ids": [
+          "ctx_e9402aa6f9b633df0ecf9fc4",
+          "ctx_b8d101968126191ff892ca33",
+          "ctx_981520000f6c76ee266ec54f",
+          "ctx_a3cd664e61e3be597eb099e5"
+        ],
+        "part_of_speech": "proper_noun",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_e9402aa6f9b633df0ecf9fc4",
+          "ctx_b8d101968126191ff892ca33"
+        ],
+        "sense_id": "d2lce_20dc13bc32661f00e7c68b89",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A literal physical net with dense mesh.",
+          "rationale": "No genuine alternate sense appears in supplied contexts.",
+          "source_text": "Synthetic: The lab used a dense net to catch fish, which is unrelated to DenseNet."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded standard mathematical translation",
+            "target_vi": "trung bình có trọng số"
+          },
+          {
+            "formation_reason": "slightly fuller mathematical phrasing",
+            "target_vi": "giá trị trung bình có trọng số"
+          },
+          {
+            "formation_reason": "common compact variant",
+            "target_vi": "trung bình trọng số"
+          },
+          {
+            "formation_reason": "plausible paraphrase emphasizing weighting",
+            "target_vi": "giá trị trung bình theo trọng số"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_6bf957c26c6e143256cdd035",
+            "context_type": "C2",
+            "reason_code": "formal mathematical definition via weights summing to one",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_07d0a92774325109338bead5",
+            "context_type": "C1",
+            "reason_code": "attention pooling uses weighted average to aggregate values",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_560fdd2106e8a9d780a76535",
+            "context_type": "C1",
+            "reason_code": "momentum described as weighted average of past gradients",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_19f6562b721592fe470608b6",
+            "context_type": "C1",
+            "reason_code": "soft alignment uses weighted average over token representations",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_8e04ca81f5cd4758904ce28b",
+            "context_type": "C2",
+            "reason_code": "probability-weighted mean explicitly defined as weighted average",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_aba6fee7580baba0771a58d2",
+            "context_type": "C3",
+            "reason_code": "average pooling presented as a special case with uniform weights",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_11cbd62463e49bc8907aefef",
+            "context_type": "C1",
+            "reason_code": "attention pooling output is a weighted average of values",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_2b750c7f5d33f647672795c7",
+            "context_type": "C4",
+            "reason_code": "code comment states each prediction is a weighted average",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "An average computed by combining values with weights that determine each value's contribution.",
+        "definition_evidence_context_ids": [
+          "ctx_6bf957c26c6e143256cdd035",
+          "ctx_07d0a92774325109338bead5",
+          "ctx_8e04ca81f5cd4758904ce28b",
+          "ctx_2b750c7f5d33f647672795c7"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_6bf957c26c6e143256cdd035",
+          "ctx_07d0a92774325109338bead5"
+        ],
+        "sense_id": "d2lce_a3e7228aef125ec437a840fa",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A simple arithmetic mean with equal weights for all values.",
+          "rationale": "Supplied contexts do not contain a true different sense, only related special cases.",
+          "source_text": "Synthetic: The clerk asked for the weighted average grade, not the simple mean."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded standard translation",
+            "target_vi": "tốc độ học"
+          },
+          {
+            "formation_reason": "plausible technical alternative emphasizing scalar update factor",
+            "target_vi": "hệ số học"
+          },
+          {
+            "formation_reason": "short plausible variant for exact hyperparameter sense",
+            "target_vi": "mức học"
+          },
+          {
+            "formation_reason": "descriptive paraphrase grounded in step-size function",
+            "target_vi": "hệ số bước học"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_6c4a5e45653e72a9298bb89a",
+            "context_type": "C2",
+            "reason_code": "describes batch size and learning rate as preset training hyperparameters",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_ce7390efff0801a27a6b6619",
+            "context_type": "C1",
+            "reason_code": "training setup specifies the learning rate value",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_39e45ec1b48aa92cec021d14",
+            "context_type": "C4",
+            "reason_code": "code comment and variable lr identify learning rate in parameter update",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_e8375363c7b7a5c455de05c5",
+            "context_type": "C1",
+            "reason_code": "training discussion compares use of a smaller learning rate",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_4d3789e25e89cb28e438e10a",
+            "context_type": "C2",
+            "reason_code": "equation defines update using eta as the learning rate",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_510e5b25c036f0aedb8ecff2",
+            "context_type": "C1",
+            "reason_code": "mentions tuning learning rate for convergence",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_ac1bebe3f69e61f23a9f9382",
+            "context_type": "C2",
+            "reason_code": "too large a learning rate can cause divergence",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_7bedce5463902490acfee1a7",
+            "context_type": "C1",
+            "reason_code": "learning rate may be increased with larger minibatch size",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "A training hyperparameter that controls the step size of parameter updates during optimization.",
+        "definition_evidence_context_ids": [
+          "ctx_6c4a5e45653e72a9298bb89a",
+          "ctx_39e45ec1b48aa92cec021d14",
+          "ctx_4d3789e25e89cb28e438e10a",
+          "ctx_ac1bebe3f69e61f23a9f9382"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_6c4a5e45653e72a9298bb89a",
+          "ctx_4d3789e25e89cb28e438e10a"
+        ],
+        "sense_id": "d2lce_cc4cb853eff638abcbdf7691",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "A person's speed of learning in an educational sense.",
+          "rationale": "All supplied contexts use the optimization hyperparameter sense only.",
+          "source_text": "Synthetic: The learning rate of this student improved over the semester, which is unrelated to optimization."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "framework class name retained",
+            "target_vi": "Sequential"
+          },
+          {
+            "formation_reason": "explicitly marks it as a class from code contexts",
+            "target_vi": "lớp Sequential"
+          },
+          {
+            "formation_reason": "supported by context calling it a Sequential block",
+            "target_vi": "khối Sequential"
+          },
+          {
+            "formation_reason": "descriptive rendering of its ordered layer-stacking behavior",
+            "target_vi": "bộ xếp lớp tuần tự"
+          }
+        ],
+        "contexts": [
+          {
+            "context_id": "ctx_786ab0275c9497181a0db4d7",
+            "context_type": "NONE",
+            "reason_code": "descriptive 'sequential' about data structure, not the class name Sequential",
+            "sense_relation": "INVALID"
+          },
+          {
+            "context_id": "ctx_4948ac0797bf6c281ee7ac67",
+            "context_type": "C2",
+            "reason_code": "explicitly refers to an instance of the Sequential class",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_3e14117a045ebf17876f5d0d",
+            "context_type": "C4",
+            "reason_code": "code creates nn.Sequential and adds layers",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_de121275094e0872769613f6",
+            "context_type": "C4",
+            "reason_code": "code example instantiates and uses nn.Sequential",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_4a91c71a44a35cb9a603e221",
+            "context_type": "C2",
+            "reason_code": "describes instantiating a Sequential block and chaining layers",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_1c286a6e0465f52ed228797c",
+            "context_type": "C4",
+            "reason_code": "code starts with net = nn.Sequential()",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "context_id": "ctx_a696a38512dc75f186238bd7",
+            "context_type": "NONE",
+            "reason_code": "descriptive adjective 'sequential' about order in data, not the class",
+            "sense_relation": "INVALID"
+          },
+          {
+            "context_id": "ctx_ff12d4c3104d93606bf7aad1",
+            "context_type": "NONE",
+            "reason_code": "descriptive 'sequential' in sequential Monte Carlo, not the class",
+            "sense_relation": "INVALID"
+          }
+        ],
+        "definition_confidence": 0.95,
+        "definition_en": "A neural network container class that stacks layers in order, passing outputs from one layer to the next.",
+        "definition_evidence_context_ids": [
+          "ctx_4948ac0797bf6c281ee7ac67",
+          "ctx_3e14117a045ebf17876f5d0d",
+          "ctx_de121275094e0872769613f6",
+          "ctx_4a91c71a44a35cb9a603e221"
+        ],
+        "part_of_speech": "proper_noun",
+        "part_of_speech_confidence": 0.94,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_4948ac0797bf6c281ee7ac67",
+          "ctx_4a91c71a44a35cb9a603e221"
+        ],
+        "sense_id": "d2lce_40a50503f2fdc79aa0a549fc",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "An adjective meaning ordered in sequence, rather than the neural network class name.",
+          "rationale": "Supplied contexts include both the class-name sense and invalid descriptive uses; this probe marks the boundary clearly.",
+          "source_text": "Synthetic: The frames are sequential, but the model is not built with Sequential."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

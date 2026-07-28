@@ -1,0 +1,48 @@
+{
+  "schema_id": "D2LContextSupportStatisticsV3",
+  "schema_version": "3.0.0",
+  "dataset_version": "d2l_context_support_set_validation_ready_v3",
+  "term_sense_count": 150,
+  "candidate_instance_count": 450,
+  "context_count": 1340,
+  "stratum_counts": {
+    "clear": 50,
+    "ambiguous": 50,
+    "collision_or_multi_target": 50
+  },
+  "split_counts": {
+    "validation": 25,
+    "development": 100,
+    "test": 25
+  },
+  "sentence_component_count": 79,
+  "largest_sentence_component": 24,
+  "cross_split_block_diagnostic_count": 48,
+  "context_type_proposal_counts": {
+    "C1": 548,
+    "C2": 341,
+    "C3": 169,
+    "C4": 82,
+    "C5": 8
+  },
+  "proposed_all_C1_C5_sense_count": 1,
+  "synthetic_contrastive_count": 140,
+  "pilot": {
+    "pilot_policy_id": "d2l_cst_corpus_contrastive_pilot_8_v1",
+    "sense_count": 8,
+    "candidate_count": 24,
+    "context_count": 48,
+    "sense_ids": [
+      "d2lce_270e1a75bb70807d9c2dd507",
+      "d2lce_3e633e212e54590ca20bfc99",
+      "d2lce_73c8ce2915c4c64a52fab4a2",
+      "d2lce_776fd3328d5e31aeebe484ec",
+      "d2lce_89406dadb8c277a1b688698c",
+      "d2lce_ad13d119a140210b487eeb9c",
+      "d2lce_ccf7d0a5109d86ee76a75b9c",
+      "d2lce_dbb300a90e4b0f8b815b5e12"
+    ],
+    "manifest_sha256": "a3dc5b7a1e6751813a14c90bdba892fb056a4ae1d4dda2327a4b4121bc2531ab",
+    "human_review_complete": false
+  }
+}

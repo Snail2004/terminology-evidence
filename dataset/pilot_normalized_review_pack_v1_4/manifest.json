@@ -1,0 +1,123 @@
+{
+  "schema_id": "D2LCSTReviewWorkflowV1_4",
+  "schema_version": "1.4.0",
+  "policy_id": "d2l_cst_three_reviewer_human_review_v1_4",
+  "status": "STAGE_A_HUMAN_REVIEW_PENDING",
+  "supersedes": {
+    "schema_id": "D2LCSTReviewWorkflowV1_3",
+    "manifest_sha256": "88a913f8d0ce05b2dc85695ec56d55defa834416e2939fdd2c5d0474788d025a",
+    "manifest_file_sha256": "b449e8023d99316e7a05658c3db7e77baeac09745ff63598113bd9b1e82b8254"
+  },
+  "source_pilot": {
+    "schema_id": "D2LCSTDevelopmentOnlyPilotV1_1",
+    "manifest_sha256": "599692d33f9cc162698bc0e8fc0bf60cce1715cb0f34214fec499f14c1364eb5",
+    "manifest_file_sha256": "e45205adfe22b6b6c67680e159c64bb3c69c3a9849a3109a962134dc8cb3dd76"
+  },
+  "stage_a": {
+    "row_count": 5,
+    "mutable_file": "stage_a/sense_contract_review.csv",
+    "source_bindings_file": "stage_a/source_bindings.json"
+  },
+  "stage_b_generated": false,
+  "adjudication_policy": "MAJORITY_2_OF_3_ELSE_ADJUDICATION",
+  "threshold_calibration_allowed": false,
+  "human_review_complete": false,
+  "files": {
+    "annotation_contract.json": {
+      "ref": "annotation_contract.json",
+      "sha256": "02e460ec21d411b37953ccbb7baaf26f9ce1e6e335b43f3db3b921bc98bc949f",
+      "mutable_after_annotation": false
+    },
+    "commands.posix.txt": {
+      "ref": "commands.posix.txt",
+      "sha256": "55801ee077ae72be7747fac6f534d6ea8bdfaecd5a9d1c7c18ef4d69b6d39df4",
+      "mutable_after_annotation": false
+    },
+    "commands.ps1.txt": {
+      "ref": "commands.ps1.txt",
+      "sha256": "3bf83ed975e3ed7c4678eacbf38c52ccb383ae9ccdb9baa2500969f1c258ae5b",
+      "mutable_after_annotation": false
+    },
+    "finalize_annotations.py": {
+      "ref": "finalize_annotations.py",
+      "sha256": "8d1f2df5799234adf2502188d6f361a33aa8de7055464da64896769d9ffc8571",
+      "mutable_after_annotation": false
+    },
+    "freeze_sense_contract.py": {
+      "ref": "freeze_sense_contract.py",
+      "sha256": "6bc65534781e69d378f9db12863a9bc8beace501148053dee6981bf589b523af",
+      "mutable_after_annotation": false
+    },
+    "generate_stage_b.py": {
+      "ref": "generate_stage_b.py",
+      "sha256": "f58bc796d2e5d4e996c9ec8fcbe173079b99c02ff0d6c6997f47d3b1275b6ada",
+      "mutable_after_annotation": false
+    },
+    "README.md": {
+      "ref": "README.md",
+      "sha256": "4193f097c74fd5a016aa8e71c00e4b954002270013ed693b3bfb42b182592882",
+      "mutable_after_annotation": false
+    },
+    "stage_a/sense_contract_review.csv": {
+      "ref": "stage_a/sense_contract_review.csv",
+      "sha256": "764f5d1729251f7ab7b28ba4e5b2e45c9d75a90b021aa12c179d492da94b8385",
+      "mutable_after_annotation": true
+    },
+    "stage_a/source_bindings.json": {
+      "ref": "stage_a/source_bindings.json",
+      "sha256": "2b458c132c07842e2597d7e3cf9bb5793457229c7cb979947245db2c443b68d5",
+      "mutable_after_annotation": false
+    },
+    "stage_a/template_validation_report.json": {
+      "ref": "stage_a/template_validation_report.json",
+      "sha256": "44ef71f9bfc6ab43f0973210aa417b8d5c9dd9f585e9a40e0ea9211feb63c4aa",
+      "mutable_after_annotation": false
+    },
+    "tools/review_workflow_v1_4/__init__.py": {
+      "ref": "tools/review_workflow_v1_4/__init__.py",
+      "sha256": "12414cff15cc6c6d973c465127635bf65a40b79cec67f9013a205608247158c7",
+      "mutable_after_annotation": false
+    },
+    "tools/review_workflow_v1_4/common.py": {
+      "ref": "tools/review_workflow_v1_4/common.py",
+      "sha256": "4afebb150a53f619271a05607e897096a8e609a1d15fd4ad1de9ea5cfc622fc7",
+      "mutable_after_annotation": false
+    },
+    "tools/review_workflow_v1_4/finalize.py": {
+      "ref": "tools/review_workflow_v1_4/finalize.py",
+      "sha256": "c0531efe2595f70d1d69fc25ce6f89ab9c5d34c283c5c23860e3032b62d662d4",
+      "mutable_after_annotation": false
+    },
+    "tools/review_workflow_v1_4/stage_a.py": {
+      "ref": "tools/review_workflow_v1_4/stage_a.py",
+      "sha256": "09447a2cccc1ba89969b7a3dac9fcc25de9a2005ada303c48676961419db02e4",
+      "mutable_after_annotation": false
+    },
+    "tools/review_workflow_v1_4/stage_b.py": {
+      "ref": "tools/review_workflow_v1_4/stage_b.py",
+      "sha256": "1fb5bd41ef22bdacb5b6dc5db8592acc39d688bd651c96235e388773e356c65e",
+      "mutable_after_annotation": false
+    },
+    "validate_stage_a.py": {
+      "ref": "validate_stage_a.py",
+      "sha256": "11f1a44ea6901e2db41bed4417357e716c2327cb70358f17b37186a1ac1ac766",
+      "mutable_after_annotation": false
+    },
+    "validate_stage_b.py": {
+      "ref": "validate_stage_b.py",
+      "sha256": "afe23fe0d821e4c20f758e019e4fde12c224f3d1a5972607905ea0f20f65c7e6",
+      "mutable_after_annotation": false
+    },
+    "validation/pytest-junit.xml": {
+      "ref": "validation/pytest-junit.xml",
+      "sha256": "47bfab9a3577dab866dae7795a4142443b80f3e9b55d725ecd76da57fb17ea6d",
+      "mutable_after_annotation": false
+    },
+    "validation/test_workflow_v1_4.py": {
+      "ref": "validation/test_workflow_v1_4.py",
+      "sha256": "0f50ff7c4efabd71b10764313d7ca28e84e02e3d472af014bde30288dbb6cd39",
+      "mutable_after_annotation": false
+    }
+  },
+  "manifest_sha256": "3146d6f5283bce7a0e6c21786b69ad2e13850024446c254230778174923527b3"
+}

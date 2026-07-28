@@ -1,0 +1,509 @@
+{
+  "audit": {
+    "batch_index": 1,
+    "from_cache": false,
+    "latency_ms": 71678,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "e336c29b33566efb168384c154fa707c4cbc2a85f5c936442d22464412015ab3",
+    "response_sha256": "6106392cb1500c5e811eef3a9fe9516624447b837ff2d8bf123c573911f87eca",
+    "usage": {
+      "input_tokens": 6255,
+      "output_tokens": 3825,
+      "reasoning_tokens": null,
+      "total_tokens": 10080
+    }
+  },
+  "input_request_sha256": "f9f7fc92cb7cec7429f20632e6d19bdc4226a454b12a6d30566ddf6e0e5dfd9a",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded standard mathematical rendering in the supplied contexts",
+            "target_vi": "tập lồi"
+          },
+          {
+            "formation_reason": "plural-explicit variant matching the source surface form",
+            "target_vi": "các tập lồi"
+          },
+          {
+            "formation_reason": "plausible synonymous mathematical phrasing for sets in this sense",
+            "target_vi": "tập hợp lồi"
+          },
+          {
+            "formation_reason": "plural-explicit synonymous variant",
+            "target_vi": "các tập hợp lồi"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_ab1437837560228b5ab996d0",
+            "context_type": "C1",
+            "reason_code": "definition setup naming the mathematical concept alongside convex functions",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_d78c176acb32ac55bfa5fc4f",
+            "context_type": "C1",
+            "reason_code": "section heading introducing the term directly",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_d406fccab1c59c92aff48880",
+            "context_type": "C1",
+            "reason_code": "direct use of the term in a mathematical assumption",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_3cd1f9f092ed97036b277ed1",
+            "context_type": "C2",
+            "reason_code": "figure caption stating a property of convex sets",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_0786467f80f822e79b33c1be",
+            "context_type": "C2",
+            "reason_code": "states closure under intersection for convex sets",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_b8a70afb7e97de94755c1439",
+            "context_type": "C2",
+            "reason_code": "contrasts unions of convex sets with the same concept",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_ca7dbc7a8024211ac2e41dad",
+            "context_type": "C2",
+            "reason_code": "figure caption about non-convex union of convex sets",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_019e9ed567f578c8342df0cc",
+            "context_type": "C3",
+            "reason_code": "application statement about optimization problems being defined on convex sets",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "collections of points with the property that the line segment between any two points in the collection also lies in the collection",
+        "definition_evidence_context_ids": [
+          "ctx_ab1437837560228b5ab996d0",
+          "ctx_0786467f80f822e79b33c1be",
+          "ctx_b8a70afb7e97de94755c1439"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_ab1437837560228b5ab996d0",
+          "ctx_d78c176acb32ac55bfa5fc4f"
+        ],
+        "sense_id": "d2lce_9c874642b8c028465cfbb71e",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "an informal nontechnical mention of visually bulging shapes rather than the formal mathematical set concept",
+          "rationale": "No supplied context shows a genuinely different sense; synthetic boundary added as required.",
+          "source_text": "Synthetic: In a graphics editor, “convex sets” might be mentioned informally for shapes, not as the formal optimization concept defined here."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded candidate and plausible generic technical rendering",
+            "target_vi": "phép giảm"
+          },
+          {
+            "formation_reason": "plausible rendering for combining dimensions into fewer outputs",
+            "target_vi": "phép rút gọn"
+          },
+          {
+            "formation_reason": "plausible contextual paraphrase for reducing tensor dimensions",
+            "target_vi": "thao tác giảm chiều"
+          },
+          {
+            "formation_reason": "plausible tensor-operation phrasing supported by dimensionwise aggregation context",
+            "target_vi": "phép tổng hợp theo chiều"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_401ea4ab60773305df974141",
+            "context_type": "C1",
+            "reason_code": "section heading explicitly naming the concept",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.83,
+            "context_id": "ctx_7666d9241aa1a4a1804291fb",
+            "context_type": "C3",
+            "reason_code": "loss API parameter naming how per-example losses are aggregated",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.8,
+            "context_id": "ctx_7d313060719ea864c98aabb1",
+            "context_type": "C3",
+            "reason_code": "loss API option indicates no aggregation reduction",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_815a4c1f8b1f4b5fb069b1d7",
+            "context_type": "C1",
+            "reason_code": "defines tensor reduction explicitly with a summation formula",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.56,
+            "context_id": "ctx_d1f9348ef19cdcd8ff5ac0de",
+            "context_type": "C4",
+            "reason_code": "uses reduction in the general sense of decreasing hidden dimensions rather than explicitly a tensor reduction operator",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.81,
+            "context_id": "ctx_0a74b6b6fec3cd733bef82fc",
+            "context_type": "C3",
+            "reason_code": "loss API comment and code instantiate unreduced elementwise losses",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.86,
+            "context_id": "ctx_1181d8a3e218811366f7b56e",
+            "context_type": "C3",
+            "reason_code": "class sets reduction='none' to control loss aggregation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.83,
+            "context_id": "ctx_df2876c9d5c03af64137057f",
+            "context_type": "C3",
+            "reason_code": "loss API uses reduction='none' before explicit summation",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.86,
+        "definition_en": "an operation that combines values across one or more dimensions into fewer values, such as summing or averaging",
+        "definition_evidence_context_ids": [
+          "ctx_401ea4ab60773305df974141",
+          "ctx_815a4c1f8b1f4b5fb069b1d7",
+          "ctx_7666d9241aa1a4a1804291fb"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.98,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_401ea4ab60773305df974141",
+          "ctx_815a4c1f8b1f4b5fb069b1d7"
+        ],
+        "sense_id": "d2lce_fa115d4c3a8140d91339df15",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a chemical reaction sense of reduction, not an aggregation operation over tensor values",
+          "rationale": "Supplied contexts stay within mathematical/computational reduction; synthetic different sense added.",
+          "source_text": "Synthetic: The chemistry lab discussed reduction, meaning gain of electrons, which is unrelated to tensor reduction here."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded candidate and standard concise rendering",
+            "target_vi": "nhúng vị trí"
+          },
+          {
+            "formation_reason": "plausible fuller technical variant emphasizing embeddings as representations",
+            "target_vi": "biểu diễn nhúng vị trí"
+          },
+          {
+            "formation_reason": "plausible variant grounded in embedding vectors",
+            "target_vi": "vector nhúng vị trí"
+          },
+          {
+            "formation_reason": "plural-explicit variant matching the source surface",
+            "target_vi": "các nhúng vị trí"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_b36e02e023df099b64aa3633",
+            "context_type": "C1",
+            "reason_code": "direct statement that positional embeddings are added at every position",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_bb968ec70a7eddfb7572bf84",
+            "context_type": "C2",
+            "reason_code": "explains compositional role in BERT input embeddings",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_de666609a3f80804219b8277",
+            "context_type": "C2",
+            "reason_code": "adds the property that BERT uses learnable positional embeddings",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_f22071ca36597da8b867623d",
+            "context_type": "C2",
+            "reason_code": "figure caption reiterates the same compositional role",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_1caf4d22bfae71a85895f2f0",
+            "context_type": "C2",
+            "reason_code": "contrasts BERTEncoder with TransformerEncoder using the same component",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_2e2c010ed9f3e5f77a7ac3a1",
+            "context_type": "C3",
+            "reason_code": "code implements positional embeddings as a learnable parameter",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_b86239fbecdd4400667164fa",
+            "context_type": "C3",
+            "reason_code": "PyTorch code implements and adds positional embeddings to inputs",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_c9b63496779ed532f23eb959",
+            "context_type": "C2",
+            "reason_code": "summary bullet restating their role in the input sequence",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "vector representations that encode token positions in a sequence and are added to other input embeddings",
+        "definition_evidence_context_ids": [
+          "ctx_b36e02e023df099b64aa3633",
+          "ctx_bb968ec70a7eddfb7572bf84",
+          "ctx_de666609a3f80804219b8277"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_b36e02e023df099b64aa3633",
+          "ctx_de666609a3f80804219b8277"
+        ],
+        "sense_id": "d2lce_d96258f97579b9b414c21815",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "an informal non-neural use referring to stored position information rather than learned embedding vectors",
+          "rationale": "All supplied contexts use the same neural-network sense; synthetic contrast added.",
+          "source_text": "Synthetic: In image editing, “positional embeddings” could be misused to mean coordinates pasted into metadata, not neural sequence representations."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded concise rendering used for the abstract relation",
+            "target_vi": "phụ thuộc"
+          },
+          {
+            "formation_reason": "natural nominalized Vietnamese equivalent for the noun sense",
+            "target_vi": "sự phụ thuộc"
+          },
+          {
+            "formation_reason": "plausible fuller rendering when emphasis is on the relation",
+            "target_vi": "quan hệ phụ thuộc"
+          },
+          {
+            "formation_reason": "plausible relational variant in graph/sequence contexts",
+            "target_vi": "mối phụ thuộc"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_352957138cd800697e9e1625",
+            "context_type": "C1",
+            "reason_code": "dependency in a probabilistic relation P(y|x)",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_30b0abbdda1b9ee7a038b75e",
+            "context_type": "C2",
+            "reason_code": "dependency graph between variables",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_0ca5bf2018319128f4a0f958",
+            "context_type": "C2",
+            "reason_code": "dependency across long sequences",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_90f232a47692067501676b09",
+            "context_type": "C2",
+            "reason_code": "dependency chain through time steps",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_ebf04bc98574f005873df1b9",
+            "context_type": "C2",
+            "reason_code": "dependency graph in computation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.94,
+            "context_id": "ctx_7e604e4269944dde1bd55c75",
+            "context_type": "C2",
+            "reason_code": "dependency assumption in distribution shift discussion",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_cd053e813da2a435104cf02a",
+            "context_type": "C2",
+            "reason_code": "long-range dependency in sequences",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.95,
+            "context_id": "ctx_a78f591991c49716e5760863",
+            "context_type": "C2",
+            "reason_code": "long dependency chain for gradients",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.94,
+        "definition_en": "a relation in which one variable, computation, or step relies on another, often across a graph or sequence",
+        "definition_evidence_context_ids": [
+          "ctx_352957138cd800697e9e1625",
+          "ctx_0ca5bf2018319128f4a0f958",
+          "ctx_ebf04bc98574f005873df1b9"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_352957138cd800697e9e1625",
+          "ctx_0ca5bf2018319128f4a0f958"
+        ],
+        "sense_id": "d2lce_144baca5ccb9be2154705e92",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "an installed-package requirement in software management, not a mathematical or sequential reliance relation",
+          "rationale": "Supplied contexts all use relational/graph/sequence dependency; synthetic alternative sense added.",
+          "source_text": "Synthetic: The project has a software dependency on a plotting library, which is a package requirement rather than the relation discussed here."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "recorded form and the standard untranslated acronym in Vietnamese technical usage",
+            "target_vi": "PCIe"
+          },
+          {
+            "formation_reason": "expanded standard name corresponding to the acronym in context",
+            "target_vi": "PCI Express"
+          },
+          {
+            "formation_reason": "plausible explanatory Vietnamese form emphasizing it as a standard",
+            "target_vi": "chuẩn PCIe"
+          },
+          {
+            "formation_reason": "plausible contextual rendering highlighting its interconnect role",
+            "target_vi": "giao tiếp PCIe"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_bc0b95f28a464a117086fd7d",
+            "context_type": "C1",
+            "reason_code": "names PCIe as a high-speed expansion bus for GPUs",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_1d8dbe9ec3f0a06ece3a6924",
+            "context_type": "C2",
+            "reason_code": "discusses PCIe versions and bandwidth for motherboard slots",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_e7143839c5cd7a24ea737b53",
+            "context_type": "C2",
+            "reason_code": "mentions storage connected using the PCIe bus",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_7ae3e3659cd76b766f2747b3",
+            "context_type": "C2",
+            "reason_code": "describes PCIe 4.0 lanes and transfer rate",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_eb05e20b7827c8e88746abb2",
+            "context_type": "C2",
+            "reason_code": "states components are connected across the PCIe bus",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_62bef5528a5385c4c8a8ab6a",
+            "context_type": "C2",
+            "reason_code": "describes SSDs attached directly to the PCIe bus",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_678990229efc17731a44c47b",
+            "context_type": "C2",
+            "reason_code": "gives throughput on PCIe 4.0",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_67e4805a6cc4da88af5a0fa4",
+            "context_type": "C2",
+            "reason_code": "mentions NVMe drives using PCIe lanes",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "the PCI Express hardware interconnect standard used to connect components such as GPUs and storage to a computer system",
+        "definition_evidence_context_ids": [
+          "ctx_bc0b95f28a464a117086fd7d",
+          "ctx_eb05e20b7827c8e88746abb2",
+          "ctx_67e4805a6cc4da88af5a0fa4"
+        ],
+        "part_of_speech": "proper_noun",
+        "part_of_speech_confidence": 0.96,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_bc0b95f28a464a117086fd7d",
+          "ctx_7ae3e3659cd76b766f2747b3"
+        ],
+        "sense_id": "d2lce_35df896f9860f8aac814ce37",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a purely mention-level use of the string as text, not the computer bus standard itself",
+          "rationale": "All supplied contexts refer to the same hardware standard; synthetic contrast added.",
+          "source_text": "Synthetic: PCIe was printed on the slide as an example acronym, without referring to the hardware interconnect standard."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}

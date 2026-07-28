@@ -1,0 +1,515 @@
+{
+  "audit": {
+    "batch_index": 22,
+    "from_cache": false,
+    "latency_ms": 74573,
+    "model": "gpt-5.4",
+    "provider_id": "ckey_modelapi_compatible_v1",
+    "request_sha256": "ead982efbed7eea8c89b3dd0ac4fc29cb1d684bbc198d4e2f8ab117d6d2a426d",
+    "response_sha256": "bdad44f6a65941a44625da779b458e846dd77dad3ffd9bdd3e883289f4d140c0",
+    "usage": {
+      "input_tokens": 5093,
+      "output_tokens": 3895,
+      "reasoning_tokens": null,
+      "total_tokens": 8988
+    },
+    "validation_repairs": []
+  },
+  "input_request_sha256": "53aa1d0ab8ba70de36d63f805f120363fefe51f8ef3860afe4c7b6c0cc2a9fb3",
+  "parsed": {
+    "items": [
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "canonical singular technical phrase",
+            "target_vi": "lớp tùy chỉnh"
+          },
+          {
+            "formation_reason": "attested plural-compatible technical phrase",
+            "target_vi": "các lớp tùy chỉnh"
+          },
+          {
+            "formation_reason": "plausible variant using 'tự định nghĩa' for user-created layer",
+            "target_vi": "lớp tự định nghĩa"
+          },
+          {
+            "formation_reason": "plausible variant emphasizing user customization",
+            "target_vi": "lớp do người dùng tùy chỉnh"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_6c7cc3e81d29fe5dcb962f5f",
+            "context_type": "C1",
+            "reason_code": "chapter topic list names designing custom layers as a computation component",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_73804fdbddef8388a5550f4a",
+            "context_type": "C1",
+            "reason_code": "custom layer refers to a user-defined neural network layer implementation",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_30b81bc472e7bfa9272f2568",
+            "context_type": "C1",
+            "reason_code": "section heading explicitly names custom layers",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_d91ca38d8df2fb6f84356a08",
+            "context_type": "C1",
+            "reason_code": "must build a custom layer refers to this exact technical object",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_c650fc71af7d6c2789e47035",
+            "context_type": "C1",
+            "reason_code": "construct a custom layer without parameters is the same layer sense",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_51a667c40e6f2983a4ba8c80",
+            "context_type": "C1",
+            "reason_code": "custom serialization routines for every custom layer keeps same software component sense",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_01c5f3adb58f2f2203f6a24f",
+            "context_type": "C1",
+            "reason_code": "using custom layers in forward propagation preserves same meaning",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_5b4647a086d9552408986cb3",
+            "context_type": "C1",
+            "reason_code": "construct models using custom layers refers to user-defined layers",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.98,
+        "definition_en": "a user-defined neural network layer implemented to provide functionality not covered by built-in layers",
+        "definition_evidence_context_ids": [
+          "ctx_d91ca38d8df2fb6f84356a08",
+          "ctx_c650fc71af7d6c2789e47035",
+          "ctx_5b4647a086d9552408986cb3"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_30b81bc472e7bfa9272f2568",
+          "ctx_d91ca38d8df2fb6f84356a08",
+          "ctx_5b4647a086d9552408986cb3"
+        ],
+        "sense_id": "d2lce_4d2b37402e25d2f56746ea23",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a physical geological layer altered to order, not a neural-network component",
+          "rationale": "all supplied contexts show only the deep-learning software sense",
+          "source_text": "Synthetic: The custom layer of sediment was added by the artist to the sculpture."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "short established borrowing/calque for the optimization concept",
+            "target_vi": "khởi động"
+          },
+          {
+            "formation_reason": "explicit phrase for the phase or period before full-rate optimization",
+            "target_vi": "giai đoạn khởi động"
+          },
+          {
+            "formation_reason": "plausible technical variant emphasizing gradual start",
+            "target_vi": "giai đoạn làm nóng"
+          },
+          {
+            "formation_reason": "plausible variant for scheduler-related ramp-up stage",
+            "target_vi": "pha tăng tốc ban đầu"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_a512a07140b183f0582a2fa1",
+            "context_type": "C1",
+            "reason_code": "defines warmup as how rapidly optimization starts moving initially",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.22,
+            "context_id": "ctx_18a1f84a72b1bf14d4d2b112",
+            "context_type": "NONE",
+            "reason_code": "here warmup means an introductory toy example, not the learning-rate scheduling concept",
+            "sense_relation": "INVALID"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_10409253f5d4e26f24be38e9",
+            "context_type": "C1",
+            "reason_code": "warmup period and mode are scheduler parameters for the same optimization concept",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_a1b6c6ab71183a43fe8f7b93",
+            "context_type": "C1",
+            "reason_code": "section heading names the optimization technique warmup",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_df53f1201adeb15694c788d5",
+            "context_type": "C1",
+            "reason_code": "warmup period explicitly means increasing learning rate at the start",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_078c04e65c06128943224c26",
+            "context_type": "C1",
+            "reason_code": "warmup phase in deep networks is the same optimization-stage sense",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_2b99a602b964180da9cbc38c",
+            "context_type": "C1",
+            "reason_code": "applied to any scheduler indicates the same training schedule technique",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_23984c926b405fd7be61d3af",
+            "context_type": "C1",
+            "reason_code": "warmup period before optimization preventing divergence is same sense",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.97,
+        "definition_en": "an initial training phase in which the learning rate is gradually increased before following the main schedule",
+        "definition_evidence_context_ids": [
+          "ctx_a512a07140b183f0582a2fa1",
+          "ctx_df53f1201adeb15694c788d5",
+          "ctx_23984c926b405fd7be61d3af"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.97,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_a1b6c6ab71183a43fe8f7b93",
+          "ctx_df53f1201adeb15694c788d5",
+          "ctx_2b99a602b964180da9cbc38c"
+        ],
+        "sense_id": "d2lce_6f3afd43e74e8d70778dc0c8",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a preliminary example used to get ready for a discussion, not a learning-rate schedule stage",
+          "rationale": "one supplied context shows a different discourse-use of warmup",
+          "source_text": "Synthetic: As a warmup, compute a tiny matrix product before studying asynchronous execution."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "canonical ML task label",
+            "target_vi": "bài toán phân loại"
+          },
+          {
+            "formation_reason": "plausible task-oriented variant",
+            "target_vi": "nhiệm vụ phân loại"
+          },
+          {
+            "formation_reason": "plausible educational/technical variant",
+            "target_vi": "tác vụ phân loại"
+          },
+          {
+            "formation_reason": "plausible variant emphasizing assigned problem setting",
+            "target_vi": "bài toán phân lớp"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_5178997f9928de9b50c9dd24",
+            "context_type": "C1",
+            "reason_code": "classification task refers to a supervised prediction task over categories",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_3e389fe6256706465318f5f8",
+            "context_type": "C1",
+            "reason_code": "binary classification task is the same ML task type",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_c332d46b413066a4b5ce91fc",
+            "context_type": "C1",
+            "reason_code": "text classification task clearly denotes the same predictive task framing",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_d3fc4788f9797ce1f2337e72",
+            "context_type": "C1",
+            "reason_code": "CTR prediction treated as a classification task keeps same meaning",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.96,
+            "context_id": "ctx_85fa1560b684d47c13e4cb02",
+            "context_type": "C1",
+            "reason_code": "last step in a classification task still denotes the same problem/task type",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_7a43f811e64406c483bc4185",
+            "context_type": "C1",
+            "reason_code": "binary classification task for training example generation is same sense",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_03e87b1a98115f17fc26d0f7",
+            "context_type": "C1",
+            "reason_code": "express the classification task as predicting the most likely label",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_ee34c2df4e3b3b9663241088",
+            "context_type": "C1",
+            "reason_code": "maps an example into a category, directly defining the same sense",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "a machine learning task in which each example is assigned to one of a set of categories or labels",
+        "definition_evidence_context_ids": [
+          "ctx_5178997f9928de9b50c9dd24",
+          "ctx_03e87b1a98115f17fc26d0f7",
+          "ctx_ee34c2df4e3b3b9663241088"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_3e389fe6256706465318f5f8",
+          "ctx_c332d46b413066a4b5ce91fc",
+          "ctx_d3fc4788f9797ce1f2337e72"
+        ],
+        "sense_id": "d2lce_d89e6e83e5f07d1fcb18c6aa",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "a task of arranging physical objects into classes manually, not specifically an ML prediction setup",
+          "rationale": "all supplied contexts use the machine-learning task sense only",
+          "source_text": "Synthetic: The classification task in the museum was to sort fossils into display trays by species."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "canonical mathematical noun",
+            "target_vi": "hằng số"
+          },
+          {
+            "formation_reason": "recorded plausible alternative when something is treated as fixed",
+            "target_vi": "bất biến"
+          },
+          {
+            "formation_reason": "plausible mathematical variant",
+            "target_vi": "giá trị không đổi"
+          },
+          {
+            "formation_reason": "plausible technical variant for plural or descriptive use",
+            "target_vi": "đại lượng cố định"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_e3a4772ecd482355d1d71feb",
+            "context_type": "C1",
+            "reason_code": "constant length means a value that does not change",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_1f1572c94613de76cd12614d",
+            "context_type": "C1",
+            "reason_code": "some other constants refers to fixed numerical values for initialization",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_6680b855ff6f781511dd10c7",
+            "context_type": "C1",
+            "reason_code": "the constant 1/2 is a mathematical fixed value",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.97,
+            "context_id": "ctx_1468868079bb9b62650af1ce",
+            "context_type": "C1",
+            "reason_code": "keeping all others constant means holding them fixed",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.98,
+            "context_id": "ctx_3596d41647ddaacf0aed8755",
+            "context_type": "C1",
+            "reason_code": "constant parameters are parameters treated as fixed values",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_a81307e03098966ed96b74bf",
+            "context_type": "C1",
+            "reason_code": "U is a constant, say u, is direct mathematical constant usage",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_426bd774623f1d7d45637e8c",
+            "context_type": "C1",
+            "reason_code": "small constant epsilon is a standard fixed scalar value",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_ea695244ac38f31f89ef729b",
+            "context_type": "C1",
+            "reason_code": "for some constant c is the same mathematical noun sense",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.96,
+        "definition_en": "a fixed value or quantity that does not change within the given setting or calculation",
+        "definition_evidence_context_ids": [
+          "ctx_6680b855ff6f781511dd10c7",
+          "ctx_a81307e03098966ed96b74bf",
+          "ctx_426bd774623f1d7d45637e8c"
+        ],
+        "part_of_speech": "noun",
+        "part_of_speech_confidence": 0.86,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_6680b855ff6f781511dd10c7",
+          "ctx_a81307e03098966ed96b74bf",
+          "ctx_ea695244ac38f31f89ef729b"
+        ],
+        "sense_id": "d2lce_46e81052dcb25b16e429062a",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "steadfast or unchanged in behavior as an adjective describing a person, not a mathematical fixed value",
+          "rationale": "supplied contexts support the mathematical/fixed-value sense; one context shows predicative 'keep ... constant' but still within fixed-value meaning",
+          "source_text": "Synthetic: She remained constant in her support throughout the project."
+        }
+      },
+      {
+        "candidate_suggestions": [
+          {
+            "formation_reason": "canonical ML problem-type phrase",
+            "target_vi": "bài toán phân loại"
+          },
+          {
+            "formation_reason": "plausible variant with broader 'vấn đề' framing",
+            "target_vi": "vấn đề phân loại"
+          },
+          {
+            "formation_reason": "plausible technical variant",
+            "target_vi": "bài toán phân lớp"
+          },
+          {
+            "formation_reason": "plausible instructional variant",
+            "target_vi": "các bài toán phân loại"
+          }
+        ],
+        "contexts": [
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_026fffa1498f9353695d8938",
+            "context_type": "C1",
+            "reason_code": "classification problems contrasted with regression problems as a problem type",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_ffdf1a13224ab9169c7fc415",
+            "context_type": "C1",
+            "reason_code": "introduce classification problems as predicting category membership",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_8ee021478cb4ccd5631a27d8",
+            "context_type": "C1",
+            "reason_code": "binary classification problems refers to the same type of ML problem",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_275c69012387f631509a7b14",
+            "context_type": "C1",
+            "reason_code": "binary or multiclass classification setups are kinds of classification problems",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_18f207162816691afd0ac11d",
+            "context_type": "C1",
+            "reason_code": "multi-label classification problems is same general problem family",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_4f3feaf3fe5fc9145ebc21e9",
+            "context_type": "C1",
+            "reason_code": "general classification problems denotes the broad problem type",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_f94fc680303cbcb3c27ab99b",
+            "context_type": "C1",
+            "reason_code": "classification problems as the application domain for cross-entropy loss",
+            "sense_relation": "SAME_SENSE"
+          },
+          {
+            "confidence": 0.99,
+            "context_id": "ctx_96aeca71763647a9e736af8b",
+            "context_type": "C1",
+            "reason_code": "softmax regression applies to classification problems, same sense",
+            "sense_relation": "SAME_SENSE"
+          }
+        ],
+        "definition_confidence": 0.99,
+        "definition_en": "problems whose goal is to predict which category or label an example belongs to",
+        "definition_evidence_context_ids": [
+          "ctx_ffdf1a13224ab9169c7fc415",
+          "ctx_026fffa1498f9353695d8938",
+          "ctx_4f3feaf3fe5fc9145ebc21e9"
+        ],
+        "part_of_speech": "noun_phrase",
+        "part_of_speech_confidence": 0.99,
+        "part_of_speech_evidence_context_ids": [
+          "ctx_026fffa1498f9353695d8938",
+          "ctx_ffdf1a13224ab9169c7fc415",
+          "ctx_96aeca71763647a9e736af8b"
+        ],
+        "sense_id": "d2lce_7070b47672fcb2311c0527b6",
+        "synthetic_contrastive_probe": {
+          "contrasted_sense_definition": "administrative or social problems related to grouping items, not specifically machine-learning prediction problems",
+          "rationale": "all supplied contexts use the machine-learning problem-type sense only",
+          "source_text": "Synthetic: The library faced classification problems when volunteers disagreed on where to shelve rare manuscripts."
+        }
+      }
+    ]
+  },
+  "schema_id": "D2LContextSupportEnrichmentCacheV2",
+  "schema_version": "2.0.0"
+}
