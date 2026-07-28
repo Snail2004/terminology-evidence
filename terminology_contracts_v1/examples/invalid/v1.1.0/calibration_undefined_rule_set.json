@@ -8,9 +8,10 @@
   "created_at": "2026-07-28T11:00:00+00:00",
   "development_dataset_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
   "feature_contract_version": "1.1.0",
-  "gate_policy_version": "gates-v1",
+  "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+  "gate_policy_version": "1.0.0",
   "integrity": {
-    "self_sha256": "59beb27703d8d170e11dc40f343a5caf730e269bbf8be3451b832ddf6a0b5d2a"
+    "self_sha256": "0bbff84fd3326cb492ed6bde3bd42f72bb7892f27403cdd001953d56d75e900e"
   },
   "metric_target": {
     "auto_approval_precision_target": 0.95,
@@ -39,6 +40,15 @@
   },
   "schema_id": "CalibrationArtifactV1",
   "schema_version": "1.1.0",
+  "threshold_stability": {
+    "decision_flip_rate": 0.06,
+    "method": "CLUSTER_BOOTSTRAP",
+    "replicate_count": 1000,
+    "resampling_unit": "sense_id",
+    "threshold_ci_lower": 0.78,
+    "threshold_ci_upper": 0.9,
+    "threshold_median": 0.84
+  },
   "validation_dataset_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
   "verification_status": "SEALED"
 }

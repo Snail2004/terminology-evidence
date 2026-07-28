@@ -526,6 +526,16 @@ ESCALATE_HUMAN → không AUTO_APPROVED
 CAP_PROVISIONAL → không AUTO_APPROVED
 ```
 
+Native C/E packages phải phát hành đầy đủ `gate_signals` thuộc phạm vi producer.
+Global Validator lấy phép OR các assertion từ C/E và bắt buộc chiếu sang
+`GateResultSetV1`; không được bỏ qua signal đã assert. Reason codes, evidence
+refs và source module của producer phải được bảo toàn trong gate observation.
+
+Mỗi `action` phải thuộc `allowed_actions` của gate tương ứng trong sealed
+`GatePolicyArtifactV1`. Gate result, calibration, decision, replay metadata và
+certificate cùng bind `gate_policy_artifact_sha256`; chuỗi version đơn lẻ không
+đủ làm authority.
+
 ### 9.4. Precedence
 
 ```text
@@ -599,6 +609,10 @@ Schema validation là chưa đủ. Verifier phải kiểm tra:
 8. threshold lấy từ artifact;
 9. precision target và operating point đầy đủ;
 10. artifact chưa bị sửa sau khi seal.
+
+Trước khi freeze, calibration có thể bind `threshold_stability` từ cluster
+bootstrap theo `sense_id`, gồm số replicate, median/CI của threshold và decision
+flip rate. CI phải thỏa `lower <= median <= upper`.
 
 ### 11.2. Không được phép
 

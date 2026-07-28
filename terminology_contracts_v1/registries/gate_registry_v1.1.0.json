@@ -36,5 +36,23 @@
     "E",
     "GLOBAL",
     "HUMAN_REVIEW"
-  ]
+  ],
+  "signal_sources": {
+    "C": [
+      "concept_mismatch",
+      "wrong_sense",
+      "contradiction",
+      "judge_disagreement",
+      "insufficient_evidence",
+      "missing_contrastive_context",
+      "incomplete_context_type_coverage"
+    ],
+    "E": [
+      "concept_mismatch",
+      "contradiction",
+      "judge_disagreement",
+      "insufficient_evidence",
+      "attestation_unjudgeable"
+    ]
+  }
 }

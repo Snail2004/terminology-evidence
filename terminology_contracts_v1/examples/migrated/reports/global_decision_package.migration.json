@@ -1,7 +1,9 @@
 {
   "fields_added": [
     "$.decision_policy.feature_contract_version",
+    "$.decision_policy.gate_policy_artifact_sha256",
     "$.gate_results.binding_status",
+    "$.gate_results.gate_policy_artifact_sha256",
     "$.gate_results.observations[0].source_modules",
     "$.gate_results.observations[1].source_modules",
     "$.run_metadata"
@@ -12,7 +14,7 @@
   "source_schema_version": "1.0.0",
   "source_sha256": "3a21a0e8e513888737d118e037a04deba561024e44a8b9b838f3b14485897bc7",
   "target_schema_version": "1.1.0",
-  "target_sha256": "bae799be0994a7c994be0cb9c94aeb1191b261f333e14d1fd1e542dfb5371065",
+  "target_sha256": "ab55f83f24744140dd62c370a29845290179b885b0efa67ed57b6edd07f87154",
   "warnings": [
     "Legacy decision has no original GlobalValidatorInput artifact binding."
   ]

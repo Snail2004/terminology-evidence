@@ -5,9 +5,9 @@
     "assembler_version": "1.1.0",
     "binding_status": "COMPLETE",
     "source_package_hashes": {
-      "attestation_evidence_sha256": "b521607b8e41f333a73f8cd564b40123d34bf879cccfa906dc67ba1a9bec7b36",
-      "constraint_evidence_sha256": "367d0845552ce62671039afcb9a79fbd66b05777bef78f75d02301bec8f2903b",
-      "context_evidence_sha256": "67423d3e1556298bed0b4b0ed7a794cc2811fae741690bfeda3c1efd1bf8a1bd",
+      "attestation_evidence_sha256": "831cf0d4a5cbbaf508c73a605e86fe66d8f066677080ea6af986637b5dcdf6aa",
+      "constraint_evidence_sha256": "d41daa7701022f4fb9c32719a0d9e4dec848becb7501520bba66b81dcbdec374",
+      "context_evidence_sha256": "0541b05d914ebab350f923e31ac01518a3300576e01fd1990a983f00ba6a612c",
       "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
       "frozen_candidate_contract_sha256": "1cfadf782b4448173516f5cf204abc4db11f9e12c3932efea1c4b35361c92024"
     }
@@ -43,9 +43,41 @@
     },
     "final_glossary_decision": null,
     "flags": [],
+    "gate_signals": [
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "concept_mismatch",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "contradiction",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "judge_disagreement",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "insufficient_evidence",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "attestation_unjudgeable",
+        "reason_codes": []
+      }
+    ],
     "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
     "integrity": {
-      "self_sha256": "b521607b8e41f333a73f8cd564b40123d34bf879cccfa906dc67ba1a9bec7b36"
+      "self_sha256": "831cf0d4a5cbbaf508c73a605e86fe66d8f066677080ea6af986637b5dcdf6aa"
     },
     "local_status": "ATTESTED",
     "observed_variants": [
@@ -148,9 +180,53 @@
     },
     "final_glossary_decision": null,
     "flags": [],
+    "gate_signals": [
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "concept_mismatch",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "wrong_sense",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "contradiction",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "judge_disagreement",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "insufficient_evidence",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "missing_contrastive_context",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "incomplete_context_type_coverage",
+        "reason_codes": []
+      }
+    ],
     "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
     "integrity": {
-      "self_sha256": "67423d3e1556298bed0b4b0ed7a794cc2811fae741690bfeda3c1efd1bf8a1bd"
+      "self_sha256": "0541b05d914ebab350f923e31ac01518a3300576e01fd1990a983f00ba6a612c"
     },
     "local_status": "CONTEXT_SUPPORTED",
     "provenance": {
@@ -348,7 +424,7 @@
   },
   "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
   "integrity": {
-    "self_sha256": "009be8a4eca133a7b100cf9c126f0a31c965194701b7f05e990d45d10ed849a0"
+    "self_sha256": "7c3da62965dde8dc075aa8505180f1ccb68de73222b719ec4451e31c2544b871"
   },
   "optional_probes": [],
   "schema_id": "GlobalValidatorInputV1",

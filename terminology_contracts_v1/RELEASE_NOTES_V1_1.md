@@ -1,9 +1,17 @@
-# Terminology Contracts V1.1 RC2 Release Notes
+# Terminology Contracts V1.1 RC3 Release Notes
 
 V1.1 is a boundary hardening release. It does not change C/E algorithms, choose
 weights, set thresholds, create human labels, or make glossary decisions.
 
 ## Consumer impact
+
+- Native C/E evidence now carries an exact producer-owned `gate_signals` set;
+  the Global Validator must project asserted signals into gate results.
+- `GatePolicyArtifactV1` is a sealed authority. Gate results, calibration,
+  decisions, replay metadata, and certificates bind its exact hash.
+- Collision status binds a collision-index evidence reference whose physical
+  bytes are checked by certificate bundle verification.
+- Calibration may seal cluster-bootstrap threshold-stability metadata.
 
 - Frozen Candidate `input_contract_sha256` is now canonically derived and
   verified from its complete content.
@@ -29,7 +37,9 @@ bindings as legacy-incomplete rather than fabricating them.
 
 RC1 remains immutable at SHA-256
 `38e2ee307b247d535baedcde83427ebe3f30901d31bb921f03e6681b3160dbdc`.
-RC2 is a re-review candidate and is not the final frozen authority until that
+RC2 remains immutable at SHA-256
+`2530ebf80d4826a740d1d1efad5952adf8611cec67797d7bd806731a15cb1954`.
+RC3 is a re-review candidate and is not the final frozen authority until that
 review passes.
 
 ## Scientific boundary

@@ -5,9 +5,9 @@
     "assembler_version": "1.1.0",
     "binding_status": "COMPLETE",
     "source_package_hashes": {
-      "attestation_evidence_sha256": "b521607b8e41f333a73f8cd564b40123d34bf879cccfa906dc67ba1a9bec7b36",
-      "constraint_evidence_sha256": "367d0845552ce62671039afcb9a79fbd66b05777bef78f75d02301bec8f2903b",
-      "context_evidence_sha256": "67423d3e1556298bed0b4b0ed7a794cc2811fae741690bfeda3c1efd1bf8a1bd",
+      "attestation_evidence_sha256": "831cf0d4a5cbbaf508c73a605e86fe66d8f066677080ea6af986637b5dcdf6aa",
+      "constraint_evidence_sha256": "d41daa7701022f4fb9c32719a0d9e4dec848becb7501520bba66b81dcbdec374",
+      "context_evidence_sha256": "0541b05d914ebab350f923e31ac01518a3300576e01fd1990a983f00ba6a612c",
       "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
       "frozen_candidate_contract_sha256": "1cfadf782b4448173516f5cf204abc4db11f9e12c3932efea1c4b35361c92024"
     }
@@ -43,9 +43,41 @@
     },
     "final_glossary_decision": null,
     "flags": [],
+    "gate_signals": [
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "concept_mismatch",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "contradiction",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "judge_disagreement",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "insufficient_evidence",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "attestation_unjudgeable",
+        "reason_codes": []
+      }
+    ],
     "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
     "integrity": {
-      "self_sha256": "b521607b8e41f333a73f8cd564b40123d34bf879cccfa906dc67ba1a9bec7b36"
+      "self_sha256": "831cf0d4a5cbbaf508c73a605e86fe66d8f066677080ea6af986637b5dcdf6aa"
     },
     "local_status": "ATTESTED",
     "observed_variants": [
@@ -134,7 +166,7 @@
     },
     "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
     "integrity": {
-      "self_sha256": "367d0845552ce62671039afcb9a79fbd66b05777bef78f75d02301bec8f2903b"
+      "self_sha256": "d41daa7701022f4fb9c32719a0d9e4dec848becb7501520bba66b81dcbdec374"
     },
     "polysemy_resolution": {
       "authority_ref": {
@@ -192,7 +224,13 @@
       "status": "VERIFIED"
     },
     "target_collision": {
-      "collision_index_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "collision_index_ref": {
+        "evidence_id": "collision-index-fixture-v1",
+        "evidence_type": "COLLISION_INDEX",
+        "sha256": "936e94f3c205ce8f0947e7349e09a7286263be4fc762accc442accaa3fa67dd2",
+        "uri": "artifact://fixtures/collision-index-v1"
+      },
+      "collision_index_sha256": "936e94f3c205ce8f0947e7349e09a7286263be4fc762accc442accaa3fa67dd2",
       "conflicting_candidate_keys": [],
       "evidence_refs": [],
       "status": "CLEAR"
@@ -227,9 +265,53 @@
     },
     "final_glossary_decision": null,
     "flags": [],
+    "gate_signals": [
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "concept_mismatch",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "wrong_sense",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "contradiction",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "judge_disagreement",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "insufficient_evidence",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "missing_contrastive_context",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "incomplete_context_type_coverage",
+        "reason_codes": []
+      }
+    ],
     "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
     "integrity": {
-      "self_sha256": "67423d3e1556298bed0b4b0ed7a794cc2811fae741690bfeda3c1efd1bf8a1bd"
+      "self_sha256": "0541b05d914ebab350f923e31ac01518a3300576e01fd1990a983f00ba6a612c"
     },
     "local_status": "CONTEXT_SUPPORTED",
     "provenance": {
@@ -427,7 +509,7 @@
   },
   "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
   "integrity": {
-    "self_sha256": "8baa51db8984df6764d263bfe1823874ab9d7bb06f5baac068469bc08a30cf9f"
+    "self_sha256": "c85fec4352b6cd315074f58f3d8d6f1f7594923fab98aced6ced68b06c484a4a"
   },
   "optional_probes": [],
   "schema_id": "GlobalValidatorInputV1",

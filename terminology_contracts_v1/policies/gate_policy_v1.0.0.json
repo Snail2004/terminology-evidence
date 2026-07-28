@@ -1,0 +1,79 @@
+{
+  "schema_id": "GatePolicyArtifactV1",
+  "schema_version": "1.1.0",
+  "gate_policy_id": "gate-policy-v1",
+  "gate_policy_version": "1.0.0",
+  "gate_registry_version": "1.1.0",
+  "rules": {
+    "input_contract_mismatch": {
+      "allowed_actions": [
+        "FATAL_REJECT"
+      ]
+    },
+    "sense_definition_unverified": {
+      "allowed_actions": [
+        "ESCALATE_HUMAN"
+      ]
+    },
+    "unresolved_polysemy": {
+      "allowed_actions": [
+        "FATAL_SPLIT",
+        "ESCALATE_HUMAN"
+      ]
+    },
+    "concept_mismatch": {
+      "allowed_actions": [
+        "FATAL_REJECT"
+      ]
+    },
+    "wrong_sense": {
+      "allowed_actions": [
+        "FATAL_REJECT",
+        "FATAL_SPLIT"
+      ]
+    },
+    "contradiction": {
+      "allowed_actions": [
+        "FATAL_REJECT",
+        "ESCALATE_HUMAN"
+      ]
+    },
+    "target_collision": {
+      "allowed_actions": [
+        "ESCALATE_HUMAN"
+      ]
+    },
+    "judge_disagreement": {
+      "allowed_actions": [
+        "ESCALATE_HUMAN"
+      ]
+    },
+    "insufficient_evidence": {
+      "allowed_actions": [
+        "CAP_PROVISIONAL",
+        "ESCALATE_HUMAN"
+      ]
+    },
+    "missing_contrastive_context": {
+      "allowed_actions": [
+        "CAP_PROVISIONAL",
+        "ESCALATE_HUMAN"
+      ]
+    },
+    "incomplete_context_type_coverage": {
+      "allowed_actions": [
+        "CAP_PROVISIONAL",
+        "ESCALATE_HUMAN"
+      ]
+    },
+    "attestation_unjudgeable": {
+      "allowed_actions": [
+        "CAP_PROVISIONAL",
+        "ESCALATE_HUMAN"
+      ]
+    }
+  },
+  "integrity": {
+    "self_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2"
+  }
+}

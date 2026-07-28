@@ -12,7 +12,8 @@
     "gate_policy_version",
     "observations",
     "integrity",
-    "binding_status"
+    "binding_status",
+    "gate_policy_artifact_sha256"
   ],
   "properties": {
     "schema_id": {
@@ -113,6 +114,9 @@
         "COMPLETE",
         "LEGACY_INCOMPLETE"
       ]
+    },
+    "gate_policy_artifact_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/nullableSha256"
     }
   }
 }

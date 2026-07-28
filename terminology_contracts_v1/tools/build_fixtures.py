@@ -17,11 +17,13 @@ from terminology_contracts.bindings import (  # noqa: E402
 from terminology_contracts.integrity import (  # noqa: E402
     canonical_sha256,
     seal_self_hash,
+    sha256_file,
     strict_json_loads,
 )
 from terminology_contracts.registries import (  # noqa: E402
     FEATURE_CONTRACT_VERSION,
     GATE_IDS,
+    GATE_POLICY_VERSION,
     PACKAGE_VERSION,
     load_registry,
 )
@@ -34,6 +36,7 @@ from terminology_contracts.scoring import (  # noqa: E402
 
 
 VALID = ROOT / "examples" / "valid" / "v1.1.0"
+COLLISION_INDEX = ROOT / "examples" / "support" / "v1.1.0" / "collision_index.json"
 FEATURE_REGISTRY = ROOT / "registries" / "feature_contract_v1.1.0.json"
 
 GATE_SOURCES = {
@@ -57,7 +60,11 @@ def _load(name: str) -> dict:
 
 
 def _write(name: str, value: dict) -> None:
-    path = VALID / name
+    _write_path(VALID / name, value)
+
+
+def _write_path(path: Path, value: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
         json.dumps(
             value,
@@ -131,16 +138,38 @@ def main() -> int:
     _write("frozen_candidate_contract.json", frozen)
     input_hash = frozen["input_contract_sha256"]
 
+    context_payload = _load("context_evidence_package.json")
+    context_payload["gate_signals"] = [
+        {
+            "gate_id": gate_id,
+            "asserted": False,
+            "reason_codes": [],
+            "evidence_refs": [],
+        }
+        for gate_id in GATE_SOURCES
+        if "C" in GATE_SOURCES[gate_id]
+    ]
     context = _bind_producer(
-        _load("context_evidence_package.json"),
+        context_payload,
         key=key,
         input_contract_sha256=input_hash,
         component_id="context-substitution",
     )
     _write("context_evidence_package.json", context)
 
+    attestation_payload = _load("attestation_evidence_package.json")
+    attestation_payload["gate_signals"] = [
+        {
+            "gate_id": gate_id,
+            "asserted": False,
+            "reason_codes": [],
+            "evidence_refs": [],
+        }
+        for gate_id in GATE_SOURCES
+        if "E" in GATE_SOURCES[gate_id]
+    ]
     attestation = _bind_producer(
-        _load("attestation_evidence_package.json"),
+        attestation_payload,
         key=key,
         input_contract_sha256=input_hash,
         component_id="vietnamese-attestation",
@@ -152,6 +181,21 @@ def main() -> int:
         "evidence_type": "OTHER",
         "uri": "artifact://fixtures/sense-review-001",
         "sha256": effective["review_artifact_sha256"],
+    }
+    collision_index_path = COLLISION_INDEX
+    _write_path(
+        collision_index_path,
+        {
+            "index_id": "collision-index-fixture-v1",
+            "candidate_keys": [copy.deepcopy(key)],
+        },
+    )
+    collision_index_sha256 = sha256_file(collision_index_path)
+    collision_index_ref = {
+        "evidence_id": "collision-index-fixture-v1",
+        "evidence_type": "COLLISION_INDEX",
+        "uri": "artifact://fixtures/collision-index-v1",
+        "sha256": collision_index_sha256,
     }
     constraint = {
         "schema_id": "ConstraintEvidencePackageV1",
@@ -173,7 +217,8 @@ def main() -> int:
         },
         "target_collision": {
             "status": "CLEAR",
-            "collision_index_sha256": "3" * 64,
+            "collision_index_sha256": collision_index_sha256,
+            "collision_index_ref": collision_index_ref,
             "conflicting_candidate_keys": [],
             "evidence_refs": [],
         },
@@ -223,13 +268,20 @@ def main() -> int:
     global_input = seal_self_hash(global_input)
     _write("global_validator_input.json", global_input)
 
+    gate_policy = strict_json_loads(
+        (ROOT / "policies" / "gate_policy_v1.0.0.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    gate_policy_sha256 = gate_policy["integrity"]["self_sha256"]
     gates = {
         "schema_id": "GateResultSetV1",
         "schema_version": PACKAGE_VERSION,
         "candidate_key": copy.deepcopy(key),
         "input_contract_sha256": input_hash,
         "binding_status": "COMPLETE",
-        "gate_policy_version": "gates-v1",
+        "gate_policy_version": GATE_POLICY_VERSION,
+        "gate_policy_artifact_sha256": gate_policy_sha256,
         "observations": [
             {
                 "gate_id": gate_id,
@@ -260,6 +312,8 @@ def main() -> int:
     calibration.update(
         {
             "feature_contract_version": FEATURE_CONTRACT_VERSION,
+            "gate_policy_version": GATE_POLICY_VERSION,
+            "gate_policy_artifact_sha256": gate_policy_sha256,
             "verification_status": "SEALED",
             "numerical_tolerance": 1e-12,
             "model": {
@@ -293,6 +347,15 @@ def main() -> int:
                 "uncertainty_method": "WILSON_SCORE",
                 "selected_operating_point_id": "fixture-op-v1",
             },
+            "threshold_stability": {
+                "method": "CLUSTER_BOOTSTRAP",
+                "resampling_unit": "sense_id",
+                "replicate_count": 1000,
+                "threshold_median": 0.84,
+                "threshold_ci_lower": 0.78,
+                "threshold_ci_upper": 0.9,
+                "decision_flip_rate": 0.06,
+            },
         }
     )
     calibration = seal_self_hash(calibration)
@@ -313,6 +376,7 @@ def main() -> int:
         "frozen_candidate_contract_sha256": frozen["integrity"]["self_sha256"],
         "constraint_evidence_sha256": constraint["integrity"]["self_sha256"],
         "gate_result_sha256": gates["integrity"]["self_sha256"],
+        "gate_policy_artifact_sha256": gate_policy_sha256,
     }
     decision = {
         "schema_id": "GlobalDecisionPackageV1",
@@ -328,6 +392,7 @@ def main() -> int:
             "policy_id": "global-validator",
             "policy_version": "global-v1",
             "feature_contract_version": FEATURE_CONTRACT_VERSION,
+            "gate_policy_artifact_sha256": gate_policy_sha256,
             "calibration_artifact_sha256": calibration["integrity"][
                 "self_sha256"
             ],
@@ -343,18 +408,20 @@ def main() -> int:
             "global_run_spec_id": "gv-fixture-spec-001",
             "started_at": "2026-07-28T11:00:00+00:00",
             "completed_at": "2026-07-28T11:01:00+00:00",
-            "engine_version": "global-validator-fixture-1.1.0-rc2",
+            "engine_version": "global-validator-fixture-1.1.0-rc3",
             "execution_config_sha256": canonical_sha256(
                 {
-                    "engine_version": "global-validator-fixture-1.1.0-rc2",
+                    "engine_version": "global-validator-fixture-1.1.0-rc3",
                     "policy_version": "global-v1",
                     "calibration_artifact_sha256": calibration["integrity"][
                         "self_sha256"
                     ],
+                    "gate_policy_artifact_sha256": gate_policy_sha256,
                 }
             ),
             "feature_contract_version": FEATURE_CONTRACT_VERSION,
-            "gate_policy_version": "gates-v1",
+            "gate_policy_version": GATE_POLICY_VERSION,
+            "gate_policy_artifact_sha256": gate_policy_sha256,
             "input_package_hashes": input_hashes,
             "replay_spec_sha256": "0" * 64,
         },
@@ -394,8 +461,9 @@ def main() -> int:
             "constraint_evidence_sha256": constraint["integrity"][
                 "self_sha256"
             ],
+            "gate_policy_artifact_sha256": gate_policy_sha256,
             "decision_package_sha256": decision["integrity"]["self_sha256"],
-            "threshold_version": "calibration-fixture-v1.1.0-rc2",
+            "threshold_version": "calibration-fixture-v1.1.0-rc3",
             "validity_context_refs": [
                 copy.deepcopy(context["support_set"]["positive_support_refs"][0])
             ],

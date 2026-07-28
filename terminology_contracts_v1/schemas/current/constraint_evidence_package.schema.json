@@ -103,6 +103,7 @@
       "required": [
         "status",
         "collision_index_sha256",
+        "collision_index_ref",
         "conflicting_candidate_keys",
         "evidence_refs"
       ],
@@ -116,6 +117,16 @@
         },
         "collision_index_sha256": {
           "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+        },
+        "collision_index_ref": {
+          "anyOf": [
+            {
+              "$ref": "common_defs.schema.json#/$defs/evidenceRef"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "conflicting_candidate_keys": {
           "type": "array",

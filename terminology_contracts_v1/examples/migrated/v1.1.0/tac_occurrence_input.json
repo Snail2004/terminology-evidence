@@ -41,12 +41,13 @@
       "suy diễn logic"
     ],
     "frozen_candidate_contract_sha256": null,
+    "gate_policy_artifact_sha256": null,
     "gate_result_sha256": null,
     "gate_summary": [],
     "global_validator_input_sha256": null,
     "input_contract_sha256": null,
     "integrity": {
-      "self_sha256": "c9d05c7112d4ed684b58236f0ba7a455baa95791a2ad41a70935c172bcf4a42a"
+      "self_sha256": "e0756147e77d974b3469acbfd7467d671d73525279d03a74274ed4f9796ba878"
     },
     "issued_at": "2026-07-28T11:30:00+00:00",
     "policy_version": "global-v1",
@@ -67,7 +68,7 @@
   },
   "glossary_version": "glossary-v1",
   "integrity": {
-    "self_sha256": "0adad0084381fd7cbdf64d818da59d4ed68a80fc94d697b7abe8f84181a15ce8"
+    "self_sha256": "8bb1e18639b0b77452c80c49bd692fd1810ae21d8c5b312fd095f9b4874edc81"
   },
   "occurrence_id": "d2l-ch03-s002-term01",
   "offset_unit": "UNICODE_CODEPOINT",

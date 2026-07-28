@@ -27,9 +27,53 @@
   },
   "final_glossary_decision": null,
   "flags": [],
+  "gate_signals": [
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "concept_mismatch",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "wrong_sense",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "contradiction",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "judge_disagreement",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "insufficient_evidence",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "missing_contrastive_context",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "incomplete_context_type_coverage",
+      "reason_codes": []
+    }
+  ],
   "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
   "integrity": {
-    "self_sha256": "2525346eb9ab7557c30684b771fe0c44ea7baa1e49a25600e0c85ddeb5306ccf"
+    "self_sha256": "15c50762c1dc879abd4e0b12ecc970a06775e49416d43a899b41942b37bb0fe4"
   },
   "local_status": "CONTEXT_SUPPORTED",
   "provenance": {

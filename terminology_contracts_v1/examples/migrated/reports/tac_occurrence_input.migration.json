@@ -8,6 +8,7 @@
     "$.certificate.context_evidence_sha256",
     "$.certificate.effective_sense_contract_sha256",
     "$.certificate.frozen_candidate_contract_sha256",
+    "$.certificate.gate_policy_artifact_sha256",
     "$.certificate.gate_result_sha256",
     "$.certificate.global_validator_input_sha256",
     "$.certificate.input_contract_sha256",
@@ -21,7 +22,7 @@
   "source_schema_version": "1.0.0",
   "source_sha256": "de1d5eb9a12dfb0ccc250be0c7a94f7e9850924ee292e5802af2b00faadb2235",
   "target_schema_version": "1.1.0",
-  "target_sha256": "f921cfcd92fdc5070ae6bf281d414b56c525a1d4ceecc2100aa58d456a7dd8d5",
+  "target_sha256": "46131fdbc94e59aa3f077547935802fe24f3bdb132aa4cd9cde6ad374f957e37",
   "warnings": [
     "Legacy certificate remains non-issuable until input, gate, and calibration bindings are supplied from verified artifacts."
   ]

@@ -13,7 +13,7 @@
   },
   "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
   "integrity": {
-    "self_sha256": "367d0845552ce62671039afcb9a79fbd66b05777bef78f75d02301bec8f2903b"
+    "self_sha256": "d41daa7701022f4fb9c32719a0d9e4dec848becb7501520bba66b81dcbdec374"
   },
   "polysemy_resolution": {
     "authority_ref": {
@@ -71,7 +71,13 @@
     "status": "VERIFIED"
   },
   "target_collision": {
-    "collision_index_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+    "collision_index_ref": {
+      "evidence_id": "collision-index-fixture-v1",
+      "evidence_type": "COLLISION_INDEX",
+      "sha256": "936e94f3c205ce8f0947e7349e09a7286263be4fc762accc442accaa3fa67dd2",
+      "uri": "artifact://fixtures/collision-index-v1"
+    },
+    "collision_index_sha256": "936e94f3c205ce8f0947e7349e09a7286263be4fc762accc442accaa3fa67dd2",
     "conflicting_candidate_keys": [],
     "evidence_refs": [],
     "status": "CLEAR"

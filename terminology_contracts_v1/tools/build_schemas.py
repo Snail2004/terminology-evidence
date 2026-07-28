@@ -12,25 +12,31 @@ if str(PYTHON_ROOT) not in sys.path:
     sys.path.insert(0, str(PYTHON_ROOT))
 
 from terminology_contracts.registries import (  # noqa: E402
+    ATTESTATION_GATE_SIGNAL_IDS,
+    CONTEXT_GATE_SIGNAL_IDS,
+    GATE_ACTIONS,
     GATE_IDS,
     GATE_SOURCE_MODULES,
     PACKAGE_VERSION,
     feature_registry_payload,
+    gate_policy_payload,
     gate_registry_payload,
     schema_registry_payload,
 )
+from terminology_contracts.integrity import seal_self_hash  # noqa: E402
 
 
 LEGACY = ROOT / "schemas" / "legacy" / "v1.0.0"
 V11 = ROOT / "schemas" / "v1.1.0"
 CURRENT = ROOT / "schemas" / "current"
 REGISTRIES = ROOT / "registries"
+POLICIES = ROOT / "policies"
 
 
 def main() -> int:
     if not LEGACY.is_dir():
         raise SystemExit(f"missing immutable V1.0 schema directory: {LEGACY}")
-    for destination in (V11, CURRENT, REGISTRIES):
+    for destination in (V11, CURRENT, REGISTRIES, POLICIES):
         destination.mkdir(parents=True, exist_ok=True)
     _clean_json(V11)
     _clean_json(CURRENT)
@@ -41,6 +47,7 @@ def main() -> int:
     for schema in schemas.values():
         _bump_schema(schema)
     schemas["constraint_evidence_package.schema.json"] = _constraint_schema()
+    schemas["gate_policy_artifact.schema.json"] = _gate_policy_schema()
     _upgrade_common(schemas["common_defs.schema.json"])
     _upgrade_frozen_candidate(schemas["frozen_candidate_contract.schema.json"])
     _upgrade_context(schemas["context_evidence_package.schema.json"])
@@ -66,6 +73,10 @@ def main() -> int:
     _write_json(
         REGISTRIES / "schema_registry_v1.1.0.json",
         schema_registry_payload(),
+    )
+    _write_json(
+        POLICIES / "gate_policy_v1.0.0.json",
+        seal_self_hash(gate_policy_payload()),
     )
 
     # Flat V1.0 schema aliases are removed only after immutable copies exist.
@@ -130,6 +141,9 @@ def _upgrade_frozen_candidate(schema: dict[str, Any]) -> None:
 
 
 def _upgrade_context(schema: dict[str, Any]) -> None:
+    schema["properties"]["gate_signals"] = _gate_signals_schema(
+        CONTEXT_GATE_SIGNAL_IDS
+    )
     schema["properties"]["diagnostics"] = {
         "anyOf": [
             {"type": "null"},
@@ -150,6 +164,9 @@ def _upgrade_context(schema: dict[str, Any]) -> None:
 
 
 def _upgrade_attestation(schema: dict[str, Any]) -> None:
+    schema["properties"]["gate_signals"] = _gate_signals_schema(
+        ATTESTATION_GATE_SIGNAL_IDS
+    )
     schema["properties"]["diagnostics"] = {
         "anyOf": [
             {"type": "null"},
@@ -182,9 +199,14 @@ def _upgrade_gates(schema: dict[str, Any]) -> None:
     schema["properties"]["observations"]["uniqueItems"] = True
     schema["properties"]["observations"]["minItems"] = 1
     schema["properties"]["observations"]["maxItems"] = len(GATE_IDS)
-    schema["required"] = _append_unique(schema["required"], "binding_status")
+    schema["required"] = _append_unique(
+        schema["required"], "binding_status", "gate_policy_artifact_sha256"
+    )
     schema["properties"]["binding_status"] = {
         "enum": ["COMPLETE", "LEGACY_INCOMPLETE"]
+    }
+    schema["properties"]["gate_policy_artifact_sha256"] = {
+        "$ref": "common_defs.schema.json#/$defs/nullableSha256"
     }
 
 
@@ -264,7 +286,10 @@ def _upgrade_global_input(schema: dict[str, Any]) -> None:
 
 def _upgrade_calibration(schema: dict[str, Any]) -> None:
     schema["required"] = _append_unique(
-        schema["required"], "verification_status", "numerical_tolerance"
+        schema["required"],
+        "verification_status",
+        "numerical_tolerance",
+        "gate_policy_artifact_sha256",
     )
     schema["properties"]["feature_contract_version"]["const"] = PACKAGE_VERSION
     schema["properties"]["verification_status"] = {
@@ -274,6 +299,44 @@ def _upgrade_calibration(schema: dict[str, Any]) -> None:
         "anyOf": [
             {"type": "number", "minimum": 0.0, "maximum": 1e-9},
             {"type": "null"},
+        ]
+    }
+    schema["properties"]["gate_policy_artifact_sha256"] = {
+        "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+    }
+    schema["properties"]["threshold_stability"] = {
+        "anyOf": [
+            {"type": "null"},
+            {
+                "type": "object",
+                "additionalProperties": False,
+                "required": [
+                    "method",
+                    "resampling_unit",
+                    "replicate_count",
+                    "threshold_median",
+                    "threshold_ci_lower",
+                    "threshold_ci_upper",
+                    "decision_flip_rate",
+                ],
+                "properties": {
+                    "method": {"const": "CLUSTER_BOOTSTRAP"},
+                    "resampling_unit": {"const": "sense_id"},
+                    "replicate_count": {"type": "integer", "minimum": 100},
+                    "threshold_median": {
+                        "$ref": "common_defs.schema.json#/$defs/score01"
+                    },
+                    "threshold_ci_lower": {
+                        "$ref": "common_defs.schema.json#/$defs/score01"
+                    },
+                    "threshold_ci_upper": {
+                        "$ref": "common_defs.schema.json#/$defs/score01"
+                    },
+                    "decision_flip_rate": {
+                        "$ref": "common_defs.schema.json#/$defs/score01"
+                    },
+                },
+            },
         ]
     }
     operating_point = schema["properties"]["operating_point"]
@@ -369,10 +432,15 @@ def _upgrade_decision(schema: dict[str, Any]) -> None:
     schema["required"] = _append_unique(schema["required"], "run_metadata")
     policy = schema["properties"]["decision_policy"]
     policy["required"] = _append_unique(
-        policy["required"], "feature_contract_version"
+        policy["required"],
+        "feature_contract_version",
+        "gate_policy_artifact_sha256",
     )
     policy["properties"]["feature_contract_version"] = {
         "const": PACKAGE_VERSION
+    }
+    policy["properties"]["gate_policy_artifact_sha256"] = {
+        "$ref": "common_defs.schema.json#/$defs/nullableSha256"
     }
     schema["properties"]["run_metadata"] = {
         "type": "object",
@@ -387,6 +455,7 @@ def _upgrade_decision(schema: dict[str, Any]) -> None:
             "execution_config_sha256",
             "feature_contract_version",
             "gate_policy_version",
+            "gate_policy_artifact_sha256",
             "input_package_hashes",
             "replay_spec_sha256",
         ],
@@ -422,6 +491,9 @@ def _upgrade_decision(schema: dict[str, Any]) -> None:
             "gate_policy_version": {
                 "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
             },
+            "gate_policy_artifact_sha256": {
+                "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+            },
             "input_package_hashes": {
                 "type": "object",
                 "additionalProperties": False,
@@ -433,6 +505,7 @@ def _upgrade_decision(schema: dict[str, Any]) -> None:
                     "frozen_candidate_contract_sha256",
                     "constraint_evidence_sha256",
                     "gate_result_sha256",
+                    "gate_policy_artifact_sha256",
                 ],
                 "properties": {
                     "global_validator_input_sha256": {
@@ -454,6 +527,9 @@ def _upgrade_decision(schema: dict[str, Any]) -> None:
                         "$ref": "common_defs.schema.json#/$defs/nullableSha256"
                     },
                     "gate_result_sha256": {
+                        "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+                    },
+                    "gate_policy_artifact_sha256": {
                         "$ref": "common_defs.schema.json#/$defs/nullableSha256"
                     },
                 },
@@ -480,6 +556,7 @@ def _upgrade_certificate(schema: dict[str, Any]) -> None:
         "global_validator_input_sha256",
         "frozen_candidate_contract_sha256",
         "constraint_evidence_sha256",
+        "gate_policy_artifact_sha256",
     )
     schema["required"] = _append_unique(schema["required"], *new_fields)
     props = schema["properties"]
@@ -506,6 +583,7 @@ def _upgrade_certificate(schema: dict[str, Any]) -> None:
         "global_validator_input_sha256",
         "frozen_candidate_contract_sha256",
         "constraint_evidence_sha256",
+        "gate_policy_artifact_sha256",
     ):
         props[name] = {
             "$ref": "common_defs.schema.json#/$defs/nullableSha256"
@@ -593,12 +671,16 @@ def _constraint_schema() -> dict[str, Any]:
                 "required": [
                     "status",
                     "collision_index_sha256",
+                    "collision_index_ref",
                     "conflicting_candidate_keys",
                     "evidence_refs",
                 ],
                 "properties": {
                     "status": {"enum": ["CLEAR", "COLLISION", "UNJUDGEABLE"]},
                     "collision_index_sha256": nullable_hash,
+                    "collision_index_ref": {
+                        "anyOf": [evidence_ref, {"type": "null"}]
+                    },
                     "conflicting_candidate_keys": {
                         "type": "array",
                         "items": {
@@ -614,6 +696,89 @@ def _constraint_schema() -> dict[str, Any]:
                 },
             },
             "provenance": {"$ref": "common_defs.schema.json#/$defs/provenance"},
+            "integrity": {"$ref": "common_defs.schema.json#/$defs/integrity"},
+        },
+    }
+
+
+def _gate_signals_schema(gate_ids: tuple[str, ...]) -> dict[str, Any]:
+    return {
+        "type": "array",
+        "minItems": len(gate_ids),
+        "maxItems": len(gate_ids),
+        "items": {
+            "type": "object",
+            "additionalProperties": False,
+            "required": ["gate_id", "asserted", "reason_codes", "evidence_refs"],
+            "properties": {
+                "gate_id": {"enum": list(gate_ids)},
+                "asserted": {"type": "boolean"},
+                "reason_codes": {
+                    "type": "array",
+                    "uniqueItems": True,
+                    "items": {
+                        "$ref": "common_defs.schema.json#/$defs/identifier"
+                    },
+                },
+                "evidence_refs": {
+                    "type": "array",
+                    "uniqueItems": True,
+                    "items": {
+                        "$ref": "common_defs.schema.json#/$defs/evidenceRef"
+                    },
+                },
+            },
+        },
+    }
+
+
+def _gate_policy_schema() -> dict[str, Any]:
+    rule = {
+        "type": "object",
+        "additionalProperties": False,
+        "required": ["allowed_actions"],
+        "properties": {
+            "allowed_actions": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": True,
+                "items": {"enum": [action for action in GATE_ACTIONS if action != "NONE"]},
+            }
+        },
+    }
+    return {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://thesis.local/terminology-contracts/v1.1/gate_policy_artifact.schema.json",
+        "title": "Terminology Gate Policy Artifact V1",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "schema_id",
+            "schema_version",
+            "gate_policy_id",
+            "gate_policy_version",
+            "gate_registry_version",
+            "rules",
+            "integrity",
+        ],
+        "properties": {
+            "schema_id": {"const": "GatePolicyArtifactV1"},
+            "schema_version": {"const": PACKAGE_VERSION},
+            "gate_policy_id": {
+                "$ref": "common_defs.schema.json#/$defs/identifier"
+            },
+            "gate_policy_version": {
+                "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+            },
+            "gate_registry_version": {
+                "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+            },
+            "rules": {
+                "type": "object",
+                "additionalProperties": False,
+                "required": list(GATE_IDS),
+                "properties": {gate_id: rule for gate_id in GATE_IDS},
+            },
             "integrity": {"$ref": "common_defs.schema.json#/$defs/integrity"},
         },
     }

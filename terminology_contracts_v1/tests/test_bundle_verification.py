@@ -2,12 +2,19 @@ from __future__ import annotations
 
 import json
 
-from conftest import FEATURE_REGISTRY, SCHEMAS, VALID_V11, load_v11, validate_payload
+from conftest import (
+    FEATURE_REGISTRY,
+    GATE_POLICY,
+    SCHEMAS,
+    VALID_V11,
+    load_v11,
+    validate_payload,
+)
 from terminology_contracts.integrity import seal_self_hash
 from terminology_contracts.validation import verify_certificate_bundle
 
 
-def _verify(*, certificate_path=None, tac_path=None):
+def _verify(*, certificate_path=None, tac_path=None, collision_index_path=None):
     return verify_certificate_bundle(
         certificate_path=certificate_path
         or VALID_V11 / "terminology_certificate.json",
@@ -20,6 +27,9 @@ def _verify(*, certificate_path=None, tac_path=None):
         gate_result_path=VALID_V11 / "gate_result_set.json",
         decision_path=VALID_V11 / "global_decision_package.json",
         calibration_path=VALID_V11 / "calibration_artifact.json",
+        gate_policy_path=GATE_POLICY,
+        collision_index_path=collision_index_path
+        or VALID_V11.parents[1] / "support" / "v1.1.0" / "collision_index.json",
         schema_dir=SCHEMAS,
         feature_registry_path=FEATURE_REGISTRY,
         tac_path=tac_path,
@@ -39,6 +49,13 @@ def test_certificate_random_artifact_hash_rejects(tmp_path) -> None:
     )
     errors = _verify(certificate_path=path)
     assert any("decision" in error and "self hash mismatch" in error for error in errors)
+
+
+def test_collision_index_physical_hash_is_verified(tmp_path) -> None:
+    collision_index = tmp_path / "collision_index.json"
+    collision_index.write_text('{"tampered":true}\n', encoding="utf-8")
+    errors = _verify(collision_index_path=collision_index)
+    assert any("collision_index: physical SHA-256 mismatch" in error for error in errors)
 
 
 def test_tac_span_outside_source_text_rejects() -> None:

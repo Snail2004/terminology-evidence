@@ -23,6 +23,7 @@ MIGRATION_REPORTS = ROOT / "examples" / "migrated" / "reports"
 FEATURE_REGISTRY = ROOT / "registries" / "feature_contract_v1.1.0.json"
 CALIBRATION = VALID_V11 / "calibration_artifact.json"
 GLOBAL_INPUT = VALID_V11 / "global_validator_input.json"
+GATE_POLICY = ROOT / "policies" / "gate_policy_v1.0.0.json"
 
 
 def load_json(path: Path) -> dict:
@@ -46,6 +47,7 @@ def validate_payload(
         calibration_path=calibration_path,
         feature_registry_path=FEATURE_REGISTRY,
         global_input_path=global_input_path,
+        gate_policy_path=GATE_POLICY,
         allow_legacy_migration=allow_legacy_migration,
     )
 

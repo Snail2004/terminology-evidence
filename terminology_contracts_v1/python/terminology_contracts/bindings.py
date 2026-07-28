@@ -42,6 +42,9 @@ def replay_spec_payload(decision: Mapping[str, Any]) -> dict[str, Any]:
         "decision_policy": decision.get("decision_policy"),
         "decision_features": decision.get("decision_features"),
         "gate_policy_version": gates.get("gate_policy_version"),
+        "gate_policy_artifact_sha256": gates.get(
+            "gate_policy_artifact_sha256"
+        ),
         "input_package_hashes": metadata.get("input_package_hashes"),
         "global_run_spec_id": metadata.get("global_run_spec_id"),
         "engine_version": metadata.get("engine_version"),

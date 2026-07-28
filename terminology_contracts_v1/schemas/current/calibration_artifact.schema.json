@@ -18,7 +18,8 @@
     "created_at",
     "integrity",
     "verification_status",
-    "numerical_tolerance"
+    "numerical_tolerance",
+    "gate_policy_artifact_sha256"
   ],
   "properties": {
     "schema_id": {
@@ -144,6 +145,53 @@
         },
         {
           "type": "null"
+        }
+      ]
+    },
+    "gate_policy_artifact_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+    },
+    "threshold_stability": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "method",
+            "resampling_unit",
+            "replicate_count",
+            "threshold_median",
+            "threshold_ci_lower",
+            "threshold_ci_upper",
+            "decision_flip_rate"
+          ],
+          "properties": {
+            "method": {
+              "const": "CLUSTER_BOOTSTRAP"
+            },
+            "resampling_unit": {
+              "const": "sense_id"
+            },
+            "replicate_count": {
+              "type": "integer",
+              "minimum": 100
+            },
+            "threshold_median": {
+              "$ref": "common_defs.schema.json#/$defs/score01"
+            },
+            "threshold_ci_lower": {
+              "$ref": "common_defs.schema.json#/$defs/score01"
+            },
+            "threshold_ci_upper": {
+              "$ref": "common_defs.schema.json#/$defs/score01"
+            },
+            "decision_flip_rate": {
+              "$ref": "common_defs.schema.json#/$defs/score01"
+            }
+          }
         }
       ]
     }

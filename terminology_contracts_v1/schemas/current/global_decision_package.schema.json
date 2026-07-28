@@ -85,7 +85,8 @@
         "mode",
         "calibration_artifact_sha256",
         "threshold",
-        "feature_contract_version"
+        "feature_contract_version",
+        "gate_policy_artifact_sha256"
       ],
       "properties": {
         "policy_id": {
@@ -122,6 +123,9 @@
         },
         "feature_contract_version": {
           "const": "1.1.0"
+        },
+        "gate_policy_artifact_sha256": {
+          "$ref": "common_defs.schema.json#/$defs/nullableSha256"
         }
       }
     },
@@ -151,6 +155,7 @@
         "execution_config_sha256",
         "feature_contract_version",
         "gate_policy_version",
+        "gate_policy_artifact_sha256",
         "input_package_hashes",
         "replay_spec_sha256"
       ],
@@ -199,6 +204,9 @@
         "gate_policy_version": {
           "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
         },
+        "gate_policy_artifact_sha256": {
+          "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+        },
         "input_package_hashes": {
           "type": "object",
           "additionalProperties": false,
@@ -209,7 +217,8 @@
             "effective_sense_contract_sha256",
             "frozen_candidate_contract_sha256",
             "constraint_evidence_sha256",
-            "gate_result_sha256"
+            "gate_result_sha256",
+            "gate_policy_artifact_sha256"
           ],
           "properties": {
             "global_validator_input_sha256": {
@@ -231,6 +240,9 @@
               "$ref": "common_defs.schema.json#/$defs/nullableSha256"
             },
             "gate_result_sha256": {
+              "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+            },
+            "gate_policy_artifact_sha256": {
               "$ref": "common_defs.schema.json#/$defs/nullableSha256"
             }
           }

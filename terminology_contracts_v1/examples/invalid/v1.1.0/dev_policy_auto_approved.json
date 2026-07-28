@@ -1,6 +1,6 @@
 {
   "approval_score": 0.880481737215655,
-  "attestation_evidence_sha256": "b521607b8e41f333a73f8cd564b40123d34bf879cccfa906dc67ba1a9bec7b36",
+  "attestation_evidence_sha256": "831cf0d4a5cbbaf508c73a605e86fe66d8f066677080ea6af986637b5dcdf6aa",
   "candidate_key": {
     "candidate_id": "cand-inference-vi-01",
     "candidate_version": "fixture-candidate-v1",
@@ -18,7 +18,7 @@
     "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     "uri": "artifact://invalid/certificate"
   },
-  "context_evidence_sha256": "67423d3e1556298bed0b4b0ed7a794cc2811fae741690bfeda3c1efd1bf8a1bd",
+  "context_evidence_sha256": "0541b05d914ebab350f923e31ac01518a3300576e01fd1990a983f00ba6a612c",
   "decision": "AUTO_APPROVED",
   "decision_features": {
     "C_mean": 0.88,
@@ -33,6 +33,7 @@
   "decision_policy": {
     "calibration_artifact_sha256": null,
     "feature_contract_version": "1.1.0",
+    "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
     "mode": "DEVELOPMENT_HEURISTIC",
     "policy_id": "global-validator",
     "policy_version": "global-v1",
@@ -54,10 +55,11 @@
       "sense_inventory_version": "sense-v1",
       "source_term": "inference"
     },
-    "gate_policy_version": "gates-v1",
+    "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+    "gate_policy_version": "1.0.0",
     "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
     "integrity": {
-      "self_sha256": "25385c4a955f0ca014ab0d6f44aa61b3e9b0d77f4e1b9e11d97df1fe9db54d77"
+      "self_sha256": "ae976a4e05103b67748c6a51be74ba60e3e39c83131f54be42db18370cdaab72"
     },
     "observations": [
       {
@@ -190,27 +192,29 @@
   },
   "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
   "integrity": {
-    "self_sha256": "05ecb1973fe9c05486756fb8318635d72d2535cda3d1be89769502a0d3aed3ae"
+    "self_sha256": "4953b9ddd5379a0a475e47f273a3fed0514440d61546b000d01eecd0aafb45ee"
   },
   "run_metadata": {
     "binding_status": "COMPLETE",
     "completed_at": "2026-07-28T11:01:00+00:00",
-    "engine_version": "global-validator-fixture-1.1.0-rc2",
-    "execution_config_sha256": "f1e935ca6a94abb4c6340d968d98c9a202fe00ceaedbf1c19a545de4cd3343cc",
+    "engine_version": "global-validator-fixture-1.1.0-rc3",
+    "execution_config_sha256": "6741b37d9b01a4025d2e77ccc071f55fcfef681b37567879a41083a76b76f251",
     "feature_contract_version": "1.1.0",
-    "gate_policy_version": "gates-v1",
+    "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+    "gate_policy_version": "1.0.0",
     "global_run_id": "gv-fixture-run-001",
     "global_run_spec_id": "gv-fixture-spec-001",
     "input_package_hashes": {
-      "attestation_evidence_sha256": "b521607b8e41f333a73f8cd564b40123d34bf879cccfa906dc67ba1a9bec7b36",
-      "constraint_evidence_sha256": "367d0845552ce62671039afcb9a79fbd66b05777bef78f75d02301bec8f2903b",
-      "context_evidence_sha256": "67423d3e1556298bed0b4b0ed7a794cc2811fae741690bfeda3c1efd1bf8a1bd",
+      "attestation_evidence_sha256": "831cf0d4a5cbbaf508c73a605e86fe66d8f066677080ea6af986637b5dcdf6aa",
+      "constraint_evidence_sha256": "d41daa7701022f4fb9c32719a0d9e4dec848becb7501520bba66b81dcbdec374",
+      "context_evidence_sha256": "0541b05d914ebab350f923e31ac01518a3300576e01fd1990a983f00ba6a612c",
       "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
       "frozen_candidate_contract_sha256": "1cfadf782b4448173516f5cf204abc4db11f9e12c3932efea1c4b35361c92024",
-      "gate_result_sha256": "25385c4a955f0ca014ab0d6f44aa61b3e9b0d77f4e1b9e11d97df1fe9db54d77",
-      "global_validator_input_sha256": "8baa51db8984df6764d263bfe1823874ab9d7bb06f5baac068469bc08a30cf9f"
+      "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+      "gate_result_sha256": "ae976a4e05103b67748c6a51be74ba60e3e39c83131f54be42db18370cdaab72",
+      "global_validator_input_sha256": "c85fec4352b6cd315074f58f3d8d6f1f7594923fab98aced6ced68b06c484a4a"
     },
-    "replay_spec_sha256": "53f7de3db47765eac342fb939b55af3687340a8cd25490156eba7b0d23a4bc91",
+    "replay_spec_sha256": "cce771fb95d8535132456756dd6c65dcf6e7adbc358e86bd4761ec9a5058e60f",
     "started_at": "2026-07-28T11:00:00+00:00"
   },
   "schema_id": "GlobalDecisionPackageV1",

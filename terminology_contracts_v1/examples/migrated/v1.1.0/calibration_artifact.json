@@ -5,9 +5,10 @@
   "created_at": "2026-07-28T11:00:00+00:00",
   "development_dataset_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
   "feature_contract_version": "1.1.0",
+  "gate_policy_artifact_sha256": null,
   "gate_policy_version": "gates-v1",
   "integrity": {
-    "self_sha256": "feda2720c7fb692e04221c8ef3c79110d605275b6d235adcf91064e59153807d"
+    "self_sha256": "7b7c7947465cdcc5d6bb932bc19a649a1263d31073be134d72fb9c786ff74633"
   },
   "metric_target": {
     "auto_approval_precision_target": 0.95,
@@ -43,6 +44,7 @@
   },
   "schema_id": "CalibrationArtifactV1",
   "schema_version": "1.1.0",
+  "threshold_stability": null,
   "validation_dataset_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
   "verification_status": "UNVERIFIED_LEGACY"
 }

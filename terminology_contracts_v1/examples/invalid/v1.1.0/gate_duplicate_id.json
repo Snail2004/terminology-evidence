@@ -11,10 +11,11 @@
     "sense_inventory_version": "sense-v1",
     "source_term": "inference"
   },
-  "gate_policy_version": "gates-v1",
+  "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+  "gate_policy_version": "1.0.0",
   "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
   "integrity": {
-    "self_sha256": "d32a3ffc517f416bde5c3cc30c16aa95f9ee3fdf71945d5b39aa683d61c9d03b"
+    "self_sha256": "abc0dd6a58fa5797b79506b027083def7747c7d395415f3ce53cc9e5b1f26b69"
   },
   "observations": [
     {

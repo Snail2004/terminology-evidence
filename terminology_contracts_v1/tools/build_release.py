@@ -27,12 +27,14 @@ from terminology_contracts.validation import verify_certificate_bundle  # noqa: 
 
 
 RELEASE_ROOT = ROOT / "release"
-RELEASE = RELEASE_ROOT / "v1.1.0-rc2"
-ZIP_PATH = RELEASE / "terminology_contracts_v1_1_rc2.zip"
-ZIP_CHECKSUM_PATH = RELEASE / "terminology_contracts_v1_1_rc2.zip.sha256"
-AUDIT_PATH = RELEASE / "terminology_contracts_v1_1_rc2_audit.json"
+RELEASE = RELEASE_ROOT / "v1.1.0-rc3"
+ZIP_PATH = RELEASE / "terminology_contracts_v1_1_rc3.zip"
+ZIP_CHECKSUM_PATH = RELEASE / "terminology_contracts_v1_1_rc3.zip.sha256"
+AUDIT_PATH = RELEASE / "terminology_contracts_v1_1_rc3_audit.json"
 RC1_ZIP = RELEASE_ROOT / "terminology_contracts_v1_1.zip"
 RC1_ZIP_SHA256 = "38e2ee307b247d535baedcde83427ebe3f30901d31bb921f03e6681b3160dbdc"
+RC2_ZIP = RELEASE_ROOT / "v1.1.0-rc2" / "terminology_contracts_v1_1_rc2.zip"
+RC2_ZIP_SHA256 = "2530ebf80d4826a740d1d1efad5952adf8611cec67797d7bd806731a15cb1954"
 DIFF_NAME = "terminology_contracts_v1_0_to_v1_1_diff.md"
 FIXED_ZIP_TIME = (2026, 7, 29, 0, 0, 0)
 CACHE_DIR_NAMES = {".pytest_cache", ".mypy_cache", ".ruff_cache", "__pycache__"}
@@ -58,6 +60,8 @@ def main(argv: list[str] | None = None) -> int:
     RELEASE.mkdir(parents=True, exist_ok=True)
     if not RC1_ZIP.is_file() or hashlib.sha256(RC1_ZIP.read_bytes()).hexdigest() != RC1_ZIP_SHA256:
         raise SystemExit("immutable RC1 release artifact changed")
+    if not RC2_ZIP.is_file() or hashlib.sha256(RC2_ZIP.read_bytes()).hexdigest() != RC2_ZIP_SHA256:
+        raise SystemExit("immutable RC2 release artifact changed")
     _remove_python_cache()
     manifest = build_manifest(ROOT)
     write_manifest(ROOT, manifest)
@@ -86,11 +90,12 @@ def main(argv: list[str] | None = None) -> int:
     credential_hits = _credential_scan()
     cache_files = _cache_files()
     audit = {
-        "schema_id": "TerminologyContractsV1_1RC2ReleaseAuditV1",
+        "schema_id": "TerminologyContractsV1_1RC3ReleaseAuditV1",
         "package_version": "1.1.0",
-        "release_channel": "v1.1.0-rc2",
-        "supersedes_release_candidate": "v1.1.0-rc1",
+        "release_channel": "v1.1.0-rc3",
+        "supersedes_release_candidate": "v1.1.0-rc2",
         "rc1_release_zip_sha256": RC1_ZIP_SHA256,
+        "rc2_release_zip_sha256": RC2_ZIP_SHA256,
         "file_count": len(manifest["files"]),
         "schema_count": len(list((ROOT / "schemas" / "v1.1.0").glob("*.schema.json"))),
         "legacy_schema_count": len(
@@ -130,6 +135,10 @@ def main(argv: list[str] | None = None) -> int:
             "P2-1": "EXACT_UNIQUE_AUDITABLE_GATE_SET",
             "P2-2": "CANDIDATE_CONTENT_VERSION_BINDING",
             "P2-3": "NATIVE_NON_MIGRATION_FIXTURES",
+            "RC2-P0-N1": "PRODUCER_GATE_SIGNAL_PROJECTION",
+            "RC2-P0-N2": "SEALED_PER_GATE_ACTION_POLICY",
+            "RC2-P1-N1": "COLLISION_INDEX_ARTIFACT_BINDING",
+            "RC2-P1-N2": "THRESHOLD_STABILITY_METADATA",
         },
         "credential_scan_result": "PASS" if not credential_hits else "FAIL",
         "credential_scan_hits": credential_hits,
@@ -173,7 +182,7 @@ def _write_checksums(manifest: dict) -> None:
 
 
 def _build_zip(manifest: dict) -> None:
-    package_prefix = "terminology_contracts_v1_1_rc2/"
+    package_prefix = "terminology_contracts_v1/"
     source_paths = [ROOT / row["path"] for row in manifest["files"]]
     source_paths.extend([ROOT / "manifest.json", ROOT / "CHECKSUMS.sha256"])
     with zipfile.ZipFile(
@@ -188,7 +197,7 @@ def _build_zip(manifest: dict) -> None:
 
 
 def _verify_zip_structure(manifest: dict) -> str:
-    prefix = "terminology_contracts_v1_1_rc2/"
+    prefix = "terminology_contracts_v1/"
     expected = {
         prefix + row["path"] for row in manifest["files"]
     } | {prefix + "manifest.json", prefix + "CHECKSUMS.sha256"}
@@ -243,6 +252,12 @@ def _verify_reference_bundle() -> list[str]:
         gate_result_path=valid / "gate_result_set.json",
         decision_path=valid / "global_decision_package.json",
         calibration_path=valid / "calibration_artifact.json",
+        gate_policy_path=ROOT / "policies" / "gate_policy_v1.0.0.json",
+        collision_index_path=ROOT
+        / "examples"
+        / "support"
+        / "v1.1.0"
+        / "collision_index.json",
         schema_dir=ROOT / "schemas",
         feature_registry_path=ROOT
         / "registries"

@@ -173,6 +173,51 @@
     "integrity": {
       "$ref": "common_defs.schema.json#/$defs/integrity"
     },
+    "gate_signals": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "gate_id",
+          "asserted",
+          "reason_codes",
+          "evidence_refs"
+        ],
+        "properties": {
+          "gate_id": {
+            "enum": [
+              "concept_mismatch",
+              "wrong_sense",
+              "contradiction",
+              "judge_disagreement",
+              "insufficient_evidence",
+              "missing_contrastive_context",
+              "incomplete_context_type_coverage"
+            ]
+          },
+          "asserted": {
+            "type": "boolean"
+          },
+          "reason_codes": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "common_defs.schema.json#/$defs/identifier"
+            }
+          },
+          "evidence_refs": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "common_defs.schema.json#/$defs/evidenceRef"
+            }
+          }
+        }
+      }
+    },
     "diagnostics": {
       "anyOf": [
         {

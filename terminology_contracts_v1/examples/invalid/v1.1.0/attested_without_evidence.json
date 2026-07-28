@@ -22,9 +22,41 @@
   },
   "final_glossary_decision": null,
   "flags": [],
+  "gate_signals": [
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "concept_mismatch",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "contradiction",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "judge_disagreement",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "insufficient_evidence",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "attestation_unjudgeable",
+      "reason_codes": []
+    }
+  ],
   "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
   "integrity": {
-    "self_sha256": "78fe577250e9fcf9d516e52a9e7297a786c4e3bd36af888e44632f616ba3ce86"
+    "self_sha256": "12fa11e98f43e629b72aa45aaac0e4694069766eb96357215f5f333bd4d25756"
   },
   "local_status": "ATTESTED",
   "observed_variants": [

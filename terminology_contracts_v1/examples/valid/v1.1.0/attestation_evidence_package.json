@@ -29,9 +29,41 @@
   },
   "final_glossary_decision": null,
   "flags": [],
+  "gate_signals": [
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "concept_mismatch",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "contradiction",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "judge_disagreement",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "insufficient_evidence",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "attestation_unjudgeable",
+      "reason_codes": []
+    }
+  ],
   "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
   "integrity": {
-    "self_sha256": "b521607b8e41f333a73f8cd564b40123d34bf879cccfa906dc67ba1a9bec7b36"
+    "self_sha256": "831cf0d4a5cbbaf508c73a605e86fe66d8f066677080ea6af986637b5dcdf6aa"
   },
   "local_status": "ATTESTED",
   "observed_variants": [

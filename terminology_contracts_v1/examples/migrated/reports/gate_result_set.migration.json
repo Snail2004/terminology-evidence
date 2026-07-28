@@ -1,6 +1,7 @@
 {
   "fields_added": [
     "$.binding_status",
+    "$.gate_policy_artifact_sha256",
     "$.observations[0].source_modules",
     "$.observations[1].source_modules"
   ],
@@ -10,6 +11,6 @@
   "source_schema_version": "1.0.0",
   "source_sha256": "297c1916f261f10fc31c92675bed5e81e58b38299e8ac77eee740bd2fbc84d3b",
   "target_schema_version": "1.1.0",
-  "target_sha256": "2fcc99790988c135f3c4065c1bf21d8ce90d813112f8ae414fa64ac20e85db42",
+  "target_sha256": "6da7dc421f94ffaf7a62fa6d6197e48f58df4bca7c4210e113628af03c33f5c4",
   "warnings": []
 }

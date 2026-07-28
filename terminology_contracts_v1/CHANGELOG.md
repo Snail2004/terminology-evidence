@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.0-rc3 - 2026-07-29
+
+- Required native C/E gate-signal declarations and exact Global Validator
+  projection into hard gates.
+- Added a sealed per-gate action policy bound by gates, calibration, decisions,
+  replay metadata, and certificates.
+- Bound collision-index references to physical bundle verification.
+- Added calibration threshold-stability metadata and regression gates.
+- Kept V1.0 and legacy-migration semantics unchanged.
+
 ## 1.1.0-rc2 - 2026-07-29
 
 - Bound Frozen Candidate content to `input_contract_sha256`.

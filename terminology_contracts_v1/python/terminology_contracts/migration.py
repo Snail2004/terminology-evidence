@@ -141,6 +141,13 @@ def _migrate_payload(
             fields_added,
             path,
         )
+        _add(
+            result,
+            "gate_policy_artifact_sha256",
+            None,
+            fields_added,
+            path,
+        )
         for index, observation in enumerate(result.get("observations", [])):
             if not isinstance(observation, dict):
                 continue
@@ -213,6 +220,14 @@ def _migrate_payload(
             path,
         )
         _add(result, "numerical_tolerance", None, fields_added, path)
+        _add(
+            result,
+            "gate_policy_artifact_sha256",
+            None,
+            fields_added,
+            path,
+        )
+        _add(result, "threshold_stability", None, fields_added, path)
         operating_point = result.get("operating_point")
         if isinstance(operating_point, dict):
             _add(
@@ -244,6 +259,13 @@ def _migrate_payload(
                 fields_added,
                 f"{path}.decision_policy",
             )
+            _add(
+                policy,
+                "gate_policy_artifact_sha256",
+                None,
+                fields_added,
+                f"{path}.decision_policy",
+            )
         execution_config_sha256 = canonical_sha256(
             {
                 "migration_tool_version": MIGRATION_TOOL_VERSION,
@@ -266,6 +288,7 @@ def _migrate_payload(
             "gate_policy_version": result.get("gate_results", {}).get(
                 "gate_policy_version"
             ),
+            "gate_policy_artifact_sha256": None,
             "input_package_hashes": {
                 "global_validator_input_sha256": None,
                 "context_evidence_sha256": result.get(
@@ -280,6 +303,7 @@ def _migrate_payload(
                 "gate_result_sha256": _nested_self_hash(
                     result.get("gate_results")
                 ),
+                "gate_policy_artifact_sha256": None,
             },
             "replay_spec_sha256": "0" * 64,
         }
@@ -338,6 +362,7 @@ def _migrate_payload(
         _add(result, "global_validator_input_sha256", None, fields_added, path)
         _add(result, "frozen_candidate_contract_sha256", None, fields_added, path)
         _add(result, "constraint_evidence_sha256", None, fields_added, path)
+        _add(result, "gate_policy_artifact_sha256", None, fields_added, path)
         warnings.append(
             "Legacy certificate remains non-issuable until input, gate, and calibration bindings are supplied from verified artifacts."
         )

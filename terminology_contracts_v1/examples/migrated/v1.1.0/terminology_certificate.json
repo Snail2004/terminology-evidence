@@ -40,12 +40,13 @@
     "suy diễn logic"
   ],
   "frozen_candidate_contract_sha256": null,
+  "gate_policy_artifact_sha256": null,
   "gate_result_sha256": null,
   "gate_summary": [],
   "global_validator_input_sha256": null,
   "input_contract_sha256": null,
   "integrity": {
-    "self_sha256": "c9d05c7112d4ed684b58236f0ba7a455baa95791a2ad41a70935c172bcf4a42a"
+    "self_sha256": "e0756147e77d974b3469acbfd7467d671d73525279d03a74274ed4f9796ba878"
   },
   "issued_at": "2026-07-28T11:30:00+00:00",
   "policy_version": "global-v1",

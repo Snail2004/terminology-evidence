@@ -28,6 +28,7 @@
   "decision_policy": {
     "calibration_artifact_sha256": "cff82b79f5a100bc868ba0f6e7d98c54677f960114f3f87feff1dcac2ae3e7a2",
     "feature_contract_version": "1.1.0",
+    "gate_policy_artifact_sha256": null,
     "mode": "FROZEN_CALIBRATED",
     "policy_id": "global-validator",
     "policy_version": "global-v1",
@@ -49,10 +50,11 @@
       "sense_inventory_version": "sense-v1",
       "source_term": "inference"
     },
+    "gate_policy_artifact_sha256": null,
     "gate_policy_version": "gates-v1",
     "input_contract_sha256": "ad9888fdb98fba49d6a7b50f30d8749694e28c89a5dd3f7fdea0ae490ccdf704",
     "integrity": {
-      "self_sha256": "98b44a3a5a96884c981428ef38e0ecff190104c7631b9f629284fb98cc6ff440"
+      "self_sha256": "46a0d5582c8d19417f17459e9c661b8ceb25ef379ab00f26d814b94bf2ff597b"
     },
     "observations": [
       {
@@ -82,7 +84,7 @@
   },
   "input_contract_sha256": "ad9888fdb98fba49d6a7b50f30d8749694e28c89a5dd3f7fdea0ae490ccdf704",
   "integrity": {
-    "self_sha256": "f39dc829d177e077e05bb682cc08ee847ba8ebf1b70bb553dd3028a46f44ca22"
+    "self_sha256": "703cd75a800607669b63077d0a8c62b67b0d8874f1c08f9844814341d0c4f9da"
   },
   "run_metadata": {
     "binding_status": "LEGACY_INCOMPLETE",
@@ -90,6 +92,7 @@
     "engine_version": "terminology-contracts-migration-1.0.0",
     "execution_config_sha256": "0dc4b95429557c363541cffa183df043793e97e75205c7f0e26043237df798af",
     "feature_contract_version": "1.1.0",
+    "gate_policy_artifact_sha256": null,
     "gate_policy_version": "gates-v1",
     "global_run_id": "migrated-facc19566a870474",
     "global_run_spec_id": "migrated-spec-facc19566a870474",
@@ -99,10 +102,11 @@
       "context_evidence_sha256": "b25632808311efdef1fce79843acdcf6f314c4e8aa9ff921395a674d44a12389",
       "effective_sense_contract_sha256": null,
       "frozen_candidate_contract_sha256": null,
-      "gate_result_sha256": "98b44a3a5a96884c981428ef38e0ecff190104c7631b9f629284fb98cc6ff440",
+      "gate_policy_artifact_sha256": null,
+      "gate_result_sha256": "46a0d5582c8d19417f17459e9c661b8ceb25ef379ab00f26d814b94bf2ff597b",
       "global_validator_input_sha256": null
     },
-    "replay_spec_sha256": "7f1c6077678b1c9e6032f789568d1b2a5bbf5e0b67b0e946126187dd936ef958",
+    "replay_spec_sha256": "b715f0e3c76432b5157d350250cee1e33745f21a1a0f2ae3473a3940ee7d8db0",
     "started_at": null
   },
   "schema_id": "GlobalDecisionPackageV1",

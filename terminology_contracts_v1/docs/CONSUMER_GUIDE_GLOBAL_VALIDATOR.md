@@ -7,6 +7,9 @@ The Global Validator validates both producer packages before assembling
 - Verify the canonical Frozen Candidate binding and consume only the serialized
   sense/polysemy/collision constraint package; do not read raw dataset state.
 - Apply registered hard gates before any calibrated score.
+- Project every asserted C/E gate signal into the matching gate result and
+  preserve its source, reasons, and evidence references.
+- Load the sealed gate policy and reject every action not allowed for its gate.
 - Respect `FATAL_SPLIT > FATAL_REJECT > ESCALATE_HUMAN > CAP_PROVISIONAL > NONE`.
 - Do not auto-approve or emit a certificate reference in development mode.
 - In frozen mode, load and verify the actual calibration artifact, registered

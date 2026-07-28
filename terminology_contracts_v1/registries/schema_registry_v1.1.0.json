@@ -43,6 +43,12 @@
       "legacy_path": "schemas/legacy/v1.0.0/frozen_candidate_contract.schema.json"
     },
     {
+      "schema_id": "GatePolicyArtifactV1",
+      "schema_version": "1.1.0",
+      "path": "schemas/v1.1.0/gate_policy_artifact.schema.json",
+      "legacy_path": null
+    },
+    {
       "schema_id": "GateResultSetV1",
       "schema_version": "1.1.0",
       "path": "schemas/v1.1.0/gate_result_set.schema.json",

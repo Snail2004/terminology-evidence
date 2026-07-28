@@ -18,13 +18,20 @@ from .calibration import CalibrationVerificationError, verify_calibration_artifa
 from .integrity import (
     IntegrityError,
     load_verified_json_artifact,
+    sha256_file,
     strict_json_loads,
 )
 from .registries import (
+    ATTESTATION_GATE_SIGNAL_IDS,
     CANDIDATE_JOIN_FIELDS,
+    CONTEXT_GATE_SIGNAL_IDS,
     FEATURE_CONTRACT_VERSION,
     GATE_ACTION_PRECEDENCE,
+    GATE_ALLOWED_ACTIONS,
     GATE_IDS,
+    GATE_POLICY_ID,
+    GATE_POLICY_VERSION,
+    GATE_REGISTRY_VERSION,
     GATE_SOURCE_MODULES,
     LEGACY_VERSION,
     PACKAGE_VERSION,
@@ -115,6 +122,7 @@ def validate_instance(
     feature_registry_path: Path | None = None,
     expected_calibration_self_sha256: str | None = None,
     global_input_path: Path | None = None,
+    gate_policy_path: Path | None = None,
     allow_legacy_migration: bool = False,
 ) -> list[str]:
     errors = schema_validate_instance(instance, schema_dir)
@@ -126,6 +134,7 @@ def validate_instance(
             feature_registry_path=feature_registry_path,
             expected_calibration_self_sha256=expected_calibration_self_sha256,
             global_input_path=global_input_path,
+            gate_policy_path=gate_policy_path,
             allow_legacy_migration=allow_legacy_migration,
         )
     errors.extend(
@@ -136,6 +145,7 @@ def validate_instance(
             feature_registry_path=feature_registry_path,
             expected_calibration_self_sha256=expected_calibration_self_sha256,
             global_input_path=global_input_path,
+            gate_policy_path=gate_policy_path,
             allow_legacy_migration=allow_legacy_migration,
         )
     )
@@ -150,6 +160,7 @@ def validate_file(
     feature_registry_path: Path | None = None,
     expected_calibration_self_sha256: str | None = None,
     global_input_path: Path | None = None,
+    gate_policy_path: Path | None = None,
     allow_legacy_migration: bool = False,
 ) -> list[str]:
     try:
@@ -164,6 +175,8 @@ def validate_file(
         feature_registry_path = _default_feature_registry(schema_dir)
     if global_input_path is None:
         global_input_path = _sibling_global_input_path(path, instance)
+    if gate_policy_path is None:
+        gate_policy_path = _default_gate_policy_path(schema_dir)
     return validate_instance(
         instance,
         schema_dir,
@@ -171,6 +184,7 @@ def validate_file(
         feature_registry_path=feature_registry_path,
         expected_calibration_self_sha256=expected_calibration_self_sha256,
         global_input_path=global_input_path,
+        gate_policy_path=gate_policy_path,
         allow_legacy_migration=allow_legacy_migration,
     )
 
@@ -187,6 +201,8 @@ def verify_certificate_bundle(
     gate_result_path: Path,
     decision_path: Path,
     calibration_path: Path | None,
+    gate_policy_path: Path | None,
+    collision_index_path: Path | None,
     schema_dir: Path,
     feature_registry_path: Path,
     tac_path: Path | None = None,
@@ -217,6 +233,7 @@ def verify_certificate_bundle(
         "gate_result": certificate.get("gate_result_sha256"),
         "decision": certificate.get("decision_package_sha256"),
         "calibration": certificate.get("calibration_artifact_sha256"),
+        "gate_policy": certificate.get("gate_policy_artifact_sha256"),
     }
     paths = {
         "frozen_candidate": frozen_candidate_path,
@@ -243,6 +260,15 @@ def verify_certificate_bundle(
             )
             if payload is not None:
                 artifacts["calibration"] = payload
+    if expected["gate_policy"] is not None:
+        if gate_policy_path is None:
+            errors.append("gate_policy: certificate requires an artifact file")
+        else:
+            payload = _load_bundle_artifact(
+                "gate_policy", gate_policy_path, expected["gate_policy"], errors
+            )
+            if payload is not None:
+                artifacts["gate_policy"] = payload
 
     expected_schema_ids = {
         "frozen_candidate": "FrozenCandidateContractV1",
@@ -254,6 +280,7 @@ def verify_certificate_bundle(
         "gate_result": "GateResultSetV1",
         "decision": "GlobalDecisionPackageV1",
         "calibration": "CalibrationArtifactV1",
+        "gate_policy": "GatePolicyArtifactV1",
     }
     for name, payload in artifacts.items():
         if payload.get("schema_id") != expected_schema_ids[name]:
@@ -288,8 +315,30 @@ def verify_certificate_bundle(
                 calibration_path=calibration_path,
                 feature_registry_path=feature_registry_path,
                 global_input_path=global_input_path,
+                gate_policy_path=gate_policy_path,
             )
         )
+
+    constraint = artifacts.get("constraint_evidence")
+    if constraint is not None:
+        collision = constraint.get("target_collision", {})
+        collision_ref = collision.get("collision_index_ref")
+        expected_collision_hash = collision.get("collision_index_sha256")
+        if expected_collision_hash is not None:
+            if collision_index_path is None:
+                errors.append("collision_index: constraint requires an artifact file")
+            else:
+                try:
+                    actual_collision_hash = sha256_file(collision_index_path)
+                except IntegrityError as exc:
+                    errors.append(f"collision_index: {exc}")
+                else:
+                    if actual_collision_hash != expected_collision_hash:
+                        errors.append("collision_index: physical SHA-256 mismatch")
+                    if not isinstance(collision_ref, Mapping) or collision_ref.get(
+                        "sha256"
+                    ) != actual_collision_hash:
+                        errors.append("collision_index: evidence reference hash mismatch")
 
     raw_key = certificate.get("candidate_key")
     key = raw_key if isinstance(raw_key, Mapping) else {}
@@ -349,6 +398,10 @@ def verify_certificate_bundle(
             "decision_policy", {}
         ).get("calibration_artifact_sha256"):
             errors.append("certificate calibration binding differs from decision")
+        if certificate.get("gate_policy_artifact_sha256") != decision.get(
+            "decision_policy", {}
+        ).get("gate_policy_artifact_sha256"):
+            errors.append("certificate gate policy binding differs from decision")
         triggered = sorted(
             observation.get("gate_id")
             for observation in gates.get("observations", [])
@@ -408,6 +461,7 @@ def _semantic_validate(
     feature_registry_path: Path | None,
     expected_calibration_self_sha256: str | None,
     global_input_path: Path | None,
+    gate_policy_path: Path | None,
     allow_legacy_migration: bool,
 ) -> list[str]:
     errors: list[str] = []
@@ -425,13 +479,15 @@ def _semantic_validate(
     elif schema_id == "ConstraintEvidencePackageV1":
         _validate_constraint_evidence(instance, errors)
     elif schema_id == "ContextEvidencePackageV1":
-        _validate_context(instance, errors)
+        _validate_context(instance, errors, allow_legacy_migration)
     elif schema_id == "AttestationEvidencePackageV1":
-        _validate_attestation(instance, errors)
+        _validate_attestation(instance, errors, allow_legacy_migration)
     elif schema_id == "GlobalValidatorInputV1":
         _validate_global_input(instance, errors, allow_legacy_migration)
     elif schema_id == "GateResultSetV1":
         _validate_gates(instance, errors, allow_legacy_migration)
+    elif schema_id == "GatePolicyArtifactV1":
+        _validate_gate_policy(instance, errors)
     elif schema_id == "CalibrationArtifactV1":
         _validate_calibration_structural(
             instance, errors, allow_legacy_migration=allow_legacy_migration
@@ -445,6 +501,7 @@ def _semantic_validate(
             feature_registry_path=feature_registry_path,
             expected_calibration_self_sha256=expected_calibration_self_sha256,
             global_input_path=global_input_path,
+            gate_policy_path=gate_policy_path,
             allow_legacy_migration=allow_legacy_migration,
         )
     elif schema_id == "TerminologyCertificateV1":
@@ -516,11 +573,14 @@ def _validate_constraint_evidence(
     collision = value.get("target_collision", {})
     collision_status = collision.get("status")
     index_hash = collision.get("collision_index_sha256")
+    index_ref = collision.get("collision_index_ref")
     conflicts = collision.get("conflicting_candidate_keys", [])
     refs = collision.get("evidence_refs", [])
     if collision_status == "CLEAR":
         if not _is_nonzero_sha256(index_hash):
             errors.append("CLEAR target collision status requires index hash")
+        if not _collision_index_ref_matches(index_ref, index_hash):
+            errors.append("CLEAR target collision status requires bound collision index ref")
         if conflicts:
             errors.append("CLEAR target collision status cannot list conflicts")
     elif collision_status == "COLLISION":
@@ -528,14 +588,22 @@ def _validate_constraint_evidence(
             errors.append("COLLISION status requires index hash")
         if not conflicts or not refs:
             errors.append("COLLISION status requires conflicts and evidence")
+        if not _collision_index_ref_matches(index_ref, index_hash):
+            errors.append("COLLISION status requires bound collision index ref")
         if any(_same_candidate_key(key, conflict) for conflict in conflicts):
             errors.append("target collision cannot reference the candidate itself")
     elif collision_status == "UNJUDGEABLE":
         if conflicts:
             errors.append("UNJUDGEABLE collision status cannot list conflicts")
+        if index_hash is not None or index_ref is not None:
+            errors.append("UNJUDGEABLE collision status cannot claim collision index")
 
 
-def _validate_context(value: Mapping[str, Any], errors: list[str]) -> None:
+def _validate_context(
+    value: Mapping[str, Any],
+    errors: list[str],
+    allow_legacy_migration: bool,
+) -> None:
     features = value.get("features", {})
     counts = tuple(features.get(name) for name in ("pass_count", "minor_count", "fail_count"))
     valid_count = features.get("valid_context_count")
@@ -562,9 +630,31 @@ def _validate_context(value: Mapping[str, Any], errors: list[str]) -> None:
         "review_artifact_sha256"
     ):
         errors.append("frozen selector mode requires review_artifact_sha256")
+    signals = _validate_gate_signals(
+        value,
+        expected_gate_ids=CONTEXT_GATE_SIGNAL_IDS,
+        producer="C",
+        errors=errors,
+        allow_legacy_migration=allow_legacy_migration,
+    )
+    expected_signals = {gate_id: gate_id in flags for gate_id in CONTEXT_GATE_SIGNAL_IDS}
+    expected_signals["missing_contrastive_context"] = (
+        value.get("contrastive_status") == "ABSENT"
+    )
+    coverage = features.get("required_context_type_coverage")
+    expected_signals["incomplete_context_type_coverage"] = (
+        isinstance(coverage, (int, float))
+        and not isinstance(coverage, bool)
+        and coverage < 1.0
+    )
+    _validate_signal_truth(signals, expected_signals, "C", errors)
 
 
-def _validate_attestation(value: Mapping[str, Any], errors: list[str]) -> None:
+def _validate_attestation(
+    value: Mapping[str, Any],
+    errors: list[str],
+    allow_legacy_migration: bool,
+) -> None:
     if value.get("local_status") == "ATTESTED" and not value.get(
         "accepted_evidence_refs"
     ):
@@ -575,6 +665,21 @@ def _validate_attestation(value: Mapping[str, Any], errors: list[str]) -> None:
         errors.append(
             "ATTESTATION_UNJUDGEABLE cannot claim accepted evidence refs"
         )
+    flags = _flag_codes(value.get("flags"))
+    signals = _validate_gate_signals(
+        value,
+        expected_gate_ids=ATTESTATION_GATE_SIGNAL_IDS,
+        producer="E",
+        errors=errors,
+        allow_legacy_migration=allow_legacy_migration,
+    )
+    expected_signals = {
+        gate_id: gate_id in flags for gate_id in ATTESTATION_GATE_SIGNAL_IDS
+    }
+    expected_signals["attestation_unjudgeable"] = (
+        value.get("local_status") == "ATTESTATION_UNJUDGEABLE"
+    )
+    _validate_signal_truth(signals, expected_signals, "E", errors)
 
 
 def _validate_global_input(
@@ -584,6 +689,14 @@ def _validate_global_input(
 ) -> None:
     key = value.get("candidate_key")
     input_hash = value.get("input_contract_sha256")
+    native_v11 = value.get("schema_version") == PACKAGE_VERSION
+    assembly = value.get("assembly_metadata")
+    binding_status = (
+        assembly.get("binding_status") if isinstance(assembly, Mapping) else None
+    )
+    nested_allow_legacy = allow_legacy_migration and (
+        not native_v11 or binding_status == "LEGACY_INCOMPLETE"
+    )
     for name in ("context_evidence", "attestation_evidence"):
         package = value.get(name, {})
         if isinstance(package, dict) and not verify_self_sha256(package):
@@ -593,11 +706,11 @@ def _validate_global_input(
         if input_hash != package.get("input_contract_sha256"):
             errors.append(f"{name}.input_contract_sha256 mismatch")
         if name == "context_evidence":
-            _validate_context(package, errors)
+            _validate_context(package, errors, nested_allow_legacy)
         else:
-            _validate_attestation(package, errors)
+            _validate_attestation(package, errors, nested_allow_legacy)
 
-    if value.get("schema_version") != PACKAGE_VERSION:
+    if not native_v11:
         for index, probe in enumerate(value.get("optional_probes", [])):
             if isinstance(probe, dict) and not verify_self_sha256(probe):
                 errors.append(
@@ -611,8 +724,6 @@ def _validate_global_input(
                 )
         return
 
-    assembly = value.get("assembly_metadata")
-    binding_status = assembly.get("binding_status") if isinstance(assembly, Mapping) else None
     effective = value.get("effective_sense_contract")
     frozen = value.get("frozen_candidate_contract")
     constraint = value.get("constraint_evidence")
@@ -631,7 +742,7 @@ def _validate_global_input(
                 errors.append("frozen_candidate_contract.candidate_key mismatch")
             if input_hash != frozen.get("input_contract_sha256"):
                 errors.append("frozen_candidate_contract.input_contract_sha256 mismatch")
-            _validate_frozen_candidate(frozen, errors, allow_legacy_migration)
+            _validate_frozen_candidate(frozen, errors, nested_allow_legacy)
             if not verify_self_sha256(dict(constraint)):
                 errors.append("constraint_evidence.integrity.self_sha256 mismatch")
             if not _same_candidate_key(key, constraint.get("candidate_key")):
@@ -732,6 +843,10 @@ def _validate_gates(
                 errors.append("legacy-incomplete GateResultSet is not native V1.1")
         else:
             errors.append("GateResultSet binding_status is invalid")
+        if strict_native and not _is_nonzero_sha256(
+            value.get("gate_policy_artifact_sha256")
+        ):
+            errors.append("complete GateResultSet requires gate policy artifact hash")
     for index, observation in enumerate(observations):
         gate_id = observation.get("gate_id")
         if gate_id not in GATE_IDS:
@@ -758,6 +873,27 @@ def _validate_gates(
             errors.append(f"observations[{index}].source_modules contains unknown module")
 
 
+def _validate_gate_policy(value: Mapping[str, Any], errors: list[str]) -> None:
+    if value.get("gate_policy_id") != GATE_POLICY_ID:
+        errors.append("gate policy id mismatch")
+    if value.get("gate_policy_version") != GATE_POLICY_VERSION:
+        errors.append("gate policy version mismatch")
+    if value.get("gate_registry_version") != GATE_REGISTRY_VERSION:
+        errors.append("gate policy registry version mismatch")
+    rules = value.get("rules")
+    if not isinstance(rules, Mapping):
+        errors.append("gate policy rules must be an object")
+        return
+    if set(rules) != set(GATE_IDS):
+        errors.append("gate policy must cover the gate registry exactly")
+        return
+    for gate_id, expected_actions in GATE_ALLOWED_ACTIONS.items():
+        rule = rules.get(gate_id)
+        actions = rule.get("allowed_actions") if isinstance(rule, Mapping) else None
+        if actions != list(expected_actions):
+            errors.append(f"gate policy rule drift: {gate_id}")
+
+
 def _validate_calibration_structural(
     value: Mapping[str, Any],
     errors: list[str],
@@ -775,6 +911,20 @@ def _validate_calibration_structural(
             )
         if status == "SEALED" and value.get("feature_contract_version") != FEATURE_CONTRACT_VERSION:
             errors.append("sealed calibration feature contract version mismatch")
+        if status == "SEALED" and not _is_nonzero_sha256(
+            value.get("gate_policy_artifact_sha256")
+        ):
+            errors.append("sealed calibration requires gate policy artifact hash")
+        stability = value.get("threshold_stability")
+        if isinstance(stability, Mapping):
+            lower = stability.get("threshold_ci_lower")
+            median = stability.get("threshold_median")
+            upper = stability.get("threshold_ci_upper")
+            if all(isinstance(item, (int, float)) for item in (lower, median, upper)):
+                if not lower <= median <= upper:
+                    errors.append(
+                        "threshold stability must satisfy ci_lower <= median <= ci_upper"
+                    )
 
 
 def _validate_decision(
@@ -786,6 +936,7 @@ def _validate_decision(
     feature_registry_path: Path | None,
     expected_calibration_self_sha256: str | None,
     global_input_path: Path | None,
+    gate_policy_path: Path | None,
     allow_legacy_migration: bool,
 ) -> None:
     gates = value.get("gate_results", {})
@@ -806,8 +957,10 @@ def _validate_decision(
         native_v11
         and allow_legacy_migration
         and run_metadata.get("binding_status") == "LEGACY_INCOMPLETE"
+        and gates.get("binding_status") == "LEGACY_INCOMPLETE"
     )
     global_input: Mapping[str, Any] | None = None
+    gate_policy: Mapping[str, Any] | None = None
     feature_registry: Mapping[str, Any] | None = None
     verified_calibration = None
 
@@ -853,6 +1006,24 @@ def _validate_decision(
             except RegistryError as exc:
                 errors.append(f"feature registry verification failed: {exc}")
 
+        expected_gate_policy_hash = policy.get("gate_policy_artifact_sha256")
+        if gate_policy_path is None:
+            errors.append("complete decision requires a loaded GatePolicyArtifact")
+        else:
+            try:
+                loaded_policy = load_verified_json_artifact(
+                    gate_policy_path,
+                    expected_self_sha256=expected_gate_policy_hash,
+                )
+                gate_policy = loaded_policy.payload
+            except IntegrityError as exc:
+                errors.append(f"GatePolicyArtifact verification failed: {exc}")
+            else:
+                policy_errors = validate_instance(gate_policy, schema_dir)
+                errors.extend(
+                    f"GatePolicyArtifact: {error}" for error in policy_errors
+                )
+
     if mode == "DEVELOPMENT_HEURISTIC":
         if decision == "AUTO_APPROVED":
             errors.append("DEVELOPMENT_HEURISTIC cannot emit AUTO_APPROVED")
@@ -888,6 +1059,9 @@ def _validate_decision(
                     expected_gate_policy_version=run_metadata.get(
                         "gate_policy_version"
                     ),
+                    expected_gate_policy_artifact_sha256=run_metadata.get(
+                        "gate_policy_artifact_sha256"
+                    ),
                     expected_threshold=policy.get("threshold"),
                 )
                 if verified_calibration.artifact.self_sha256 != policy.get(
@@ -902,6 +1076,8 @@ def _validate_decision(
         for observation in gates.get("observations", [])
         if observation.get("triggered")
     ]
+    if gate_policy is not None:
+        _validate_gate_actions(gates, gate_policy, errors)
     blocking = next(
         (action for action in GATE_ACTION_PRECEDENCE if action in triggered_actions),
         "NONE",
@@ -938,6 +1114,15 @@ def _validate_decision(
             errors.append("decision policy feature contract version mismatch")
         if run_metadata.get("gate_policy_version") != gates.get("gate_policy_version"):
             errors.append("run_metadata gate policy version mismatch")
+        policy_hash = policy.get("gate_policy_artifact_sha256")
+        if run_metadata.get("gate_policy_artifact_sha256") != policy_hash:
+            errors.append("run_metadata gate policy artifact hash mismatch")
+        if gates.get("gate_policy_artifact_sha256") != policy_hash:
+            errors.append("gate result gate policy artifact hash mismatch")
+        if verified_calibration is not None and (
+            verified_calibration.gate_policy_artifact_sha256 != policy_hash
+        ):
+            errors.append("calibration gate policy artifact hash mismatch")
         hashes = run_metadata.get("input_package_hashes", {})
         if hashes.get("context_evidence_sha256") != value.get("context_evidence_sha256"):
             errors.append("run_metadata context evidence hash mismatch")
@@ -958,6 +1143,7 @@ def _validate_decision(
                 "frozen_candidate_contract_sha256",
                 "constraint_evidence_sha256",
                 "gate_result_sha256",
+                "gate_policy_artifact_sha256",
             ):
                 if not _is_nonzero_sha256(hashes.get(field)):
                     errors.append(f"COMPLETE run metadata requires {field}")
@@ -988,11 +1174,15 @@ def _validate_decision(
                     global_input.get("constraint_evidence")
                 ),
                 "gate_result_sha256": _self_hash(gates),
+                "gate_policy_artifact_sha256": policy.get(
+                    "gate_policy_artifact_sha256"
+                ),
             }
             for field, expected in expected_hashes.items():
                 if hashes.get(field) != expected:
                     errors.append(f"run_metadata {field} differs from loaded input")
             _validate_constraint_gate_projection(global_input, gates, errors)
+            _validate_evidence_gate_projection(global_input, gates, errors)
 
         if (
             mode == "FROZEN_CALIBRATED"
@@ -1070,6 +1260,7 @@ def _validate_certificate(
             "global_validator_input_sha256",
             "frozen_candidate_contract_sha256",
             "constraint_evidence_sha256",
+            "gate_policy_artifact_sha256",
         )
         for field in required:
             if not _is_nonzero_sha256(value.get(field)):
@@ -1175,6 +1366,156 @@ def _validate_constraint_gate_projection(
             errors.append(
                 f"gate {gate_id} disagrees with declared constraint evidence"
             )
+
+
+def _validate_evidence_gate_projection(
+    global_input: Mapping[str, Any],
+    gates: Mapping[str, Any],
+    errors: list[str],
+) -> None:
+    asserted_by_gate: dict[str, list[tuple[str, Mapping[str, Any]]]] = {}
+    for module, field in (("C", "context_evidence"), ("E", "attestation_evidence")):
+        package = global_input.get(field)
+        if not isinstance(package, Mapping):
+            continue
+        for signal in package.get("gate_signals", []):
+            if not isinstance(signal, Mapping) or signal.get("asserted") is not True:
+                continue
+            gate_id = signal.get("gate_id")
+            if isinstance(gate_id, str):
+                asserted_by_gate.setdefault(gate_id, []).append((module, signal))
+
+    observations = {
+        observation.get("gate_id"): observation
+        for observation in gates.get("observations", [])
+        if isinstance(observation, Mapping)
+    }
+    signal_gate_ids = set(CONTEXT_GATE_SIGNAL_IDS) | set(
+        ATTESTATION_GATE_SIGNAL_IDS
+    )
+    for gate_id in signal_gate_ids:
+        assertions = asserted_by_gate.get(gate_id, [])
+        observation = observations.get(gate_id)
+        if not isinstance(observation, Mapping):
+            errors.append(f"evidence projection missing gate: {gate_id}")
+            continue
+        expected_triggered = bool(assertions)
+        if observation.get("triggered") is not expected_triggered:
+            errors.append(f"gate {gate_id} disagrees with C/E gate signals")
+            continue
+        if not assertions:
+            continue
+        modules = set(observation.get("source_modules", []))
+        reason_codes = set(observation.get("reason_codes", []))
+        evidence_refs = observation.get("evidence_refs", [])
+        for module, signal in assertions:
+            if module not in modules:
+                errors.append(f"gate {gate_id} omits asserting source module {module}")
+            missing_reasons = set(signal.get("reason_codes", [])).difference(
+                reason_codes
+            )
+            if missing_reasons:
+                errors.append(
+                    f"gate {gate_id} omits producer reason codes: "
+                    f"{sorted(missing_reasons)}"
+                )
+            for reference in signal.get("evidence_refs", []):
+                if reference not in evidence_refs:
+                    errors.append(f"gate {gate_id} omits producer evidence reference")
+
+
+def _validate_gate_actions(
+    gates: Mapping[str, Any],
+    gate_policy: Mapping[str, Any],
+    errors: list[str],
+) -> None:
+    rules = gate_policy.get("rules", {})
+    for observation in gates.get("observations", []):
+        if not isinstance(observation, Mapping) or observation.get("triggered") is not True:
+            continue
+        gate_id = observation.get("gate_id")
+        rule = rules.get(gate_id) if isinstance(rules, Mapping) else None
+        allowed = rule.get("allowed_actions", []) if isinstance(rule, Mapping) else []
+        if observation.get("action") not in allowed:
+            errors.append(
+                f"gate {gate_id} action {observation.get('action')} is not allowed "
+                "by the sealed gate policy"
+            )
+
+
+def _validate_gate_signals(
+    value: Mapping[str, Any],
+    *,
+    expected_gate_ids: tuple[str, ...],
+    producer: str,
+    errors: list[str],
+    allow_legacy_migration: bool,
+) -> dict[str, Mapping[str, Any]]:
+    raw = value.get("gate_signals")
+    component_version = value.get("provenance", {}).get("component_version")
+    legacy_allowed = (
+        allow_legacy_migration and component_version == LEGACY_VERSION and raw is None
+    )
+    if raw is None:
+        if not legacy_allowed:
+            errors.append(f"native {producer} evidence requires gate_signals")
+        return {}
+    if not isinstance(raw, list):
+        errors.append(f"{producer} gate_signals must be an array")
+        return {}
+    signals = {
+        signal.get("gate_id"): signal
+        for signal in raw
+        if isinstance(signal, Mapping) and isinstance(signal.get("gate_id"), str)
+    }
+    ids = [
+        signal.get("gate_id")
+        for signal in raw
+        if isinstance(signal, Mapping)
+    ]
+    if len(ids) != len(set(ids)):
+        errors.append(f"{producer} gate_signals must use unique gate_id values")
+    missing = sorted(set(expected_gate_ids).difference(signals))
+    extra = sorted(set(signals).difference(expected_gate_ids))
+    if missing or extra:
+        errors.append(
+            f"{producer} gate_signals must cover producer gates exactly: "
+            f"missing={missing}, extra={extra}"
+        )
+    for gate_id, signal in signals.items():
+        asserted = signal.get("asserted")
+        reasons = signal.get("reason_codes", [])
+        refs = signal.get("evidence_refs", [])
+        if asserted is True and not reasons:
+            errors.append(f"{producer} gate signal {gate_id} requires reason_codes")
+        if asserted is False and (reasons or refs):
+            errors.append(
+                f"{producer} non-asserted gate signal {gate_id} cannot claim evidence"
+            )
+    return signals
+
+
+def _validate_signal_truth(
+    signals: Mapping[str, Mapping[str, Any]],
+    expected: Mapping[str, bool],
+    producer: str,
+    errors: list[str],
+) -> None:
+    for gate_id, expected_asserted in expected.items():
+        signal = signals.get(gate_id)
+        if signal is not None and signal.get("asserted") is not expected_asserted:
+            errors.append(
+                f"{producer} gate signal {gate_id} disagrees with producer evidence"
+            )
+
+
+def _collision_index_ref_matches(reference: Any, expected_hash: Any) -> bool:
+    return (
+        isinstance(reference, Mapping)
+        and reference.get("evidence_type") == "COLLISION_INDEX"
+        and reference.get("sha256") == expected_hash
+        and _is_nonzero_sha256(expected_hash)
+    )
 
 
 def _nonfinite_number_errors(value: Any, path: str = "$") -> list[str]:
@@ -1297,4 +1638,15 @@ def _default_feature_registry(schema_dir: Path) -> Path | None:
     if candidate.is_file():
         return candidate
     candidate = root / "registries" / "feature_contract_v1.1.0.json"
+    return candidate if candidate.is_file() else None
+
+
+def _default_gate_policy_path(schema_dir: Path) -> Path | None:
+    root = schema_dir
+    if root.name in {"current", "v1.1.0", "v1.0.0"}:
+        root = root.parent
+    candidate = root.parent / "policies" / "gate_policy_v1.0.0.json"
+    if candidate.is_file():
+        return candidate
+    candidate = root / "policies" / "gate_policy_v1.0.0.json"
     return candidate if candidate.is_file() else None

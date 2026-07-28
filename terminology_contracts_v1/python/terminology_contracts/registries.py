@@ -12,6 +12,8 @@ LEGACY_VERSION = "1.0.0"
 FEATURE_CONTRACT_VERSION = "1.1.0"
 GATE_REGISTRY_VERSION = "1.1.0"
 SCHEMA_REGISTRY_VERSION = "1.1.0"
+GATE_POLICY_ID = "gate-policy-v1"
+GATE_POLICY_VERSION = "1.0.0"
 
 SCHEMA_FILES: dict[str, str] = {
     "EffectiveSenseContractV1": "effective_sense_contract.schema.json",
@@ -22,6 +24,7 @@ SCHEMA_FILES: dict[str, str] = {
     "OptionalProbePackageV1": "optional_probe_package.schema.json",
     "GlobalValidatorInputV1": "global_validator_input.schema.json",
     "GateResultSetV1": "gate_result_set.schema.json",
+    "GatePolicyArtifactV1": "gate_policy_artifact.schema.json",
     "CalibrationArtifactV1": "calibration_artifact.schema.json",
     "GlobalDecisionPackageV1": "global_decision_package.schema.json",
     "TerminologyCertificateV1": "terminology_certificate.schema.json",
@@ -188,6 +191,41 @@ GATE_SOURCE_MODULES: tuple[str, ...] = (
     "HUMAN_REVIEW",
 )
 
+CONTEXT_GATE_SIGNAL_IDS: tuple[str, ...] = (
+    "concept_mismatch",
+    "wrong_sense",
+    "contradiction",
+    "judge_disagreement",
+    "insufficient_evidence",
+    "missing_contrastive_context",
+    "incomplete_context_type_coverage",
+)
+
+ATTESTATION_GATE_SIGNAL_IDS: tuple[str, ...] = (
+    "concept_mismatch",
+    "contradiction",
+    "judge_disagreement",
+    "insufficient_evidence",
+    "attestation_unjudgeable",
+)
+
+# This is the active RC3 policy.  The sealed artifact generated from it is the
+# authority consumed by the Global Validator; the registry remains descriptive.
+GATE_ALLOWED_ACTIONS: dict[str, tuple[str, ...]] = {
+    "input_contract_mismatch": ("FATAL_REJECT",),
+    "sense_definition_unverified": ("ESCALATE_HUMAN",),
+    "unresolved_polysemy": ("FATAL_SPLIT", "ESCALATE_HUMAN"),
+    "concept_mismatch": ("FATAL_REJECT",),
+    "wrong_sense": ("FATAL_REJECT", "FATAL_SPLIT"),
+    "contradiction": ("FATAL_REJECT", "ESCALATE_HUMAN"),
+    "target_collision": ("ESCALATE_HUMAN",),
+    "judge_disagreement": ("ESCALATE_HUMAN",),
+    "insufficient_evidence": ("CAP_PROVISIONAL", "ESCALATE_HUMAN"),
+    "missing_contrastive_context": ("CAP_PROVISIONAL", "ESCALATE_HUMAN"),
+    "incomplete_context_type_coverage": ("CAP_PROVISIONAL", "ESCALATE_HUMAN"),
+    "attestation_unjudgeable": ("CAP_PROVISIONAL", "ESCALATE_HUMAN"),
+}
+
 
 class RegistryError(ValueError):
     pass
@@ -222,6 +260,25 @@ def gate_registry_payload() -> dict[str, Any]:
         "actions": list(GATE_ACTIONS),
         "precedence": list(GATE_ACTION_PRECEDENCE),
         "source_modules": list(GATE_SOURCE_MODULES),
+        "signal_sources": {
+            "C": list(CONTEXT_GATE_SIGNAL_IDS),
+            "E": list(ATTESTATION_GATE_SIGNAL_IDS),
+        },
+    }
+
+
+def gate_policy_payload() -> dict[str, Any]:
+    return {
+        "schema_id": "GatePolicyArtifactV1",
+        "schema_version": PACKAGE_VERSION,
+        "gate_policy_id": GATE_POLICY_ID,
+        "gate_policy_version": GATE_POLICY_VERSION,
+        "gate_registry_version": GATE_REGISTRY_VERSION,
+        "rules": {
+            gate_id: {"allowed_actions": list(GATE_ALLOWED_ACTIONS[gate_id])}
+            for gate_id in GATE_IDS
+        },
+        "integrity": {"self_sha256": ""},
     }
 
 
@@ -238,7 +295,8 @@ def schema_registry_payload() -> dict[str, Any]:
                 "path": f"schemas/v1.1.0/{filename}",
                 "legacy_path": (
                     None
-                    if schema_id == "ConstraintEvidencePackageV1"
+                    if schema_id
+                    in {"ConstraintEvidencePackageV1", "GatePolicyArtifactV1"}
                     else f"schemas/legacy/v1.0.0/{filename}"
                 ),
             }

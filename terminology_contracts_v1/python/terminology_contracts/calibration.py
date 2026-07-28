@@ -29,6 +29,7 @@ class VerifiedCalibration:
     threshold: float
     feature_names: tuple[str, ...]
     gate_policy_version: str
+    gate_policy_artifact_sha256: str
     feature_contract_version: str
     development_dataset_sha256: str
     validation_dataset_sha256: str
@@ -44,6 +45,7 @@ def verify_calibration_artifact(
     expected_development_dataset_sha256: str | None = None,
     expected_validation_dataset_sha256: str | None = None,
     expected_gate_policy_version: str | None = None,
+    expected_gate_policy_artifact_sha256: str | None = None,
     expected_feature_contract_version: str = FEATURE_CONTRACT_VERSION,
     expected_threshold: float | None = None,
 ) -> VerifiedCalibration:
@@ -123,6 +125,22 @@ def verify_calibration_artifact(
             "gate_policy_version mismatch: "
             f"expected {expected_gate_policy_version!r}, got {gate_policy!r}"
         )
+    try:
+        gate_policy_hash = require_nonzero_sha256(
+            payload.get("gate_policy_artifact_sha256"),
+            field="gate_policy_artifact_sha256",
+        )
+    except IntegrityError as exc:
+        raise CalibrationVerificationError(str(exc)) from exc
+    if (
+        expected_gate_policy_artifact_sha256 is not None
+        and gate_policy_hash != expected_gate_policy_artifact_sha256
+    ):
+        raise CalibrationVerificationError(
+            "gate_policy_artifact_sha256 mismatch: "
+            f"expected {expected_gate_policy_artifact_sha256!r}, "
+            f"got {gate_policy_hash!r}"
+        )
     _expect_hash(
         payload,
         "development_dataset_sha256",
@@ -191,11 +209,35 @@ def verify_calibration_artifact(
             "precision lower bound does not meet auto-approval target"
         )
 
+    stability = payload.get("threshold_stability")
+    if stability is not None:
+        if not isinstance(stability, Mapping):
+            raise CalibrationVerificationError(
+                "threshold_stability must be an object or null"
+            )
+        lower = _finite_number(
+            stability.get("threshold_ci_lower"),
+            field="threshold_stability.threshold_ci_lower",
+        )
+        median = _finite_number(
+            stability.get("threshold_median"),
+            field="threshold_stability.threshold_median",
+        )
+        upper = _finite_number(
+            stability.get("threshold_ci_upper"),
+            field="threshold_stability.threshold_ci_upper",
+        )
+        if not lower <= median <= upper:
+            raise CalibrationVerificationError(
+                "threshold stability must satisfy ci_lower <= median <= ci_upper"
+            )
+
     return VerifiedCalibration(
         artifact=artifact,
         threshold=threshold,
         feature_names=tuple(raw_names),
         gate_policy_version=str(gate_policy),
+        gate_policy_artifact_sha256=gate_policy_hash,
         feature_contract_version=str(feature_version),
         development_dataset_sha256=str(payload["development_dataset_sha256"]),
         validation_dataset_sha256=str(payload["validation_dataset_sha256"]),
