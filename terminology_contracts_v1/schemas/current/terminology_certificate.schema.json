@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesis.local/terminology-contracts/v1.1/terminology_certificate.schema.json",
+  "title": "Versioned Terminology Certificate V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "certificate_id",
+    "certificate_version",
+    "candidate_key",
+    "status",
+    "allowed_variants",
+    "forbidden_candidates",
+    "scope_note",
+    "validity_context_refs",
+    "evidence_summary",
+    "gate_summary",
+    "decision_package_sha256",
+    "policy_version",
+    "issued_at",
+    "integrity",
+    "binding_status",
+    "attestation_evidence_refs",
+    "threshold_version",
+    "sense_inventory_version",
+    "effective_sense_contract_sha256",
+    "input_contract_sha256",
+    "context_evidence_sha256",
+    "attestation_evidence_sha256",
+    "gate_result_sha256",
+    "calibration_artifact_sha256",
+    "global_validator_input_sha256",
+    "frozen_candidate_contract_sha256",
+    "constraint_evidence_sha256",
+    "gate_policy_artifact_sha256"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "TerminologyCertificateV1"
+    },
+    "schema_version": {
+      "const": "1.1.0"
+    },
+    "certificate_id": {
+      "$ref": "common_defs.schema.json#/$defs/identifier"
+    },
+    "certificate_version": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "candidate_key": {
+      "$ref": "common_defs.schema.json#/$defs/candidateKey"
+    },
+    "status": {
+      "enum": [
+        "AUTO_APPROVED",
+        "PROVISIONAL"
+      ]
+    },
+    "allowed_variants": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "forbidden_candidates": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "scope_note": {
+      "type": "string",
+      "minLength": 1
+    },
+    "validity_context_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "common_defs.schema.json#/$defs/evidenceRef"
+      }
+    },
+    "evidence_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "context_evidence_sha256",
+        "attestation_evidence_sha256",
+        "C_mean",
+        "E_features"
+      ],
+      "properties": {
+        "context_evidence_sha256": {
+          "$ref": "common_defs.schema.json#/$defs/sha256"
+        },
+        "attestation_evidence_sha256": {
+          "$ref": "common_defs.schema.json#/$defs/sha256"
+        },
+        "C_mean": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "E_features": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "common_defs.schema.json#/$defs/score01"
+          }
+        }
+      }
+    },
+    "gate_summary": {
+      "type": "array",
+      "items": {
+        "$ref": "common_defs.schema.json#/$defs/identifier"
+      }
+    },
+    "decision_package_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "policy_version": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "issued_at": {
+      "$ref": "common_defs.schema.json#/$defs/dateTime"
+    },
+    "integrity": {
+      "$ref": "common_defs.schema.json#/$defs/integrity"
+    },
+    "binding_status": {
+      "enum": [
+        "COMPLETE",
+        "LEGACY_INCOMPLETE"
+      ]
+    },
+    "attestation_evidence_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "common_defs.schema.json#/$defs/evidenceRef"
+      }
+    },
+    "threshold_version": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "sense_inventory_version": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "effective_sense_contract_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "input_contract_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+    },
+    "context_evidence_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+    },
+    "attestation_evidence_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+    },
+    "gate_result_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+    },
+    "calibration_artifact_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+    },
+    "global_validator_input_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+    },
+    "frozen_candidate_contract_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+    },
+    "constraint_evidence_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+    },
+    "gate_policy_artifact_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+    }
+  }
+}

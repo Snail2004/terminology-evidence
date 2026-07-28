@@ -1,0 +1,128 @@
+{
+  "accepted_evidence_refs": [
+    {
+      "evidence_id": "att-1",
+      "evidence_type": "ATTESTATION_SOURCE",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "uri": "artifact://attestation/att-1"
+    }
+  ],
+  "candidate_key": {
+    "candidate_id": "cand-inference-vi-01",
+    "candidate_version": "fixture-candidate-v1",
+    "candidate_vi": "suy luận",
+    "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
+    "scope_id": "machine_learning",
+    "sense_id": "model_execution",
+    "sense_inventory_version": "sense-v1",
+    "source_term": "inference"
+  },
+  "diagnostics": null,
+  "features": {
+    "E_authority": 0.75,
+    "E_concept": 0.83,
+    "E_conventionality": 0.6,
+    "E_coverage": 0.8,
+    "E_domain": 1.0,
+    "E_independence": 0.67
+  },
+  "final_glossary_decision": null,
+  "flags": [],
+  "gate_signals": [
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "concept_mismatch",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "contradiction",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "judge_disagreement",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "insufficient_evidence",
+      "reason_codes": []
+    },
+    {
+      "asserted": false,
+      "evidence_refs": [],
+      "gate_id": "attestation_unjudgeable",
+      "reason_codes": []
+    }
+  ],
+  "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
+  "integrity": {
+    "self_sha256": "831cf0d4a5cbbaf508c73a605e86fe66d8f066677080ea6af986637b5dcdf6aa"
+  },
+  "local_status": "ATTESTED",
+  "observed_variants": [
+    {
+      "evidence_refs": [
+        {
+          "evidence_id": "att-2",
+          "evidence_type": "ATTESTATION_SOURCE",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "uri": "artifact://attestation/att-2"
+        }
+      ],
+      "status": "PROPOSE_FOR_CST_VARIANT_CHECK",
+      "surface_vi": "bước suy luận"
+    }
+  ],
+  "provenance": {
+    "completed_at": "2026-07-28T10:01:00+00:00",
+    "component_id": "vietnamese-attestation",
+    "component_version": "1.1.0",
+    "execution_config_sha256": "010f7bfe5ff1d4407a481b576c13273ac35494c41b3e66353b792a18b90fec16",
+    "model_routes": [
+      {
+        "independence_group": "group-demo",
+        "model_family": "family-demo",
+        "model_id": "model-demo",
+        "provider_id": "provider-demo"
+      }
+    ],
+    "notes": null,
+    "policy_version": "demo-policy-v1",
+    "prompt_hashes": {
+      "main": "9999999999999999999999999999999999999999999999999999999999999999"
+    },
+    "raw_ledger_ref": {
+      "evidence_id": "ledger-001",
+      "evidence_type": "OTHER",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "uri": "artifact://runs/run-demo-001"
+    },
+    "run_id": "fixture-vietnamese-attestation-run-001",
+    "run_spec_id": "fixture-vietnamese-attestation-spec-001",
+    "source_artifact_hashes": {
+      "dataset": "1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "started_at": "2026-07-28T10:00:00+00:00"
+  },
+  "rejected_evidence_refs": [],
+  "schema_id": "AttestationEvidencePackageV1",
+  "schema_version": "1.1.0",
+  "stage_metrics": {
+    "duplicate_cluster_count": 1,
+    "extraction_coverage": 0.9,
+    "fetch_coverage": 0.9,
+    "independent_organization_count": 3,
+    "judge_coverage": 0.9,
+    "language_coverage": 1.0,
+    "search_coverage": 1.0,
+    "span_yield": 0.5,
+    "unique_document_count": 6
+  }
+}

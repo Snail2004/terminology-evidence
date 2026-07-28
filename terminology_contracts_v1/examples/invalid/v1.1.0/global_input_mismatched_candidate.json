@@ -1,0 +1,524 @@
+{
+  "assembly_metadata": {
+    "assembled_at": "2026-07-28T11:00:00+00:00",
+    "assembler_id": "global-input-assembler",
+    "assembler_version": "1.1.0",
+    "binding_status": "COMPLETE",
+    "source_package_hashes": {
+      "attestation_evidence_sha256": "831cf0d4a5cbbaf508c73a605e86fe66d8f066677080ea6af986637b5dcdf6aa",
+      "constraint_evidence_sha256": "d41daa7701022f4fb9c32719a0d9e4dec848becb7501520bba66b81dcbdec374",
+      "context_evidence_sha256": "95bac0a3491a3b559d8acee9a52c8e68afed04cb8960698c99a3c55b178f9f63",
+      "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
+      "frozen_candidate_contract_sha256": "1cfadf782b4448173516f5cf204abc4db11f9e12c3932efea1c4b35361c92024"
+    }
+  },
+  "attestation_evidence": {
+    "accepted_evidence_refs": [
+      {
+        "evidence_id": "att-1",
+        "evidence_type": "ATTESTATION_SOURCE",
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "uri": "artifact://attestation/att-1"
+      }
+    ],
+    "candidate_key": {
+      "candidate_id": "cand-inference-vi-01",
+      "candidate_version": "fixture-candidate-v1",
+      "candidate_vi": "suy luận",
+      "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
+      "scope_id": "machine_learning",
+      "sense_id": "model_execution",
+      "sense_inventory_version": "sense-v1",
+      "source_term": "inference"
+    },
+    "diagnostics": null,
+    "features": {
+      "E_authority": 0.75,
+      "E_concept": 0.83,
+      "E_conventionality": 0.6,
+      "E_coverage": 0.8,
+      "E_domain": 1.0,
+      "E_independence": 0.67
+    },
+    "final_glossary_decision": null,
+    "flags": [],
+    "gate_signals": [
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "concept_mismatch",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "contradiction",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "judge_disagreement",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "insufficient_evidence",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "attestation_unjudgeable",
+        "reason_codes": []
+      }
+    ],
+    "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
+    "integrity": {
+      "self_sha256": "831cf0d4a5cbbaf508c73a605e86fe66d8f066677080ea6af986637b5dcdf6aa"
+    },
+    "local_status": "ATTESTED",
+    "observed_variants": [
+      {
+        "evidence_refs": [
+          {
+            "evidence_id": "att-2",
+            "evidence_type": "ATTESTATION_SOURCE",
+            "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "uri": "artifact://attestation/att-2"
+          }
+        ],
+        "status": "PROPOSE_FOR_CST_VARIANT_CHECK",
+        "surface_vi": "bước suy luận"
+      }
+    ],
+    "provenance": {
+      "completed_at": "2026-07-28T10:01:00+00:00",
+      "component_id": "vietnamese-attestation",
+      "component_version": "1.1.0",
+      "execution_config_sha256": "010f7bfe5ff1d4407a481b576c13273ac35494c41b3e66353b792a18b90fec16",
+      "model_routes": [
+        {
+          "independence_group": "group-demo",
+          "model_family": "family-demo",
+          "model_id": "model-demo",
+          "provider_id": "provider-demo"
+        }
+      ],
+      "notes": null,
+      "policy_version": "demo-policy-v1",
+      "prompt_hashes": {
+        "main": "9999999999999999999999999999999999999999999999999999999999999999"
+      },
+      "raw_ledger_ref": {
+        "evidence_id": "ledger-001",
+        "evidence_type": "OTHER",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "uri": "artifact://runs/run-demo-001"
+      },
+      "run_id": "fixture-vietnamese-attestation-run-001",
+      "run_spec_id": "fixture-vietnamese-attestation-spec-001",
+      "source_artifact_hashes": {
+        "dataset": "1111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "started_at": "2026-07-28T10:00:00+00:00"
+    },
+    "rejected_evidence_refs": [],
+    "schema_id": "AttestationEvidencePackageV1",
+    "schema_version": "1.1.0",
+    "stage_metrics": {
+      "duplicate_cluster_count": 1,
+      "extraction_coverage": 0.9,
+      "fetch_coverage": 0.9,
+      "independent_organization_count": 3,
+      "judge_coverage": 0.9,
+      "language_coverage": 1.0,
+      "search_coverage": 1.0,
+      "span_yield": 0.5,
+      "unique_document_count": 6
+    }
+  },
+  "candidate_key": {
+    "candidate_id": "cand-inference-vi-01",
+    "candidate_version": "fixture-candidate-v1",
+    "candidate_vi": "suy luận",
+    "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
+    "scope_id": "machine_learning",
+    "sense_id": "model_execution",
+    "sense_inventory_version": "sense-v1",
+    "source_term": "inference"
+  },
+  "constraint_evidence": {
+    "binding_status": "COMPLETE",
+    "candidate_key": {
+      "candidate_id": "cand-inference-vi-01",
+      "candidate_version": "fixture-candidate-v1",
+      "candidate_vi": "suy luận",
+      "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
+      "scope_id": "machine_learning",
+      "sense_id": "model_execution",
+      "sense_inventory_version": "sense-v1",
+      "source_term": "inference"
+    },
+    "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
+    "integrity": {
+      "self_sha256": "d41daa7701022f4fb9c32719a0d9e4dec848becb7501520bba66b81dcbdec374"
+    },
+    "polysemy_resolution": {
+      "authority_ref": {
+        "evidence_id": "sense-review-fixture-001",
+        "evidence_type": "OTHER",
+        "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+        "uri": "artifact://fixtures/sense-review-001"
+      },
+      "related_sense_ids": [
+        "model_execution"
+      ],
+      "status": "RESOLVED_SINGLE"
+    },
+    "provenance": {
+      "completed_at": "2026-07-28T10:01:00+00:00",
+      "component_id": "global-constraint-assembler",
+      "component_version": "1.1.0",
+      "execution_config_sha256": "557dc9e7d885113eb6eb5cfe6a8dee8e2a02bff300d5fd980c10623489485f45",
+      "model_routes": [
+        {
+          "independence_group": "group-demo",
+          "model_family": "family-demo",
+          "model_id": "model-demo",
+          "provider_id": "provider-demo"
+        }
+      ],
+      "notes": null,
+      "policy_version": "demo-policy-v1",
+      "prompt_hashes": {
+        "main": "9999999999999999999999999999999999999999999999999999999999999999"
+      },
+      "raw_ledger_ref": {
+        "evidence_id": "ledger-001",
+        "evidence_type": "OTHER",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "uri": "artifact://runs/run-demo-001"
+      },
+      "run_id": "fixture-global-constraint-assembler-run-001",
+      "run_spec_id": "fixture-global-constraint-assembler-spec-001",
+      "source_artifact_hashes": {
+        "dataset": "1111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "started_at": "2026-07-28T10:00:00+00:00"
+    },
+    "schema_id": "ConstraintEvidencePackageV1",
+    "schema_version": "1.1.0",
+    "sense_review": {
+      "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
+      "review_artifact_ref": {
+        "evidence_id": "sense-review-fixture-001",
+        "evidence_type": "OTHER",
+        "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+        "uri": "artifact://fixtures/sense-review-001"
+      },
+      "status": "VERIFIED"
+    },
+    "target_collision": {
+      "collision_index_ref": {
+        "evidence_id": "collision-index-fixture-v1",
+        "evidence_type": "COLLISION_INDEX",
+        "sha256": "936e94f3c205ce8f0947e7349e09a7286263be4fc762accc442accaa3fa67dd2",
+        "uri": "artifact://fixtures/collision-index-v1"
+      },
+      "collision_index_sha256": "936e94f3c205ce8f0947e7349e09a7286263be4fc762accc442accaa3fa67dd2",
+      "conflicting_candidate_keys": [],
+      "evidence_refs": [],
+      "status": "CLEAR"
+    }
+  },
+  "context_evidence": {
+    "candidate_key": {
+      "candidate_id": "cand-inference-vi-01",
+      "candidate_version": "fixture-candidate-v1",
+      "candidate_vi": "suy luận",
+      "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
+      "scope_id": "machine_learning",
+      "sense_id": "wrong-sense",
+      "sense_inventory_version": "sense-v1",
+      "source_term": "inference"
+    },
+    "contrastive_status": "AVAILABLE",
+    "diagnostics": null,
+    "features": {
+      "C_max": 0.96,
+      "C_mean": 0.88,
+      "C_min": 0.7,
+      "C_range": 0.26,
+      "evidence_coverage": 1.0,
+      "fail_count": 0,
+      "judge_agreement": 0.9,
+      "minor_count": 1,
+      "pass_count": 4,
+      "required_context_type_coverage": 1.0,
+      "valid_context_count": 5
+    },
+    "final_glossary_decision": null,
+    "flags": [],
+    "gate_signals": [
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "concept_mismatch",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "wrong_sense",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "contradiction",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "judge_disagreement",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "insufficient_evidence",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "missing_contrastive_context",
+        "reason_codes": []
+      },
+      {
+        "asserted": false,
+        "evidence_refs": [],
+        "gate_id": "incomplete_context_type_coverage",
+        "reason_codes": []
+      }
+    ],
+    "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
+    "integrity": {
+      "self_sha256": "95bac0a3491a3b559d8acee9a52c8e68afed04cb8960698c99a3c55b178f9f63"
+    },
+    "local_status": "CONTEXT_SUPPORTED",
+    "provenance": {
+      "completed_at": "2026-07-28T10:01:00+00:00",
+      "component_id": "context-substitution",
+      "component_version": "1.1.0",
+      "execution_config_sha256": "04e288420fcb64ee2aa197a1b258690fabd5ce2be087aada58d22b26d145bfb4",
+      "model_routes": [
+        {
+          "independence_group": "group-demo",
+          "model_family": "family-demo",
+          "model_id": "model-demo",
+          "provider_id": "provider-demo"
+        }
+      ],
+      "notes": null,
+      "policy_version": "demo-policy-v1",
+      "prompt_hashes": {
+        "main": "9999999999999999999999999999999999999999999999999999999999999999"
+      },
+      "raw_ledger_ref": {
+        "evidence_id": "ledger-001",
+        "evidence_type": "OTHER",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "uri": "artifact://runs/run-demo-001"
+      },
+      "run_id": "fixture-context-substitution-run-001",
+      "run_spec_id": "fixture-context-substitution-spec-001",
+      "source_artifact_hashes": {
+        "dataset": "1111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "started_at": "2026-07-28T10:00:00+00:00"
+    },
+    "review_artifact_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+    "schema_id": "ContextEvidencePackageV1",
+    "schema_version": "1.1.0",
+    "selector_mode": "FROZEN_HUMAN_REVIEWED_SELECTION",
+    "support_set": {
+      "contrastive_refs": [
+        {
+          "evidence_id": "ctx-x1",
+          "evidence_type": "CONTRASTIVE_CONTEXT",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "uri": "artifact://context/ctx-x1"
+        }
+      ],
+      "negative_or_boundary_refs": [
+        {
+          "evidence_id": "ctx-n1",
+          "evidence_type": "CONTEXT",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "uri": "artifact://context/ctx-n1"
+        }
+      ],
+      "positive_support_refs": [
+        {
+          "evidence_id": "ctx-1",
+          "evidence_type": "CONTEXT",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "uri": "artifact://context/ctx-1"
+        }
+      ]
+    }
+  },
+  "effective_sense_contract": {
+    "definition_source": "HUMAN_CORRECTED",
+    "domain_profile": {
+      "anchors_en": [
+        "model",
+        "prediction"
+      ],
+      "anchors_vi": [
+        "mô hình",
+        "dự đoán"
+      ],
+      "domain_id": "machine_learning"
+    },
+    "effective_definition_en": "The process of applying a trained model to new inputs.",
+    "effective_part_of_speech": "noun",
+    "integrity": {
+      "self_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b"
+    },
+    "parent_dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "provenance": {
+      "completed_at": "2026-07-28T10:01:00+00:00",
+      "component_id": "sense-review",
+      "component_version": "1.1.0",
+      "execution_config_sha256": "c3aaf15fa3a27984c4000faecb0f22eee903d721e14da93a315fafb7d91157e0",
+      "model_routes": [
+        {
+          "independence_group": "group-demo",
+          "model_family": "family-demo",
+          "model_id": "model-demo",
+          "provider_id": "provider-demo"
+        }
+      ],
+      "notes": null,
+      "policy_version": "demo-policy-v1",
+      "prompt_hashes": {
+        "main": "9999999999999999999999999999999999999999999999999999999999999999"
+      },
+      "raw_ledger_ref": {
+        "evidence_id": "ledger-001",
+        "evidence_type": "OTHER",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "uri": "artifact://runs/run-demo-001"
+      },
+      "run_id": "fixture-sense-review-run-001",
+      "run_spec_id": "fixture-sense-review-spec-001",
+      "source_artifact_hashes": {
+        "dataset": "1111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "started_at": "2026-07-28T10:00:00+00:00"
+    },
+    "review_artifact_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+    "review_status": "ADJUDICATED",
+    "schema_id": "EffectiveSenseContractV1",
+    "schema_version": "1.1.0",
+    "scope_id": "machine_learning",
+    "scope_note": "Machine-learning model execution on new inputs.",
+    "sense_id": "model_execution",
+    "sense_inventory_version": "sense-v1",
+    "source_term": "inference"
+  },
+  "frozen_candidate_contract": {
+    "alternatives_vi": [
+      "suy diễn",
+      "thực hiện mô hình"
+    ],
+    "binding_status": "COMPLETE",
+    "candidate_key": {
+      "candidate_id": "cand-inference-vi-01",
+      "candidate_version": "fixture-candidate-v1",
+      "candidate_vi": "suy luận",
+      "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
+      "scope_id": "machine_learning",
+      "sense_id": "model_execution",
+      "sense_inventory_version": "sense-v1",
+      "source_term": "inference"
+    },
+    "domain_profile": {
+      "anchors_en": [
+        "model",
+        "prediction"
+      ],
+      "anchors_vi": [
+        "mô hình",
+        "dự đoán"
+      ],
+      "domain_id": "machine_learning"
+    },
+    "effective_definition_en": "The process of applying a trained model to new inputs.",
+    "effective_part_of_speech": "noun",
+    "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
+    "input_provenance": {
+      "completed_at": "2026-07-28T10:01:00+00:00",
+      "component_id": "candidate-freezer",
+      "component_version": "1.1.0",
+      "execution_config_sha256": "9cb02ae787c6608a584528f37497e028ed10d2b5e117846e06a2f9855299dac5",
+      "model_routes": [
+        {
+          "independence_group": "group-demo",
+          "model_family": "family-demo",
+          "model_id": "model-demo",
+          "provider_id": "provider-demo"
+        }
+      ],
+      "notes": null,
+      "policy_version": "demo-policy-v1",
+      "prompt_hashes": {
+        "main": "9999999999999999999999999999999999999999999999999999999999999999"
+      },
+      "raw_ledger_ref": {
+        "evidence_id": "ledger-001",
+        "evidence_type": "OTHER",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "uri": "artifact://runs/run-demo-001"
+      },
+      "run_id": "fixture-candidate-freezer-run-001",
+      "run_spec_id": "fixture-candidate-freezer-spec-001",
+      "source_artifact_hashes": {
+        "dataset": "1111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "started_at": "2026-07-28T10:00:00+00:00"
+    },
+    "integrity": {
+      "self_sha256": "1cfadf782b4448173516f5cf204abc4db11f9e12c3932efea1c4b35361c92024"
+    },
+    "schema_id": "FrozenCandidateContractV1",
+    "schema_version": "1.1.0",
+    "scope_note": "Machine-learning model execution on new inputs.",
+    "surfaces": {
+      "canonical_vi": "suy luận",
+      "rejected_variants_vi": [
+        "suy diễn logic"
+      ],
+      "validated_variants_vi": [
+        "quá trình suy luận"
+      ]
+    }
+  },
+  "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
+  "integrity": {
+    "self_sha256": "9be13496f58893eef5f2cc4d599683ca101ba1c4930bac59b49100b35ac60730"
+  },
+  "optional_probes": [],
+  "schema_id": "GlobalValidatorInputV1",
+  "schema_version": "1.1.0"
+}

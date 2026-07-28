@@ -1,0 +1,10 @@
+$env:PYTHONPATH=(Resolve-Path python).Path
+python tools/build_schemas.py
+python tools/build_fixtures.py
+python tools/build_invalid_fixtures.py
+$env:TERMINOLOGY_DATASET_ROOT='<dataset-root-containing-v3-and-pilot>'
+python -m pytest -q tests --junitxml release/v1.1.0-rc4/junit.xml
+python tools/build_release.py --junit release/v1.1.0-rc4/junit.xml
+python -m terminology_contracts.cli validate-dir examples/valid/v1.1.0 --schema-dir schemas --global-input examples/valid/v1.1.0/global_validator_input.json
+python -m terminology_contracts.cli validate-dir examples/valid/v1.0.0 --schema-dir schemas --allow-legacy-migration
+python -m terminology_contracts.cli validate-dir examples/migrated/v1.1.0 --schema-dir schemas --allow-legacy-migration
