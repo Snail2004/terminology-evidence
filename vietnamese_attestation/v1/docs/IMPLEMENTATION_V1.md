@@ -14,16 +14,20 @@ does not invent a weighted scalar or call E a probability of correctness.
 
 ## Standalone shared-contract boundary
 
-The public input is `FrozenCandidateContractV1` 1.0.0 from
-`terminology_contracts_v1`. It is schema-validated and self-hash-validated
-before retrieval. The adapter preserves the exact `candidate_key` and binds
-the internal execution to the shared input hash. The shared contract has no
-separate `term_id`; its `candidate_id` is used only as a deterministic internal
-alias and is never written back into the shared join key.
+The public input is `FrozenCandidateContractV1` 1.1.0 from the local
+`contracts-v1.1.0` authority. It is schema-, self-hash-, and top-level
+`input_contract_sha256`-validated before retrieval. The adapter preserves the
+exact `candidate_key` and binds the internal execution to the complete shared
+input. The shared contract has no separate `term_id`; its `candidate_id` is
+used only as a deterministic internal alias and is never written back into the
+shared join key.
 
-The public result is `AttestationEvidencePackageV1` 1.0.0. It contains the six
+The public result is `AttestationEvidencePackageV1` 1.1.0. It contains the six
 E features, coverage metrics, accepted/rejected evidence references, proposed
-variant observations, run provenance, and `final_glossary_decision: null`.
+variant observations, `run_spec_id`, `execution_config_sha256`, the complete
+five-row producer gate-signal set, and `final_glossary_decision: null`.
+Gate signals are derived only from sealed E status/count/coverage/evidence
+facts; E never selects a global gate action.
 The full `VietnameseAttestationPackageV1` 1.1.0 remains the audit store's
 `package.json`; the shared projection is stored as `shared-package.json` and
 binds the rich ledger through `provenance.raw_ledger_ref` and its SHA-256.

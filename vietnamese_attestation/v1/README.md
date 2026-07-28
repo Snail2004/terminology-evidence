@@ -7,6 +7,7 @@ The implementing session owns only `vietnamese_attestation/**`. Evidence E is
 independent from Context Substitution and never emits a final glossary
 decision.
 
-The public standalone boundary accepts `FrozenCandidateContractV1` and emits
-`AttestationEvidencePackageV1`. The richer internal V1.1 package remains a
+The public standalone boundary accepts `FrozenCandidateContractV1@1.1.0` and
+emits `AttestationEvidencePackageV1@1.1.0` under the locally published
+`contracts-v1.1.0` authority. The richer internal V1.1 package remains a
 content-bound replay ledger and is not a competing shared contract.

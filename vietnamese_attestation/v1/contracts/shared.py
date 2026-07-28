@@ -11,7 +11,15 @@ from .output import PACKAGE_SCHEMA_VERSION, validate_attestation_package
 
 SHARED_FROZEN_CANDIDATE_SCHEMA_ID = "FrozenCandidateContractV1"
 SHARED_ATTESTATION_PACKAGE_SCHEMA_ID = "AttestationEvidencePackageV1"
-SHARED_SCHEMA_VERSION = "1.0.0"
+SHARED_SCHEMA_VERSION = "1.1.0"
+
+_GATE_SIGNAL_IDS = (
+    "concept_mismatch",
+    "contradiction",
+    "judge_disagreement",
+    "insufficient_evidence",
+    "attestation_unjudgeable",
+)
 
 _DEFAULT_RUN_POLICY = {
     "attestation_policy_version": "attestation-v1.1",
@@ -30,6 +38,7 @@ def validate_shared_frozen_candidate(
     return _validate_shared_contract(
         payload,
         expected_schema_id=SHARED_FROZEN_CANDIDATE_SCHEMA_ID,
+        expected_schema_version=SHARED_SCHEMA_VERSION,
         schema_dir=schema_dir,
     )
 
@@ -42,6 +51,7 @@ def validate_shared_attestation_package(
     return _validate_shared_contract(
         payload,
         expected_schema_id=SHARED_ATTESTATION_PACKAGE_SCHEMA_ID,
+        expected_schema_version=SHARED_SCHEMA_VERSION,
         schema_dir=schema_dir,
     )
 
@@ -126,11 +136,23 @@ def project_shared_attestation_package(
     }
     package_sha256 = rich["integrity"]["package_sha256"]
     provenance = rich["provenance"]
+    ledger_ref = {
+        "evidence_id": f"attestation-ledger-{package_sha256[:24]}",
+        "evidence_type": "OTHER",
+        "uri": (
+            "artifact://vietnamese-attestation/internal/"
+            f"{package_sha256}"
+        ),
+        "sha256": package_sha256,
+    }
+    gate_signals = _gate_signals(
+        rich, refs_by_id=refs_by_id, ledger_ref=ledger_ref
+    )
     package = {
         "schema_id": SHARED_ATTESTATION_PACKAGE_SCHEMA_ID,
         "schema_version": SHARED_SCHEMA_VERSION,
         "candidate_key": copy.deepcopy(shared_input["candidate_key"]),
-        "input_contract_sha256": shared_input["integrity"]["self_sha256"],
+        "input_contract_sha256": shared_input["input_contract_sha256"],
         "features": copy.deepcopy(attestation["features"]),
         "stage_metrics": {
             **copy.deepcopy(attestation["coverage_breakdown"]),
@@ -140,15 +162,7 @@ def project_shared_attestation_package(
                 "independent_organization_count"
             ],
         },
-        "flags": [
-            {
-                "code": code,
-                "severity": "WARNING",
-                "message": None,
-                "evidence_refs": [],
-            }
-            for code in attestation["flags"]
-        ],
+        "flags": _shared_flags(attestation["flags"], gate_signals),
         "local_status": attestation["status"],
         "accepted_evidence_refs": [
             refs_by_id[row["evidence_id"]]
@@ -187,21 +201,25 @@ def project_shared_attestation_package(
                 "frozen_candidate": shared_input["integrity"][
                     "self_sha256"
                 ],
+                "input_contract": shared_input["input_contract_sha256"],
                 "rich_attestation_ledger": package_sha256,
             },
-            "raw_ledger_ref": {
-                "evidence_id": f"attestation-ledger-{package_sha256[:24]}",
-                "evidence_type": "OTHER",
-                "uri": (
-                    "artifact://vietnamese-attestation/internal/"
-                    f"{package_sha256}"
-                ),
-                "sha256": package_sha256,
-            },
+            "raw_ledger_ref": ledger_ref,
             "notes": (
                 "Shared projection of VietnameseAttestationPackageV1; "
                 "the raw ledger reference binds the full replay package."
             ),
+            "run_spec_id": provenance["run_spec_id"],
+            "execution_config_sha256": provenance[
+                "execution_config_sha256"
+            ],
+        },
+        "gate_signals": gate_signals,
+        "diagnostics": {
+            "strong_positive_cluster_count": counts[
+                "same_concept_cluster_count"
+            ],
+            "conflict_ratio": _conflict_ratio(counts),
         },
         "final_glossary_decision": None,
         "integrity": {"self_sha256": "0" * 64},
@@ -225,6 +243,9 @@ def _require_internal_binding(
             "scope_id",
         )
     }
+    expected_identity["sense_inventory_version"] = expected[
+        "sense_contract"
+    ]["sense_inventory_version"]
     actual_identity = {key: package[key] for key in expected_identity}
     expected_sha256 = expected["integrity"]["frozen_candidate_sha256"]
     if (
@@ -261,10 +282,173 @@ def _model_routes(attempts: list[Mapping[str, Any]]) -> list[dict[str, Any]]:
     return [routes[key] for key in sorted(routes)]
 
 
+def _gate_signals(
+    package: Mapping[str, Any],
+    *,
+    refs_by_id: Mapping[str, Mapping[str, Any]],
+    ledger_ref: Mapping[str, Any],
+) -> list[dict[str, Any]]:
+    attestation = package["attestation_evidence"]
+    status = attestation["status"]
+    counts = attestation["counts"]
+    coverage = attestation["coverage_breakdown"]
+    operational_flags = set(attestation["flags"])
+    accepted_refs = [
+        refs_by_id[row["evidence_id"]]
+        for row in package["accepted_evidence"]
+    ]
+    different_refs = [
+        refs_by_id[row["evidence_id"]]
+        for row in package["rejected_evidence"]
+        if row["judge"]["judgeability"] == "JUDGEABLE"
+        and row["judge"]["candidate_role"] == "TECHNICAL_TERM"
+        and row["judge"]["concept_relation"] == "DIFFERENT"
+        and row["judge"]["domain_match"] is True
+    ]
+    all_refs = _unique_refs([*accepted_refs, *refs_by_id.values()])
+    operational_coverage_keys = (
+        "search_coverage",
+        "fetch_coverage",
+        "extraction_coverage",
+        "language_coverage",
+        "judge_coverage",
+    )
+    incomplete_coverage = [
+        key for key in operational_coverage_keys if coverage[key] < 1
+    ]
+    insufficient = status == "WEAKLY_ATTESTED" or (
+        status != "ATTESTED" and bool(incomplete_coverage)
+    )
+    insufficient_reasons = []
+    if status == "WEAKLY_ATTESTED":
+        insufficient_reasons.append("ATTESTATION_THRESHOLD_NOT_MET")
+    insufficient_reasons.extend(
+        f"{key.upper()}_INCOMPLETE" for key in incomplete_coverage
+    )
+    if insufficient and not insufficient_reasons:
+        insufficient_reasons.append("INSUFFICIENT_EVIDENCE")
+
+    unjudgeable = status == "ATTESTATION_UNJUDGEABLE"
+    unjudgeable_reasons = sorted(
+        operational_flags
+        & {
+            "JUDGE_ROUTE_EXHAUSTED",
+            "PARTIAL_RETRIEVAL_COVERAGE",
+            "SEARCH_PROVIDER_FAILED",
+        }
+    )
+    if unjudgeable and not unjudgeable_reasons:
+        unjudgeable_reasons = ["ATTESTATION_UNJUDGEABLE"]
+
+    signal_rows = {
+        "concept_mismatch": _signal(
+            "concept_mismatch",
+            asserted=bool(different_refs),
+            reason_codes=["DOMAIN_MATCHED_DIFFERENT_CONCEPT"],
+            evidence_refs=different_refs,
+        ),
+        "contradiction": _signal(
+            "contradiction",
+            asserted=status == "CONFLICTING_ATTESTATION",
+            reason_codes=["SAME_AND_DIFFERENT_ATTESTATION"],
+            evidence_refs=_unique_refs([*accepted_refs, *different_refs]),
+        ),
+        # The current E engine accepts the first schema-valid semantic result;
+        # transport fallback is not semantic Judge disagreement.
+        "judge_disagreement": _signal(
+            "judge_disagreement",
+            asserted=False,
+            reason_codes=[],
+            evidence_refs=[],
+        ),
+        "insufficient_evidence": _signal(
+            "insufficient_evidence",
+            asserted=insufficient,
+            reason_codes=insufficient_reasons,
+            evidence_refs=all_refs or [dict(ledger_ref)],
+        ),
+        "attestation_unjudgeable": _signal(
+            "attestation_unjudgeable",
+            asserted=unjudgeable,
+            reason_codes=unjudgeable_reasons,
+            evidence_refs=all_refs or [dict(ledger_ref)],
+        ),
+    }
+    return [signal_rows[gate_id] for gate_id in _GATE_SIGNAL_IDS]
+
+
+def _signal(
+    gate_id: str,
+    *,
+    asserted: bool,
+    reason_codes: list[str],
+    evidence_refs: list[Mapping[str, Any]],
+) -> dict[str, Any]:
+    return {
+        "gate_id": gate_id,
+        "asserted": asserted,
+        "reason_codes": sorted(set(reason_codes)) if asserted else [],
+        "evidence_refs": _unique_refs(evidence_refs) if asserted else [],
+    }
+
+
+def _shared_flags(
+    operational_flags: list[str],
+    gate_signals: list[Mapping[str, Any]],
+) -> list[dict[str, Any]]:
+    flags = {
+        code: {
+            "code": code,
+            "severity": "WARNING",
+            "message": None,
+            "evidence_refs": [],
+        }
+        for code in operational_flags
+    }
+    for signal in gate_signals:
+        if signal["asserted"] is not True:
+            continue
+        gate_id = str(signal["gate_id"])
+        flags[gate_id] = {
+            "code": gate_id,
+            "severity": (
+                "WARNING"
+                if gate_id in {"insufficient_evidence", "judge_disagreement"}
+                else "ERROR"
+            ),
+            "message": ", ".join(signal["reason_codes"]),
+            "evidence_refs": copy.deepcopy(signal["evidence_refs"]),
+        }
+    return [flags[key] for key in sorted(flags)]
+
+
+def _unique_refs(
+    rows: list[Mapping[str, Any]] | tuple[Mapping[str, Any], ...],
+) -> list[dict[str, Any]]:
+    refs: dict[tuple[str, str, str, str], dict[str, Any]] = {}
+    for row in rows:
+        key = (
+            str(row["evidence_id"]),
+            str(row["evidence_type"]),
+            str(row["uri"]),
+            str(row["sha256"]),
+        )
+        refs[key] = dict(row)
+    return [refs[key] for key in sorted(refs)]
+
+
+def _conflict_ratio(counts: Mapping[str, int]) -> float:
+    same = counts["same_concept_cluster_count"]
+    different = counts["different_cluster_count"]
+    denominator = same + different
+    return round(different / denominator, 6) if denominator else 0.0
+
+
 def _validate_shared_contract(
     payload: Mapping[str, Any],
     *,
     expected_schema_id: str,
+    expected_schema_version: str,
     schema_dir: Path | None,
 ) -> dict[str, Any]:
     if not isinstance(payload, Mapping):
@@ -277,6 +461,12 @@ def _validate_shared_contract(
             "shared_schema_id",
             "$.schema_id",
             f"expected {expected_schema_id}",
+        )
+    if row.get("schema_version") != expected_schema_version:
+        raise ContractValidationError(
+            "shared_schema_version",
+            "$.schema_version",
+            f"expected {expected_schema_version}",
         )
     validate_instance, _ = _shared_api()
     errors = validate_instance(row, schema_dir or _default_schema_dir())
