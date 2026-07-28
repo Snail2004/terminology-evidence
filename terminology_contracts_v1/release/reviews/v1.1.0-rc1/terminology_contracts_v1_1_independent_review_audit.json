@@ -1,0 +1,82 @@
+{
+  "schema_id": "TerminologyContractsV1_1IndependentReviewAuditV1",
+  "artifact": "terminology_contracts_v1_1.zip",
+  "release_zip_sha256": "38e2ee307b247d535baedcde83427ebe3f30901d31bb921f03e6681b3160dbdc",
+  "external_checksum_match": true,
+  "internal_checksums": "PASS",
+  "manifest": "PASS",
+  "legacy_schema_byte_preservation": "PASS",
+  "legacy_valid_fixture_byte_preservation": "PASS",
+  "current_alias_byte_identity": "PASS",
+  "independent_tests": {
+    "without_dataset_env": {
+      "passed": 51,
+      "skipped": 2,
+      "failed": 0
+    },
+    "with_real_v3_and_pilot": {
+      "passed": 53,
+      "skipped": 0,
+      "failed": 0
+    }
+  },
+  "dataset_mapping_smoke": "PASS",
+  "compileall": "PASS",
+  "credential_scan": "PASS",
+  "zip_path_traversal": "PASS",
+  "zip_symlink_scan": "PASS",
+  "packaged_pyc_cache_scan": "PASS",
+  "verdict": {
+    "release_engineering": "PASS",
+    "common_authority_freeze": "BLOCKED",
+    "publish_to_agents": "NOT_YET"
+  },
+  "blocking_findings": [
+    {
+      "id": "P0-1",
+      "title": "input_contract_sha256 is not derived from or verified against FrozenCandidateContract content",
+      "reproduced": true
+    },
+    {
+      "id": "P0-2",
+      "title": "Frozen decision features and approval score are not verified against the calibration model",
+      "reproduced": true,
+      "accepted_mutations": [
+        "empty decision_features",
+        "unknown decision feature",
+        "missing calibrated features"
+      ]
+    },
+    {
+      "id": "P0-3",
+      "title": "GlobalValidatorInput lacks explicit inputs for sense/polysemy/cross-candidate collision gates",
+      "reproduced": true
+    }
+  ],
+  "high_priority_findings": [
+    {
+      "id": "P1-1",
+      "title": "Replay hash omits feature/input/gate bindings"
+    },
+    {
+      "id": "P1-2",
+      "title": "Certificate validation does not verify referenced artifact bundle"
+    },
+    {
+      "id": "P1-3",
+      "title": "TAC span/source term is not bound to certificate"
+    },
+    {
+      "id": "P1-4",
+      "title": "NaN can pass numeric contract validation"
+    },
+    {
+      "id": "P1-5",
+      "title": "RULE_SET/ISOTONIC calibration formats are under-specified"
+    },
+    {
+      "id": "P1-6",
+      "title": "Producer-to-global feature mapping is not machine-readable"
+    }
+  ]
+}
