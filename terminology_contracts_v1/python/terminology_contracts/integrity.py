@@ -13,6 +13,13 @@ class IntegrityError(ValueError):
     pass
 
 
+def strict_json_loads(text: str) -> Any:
+    def reject_constant(value: str) -> None:
+        raise ValueError(f"non-finite JSON number is forbidden: {value}")
+
+    return json.loads(text, parse_constant=reject_constant)
+
+
 def sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
@@ -29,7 +36,9 @@ def canonical_sha256(value: Any) -> str:
 
 
 def seal_self_hash(value: Mapping[str, Any]) -> dict[str, Any]:
-    result = json.loads(json.dumps(value, ensure_ascii=False))
+    result = strict_json_loads(
+        json.dumps(value, ensure_ascii=False, allow_nan=False)
+    )
     integrity = result.setdefault("integrity", {})
     if not isinstance(integrity, dict):
         raise IntegrityError("integrity must be an object")
@@ -66,8 +75,8 @@ def load_verified_json_artifact(
     expected_self_sha256: str | None = None,
 ) -> VerifiedArtifact:
     try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        payload = strict_json_loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError, ValueError) as exc:
         raise IntegrityError(f"cannot load JSON artifact {path}: {exc}") from exc
     if not isinstance(payload, dict):
         raise IntegrityError(f"artifact {path} must contain a JSON object")

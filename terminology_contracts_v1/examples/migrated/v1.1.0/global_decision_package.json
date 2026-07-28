@@ -37,6 +37,7 @@
     "CALIBRATED_SCORE_ABOVE_THRESHOLD"
   ],
   "gate_results": {
+    "binding_status": "LEGACY_INCOMPLETE",
     "candidate_key": {
       "candidate_id": "cand-inference-vi-01",
       "candidate_version": "1",
@@ -51,7 +52,7 @@
     "gate_policy_version": "gates-v1",
     "input_contract_sha256": "ad9888fdb98fba49d6a7b50f30d8749694e28c89a5dd3f7fdea0ae490ccdf704",
     "integrity": {
-      "self_sha256": "e25d13a472b0f0f2d300791c86ce66d5815cd28a9a3ef8c4b0471ed1725caf98"
+      "self_sha256": "98b44a3a5a96884c981428ef38e0ecff190104c7631b9f629284fb98cc6ff440"
     },
     "observations": [
       {
@@ -81,22 +82,27 @@
   },
   "input_contract_sha256": "ad9888fdb98fba49d6a7b50f30d8749694e28c89a5dd3f7fdea0ae490ccdf704",
   "integrity": {
-    "self_sha256": "96fa62ea43432911accc032633d9bd625629302c125790c6cfdddb0163818d03"
+    "self_sha256": "f39dc829d177e077e05bb682cc08ee847ba8ebf1b70bb553dd3028a46f44ca22"
   },
   "run_metadata": {
     "binding_status": "LEGACY_INCOMPLETE",
     "completed_at": null,
     "engine_version": "terminology-contracts-migration-1.0.0",
+    "execution_config_sha256": "0dc4b95429557c363541cffa183df043793e97e75205c7f0e26043237df798af",
     "feature_contract_version": "1.1.0",
     "gate_policy_version": "gates-v1",
     "global_run_id": "migrated-facc19566a870474",
-    "global_run_spec_id": "migrated-spec-feedd2a2d201c64f",
+    "global_run_spec_id": "migrated-spec-facc19566a870474",
     "input_package_hashes": {
       "attestation_evidence_sha256": "90781725036accdff0bef48dc391f44d8648c1d6ab7c1049d6e11850944228ec",
+      "constraint_evidence_sha256": null,
       "context_evidence_sha256": "b25632808311efdef1fce79843acdcf6f314c4e8aa9ff921395a674d44a12389",
+      "effective_sense_contract_sha256": null,
+      "frozen_candidate_contract_sha256": null,
+      "gate_result_sha256": "98b44a3a5a96884c981428ef38e0ecff190104c7631b9f629284fb98cc6ff440",
       "global_validator_input_sha256": null
     },
-    "replay_spec_sha256": "feedd2a2d201c64fdfb4a449bf29ba9d8616e5e7760d33d55103698d686d68bc",
+    "replay_spec_sha256": "7f1c6077678b1c9e6032f789568d1b2a5bbf5e0b67b0e946126187dd936ef958",
     "started_at": null
   },
   "schema_id": "GlobalDecisionPackageV1",

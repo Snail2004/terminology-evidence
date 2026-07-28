@@ -11,7 +11,8 @@
     "input_contract_sha256",
     "gate_policy_version",
     "observations",
-    "integrity"
+    "integrity",
+    "binding_status"
   ],
   "properties": {
     "schema_id": {
@@ -100,10 +101,18 @@
           }
         }
       },
-      "uniqueItems": true
+      "uniqueItems": true,
+      "minItems": 1,
+      "maxItems": 12
     },
     "integrity": {
       "$ref": "common_defs.schema.json#/$defs/integrity"
+    },
+    "binding_status": {
+      "enum": [
+        "COMPLETE",
+        "LEGACY_INCOMPLETE"
+      ]
     }
   }
 }

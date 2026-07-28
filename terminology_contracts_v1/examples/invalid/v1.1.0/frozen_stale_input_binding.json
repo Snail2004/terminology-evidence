@@ -1,0 +1,78 @@
+{
+  "alternatives_vi": [
+    "suy diễn",
+    "thực hiện mô hình"
+  ],
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "cand-inference-vi-01",
+    "candidate_version": "fixture-candidate-v1",
+    "candidate_vi": "suy luận",
+    "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
+    "scope_id": "machine_learning",
+    "sense_id": "model_execution",
+    "sense_inventory_version": "sense-v1",
+    "source_term": "inference"
+  },
+  "domain_profile": {
+    "anchors_en": [
+      "model",
+      "prediction"
+    ],
+    "anchors_vi": [
+      "mô hình",
+      "dự đoán"
+    ],
+    "domain_id": "machine_learning"
+  },
+  "effective_definition_en": "Tampered definition with stale binding.",
+  "effective_part_of_speech": "noun",
+  "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
+  "input_provenance": {
+    "completed_at": "2026-07-28T10:01:00+00:00",
+    "component_id": "candidate-freezer",
+    "component_version": "1.1.0",
+    "execution_config_sha256": "9cb02ae787c6608a584528f37497e028ed10d2b5e117846e06a2f9855299dac5",
+    "model_routes": [
+      {
+        "independence_group": "group-demo",
+        "model_family": "family-demo",
+        "model_id": "model-demo",
+        "provider_id": "provider-demo"
+      }
+    ],
+    "notes": null,
+    "policy_version": "demo-policy-v1",
+    "prompt_hashes": {
+      "main": "9999999999999999999999999999999999999999999999999999999999999999"
+    },
+    "raw_ledger_ref": {
+      "evidence_id": "ledger-001",
+      "evidence_type": "OTHER",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "uri": "artifact://runs/run-demo-001"
+    },
+    "run_id": "fixture-candidate-freezer-run-001",
+    "run_spec_id": "fixture-candidate-freezer-spec-001",
+    "source_artifact_hashes": {
+      "dataset": "1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "started_at": "2026-07-28T10:00:00+00:00"
+  },
+  "integrity": {
+    "self_sha256": "a13620f8d632781c30b6f9ac774bbe13a8a5f977bc66f224611a3309d52410b6"
+  },
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.1.0",
+  "scope_note": "Machine-learning model execution on new inputs.",
+  "surfaces": {
+    "canonical_vi": "suy luận",
+    "rejected_variants_vi": [
+      "suy diễn logic"
+    ],
+    "validated_variants_vi": [
+      "quá trình suy luận"
+    ]
+  }
+}

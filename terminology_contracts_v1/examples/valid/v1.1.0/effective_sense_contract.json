@@ -14,14 +14,14 @@
   "effective_definition_en": "The process of applying a trained model to new inputs.",
   "effective_part_of_speech": "noun",
   "integrity": {
-    "self_sha256": "5146145fbc3d637322ded2f7e3ae63235b58509af24890313baf1f84e2d24790"
+    "self_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b"
   },
   "parent_dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
   "provenance": {
     "completed_at": "2026-07-28T10:01:00+00:00",
     "component_id": "sense-review",
-    "component_version": "1.0.0",
-    "execution_config_sha256": "04431d252d87415c832ac280d9ce76eaf0f37933bf1af752574333ed2abbed8a",
+    "component_version": "1.1.0",
+    "execution_config_sha256": "c3aaf15fa3a27984c4000faecb0f22eee903d721e14da93a315fafb7d91157e0",
     "model_routes": [
       {
         "independence_group": "group-demo",
@@ -41,8 +41,8 @@
       "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "uri": "artifact://runs/run-demo-001"
     },
-    "run_id": "run-demo-001",
-    "run_spec_id": "run-demo-001-spec-migrated-v1-1",
+    "run_id": "fixture-sense-review-run-001",
+    "run_spec_id": "fixture-sense-review-spec-001",
     "source_artifact_hashes": {
       "dataset": "1111111111111111111111111111111111111111111111111111111111111111"
     },

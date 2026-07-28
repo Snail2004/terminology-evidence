@@ -24,8 +24,11 @@ def map_candidate_key(
     V3 or pilot storage layout.
     """
     candidate_id = _first(candidate, "candidate_id", "candidate_instance_id")
+    # A schema revision describes the record format, not this candidate's
+    # content. Prefer an explicit revision and otherwise use the immutable
+    # candidate instance binding supplied by the dataset.
     candidate_version = _first(
-        candidate, "candidate_version", "schema_version"
+        candidate, "candidate_version", "candidate_instance_sha256"
     )
     candidate_vi = _first(candidate, "candidate_vi", "candidate_target_vi")
     source_term = _first(sense, "source_term")

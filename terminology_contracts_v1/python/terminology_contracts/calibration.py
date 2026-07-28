@@ -32,6 +32,7 @@ class VerifiedCalibration:
     feature_contract_version: str
     development_dataset_sha256: str
     validation_dataset_sha256: str
+    numerical_tolerance: float
 
 
 def verify_calibration_artifact(
@@ -108,6 +109,14 @@ def verify_calibration_artifact(
         )
     _verify_model_parameters(model)
 
+    numerical_tolerance = _finite_number(
+        payload.get("numerical_tolerance"), field="numerical_tolerance"
+    )
+    if not 0.0 <= numerical_tolerance <= 1e-9:
+        raise CalibrationVerificationError(
+            "numerical_tolerance must be in [0, 1e-9]"
+        )
+
     gate_policy = payload.get("gate_policy_version")
     if expected_gate_policy_version is not None and gate_policy != expected_gate_policy_version:
         raise CalibrationVerificationError(
@@ -155,6 +164,32 @@ def verify_calibration_artifact(
         "precision_lower_bound",
     ):
         _finite_number(operating_point.get(field), field=f"operating_point.{field}")
+    if operating_point.get("operating_point_id") != results.get(
+        "selected_operating_point_id"
+    ):
+        raise CalibrationVerificationError(
+            "selected operating point does not match operating_point_id"
+        )
+    for field in ("development_sample_count", "validation_sample_count"):
+        value = results.get(field)
+        if isinstance(value, bool) or not isinstance(value, int) or value < 1:
+            raise CalibrationVerificationError(
+                f"calibration_results.{field} must be a positive integer"
+            )
+    if results.get("uncertainty_method") not in {
+        "WILSON_SCORE",
+        "CLOPPER_PEARSON",
+        "BOOTSTRAP_PERCENTILE",
+    }:
+        raise CalibrationVerificationError(
+            "calibration_results.uncertainty_method is unsupported"
+        )
+    if operating_point["precision_lower_bound"] < target[
+        "auto_approval_precision_target"
+    ]:
+        raise CalibrationVerificationError(
+            "precision lower bound does not meet auto-approval target"
+        )
 
     return VerifiedCalibration(
         artifact=artifact,
@@ -164,6 +199,7 @@ def verify_calibration_artifact(
         feature_contract_version=str(feature_version),
         development_dataset_sha256=str(payload["development_dataset_sha256"]),
         validation_dataset_sha256=str(payload["validation_dataset_sha256"]),
+        numerical_tolerance=numerical_tolerance,
     )
 
 
@@ -174,6 +210,10 @@ def _verify_model_parameters(model: Mapping[str, Any]) -> None:
     if not isinstance(parameters, Mapping):
         raise CalibrationVerificationError("model.parameters must be an object")
     if model_type == "LOGISTIC_REGRESSION":
+        if parameters.get("link_function") != "LOGIT":
+            raise CalibrationVerificationError(
+                "LOGISTIC_REGRESSION requires link_function=LOGIT"
+            )
         _finite_number(parameters.get("intercept"), field="model.parameters.intercept")
         coefficients = parameters.get("coefficients")
         if not isinstance(coefficients, Mapping):
@@ -186,28 +226,10 @@ def _verify_model_parameters(model: Mapping[str, Any]) -> None:
             )
         for name, value in coefficients.items():
             _finite_number(value, field=f"model.parameters.coefficients.{name}")
-    elif model_type == "RULE_SET":
-        rules = parameters.get("rules")
-        if not isinstance(rules, list) or not rules:
-            raise CalibrationVerificationError("RULE_SET requires non-empty rules")
-    elif model_type == "ISOTONIC":
-        x = parameters.get("x")
-        y = parameters.get("y")
-        if not isinstance(x, list) or not isinstance(y, list) or len(x) != len(y):
-            raise CalibrationVerificationError(
-                "ISOTONIC requires equal-length x and y arrays"
-            )
-        if len(x) < 2:
-            raise CalibrationVerificationError("ISOTONIC requires at least two points")
-        x_values = [_finite_number(v, field="model.parameters.x") for v in x]
-        y_values = [_finite_number(v, field="model.parameters.y") for v in y]
-        if x_values != sorted(set(x_values)) or y_values != sorted(y_values):
-            raise CalibrationVerificationError(
-                "ISOTONIC x and y values must be monotonic"
-            )
     else:
         raise CalibrationVerificationError(
-            f"unsupported frozen calibration model_type: {model_type!r}"
+            "V1.1 frozen calibration supports only LOGISTIC_REGRESSION; "
+            f"got {model_type!r}"
         )
 
 

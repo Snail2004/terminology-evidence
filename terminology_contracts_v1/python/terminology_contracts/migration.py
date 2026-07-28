@@ -6,8 +6,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping
 
+from .bindings import calculate_replay_spec_sha256
 from .canonical import canonical_bytes
-from .integrity import canonical_sha256, seal_self_hash
+from .integrity import canonical_sha256, seal_self_hash, strict_json_loads
 from .registries import LEGACY_VERSION, PACKAGE_VERSION
 
 
@@ -86,8 +87,8 @@ def migrate_file(
     report_path: Path,
 ) -> MigrationResult:
     try:
-        payload = json.loads(source_path.read_text(encoding="utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        payload = strict_json_loads(source_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError, ValueError) as exc:
         raise MigrationError(f"cannot load migration source {source_path}: {exc}") from exc
     if not isinstance(payload, dict):
         raise MigrationError("migration source must contain a JSON object")
@@ -121,11 +122,25 @@ def _migrate_payload(
             fields_added,
             path,
         )
+        _add(
+            result,
+            "binding_status",
+            "LEGACY_INCOMPLETE",
+            fields_added,
+            path,
+        )
     elif sid == "ContextEvidencePackageV1":
         _add(result, "diagnostics", None, fields_added, path)
     elif sid == "AttestationEvidencePackageV1":
         _add(result, "diagnostics", None, fields_added, path)
     elif sid == "GateResultSetV1":
+        _add(
+            result,
+            "binding_status",
+            "LEGACY_INCOMPLETE",
+            fields_added,
+            path,
+        )
         for index, observation in enumerate(result.get("observations", [])):
             if not isinstance(observation, dict):
                 continue
@@ -163,6 +178,9 @@ def _migrate_payload(
         result["optional_probes"] = migrated_probes
         context_sha = _nested_self_hash(result.get("context_evidence"))
         attestation_sha = _nested_self_hash(result.get("attestation_evidence"))
+        _add(result, "effective_sense_contract", None, fields_added, path)
+        _add(result, "frozen_candidate_contract", None, fields_added, path)
+        _add(result, "constraint_evidence", None, fields_added, path)
         _add(
             result,
             "assembly_metadata",
@@ -170,9 +188,13 @@ def _migrate_payload(
                 "assembler_id": "terminology-contracts-migration",
                 "assembler_version": PACKAGE_VERSION,
                 "assembled_at": _nested_started_at(result.get("context_evidence")),
+                "binding_status": "LEGACY_INCOMPLETE",
                 "source_package_hashes": {
                     "context_evidence_sha256": context_sha,
                     "attestation_evidence_sha256": attestation_sha,
+                    "effective_sense_contract_sha256": None,
+                    "frozen_candidate_contract_sha256": None,
+                    "constraint_evidence_sha256": None,
                 },
             },
             fields_added,
@@ -190,6 +212,16 @@ def _migrate_payload(
             fields_added,
             path,
         )
+        _add(result, "numerical_tolerance", None, fields_added, path)
+        operating_point = result.get("operating_point")
+        if isinstance(operating_point, dict):
+            _add(
+                operating_point,
+                "operating_point_id",
+                None,
+                fields_added,
+                f"{path}.operating_point",
+            )
         warnings.append(
             "Legacy calibration migrated structurally but remains ineligible for frozen mode until independently verified."
         )
@@ -212,40 +244,54 @@ def _migrate_payload(
                 fields_added,
                 f"{path}.decision_policy",
             )
-        replay_spec = {
-            "candidate_key": result.get("candidate_key"),
-            "input_contract_sha256": result.get("input_contract_sha256"),
+        execution_config_sha256 = canonical_sha256(
+            {
+                "migration_tool_version": MIGRATION_TOOL_VERSION,
+                "source_schema_id": sid,
+                "source_self_sha256": payload.get("integrity", {}).get(
+                    "self_sha256"
+                ),
+            }
+        )
+        source_hash = payload.get("integrity", {}).get("self_sha256")
+        run_metadata = {
+            "binding_status": "LEGACY_INCOMPLETE",
+            "global_run_id": f"migrated-{str(source_hash)[:16]}",
+            "global_run_spec_id": f"migrated-spec-{str(source_hash)[:16]}",
+            "started_at": None,
+            "completed_at": None,
+            "engine_version": f"terminology-contracts-migration-{MIGRATION_TOOL_VERSION}",
+            "execution_config_sha256": execution_config_sha256,
+            "feature_contract_version": PACKAGE_VERSION,
             "gate_policy_version": result.get("gate_results", {}).get(
                 "gate_policy_version"
             ),
-            "decision_policy": result.get("decision_policy"),
+            "input_package_hashes": {
+                "global_validator_input_sha256": None,
+                "context_evidence_sha256": result.get(
+                    "context_evidence_sha256"
+                ),
+                "attestation_evidence_sha256": result.get(
+                    "attestation_evidence_sha256"
+                ),
+                "effective_sense_contract_sha256": None,
+                "frozen_candidate_contract_sha256": None,
+                "constraint_evidence_sha256": None,
+                "gate_result_sha256": _nested_self_hash(
+                    result.get("gate_results")
+                ),
+            },
+            "replay_spec_sha256": "0" * 64,
         }
-        source_hash = payload.get("integrity", {}).get("self_sha256")
+        replay_value = copy.deepcopy(result)
+        replay_value["run_metadata"] = run_metadata
+        run_metadata["replay_spec_sha256"] = calculate_replay_spec_sha256(
+            replay_value
+        )
         _add(
             result,
             "run_metadata",
-            {
-                "binding_status": "LEGACY_INCOMPLETE",
-                "global_run_id": f"migrated-{str(source_hash)[:16]}",
-                "global_run_spec_id": f"migrated-spec-{canonical_sha256(replay_spec)[:16]}",
-                "started_at": None,
-                "completed_at": None,
-                "engine_version": f"terminology-contracts-migration-{MIGRATION_TOOL_VERSION}",
-                "feature_contract_version": PACKAGE_VERSION,
-                "gate_policy_version": result.get("gate_results", {}).get(
-                    "gate_policy_version"
-                ),
-                "input_package_hashes": {
-                    "global_validator_input_sha256": None,
-                    "context_evidence_sha256": result.get(
-                        "context_evidence_sha256"
-                    ),
-                    "attestation_evidence_sha256": result.get(
-                        "attestation_evidence_sha256"
-                    ),
-                },
-                "replay_spec_sha256": canonical_sha256(replay_spec),
-            },
+            run_metadata,
             fields_added,
             path,
         )
@@ -289,10 +335,14 @@ def _migrate_payload(
         )
         _add(result, "gate_result_sha256", None, fields_added, path)
         _add(result, "calibration_artifact_sha256", None, fields_added, path)
+        _add(result, "global_validator_input_sha256", None, fields_added, path)
+        _add(result, "frozen_candidate_contract_sha256", None, fields_added, path)
+        _add(result, "constraint_evidence_sha256", None, fields_added, path)
         warnings.append(
             "Legacy certificate remains non-issuable until input, gate, and calibration bindings are supplied from verified artifacts."
         )
     elif sid == "TACOccurrenceInputV1":
+        _add(result, "offset_unit", "UNICODE_CODEPOINT", fields_added, path)
         certificate = result.get("certificate")
         if isinstance(certificate, dict):
             result["certificate"] = _migrate_payload(
@@ -376,7 +426,14 @@ def _nested_started_at(value: Any) -> str | None:
 
 def _pretty_json_bytes(value: Any) -> bytes:
     return (
-        json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+        json.dumps(
+            value,
+            ensure_ascii=False,
+            indent=2,
+            sort_keys=True,
+            allow_nan=False,
+        )
+        + "\n"
     ).encode("utf-8")
 
 

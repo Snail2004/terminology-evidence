@@ -19,6 +19,12 @@
       "legacy_path": "schemas/legacy/v1.0.0/calibration_artifact.schema.json"
     },
     {
+      "schema_id": "ConstraintEvidencePackageV1",
+      "schema_version": "1.1.0",
+      "path": "schemas/v1.1.0/constraint_evidence_package.schema.json",
+      "legacy_path": null
+    },
+    {
       "schema_id": "ContextEvidencePackageV1",
       "schema_version": "1.1.0",
       "path": "schemas/v1.1.0/context_evidence_package.schema.json",

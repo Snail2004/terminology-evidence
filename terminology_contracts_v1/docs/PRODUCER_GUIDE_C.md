@@ -3,7 +3,8 @@
 C consumes `FrozenCandidateContractV1` and emits
 `ContextEvidencePackageV1@1.1.0`.
 
-- Preserve the full candidate key and input contract hash unchanged.
+- Verify the Frozen Candidate content binding, then preserve the full candidate
+  key and input contract hash unchanged.
 - Emit core C fields with their existing producer names.
 - Keep optional diagnostics outside the default decision feature vector.
 - Emit `missing_contrastive_context` and

@@ -1,13 +1,16 @@
 {
   "calibration_results": {
-    "validation_candidates": 75
+    "development_sample_count": 225,
+    "selected_operating_point_id": "fixture-op-v1",
+    "uncertainty_method": "WILSON_SCORE",
+    "validation_sample_count": 75
   },
   "created_at": "2026-07-28T11:00:00+00:00",
   "development_dataset_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
   "feature_contract_version": "1.1.0",
   "gate_policy_version": "gates-v1",
   "integrity": {
-    "self_sha256": "751551db9b9b8eed1d6c53773a76a903554c54fee708eaf4e6d92c52b8d2bc13"
+    "self_sha256": "8985c61e552df06eac17e450a92962e7ff79fdb3d674d331e16881f4aae847e6"
   },
   "metric_target": {
     "auto_approval_precision_target": 0.95,
@@ -36,12 +39,15 @@
         "E_domain": 0.0,
         "E_independence": 0.0
       },
-      "intercept": -1.2
+      "intercept": -0.5,
+      "link_function": "LOGIT"
     }
   },
+  "numerical_tolerance": 1e-12,
   "operating_point": {
     "coverage": 0.42,
     "observed_precision": 0.97,
+    "operating_point_id": "fixture-op-v1",
     "precision_lower_bound": 0.95,
     "threshold": 0.84
   },

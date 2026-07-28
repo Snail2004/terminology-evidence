@@ -1,0 +1,44 @@
+{
+  "calibration_results": {
+    "development_sample_count": 225,
+    "selected_operating_point_id": "fixture-op-v1",
+    "uncertainty_method": "WILSON_SCORE",
+    "validation_sample_count": 75
+  },
+  "created_at": "2026-07-28T11:00:00+00:00",
+  "development_dataset_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "feature_contract_version": "1.1.0",
+  "gate_policy_version": "gates-v1",
+  "integrity": {
+    "self_sha256": "59beb27703d8d170e11dc40f343a5caf730e269bbf8be3451b832ddf6a0b5d2a"
+  },
+  "metric_target": {
+    "auto_approval_precision_target": 0.95,
+    "confidence_level": 0.95
+  },
+  "model": {
+    "feature_names": [
+      "C_mean"
+    ],
+    "model_type": "RULE_SET",
+    "parameters": {
+      "rules": [
+        {
+          "feature": "C_mean"
+        }
+      ]
+    }
+  },
+  "numerical_tolerance": 1e-12,
+  "operating_point": {
+    "coverage": 0.42,
+    "observed_precision": 0.97,
+    "operating_point_id": "fixture-op-v1",
+    "precision_lower_bound": 0.95,
+    "threshold": 0.84
+  },
+  "schema_id": "CalibrationArtifactV1",
+  "schema_version": "1.1.0",
+  "validation_dataset_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "verification_status": "SEALED"
+}

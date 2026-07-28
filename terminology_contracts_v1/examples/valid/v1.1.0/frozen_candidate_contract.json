@@ -3,12 +3,13 @@
     "suy diễn",
     "thực hiện mô hình"
   ],
+  "binding_status": "COMPLETE",
   "candidate_key": {
     "candidate_id": "cand-inference-vi-01",
-    "candidate_version": "1",
+    "candidate_version": "fixture-candidate-v1",
     "candidate_vi": "suy luận",
     "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
-    "effective_sense_contract_sha256": "82eedc4661ad441fd7e1925b61738b3ad97af9c2eacb9ce99f2209b45fe1dd0b",
+    "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
     "scope_id": "machine_learning",
     "sense_id": "model_execution",
     "sense_inventory_version": "sense-v1",
@@ -27,12 +28,12 @@
   },
   "effective_definition_en": "The process of applying a trained model to new inputs.",
   "effective_part_of_speech": "noun",
-  "input_contract_sha256": "ad9888fdb98fba49d6a7b50f30d8749694e28c89a5dd3f7fdea0ae490ccdf704",
+  "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
   "input_provenance": {
     "completed_at": "2026-07-28T10:01:00+00:00",
     "component_id": "candidate-freezer",
-    "component_version": "1.0.0",
-    "execution_config_sha256": "7950489a24c190e7c28da36f43cf5f31241180b28a11edfbebeedc70386e8e78",
+    "component_version": "1.1.0",
+    "execution_config_sha256": "9cb02ae787c6608a584528f37497e028ed10d2b5e117846e06a2f9855299dac5",
     "model_routes": [
       {
         "independence_group": "group-demo",
@@ -52,15 +53,15 @@
       "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "uri": "artifact://runs/run-demo-001"
     },
-    "run_id": "run-demo-001",
-    "run_spec_id": "run-demo-001-spec-migrated-v1-1",
+    "run_id": "fixture-candidate-freezer-run-001",
+    "run_spec_id": "fixture-candidate-freezer-spec-001",
     "source_artifact_hashes": {
       "dataset": "1111111111111111111111111111111111111111111111111111111111111111"
     },
     "started_at": "2026-07-28T10:00:00+00:00"
   },
   "integrity": {
-    "self_sha256": "e9863f193ce8e64c6fdb534d34b031bf1880a309fcaff216c5dc7ec0a3f21335"
+    "self_sha256": "1cfadf782b4448173516f5cf204abc4db11f9e12c3932efea1c4b35361c92024"
   },
   "schema_id": "FrozenCandidateContractV1",
   "schema_version": "1.1.0",

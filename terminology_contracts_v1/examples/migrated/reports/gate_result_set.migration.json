@@ -1,5 +1,6 @@
 {
   "fields_added": [
+    "$.binding_status",
     "$.observations[0].source_modules",
     "$.observations[1].source_modules"
   ],
@@ -9,6 +10,6 @@
   "source_schema_version": "1.0.0",
   "source_sha256": "297c1916f261f10fc31c92675bed5e81e58b38299e8ac77eee740bd2fbc84d3b",
   "target_schema_version": "1.1.0",
-  "target_sha256": "0458bb33b2d39791ed5a71a02d4f4d44d27e094fac7851c83d69b05df12a6ac0",
+  "target_sha256": "2fcc99790988c135f3c4065c1bf21d8ce90d813112f8ae414fa64ac20e85db42",
   "warnings": []
 }

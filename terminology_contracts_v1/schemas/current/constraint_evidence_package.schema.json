@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesis.local/terminology-contracts/v1.1/constraint_evidence_package.schema.json",
+  "title": "Global Constraint Evidence Package V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "candidate_key",
+    "input_contract_sha256",
+    "binding_status",
+    "sense_review",
+    "polysemy_resolution",
+    "target_collision",
+    "provenance",
+    "integrity"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "ConstraintEvidencePackageV1"
+    },
+    "schema_version": {
+      "const": "1.1.0"
+    },
+    "candidate_key": {
+      "$ref": "common_defs.schema.json#/$defs/candidateKey"
+    },
+    "input_contract_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "binding_status": {
+      "const": "COMPLETE"
+    },
+    "sense_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "effective_sense_contract_sha256",
+        "review_artifact_ref"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "VERIFIED",
+            "UNVERIFIED"
+          ]
+        },
+        "effective_sense_contract_sha256": {
+          "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+        },
+        "review_artifact_ref": {
+          "anyOf": [
+            {
+              "$ref": "common_defs.schema.json#/$defs/evidenceRef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "polysemy_resolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "related_sense_ids",
+        "authority_ref"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "RESOLVED_SINGLE",
+            "RESOLVED_SPLIT",
+            "UNRESOLVED"
+          ]
+        },
+        "related_sense_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "common_defs.schema.json#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "authority_ref": {
+          "anyOf": [
+            {
+              "$ref": "common_defs.schema.json#/$defs/evidenceRef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "target_collision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "collision_index_sha256",
+        "conflicting_candidate_keys",
+        "evidence_refs"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "CLEAR",
+            "COLLISION",
+            "UNJUDGEABLE"
+          ]
+        },
+        "collision_index_sha256": {
+          "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+        },
+        "conflicting_candidate_keys": {
+          "type": "array",
+          "items": {
+            "$ref": "common_defs.schema.json#/$defs/candidateKey"
+          },
+          "uniqueItems": true
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common_defs.schema.json#/$defs/evidenceRef"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "provenance": {
+      "$ref": "common_defs.schema.json#/$defs/provenance"
+    },
+    "integrity": {
+      "$ref": "common_defs.schema.json#/$defs/integrity"
+    }
+  }
+}

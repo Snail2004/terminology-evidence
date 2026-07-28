@@ -7,7 +7,7 @@
   "feature_contract_version": "1.1.0",
   "gate_policy_version": "gates-v1",
   "integrity": {
-    "self_sha256": "9ff8efe99763493ef11a2c59f76887d90a1b2f5e725a7ae6aebc787eb9fd5a55"
+    "self_sha256": "feda2720c7fb692e04221c8ef3c79110d605275b6d235adcf91064e59153807d"
   },
   "metric_target": {
     "auto_approval_precision_target": 0.95,
@@ -33,9 +33,11 @@
       "intercept": -1.2
     }
   },
+  "numerical_tolerance": null,
   "operating_point": {
     "coverage": 0.42,
     "observed_precision": 0.97,
+    "operating_point_id": null,
     "precision_lower_bound": 0.95,
     "threshold": 0.84
   },

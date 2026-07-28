@@ -3,9 +3,13 @@
     "assembled_at": "2026-07-28T10:00:00+00:00",
     "assembler_id": "terminology-contracts-migration",
     "assembler_version": "1.1.0",
+    "binding_status": "LEGACY_INCOMPLETE",
     "source_package_hashes": {
       "attestation_evidence_sha256": "98413e7291143a381b59009d68399eb909105026cd32b3711bbb19f5d12c8d45",
-      "context_evidence_sha256": "9eeb88d113f70a4247ff1e380b59545f4620d803e3d9dacdc6bab7f9adfbd0e8"
+      "constraint_evidence_sha256": null,
+      "context_evidence_sha256": "9eeb88d113f70a4247ff1e380b59545f4620d803e3d9dacdc6bab7f9adfbd0e8",
+      "effective_sense_contract_sha256": null,
+      "frozen_candidate_contract_sha256": null
     }
   },
   "attestation_evidence": {
@@ -115,6 +119,7 @@
     "sense_inventory_version": "sense-v1",
     "source_term": "inference"
   },
+  "constraint_evidence": null,
   "context_evidence": {
     "candidate_key": {
       "candidate_id": "cand-inference-vi-01",
@@ -204,9 +209,11 @@
       ]
     }
   },
+  "effective_sense_contract": null,
+  "frozen_candidate_contract": null,
   "input_contract_sha256": "ad9888fdb98fba49d6a7b50f30d8749694e28c89a5dd3f7fdea0ae490ccdf704",
   "integrity": {
-    "self_sha256": "17082bce9ee2f306f5280c1bdb3a5c5ad8c8f60d015203eadc09f39930331b6d"
+    "self_sha256": "12baa100be27f7bdc86e1f6417b9d19900b23a2d4812b0243929adff1ec1025b"
   },
   "optional_probes": [],
   "schema_id": "GlobalValidatorInputV1",

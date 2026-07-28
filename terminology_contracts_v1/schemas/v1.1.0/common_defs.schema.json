@@ -110,7 +110,9 @@
             "REVIEW_ARTIFACT",
             "CALIBRATION_ARTIFACT",
             "DECISION_PACKAGE",
-            "OTHER"
+            "OTHER",
+            "CONSTRAINT_EVIDENCE",
+            "COLLISION_INDEX"
           ]
         },
         "uri": {

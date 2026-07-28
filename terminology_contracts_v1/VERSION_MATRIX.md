@@ -4,6 +4,7 @@
 |---|---|---:|---:|---|
 | Effective sense | `EffectiveSenseContractV1` | 1.1.0 | 1.0.0 | Dataset/Human Review |
 | Frozen candidate | `FrozenCandidateContractV1` | 1.1.0 | 1.0.0 | Dataset Adapter |
+| Constraint evidence | `ConstraintEvidencePackageV1` | 1.1.0 | None | Constraint assembler |
 | Context evidence | `ContextEvidencePackageV1` | 1.1.0 | 1.0.0 | C |
 | Attestation evidence | `AttestationEvidencePackageV1` | 1.1.0 | 1.0.0 | E |
 | Optional probes | `OptionalProbePackageV1` | 1.1.0 | 1.0.0 | R/Q probe |
@@ -14,4 +15,5 @@
 | Certificate | `TerminologyCertificateV1` | 1.1.0 | 1.0.0 | Certificate store |
 | TAC handoff | `TACOccurrenceInputV1` | 1.1.0 | 1.0.0 | TAC |
 
-Package version: **1.1.0**. V1.0 requires explicit legacy validation or migration.
+Package version: **1.1.0**, release channel **v1.1.0-rc2**. V1.0 requires
+explicit legacy validation or migration.

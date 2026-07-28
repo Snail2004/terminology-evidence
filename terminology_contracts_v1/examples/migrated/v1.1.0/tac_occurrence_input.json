@@ -20,6 +20,7 @@
     },
     "certificate_id": "cert-inference-001",
     "certificate_version": "1",
+    "constraint_evidence_sha256": null,
     "context_evidence_sha256": "b25632808311efdef1fce79843acdcf6f314c4e8aa9ff921395a674d44a12389",
     "decision_package_sha256": "facc19566a870474729763866726e4a9d2dbf841df4e31019a88c7ebad07afdf",
     "effective_sense_contract_sha256": "82eedc4661ad441fd7e1925b61738b3ad97af9c2eacb9ce99f2209b45fe1dd0b",
@@ -39,11 +40,13 @@
     "forbidden_candidates": [
       "suy diễn logic"
     ],
+    "frozen_candidate_contract_sha256": null,
     "gate_result_sha256": null,
     "gate_summary": [],
+    "global_validator_input_sha256": null,
     "input_contract_sha256": null,
     "integrity": {
-      "self_sha256": "ef2a528df69fb25637de517fa2931c21bcbd63e443198ec3d4c0dcd90b26f719"
+      "self_sha256": "c9d05c7112d4ed684b58236f0ba7a455baa95791a2ad41a70935c172bcf4a42a"
     },
     "issued_at": "2026-07-28T11:30:00+00:00",
     "policy_version": "global-v1",
@@ -64,9 +67,10 @@
   },
   "glossary_version": "glossary-v1",
   "integrity": {
-    "self_sha256": "7e0241a2de968683ba93aa9091ca17d4a178ad856b3e6c760b55a96011d73fc6"
+    "self_sha256": "0adad0084381fd7cbdf64d818da59d4ed68a80fc94d697b7abe8f84181a15ce8"
   },
   "occurrence_id": "d2l-ch03-s002-term01",
+  "offset_unit": "UNICODE_CODEPOINT",
   "schema_id": "TACOccurrenceInputV1",
   "schema_version": "1.1.0",
   "source_term_span": {

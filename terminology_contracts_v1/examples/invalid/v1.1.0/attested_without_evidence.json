@@ -2,10 +2,10 @@
   "accepted_evidence_refs": [],
   "candidate_key": {
     "candidate_id": "cand-inference-vi-01",
-    "candidate_version": "1",
+    "candidate_version": "fixture-candidate-v1",
     "candidate_vi": "suy luận",
     "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
-    "effective_sense_contract_sha256": "82eedc4661ad441fd7e1925b61738b3ad97af9c2eacb9ce99f2209b45fe1dd0b",
+    "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
     "scope_id": "machine_learning",
     "sense_id": "model_execution",
     "sense_inventory_version": "sense-v1",
@@ -22,9 +22,9 @@
   },
   "final_glossary_decision": null,
   "flags": [],
-  "input_contract_sha256": "ad9888fdb98fba49d6a7b50f30d8749694e28c89a5dd3f7fdea0ae490ccdf704",
+  "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
   "integrity": {
-    "self_sha256": "97278a8d3c3958d32f6c2cca6dbe798e956c4619c641c1bc98c3f4470aebcb94"
+    "self_sha256": "78fe577250e9fcf9d516e52a9e7297a786c4e3bd36af888e44632f616ba3ce86"
   },
   "local_status": "ATTESTED",
   "observed_variants": [
@@ -44,8 +44,8 @@
   "provenance": {
     "completed_at": "2026-07-28T10:01:00+00:00",
     "component_id": "vietnamese-attestation",
-    "component_version": "1.0.0",
-    "execution_config_sha256": "70455fb6b79d4b1d6630f91653ad91fa8c4d7d71e8c45a9a07976b2872fe346c",
+    "component_version": "1.1.0",
+    "execution_config_sha256": "010f7bfe5ff1d4407a481b576c13273ac35494c41b3e66353b792a18b90fec16",
     "model_routes": [
       {
         "independence_group": "group-demo",
@@ -65,8 +65,8 @@
       "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "uri": "artifact://runs/run-demo-001"
     },
-    "run_id": "run-demo-001",
-    "run_spec_id": "run-demo-001-spec-migrated-v1-1",
+    "run_id": "fixture-vietnamese-attestation-run-001",
+    "run_spec_id": "fixture-vietnamese-attestation-spec-001",
     "source_artifact_hashes": {
       "dataset": "1111111111111111111111111111111111111111111111111111111111111111"
     },

@@ -4,6 +4,8 @@ import json
 from pathlib import Path
 from typing import Any, Mapping
 
+from .integrity import strict_json_loads
+
 
 PACKAGE_VERSION = "1.1.0"
 LEGACY_VERSION = "1.0.0"
@@ -14,6 +16,7 @@ SCHEMA_REGISTRY_VERSION = "1.1.0"
 SCHEMA_FILES: dict[str, str] = {
     "EffectiveSenseContractV1": "effective_sense_contract.schema.json",
     "FrozenCandidateContractV1": "frozen_candidate_contract.schema.json",
+    "ConstraintEvidencePackageV1": "constraint_evidence_package.schema.json",
     "ContextEvidencePackageV1": "context_evidence_package.schema.json",
     "AttestationEvidencePackageV1": "attestation_evidence_package.schema.json",
     "OptionalProbePackageV1": "optional_probe_package.schema.json",
@@ -89,6 +92,56 @@ DIAGNOSTIC_FEATURES: tuple[str, ...] = (
     "E_conflict_ratio",
 )
 
+FEATURE_MAPPINGS: tuple[tuple[str, str, str], ...] = (
+    ("context_evidence", "features.C_mean", "C_mean"),
+    ("context_evidence", "features.C_min", "C_min"),
+    ("context_evidence", "features.C_max", "C_max"),
+    ("context_evidence", "features.C_range", "C_range"),
+    ("context_evidence", "features.evidence_coverage", "C_evidence_coverage"),
+    (
+        "context_evidence",
+        "features.required_context_type_coverage",
+        "C_required_context_type_coverage",
+    ),
+    ("context_evidence", "features.judge_agreement", "C_judge_agreement"),
+    ("context_evidence", "features.valid_context_count", "C_valid_context_count"),
+    ("context_evidence", "features.pass_count", "C_pass_count"),
+    ("context_evidence", "features.minor_count", "C_minor_count"),
+    ("context_evidence", "features.fail_count", "C_fail_count"),
+    (
+        "context_evidence",
+        "diagnostics.replacement_rate",
+        "C_replacement_rate",
+    ),
+    (
+        "context_evidence",
+        "diagnostics.contrastive_boundary_support",
+        "C_contrastive_boundary_support",
+    ),
+    ("attestation_evidence", "features.E_authority", "E_authority"),
+    ("attestation_evidence", "features.E_independence", "E_independence"),
+    ("attestation_evidence", "features.E_domain", "E_domain"),
+    ("attestation_evidence", "features.E_concept", "E_concept"),
+    (
+        "attestation_evidence",
+        "features.E_conventionality",
+        "E_conventionality",
+    ),
+    ("attestation_evidence", "features.E_coverage", "E_coverage"),
+    (
+        "attestation_evidence",
+        "diagnostics.strong_positive_cluster_count",
+        "E_strong_positive_cluster_count",
+    ),
+    (
+        "attestation_evidence",
+        "diagnostics.conflict_ratio",
+        "E_conflict_ratio",
+    ),
+    ("optional_probe:R", "features.R_score", "R_score"),
+    ("optional_probe:Q", "features.Q_score", "Q_score"),
+)
+
 DEPRECATED_FEATURES: tuple[str, ...] = (
     "E_score",
     "feature_registry_version",
@@ -149,6 +202,14 @@ def feature_registry_payload() -> dict[str, Any]:
         "producer_attestation_features": list(PRODUCER_ATTESTATION_FEATURES),
         "optional_probe_features": list(OPTIONAL_PROBE_FEATURES),
         "diagnostic_features": list(DIAGNOSTIC_FEATURES),
+        "feature_mappings": [
+            {
+                "source_package": source_package,
+                "source_path": source_path,
+                "target_feature": target_feature,
+            }
+            for source_package, source_path, target_feature in FEATURE_MAPPINGS
+        ],
         "deprecated_features": list(DEPRECATED_FEATURES),
     }
 
@@ -175,7 +236,11 @@ def schema_registry_payload() -> dict[str, Any]:
                 "schema_id": schema_id,
                 "schema_version": PACKAGE_VERSION,
                 "path": f"schemas/v1.1.0/{filename}",
-                "legacy_path": f"schemas/legacy/v1.0.0/{filename}",
+                "legacy_path": (
+                    None
+                    if schema_id == "ConstraintEvidencePackageV1"
+                    else f"schemas/legacy/v1.0.0/{filename}"
+                ),
             }
             for schema_id, filename in sorted(SCHEMA_FILES.items())
         ],
@@ -184,8 +249,8 @@ def schema_registry_payload() -> dict[str, Any]:
 
 def load_registry(path: Path) -> dict[str, Any]:
     try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+        payload = strict_json_loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
         raise RegistryError(f"cannot load registry {path}: {exc}") from exc
     if not isinstance(payload, dict):
         raise RegistryError(f"registry {path} must be a JSON object")
@@ -218,5 +283,33 @@ def known_feature_names(registry: Mapping[str, Any]) -> frozenset[str]:
         raise RegistryError(
             "active and deprecated feature names overlap: "
             + ", ".join(sorted(overlap))
+        )
+    mappings = registry.get("feature_mappings")
+    if not isinstance(mappings, list) or not mappings:
+        raise RegistryError("feature registry requires feature_mappings")
+    sources: set[tuple[str, str]] = set()
+    targets: set[str] = set()
+    for index, mapping in enumerate(mappings):
+        if not isinstance(mapping, Mapping):
+            raise RegistryError(f"feature_mappings[{index}] must be an object")
+        source = mapping.get("source_package")
+        path = mapping.get("source_path")
+        target = mapping.get("target_feature")
+        if not all(isinstance(item, str) and item for item in (source, path, target)):
+            raise RegistryError(f"feature_mappings[{index}] is incomplete")
+        source_key = (source, path)
+        if source_key in sources:
+            raise RegistryError(f"duplicate feature mapping source: {source}:{path}")
+        if target in targets:
+            raise RegistryError(f"duplicate feature mapping target: {target}")
+        if target not in result:
+            raise RegistryError(f"feature mapping target is not active: {target}")
+        sources.add(source_key)
+        targets.add(target)
+    missing_targets = sorted(result.difference(targets))
+    if missing_targets:
+        raise RegistryError(
+            "active features without a source mapping: "
+            + ", ".join(missing_targets)
         )
     return frozenset(result)

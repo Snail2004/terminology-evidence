@@ -13,6 +13,9 @@
     "attestation_evidence",
     "optional_probes",
     "integrity",
+    "effective_sense_contract",
+    "frozen_candidate_contract",
+    "constraint_evidence",
     "assembly_metadata"
   ],
   "properties": {
@@ -44,6 +47,36 @@
     "integrity": {
       "$ref": "common_defs.schema.json#/$defs/integrity"
     },
+    "effective_sense_contract": {
+      "anyOf": [
+        {
+          "$ref": "effective_sense_contract.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "frozen_candidate_contract": {
+      "anyOf": [
+        {
+          "$ref": "frozen_candidate_contract.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "constraint_evidence": {
+      "anyOf": [
+        {
+          "$ref": "constraint_evidence_package.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
     "assembly_metadata": {
       "type": "object",
       "additionalProperties": false,
@@ -51,7 +84,8 @@
         "assembler_id",
         "assembler_version",
         "assembled_at",
-        "source_package_hashes"
+        "source_package_hashes",
+        "binding_status"
       ],
       "properties": {
         "assembler_id": {
@@ -75,7 +109,10 @@
           "additionalProperties": false,
           "required": [
             "context_evidence_sha256",
-            "attestation_evidence_sha256"
+            "attestation_evidence_sha256",
+            "effective_sense_contract_sha256",
+            "frozen_candidate_contract_sha256",
+            "constraint_evidence_sha256"
           ],
           "properties": {
             "context_evidence_sha256": {
@@ -83,8 +120,23 @@
             },
             "attestation_evidence_sha256": {
               "$ref": "common_defs.schema.json#/$defs/sha256"
+            },
+            "effective_sense_contract_sha256": {
+              "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+            },
+            "frozen_candidate_contract_sha256": {
+              "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+            },
+            "constraint_evidence_sha256": {
+              "$ref": "common_defs.schema.json#/$defs/nullableSha256"
             }
           }
+        },
+        "binding_status": {
+          "enum": [
+            "COMPLETE",
+            "LEGACY_INCOMPLETE"
+          ]
         }
       }
     }

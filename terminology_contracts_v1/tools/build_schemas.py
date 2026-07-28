@@ -40,6 +40,7 @@ def main() -> int:
     }
     for schema in schemas.values():
         _bump_schema(schema)
+    schemas["constraint_evidence_package.schema.json"] = _constraint_schema()
     _upgrade_common(schemas["common_defs.schema.json"])
     _upgrade_frozen_candidate(schemas["frozen_candidate_contract.schema.json"])
     _upgrade_context(schemas["context_evidence_package.schema.json"])
@@ -49,6 +50,7 @@ def main() -> int:
     _upgrade_calibration(schemas["calibration_artifact.schema.json"])
     _upgrade_decision(schemas["global_decision_package.schema.json"])
     _upgrade_certificate(schemas["terminology_certificate.schema.json"])
+    _upgrade_tac(schemas["tac_occurrence_input.schema.json"])
 
     for name, schema in sorted(schemas.items()):
         _write_json(V11 / name, schema)
@@ -107,14 +109,23 @@ def _upgrade_common(schema: dict[str, Any]) -> None:
             {"type": "null"},
         ]
     }
+    evidence_types = schema["$defs"]["evidenceRef"]["properties"]["evidence_type"][
+        "enum"
+    ]
+    schema["$defs"]["evidenceRef"]["properties"]["evidence_type"]["enum"] = (
+        _append_unique(evidence_types, "CONSTRAINT_EVIDENCE", "COLLISION_INDEX")
+    )
 
 
 def _upgrade_frozen_candidate(schema: dict[str, Any]) -> None:
     schema["required"] = _append_unique(
-        schema["required"], "input_contract_sha256"
+        schema["required"], "input_contract_sha256", "binding_status"
     )
     schema["properties"]["input_contract_sha256"] = {
         "$ref": "common_defs.schema.json#/$defs/sha256"
+    }
+    schema["properties"]["binding_status"] = {
+        "enum": ["COMPLETE", "LEGACY_INCOMPLETE"]
     }
 
 
@@ -169,10 +180,30 @@ def _upgrade_gates(schema: dict[str, Any]) -> None:
         "items": {"enum": list(GATE_SOURCE_MODULES)},
     }
     schema["properties"]["observations"]["uniqueItems"] = True
+    schema["properties"]["observations"]["minItems"] = 1
+    schema["properties"]["observations"]["maxItems"] = len(GATE_IDS)
+    schema["required"] = _append_unique(schema["required"], "binding_status")
+    schema["properties"]["binding_status"] = {
+        "enum": ["COMPLETE", "LEGACY_INCOMPLETE"]
+    }
 
 
 def _upgrade_global_input(schema: dict[str, Any]) -> None:
-    schema["required"] = _append_unique(schema["required"], "assembly_metadata")
+    schema["required"] = _append_unique(
+        schema["required"],
+        "effective_sense_contract",
+        "frozen_candidate_contract",
+        "constraint_evidence",
+        "assembly_metadata",
+    )
+    for field, reference in (
+        ("effective_sense_contract", "effective_sense_contract.schema.json"),
+        ("frozen_candidate_contract", "frozen_candidate_contract.schema.json"),
+        ("constraint_evidence", "constraint_evidence_package.schema.json"),
+    ):
+        schema["properties"][field] = {
+            "anyOf": [{"$ref": reference}, {"type": "null"}]
+        }
     schema["properties"]["assembly_metadata"] = {
         "type": "object",
         "additionalProperties": False,
@@ -181,6 +212,7 @@ def _upgrade_global_input(schema: dict[str, Any]) -> None:
             "assembler_version",
             "assembled_at",
             "source_package_hashes",
+            "binding_status",
         ],
         "properties": {
             "assembler_id": {
@@ -201,6 +233,9 @@ def _upgrade_global_input(schema: dict[str, Any]) -> None:
                 "required": [
                     "context_evidence_sha256",
                     "attestation_evidence_sha256",
+                    "effective_sense_contract_sha256",
+                    "frozen_candidate_contract_sha256",
+                    "constraint_evidence_sha256",
                 ],
                 "properties": {
                     "context_evidence_sha256": {
@@ -209,7 +244,19 @@ def _upgrade_global_input(schema: dict[str, Any]) -> None:
                     "attestation_evidence_sha256": {
                         "$ref": "common_defs.schema.json#/$defs/sha256"
                     },
+                    "effective_sense_contract_sha256": {
+                        "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+                    },
+                    "frozen_candidate_contract_sha256": {
+                        "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+                    },
+                    "constraint_evidence_sha256": {
+                        "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+                    },
                 },
+            },
+            "binding_status": {
+                "enum": ["COMPLETE", "LEGACY_INCOMPLETE"]
             },
         },
     }
@@ -217,16 +264,104 @@ def _upgrade_global_input(schema: dict[str, Any]) -> None:
 
 def _upgrade_calibration(schema: dict[str, Any]) -> None:
     schema["required"] = _append_unique(
-        schema["required"], "verification_status"
+        schema["required"], "verification_status", "numerical_tolerance"
     )
     schema["properties"]["feature_contract_version"]["const"] = PACKAGE_VERSION
     schema["properties"]["verification_status"] = {
         "enum": ["SEALED", "UNVERIFIED_LEGACY"]
     }
-    schema["properties"]["model"]["properties"]["model_type"]["enum"] = [
-        "RULE_SET",
-        "LOGISTIC_REGRESSION",
-        "ISOTONIC",
+    schema["properties"]["numerical_tolerance"] = {
+        "anyOf": [
+            {"type": "number", "minimum": 0.0, "maximum": 1e-9},
+            {"type": "null"},
+        ]
+    }
+    operating_point = schema["properties"]["operating_point"]
+    operating_point["required"] = _append_unique(
+        operating_point["required"], "operating_point_id"
+    )
+    operating_point["properties"]["operating_point_id"] = {
+        "anyOf": [
+            {"$ref": "common_defs.schema.json#/$defs/identifier"},
+            {"type": "null"},
+        ]
+    }
+    strict_model = {
+        "type": "object",
+        "additionalProperties": False,
+        "required": ["model_type", "parameters", "feature_names"],
+        "properties": {
+            "model_type": {"const": "LOGISTIC_REGRESSION"},
+            "feature_names": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": True,
+                "items": {"type": "string", "minLength": 1},
+            },
+            "parameters": {
+                "type": "object",
+                "additionalProperties": False,
+                "required": ["link_function", "intercept", "coefficients"],
+                "properties": {
+                    "link_function": {"const": "LOGIT"},
+                    "intercept": {"type": "number"},
+                    "coefficients": {
+                        "type": "object",
+                        "additionalProperties": {"type": "number"},
+                    },
+                },
+            },
+        },
+    }
+    strict_results = {
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "development_sample_count",
+            "validation_sample_count",
+            "uncertainty_method",
+            "selected_operating_point_id",
+        ],
+        "properties": {
+            "development_sample_count": {"type": "integer", "minimum": 1},
+            "validation_sample_count": {"type": "integer", "minimum": 1},
+            "uncertainty_method": {
+                "enum": [
+                    "WILSON_SCORE",
+                    "CLOPPER_PEARSON",
+                    "BOOTSTRAP_PERCENTILE",
+                ]
+            },
+            "selected_operating_point_id": {
+                "$ref": "common_defs.schema.json#/$defs/identifier"
+            },
+        },
+    }
+    schema["allOf"] = [
+        {
+            "if": {
+                "properties": {"verification_status": {"const": "SEALED"}},
+                "required": ["verification_status"],
+            },
+            "then": {
+                "properties": {
+                    "numerical_tolerance": {
+                        "type": "number",
+                        "minimum": 0.0,
+                        "maximum": 1e-9,
+                    },
+                    "model": strict_model,
+                    "calibration_results": strict_results,
+                    "operating_point": {
+                        "properties": {
+                            "operating_point_id": {
+                                "$ref": "common_defs.schema.json#/$defs/identifier"
+                            }
+                        }
+                    },
+                }
+            },
+        }
     ]
 
 
@@ -249,6 +384,7 @@ def _upgrade_decision(schema: dict[str, Any]) -> None:
             "started_at",
             "completed_at",
             "engine_version",
+            "execution_config_sha256",
             "feature_contract_version",
             "gate_policy_version",
             "input_package_hashes",
@@ -279,6 +415,9 @@ def _upgrade_decision(schema: dict[str, Any]) -> None:
             "engine_version": {
                 "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
             },
+            "execution_config_sha256": {
+                "$ref": "common_defs.schema.json#/$defs/sha256"
+            },
             "feature_contract_version": {"const": PACKAGE_VERSION},
             "gate_policy_version": {
                 "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
@@ -290,6 +429,10 @@ def _upgrade_decision(schema: dict[str, Any]) -> None:
                     "global_validator_input_sha256",
                     "context_evidence_sha256",
                     "attestation_evidence_sha256",
+                    "effective_sense_contract_sha256",
+                    "frozen_candidate_contract_sha256",
+                    "constraint_evidence_sha256",
+                    "gate_result_sha256",
                 ],
                 "properties": {
                     "global_validator_input_sha256": {
@@ -299,7 +442,19 @@ def _upgrade_decision(schema: dict[str, Any]) -> None:
                         "$ref": "common_defs.schema.json#/$defs/sha256"
                     },
                     "attestation_evidence_sha256": {
-                        "$ref": "common_defs.schema.json#/$defs/sha256"
+                        "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+                    },
+                    "effective_sense_contract_sha256": {
+                        "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+                    },
+                    "frozen_candidate_contract_sha256": {
+                        "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+                    },
+                    "constraint_evidence_sha256": {
+                        "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+                    },
+                    "gate_result_sha256": {
+                        "$ref": "common_defs.schema.json#/$defs/nullableSha256"
                     },
                 },
             },
@@ -322,6 +477,9 @@ def _upgrade_certificate(schema: dict[str, Any]) -> None:
         "attestation_evidence_sha256",
         "gate_result_sha256",
         "calibration_artifact_sha256",
+        "global_validator_input_sha256",
+        "frozen_candidate_contract_sha256",
+        "constraint_evidence_sha256",
     )
     schema["required"] = _append_unique(schema["required"], *new_fields)
     props = schema["properties"]
@@ -345,10 +503,120 @@ def _upgrade_certificate(schema: dict[str, Any]) -> None:
         "attestation_evidence_sha256",
         "gate_result_sha256",
         "calibration_artifact_sha256",
+        "global_validator_input_sha256",
+        "frozen_candidate_contract_sha256",
+        "constraint_evidence_sha256",
     ):
         props[name] = {
             "$ref": "common_defs.schema.json#/$defs/nullableSha256"
         }
+
+
+def _upgrade_tac(schema: dict[str, Any]) -> None:
+    schema["required"] = _append_unique(schema["required"], "offset_unit")
+    schema["properties"]["offset_unit"] = {"const": "UNICODE_CODEPOINT"}
+
+
+def _constraint_schema() -> dict[str, Any]:
+    identifier = {"$ref": "common_defs.schema.json#/$defs/identifier"}
+    nullable_hash = {"$ref": "common_defs.schema.json#/$defs/nullableSha256"}
+    evidence_ref = {"$ref": "common_defs.schema.json#/$defs/evidenceRef"}
+    return {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://thesis.local/terminology-contracts/v1.1/constraint_evidence_package.schema.json",
+        "title": "Global Constraint Evidence Package V1",
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+            "schema_id",
+            "schema_version",
+            "candidate_key",
+            "input_contract_sha256",
+            "binding_status",
+            "sense_review",
+            "polysemy_resolution",
+            "target_collision",
+            "provenance",
+            "integrity",
+        ],
+        "properties": {
+            "schema_id": {"const": "ConstraintEvidencePackageV1"},
+            "schema_version": {"const": PACKAGE_VERSION},
+            "candidate_key": {
+                "$ref": "common_defs.schema.json#/$defs/candidateKey"
+            },
+            "input_contract_sha256": {
+                "$ref": "common_defs.schema.json#/$defs/sha256"
+            },
+            "binding_status": {"const": "COMPLETE"},
+            "sense_review": {
+                "type": "object",
+                "additionalProperties": False,
+                "required": [
+                    "status",
+                    "effective_sense_contract_sha256",
+                    "review_artifact_ref",
+                ],
+                "properties": {
+                    "status": {"enum": ["VERIFIED", "UNVERIFIED"]},
+                    "effective_sense_contract_sha256": nullable_hash,
+                    "review_artifact_ref": {
+                        "anyOf": [evidence_ref, {"type": "null"}]
+                    },
+                },
+            },
+            "polysemy_resolution": {
+                "type": "object",
+                "additionalProperties": False,
+                "required": ["status", "related_sense_ids", "authority_ref"],
+                "properties": {
+                    "status": {
+                        "enum": [
+                            "RESOLVED_SINGLE",
+                            "RESOLVED_SPLIT",
+                            "UNRESOLVED",
+                        ]
+                    },
+                    "related_sense_ids": {
+                        "type": "array",
+                        "items": identifier,
+                        "uniqueItems": True,
+                    },
+                    "authority_ref": {
+                        "anyOf": [evidence_ref, {"type": "null"}]
+                    },
+                },
+            },
+            "target_collision": {
+                "type": "object",
+                "additionalProperties": False,
+                "required": [
+                    "status",
+                    "collision_index_sha256",
+                    "conflicting_candidate_keys",
+                    "evidence_refs",
+                ],
+                "properties": {
+                    "status": {"enum": ["CLEAR", "COLLISION", "UNJUDGEABLE"]},
+                    "collision_index_sha256": nullable_hash,
+                    "conflicting_candidate_keys": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "common_defs.schema.json#/$defs/candidateKey"
+                        },
+                        "uniqueItems": True,
+                    },
+                    "evidence_refs": {
+                        "type": "array",
+                        "items": evidence_ref,
+                        "uniqueItems": True,
+                    },
+                },
+            },
+            "provenance": {"$ref": "common_defs.schema.json#/$defs/provenance"},
+            "integrity": {"$ref": "common_defs.schema.json#/$defs/integrity"},
+        },
+    }
 
 
 def _append_unique(values: list[str], *items: str) -> list[str]:

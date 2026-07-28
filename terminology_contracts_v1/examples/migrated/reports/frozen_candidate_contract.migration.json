@@ -1,5 +1,6 @@
 {
   "fields_added": [
+    "$.binding_status",
     "$.input_contract_sha256",
     "$.input_provenance.execution_config_sha256",
     "$.input_provenance.run_spec_id"
@@ -10,6 +11,6 @@
   "source_schema_version": "1.0.0",
   "source_sha256": "4d964a3f05790178e70c1b1b0b1911940877be20bcaec0a0efb82f161f4164b1",
   "target_schema_version": "1.1.0",
-  "target_sha256": "376764b5ebe29ee1ac145d93cfa31d3d7963e690e1ebd72bb93792c9fd63faa8",
+  "target_sha256": "8e14b12cd6cc1757d5e07999fc14a0e690bd67edf83b4eead0bb6b6bacca6c1b",
   "warnings": []
 }

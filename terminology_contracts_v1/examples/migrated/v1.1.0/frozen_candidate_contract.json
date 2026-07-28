@@ -3,6 +3,7 @@
     "suy diễn",
     "thực hiện mô hình"
   ],
+  "binding_status": "LEGACY_INCOMPLETE",
   "candidate_key": {
     "candidate_id": "cand-inference-vi-01",
     "candidate_version": "1",
@@ -60,7 +61,7 @@
     "started_at": "2026-07-28T10:00:00+00:00"
   },
   "integrity": {
-    "self_sha256": "e9863f193ce8e64c6fdb534d34b031bf1880a309fcaff216c5dc7ec0a3f21335"
+    "self_sha256": "bba7641f4c1d6c374935406dc73780da2a5404c0b9b38ff9107a60ea096e794e"
   },
   "schema_id": "FrozenCandidateContractV1",
   "schema_version": "1.1.0",

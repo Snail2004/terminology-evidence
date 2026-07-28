@@ -1,23 +1,65 @@
 {
+  "binding_status": "COMPLETE",
   "candidate_key": {
     "candidate_id": "cand-inference-vi-01",
-    "candidate_version": "1",
+    "candidate_version": "fixture-candidate-v1",
     "candidate_vi": "suy luận",
     "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
-    "effective_sense_contract_sha256": "82eedc4661ad441fd7e1925b61738b3ad97af9c2eacb9ce99f2209b45fe1dd0b",
+    "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
     "scope_id": "machine_learning",
     "sense_id": "model_execution",
     "sense_inventory_version": "sense-v1",
     "source_term": "inference"
   },
   "gate_policy_version": "gates-v1",
-  "input_contract_sha256": "ad9888fdb98fba49d6a7b50f30d8749694e28c89a5dd3f7fdea0ae490ccdf704",
+  "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
   "integrity": {
-    "self_sha256": "df17ad1f0a10034a63550642302f8b7f6e7703a88e6aa917d0543f95d7ee4111"
+    "self_sha256": "8c06a9de3c02ed0c6e00071640199b93150faf8d86ddb289abc083a0ae371f3f"
   },
   "observations": [
     {
       "action": "FATAL_REJECT",
+      "evidence_refs": [],
+      "gate_id": "input_contract_mismatch",
+      "reason_codes": [],
+      "source_modules": [
+        "CONTRACT"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "sense_definition_unverified",
+      "reason_codes": [],
+      "source_modules": [
+        "SENSE"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "unresolved_polysemy",
+      "reason_codes": [],
+      "source_modules": [
+        "SENSE"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "concept_mismatch",
+      "reason_codes": [],
+      "source_modules": [
+        "C",
+        "E"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
       "evidence_refs": [],
       "gate_id": "wrong_sense",
       "reason_codes": [],
@@ -29,10 +71,72 @@
     {
       "action": "NONE",
       "evidence_refs": [],
+      "gate_id": "contradiction",
+      "reason_codes": [],
+      "source_modules": [
+        "C",
+        "E"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "target_collision",
+      "reason_codes": [],
+      "source_modules": [
+        "GLOBAL"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "judge_disagreement",
+      "reason_codes": [],
+      "source_modules": [
+        "C",
+        "E"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
       "gate_id": "insufficient_evidence",
       "reason_codes": [],
       "source_modules": [
         "C",
+        "E"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "missing_contrastive_context",
+      "reason_codes": [],
+      "source_modules": [
+        "C"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "incomplete_context_type_coverage",
+      "reason_codes": [],
+      "source_modules": [
+        "C"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "attestation_unjudgeable",
+      "reason_codes": [],
+      "source_modules": [
         "E"
       ],
       "triggered": false

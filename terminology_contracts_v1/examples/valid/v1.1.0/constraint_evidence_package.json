@@ -1,0 +1,79 @@
+{
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "cand-inference-vi-01",
+    "candidate_version": "fixture-candidate-v1",
+    "candidate_vi": "suy luận",
+    "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
+    "scope_id": "machine_learning",
+    "sense_id": "model_execution",
+    "sense_inventory_version": "sense-v1",
+    "source_term": "inference"
+  },
+  "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
+  "integrity": {
+    "self_sha256": "367d0845552ce62671039afcb9a79fbd66b05777bef78f75d02301bec8f2903b"
+  },
+  "polysemy_resolution": {
+    "authority_ref": {
+      "evidence_id": "sense-review-fixture-001",
+      "evidence_type": "OTHER",
+      "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "uri": "artifact://fixtures/sense-review-001"
+    },
+    "related_sense_ids": [
+      "model_execution"
+    ],
+    "status": "RESOLVED_SINGLE"
+  },
+  "provenance": {
+    "completed_at": "2026-07-28T10:01:00+00:00",
+    "component_id": "global-constraint-assembler",
+    "component_version": "1.1.0",
+    "execution_config_sha256": "557dc9e7d885113eb6eb5cfe6a8dee8e2a02bff300d5fd980c10623489485f45",
+    "model_routes": [
+      {
+        "independence_group": "group-demo",
+        "model_family": "family-demo",
+        "model_id": "model-demo",
+        "provider_id": "provider-demo"
+      }
+    ],
+    "notes": null,
+    "policy_version": "demo-policy-v1",
+    "prompt_hashes": {
+      "main": "9999999999999999999999999999999999999999999999999999999999999999"
+    },
+    "raw_ledger_ref": {
+      "evidence_id": "ledger-001",
+      "evidence_type": "OTHER",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "uri": "artifact://runs/run-demo-001"
+    },
+    "run_id": "fixture-global-constraint-assembler-run-001",
+    "run_spec_id": "fixture-global-constraint-assembler-spec-001",
+    "source_artifact_hashes": {
+      "dataset": "1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "started_at": "2026-07-28T10:00:00+00:00"
+  },
+  "schema_id": "ConstraintEvidencePackageV1",
+  "schema_version": "1.1.0",
+  "sense_review": {
+    "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
+    "review_artifact_ref": {
+      "evidence_id": "sense-review-fixture-001",
+      "evidence_type": "OTHER",
+      "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "uri": "artifact://fixtures/sense-review-001"
+    },
+    "status": "VERIFIED"
+  },
+  "target_collision": {
+    "collision_index_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+    "conflicting_candidate_keys": [],
+    "evidence_refs": [],
+    "status": "CLEAR"
+  }
+}

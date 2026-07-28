@@ -148,6 +148,7 @@
         "started_at",
         "completed_at",
         "engine_version",
+        "execution_config_sha256",
         "feature_contract_version",
         "gate_policy_version",
         "input_package_hashes",
@@ -189,6 +190,9 @@
         "engine_version": {
           "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
         },
+        "execution_config_sha256": {
+          "$ref": "common_defs.schema.json#/$defs/sha256"
+        },
         "feature_contract_version": {
           "const": "1.1.0"
         },
@@ -201,7 +205,11 @@
           "required": [
             "global_validator_input_sha256",
             "context_evidence_sha256",
-            "attestation_evidence_sha256"
+            "attestation_evidence_sha256",
+            "effective_sense_contract_sha256",
+            "frozen_candidate_contract_sha256",
+            "constraint_evidence_sha256",
+            "gate_result_sha256"
           ],
           "properties": {
             "global_validator_input_sha256": {
@@ -211,7 +219,19 @@
               "$ref": "common_defs.schema.json#/$defs/sha256"
             },
             "attestation_evidence_sha256": {
-              "$ref": "common_defs.schema.json#/$defs/sha256"
+              "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+            },
+            "effective_sense_contract_sha256": {
+              "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+            },
+            "frozen_candidate_contract_sha256": {
+              "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+            },
+            "constraint_evidence_sha256": {
+              "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+            },
+            "gate_result_sha256": {
+              "$ref": "common_defs.schema.json#/$defs/nullableSha256"
             }
           }
         },

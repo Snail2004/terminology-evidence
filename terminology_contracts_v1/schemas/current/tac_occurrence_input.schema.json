@@ -14,7 +14,8 @@
     "certificate",
     "glossary_version",
     "tac_policy_version",
-    "integrity"
+    "integrity",
+    "offset_unit"
   ],
   "properties": {
     "schema_id": {
@@ -61,6 +62,9 @@
     },
     "integrity": {
       "$ref": "common_defs.schema.json#/$defs/integrity"
+    },
+    "offset_unit": {
+      "const": "UNICODE_CODEPOINT"
     }
   }
 }

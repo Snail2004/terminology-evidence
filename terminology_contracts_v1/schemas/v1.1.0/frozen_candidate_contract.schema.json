@@ -16,7 +16,8 @@
     "alternatives_vi",
     "input_provenance",
     "integrity",
-    "input_contract_sha256"
+    "input_contract_sha256",
+    "binding_status"
   ],
   "properties": {
     "schema_id": {
@@ -117,6 +118,12 @@
     },
     "input_contract_sha256": {
       "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "binding_status": {
+      "enum": [
+        "COMPLETE",
+        "LEGACY_INCOMPLETE"
+      ]
     }
   }
 }

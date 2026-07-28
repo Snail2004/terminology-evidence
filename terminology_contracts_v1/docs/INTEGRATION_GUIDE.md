@@ -15,10 +15,13 @@ adapter, never by treating its bytes as V1.1.
 ## Decision order
 
 1. Validate schema, self hashes, candidate joins, and package hashes.
-2. Evaluate hard gates in registered precedence order.
-3. In development mode, emit at most `PROVISIONAL` or `HUMAN_REVIEW`.
-4. In frozen mode, load and verify the calibration file and its registry.
-5. Issue a certificate only for `AUTO_APPROVED` or `PROVISIONAL`.
+2. Verify the Frozen Candidate content binding and declared constraint package.
+3. Evaluate exactly one observation for every registered hard gate.
+4. In development mode, emit at most `PROVISIONAL` or `HUMAN_REVIEW`.
+5. In frozen mode, load calibration and registry, assemble mapped features,
+   replay the logistic score, and derive the decision.
+6. Issue a certificate only for `AUTO_APPROVED` or `PROVISIONAL`, then verify
+   its complete external artifact bundle before TAC consumption.
 
 ## Dataset boundary
 

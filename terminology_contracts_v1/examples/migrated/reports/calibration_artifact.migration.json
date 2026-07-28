@@ -1,5 +1,7 @@
 {
   "fields_added": [
+    "$.numerical_tolerance",
+    "$.operating_point.operating_point_id",
     "$.verification_status"
   ],
   "fields_renamed": [],
@@ -8,7 +10,7 @@
   "source_schema_version": "1.0.0",
   "source_sha256": "bd5a5fa5cf4e509b1194a0dddcb3a7c124b54999d8a0d4305ce20a8e8adad82a",
   "target_schema_version": "1.1.0",
-  "target_sha256": "96aad317e3ecff6af6ffb5445e070da6373bf58fb68bc40334d00b24bb96caeb",
+  "target_sha256": "631b26011eb79e9849698b98f011ae049b29535bba344973740140836812d7c7",
   "warnings": [
     "Legacy calibration migrated structurally but remains ineligible for frozen mode until independently verified.",
     "feature_contract_version advanced to V1.1 for schema compatibility; model parameters remain unchanged."

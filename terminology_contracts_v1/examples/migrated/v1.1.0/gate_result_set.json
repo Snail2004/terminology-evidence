@@ -1,4 +1,5 @@
 {
+  "binding_status": "LEGACY_INCOMPLETE",
   "candidate_key": {
     "candidate_id": "cand-inference-vi-01",
     "candidate_version": "1",
@@ -13,7 +14,7 @@
   "gate_policy_version": "gates-v1",
   "input_contract_sha256": "ad9888fdb98fba49d6a7b50f30d8749694e28c89a5dd3f7fdea0ae490ccdf704",
   "integrity": {
-    "self_sha256": "e25d13a472b0f0f2d300791c86ce66d5815cd28a9a3ef8c4b0471ed1725caf98"
+    "self_sha256": "98b44a3a5a96884c981428ef38e0ecff190104c7631b9f629284fb98cc6ff440"
   },
   "observations": [
     {

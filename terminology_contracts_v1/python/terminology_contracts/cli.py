@@ -24,6 +24,7 @@ def _add_validation_options(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--schema-dir", type=Path, default=_default_schema_dir())
     parser.add_argument("--calibration", type=Path, default=None)
     parser.add_argument("--feature-registry", type=Path, default=None)
+    parser.add_argument("--global-input", type=Path, default=None)
     parser.add_argument("--allow-legacy-migration", action="store_true")
 
 
@@ -74,6 +75,7 @@ def main(argv: list[str] | None = None) -> int:
             args.schema_dir,
             calibration_path=args.calibration,
             feature_registry_path=args.feature_registry,
+            global_input_path=args.global_input,
             allow_legacy_migration=args.allow_legacy_migration,
         )
         if errors:

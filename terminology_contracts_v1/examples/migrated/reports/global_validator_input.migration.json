@@ -4,9 +4,12 @@
     "$.attestation_evidence.diagnostics",
     "$.attestation_evidence.provenance.execution_config_sha256",
     "$.attestation_evidence.provenance.run_spec_id",
+    "$.constraint_evidence",
     "$.context_evidence.diagnostics",
     "$.context_evidence.provenance.execution_config_sha256",
-    "$.context_evidence.provenance.run_spec_id"
+    "$.context_evidence.provenance.run_spec_id",
+    "$.effective_sense_contract",
+    "$.frozen_candidate_contract"
   ],
   "fields_renamed": [],
   "migration_tool_version": "1.0.0",
@@ -14,6 +17,6 @@
   "source_schema_version": "1.0.0",
   "source_sha256": "80babd715169f39f75a272c011086d2cb6ac7b32df855b0debac6c2d069ea1a2",
   "target_schema_version": "1.1.0",
-  "target_sha256": "1aade0afb3b2140fcae9df458d8559dc35d573aedc1852ebc868b9a12326c52d",
+  "target_sha256": "5de78152ec6ba58c5f34c5a289b7140fc01b5a1801f1ce1fcdaa76496554761d",
   "warnings": []
 }

@@ -51,6 +51,123 @@
     "E_strong_positive_cluster_count",
     "E_conflict_ratio"
   ],
+  "feature_mappings": [
+    {
+      "source_package": "context_evidence",
+      "source_path": "features.C_mean",
+      "target_feature": "C_mean"
+    },
+    {
+      "source_package": "context_evidence",
+      "source_path": "features.C_min",
+      "target_feature": "C_min"
+    },
+    {
+      "source_package": "context_evidence",
+      "source_path": "features.C_max",
+      "target_feature": "C_max"
+    },
+    {
+      "source_package": "context_evidence",
+      "source_path": "features.C_range",
+      "target_feature": "C_range"
+    },
+    {
+      "source_package": "context_evidence",
+      "source_path": "features.evidence_coverage",
+      "target_feature": "C_evidence_coverage"
+    },
+    {
+      "source_package": "context_evidence",
+      "source_path": "features.required_context_type_coverage",
+      "target_feature": "C_required_context_type_coverage"
+    },
+    {
+      "source_package": "context_evidence",
+      "source_path": "features.judge_agreement",
+      "target_feature": "C_judge_agreement"
+    },
+    {
+      "source_package": "context_evidence",
+      "source_path": "features.valid_context_count",
+      "target_feature": "C_valid_context_count"
+    },
+    {
+      "source_package": "context_evidence",
+      "source_path": "features.pass_count",
+      "target_feature": "C_pass_count"
+    },
+    {
+      "source_package": "context_evidence",
+      "source_path": "features.minor_count",
+      "target_feature": "C_minor_count"
+    },
+    {
+      "source_package": "context_evidence",
+      "source_path": "features.fail_count",
+      "target_feature": "C_fail_count"
+    },
+    {
+      "source_package": "context_evidence",
+      "source_path": "diagnostics.replacement_rate",
+      "target_feature": "C_replacement_rate"
+    },
+    {
+      "source_package": "context_evidence",
+      "source_path": "diagnostics.contrastive_boundary_support",
+      "target_feature": "C_contrastive_boundary_support"
+    },
+    {
+      "source_package": "attestation_evidence",
+      "source_path": "features.E_authority",
+      "target_feature": "E_authority"
+    },
+    {
+      "source_package": "attestation_evidence",
+      "source_path": "features.E_independence",
+      "target_feature": "E_independence"
+    },
+    {
+      "source_package": "attestation_evidence",
+      "source_path": "features.E_domain",
+      "target_feature": "E_domain"
+    },
+    {
+      "source_package": "attestation_evidence",
+      "source_path": "features.E_concept",
+      "target_feature": "E_concept"
+    },
+    {
+      "source_package": "attestation_evidence",
+      "source_path": "features.E_conventionality",
+      "target_feature": "E_conventionality"
+    },
+    {
+      "source_package": "attestation_evidence",
+      "source_path": "features.E_coverage",
+      "target_feature": "E_coverage"
+    },
+    {
+      "source_package": "attestation_evidence",
+      "source_path": "diagnostics.strong_positive_cluster_count",
+      "target_feature": "E_strong_positive_cluster_count"
+    },
+    {
+      "source_package": "attestation_evidence",
+      "source_path": "diagnostics.conflict_ratio",
+      "target_feature": "E_conflict_ratio"
+    },
+    {
+      "source_package": "optional_probe:R",
+      "source_path": "features.R_score",
+      "target_feature": "R_score"
+    },
+    {
+      "source_package": "optional_probe:Q",
+      "source_path": "features.Q_score",
+      "target_feature": "Q_score"
+    }
+  ],
   "deprecated_features": [
     "E_score",
     "feature_registry_version",

@@ -6,6 +6,7 @@ import json
 import os
 import re
 import shutil
+import stat
 import sys
 import zipfile
 from pathlib import Path
@@ -22,12 +23,16 @@ from terminology_contracts.manifest import (  # noqa: E402
     verify_manifest,
     write_manifest,
 )
+from terminology_contracts.validation import verify_certificate_bundle  # noqa: E402
 
 
-RELEASE = ROOT / "release"
-ZIP_PATH = RELEASE / "terminology_contracts_v1_1.zip"
-ZIP_CHECKSUM_PATH = RELEASE / "terminology_contracts_v1_1.zip.sha256"
-AUDIT_PATH = RELEASE / "terminology_contracts_v1_1_audit.json"
+RELEASE_ROOT = ROOT / "release"
+RELEASE = RELEASE_ROOT / "v1.1.0-rc2"
+ZIP_PATH = RELEASE / "terminology_contracts_v1_1_rc2.zip"
+ZIP_CHECKSUM_PATH = RELEASE / "terminology_contracts_v1_1_rc2.zip.sha256"
+AUDIT_PATH = RELEASE / "terminology_contracts_v1_1_rc2_audit.json"
+RC1_ZIP = RELEASE_ROOT / "terminology_contracts_v1_1.zip"
+RC1_ZIP_SHA256 = "38e2ee307b247d535baedcde83427ebe3f30901d31bb921f03e6681b3160dbdc"
 DIFF_NAME = "terminology_contracts_v1_0_to_v1_1_diff.md"
 FIXED_ZIP_TIME = (2026, 7, 29, 0, 0, 0)
 CACHE_DIR_NAMES = {".pytest_cache", ".mypy_cache", ".ruff_cache", "__pycache__"}
@@ -51,6 +56,8 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit(f"missing JUnit evidence: {junit}")
 
     RELEASE.mkdir(parents=True, exist_ok=True)
+    if not RC1_ZIP.is_file() or hashlib.sha256(RC1_ZIP.read_bytes()).hexdigest() != RC1_ZIP_SHA256:
+        raise SystemExit("immutable RC1 release artifact changed")
     _remove_python_cache()
     manifest = build_manifest(ROOT)
     write_manifest(ROOT, manifest)
@@ -60,6 +67,7 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit("manifest verification failed: " + "; ".join(manifest_errors))
 
     _build_zip(manifest)
+    zip_structure = _verify_zip_structure(manifest)
     zip_sha = hashlib.sha256(ZIP_PATH.read_bytes()).hexdigest()
     ZIP_CHECKSUM_PATH.write_text(
         f"{zip_sha}  {ZIP_PATH.name}\n", encoding="ascii", newline="\n"
@@ -68,13 +76,21 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit("ZIP checksum verification failed")
 
     migration = _verify_migration_examples()
+    bundle_errors = _verify_reference_bundle()
+    if bundle_errors:
+        raise SystemExit(
+            "reference certificate bundle failed: " + "; ".join(bundle_errors)
+        )
     test_evidence = _read_junit(junit)
     dataset_mapping = _dataset_mapping_audit()
     credential_hits = _credential_scan()
     cache_files = _cache_files()
     audit = {
-        "schema_id": "TerminologyContractsV1_1ReleaseAuditV1",
+        "schema_id": "TerminologyContractsV1_1RC2ReleaseAuditV1",
         "package_version": "1.1.0",
+        "release_channel": "v1.1.0-rc2",
+        "supersedes_release_candidate": "v1.1.0-rc1",
+        "rc1_release_zip_sha256": RC1_ZIP_SHA256,
         "file_count": len(manifest["files"]),
         "schema_count": len(list((ROOT / "schemas" / "v1.1.0").glob("*.schema.json"))),
         "legacy_schema_count": len(
@@ -93,11 +109,28 @@ def main(argv: list[str] | None = None) -> int:
         "test_failures": test_evidence["failures"],
         "test_errors": test_evidence["errors"],
         "test_skipped": test_evidence["skipped"],
+        "junit_sha256": hashlib.sha256(junit.read_bytes()).hexdigest(),
         "manifest_verification": "PASS",
         "manifest_sha256": manifest["integrity"]["manifest_sha256"],
         "checksum_verification": "PASS",
         "release_zip_sha256": zip_sha,
+        "zip_structure_verification": zip_structure,
         "migration_result": migration,
+        "certificate_bundle_verification": "PASS",
+        "review_findings_closed": {
+            "P0-1": "FROZEN_CANDIDATE_CONTENT_BINDING",
+            "P0-2": "EXACT_FEATURE_AND_LOGISTIC_SCORE_REPLAY",
+            "P0-3": "EXPLICIT_SENSE_POLYSEMY_COLLISION_INPUTS",
+            "P1-1": "FULL_DECISION_REPLAY_BINDING",
+            "P1-2": "CERTIFICATE_ARTIFACT_BUNDLE_VERIFICATION",
+            "P1-3": "TAC_SOURCE_TERM_SPAN_BINDING",
+            "P1-4": "STRICT_FINITE_JSON_NUMBERS",
+            "P1-5": "LOGISTIC_REGRESSION_ONLY",
+            "P1-6": "MACHINE_READABLE_FEATURE_MAPPING",
+            "P2-1": "EXACT_UNIQUE_AUDITABLE_GATE_SET",
+            "P2-2": "CANDIDATE_CONTENT_VERSION_BINDING",
+            "P2-3": "NATIVE_NON_MIGRATION_FIXTURES",
+        },
         "credential_scan_result": "PASS" if not credential_hits else "FAIL",
         "credential_scan_hits": credential_hits,
         "pyc_cache_scan_result": "PASS" if not cache_files else "FAIL",
@@ -140,7 +173,7 @@ def _write_checksums(manifest: dict) -> None:
 
 
 def _build_zip(manifest: dict) -> None:
-    package_prefix = "terminology_contracts_v1_1/"
+    package_prefix = "terminology_contracts_v1_1_rc2/"
     source_paths = [ROOT / row["path"] for row in manifest["files"]]
     source_paths.extend([ROOT / "manifest.json", ROOT / "CHECKSUMS.sha256"])
     with zipfile.ZipFile(
@@ -152,6 +185,35 @@ def _build_zip(manifest: dict) -> None:
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             archive.writestr(info, path.read_bytes(), compresslevel=9)
+
+
+def _verify_zip_structure(manifest: dict) -> str:
+    prefix = "terminology_contracts_v1_1_rc2/"
+    expected = {
+        prefix + row["path"] for row in manifest["files"]
+    } | {prefix + "manifest.json", prefix + "CHECKSUMS.sha256"}
+    with zipfile.ZipFile(ZIP_PATH) as archive:
+        members = archive.infolist()
+        names = [member.filename for member in members]
+        if len(names) != len(set(names)) or set(names) != expected:
+            raise SystemExit("ZIP member set differs from package manifest")
+        if archive.testzip() is not None:
+            raise SystemExit("ZIP CRC verification failed")
+        for member in members:
+            relative = member.filename.removeprefix(prefix)
+            parts = Path(relative).parts
+            if (
+                not member.filename.startswith(prefix)
+                or relative.startswith(("/", "\\"))
+                or ".." in parts
+            ):
+                raise SystemExit(f"unsafe ZIP member: {member.filename}")
+            mode = member.external_attr >> 16
+            if stat.S_ISLNK(mode):
+                raise SystemExit(f"ZIP symlink is forbidden: {member.filename}")
+            if member.filename.endswith(".pyc") or "__pycache__" in parts:
+                raise SystemExit(f"ZIP cache file is forbidden: {member.filename}")
+    return "PASS"
 
 
 def _verify_migration_examples() -> dict:
@@ -166,6 +228,27 @@ def _verify_migration_examples() -> dict:
             raise SystemExit(f"migration report mismatch: {output.name}")
         checked += 1
     return {"status": "PASS", "fixture_count": checked, "deterministic": True}
+
+
+def _verify_reference_bundle() -> list[str]:
+    valid = ROOT / "examples" / "valid" / "v1.1.0"
+    return verify_certificate_bundle(
+        certificate_path=valid / "terminology_certificate.json",
+        frozen_candidate_path=valid / "frozen_candidate_contract.json",
+        effective_sense_contract_path=valid / "effective_sense_contract.json",
+        constraint_evidence_path=valid / "constraint_evidence_package.json",
+        global_input_path=valid / "global_validator_input.json",
+        context_evidence_path=valid / "context_evidence_package.json",
+        attestation_evidence_path=valid / "attestation_evidence_package.json",
+        gate_result_path=valid / "gate_result_set.json",
+        decision_path=valid / "global_decision_package.json",
+        calibration_path=valid / "calibration_artifact.json",
+        schema_dir=ROOT / "schemas",
+        feature_registry_path=ROOT
+        / "registries"
+        / "feature_contract_v1.1.0.json",
+        tac_path=valid / "tac_occurrence_input.json",
+    )
 
 
 def _read_junit(path: Path) -> dict[str, int | str]:

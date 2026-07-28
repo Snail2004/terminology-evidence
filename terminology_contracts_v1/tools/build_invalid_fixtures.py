@@ -10,6 +10,7 @@ PYTHON_ROOT = ROOT / "python"
 if str(PYTHON_ROOT) not in sys.path:
     sys.path.insert(0, str(PYTHON_ROOT))
 
+from terminology_contracts.bindings import calculate_replay_spec_sha256  # noqa: E402
 from terminology_contracts.integrity import seal_self_hash  # noqa: E402
 
 
@@ -28,6 +29,13 @@ def _write(name: str, value: dict) -> None:
         encoding="utf-8",
         newline="\n",
     )
+
+
+def _reseal_decision(value: dict) -> dict:
+    value["run_metadata"][
+        "replay_spec_sha256"
+    ] = calculate_replay_spec_sha256(value)
+    return seal_self_hash(value)
 
 
 def main() -> int:
@@ -74,6 +82,42 @@ def main() -> int:
     calibration = _load("calibration_artifact.json")
     calibration["development_dataset_sha256"] = "0" * 64
     _write("calibration_zero_dataset_hash.json", seal_self_hash(calibration))
+
+    frozen = _load("frozen_candidate_contract.json")
+    frozen["effective_definition_en"] = "Tampered definition with stale binding."
+    _write("frozen_stale_input_binding.json", seal_self_hash(frozen))
+
+    envelope = _load("global_validator_input.json")
+    envelope.pop("constraint_evidence")
+    _write("global_input_missing_constraint.json", seal_self_hash(envelope))
+
+    decision = _load("global_decision_package.json")
+    decision["decision_features"] = {}
+    _write("decision_empty_features.json", _reseal_decision(decision))
+
+    gates = _load("gate_result_set.json")
+    gates["observations"][1]["gate_id"] = gates["observations"][0]["gate_id"]
+    _write("gate_duplicate_id.json", seal_self_hash(gates))
+
+    tac = _load("tac_occurrence_input.json")
+    tac["source_term_span"]["end"] = len(tac["source_text"]) + 1
+    _write("tac_span_out_of_bounds.json", seal_self_hash(tac))
+
+    calibration = _load("calibration_artifact.json")
+    calibration["model"] = {
+        "model_type": "RULE_SET",
+        "feature_names": ["C_mean"],
+        "parameters": {"rules": [{"feature": "C_mean"}]},
+    }
+    _write("calibration_undefined_rule_set.json", seal_self_hash(calibration))
+
+    decision = _load("global_decision_package.json")
+    raw = json.dumps(decision, ensure_ascii=False, sort_keys=True).replace(
+        str(decision["approval_score"]), "NaN", 1
+    )
+    (INVALID / "decision_nan_score.json").write_text(
+        raw + "\n", encoding="utf-8", newline="\n"
+    )
     return 0
 
 

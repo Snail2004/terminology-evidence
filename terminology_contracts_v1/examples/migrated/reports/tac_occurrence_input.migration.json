@@ -4,12 +4,16 @@
     "$.certificate.attestation_evidence_sha256",
     "$.certificate.binding_status",
     "$.certificate.calibration_artifact_sha256",
+    "$.certificate.constraint_evidence_sha256",
     "$.certificate.context_evidence_sha256",
     "$.certificate.effective_sense_contract_sha256",
+    "$.certificate.frozen_candidate_contract_sha256",
     "$.certificate.gate_result_sha256",
+    "$.certificate.global_validator_input_sha256",
     "$.certificate.input_contract_sha256",
     "$.certificate.sense_inventory_version",
-    "$.certificate.threshold_version"
+    "$.certificate.threshold_version",
+    "$.offset_unit"
   ],
   "fields_renamed": [],
   "migration_tool_version": "1.0.0",
@@ -17,7 +21,7 @@
   "source_schema_version": "1.0.0",
   "source_sha256": "de1d5eb9a12dfb0ccc250be0c7a94f7e9850924ee292e5802af2b00faadb2235",
   "target_schema_version": "1.1.0",
-  "target_sha256": "53c1656ec4a54a005f873f18a7fe90ca0be017f893be397dfd50a27fa1cbcab1",
+  "target_sha256": "f921cfcd92fdc5070ae6bf281d414b56c525a1d4ceecc2100aa58d456a7dd8d5",
   "warnings": [
     "Legacy certificate remains non-issuable until input, gate, and calibration bindings are supplied from verified artifacts."
   ]

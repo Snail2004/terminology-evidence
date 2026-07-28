@@ -1,10 +1,10 @@
 {
   "candidate_key": {
     "candidate_id": "cand-inference-vi-01",
-    "candidate_version": "1",
+    "candidate_version": "fixture-candidate-v1",
     "candidate_vi": "suy luận",
     "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
-    "effective_sense_contract_sha256": "82eedc4661ad441fd7e1925b61738b3ad97af9c2eacb9ce99f2209b45fe1dd0b",
+    "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
     "scope_id": "machine_learning",
     "sense_id": "model_execution",
     "sense_inventory_version": "sense-v1",
@@ -27,16 +27,16 @@
   },
   "final_glossary_decision": null,
   "flags": [],
-  "input_contract_sha256": "ad9888fdb98fba49d6a7b50f30d8749694e28c89a5dd3f7fdea0ae490ccdf704",
+  "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
   "integrity": {
-    "self_sha256": "9eeb88d113f70a4247ff1e380b59545f4620d803e3d9dacdc6bab7f9adfbd0e8"
+    "self_sha256": "67423d3e1556298bed0b4b0ed7a794cc2811fae741690bfeda3c1efd1bf8a1bd"
   },
   "local_status": "CONTEXT_SUPPORTED",
   "provenance": {
     "completed_at": "2026-07-28T10:01:00+00:00",
     "component_id": "context-substitution",
-    "component_version": "1.0.0",
-    "execution_config_sha256": "56dd8aa5074dc152745759923794e447d85150d6b2bc1d0314edef2382928105",
+    "component_version": "1.1.0",
+    "execution_config_sha256": "04e288420fcb64ee2aa197a1b258690fabd5ce2be087aada58d22b26d145bfb4",
     "model_routes": [
       {
         "independence_group": "group-demo",
@@ -56,8 +56,8 @@
       "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "uri": "artifact://runs/run-demo-001"
     },
-    "run_id": "run-demo-001",
-    "run_spec_id": "run-demo-001-spec-migrated-v1-1",
+    "run_id": "fixture-context-substitution-run-001",
+    "run_spec_id": "fixture-context-substitution-spec-001",
     "source_artifact_hashes": {
       "dataset": "1111111111111111111111111111111111111111111111111111111111111111"
     },

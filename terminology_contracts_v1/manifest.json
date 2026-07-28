@@ -20,33 +20,33 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "5a00c6ba2337ff777c5ea2f67100f4f82a974e47128e1085b665e8603f2890e2",
-      "size_bytes": 612
+      "sha256": "76f47621a6b214377ffb60989685900440606efc0d7b01f184f1b69d4b4343e7",
+      "size_bytes": 1124
     },
     {
       "path": "commands.txt",
-      "sha256": "bc460e92e66c42b1b7f60cf72aed2fac8469929870a29f25b3702d3c3e46917a",
-      "size_bytes": 654
+      "sha256": "25bcb60f903cf1d28689848fa62dd4653485c1baf62981a1afed492d133d002d",
+      "size_bytes": 741
     },
     {
       "path": "docs/COMPATIBILITY_MATRIX.md",
-      "sha256": "a454b37e793fc4aef4cfefd21f16233437c48d4cc8c09c7ccb88344e3a278628",
-      "size_bytes": 691
+      "sha256": "1c80a64ddd7d24ea68ab19ba2c1909ffbd527ed6c816a5c88db0d9428d9391a9",
+      "size_bytes": 891
     },
     {
       "path": "docs/CONSUMER_GUIDE_GLOBAL_VALIDATOR.md",
-      "sha256": "c0b8941a116697131b400c4503853ca0455f4d3bd50cdd9628969e4e05a58f62",
-      "size_bytes": 649
+      "sha256": "05d3c0c9df4f315430287c1ad3962bf5b9797d7ea6c45ded2d3c0316a3279ca4",
+      "size_bytes": 1024
     },
     {
       "path": "docs/CONSUMER_GUIDE_TAC.md",
-      "sha256": "5aef350a36f123a22ee1c27cfd5097ff6ec38a55141793387588648087154425",
-      "size_bytes": 445
+      "sha256": "d6119602a20a0de84d8ad87d261c5262523ca8fecc412e24260ff0ca6f483893",
+      "size_bytes": 630
     },
     {
       "path": "docs/INTEGRATION_GUIDE.md",
-      "sha256": "c308d5e59926cc2b85ce694f02cc9b18a9da9ce08da6b16f85bde8f9ae75cd23",
-      "size_bytes": 970
+      "sha256": "912dd0277597ccae088315f87b87b83441709581889a66d1df3b8b539a358746",
+      "size_bytes": 1197
     },
     {
       "path": "docs/Kien_truc_Terminology_Contracts_V1_1.md",
@@ -55,13 +55,18 @@
     },
     {
       "path": "docs/PRODUCER_GUIDE_C.md",
-      "sha256": "128ff3ed98c9bf6d451ad7c165b833c52134a98923d8238ade37642cdf47a600",
-      "size_bytes": 622
+      "sha256": "0b5eba11f28b4c40c34bafa7215d866bb0d2f624d9b135acce769c1baaa570f9",
+      "size_bytes": 674
     },
     {
       "path": "docs/PRODUCER_GUIDE_E.md",
-      "sha256": "a5da34f520b94ed3fb4200cecea868e3220e42243061894f0d4009af716ab8d2",
-      "size_bytes": 528
+      "sha256": "6b4f6487fc9c49fa14405b89d4afbf05fccf8c468a9c053030480a701e449990",
+      "size_bytes": 580
+    },
+    {
+      "path": "docs/RC2_HARDENING_ADDENDUM.md",
+      "sha256": "39043e970052d25723038071990e67c6bb2464bd823179746d597733217f716b",
+      "size_bytes": 1283
     },
     {
       "path": "examples/invalid/README.md",
@@ -90,38 +95,73 @@
     },
     {
       "path": "examples/invalid/v1.1.0/attested_without_evidence.json",
-      "sha256": "cec1322135ddd96e51f0ffc41d7d9e743ea4c8ecf2fb88dcfc2f7d5409e63aa6",
-      "size_bytes": 2909
+      "sha256": "70c7c54dd92258796c8f459a6067a4182cb4dbc51b8ff8075b3283a70d80da07",
+      "size_bytes": 2962
+    },
+    {
+      "path": "examples/invalid/v1.1.0/calibration_undefined_rule_set.json",
+      "sha256": "a6b4e4831e459fd2c86be291c84ed90652e59cffb8d9c2c5fb0fde45068ffeda",
+      "size_bytes": 1239
     },
     {
       "path": "examples/invalid/v1.1.0/calibration_zero_dataset_hash.json",
-      "sha256": "aca3345afd2af657fb1e579483bee5c127e3b59996c2a6893ea8f8f857c7542f",
-      "size_bytes": 1383
+      "sha256": "79e8505a12137d9af4aaa2f20ac14a47696aea945d76fd45ed19ff808172f652",
+      "size_bytes": 1623
     },
     {
       "path": "examples/invalid/v1.1.0/certificate_missing_decision_binding.json",
-      "sha256": "1689f701ce7f44a43146e80dec81113be4c35dd9cab164afc44ae62b303f120a",
-      "size_bytes": 2828
+      "sha256": "35b3d13b4cb2519348c31e5f21c9b73bdaa4fdfb72d14e301742a0022abede50",
+      "size_bytes": 3120
     },
     {
       "path": "examples/invalid/v1.1.0/context_bad_counts.json",
-      "sha256": "72c2346f7e0f59b9ea9e26f2671e8b8583447069be7b6a64c42f18dcc4273730",
-      "size_bytes": 3023
+      "sha256": "53ce651b82b090ee23c45d8ac7bde11eae6da038a09a94d5318fd856fd583eed",
+      "size_bytes": 3072
+    },
+    {
+      "path": "examples/invalid/v1.1.0/decision_empty_features.json",
+      "sha256": "16245d72d615350c702cb5ecfe22dbf9f5f5554fa5f4be25925b74fc4409d439",
+      "size_bytes": 6508
+    },
+    {
+      "path": "examples/invalid/v1.1.0/decision_nan_score.json",
+      "sha256": "a53a8b80a479fafa0a0d89df5f5c30e48524f7ea875ee3db2f8f572b72f193dd",
+      "size_bytes": 5298
     },
     {
       "path": "examples/invalid/v1.1.0/dev_policy_auto_approved.json",
-      "sha256": "d4334afb6f4558ab7c5bd200581512d2f5d4af65ed9f78119e01a134605d5c66",
-      "size_bytes": 3954
+      "sha256": "d9ff76535893c52df0c1e0d080a0d84f10c34660a8d13b9f7786a7493831b31e",
+      "size_bytes": 6845
+    },
+    {
+      "path": "examples/invalid/v1.1.0/frozen_stale_input_binding.json",
+      "sha256": "16b233e5fdf3363b5eaf68c4d2d5f1afa02f9b219548ab2ac4e57e2665462e81",
+      "size_bytes": 2569
+    },
+    {
+      "path": "examples/invalid/v1.1.0/gate_duplicate_id.json",
+      "sha256": "0489ea99bd41b67259c408b294611f436b5e77cad5e419eeaa9d56c66cbba9e4",
+      "size_bytes": 3376
     },
     {
       "path": "examples/invalid/v1.1.0/gate_false_with_action.json",
-      "sha256": "3c528635a66531f8daad954260c23a2462790a2306de66b9d8f5d9b128bd62c7",
-      "size_bytes": 1234
+      "sha256": "6ff29d9e2ed1ab30375b71c0bb286dd35c280cd14fd8228d5c18137f3d949b2b",
+      "size_bytes": 3388
     },
     {
       "path": "examples/invalid/v1.1.0/global_input_mismatched_candidate.json",
-      "sha256": "49da295bc4515ea27ce49a0b34d021136758a2a9cf623ec66ebfb84f7a21aac9",
-      "size_bytes": 7758
+      "sha256": "09df4dcc9c630c872d95ccbb78b94b97ec95e46d9a476a284e141de283f0fa5a",
+      "size_bytes": 16370
+    },
+    {
+      "path": "examples/invalid/v1.1.0/global_input_missing_constraint.json",
+      "sha256": "a433c44fa56ff83402bd206d6714f5573bc161cceed7d097368a51b219c31a6a",
+      "size_bytes": 13234
+    },
+    {
+      "path": "examples/invalid/v1.1.0/tac_span_out_of_bounds.json",
+      "sha256": "e9a0092f9a0728562f94d4f595e3ffc1d15b75d3b7e4243877186b86f894e7ee",
+      "size_bytes": 3828
     },
     {
       "path": "examples/migrated/reports/attestation_evidence_package.migration.json",
@@ -130,8 +170,8 @@
     },
     {
       "path": "examples/migrated/reports/calibration_artifact.migration.json",
-      "sha256": "19b85879aa1beaf32f99ba5cd250cb158a48de49f9c94611f0998ed9b2babd53",
-      "size_bytes": 657
+      "sha256": "27afbbedbfcd75a51ec96bd13299e1c66bc4a6ae69a16bbdf6755a9fab9024ff",
+      "size_bytes": 730
     },
     {
       "path": "examples/migrated/reports/context_evidence_package.migration.json",
@@ -145,33 +185,33 @@
     },
     {
       "path": "examples/migrated/reports/frozen_candidate_contract.migration.json",
-      "sha256": "c342718fa9523d83e05c24a132ea7f81157896889dc3c06eba0e83b2ad4c418a",
-      "size_bytes": 522
+      "sha256": "3e893f1e91b1560839d664eb1206cea4edf1745387af5a1c69fe4e3f0bebc7f7",
+      "size_bytes": 546
     },
     {
       "path": "examples/migrated/reports/gate_result_set.migration.json",
-      "sha256": "9cecd8f437f127126bac0be7c0d8330001e1df9ef494c3d450f8ed1dfaa9a292",
-      "size_bytes": 473
+      "sha256": "0f12c6319006cb4d22f3283c9fa2ace8c96f991f25d4b46352133bfcc69e74fa",
+      "size_bytes": 497
     },
     {
       "path": "examples/migrated/reports/global_decision_package.migration.json",
-      "sha256": "3d2bfafdff087d47681e2730520b153cb96507404f3f8de8440e5c9e36456d57",
-      "size_bytes": 659
+      "sha256": "fa03b9b1d7e1e4b98172a5dc70cda738b6097fae63c0bcb664eadeeddf2cbfd8",
+      "size_bytes": 696
     },
     {
       "path": "examples/migrated/reports/global_validator_input.migration.json",
-      "sha256": "65493de4e3b2fa90b881b60dfe9ceab9ea0ef4c64f6fadb38dc6b699563ba7ea",
-      "size_bytes": 735
+      "sha256": "26525a42c9d6ce08b1e219344aa9bb5c3a8924cf620f5d85926f9254e4fadf59",
+      "size_bytes": 833
     },
     {
       "path": "examples/migrated/reports/tac_occurrence_input.migration.json",
-      "sha256": "88022eafe29ad44c087d4515af03207a041b454011fad9a1be120531226a2dab",
-      "size_bytes": 975
+      "sha256": "1ed5bde3afb2fe88a080b60f6fd3c7c42ed205d82ddec9a177bd7040681642a1",
+      "size_bytes": 1149
     },
     {
       "path": "examples/migrated/reports/terminology_certificate.migration.json",
-      "sha256": "c38a900cce8168fc59ef56cb9ab96bd7fcd7d0ceb3ce9ba87103c72be57fe164",
-      "size_bytes": 859
+      "sha256": "3d9ed85896b74cf7662109b209b035b21ca563e339ec70a3bcb44ee2d1441297",
+      "size_bytes": 976
     },
     {
       "path": "examples/migrated/v1.1.0/attestation_evidence_package.json",
@@ -180,8 +220,8 @@
     },
     {
       "path": "examples/migrated/v1.1.0/calibration_artifact.json",
-      "sha256": "1844d8d98bef618155e9154c83875e559e77152324bab83338d659414e89bb5e",
-      "size_bytes": 1227
+      "sha256": "7ae926e7c7c7b82afdb1ff0e9736aa0b22b42e73cd7836e109f3faf5466b66ae",
+      "size_bytes": 1290
     },
     {
       "path": "examples/migrated/v1.1.0/context_evidence_package.json",
@@ -195,33 +235,33 @@
     },
     {
       "path": "examples/migrated/v1.1.0/frozen_candidate_contract.json",
-      "sha256": "b9e4552731feee66d4ff561b51023e64fd7ebd1f2eaa6daaa60084f0c7cc6e5f",
-      "size_bytes": 2509
+      "sha256": "15229d752d1ebca4f5a2edf9c8f27bca4b573a5787812d9367cd80b439559fa9",
+      "size_bytes": 2550
     },
     {
       "path": "examples/migrated/v1.1.0/gate_result_set.json",
-      "sha256": "7a6e633c92c11a02a74d92aa347197f60b7e551d510133b6c4957d3f959ea519",
-      "size_bytes": 1226
+      "sha256": "9596128cb4e0a5a7905103ce8d40d25168a07e10ddf1495605113b491343f592",
+      "size_bytes": 1267
     },
     {
       "path": "examples/migrated/v1.1.0/global_decision_package.json",
-      "sha256": "24652cefc5f08b1c38ec8e3da678efcca235bcf04870f3e4b553fe781829ad7f",
-      "size_bytes": 3708
+      "sha256": "5cf1944f81fd6b2df978171c5220f8caf4ab3716900db9b22f35316c5131b833",
+      "size_bytes": 4083
     },
     {
       "path": "examples/migrated/v1.1.0/global_validator_input.json",
-      "sha256": "b6a23b8a7d2ff1a136d6c6486cfc54eb7387f65cf0cffdf0494d5943870262cf",
-      "size_bytes": 7762
+      "sha256": "53bd55827e9fc0f1b9d27e7992528cbc2d5938f8c36fa2f1be752ac46effa3df",
+      "size_bytes": 8046
     },
     {
       "path": "examples/migrated/v1.1.0/tac_occurrence_input.json",
-      "sha256": "43fb43cb4343d998986aec48718da2673d5f02d3a2eded892cc42d36ffb54473",
-      "size_bytes": 3033
+      "sha256": "13a8c9a6bd36b592ddef0890732d792c2d89afbca806451867b1acbb249b1ebc",
+      "size_bytes": 3200
     },
     {
       "path": "examples/migrated/v1.1.0/terminology_certificate.json",
-      "sha256": "fc3d9f575df0d3df13f2b887cd3255136d6a242926d6b2869271e112d701c325",
-      "size_bytes": 2383
+      "sha256": "9b1f2fafe424b87b6989f1e9c3fc5bc08d319bfb32505a0d6467ec995121ccde",
+      "size_bytes": 2506
     },
     {
       "path": "examples/valid/v1.0.0/attestation_evidence_package.json",
@@ -275,58 +315,63 @@
     },
     {
       "path": "examples/valid/v1.1.0/attestation_evidence_package.json",
-      "sha256": "0f7429d17c3392a67c84ab24240394d13decb22f272b2ef73a072f4606eb72e7",
-      "size_bytes": 3127
+      "sha256": "f91f1c4e149d86c7aa7447cf6b7440ae1b378a419e7250f2739384c993a0d44b",
+      "size_bytes": 3180
     },
     {
       "path": "examples/valid/v1.1.0/calibration_artifact.json",
-      "sha256": "b596b3dd17fdc202a957cf6f864520ff5ee7c8f7583ef066adbc86357ed80d68",
-      "size_bytes": 1383
+      "sha256": "33f4554b2975698013411bd7b7364f765c9235c64b4da4b178bdf606b088060e",
+      "size_bytes": 1623
+    },
+    {
+      "path": "examples/valid/v1.1.0/constraint_evidence_package.json",
+      "sha256": "a0f9df880d9665c32ab8cbf6c504b71c996434d81910925a50d23d40e2cd6209",
+      "size_bytes": 2958
     },
     {
       "path": "examples/valid/v1.1.0/context_evidence_package.json",
-      "sha256": "25f7ce8172bed6fc22e420535c8a2bcc0ac2513a9647a0fd514187afc6fb66f2",
-      "size_bytes": 3023
+      "sha256": "766d8325694c6f4726ce386ce907f20427eddfc35f638bc012b0ac8a8f3fcd0e",
+      "size_bytes": 3072
     },
     {
       "path": "examples/valid/v1.1.0/effective_sense_contract.json",
-      "sha256": "2181131106292a6f9579c9406505574df8e7b7cb7f95bbde55d343dfa9ab7157",
-      "size_bytes": 2070
+      "sha256": "3833ccd4f0442fb8cb42e455e55b3fc3ba2f7ddce7f068c4a59f9cde47c89b5f",
+      "size_bytes": 2084
     },
     {
       "path": "examples/valid/v1.1.0/frozen_candidate_contract.json",
-      "sha256": "b9e4552731feee66d4ff561b51023e64fd7ebd1f2eaa6daaa60084f0c7cc6e5f",
-      "size_bytes": 2509
+      "sha256": "14c15d103854c470b8d804ca44366c27d463485438982076eceb2ce0ece8ef8b",
+      "size_bytes": 2584
     },
     {
       "path": "examples/valid/v1.1.0/gate_result_set.json",
-      "sha256": "7a6e633c92c11a02a74d92aa347197f60b7e551d510133b6c4957d3f959ea519",
-      "size_bytes": 1226
+      "sha256": "a920d562573d8f622436e8026e2cbc880658c461e480bfa1f8a1df460c8968e6",
+      "size_bytes": 3380
     },
     {
       "path": "examples/valid/v1.1.0/global_decision_package.json",
-      "sha256": "60dcb0e688d15150222c8a7b3a787dd55aa487c49a4124ade38fdf8e59b93f77",
-      "size_bytes": 3807
+      "sha256": "ae990ef2386642aecccb8c99aef7cb25d714f6f9121b1b8ee2ea1501e6a8162c",
+      "size_bytes": 6698
     },
     {
       "path": "examples/valid/v1.1.0/global_validator_input.json",
-      "sha256": "b6a23b8a7d2ff1a136d6c6486cfc54eb7387f65cf0cffdf0494d5943870262cf",
-      "size_bytes": 7762
+      "sha256": "fc918c2ea810ef7027921fda95fce07e0f10bc196030d4b5a2cfc314665b61c0",
+      "size_bytes": 16374
     },
     {
       "path": "examples/valid/v1.1.0/tac_occurrence_input.json",
-      "sha256": "033a5e1d7dce0cfb881de903851c653ca877c6e5f960e396781716e3984b0903",
-      "size_bytes": 3492
+      "sha256": "946a0f9e27db468cf926949001e77b3281884ca384f56f49a43959ae5582d92c",
+      "size_bytes": 3828
     },
     {
       "path": "examples/valid/v1.1.0/terminology_certificate.json",
-      "sha256": "46c2d06b60e5d2b4dc8586933f12d1107323ba769dcfb4839d818efe2d9b3715",
-      "size_bytes": 2828
+      "sha256": "b0304376776cd18f61e5a27ac67e9d7511b4c56091ee02d6f32dbf4d6ed0af0c",
+      "size_bytes": 3120
     },
     {
       "path": "migrations/README.md",
-      "sha256": "602eff13af910e3eb0ddce437c5897d889581ec85671474ebad86452bcb70dd2",
-      "size_bytes": 627
+      "sha256": "7ec9640f55fa8616baf869b1754553cdcbeec82def43a5044e14e4a5642bbf51",
+      "size_bytes": 823
     },
     {
       "path": "migrations/v1_0_0_to_v1_1_0.py",
@@ -340,33 +385,38 @@
     },
     {
       "path": "python/terminology_contracts/__init__.py",
-      "sha256": "83cd92743ebe6a2201e68df8eba08ccfa99e44d0094ade09854dcc068bb9cbe4",
-      "size_bytes": 200
+      "sha256": "31f4223d3b3a905195d46ad049001ab5797cf9c53a3755fbf9b923fac740df94",
+      "size_bytes": 461
+    },
+    {
+      "path": "python/terminology_contracts/bindings.py",
+      "sha256": "07ecbcd20179ef685bee1f8bd9bd41cbe173e313f12621d206c04d4630f53f41",
+      "size_bytes": 2208
     },
     {
       "path": "python/terminology_contracts/calibration.py",
-      "sha256": "1ab3f6bde6fea171ebe16a52421737355f66e617354428633348a7799c13c245",
-      "size_bytes": 9000
+      "sha256": "3ae50e4dab90dbf697224518914bf109fd273ff86aa9134b1e674a666e660384",
+      "size_bytes": 9643
     },
     {
       "path": "python/terminology_contracts/canonical.py",
-      "sha256": "876ae18f3595ba87f7a06dbc014f5baac6122d870209c50341c3c406456a1a03",
-      "size_bytes": 1194
+      "sha256": "7b3b806e16a9d08b58568d337c508ef68816a310f67a1537438b929ec3512fa4",
+      "size_bytes": 1244
     },
     {
       "path": "python/terminology_contracts/cli.py",
-      "sha256": "37df363ee92bd17fd69f7babe764762d8b88c4a899c8d97b00ee24c21a13e452",
-      "size_bytes": 2820
+      "sha256": "59492449e9a8ce148f96de1bea5667812f729d30f3b62b850de543a5745a3105",
+      "size_bytes": 2936
     },
     {
       "path": "python/terminology_contracts/dataset_mapping.py",
-      "sha256": "52964d9adb5923f15c8e5cd9dac322f6e053cd66dca9f77745c6d08ce460bcf1",
-      "size_bytes": 2473
+      "sha256": "ab410040820ec4bb78930ce17a2701b3b05a482ac22069f2cc0163f2259cd7bf",
+      "size_bytes": 2691
     },
     {
       "path": "python/terminology_contracts/integrity.py",
-      "sha256": "5560735a34398ffcfca757f2a3f6c8c077891d494c78a424903ad67f02b73255",
-      "size_bytes": 3755
+      "sha256": "67414c39c5d8336f67f49f3ef70d76d0a4195fdade47c11f39c6ab7a3700593c",
+      "size_bytes": 4035
     },
     {
       "path": "python/terminology_contracts/manifest.py",
@@ -375,28 +425,33 @@
     },
     {
       "path": "python/terminology_contracts/migration.py",
-      "sha256": "b6026f971b006eb92e3a26b1e0a490126204d83e0dfb139496570931275c9b55",
-      "size_bytes": 13845
+      "sha256": "82ce2e0fd3b1339726900793d72657861b00a9a507bc058d3234dfbeb4a4f78b",
+      "size_bytes": 15923
     },
     {
       "path": "python/terminology_contracts/registries.py",
-      "sha256": "75357b669371a944dfd8fe3a57c81903ab4677bb5d88d699fcbb437aaff6e080",
-      "size_bytes": 6355
+      "sha256": "acd7b51552cae961350d2ce7921c0a524164d4ff686900427e5dfa0ea71897c8",
+      "size_bytes": 10211
+    },
+    {
+      "path": "python/terminology_contracts/scoring.py",
+      "sha256": "1b1167e387d82f389ce935e388eadecae9986a6731a56adc001c0c15c6a5a465",
+      "size_bytes": 5726
     },
     {
       "path": "python/terminology_contracts/validation.py",
-      "sha256": "357ae80654e5b5a8ace15d128534e195e05e4c767b988a1dccb8c79147b8c4ca",
-      "size_bytes": 25948
+      "sha256": "97c14da8fe54b16ebee57b9f24a94936ac99fe0221c7d62ad07118ad17ccc1c3",
+      "size_bytes": 56935
     },
     {
       "path": "README.md",
-      "sha256": "0e3a9199021dd01c501875b789cf5e0d7f87fc8c7cb5eb81c1e3fc3202cb0d2d",
-      "size_bytes": 1889
+      "sha256": "29f73bd370fb822981a814b142ff18667d290e6c5be2aac0747eea751e8f02a5",
+      "size_bytes": 2629
     },
     {
       "path": "registries/feature_contract_v1.1.0.json",
-      "sha256": "233f699054fe58039d0eb493a3a58560f1f4966a2932b1b77e804d75faa0b5de",
-      "size_bytes": 1219
+      "sha256": "78a0cc6e969c88173a2203c76e41411e836a326616da452f38148c9f0c960244",
+      "size_bytes": 4637
     },
     {
       "path": "registries/gate_registry_v1.1.0.json",
@@ -405,13 +460,13 @@
     },
     {
       "path": "registries/schema_registry_v1.1.0.json",
-      "sha256": "56eab9b1c028b11eb09177d70b832e3738ff66b63023b23e141c6bd49981fe96",
-      "size_bytes": 2805
+      "sha256": "9ae9e747047160f9f63ce7d9646ad77968a0886f7d80f57e6a1c12791c0fcf63",
+      "size_bytes": 2999
     },
     {
       "path": "RELEASE_NOTES_V1_1.md",
-      "sha256": "460c9f9aae9cacfce9eeaf2ac12c1c2d2bb2c3f791990e2e9f42a0f7ff100312",
-      "size_bytes": 1096
+      "sha256": "bd4b804e60d6ba4f9db1c1d6058605edb0781ff028f5efa879ef2187bc36ce8e",
+      "size_bytes": 1838
     },
     {
       "path": "requirements-dev.txt",
@@ -425,13 +480,18 @@
     },
     {
       "path": "schemas/current/calibration_artifact.schema.json",
-      "sha256": "ed34d15d6034b9cc4183b021c5acb8df2e870ea302ebbba366da939630029e42",
-      "size_bytes": 3104
+      "sha256": "ad21a79f9fdb7fa896bfe3122a749f37e49ec26863fedae601505d2be856fb11",
+      "size_bytes": 6552
     },
     {
       "path": "schemas/current/common_defs.schema.json",
-      "sha256": "37e4dec47cd91e603ef6584b9d700f991986437eb0fa771c0076d5d2f95e1344",
-      "size_bytes": 6315
+      "sha256": "4847ff38abb2518226e00ec95ee8c0415217f5fa7d53852b107da08ad82b3ebd",
+      "size_bytes": 6381
+    },
+    {
+      "path": "schemas/current/constraint_evidence_package.schema.json",
+      "sha256": "7e1460addef8ccb5d50cc373c44044b14c40a95af6912ecd3db0921ca6341032",
+      "size_bytes": 3475
     },
     {
       "path": "schemas/current/context_evidence_package.schema.json",
@@ -445,23 +505,23 @@
     },
     {
       "path": "schemas/current/frozen_candidate_contract.schema.json",
-      "sha256": "f34d8700288c3f8cea88305e23688192186633834a8ccaf242a518cb53cfa019",
-      "size_bytes": 2919
+      "sha256": "9cfc4a052a81fe937c663a80ecf1c9ff946683e5fb902738bba23ed5df2b1fa1",
+      "size_bytes": 3044
     },
     {
       "path": "schemas/current/gate_result_set.schema.json",
-      "sha256": "1ebe59c70db147a134bed220dcb86340869b2b5200b0dd30cf51d87bb8647500",
-      "size_bytes": 2831
+      "sha256": "3f877ad666d0dfa10937c1dacaef6d637b82aba5e017ba0e90ee8799e2745926",
+      "size_bytes": 2999
     },
     {
       "path": "schemas/current/global_decision_package.schema.json",
-      "sha256": "d6560e18400424aded706f7558ec75840df9ab2ba191fa568470df9cfb63dd43",
-      "size_bytes": 5591
+      "sha256": "cc57a53a4f1a58d2681a55f0226ae261d332b9af0e9120fa4a33acebf8e7b6df",
+      "size_bytes": 6430
     },
     {
       "path": "schemas/current/global_validator_input.schema.json",
-      "sha256": "5074fcf5720a28f0515d2614383be57d823c87c3079d924bead78aeb653032be",
-      "size_bytes": 2427
+      "sha256": "147edfbcaf677fc119f5ea52a84c80a1386fb7028c49aebc7401bb6b47ae16b0",
+      "size_bytes": 3774
     },
     {
       "path": "schemas/current/optional_probe_package.schema.json",
@@ -470,13 +530,13 @@
     },
     {
       "path": "schemas/current/tac_occurrence_input.schema.json",
-      "sha256": "f51a464e33b304512822c51fa91ddea8b43015b5f2da198a5962a0979ae1598c",
-      "size_bytes": 1584
+      "sha256": "c7d3b1e7e13f8b93c0bf3e28e8aec047ea6fa966cc9a1361285681a63fb67f80",
+      "size_bytes": 1666
     },
     {
       "path": "schemas/current/terminology_certificate.schema.json",
-      "sha256": "6509490b658a1182dea74357ac59b4d0ab26cadf140032a0bb9bbb80088e12cf",
-      "size_bytes": 4313
+      "sha256": "fe2f76f3073c3bcac4b4edd2fb8cc9e5b887b6346d7dab99ac34fe0b954e5d3d",
+      "size_bytes": 4748
     },
     {
       "path": "schemas/legacy/v1.0.0/attestation_evidence_package.schema.json",
@@ -545,13 +605,18 @@
     },
     {
       "path": "schemas/v1.1.0/calibration_artifact.schema.json",
-      "sha256": "ed34d15d6034b9cc4183b021c5acb8df2e870ea302ebbba366da939630029e42",
-      "size_bytes": 3104
+      "sha256": "ad21a79f9fdb7fa896bfe3122a749f37e49ec26863fedae601505d2be856fb11",
+      "size_bytes": 6552
     },
     {
       "path": "schemas/v1.1.0/common_defs.schema.json",
-      "sha256": "37e4dec47cd91e603ef6584b9d700f991986437eb0fa771c0076d5d2f95e1344",
-      "size_bytes": 6315
+      "sha256": "4847ff38abb2518226e00ec95ee8c0415217f5fa7d53852b107da08ad82b3ebd",
+      "size_bytes": 6381
+    },
+    {
+      "path": "schemas/v1.1.0/constraint_evidence_package.schema.json",
+      "sha256": "7e1460addef8ccb5d50cc373c44044b14c40a95af6912ecd3db0921ca6341032",
+      "size_bytes": 3475
     },
     {
       "path": "schemas/v1.1.0/context_evidence_package.schema.json",
@@ -565,23 +630,23 @@
     },
     {
       "path": "schemas/v1.1.0/frozen_candidate_contract.schema.json",
-      "sha256": "f34d8700288c3f8cea88305e23688192186633834a8ccaf242a518cb53cfa019",
-      "size_bytes": 2919
+      "sha256": "9cfc4a052a81fe937c663a80ecf1c9ff946683e5fb902738bba23ed5df2b1fa1",
+      "size_bytes": 3044
     },
     {
       "path": "schemas/v1.1.0/gate_result_set.schema.json",
-      "sha256": "1ebe59c70db147a134bed220dcb86340869b2b5200b0dd30cf51d87bb8647500",
-      "size_bytes": 2831
+      "sha256": "3f877ad666d0dfa10937c1dacaef6d637b82aba5e017ba0e90ee8799e2745926",
+      "size_bytes": 2999
     },
     {
       "path": "schemas/v1.1.0/global_decision_package.schema.json",
-      "sha256": "d6560e18400424aded706f7558ec75840df9ab2ba191fa568470df9cfb63dd43",
-      "size_bytes": 5591
+      "sha256": "cc57a53a4f1a58d2681a55f0226ae261d332b9af0e9120fa4a33acebf8e7b6df",
+      "size_bytes": 6430
     },
     {
       "path": "schemas/v1.1.0/global_validator_input.schema.json",
-      "sha256": "5074fcf5720a28f0515d2614383be57d823c87c3079d924bead78aeb653032be",
-      "size_bytes": 2427
+      "sha256": "147edfbcaf677fc119f5ea52a84c80a1386fb7028c49aebc7401bb6b47ae16b0",
+      "size_bytes": 3774
     },
     {
       "path": "schemas/v1.1.0/optional_probe_package.schema.json",
@@ -590,23 +655,28 @@
     },
     {
       "path": "schemas/v1.1.0/tac_occurrence_input.schema.json",
-      "sha256": "f51a464e33b304512822c51fa91ddea8b43015b5f2da198a5962a0979ae1598c",
-      "size_bytes": 1584
+      "sha256": "c7d3b1e7e13f8b93c0bf3e28e8aec047ea6fa966cc9a1361285681a63fb67f80",
+      "size_bytes": 1666
     },
     {
       "path": "schemas/v1.1.0/terminology_certificate.schema.json",
-      "sha256": "6509490b658a1182dea74357ac59b4d0ab26cadf140032a0bb9bbb80088e12cf",
-      "size_bytes": 4313
+      "sha256": "fe2f76f3073c3bcac4b4edd2fb8cc9e5b887b6346d7dab99ac34fe0b954e5d3d",
+      "size_bytes": 4748
     },
     {
       "path": "terminology_contracts_v1_0_to_v1_1_diff.md",
-      "sha256": "bb1db920999ec0fb789c43c2781b6cc37464c74ca9eba94103e16598573441ee",
-      "size_bytes": 1750
+      "sha256": "c3b67e06a046d9308715a8325085f6c89576e854de2d50302fa9ca3003189bb4",
+      "size_bytes": 2091
     },
     {
       "path": "tests/conftest.py",
-      "sha256": "cf287ed7ed1d9a80091db4e51a6778c844f1ab63525d0213b7c66401840bcff0",
-      "size_bytes": 1877
+      "sha256": "e9fd0aae49184df40787a45113725d583255388c6ebf972c9b113d88710f678b",
+      "size_bytes": 1925
+    },
+    {
+      "path": "tests/test_bundle_verification.py",
+      "sha256": "fbeed812fa7e164008d9678fe6bdb22e845acccc833d26fe70a7c5bc20c49853",
+      "size_bytes": 2813
     },
     {
       "path": "tests/test_calibration_seal.py",
@@ -625,8 +695,8 @@
     },
     {
       "path": "tests/test_dataset_mapping_fixtures.py",
-      "sha256": "8f97c26ffb6179f73c759f8178b62ce8bdcdaa5daaed029edf7cb5fd8d8cfabd",
-      "size_bytes": 3269
+      "sha256": "20f181604d70879a17ca68ccfdde518683a7dd0b833f2812f173fdc0094c6845",
+      "size_bytes": 3437
     },
     {
       "path": "tests/test_development_mode.py",
@@ -635,13 +705,18 @@
     },
     {
       "path": "tests/test_gate_invariants.py",
-      "sha256": "c3a063d287f7708f9cfe9ba8d3dd1bd22c4e13420fd6736c41d77acbed568d9a",
-      "size_bytes": 3644
+      "sha256": "7427d0be060a6de100a48255ed7748c88db2d5e8525c95713b3660b26b68a478",
+      "size_bytes": 3779
     },
     {
       "path": "tests/test_migration_v1_0_to_v1_1.py",
       "sha256": "66acc1a8d49ee768f8fe8e4ef385f5b3c9b4202b202fac349d77554b132baa45",
       "size_bytes": 2498
+    },
+    {
+      "path": "tests/test_rc2_hardening.py",
+      "sha256": "394aca91ba3730f0cbbaf5a92f5594b1f523bfc0bec4f10100874d2c18fb600e",
+      "size_bytes": 7580
     },
     {
       "path": "tests/test_schema_validation.py",
@@ -650,23 +725,23 @@
     },
     {
       "path": "tools/build_fixtures.py",
-      "sha256": "fdd2536dde878abb60df808ec50760128fc0e9b96f30e42b4ad64c8f6b3f6814",
-      "size_bytes": 4567
+      "sha256": "333132ddd8383e6610af9949e3cdf82c42b941700bb50ba3195687e745d2fea7",
+      "size_bytes": 15383
     },
     {
       "path": "tools/build_invalid_fixtures.py",
-      "sha256": "3bb5ec90a866db1cb9ebf89d535d513c08425f25af202060edfac42ad6f66363",
-      "size_bytes": 2842
+      "sha256": "9c1726491782749749a3e8dfd059daf3862dbbdf43e93a8c279f84cadde22040",
+      "size_bytes": 4595
     },
     {
       "path": "tools/build_release.py",
-      "sha256": "59fd018913a2ab8b9a93c6ff4483b8d1d959eff836659cee0e689dfb42d9586b",
-      "size_bytes": 10207
+      "sha256": "17b47ded601b0d6219c628a1b4002ffc6223c7759abc6afc88f1d20d3972f28a",
+      "size_bytes": 14313
     },
     {
       "path": "tools/build_schemas.py",
-      "sha256": "d78bf5a103784315f2cd70496444b3591eefe07a208b3f111d5102d9e89428b1",
-      "size_bytes": 12525
+      "sha256": "ec59f7c77ce37538f8d7d1af7835cb6d86d3a66a1d1ee173e9a23b200e8bdc49",
+      "size_bytes": 23215
     },
     {
       "path": "tools/validate_all.py",
@@ -675,12 +750,12 @@
     },
     {
       "path": "VERSION_MATRIX.md",
-      "sha256": "8930e0e8e3ad46167924810edc2cb519a93d6425e51c8f7e268fd88c120f4bf9",
-      "size_bytes": 1025
+      "sha256": "21f5ac09908cb440ebd25534ecee7fa78faf98cfc1b71ac22d050a8864d4e510",
+      "size_bytes": 1151
     }
   ],
   "integrity": {
-    "manifest_sha256": "6034c59fb87640b5d8d2e404a6aa427b5ef67632b31a4bc280dadf926138670b"
+    "manifest_sha256": "f0cc9dede10fd2a174317a3c4c94f7e2385b40c527341a974d1f50bf22dc98eb"
   },
   "package_id": "TerminologyInterModuleContractsV1",
   "package_version": "1.1.0",

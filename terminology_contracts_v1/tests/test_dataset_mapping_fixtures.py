@@ -12,6 +12,7 @@ from terminology_contracts.dataset_mapping import DatasetMappingError, map_candi
 def _synthetic_records() -> tuple[dict, dict]:
     candidate = {
         "candidate_instance_id": "candidate-001",
+        "candidate_instance_sha256": "c" * 64,
         "schema_version": "3.0.0",
         "candidate_target_vi": "suy luan",
         "sense_id": "sense-001",
@@ -35,6 +36,8 @@ def test_mapping_requires_explicit_hash_bindings() -> None:
         effective_sense_contract_sha256="b" * 64,
     )
     assert mapped["candidate_id"] == "candidate-001"
+    assert mapped["candidate_version"] == "c" * 64
+    assert mapped["candidate_version"] != candidate["schema_version"]
     assert mapped["sense_id"] == "sense-001"
     assert mapped["scope_id"] == "scope-001"
     assert mapped["sense_inventory_version"] == "dataset-v3"

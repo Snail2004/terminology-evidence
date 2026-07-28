@@ -30,7 +30,10 @@
     "context_evidence_sha256",
     "attestation_evidence_sha256",
     "gate_result_sha256",
-    "calibration_artifact_sha256"
+    "calibration_artifact_sha256",
+    "global_validator_input_sha256",
+    "frozen_candidate_contract_sha256",
+    "constraint_evidence_sha256"
   ],
   "properties": {
     "schema_id": {
@@ -160,6 +163,15 @@
       "$ref": "common_defs.schema.json#/$defs/nullableSha256"
     },
     "calibration_artifact_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+    },
+    "global_validator_input_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+    },
+    "frozen_candidate_contract_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+    },
+    "constraint_evidence_sha256": {
       "$ref": "common_defs.schema.json#/$defs/nullableSha256"
     }
   }
