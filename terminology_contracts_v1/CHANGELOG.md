@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.0-rc4 - 2026-07-29
+
+- Bound certificate variants, blacklist, scope, C/E summary, threshold identity,
+  and issuance time to the exact verified source bundle.
+- Restricted certificate validity contexts to exact positive support refs.
+- Made native C/E gate signals JSON-schema-required while retaining explicit
+  legacy migration compatibility.
+- Added standalone GateResultSet verification against the sealed gate policy.
+- Required calibration binding for every complete certificate.
+- Preserved RC1-RC3 release candidates as immutable review evidence.
+
 ## 1.1.0-rc3 - 2026-07-29
 
 - Required native C/E gate-signal declarations and exact Global Validator

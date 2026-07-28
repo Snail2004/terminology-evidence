@@ -237,5 +237,33 @@
         }
       ]
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "provenance"
+        ],
+        "properties": {
+          "provenance": {
+            "required": [
+              "component_version"
+            ],
+            "properties": {
+              "component_version": {
+                "not": {
+                  "const": "1.0.0"
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "gate_signals"
+        ]
+      }
+    }
+  ]
 }

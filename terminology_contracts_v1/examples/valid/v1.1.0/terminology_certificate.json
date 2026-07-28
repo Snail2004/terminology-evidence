@@ -27,8 +27,8 @@
   "certificate_id": "cert-inference-001",
   "certificate_version": "1",
   "constraint_evidence_sha256": "d41daa7701022f4fb9c32719a0d9e4dec848becb7501520bba66b81dcbdec374",
-  "context_evidence_sha256": "0541b05d914ebab350f923e31ac01518a3300576e01fd1990a983f00ba6a612c",
-  "decision_package_sha256": "d16f7c8e42e93aca44386cd9500013f7017777020f1fdbd001f4dfba66419f3a",
+  "context_evidence_sha256": "61bda503eb5eed983cfb095fc84b42bb87161d0ba83781ecebfea48fc06c6cd7",
+  "decision_package_sha256": "5b34085871645c6886f07814d56b65be90584643566c9af1c9100ad42c666990",
   "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
   "evidence_summary": {
     "C_mean": 0.88,
@@ -41,7 +41,7 @@
       "E_independence": 0.67
     },
     "attestation_evidence_sha256": "831cf0d4a5cbbaf508c73a605e86fe66d8f066677080ea6af986637b5dcdf6aa",
-    "context_evidence_sha256": "0541b05d914ebab350f923e31ac01518a3300576e01fd1990a983f00ba6a612c"
+    "context_evidence_sha256": "61bda503eb5eed983cfb095fc84b42bb87161d0ba83781ecebfea48fc06c6cd7"
   },
   "forbidden_candidates": [
     "suy diễn logic"
@@ -50,10 +50,10 @@
   "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
   "gate_result_sha256": "ae976a4e05103b67748c6a51be74ba60e3e39c83131f54be42db18370cdaab72",
   "gate_summary": [],
-  "global_validator_input_sha256": "c85fec4352b6cd315074f58f3d8d6f1f7594923fab98aced6ced68b06c484a4a",
+  "global_validator_input_sha256": "deccfd5adfd50f5c82fa81d4348b6b2891ef77f2111c2ee8e0531a25dd472e1c",
   "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
   "integrity": {
-    "self_sha256": "0d2b30142530e05999981b2ff7151e3fc72883446a3b651bea4d154bfa3cd62d"
+    "self_sha256": "57719d19afb276c6d3a7adffe34f468f404f43bab182cb185f1cbb7f03d5660c"
   },
   "issued_at": "2026-07-28T11:30:00+00:00",
   "policy_version": "global-v1",
@@ -62,7 +62,7 @@
   "scope_note": "Machine-learning model execution on new inputs.",
   "sense_inventory_version": "sense-v1",
   "status": "AUTO_APPROVED",
-  "threshold_version": "calibration-fixture-v1.1.0-rc3",
+  "threshold_version": "fixture-op-v1",
   "validity_context_refs": [
     {
       "evidence_id": "ctx-1",

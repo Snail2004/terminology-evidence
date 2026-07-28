@@ -4,11 +4,11 @@ This package is the shared boundary authority for the Dataset Adapter, Context
 Substitution (C), Vietnamese Attestation (E), Global Validator, Calibration,
 Terminology Certificate, and TAC.
 
-The checked-in V1.1 implementation is release candidate `v1.1.0-rc3`. It must
+The checked-in V1.1 implementation is release candidate `v1.1.0-rc4`. It must
 pass independent re-review before the immutable `contracts-v1.1.0` authority
 tag is issued. RC1 and its review evidence remain archived under `release/`.
-The RC2 and RC3 normative corrections are summarized in
-`docs/RC2_HARDENING_ADDENDUM.md` and `docs/RC3_HARDENING_ADDENDUM.md`.
+The RC2-RC4 normative corrections are summarized in the corresponding
+`docs/RC*_HARDENING_ADDENDUM.md` files.
 
 ## Authority and ownership
 
@@ -19,6 +19,8 @@ The RC2 and RC3 normative corrections are summarized in
 - `ConstraintEvidencePackageV1` supplies explicit sense-review, polysemy, and
   cross-candidate collision inputs; the validator does not query hidden state.
 - TAC consumes only a complete `TerminologyCertificateV1`.
+- Certificate application fields are exact projections of the supplied Frozen
+  Candidate, C/E evidence, positive support set, calibration, and decision.
 - Weights and thresholds come only from a loaded, sealed, verified
   `CalibrationArtifactV1`; this package does not choose them.
 - Dataset files are mapping-test inputs, not runtime dependencies.
@@ -32,7 +34,7 @@ The RC2 and RC3 normative corrections are summarized in
 - `examples/valid/v1.1.0/`: native V1.1 fixtures.
 - `examples/migrated/v1.1.0/`: deterministic migration outputs.
 - `policies/gate_policy_v1.0.0.json`: sealed per-gate action authority.
-- `release/v1.1.0-rc3/`: repository-side candidate, audit, checksum, and JUnit proof.
+- `release/v1.1.0-rc4/`: repository-side candidate, audit, checksum, and JUnit proof.
 
 V1.0 is accepted only through explicit version-aware validation or migration.
 New producers emit V1.1.

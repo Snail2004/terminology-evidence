@@ -16,5 +16,5 @@
 | Certificate | `TerminologyCertificateV1` | 1.1.0 | 1.0.0 | Certificate store |
 | TAC handoff | `TACOccurrenceInputV1` | 1.1.0 | 1.0.0 | TAC |
 
-Package version: **1.1.0**, release channel **v1.1.0-rc3**. V1.0 requires
+Package version: **1.1.0**, release channel **v1.1.0-rc4**. V1.0 requires
 explicit legacy validation or migration.

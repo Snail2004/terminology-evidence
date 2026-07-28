@@ -13,7 +13,7 @@
     "source_term": "inference"
   },
   "certificate_ref": null,
-  "context_evidence_sha256": "0541b05d914ebab350f923e31ac01518a3300576e01fd1990a983f00ba6a612c",
+  "context_evidence_sha256": "61bda503eb5eed983cfb095fc84b42bb87161d0ba83781ecebfea48fc06c6cd7",
   "decision": "AUTO_APPROVED",
   "decision_features": {},
   "decision_policy": {
@@ -178,13 +178,13 @@
   },
   "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
   "integrity": {
-    "self_sha256": "01c5fd8e88718c7da91ddc6bf207cac75edd2a8118cef057b71ba83302fb0adc"
+    "self_sha256": "a70c7fd48951cd75fb03fb18297baf5d1c1c841972371ca4a40e414026d92048"
   },
   "run_metadata": {
     "binding_status": "COMPLETE",
     "completed_at": "2026-07-28T11:01:00+00:00",
-    "engine_version": "global-validator-fixture-1.1.0-rc3",
-    "execution_config_sha256": "6741b37d9b01a4025d2e77ccc071f55fcfef681b37567879a41083a76b76f251",
+    "engine_version": "global-validator-fixture-1.1.0-rc4",
+    "execution_config_sha256": "e7fb04c7134eb1d5611f3a834ba71c94191f0fe682b4513b2c1d860a870c1966",
     "feature_contract_version": "1.1.0",
     "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
     "gate_policy_version": "1.0.0",
@@ -193,14 +193,14 @@
     "input_package_hashes": {
       "attestation_evidence_sha256": "831cf0d4a5cbbaf508c73a605e86fe66d8f066677080ea6af986637b5dcdf6aa",
       "constraint_evidence_sha256": "d41daa7701022f4fb9c32719a0d9e4dec848becb7501520bba66b81dcbdec374",
-      "context_evidence_sha256": "0541b05d914ebab350f923e31ac01518a3300576e01fd1990a983f00ba6a612c",
+      "context_evidence_sha256": "61bda503eb5eed983cfb095fc84b42bb87161d0ba83781ecebfea48fc06c6cd7",
       "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
       "frozen_candidate_contract_sha256": "1cfadf782b4448173516f5cf204abc4db11f9e12c3932efea1c4b35361c92024",
       "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
       "gate_result_sha256": "ae976a4e05103b67748c6a51be74ba60e3e39c83131f54be42db18370cdaab72",
-      "global_validator_input_sha256": "c85fec4352b6cd315074f58f3d8d6f1f7594923fab98aced6ced68b06c484a4a"
+      "global_validator_input_sha256": "deccfd5adfd50f5c82fa81d4348b6b2891ef77f2111c2ee8e0531a25dd472e1c"
     },
-    "replay_spec_sha256": "e7aaea391d4116f1a6dd7a933bfaadff24d398ae2a6be9e04bcc21aaff83d7f9",
+    "replay_spec_sha256": "bb9301cb2b479b331eb94c94c91a7d402cb89c6547e4cb76d09056cae6c36d1f",
     "started_at": "2026-07-28T11:00:00+00:00"
   },
   "schema_id": "GlobalDecisionPackageV1",

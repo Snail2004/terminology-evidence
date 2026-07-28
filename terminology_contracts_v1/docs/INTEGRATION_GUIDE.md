@@ -23,6 +23,9 @@ adapter, never by treating its bytes as V1.1.
    replay the logistic score, and derive the decision.
 7. Issue a certificate only for `AUTO_APPROVED` or `PROVISIONAL`, then verify
    its complete external artifact bundle before TAC consumption.
+8. Derive certificate application fields exactly from Frozen Candidate,
+   positive C support, C/E features, calibration operating point, and decision
+   completion time. Issuer-local subsets or overrides are forbidden in V1.1.
 
 ## Dataset boundary
 

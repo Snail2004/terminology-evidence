@@ -10,6 +10,8 @@ The Global Validator validates both producer packages before assembling
 - Project every asserted C/E gate signal into the matching gate result and
   preserve its source, reasons, and evidence references.
 - Load the sealed gate policy and reject every action not allowed for its gate.
+- Validate standalone gate output with `validate_gate_result_with_policy(...)`
+  before assembling a decision.
 - Respect `FATAL_SPLIT > FATAL_REJECT > ESCALATE_HUMAN > CAP_PROVISIONAL > NONE`.
 - Do not auto-approve or emit a certificate reference in development mode.
 - In frozen mode, load and verify the actual calibration artifact, registered
@@ -18,3 +20,6 @@ The Global Validator validates both producer packages before assembling
   derive the decision from score plus gate precedence.
 - Record complete `run_metadata`; its replay hash covers all inputs, features,
   gates, engine, run specification, and execution configuration.
+- Derive certificate application fields exactly from the verified bundle; do
+  not select variant, blacklist, scope, context, summary, or threshold fields
+  in issuer-local code.

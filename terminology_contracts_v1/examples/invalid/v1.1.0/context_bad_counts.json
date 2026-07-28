@@ -73,7 +73,7 @@
   ],
   "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
   "integrity": {
-    "self_sha256": "15c50762c1dc879abd4e0b12ecc970a06775e49416d43a899b41942b37bb0fe4"
+    "self_sha256": "1251eb5c0ac0fb268d0a998e08d075e3b9abbcf174d1880c88cf4df7a79e943a"
   },
   "local_status": "CONTEXT_SUPPORTED",
   "provenance": {
@@ -120,7 +120,14 @@
         "uri": "artifact://context/ctx-x1"
       }
     ],
-    "negative_or_boundary_refs": [],
+    "negative_or_boundary_refs": [
+      {
+        "evidence_id": "ctx-n1",
+        "evidence_type": "CONTEXT",
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "uri": "artifact://context/ctx-n1"
+      }
+    ],
     "positive_support_refs": [
       {
         "evidence_id": "ctx-1",

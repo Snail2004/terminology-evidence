@@ -1,0 +1,86 @@
+{
+  "certificate_bundle_verification": "PASS",
+  "checksum_verification": "PASS",
+  "credential_scan_hits": [],
+  "credential_scan_result": "PASS",
+  "dataset_mapping_inputs": [
+    "D2LContextSupportSetValidationReadyV3",
+    "D2LCSTDevelopmentOnlyPilotV1_1"
+  ],
+  "dataset_mapping_result": {
+    "artifacts": [
+      {
+        "dataset_version": "d2l_context_support_set_validation_ready_v3",
+        "manifest_file_sha256": "b5f2067427c6b88344109f2c62f8db02ac61b0cef76f193d5285f378ff5f96a8",
+        "manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+        "schema_id": "D2LContextSupportSetValidationReadyV3",
+        "schema_version": "3.0.0",
+        "zip_sha256": "2f8e6ad0519854b161eda8cce61b13cdfc2f5ee54d205d18c27f279493c4fe52"
+      },
+      {
+        "dataset_version": null,
+        "manifest_file_sha256": "e45205adfe22b6b6c67680e159c64bb3c69c3a9849a3109a962134dc8cb3dd76",
+        "manifest_sha256": "599692d33f9cc162698bc0e8fc0bf60cce1715cb0f34214fec499f14c1364eb5",
+        "schema_id": "D2LCSTDevelopmentOnlyPilotV1_1",
+        "schema_version": "1.1.0",
+        "zip_sha256": "664cd5bf9e3006ebd77cffa6665a3cd86690dff0201fc518cae407a121aa4f15"
+      }
+    ],
+    "status": "PASS"
+  },
+  "dataset_runtime_dependency": false,
+  "external_api_calls": 0,
+  "file_count": 157,
+  "fixture_count": 60,
+  "junit_sha256": "ff896eb47d9b2fd28d5da7b5c8c3fa1e1c2337cf8644659bc225b717f81fcc58",
+  "legacy_fixture_tree_sha256": "ba94c24c4e939474a380ecdba23b1249b09940c1989be020b2dc35ffd95d85a6",
+  "legacy_schema_count": 12,
+  "legacy_schema_tree_sha256": "e955d9623becb7a96b0ff636f3336a986d7c42068114223e9bd4cd9ba097413b",
+  "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
+  "manifest_verification": "PASS",
+  "migration_result": {
+    "deterministic": true,
+    "fixture_count": 10,
+    "status": "PASS"
+  },
+  "package_version": "1.1.0",
+  "pyc_cache_files": [],
+  "pyc_cache_scan_result": "PASS",
+  "rc1_release_zip_sha256": "38e2ee307b247d535baedcde83427ebe3f30901d31bb921f03e6681b3160dbdc",
+  "rc2_release_zip_sha256": "2530ebf80d4826a740d1d1efad5952adf8611cec67797d7bd806731a15cb1954",
+  "rc3_release_zip_sha256": "25e8705631d52cccc8620dc0936c3245897b694abf8eafd8e9f54e0bd94b34f3",
+  "release_channel": "v1.1.0-rc4",
+  "release_zip_sha256": "2f16fbd2614308be43619a6643f196d74d588ce12e9a4e30dcec3ab669a6f471",
+  "review_findings_closed": {
+    "P0-1": "FROZEN_CANDIDATE_CONTENT_BINDING",
+    "P0-2": "EXACT_FEATURE_AND_LOGISTIC_SCORE_REPLAY",
+    "P0-3": "EXPLICIT_SENSE_POLYSEMY_COLLISION_INPUTS",
+    "P1-1": "FULL_DECISION_REPLAY_BINDING",
+    "P1-2": "CERTIFICATE_ARTIFACT_BUNDLE_VERIFICATION",
+    "P1-3": "TAC_SOURCE_TERM_SPAN_BINDING",
+    "P1-4": "STRICT_FINITE_JSON_NUMBERS",
+    "P1-5": "LOGISTIC_REGRESSION_ONLY",
+    "P1-6": "MACHINE_READABLE_FEATURE_MAPPING",
+    "P2-1": "EXACT_UNIQUE_AUDITABLE_GATE_SET",
+    "P2-2": "CANDIDATE_CONTENT_VERSION_BINDING",
+    "P2-3": "NATIVE_NON_MIGRATION_FIXTURES",
+    "RC2-P0-N1": "PRODUCER_GATE_SIGNAL_PROJECTION",
+    "RC2-P0-N2": "SEALED_PER_GATE_ACTION_POLICY",
+    "RC2-P1-N1": "COLLISION_INDEX_ARTIFACT_BINDING",
+    "RC2-P1-N2": "THRESHOLD_STABILITY_METADATA",
+    "RC3-P0-1": "CERTIFICATE_APPLICATION_PROJECTION_BINDING",
+    "RC3-P0-2": "POSITIVE_SUPPORT_ONLY_VALIDITY_CONTEXTS",
+    "RC3-P1-1": "NATIVE_GATE_SIGNALS_SCHEMA_REQUIRED",
+    "RC3-P1-2": "STANDALONE_GATE_POLICY_VERIFICATION"
+  },
+  "schema_count": 14,
+  "schema_id": "TerminologyContractsV1_1RC4ReleaseAuditV1",
+  "supersedes_release_candidate": "v1.1.0-rc3",
+  "test_count": 115,
+  "test_errors": 0,
+  "test_failures": 0,
+  "test_file_count": 12,
+  "test_result": "PASS",
+  "test_skipped": 0,
+  "zip_structure_verification": "PASS"
+}

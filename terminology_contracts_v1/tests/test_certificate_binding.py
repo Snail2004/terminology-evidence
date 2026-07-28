@@ -10,11 +10,12 @@ def test_auto_approved_certificate_is_complete() -> None:
     assert validate_payload(load_v11("terminology_certificate.json")) == []
 
 
-def test_provisional_certificate_can_omit_calibration_hash() -> None:
+def test_complete_provisional_certificate_requires_calibration_hash() -> None:
     certificate = load_v11("terminology_certificate.json")
     certificate["status"] = "PROVISIONAL"
     certificate["calibration_artifact_sha256"] = None
-    assert validate_payload(seal_self_hash(certificate)) == []
+    errors = validate_payload(seal_self_hash(certificate))
+    assert any("complete certificate requires calibration artifact" in error for error in errors)
 
 
 @pytest.mark.parametrize("status", ["HUMAN_REVIEW", "REJECTED", "SPLIT_REQUIRED"])

@@ -752,6 +752,14 @@ policy version
 certificate version
 ```
 
+### 13.3. RC4 application projection invariant
+
+For a complete native V1.1 certificate, the issuer does not choose application
+fields. Bundle verification requires exact equality with the Frozen Candidate,
+C/E evidence, positive support set, calibration operating point, and completed
+Global Decision. Contrastive and negative/boundary contexts are forbidden as
+validity contexts. Certificate issuance cannot precede decision completion.
+
 ---
 
 ## 14. Provenance V1.1

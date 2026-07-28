@@ -1,9 +1,19 @@
-# Terminology Contracts V1.1 RC3 Release Notes
+# Terminology Contracts V1.1 RC4 Release Notes
 
 V1.1 is a boundary hardening release. It does not change C/E algorithms, choose
 weights, set thresholds, create human labels, or make glossary decisions.
 
 ## Consumer impact
+
+- Certificate fields that affect TAC are verified as exact projections of the
+  Frozen Candidate, positive C support, C/E features, calibration operating
+  point, and completed Global Decision.
+- Contrastive and negative/boundary contexts cannot become validity contexts.
+- Native C/E `gate_signals` are required by JSON Schema as well as semantic
+  validation.
+- Standalone GateResultSet validation requires the exact sealed gate policy.
+- Every complete certificate binds calibration, including `PROVISIONAL`, so
+  its threshold identifier can be verified.
 
 - Native C/E evidence now carries an exact producer-owned `gate_signals` set;
   the Global Validator must project asserted signals into gate results.
@@ -39,7 +49,9 @@ RC1 remains immutable at SHA-256
 `38e2ee307b247d535baedcde83427ebe3f30901d31bb921f03e6681b3160dbdc`.
 RC2 remains immutable at SHA-256
 `2530ebf80d4826a740d1d1efad5952adf8611cec67797d7bd806731a15cb1954`.
-RC3 is a re-review candidate and is not the final frozen authority until that
+RC3 remains immutable at SHA-256
+`25e8705631d52cccc8620dc0936c3245897b694abf8eafd8e9f54e0bd94b34f3`.
+RC4 is a re-review candidate and is not the final frozen authority until that
 review passes.
 
 ## Scientific boundary

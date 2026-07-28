@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import math
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -150,6 +151,24 @@ def validate_instance(
         )
     )
     return errors
+
+
+def validate_gate_result_with_policy(
+    instance: dict[str, Any],
+    schema_dir: Path,
+    *,
+    gate_policy_path: Path,
+    allow_legacy_migration: bool = False,
+) -> list[str]:
+    """Validate a GateResultSet against its exact sealed action policy."""
+    if instance.get("schema_id") != "GateResultSetV1":
+        return ["expected GateResultSetV1"]
+    return validate_instance(
+        instance,
+        schema_dir,
+        gate_policy_path=gate_policy_path,
+        allow_legacy_migration=allow_legacy_migration,
+    )
 
 
 def validate_file(
@@ -302,7 +321,11 @@ def verify_certificate_bundle(
         if payload is not None:
             errors.extend(
                 f"{name}: {error}"
-                for error in validate_instance(payload, schema_dir)
+                for error in validate_instance(
+                    payload,
+                    schema_dir,
+                    gate_policy_path=gate_policy_path,
+                )
             )
 
     decision = artifacts.get("decision")
@@ -410,21 +433,42 @@ def verify_certificate_bundle(
         if sorted(certificate.get("gate_summary", [])) != triggered:
             errors.append("certificate gate_summary differs from triggered gates")
 
+        issued_at = _parse_datetime(certificate.get("issued_at"))
+        completed_at = _parse_datetime(
+            decision.get("run_metadata", {}).get("completed_at")
+        )
+        if issued_at is None or completed_at is None:
+            errors.append("certificate and decision timestamps must be valid date-times")
+        elif issued_at < completed_at:
+            errors.append("certificate issued_at precedes decision completion")
+
+    frozen = artifacts.get("frozen_candidate")
+    if frozen is not None:
+        surfaces = frozen.get("surfaces", {})
+        if certificate.get("allowed_variants") != surfaces.get(
+            "validated_variants_vi"
+        ):
+            errors.append("certificate allowed_variants differs from Frozen Candidate")
+        if certificate.get("forbidden_candidates") != surfaces.get(
+            "rejected_variants_vi"
+        ):
+            errors.append("certificate forbidden_candidates differs from Frozen Candidate")
+        if certificate.get("scope_note") != frozen.get("scope_note"):
+            errors.append("certificate scope_note differs from Frozen Candidate")
+
     context = artifacts.get("context_evidence")
     if context is not None:
-        context_refs = []
         support_set = context.get("support_set", {})
-        for field in (
-            "positive_support_refs",
-            "contrastive_refs",
-            "negative_or_boundary_refs",
+        if certificate.get("validity_context_refs") != support_set.get(
+            "positive_support_refs"
         ):
-            context_refs.extend(support_set.get(field, []))
-        for reference in certificate.get("validity_context_refs", []):
-            if reference not in context_refs:
-                errors.append(
-                    "certificate validity_context_refs contains unbound evidence"
-                )
+            errors.append(
+                "certificate validity_context_refs must equal positive support refs"
+            )
+        if certificate.get("evidence_summary", {}).get("C_mean") != context.get(
+            "features", {}
+        ).get("C_mean"):
+            errors.append("certificate evidence_summary.C_mean differs from C evidence")
 
     attestation = artifacts.get("attestation_evidence")
     if attestation is not None:
@@ -434,6 +478,22 @@ def verify_certificate_bundle(
                 errors.append(
                     "certificate attestation_evidence_refs contains unbound evidence"
                 )
+        if certificate.get("evidence_summary", {}).get(
+            "E_features"
+        ) != attestation.get("features"):
+            errors.append(
+                "certificate evidence_summary.E_features differs from E evidence"
+            )
+
+    calibration = artifacts.get("calibration")
+    if calibration is not None:
+        operating_point_id = calibration.get("operating_point", {}).get(
+            "operating_point_id"
+        )
+        if certificate.get("threshold_version") != operating_point_id:
+            errors.append(
+                "certificate threshold_version differs from calibration operating point"
+            )
 
     if tac_path is not None:
         tac = _load_bundle_artifact("tac", tac_path, None, errors)
@@ -451,6 +511,16 @@ def _safe_semantic_errors(instance: Mapping[str, Any], **kwargs: Any) -> list[st
         return _semantic_validate(instance, **kwargs)
     except Exception as exc:  # Never hide a malformed payload behind a traceback.
         return [f"semantic validator error: {exc}"]
+
+
+def _parse_datetime(value: Any) -> datetime | None:
+    if not isinstance(value, str):
+        return None
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    return parsed if parsed.tzinfo is not None else None
 
 
 def _semantic_validate(
@@ -486,6 +556,12 @@ def _semantic_validate(
         _validate_global_input(instance, errors, allow_legacy_migration)
     elif schema_id == "GateResultSetV1":
         _validate_gates(instance, errors, allow_legacy_migration)
+        _validate_gate_result_policy_binding(
+            instance,
+            errors,
+            schema_dir=schema_dir,
+            gate_policy_path=gate_policy_path,
+        )
     elif schema_id == "GatePolicyArtifactV1":
         _validate_gate_policy(instance, errors)
     elif schema_id == "CalibrationArtifactV1":
@@ -871,6 +947,38 @@ def _validate_gates(
         modules = observation.get("source_modules", [])
         if any(module not in GATE_SOURCE_MODULES for module in modules):
             errors.append(f"observations[{index}].source_modules contains unknown module")
+
+
+def _validate_gate_result_policy_binding(
+    value: Mapping[str, Any],
+    errors: list[str],
+    *,
+    schema_dir: Path,
+    gate_policy_path: Path | None,
+) -> None:
+    if (
+        value.get("schema_version") != PACKAGE_VERSION
+        or value.get("binding_status") != "COMPLETE"
+    ):
+        return
+    expected_hash = value.get("gate_policy_artifact_sha256")
+    if gate_policy_path is None:
+        errors.append("complete GateResultSet requires a loaded GatePolicyArtifact")
+        return
+    try:
+        loaded = load_verified_json_artifact(
+            gate_policy_path,
+            expected_self_sha256=expected_hash,
+        )
+    except IntegrityError as exc:
+        errors.append(f"GatePolicyArtifact verification failed: {exc}")
+        return
+    policy = loaded.payload
+    policy_errors = validate_instance(policy, schema_dir)
+    errors.extend(f"GatePolicyArtifact: {error}" for error in policy_errors)
+    if value.get("gate_policy_version") != policy.get("gate_policy_version"):
+        errors.append("GateResultSet gate policy version mismatch")
+    _validate_gate_actions(value, policy, errors)
 
 
 def _validate_gate_policy(value: Mapping[str, Any], errors: list[str]) -> None:
@@ -1266,10 +1374,8 @@ def _validate_certificate(
             if not _is_nonzero_sha256(value.get(field)):
                 errors.append(f"complete certificate requires {field}")
         calibration_hash = value.get("calibration_artifact_sha256")
-        if calibration_hash is not None and not _is_nonzero_sha256(calibration_hash):
-            errors.append("calibration_artifact_sha256 must be null or nonzero")
-        if status == "AUTO_APPROVED" and not _is_nonzero_sha256(calibration_hash):
-            errors.append("AUTO_APPROVED certificate requires calibration artifact")
+        if not _is_nonzero_sha256(calibration_hash):
+            errors.append("complete certificate requires calibration artifact")
         if not value.get("attestation_evidence_refs"):
             errors.append("complete certificate requires attestation_evidence_refs")
         if value.get("status") not in {"AUTO_APPROVED", "PROVISIONAL"}:

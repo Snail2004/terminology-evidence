@@ -17,6 +17,7 @@ from terminology_contracts.registries import (  # noqa: E402
     GATE_ACTIONS,
     GATE_IDS,
     GATE_SOURCE_MODULES,
+    LEGACY_VERSION,
     PACKAGE_VERSION,
     feature_registry_payload,
     gate_policy_payload,
@@ -144,6 +145,7 @@ def _upgrade_context(schema: dict[str, Any]) -> None:
     schema["properties"]["gate_signals"] = _gate_signals_schema(
         CONTEXT_GATE_SIGNAL_IDS
     )
+    _require_native_gate_signals(schema)
     schema["properties"]["diagnostics"] = {
         "anyOf": [
             {"type": "null"},
@@ -167,6 +169,7 @@ def _upgrade_attestation(schema: dict[str, Any]) -> None:
     schema["properties"]["gate_signals"] = _gate_signals_schema(
         ATTESTATION_GATE_SIGNAL_IDS
     )
+    _require_native_gate_signals(schema)
     schema["properties"]["diagnostics"] = {
         "anyOf": [
             {"type": "null"},
@@ -730,6 +733,25 @@ def _gate_signals_schema(gate_ids: tuple[str, ...]) -> dict[str, Any]:
             },
         },
     }
+
+
+def _require_native_gate_signals(schema: dict[str, Any]) -> None:
+    schema.setdefault("allOf", []).append(
+        {
+            "if": {
+                "required": ["provenance"],
+                "properties": {
+                    "provenance": {
+                        "required": ["component_version"],
+                        "properties": {
+                            "component_version": {"not": {"const": LEGACY_VERSION}}
+                        },
+                    }
+                },
+            },
+            "then": {"required": ["gate_signals"]},
+        }
+    )
 
 
 def _gate_policy_schema() -> dict[str, Any]:

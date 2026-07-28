@@ -209,7 +209,7 @@ ATTESTATION_GATE_SIGNAL_IDS: tuple[str, ...] = (
     "attestation_unjudgeable",
 )
 
-# This is the active RC3 policy.  The sealed artifact generated from it is the
+# This is the active RC4 policy. The sealed artifact generated from it is the
 # authority consumed by the Global Validator; the registry remains descriptive.
 GATE_ALLOWED_ACTIONS: dict[str, tuple[str, ...]] = {
     "input_contract_mismatch": ("FATAL_REJECT",),

@@ -27,14 +27,16 @@ from terminology_contracts.validation import verify_certificate_bundle  # noqa: 
 
 
 RELEASE_ROOT = ROOT / "release"
-RELEASE = RELEASE_ROOT / "v1.1.0-rc3"
-ZIP_PATH = RELEASE / "terminology_contracts_v1_1_rc3.zip"
-ZIP_CHECKSUM_PATH = RELEASE / "terminology_contracts_v1_1_rc3.zip.sha256"
-AUDIT_PATH = RELEASE / "terminology_contracts_v1_1_rc3_audit.json"
+RELEASE = RELEASE_ROOT / "v1.1.0-rc4"
+ZIP_PATH = RELEASE / "terminology_contracts_v1_1_rc4.zip"
+ZIP_CHECKSUM_PATH = RELEASE / "terminology_contracts_v1_1_rc4.zip.sha256"
+AUDIT_PATH = RELEASE / "terminology_contracts_v1_1_rc4_audit.json"
 RC1_ZIP = RELEASE_ROOT / "terminology_contracts_v1_1.zip"
 RC1_ZIP_SHA256 = "38e2ee307b247d535baedcde83427ebe3f30901d31bb921f03e6681b3160dbdc"
 RC2_ZIP = RELEASE_ROOT / "v1.1.0-rc2" / "terminology_contracts_v1_1_rc2.zip"
 RC2_ZIP_SHA256 = "2530ebf80d4826a740d1d1efad5952adf8611cec67797d7bd806731a15cb1954"
+RC3_ZIP = RELEASE_ROOT / "v1.1.0-rc3" / "terminology_contracts_v1_1_rc3.zip"
+RC3_ZIP_SHA256 = "25e8705631d52cccc8620dc0936c3245897b694abf8eafd8e9f54e0bd94b34f3"
 DIFF_NAME = "terminology_contracts_v1_0_to_v1_1_diff.md"
 FIXED_ZIP_TIME = (2026, 7, 29, 0, 0, 0)
 CACHE_DIR_NAMES = {".pytest_cache", ".mypy_cache", ".ruff_cache", "__pycache__"}
@@ -62,6 +64,8 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit("immutable RC1 release artifact changed")
     if not RC2_ZIP.is_file() or hashlib.sha256(RC2_ZIP.read_bytes()).hexdigest() != RC2_ZIP_SHA256:
         raise SystemExit("immutable RC2 release artifact changed")
+    if not RC3_ZIP.is_file() or hashlib.sha256(RC3_ZIP.read_bytes()).hexdigest() != RC3_ZIP_SHA256:
+        raise SystemExit("immutable RC3 release artifact changed")
     _remove_python_cache()
     manifest = build_manifest(ROOT)
     write_manifest(ROOT, manifest)
@@ -90,12 +94,13 @@ def main(argv: list[str] | None = None) -> int:
     credential_hits = _credential_scan()
     cache_files = _cache_files()
     audit = {
-        "schema_id": "TerminologyContractsV1_1RC3ReleaseAuditV1",
+        "schema_id": "TerminologyContractsV1_1RC4ReleaseAuditV1",
         "package_version": "1.1.0",
-        "release_channel": "v1.1.0-rc3",
-        "supersedes_release_candidate": "v1.1.0-rc2",
+        "release_channel": "v1.1.0-rc4",
+        "supersedes_release_candidate": "v1.1.0-rc3",
         "rc1_release_zip_sha256": RC1_ZIP_SHA256,
         "rc2_release_zip_sha256": RC2_ZIP_SHA256,
+        "rc3_release_zip_sha256": RC3_ZIP_SHA256,
         "file_count": len(manifest["files"]),
         "schema_count": len(list((ROOT / "schemas" / "v1.1.0").glob("*.schema.json"))),
         "legacy_schema_count": len(
@@ -139,6 +144,10 @@ def main(argv: list[str] | None = None) -> int:
             "RC2-P0-N2": "SEALED_PER_GATE_ACTION_POLICY",
             "RC2-P1-N1": "COLLISION_INDEX_ARTIFACT_BINDING",
             "RC2-P1-N2": "THRESHOLD_STABILITY_METADATA",
+            "RC3-P0-1": "CERTIFICATE_APPLICATION_PROJECTION_BINDING",
+            "RC3-P0-2": "POSITIVE_SUPPORT_ONLY_VALIDITY_CONTEXTS",
+            "RC3-P1-1": "NATIVE_GATE_SIGNALS_SCHEMA_REQUIRED",
+            "RC3-P1-2": "STANDALONE_GATE_POLICY_VERIFICATION",
         },
         "credential_scan_result": "PASS" if not credential_hits else "FAIL",
         "credential_scan_hits": credential_hits,

@@ -149,6 +149,14 @@ def main() -> int:
         for gate_id in GATE_SOURCES
         if "C" in GATE_SOURCES[gate_id]
     ]
+    context_payload["support_set"]["negative_or_boundary_refs"] = [
+        {
+            "evidence_id": "ctx-n1",
+            "evidence_type": "CONTEXT",
+            "uri": "artifact://context/ctx-n1",
+            "sha256": "b" * 64,
+        }
+    ]
     context = _bind_producer(
         context_payload,
         key=key,
@@ -408,10 +416,10 @@ def main() -> int:
             "global_run_spec_id": "gv-fixture-spec-001",
             "started_at": "2026-07-28T11:00:00+00:00",
             "completed_at": "2026-07-28T11:01:00+00:00",
-            "engine_version": "global-validator-fixture-1.1.0-rc3",
+            "engine_version": "global-validator-fixture-1.1.0-rc4",
             "execution_config_sha256": canonical_sha256(
                 {
-                    "engine_version": "global-validator-fixture-1.1.0-rc3",
+                    "engine_version": "global-validator-fixture-1.1.0-rc4",
                     "policy_version": "global-v1",
                     "calibration_artifact_sha256": calibration["integrity"][
                         "self_sha256"
@@ -463,10 +471,12 @@ def main() -> int:
             ],
             "gate_policy_artifact_sha256": gate_policy_sha256,
             "decision_package_sha256": decision["integrity"]["self_sha256"],
-            "threshold_version": "calibration-fixture-v1.1.0-rc3",
-            "validity_context_refs": [
-                copy.deepcopy(context["support_set"]["positive_support_refs"][0])
+            "threshold_version": calibration["operating_point"][
+                "operating_point_id"
             ],
+            "validity_context_refs": copy.deepcopy(
+                context["support_set"]["positive_support_refs"]
+            ),
             "attestation_evidence_refs": [
                 copy.deepcopy(attestation["accepted_evidence_refs"][0])
             ],
