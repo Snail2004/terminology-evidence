@@ -1,0 +1,56 @@
+{
+  "schema_id": "D2LCSTBlindAuditPackManifestV1",
+  "policy_id": "d2l_cst_stage_a_blind_paired_audit_development_v1",
+  "status": "READY_FOR_BLIND_REVIEW",
+  "split": "development",
+  "sense_count": 13,
+  "selection_counts": {
+    "AMBIGUITY_PROXY_LOW_CONFIDENCE": 5,
+    "DETERMINISTIC_RANDOM_UNANIMOUS": 5,
+    "DISAGREEMENT": 3
+  },
+  "context_count": 98,
+  "reviewer_slots": 3,
+  "forbidden_fields_absent": [
+    "model_definition_en",
+    "model_definition_confidence",
+    "model_part_of_speech",
+    "model_part_of_speech_confidence",
+    "context_type_proposal"
+  ],
+  "files": {
+    "BLIND_CASEBOOK.md": {
+      "sha256": "442bc8b3d155eafc2da9f7d75474a889dfdd61adcd89c9c246479dfd0a652c63",
+      "size_bytes": 32413
+    },
+    "blind_cases.csv": {
+      "sha256": "732ffe2b88523556ecb38e4c56eb1b81ccdfe04c01212911a472a79e0e96e0cc",
+      "size_bytes": 5485
+    },
+    "blind_cases.jsonl": {
+      "sha256": "5ddb27d20f128f7b00ea5e03bc33bd7b4ed57ec12826e4feb49d779640423531",
+      "size_bytes": 7786
+    },
+    "blind_contexts.csv": {
+      "sha256": "e264ca206c11048d20f191365989b3c4282b2c2d4df476a5e121c068f1b627ff",
+      "size_bytes": 65782
+    },
+    "BLIND_REVIEW_INSTRUCTIONS.md": {
+      "sha256": "995cbaf71ce04696f27ad4867283aa12eb594e38ee5297d748354305892da04f",
+      "size_bytes": 409
+    },
+    "blind_reviewer_1.csv": {
+      "sha256": "f6e5ea7c2389427deca7d63fc76f1f2f3fdec2bd739e66274b68f647e01c2980",
+      "size_bytes": 3379
+    },
+    "blind_reviewer_2.csv": {
+      "sha256": "f6e5ea7c2389427deca7d63fc76f1f2f3fdec2bd739e66274b68f647e01c2980",
+      "size_bytes": 3379
+    },
+    "blind_reviewer_3.csv": {
+      "sha256": "f6e5ea7c2389427deca7d63fc76f1f2f3fdec2bd739e66274b68f647e01c2980",
+      "size_bytes": 3379
+    }
+  },
+  "manifest_sha256": "2bb2328a28e22c1ce2d9e4a13d8ed684e4efd30804d4e225dd639694858bc297"
+}

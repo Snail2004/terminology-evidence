@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:d2l:cst:stage-a-review-record:v1.2",
+  "title": "D2L Stage A evidence-aware review record V1.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "policy_id",
+    "case_sha256",
+    "source_payload_sha256",
+    "term_id",
+    "sense_id",
+    "definition_status",
+    "effective_definition_en",
+    "part_of_speech_status",
+    "effective_part_of_speech",
+    "positive_definition_evidence_ids",
+    "positive_pos_evidence_ids",
+    "boundary_context_ids",
+    "scope_note",
+    "confidence",
+    "rationale",
+    "risk_flags"
+  ],
+  "properties": {
+    "schema_id": {"const": "D2LCSTParallelReviewRecordV1_2"},
+    "policy_id": {"const": "d2l_cst_stage_a_evidence_aware_review_v1_2"},
+    "case_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_payload_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "term_id": {"type": "string", "minLength": 1},
+    "sense_id": {"type": "string", "minLength": 1},
+    "definition_status": {
+      "enum": ["ACCEPTED", "CORRECTED", "REJECTED"]
+    },
+    "effective_definition_en": {"type": "string"},
+    "part_of_speech_status": {
+      "enum": ["ACCEPTED", "CORRECTED", "UNCERTAIN", "REJECTED"]
+    },
+    "effective_part_of_speech": {"type": "string"},
+    "positive_definition_evidence_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "positive_pos_evidence_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "boundary_context_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "scope_note": {"type": "string", "minLength": 1},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "rationale": {"type": "string", "minLength": 1},
+    "risk_flags": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    }
+  }
+}

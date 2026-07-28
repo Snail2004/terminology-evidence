@@ -1,0 +1,92 @@
+{
+  "schema_id": "D2LCSTSourceReviewBindingsV1",
+  "source_review_package_sha256": "9eafa7afc797c8b4bcc249304dc2683bee7d996b96e31a6942399e949af1fc30",
+  "review_file_count": 12,
+  "files": [
+    {
+      "batch_id": "development_001",
+      "reviewer_slot": 1,
+      "ref": "dataset/d2l_stage_a_review_batches_v1/release/batches/development_001/result/human_1.csv",
+      "sha256": "3844c88fa842ce9449a2789b095004ff2d059eb6e0e3ea1b165a19a03d3c88cb",
+      "size_bytes": 6844
+    },
+    {
+      "batch_id": "development_001",
+      "reviewer_slot": 2,
+      "ref": "dataset/d2l_stage_a_review_batches_v1/release/batches/development_001/result/human_2.csv",
+      "sha256": "277dee6d56887830047b61ecea733d98456a98c2bd598ca67536224bab79e89c",
+      "size_bytes": 7342
+    },
+    {
+      "batch_id": "development_001",
+      "reviewer_slot": 3,
+      "ref": "dataset/d2l_stage_a_review_batches_v1/release/batches/development_001/result/human_3.csv",
+      "sha256": "23e748c72d53fadf0a8bb4b85caba5406c23cfaa9880c5b9255c58e4603ac810",
+      "size_bytes": 6363
+    },
+    {
+      "batch_id": "development_002",
+      "reviewer_slot": 1,
+      "ref": "dataset/d2l_stage_a_review_batches_v1/release/batches/development_002/result/human_1.csv",
+      "sha256": "74bc18afb8295f3fbe3bac17597d034082917147ebcbeff9d18afc8f3e12e7da",
+      "size_bytes": 7052
+    },
+    {
+      "batch_id": "development_002",
+      "reviewer_slot": 2,
+      "ref": "dataset/d2l_stage_a_review_batches_v1/release/batches/development_002/result/human_2.csv",
+      "sha256": "bb5500686a29597f3eeb1f987446bb61f5346418395d13e5117b777c445c0cdb",
+      "size_bytes": 7569
+    },
+    {
+      "batch_id": "development_002",
+      "reviewer_slot": 3,
+      "ref": "dataset/d2l_stage_a_review_batches_v1/release/batches/development_002/result/human_3.csv",
+      "sha256": "876574ba2e72358dbc7476d373d1cf7bd470bdf8cc2ef6a20a1bd5546607bd13",
+      "size_bytes": 6684
+    },
+    {
+      "batch_id": "development_003",
+      "reviewer_slot": 1,
+      "ref": "dataset/d2l_stage_a_review_batches_v1/release/batches/development_003/result/human_1.csv",
+      "sha256": "1db4bf86e77f97e21ea5e7ff9c786e56880ec3f3a6cc9da5377e20aecc1590e1",
+      "size_bytes": 7107
+    },
+    {
+      "batch_id": "development_003",
+      "reviewer_slot": 2,
+      "ref": "dataset/d2l_stage_a_review_batches_v1/release/batches/development_003/result/human_2.csv",
+      "sha256": "818249290d1b0d7bba440e0549925d774cb527482ccb41c9efc2a7a5efc4cd06",
+      "size_bytes": 7425
+    },
+    {
+      "batch_id": "development_003",
+      "reviewer_slot": 3,
+      "ref": "dataset/d2l_stage_a_review_batches_v1/release/batches/development_003/result/human_3.csv",
+      "sha256": "857217adaf1055bf04982e79d47a557f72c4a1bf7c909bf30c2d24eced3aa9a0",
+      "size_bytes": 7049
+    },
+    {
+      "batch_id": "development_004",
+      "reviewer_slot": 1,
+      "ref": "dataset/d2l_stage_a_review_batches_v1/release/batches/development_004/result/human_1.csv",
+      "sha256": "92ca93d86698c33031a36e0f2128a6579a93fafd265af7c1a71eeaea6e05bc1a",
+      "size_bytes": 7270
+    },
+    {
+      "batch_id": "development_004",
+      "reviewer_slot": 2,
+      "ref": "dataset/d2l_stage_a_review_batches_v1/release/batches/development_004/result/human_2.csv",
+      "sha256": "e98589bc71c57ba66a85c486fb90661a71ced6fa3794eb6b04f960a18933d6c8",
+      "size_bytes": 7594
+    },
+    {
+      "batch_id": "development_004",
+      "reviewer_slot": 3,
+      "ref": "dataset/d2l_stage_a_review_batches_v1/release/batches/development_004/result/human_3.csv",
+      "sha256": "b8537e6c9bd699a2a20919f8cd019c812852f29477db07c821c687fcb0db6c0e",
+      "size_bytes": 7299
+    }
+  ],
+  "bindings_sha256": "5c6cb06e974e16dd21e80767782e0f16e5cf3cf15cb86597e88c424e3cff1c85"
+}

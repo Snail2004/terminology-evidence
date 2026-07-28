@@ -1,0 +1,81 @@
+{
+  "schema_id": "D2LCSTStageARepairValidationReportV1",
+  "policy_id": "d2l_cst_stage_a_evidence_aware_review_v1_2",
+  "structural_status": "PASS",
+  "readiness_status": "BLOCKED_PENDING_PROVENANCE_ADJUDICATION_AND_BLIND_AUDIT",
+  "definition_of_done": false,
+  "review_batch_count": 4,
+  "sense_count": 40,
+  "review_file_count": 12,
+  "evidence_projection_count": 120,
+  "provenance_sidecar_count": 12,
+  "provenance_complete_count": 0,
+  "agreement_counts": {
+    "AGREEMENT_3_OF_3": 37,
+    "MAJORITY_2_OF_3": 3
+  },
+  "finalization_counts": {
+    "ADJUDICATION_REQUIRED": 2,
+    "BLOCKED_PENDING_REPAIR_INPUTS": 37,
+    "SPLIT_REQUIRED": 1
+  },
+  "adjudication_case_count": 3,
+  "blind_audit_sense_count": 13,
+  "completed_controls": {
+    "v1_sources_preserved": true,
+    "v1_2_policy_versioned": true,
+    "positive_boundary_fields_separated": true,
+    "synthetic_positive_rejected_by_validator": true,
+    "majority_auto_finalization_disabled": true,
+    "blind_pack_development_only": true,
+    "authority_v1_1_bound": true
+  },
+  "remaining_blockers": [
+    "12 reviewer provenance sidecars require truthful owner attestation",
+    "legacy evidence-role projections require reviewer confirmation",
+    "three semantic directives require adjudicator attestation or split construction",
+    "13-sense blind audit has not been annotated",
+    "45 cross-split source-block clusters remain a methodology blocker",
+    "controlled Vietnamese, adversarial, and TAC drift inputs remain absent"
+  ],
+  "provenance_batch_reports": {
+    "development_001": {
+      "status": "BLOCKED",
+      "errors": [],
+      "pending": [
+        "reviewer_1: provenance status is not COMPLETE",
+        "reviewer_2: provenance status is not COMPLETE",
+        "reviewer_3: provenance status is not COMPLETE"
+      ]
+    },
+    "development_002": {
+      "status": "BLOCKED",
+      "errors": [],
+      "pending": [
+        "reviewer_1: provenance status is not COMPLETE",
+        "reviewer_2: provenance status is not COMPLETE",
+        "reviewer_3: provenance status is not COMPLETE"
+      ]
+    },
+    "development_003": {
+      "status": "BLOCKED",
+      "errors": [],
+      "pending": [
+        "reviewer_1: provenance status is not COMPLETE",
+        "reviewer_2: provenance status is not COMPLETE",
+        "reviewer_3: provenance status is not COMPLETE"
+      ]
+    },
+    "development_004": {
+      "status": "BLOCKED",
+      "errors": [],
+      "pending": [
+        "reviewer_1: provenance status is not COMPLETE",
+        "reviewer_2: provenance status is not COMPLETE",
+        "reviewer_3: provenance status is not COMPLETE"
+      ]
+    }
+  },
+  "final_glossary_decision": null,
+  "report_sha256": "0045379943bbe59a9076b0ae657df2add394ef514087befcaa8f76ae2bcef288"
+}

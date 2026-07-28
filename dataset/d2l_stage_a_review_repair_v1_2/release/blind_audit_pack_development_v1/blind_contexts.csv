@@ -1,0 +1,651 @@
+﻿blind_case_id,term_id,sense_id,context_id,context_role,context_slot,matched_surface_exact,block_id,chapter_id,sentence_id,content_sha256,context_sha256,source_text
+blind_bb92af5a9d45886c0b56a51a,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,ctx_724a58cef32d03f9a90cc4d9,BACKUP,B1,adam,d2l_natural_language_processing_applications_sentiment_analysis_rnn_b024,d2l_natural_language_processing_applications,sentence_6504a010cb03245a1aa6b3d7,537a356344164f7587abc26e44dfefd681557447e126010173b425f633e7affd,58fbfceae113a0876a696822d36ab2c98ee9d93ccff6bdfe0d94260e7d761d6e,"```{.python .input}
+lr, num_epochs = 0.01, 5
+trainer = gluon.Trainer(net.collect_params(), 'adam', {'learning_rate': lr})
+loss = gluon.loss.SoftmaxCrossEntropyLoss()
+d2l.train_ch13(net, train_iter, test_iter, loss, trainer, num_epochs, devices)
+```"
+blind_bb92af5a9d45886c0b56a51a,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,ctx_c4effad022bd5e216d2eaf51,BACKUP,B2,adam,d2l_recurrent_neural_networks_sequence_b023,d2l_recurrent_neural_networks,sentence_babc3cd0613c442b6ef9cb75,9e344e27d68e958e0651dba50b9f91817d9b714ecbe45dd520889a63b3f2dc67,199343a9ea796848a42eabc616f91999879e7dafd214b8eb8c7b955bd832fe64,"```{.python .input}
+def train(net, train_iter, loss, epochs, lr):
+    trainer = gluon.Trainer(net.collect_params(), 'adam',
+                            {'learning_rate': lr})
+    for epoch in range(epochs):
+        for X, y in train_iter:
+            with autograd.record():
+                l = loss(net(X), y)
+            l.backward()
+            trainer.step(batch_size)
+        print(f'epoch {epoch + 1}, '
+              f'loss: {d2l.evaluate_loss(net, train_iter, loss):f}')
+
+net = get_net()
+train(net, train_iter, loss, 5, 0.01)
+```
+
+```{.python .input}
+#@tab pytorch
+def train(net, train_iter, loss, epochs, lr):
+    trainer = torch.optim.Adam(net.parameters(), lr)
+    for epoch in range(epochs):
+        for X, y in train_iter:
+            trainer.zero_grad()
+            l = loss(net(X), y)
+            l.sum().backward()
+            trainer.step()
+        print(f'epoch {epoch + 1}, '
+              f'loss: {d2l.evaluate_loss(net, train_iter, loss):f}')
+
+net = get_net()
+train(net, train_iter, loss, 5, 0.01)
+```
+
+```{.python .input}
+#@tab tensorflow
+def train(net, train_iter, loss, epochs, lr):
+    trainer = tf.keras.optimizers.Adam()
+    for epoch in range(epochs):
+        for X, y in train_iter:
+            with tf.GradientTape() as g:
+                out = net(X)
+                l = loss(y, out)
+                params = net.trainable_variables
+                grads = g.gradient(l, params)
+            trainer.apply_gradients(zip(grads, params))
+        print(f'epoch {epoch + 1}, '
+              f'loss: {d2l.evaluate_loss(net, train_iter, loss):f}')
+
+net = get_net()
+train(net, train_iter, loss, 5, 0.01)
+```
+
+## Prediction
+
+Since the training loss is small, we would expect our model to work well."
+blind_bb92af5a9d45886c0b56a51a,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,ctx_feb069ef1ecb8e58ef71c482,PRIMARY,C1,adam,d2l_multilayer_perceptrons_kaggle_house_price_b053,d2l_multilayer_perceptrons,sentence_41b5be4eb9f5dfc1d0103e9d,06859437c95124e62cf198f1efaf7e41b748e915e89a59fd6cc43947260da746,12df2ae63d46c527cfd05c30ed3d18e08fede11c94f259c9f130d78d9a652626,"Unlike in previous sections, [**our training functions
+will rely on the Adam optimizer
+(we will describe it in greater detail later)**]."
+blind_bb92af5a9d45886c0b56a51a,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,ctx_5c812a90177b5b129b327432,PRIMARY,C2,adam,d2l_optimization_index_b002,d2l_optimization,sentence_4e3e135cd20a5f0e48468df9,367c7fd3bc00098c51280201953e74ac5a2bd6ce6d64f5bbfc1fd0ff1079e34b,ecf51b34627188e463d13a5f936534bcf79ddc08da9e190eb6de55a8f3cfbac1,"Indeed, anyone content with treating optimization as a black box device to minimize objective functions in a simple setting might well content oneself with the knowledge that there exists an array of incantations of such a procedure (with names such as ""SGD"" and ""Adam"")."
+blind_bb92af5a9d45886c0b56a51a,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,ctx_4a985a7867b0862e601aa744,PRIMARY,C4,adam,d2l_computer_vision_image_augmentation_b055,d2l_computer_vision,sentence_d271d8883c43dc451760b4cf,8b168d2fd60f2411a029cf60441c7389c75ccdbd3de6b62abddba0fe6a1e800b,19b821ba386963dcc6c34b635ee4c0642632895259719fc9982416d3e44633bc,"This function gets all available GPUs, 
+uses Adam as the optimization algorithm,
+applies image augmentation to the training dataset,
+and finally calls the `train_ch13` function just defined to train and evaluate the model."
+blind_bb92af5a9d45886c0b56a51a,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,ctx_3c4a7aaec02b50911df8c766,PRIMARY,C3,adam,d2l_recurrent_modern_seq2seq_b065,d2l_recurrent_modern,sentence_a310602f3d1e430e5bfceb85,c1ec7ab123ff085eef1ad298883abbff3303269df34514e943954ad0174446b1,08c94fcbdffb500a1b1bbe1b3afeac1cd51df183f48bb73545f8065ed0d5717d,"```{.python .input}
+#@save
+def train_seq2seq(net, data_iter, lr, num_epochs, tgt_vocab, device):
+    """"""Train a model for sequence to sequence.""""""
+    net.initialize(init.Xavier(), force_reinit=True, ctx=device)
+    trainer = gluon.Trainer(net.collect_params(), 'adam',
+                            {'learning_rate': lr})
+    loss = MaskedSoftmaxCELoss()
+    animator = d2l.Animator(xlabel='epoch', ylabel='loss',
+                            xlim=[10, num_epochs])
+    for epoch in range(num_epochs):
+        timer = d2l.Timer()
+        metric = d2l.Accumulator(2)  # Sum of training loss, no."
+blind_bb92af5a9d45886c0b56a51a,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,ctx_58c0a9351bd98055ea39a9a0,PRIMARY,C5,adam,d2l_natural_language_processing_pretraining_word2vec_pretraining_b036,d2l_natural_language_processing_pretraining,sentence_a93f6bee779d41e73ea2a793,b897a3b08d83fee5610ef4afd0007c1be31dbccb13d8c51ef091e480f9ecbfc2,aa7446dda7859bbca3031411c690ff8a9bcb79332a65e542d782daa0ca62165a,"```{.python .input}
+def train(net, data_iter, lr, num_epochs, device=d2l.try_gpu()):
+    net.initialize(ctx=device, force_reinit=True)
+    trainer = gluon.Trainer(net.collect_params(), 'adam',
+                            {'learning_rate': lr})
+    animator = d2l.Animator(xlabel='epoch', ylabel='loss',
+                            xlim=[1, num_epochs])
+    # Sum of normalized losses, no."
+blind_77e132119c2bd238388c9bb3,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctx_8ce751d21f2cb72d502c47b8,BACKUP,B1,fully-connected layers,d2l_deep_learning_computation_model_construction_b013,d2l_deep_learning_computation,sentence_88730d52d54239993b8f0316,3a5d9788b3633cb12229a18a33e059ce8730d218001d2b1fb6c951517d820910,efeb1d1feaa8e3b3885e1ba58969e92522dc02cacffb0d61a41484b201073732,"Note that each of the two fully-connected layers is an instance of the `Linear` class
+which is itself a subclass of `Module`."
+blind_77e132119c2bd238388c9bb3,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctx_eafeb346f16534dd44c4414d,BACKUP,B2,fully-connected layers,d2l_linear_networks_softmax_regression_b018,d2l_linear_networks,sentence_f175f09b17949d79fdfe6562,e81b24aac0b3cbd5fe7b40c6bb8b8a70c5da00dcef6b16728375faeaba022ea9,209462aaaabe856b76321b092e6ee9b123e3331300e4b31148effd382c70ec2b,"## Parameterization Cost of Fully-Connected Layers
+:label:`subsec_parameterization-cost-fc-layers`"
+blind_77e132119c2bd238388c9bb3,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctx_f4fa216c07f2cf0249eb37ca,BACKUP,B3,fully-connected layers,d2l_recurrent_neural_networks_sequence_b023,d2l_recurrent_neural_networks,sentence_467449b36bf28a6c820cac7e,8caecab8ae7aafedb156635763d66d66d844ee93f16f0bbe70b00636517c7198,0526460416ecb9a4e81b163d3754ebf9d3e718559cac42c5ec9e5ec65b4549e5,"```{.python .input}
+#@tab mxnet, pytorch
+tau = 4
+features = d2l.zeros((T - tau, tau))
+for i in range(tau):
+    features[:, i] = x[i: T - tau + i]
+labels = d2l.reshape(x[tau:], (-1, 1))
+```
+
+```{.python .input}
+#@tab tensorflow
+tau = 4
+features = tf.Variable(d2l.zeros((T - tau, tau)))
+for i in range(tau):
+    features[:, i].assign(x[i: T - tau + i])
+labels = d2l.reshape(x[tau:], (-1, 1))
+```
+
+```{.python .input}
+#@tab all
+batch_size, n_train = 16, 600
+# Only the first `n_train` examples are used for training
+train_iter = d2l.load_array((features[:n_train], labels[:n_train]),
+                            batch_size, is_train=True)
+```
+
+Here we [**keep the architecture fairly simple:
+just an MLP**] with two fully-connected layers, ReLU activation, and squared loss."
+blind_77e132119c2bd238388c9bb3,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctx_403adb70f5312a0fa35b95be,PRIMARY,C4,fully-connected layers,d2l_multilayer_perceptrons_mlp_b011,d2l_multilayer_perceptrons,sentence_ee83118332971e9545fef97b,6683d7beb8b72fff1146160f79a85523526ad5a5d9c4ebfcb6e051b7df2a9988,afc09be39adc3d64bb4aaa9878a5bd332ab97c54a72d3d728684e9bb33302b17,"The easiest way to do this is to stack
+many fully-connected layers on top of each other."
+blind_77e132119c2bd238388c9bb3,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctx_faa4efe019d52f783381c40a,PRIMARY,C1,fully-connected layers,d2l_convolutional_neural_networks_why_conv_b001,d2l_convolutional_neural_networks,sentence_f0efc3942625f9a21822a8b0,c89f02651a44635d98f6e1da6325d9874a060d9bc215e2106e9369fdddeaa14c,fd5182c340dd172ff7c56861be75e7f107f318710b707b4d4abd5c8a5468aec8,"# From Fully-Connected Layers to Convolutions
+:label:`sec_why-conv`"
+blind_77e132119c2bd238388c9bb3,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctx_1f4f955fd892e6791b4aeef3,PRIMARY,C3,fully-connected layers,d2l_convolutional_modern_alexnet_b031,d2l_convolutional_modern,sentence_6e49932b0cf8dc03e33f650c,af12d9797a736f3768de2a84c9193b62a3d48996429557ecfc5b953bf79f4c84,af4db0511991c9ba26d797e647e0a908b30e5ce468a833a8068ac6b9bd3a55ab,These two huge fully-connected layers produce model parameters of nearly 1 GB.
+blind_77e132119c2bd238388c9bb3,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctx_28b17b3a0950632e4ac5d1f9,PRIMARY,C2,fully-connected layers,d2l_attention_mechanisms_attention_cues_b014,d2l_attention_mechanisms,sentence_b55a324b907b8b68eff4c103,0a66f436bd5b1c95f0d496e2940acceffb42d5a4ecfa5a9418e9a4edda8e0552,65af89720617ae607429baacc7672f1f94cf634f10a0ec0184e0be2b3d89b8b1,"Therefore,
+what sets attention mechanisms
+apart from those fully-connected layers
+or pooling layers
+is the inclusion of the volitional cues."
+blind_77e132119c2bd238388c9bb3,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctx_58323905b57101ea133ca2d9,PRIMARY,C5,fully-connected layers,d2l_recurrent_modern_gru_b009,d2l_recurrent_modern,sentence_5124ba81bbc32751cf3a0de2,50bb1e197d6c29be52b9b34e8abc9903229c980ea2f6683274c54971784ca96c,06af87f0c1bad548a5d219d169ed8cc57e1fa99c73b252f2db51bc56354a213d,"The outputs of two gates
+are given by two fully-connected layers
+with a sigmoid activation function."
+blind_01e23654adf19ad5e9001343,d2lce_2684090fd4500122fec2a334,d2lce_2684090fd4500122fec2a334,ctx_dd4385b29dac92b049208df2,BACKUP,B1,in place,d2l_preliminaries_ndarray_b091,d2l_preliminaries,sentence_6ac6741d11801924cda1cb4a,ddd3ce50079f08887fd7f60682e18825852ba4585c4949138773e39de07d739b,67c5c69d2702cf2bb3a8809c42c932bc8ec897e84581b2f44a318d7758563c97,"Typically, we will want to perform these updates *in place*."
+blind_01e23654adf19ad5e9001343,d2lce_2684090fd4500122fec2a334,d2lce_2684090fd4500122fec2a334,ctx_25b94844ba885d1f978af59d,BACKUP,B2,in place,d2l_multilayer_perceptrons_mlp_b020,d2l_multilayer_perceptrons,sentence_50b7d424f47b6d8274e988fa,c28a320d5d8db141902e5a7a415740dac62313fd9a50c443c07da21fd4d734c5,e1fd731649275d170259548772780f73875e83a3eee3e0ac4f13182059946228,"In general, with activation functions in place,
+it is no longer possible to collapse our MLP into a linear model:"
+blind_01e23654adf19ad5e9001343,d2lce_2684090fd4500122fec2a334,d2lce_2684090fd4500122fec2a334,ctx_b28630d61d9d7f640c9a5483,BACKUP,B3,in place,d2l_introduction_index_b079,d2l_introduction,sentence_eac8f1f995f2adcc9e757c10,c4467b3eb6f6e8d46d6a1773dad3657ea6c7f083c31eb1195f2b97bef2f96a41,eb925f0f46d9126599b209582b31a00fbc224b7cfd8268f5ca23972055d13c19,"Moreover, current purchase habits are often a result
+of the recommendation algorithm currently in place,
+but learning algorithms do not always take this detail into account."
+blind_01e23654adf19ad5e9001343,d2lce_2684090fd4500122fec2a334,d2lce_2684090fd4500122fec2a334,ctx_51b702393d86c10055ec9803,PRIMARY,C4,in-place,d2l_optimization_adadelta_b016,d2l_optimization,sentence_9eaa140ea6d20e4bdcff1b07,96c52da5d3e6430590ae74d831179052d6cd8437c07becd4a20045d7d6c571b0,e4a4c923187d41bdf2a4fee8fd81c08e83dd3e9e518dd701cc89ebadfd801c48,"```{.python .input}
+%matplotlib inline
+from d2l import mxnet as d2l
+from mxnet import np, npx
+npx.set_np()
+
+def init_adadelta_states(feature_dim):
+    s_w, s_b = d2l.zeros((feature_dim, 1)), d2l.zeros(1)
+    delta_w, delta_b = d2l.zeros((feature_dim, 1)), d2l.zeros(1)
+    return ((s_w, delta_w), (s_b, delta_b))
+
+def adadelta(params, states, hyperparams):
+    rho, eps = hyperparams['rho'], 1e-5
+    for p, (s, delta) in zip(params, states):
+        # In-place updates via [:]
+        s[:] = rho * s + (1 - rho) * np.square(p.grad)
+        g = (np.sqrt(delta + eps) / np.sqrt(s + eps)) * p.grad
+        p[:] -= g
+        delta[:] = rho * delta + (1 - rho) * g * g
+```"
+blind_01e23654adf19ad5e9001343,d2lce_2684090fd4500122fec2a334,d2lce_2684090fd4500122fec2a334,ctx_f813489a437efb8e7e42d969,PRIMARY,C1,in place,d2l_preliminaries_ndarray_b091,d2l_preliminaries,sentence_389a72fbe3cfef589e458f5b,87715745a9d05673d6485582b107db82752169917f2bd2dd47dc874c9c4a5b60,a4545a996e27a79035c073225837e126f66f70d7c2c938ab8a711e2456abb06b,"If we do not update in place, other references will still point to
+the old memory location, making it possible for parts of our code
+to inadvertently reference stale parameters."
+blind_01e23654adf19ad5e9001343,d2lce_2684090fd4500122fec2a334,d2lce_2684090fd4500122fec2a334,ctx_3d152d0258e0fc757b4f6fc6,PRIMARY,C3,in-place,d2l_preliminaries_ndarray_b092,d2l_preliminaries,sentence_0a4309be9a5fae3faec5c726,716106ba951fe3b557a40979fe393bdc34236f995688212fbd671e4c0cba6de6,8ab54c64414cb75e73c985549c24269fd8cea01de83fdfff157ec839e1788374,":begin_tab:`mxnet, pytorch`
+Fortunately, (**performing in-place operations**) is easy."
+blind_01e23654adf19ad5e9001343,d2lce_2684090fd4500122fec2a334,d2lce_2684090fd4500122fec2a334,ctx_3b646f556dedb3e0fad436ed,PRIMARY,C2,in place,d2l_linear_networks_linear_regression_scratch_b047,d2l_linear_networks,sentence_96e19630d0d6e9e21e7cdc25,121df3d873e6cf953fd18436d758cde9588763fad863c9fe7b2ff32212dc95f7,066bb3ba77ff4ba563b651e60165bf6355b1840fcb6b8fea37409262ce141e8a,"Now that we have all of the parts in place,
+we are ready to [**implement the main training loop.**]
+It is crucial that you understand this code
+because you will see nearly identical training loops
+over and over again throughout your career in deep learning."
+blind_01e23654adf19ad5e9001343,d2lce_2684090fd4500122fec2a334,d2lce_2684090fd4500122fec2a334,ctx_537ed43953ead18faf55b24e,PRIMARY,C5,in-place,d2l_computational_performance_hybridize_b064,d2l_computational_performance,sentence_3b7cf906cd8f16a45541792b,460e1c0afda9b765537039851d9136d2201a5174543d6b21afd0c00c74d0956c,ac0eb75a50a7231492d9ecbac89fb1cab7c2203a820a67386ebc196a7f99e4db,"Also note that some functions are not supported in the `symbol` module (e.g.,  `asnumpy`) and operations in-place such as `a += b` and `a[:] = a + b` must be rewritten as `a = a + b`."
+blind_914057b5495cd15e462a32fe,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctx_88d4ac7e32b65e492b2dbc3a,BACKUP,B1,cuda,d2l_installation_index_b036,d2l_installation,sentence_7100f0a40cb9caf5c580a105,7c84834fd2c70a1ac5adbd1ab1a0d23bb754759a63ad35dfd27ad74960caa9ae,65291784a1b93f525067867d1d2aca90234b1511b02ba74553944e7ad95a3f7e,"If your computer has NVIDIA graphics cards and has installed [CUDA](https://developer.nvidia.com/cuda-downloads),
+then you should install a GPU-enabled version."
+blind_914057b5495cd15e462a32fe,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctx_6fcdbf49cf1b09495f5babfd,BACKUP,B2,cuda,d2l_computational_performance_async_computation_b014,d2l_computational_performance,sentence_374081957708be44aec706d4,b7cc30510d541ea3c6a75d1dbd33321f4ac70eabf8b78d59c34a5f7b9abf4ebe,97157c9dd507c4f14166c4e15d1763d81bc379c71ce44c41f51db81c9de5e42a,"```{.python .input}
+#@tab pytorch
+with d2l.Benchmark():
+    for _ in range(10):
+        a = torch.randn(size=(1000, 1000), device=device)
+        b = torch.mm(a, a)
+    torch.cuda.synchronize(device)
+```"
+blind_914057b5495cd15e462a32fe,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctx_7f3025aa974fb8d15e3804a4,BACKUP,B3,cuda,d2l_convolutional_modern_alexnet_b023,d2l_convolutional_modern,sentence_89fb1e501dd80bdb23c9762f,05206a85495e7496601d9376eac48cc5ce198cb28458e542746ee8574a5aac45,9e00640f388bb90bf003994a4dddd890b9ffe658294e82dfe7f7a05dfc86e6aa,"The code [cuda-convnet](https://code.google.com/archive/p/cuda-convnet/)
+was good enough that for several years
+it was the industry standard and powered
+the first couple years of the deep learning boom."
+blind_914057b5495cd15e462a32fe,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctx_d5e3c3872235604218a2a839,PRIMARY,C4,cuda,d2l_deep_learning_computation_use_gpu_b004,d2l_deep_learning_computation,sentence_33dad108693a70a5c36db6fb,53039d6a744de991df8fd33c0a53ad1aacd902d08a1387bb093b3dee1636c0e3,96895c01d4f3b420b28094341511b6c32585101a5c40328a17ec3c797769e5d1,"Then, download the [NVIDIA driver and CUDA](https://developer.nvidia.com/cuda-downloads)
+and follow the prompts to set the appropriate path."
+blind_914057b5495cd15e462a32fe,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctx_df035bcc5db7501785c43a7e,PRIMARY,C1,cuda,d2l_installation_index_b038,d2l_installation,sentence_b08a2b22e6f49c2b7dd6af9f,d4302779d28a3d0b023b1a0cab10ad12a66fc24ea2a2252bb80ad4cf9d0faf31,890fa5c450ec9bf15ce044cc774a321836a71cf0ab8c66a34d10bf5a9cf1b707,We now need to find out what version of CUDA you have installed.
+blind_914057b5495cd15e462a32fe,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctx_f0c64b01d15f034d29c1d6ce,PRIMARY,C2,cuda,d2l_installation_index_b038,d2l_installation,sentence_3db6a583ed5df7dccea64584,250711f4e7a7798f0059e953368463a96183d024506bb3b4d8a9658b2468e7ed,dd5d7df36ab54b110cc1ecc6f789dd5e8d687b1e310b7fedeac96450b748c9da,"Assume that you have installed CUDA 10.1,
+then you can install with the following command:"
+blind_914057b5495cd15e462a32fe,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctx_dae4dda67205c6e9b5831f82,PRIMARY,C3,cuda,d2l_installation_index_b038,d2l_installation,sentence_078075bb2cd028abff9e13a1,1f56659d014e06a2f9bdd1fcd5a7d41cd872eac022d4a350d1907eb2970dd4eb,0ed7bfa44179dd73d3f9480d6adec37e833028fdc06d8dfb292bada0a4c22630,"You can check this by running `nvcc --version` 
+or `cat /usr/local/cuda/version.txt`."
+blind_914057b5495cd15e462a32fe,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctx_c8b662075f19ab652ddcc0b9,PRIMARY,C5,cuda,d2l_appendix_tools_for_deep_learning_aws_b003,d2l_appendix_tools_for_deep_learning,sentence_894db673ae6c33ba61af01b3,932e60976f4831cf1a1dc8d6d8e309224851c9bec5ad9be97dd1574ae8d74805,26ae8dbc03703400d11f586a5c2291ee4adee04e7d8043bf7a74a34c94c34057,Optionally: install CUDA or use an AMI with CUDA preinstalled.
+blind_7b75165ab88dd6c3d2beca1d,d2lce_270e1a75bb70807d9c2dd507,d2lce_270e1a75bb70807d9c2dd507,ctx_e7ad2905fd773a830f6b4c43,BACKUP,B1,channels,d2l_optimization_lr_scheduler_b007,d2l_optimization,sentence_f1351f02c1b8d1a32749acc0,b07bb86b33969fd39776a647de0d44169a466df14bef5926b05603c97bf4270e,6ac8758ac6e79af836cdb9cac87e1acd9dd7e1dec905a9ebfbdd5f6484564376,"```{.python .input}
+%matplotlib inline
+from d2l import mxnet as d2l
+from mxnet import autograd, gluon, init, lr_scheduler, np, npx
+from mxnet.gluon import nn
+npx.set_np()
+
+net = nn.HybridSequential()
+net.add(nn.Conv2D(channels=6, kernel_size=5, padding=2, activation='relu'),
+        nn.MaxPool2D(pool_size=2, strides=2),
+        nn.Conv2D(channels=16, kernel_size=5, activation='relu'),
+        nn.MaxPool2D(pool_size=2, strides=2),
+        nn.Dense(120, activation='relu'),
+        nn.Dense(84, activation='relu'),
+        nn.Dense(10))
+net.hybridize()
+loss = gluon.loss.SoftmaxCrossEntropyLoss()
+device = d2l.try_gpu()
+
+batch_size = 256
+train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size=batch_size)
+
+# The code is almost identical to `d2l.train_ch6` defined in the 
+# lenet section of chapter convolutional neural networks
+def train(net, train_iter, test_iter, num_epochs, loss, trainer, device):
+    net.initialize(force_reinit=True, ctx=device, init=init.Xavier())
+    animator = d2l.Animator(xlabel='epoch', xlim=[0, num_epochs],
+                            legend=['train loss', 'train acc', 'test acc'])
+    for epoch in range(num_epochs):
+        metric = d2l.Accumulator(3)  # train_loss, train_acc, num_examples
+        for i, (X, y) in enumerate(train_iter):
+            X, y = X.as_in_ctx(device), y.as_in_ctx(device)
+            with autograd.record():
+                y_hat = net(X)
+                l = loss(y_hat, y)
+            l.backward()
+            trainer.step(X.shape[0])
+            metric.add(l.sum(), d2l.accuracy(y_hat, y), X.shape[0])
+            train_loss = metric[0] / metric[2]
+            train_acc = metric[1] / metric[2]
+            if (i + 1) % 50 == 0:
+                animator.add(epoch + i / len(train_iter),
+                             (train_loss, train_acc, None))
+        test_acc = d2l.evaluate_accuracy_gpu(net, test_iter)
+        animator.add(epoch + 1, (None, None, test_acc))
+    print(f'train loss {train_loss:.3f}, train acc {train_acc:.3f}, '
+          f'test acc {test_acc:.3f}')
+```"
+blind_7b75165ab88dd6c3d2beca1d,d2lce_270e1a75bb70807d9c2dd507,d2lce_270e1a75bb70807d9c2dd507,ctx_93be4d86c465d785ac0a0ec1,BACKUP,B2,channels,d2l_attention_mechanisms_self_attention_and_positional_encoding_b018,d2l_attention_mechanisms,sentence_94a8b62946763f26e742db54,c69aa6283b72c21af7c9fd330574d65ee54faefb1da390e5df2caea71eda777b,9564c9c16a72d6896988845e19549b5e28bcab6a4134d416596e19ed8180e846,"For now,
+we only need to know that
+since the sequence length is $n$,
+the numbers of input and output channels are both $d$,
+the computational complexity of the convolutional layer is $\mathcal{O}(knd^2)$."
+blind_7b75165ab88dd6c3d2beca1d,d2lce_270e1a75bb70807d9c2dd507,d2lce_270e1a75bb70807d9c2dd507,ctx_79213e2c4e36b995f90f0b30,PRIMARY,C3,channels,d2l_introduction_index_b024,d2l_introduction,sentence_f17192445be442b75c04dad4,470b16244bb9fe3305eee8cdca73bb85c2e0c2c6ac8da554b8705d7c863e7d24,ba6ec342999aecb305a64929a5db6a203049617d44200cd5df3e178e161b6f84,"A $200\times 200$ color photograph would consist of $200\times200\times3=120000$
+numerical values, corresponding to the brightness
+of the red, green, and blue channels for each spatial location."
+blind_7b75165ab88dd6c3d2beca1d,d2lce_270e1a75bb70807d9c2dd507,d2lce_270e1a75bb70807d9c2dd507,ctx_4bb23f20ff0fa67bc6c1be83,PRIMARY,C2,channels,d2l_preliminaries_linear_algebra_b060,d2l_preliminaries,sentence_f6f1f806e59cd3b9f03ea426,bdffd524bbd8a5b5033d99ced5c6a7692a426dc377fde64e386ca251bc0fc715,ec0f0c8e48f743fc12a00cc67b5c8356a3f53c12df5097b3881af50fbd2c06b6,"Tensors will become more important when we start working with images,
+ which arrive as $n$-dimensional arrays with 3 axes corresponding to the height, width, and a *channel* axis for stacking the color channels (red, green, and blue)."
+blind_7b75165ab88dd6c3d2beca1d,d2lce_270e1a75bb70807d9c2dd507,d2lce_270e1a75bb70807d9c2dd507,ctx_50b02cc418dce008fb37b2ea,PRIMARY,C1,channels,d2l_linear_networks_image_classification_dataset_b015,d2l_linear_networks,sentence_780ae211bf62df9f14ff8a9b,d9cfeb935b830b2b5f9285399c2234408ab760dca2d41a43fb5a4f09cdbff8a9,85604937309ed0d987b5523bdc4fc674e83344828af6b53bb1f855ab35c1bb3d,"Note that the dataset consists of grayscale images, whose number of channels is 1."
+blind_7b75165ab88dd6c3d2beca1d,d2lce_270e1a75bb70807d9c2dd507,d2lce_270e1a75bb70807d9c2dd507,ctx_e066da075985b1450c0cd804,PRIMARY,C4,channels,d2l_convolutional_neural_networks_index_b005,d2l_convolutional_neural_networks,sentence_27f3e0ec9d14cbd6108f4db0,797545d4829d49809c4ef85ee3d9c7449e00ed9ce8b949f0b99dbcb71e1abd60,36c1c5fd649bca69b3149222c774242001cf01b7c09c018f75792db45b458890,"These include the convolutional layers themselves,
+nitty-gritty details including padding and stride,
+the pooling layers used to aggregate information
+across adjacent spatial regions,
+the use of multiple channels  at each layer,
+and a careful discussion of the structure of modern architectures."
+blind_7b75165ab88dd6c3d2beca1d,d2lce_270e1a75bb70807d9c2dd507,d2lce_270e1a75bb70807d9c2dd507,ctx_e7437fb0f0bdad9c3645e83b,PRIMARY,C5,channels,d2l_convolutional_modern_alexnet_b030,d2l_convolutional_modern,sentence_ec2876b3a76c818267c2da4a,76716911374742231da950761217f574873ccc46d9147ea75de333d80057972c,d086acf8c49c1788b9872727b259c4ffb1c423b45153341ad91fc2db7d570011,"Moreover, AlexNet has ten times more convolution channels than LeNet."
+blind_4fcd4c797707d1e4d2f4e1f2,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctx_5717eff884f463a81a21a526,BACKUP,B1,bit,d2l_recurrent_modern_deep_rnn_b003,d2l_recurrent_modern,sentence_f3a5b9de51991c70f685669a,8d929fdb2717afccdb8afc4410f74e757405f226adc060a602e91d880064ad9c,719a2c8de506d9117ad025d1163b1bd8cb2819d6e539c286d9830dfed68ef17b,"Within RNNs this is a bit trickier, since we first need to decide how and where to add extra nonlinearity."
+blind_4fcd4c797707d1e4d2f4e1f2,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctx_6bf5da537a25d356b2e5e0ac,BACKUP,B2,bit,d2l_multilayer_perceptrons_mlp_b025,d2l_multilayer_perceptrons,sentence_a1cb1adeff076c6055791d07,53b60ca284c2ec12461002034ab5fac80309d595b5404a711d7864dbf248261d,6339364eec3594b19a15be0c9627fbf479c89ab09f81644392f0ab1cc931ea11,"You might think of your neural network
+as being a bit like the C programming language."
+blind_4fcd4c797707d1e4d2f4e1f2,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctx_decede697ad47b1366644611,BACKUP,B3,bit,d2l_deep_learning_computation_parameters_b082,d2l_deep_learning_computation,sentence_9dd0cf3c6dd3a3c42043f8b7,8099641428e5c743660c11af0cae70bc0be50f6244f422d78c18b170bb0f17c6,5a0ae09c73bd4607de6b0998aa25efaa9b47e524046ca2c9c40b3ba62dbc305b,"```{.python .input}
+#@tab tensorflow
+# tf.keras behaves a bit differently."
+blind_4fcd4c797707d1e4d2f4e1f2,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctx_bc735116b032003b647bf1d5,PRIMARY,C1,bit,d2l_preliminaries_index_b004,d2l_preliminaries,sentence_4a62aed2471a33fbe9effd56,f64296046669180171e64557ea4e4b56430b298a7a2dd14e90a231542944889a,dc303758264ad38596c15d05907f86f684a9157a5c17b8a6ccfd8ec1db233534,"Determining which way to move each parameter at each step of an algorithm
+requires a little bit of calculus, which will be briefly introduced."
+blind_4fcd4c797707d1e4d2f4e1f2,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctx_30cb9519a863d7ebe60dd4e0,PRIMARY,C3,bit,d2l_convolutional_modern_resnet_b002,d2l_convolutional_modern,sentence_7ba14a82f73ae55b00c97352,5d4f933774563d68094d324677d7119fe3d588118c84c2464fc25b2ca408b573,f904a009eb31efa8419da2df6ec391fea1361f7ec08f43da3ba3eab08ed34a4b,To make some progress we need a bit of mathematics.
+blind_4fcd4c797707d1e4d2f4e1f2,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctx_48fb92c20348628ff3c83349,PRIMARY,C2,bit,d2l_recurrent_neural_networks_bptt_b002,d2l_recurrent_neural_networks,sentence_aae689ac34173ef51565f6f0,bae87c4fecd2ad9eb2f60f39d1543431fbf58fda35c5daba4a1aa9f8614e3817,8ea183eb7b4a29b2a352b9420082aed4c153dd791b3208067d4b62906af97686,"In this section,
+we will delve a bit more deeply
+into the details of backpropagation for sequence models and why (and how) the mathematics works."
+blind_4fcd4c797707d1e4d2f4e1f2,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctx_a08fef290a47362d440d8409,PRIMARY,C4,bit,d2l_linear_networks_softmax_regression_b045,d2l_linear_networks,sentence_90891f0ba5affe2b0311ebef,8c1465390c4542ddfa9a3bedc301c9774d967b659d46a49d80cd3021f0aacd53,3e67e7286d0874a58b9bbf0916cee7d7a2abeb1c8fe995dfca0b6505d38fc08e,"Since the softmax and the corresponding loss are so common,
+it is worth understanding a bit better how it is computed."
+blind_4fcd4c797707d1e4d2f4e1f2,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctx_296377e3411a5f06ef38c871,PRIMARY,C5,bit,d2l_convolutional_neural_networks_channels_b017,d2l_convolutional_neural_networks,sentence_89a0270c9ee3bf54bf77cbb6,4e21ccf1075ea50f2ac74b1363de9c3c55c51942cc12ba1322036c7213b11ee6,3cec07d414b8941de50c135462664e371a5af78373d91c4c7d34ea9579a50a6d,Reality is a bit more complicated than the most naive interpretations of this intuition since representations are not learned independent but are rather optimized to be jointly useful.
+blind_bc16db5212d403dd658c838a,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctx_ad827e72cc1bfa17dfbdadef,BACKUP,B1,contexts,d2l_preliminaries_linear_algebra_b032,d2l_preliminaries,sentence_03c325de561f2d23147eef5b,26db49d4937262ccb4a7c5de0ca6f0f3ae774346be20935e664c869f99c94d2e,e3655aa70d5c43882ff561f13624d7bbc9ca4ab8ad08a8a86640d94feb07e389,"Note that the word ""dimension"" tends to get overloaded
+in these contexts and this tends to confuse people."
+blind_bc16db5212d403dd658c838a,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctx_c40b35f077d50245b79ff9f6,BACKUP,B2,contexts,d2l_preliminaries_linear_algebra_b130,d2l_preliminaries,sentence_19fa4320a76ca1d1339aca89,03d557867ebc6f0ee3bddbb5872ec15f60e0a42aa6c1cfde0bb329d836ab31a8,c4fb05b7191d4ac04613500cbcd609c7ed9a7649eafef8d2dfbad3ff1cb47607,Dot products are useful in a wide range of contexts.
+blind_bc16db5212d403dd658c838a,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctx_d84189ac843db03cf9cfdc82,BACKUP,B3,contexts,d2l_deep_learning_computation_custom_layer_b040,d2l_deep_learning_computation,sentence_93fac594047cbaee3f1dc965,7dd770ad5453ce1ac8269424de4e6429ebe8ad44af61816e80ebd8d20a0ac972,cf1b16b1063f96c268634172fc9427957aff23865102453fe2242d073d93ccf3,"* Once defined, custom layers can be invoked in arbitrary contexts and architectures."
+blind_bc16db5212d403dd658c838a,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctx_85c155993547287904ebb77e,PRIMARY,C3,contexts,d2l_introduction_index_b097,d2l_introduction,sentence_71c0a96848c7ea21b9125c22,2e9b4a7a615d7e253b615ab11deb7ef67d15319493a15af68a785f99ba6d8f47,c54b9d4ecd0c16ce749b6af83d1865e673217482f6eee48a7aa293c9c95d86d6,"For text,
+we can train models 
+to ""fill in the blanks""
+by predicting randomly masked words
+using their surrounding words (contexts)
+in big corpora without any labeling effort :cite:`Devlin.Chang.Lee.ea.2018`!"
+blind_bc16db5212d403dd658c838a,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctx_938a7ef4c625c0fdaa81a1ed,PRIMARY,C5,contexts,d2l_recurrent_neural_networks_language_models_and_dataset_b018,d2l_recurrent_neural_networks,sentence_130a68b37e8c20f51dd5cef9,225a3a5932475941e125b45b69e93a55dae539720a549f7172a9c3240e7b3d39,59c72ab28dea52ac67030798f0629d4436f48e32bea975889ffae8802dab99be,"It is quite difficult to adjust such models to additional contexts,
+whereas, deep learning based language models are well suited to
+take this into account."
+blind_bc16db5212d403dd658c838a,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctx_8d01d5c8ba8b22afa8297f86,PRIMARY,C1,contexts,d2l_recurrent_modern_bi_rnn_b048,d2l_recurrent_modern,sentence_8e4b095f9ea2acb1af669d56,404186637aafc70e5d97989e826aa761e7488952afc8984e81ec520a44a3cdaf,62b215cd953da8042f3c8aa70ce73388883460961ca9bccae8437e9cd05f1096,"For example, the word ""bank"" has different meanings in contexts “i went to the bank to deposit cash” and “i went to the bank to sit down”."
+blind_bc16db5212d403dd658c838a,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctx_a703c64944c46d8745b2290e,PRIMARY,C4,contexts,d2l_natural_language_processing_pretraining_index_b005,d2l_natural_language_processing_pretraining,sentence_e56343ceb6ad1f1e7d8e0138,b25643d84eee7994102871fcd24fd6b16581217e6804d408cd084a843f8c7eaf,e22cdf1654db38d320d4849474239e6ceb3a985e5b26dac8460125a59a42e3f4,"Thus, many more recent pretraining models adapt representation of the same token
+to different contexts."
+blind_bc16db5212d403dd658c838a,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctx_a1d30a054504f29bcb20b25b,PRIMARY,C2,contexts,d2l_appendix_mathematics_for_deep_learning_geometry_linear_algebraic_ops_b041,d2l_appendix_mathematics_for_deep_learning,sentence_f11e5baf8d21a6b7b707044c,e593eb69dbba25e8376c6b0581fd234bc6742d7d66e3f562993829c907ddeddf,6556b0a350aa8d306694947525b95465b05410cbea7d54eaaa16755aa0ead4b0,"### Cosine Similarity
+In ML contexts where the angle is employed
+to measure the closeness of two vectors,
+practitioners adopt the term *cosine similarity*
+to refer to the portion
+$$
+\cos(\theta) = \frac{\mathbf{v}\cdot\mathbf{w}}{\|\mathbf{v}\|\|\mathbf{w}\|}."
+blind_cfdc98a8cc024b287c0d82e3,d2lce_fbe9efe0d390976cb31e5af7,d2lce_fbe9efe0d390976cb31e5af7,ctx_e3686abbec23ffeb19f2dfef,BACKUP,B1,forward,d2l_multilayer_perceptrons_dropout_b013,d2l_multilayer_perceptrons,sentence_fa3308a8e44cabdd2de25110,e4620f19ba23a0e590486902615be3d22d64992491369e1e2326fd41ba074565,cd934c6d08ee116a47f52b9b32e789351380565387606971f0a8b924b7292b55,"Their idea, called *dropout*, involves
+injecting noise while computing
+each internal layer during forward propagation,
+and it has become a standard technique
+for training neural networks."
+blind_cfdc98a8cc024b287c0d82e3,d2lce_fbe9efe0d390976cb31e5af7,d2lce_fbe9efe0d390976cb31e5af7,ctx_4f8a2ab7305e5e99ddf848a4,PRIMARY,C1,forward,d2l_linear_networks_linear_regression_concise_b059,d2l_linear_networks,sentence_a863389dde3412de453516e8,75614a4580c25abac6709d5b325d9630a32116da1b0ba428abee64a485efd3b7,596386f48b114d8e691c5984e4d641a82b1425059ceb6c4e9c27cf37f7259681,* Generate predictions by calling `net(X)` and calculate the loss `l` (the forward propagation).
+blind_cfdc98a8cc024b287c0d82e3,d2lce_fbe9efe0d390976cb31e5af7,d2lce_fbe9efe0d390976cb31e5af7,ctx_18f5c52c0937b1589d8a6782,PRIMARY,C2,forward,d2l_deep_learning_computation_model_construction_b007,d2l_deep_learning_computation,sentence_783e0e05cb7ea9dc5d5706bc,b915f7dbfe87b6724299e02e54b856fd2ab195c86f6e9b4b7e3e80dfbf8fca8d,bf52f9447696b8d8cf2f1c0606b8b34aa48226105850fb85cfb536d9a49b1714,"Any subclass of it must define a forward propagation function
+that transforms its input into output
+and must store any necessary parameters."
+blind_cfdc98a8cc024b287c0d82e3,d2lce_fbe9efe0d390976cb31e5af7,d2lce_fbe9efe0d390976cb31e5af7,ctx_072a83737808daf5abee6df6,PRIMARY,C4,forward,d2l_convolutional_neural_networks_conv_layer_b020,d2l_convolutional_neural_networks,sentence_75e7102bfe2b988c71ff802b,620bbb1a3b75ed0fb56eec85cda880c172d66453075d95c61de4a5f3b50fdd8d,d874b533f827bc8566e3c4cac0161a4555507c5658244c8e9f54e728a4ee3f67,"The forward propagation function
+calls the `corr2d` function and adds the bias."
+blind_cfdc98a8cc024b287c0d82e3,d2lce_fbe9efe0d390976cb31e5af7,d2lce_fbe9efe0d390976cb31e5af7,ctx_d126e74d5ab3240a96363756,PRIMARY,C3,forward,d2l_recurrent_modern_index_b003,d2l_recurrent_modern,sentence_d63643c53550b531593efcfc,98544559fc06314324f0111157daada7498c8cbebeff9836036c70616cdf765c,876dbc08e651c954de91d49229fbf2954095b3c35c6d78f95a2f97b1477fbd6c,"We will describe deep architectures with
+multiple hidden layers,
+and discuss the bidirectional design
+with both forward and backward recurrent computations."
+blind_cfdc98a8cc024b287c0d82e3,d2lce_fbe9efe0d390976cb31e5af7,d2lce_fbe9efe0d390976cb31e5af7,ctx_041277e59fc9e3b32469b673,PRIMARY,C5,forward,d2l_attention_mechanisms_nadaraya_watson_b062,d2l_attention_mechanisms,sentence_00a3b866cc361cdda6d9c5d5,ebf819d66b3846f73cc41b91f40394cebb872ef6b274acf4badc110e589e61ba,7dea4af97920c74ed7d3f045068ac62aebff94594172ee93971bd9e90b89ee7a,"```{.python .input}
+class NWKernelRegression(nn.Block):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.w = self.params.get('w', shape=(1,))
+
+    def forward(self, queries, keys, values):
+        # Shape of the output `queries` and `attention_weights`:
+        # (no."
+blind_85f5e888e35ef792b3780094,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctx_2a4b835e03acf05a36784e49,BACKUP,B1,batchnorm,d2l_computer_vision_ssd_b032,d2l_computer_vision,sentence_807f2b5f4d53546ef88545a4,4acc9619e77ac14c457d4f85b81a34c603eaa25995446bbe27457c1a83bd480c,e1c59cfc6bdfeafa6a5e4821a7098bb4f97060c277664c3c6899ac13b814adca,"```{.python .input}
+def down_sample_blk(num_channels):
+    blk = nn.Sequential()
+    for _ in range(2):
+        blk.add(nn.Conv2D(num_channels, kernel_size=3, padding=1),
+                nn.BatchNorm(in_channels=num_channels),
+                nn.Activation('relu'))
+    blk.add(nn.MaxPool2D(2))
+    return blk
+```"
+blind_85f5e888e35ef792b3780094,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctx_97626c8a07aa5d9bfd5cd128,BACKUP,B2,batchnorm,d2l_computational_performance_multiple_gpus_concise_b007,d2l_computational_performance,sentence_0546ad47666330d1edd4c5aa,1caf663e80ad05b6a79972e9f98c5c1d6826cce45932cf8d73130a2713a7f1ef,6a923d2f055f5ad0039835a600926fc75b1b41aaeed5231b7269c6a7384c95bc,"```{.python .input}
+#@save
+def resnet18(num_classes):
+    """"""A slightly modified ResNet-18 model.""""""
+    def resnet_block(num_channels, num_residuals, first_block=False):
+        blk = nn.Sequential()
+        for i in range(num_residuals):
+            if i == 0 and not first_block:
+                blk.add(d2l.Residual(
+                    num_channels, use_1x1conv=True, strides=2))
+            else:
+                blk.add(d2l.Residual(num_channels))
+        return blk
+
+    net = nn.Sequential()
+    # This model uses a smaller convolution kernel, stride, and padding and
+    # removes the maximum pooling layer
+    net.add(nn.Conv2D(64, kernel_size=3, strides=1, padding=1),
+            nn.BatchNorm(), nn.Activation('relu'))
+    net.add(resnet_block(64, 2, first_block=True),
+            resnet_block(128, 2),
+            resnet_block(256, 2),
+            resnet_block(512, 2))
+    net.add(nn.GlobalAvgPool2D(), nn.Dense(num_classes))
+    return net
+```"
+blind_85f5e888e35ef792b3780094,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctx_a112ae80926b023797d45e91,BACKUP,B3,batchnorm,d2l_generative_adversarial_networks_dcgan_b022,d2l_generative_adversarial_networks,sentence_d6748db1ede7f499b6f6de08,62c4a1a077bdd330e04cfb93c3ecbb4b6c87c486fb43121c45a276f41bea53eb,29ada0b205afd1283a08de4fe23a7ad7f1d9b9d4a82bac27a1d25488b5014cd5,"```{.python .input}
+class G_block(nn.Block):
+    def __init__(self, channels, kernel_size=4,
+                 strides=2, padding=1, **kwargs):
+        super(G_block, self).__init__(**kwargs)
+        self.conv2d_trans = nn.Conv2DTranspose(
+            channels, kernel_size, strides, padding, use_bias=False)
+        self.batch_norm = nn.BatchNorm()
+        self.activation = nn.Activation('relu')
+
+    def forward(self, X):
+        return self.activation(self.batch_norm(self.conv2d_trans(X)))
+```"
+blind_85f5e888e35ef792b3780094,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctx_8f8f50278fcee237079dc232,PRIMARY,C1,batchnorm,d2l_convolutional_modern_batch_norm_b036,d2l_convolutional_modern,sentence_1fa96965f35b89f840155d8d,54b800409b6fa73e9798e375441c62f9ccba45630cedced70409a6a5dd839fd0,f5de4a017b5f777064a003df2e16935426ee9aa0d3686143e7f9d40020fd4eec,"We can now [**create a proper `BatchNorm` layer.**]
+Our layer will maintain proper parameters
+for scale `gamma` and shift `beta`,
+both of which will be updated in the course of training."
+blind_85f5e888e35ef792b3780094,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctx_2bba7bfd16dd89a39a9179f1,PRIMARY,C3,batchnorm,d2l_attention_mechanisms_transformer_b025,d2l_attention_mechanisms,sentence_abda4fb08ad484f9abe2d599,323ac492e17ba9ea8c45e44ab586c02222ef6a171d309402f77e5db4dbc559d6,24d23e5c86835d2936aa96c5e7f32ab740d9539b4a6e73b6b8d51dc1518a59bf,"```{.python .input}
+ln = nn.LayerNorm()
+ln.initialize()
+bn = nn.BatchNorm()
+bn.initialize()
+X = d2l.tensor([[1, 2], [2, 3]])
+# Compute mean and variance from `X` in the training mode
+with autograd.record():
+    print('layer norm:', ln(X), '\nbatch norm:', bn(X))
+```"
+blind_85f5e888e35ef792b3780094,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctx_cc13b838430cc6b65f7256c9,PRIMARY,C2,batchnorm,d2l_convolutional_modern_batch_norm_b040,d2l_convolutional_modern,sentence_4cb7687731bad544e6b0d420,e1773aa79e5af5c3d2cfc320c7c866c0e428908ebb7c33203f5bd331329a8f08,13171de3623c4ea6f301aecdc1166b6ded4d2c268c8ed686f7dcd28d54abd10c,"```{.python .input}
+#@tab tensorflow
+class BatchNorm(tf.keras.layers.Layer):
+    def __init__(self, **kwargs):
+        super(BatchNorm, self).__init__(**kwargs)
+
+    def build(self, input_shape):
+        weight_shape = [input_shape[-1], ]
+        # The scale parameter and the shift parameter (model parameters) are
+        # initialized to 1 and 0, respectively
+        self.gamma = self.add_weight(name='gamma', shape=weight_shape,
+            initializer=tf.initializers.ones, trainable=True)
+        self.beta = self.add_weight(name='beta', shape=weight_shape,
+            initializer=tf.initializers.zeros, trainable=True)
+        # The variables that are not model parameters are initialized to 0
+        self.moving_mean = self.add_weight(name='moving_mean',
+            shape=weight_shape, initializer=tf.initializers.zeros,
+            trainable=False)
+        self.moving_variance = self.add_weight(name='moving_variance',
+            shape=weight_shape, initializer=tf.initializers.ones,
+            trainable=False)
+        super(BatchNorm, self).build(input_shape)
+
+    def assign_moving_average(self, variable, value):
+        momentum = 0.9
+        delta = variable * momentum + value * (1 - momentum)
+        return variable.assign(delta)
+
+    @tf.function
+    def call(self, inputs, training):
+        if training:
+            axes = list(range(len(inputs.shape) - 1))
+            batch_mean = tf.reduce_mean(inputs, axes, keepdims=True)
+            batch_variance = tf.reduce_mean(tf.math.squared_difference(
+                inputs, tf.stop_gradient(batch_mean)), axes, keepdims=True)
+            batch_mean = tf.squeeze(batch_mean, axes)
+            batch_variance = tf.squeeze(batch_variance, axes)
+            mean_update = self.assign_moving_average(
+                self.moving_mean, batch_mean)
+            variance_update = self.assign_moving_average(
+                self.moving_variance, batch_variance)
+            self.add_update(mean_update)
+            self.add_update(variance_update)
+            mean, variance = batch_mean, batch_variance
+        else:
+            mean, variance = self.moving_mean, self.moving_variance
+        output = batch_norm(inputs, moving_mean=mean, moving_var=variance,
+            beta=self.beta, gamma=self.gamma, eps=1e-5)
+        return output
+```"
+blind_85f5e888e35ef792b3780094,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctx_5799f6d95cc38b1ae654394a,PRIMARY,C4,batchnorm,d2l_convolutional_modern_batch_norm_b038,d2l_convolutional_modern,sentence_3f14a3f9e581a077bc6c7494,31ed74ab78f99ca6ae29eb091ac0fa086f71bc77425843c6bb828b9b84e7ae0e,dec09487513b445ffcff92b12b962c6ac8ea4e1c0374b614762fe129af9c24d0,"```{.python .input}
+class BatchNorm(nn.Block):
+    # `num_features`: the number of outputs for a fully-connected layer
+    # or the number of output channels for a convolutional layer."
+blind_85f5e888e35ef792b3780094,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctx_a70b42d220709405815636f8,PRIMARY,C5,batchnorm,d2l_convolutional_modern_batch_norm_b039,d2l_convolutional_modern,sentence_f93e61997ff95f848668d9e8,af1bab5fd0ea15c6ba743ee7ddf406bce845b5e87c848fa42f6a8e8aaaffc7cb,610c1fbcdb6d37037139f424220e2e11011eaa4b0342e88691c43a97bd61f9ad,"```{.python .input}
+#@tab pytorch
+class BatchNorm(nn.Module):
+    # `num_features`: the number of outputs for a fully-connected layer
+    # or the number of output channels for a convolutional layer."
+blind_fa84d2b6838aa92c632c1254,d2lce_73c8ce2915c4c64a52fab4a2,d2lce_73c8ce2915c4c64a52fab4a2,ctx_2cc55c7c27ecd856fe623eec,BACKUP,B1,generator,d2l_generative_adversarial_networks_gan_b005,d2l_generative_adversarial_networks,sentence_4dd57ac80e5036eb182ea463,4420e088ff6dfc098dcaeab5c04ef4d4efd78c4ee40f8717da35bb2a515fad2e,848a8fec59ee7db652ff77f45f55feefedf0ad376cc9e85f3eef733682921394,This allows us to improve the data generator until it generates something that resembles the real data.
+blind_fa84d2b6838aa92c632c1254,d2lce_73c8ce2915c4c64a52fab4a2,d2lce_73c8ce2915c4c64a52fab4a2,ctx_ce5770ebbcecab9cd14b31d1,PRIMARY,C1,generator,d2l_generative_adversarial_networks_gan_b005,d2l_generative_adversarial_networks,sentence_dddfdcc606098836390e143f,b357b9f9b72bce2a3b7fb7fbe63e93bbf96adcd41cf1c589df53c3da1ec09137,43e472f010a5c63fca8544e0476b9efcecd17e67f3bd0b9e13a933d5e851d07b,"At their heart, GANs rely on the idea that a data generator is good if we cannot tell fake data apart from real data."
+blind_fa84d2b6838aa92c632c1254,d2lce_73c8ce2915c4c64a52fab4a2,d2lce_73c8ce2915c4c64a52fab4a2,ctx_111ebd3664347c4b99a35b2e,PRIMARY,C2,generator,d2l_generative_adversarial_networks_gan_b007,d2l_generative_adversarial_networks,sentence_ef0c432371de43008c187951,366dcf4bec1d94f19680237085f37e6cf925cf5f073e6130ffff8075ddea5c18,9d62424fd49bddc5322ca97fef4b11c45cd0acc5699bb6385bf22f8f2679502c,We call this the generator network.
+blind_fa84d2b6838aa92c632c1254,d2lce_73c8ce2915c4c64a52fab4a2,d2lce_73c8ce2915c4c64a52fab4a2,ctx_545710fbceae0d3428fd3a00,PRIMARY,C5,generator,d2l_generative_adversarial_networks_gan_b008,d2l_generative_adversarial_networks,sentence_acdc94766cb933ef5156bc2f,cbd65d93d67c8ad4b49928f1487efe286af2001057a3f5abcbe37e96f145c575,74b274a1bdfc0756274f53f2b5da7768668502dbd52ae92f3249fe19f74a8a8b,The discriminator is a binary classifier to distinguish if the input $x$ is real (from real data) or fake (from the generator).
+blind_fa84d2b6838aa92c632c1254,d2lce_73c8ce2915c4c64a52fab4a2,d2lce_73c8ce2915c4c64a52fab4a2,ctx_33e923407e067945b2c17e33,PRIMARY,C4,generator,d2l_generative_adversarial_networks_gan_b007,d2l_generative_adversarial_networks,sentence_e2ab610a2bfaf42a279db17f,598a9fecaf2409502d7261f2568078bd16a6d902dd4d8ae7312402776f19bdd9,eeea61c72e6f16ae8b7c32747c8085a8ea6ba1e06d0414b4daa809f49b4a8d8e,The generator network attempts to fool the discriminator network.
+blind_fa84d2b6838aa92c632c1254,d2lce_73c8ce2915c4c64a52fab4a2,d2lce_73c8ce2915c4c64a52fab4a2,ctx_2aca2894517926700f9e34d1,PRIMARY,C3,generator,d2l_generative_adversarial_networks_gan_b007,d2l_generative_adversarial_networks,sentence_56b42587f984dab5f63f8fb2,7c3e96597e2b4681d57b70c8f2b1b30b706f5c37b1a1be1f494210a1943f2d82,76d0f7e008f69448b14d1ec63e723b808da87cff44300bf6f5f2aaa9b0d83822,"This information, in turn is used to improve the generator network, and so on."
+blind_52b4b9b4b5d966891790f603,d2lce_c6c1c6e96c39b88a9f94e8d9,d2lce_c6c1c6e96c39b88a9f94e8d9,ctx_a7c81a70b68bbf602ecfbeab,BACKUP,B1,input gate,d2l_recurrent_modern_lstm_b018,d2l_recurrent_modern,sentence_5eee1983829a0a9512ac9b20,b6c117b8b37e9b704e6fbc4f4b730b800b7f0673a3041b285c24e89abc732c85,24fd43c2522e165017e876160b9e73b881a395befb959f7efcee9523622e1157,"Similarly,
+in LSTMs we have two dedicated gates for such purposes: the input gate $\mathbf{I}_t$ governs how much we take new data into account via $\tilde{\mathbf{C}}_t$ and the forget gate $\mathbf{F}_t$ addresses how much of the old memory cell content $\mathbf{C}_{t-1} \in \mathbb{R}^{n \times h}$ we retain."
+blind_52b4b9b4b5d966891790f603,d2lce_c6c1c6e96c39b88a9f94e8d9,d2lce_c6c1c6e96c39b88a9f94e8d9,ctx_b2ecc4429423fc36a19369d3,BACKUP,B2,input gate,d2l_recurrent_modern_lstm_b037,d2l_recurrent_modern,sentence_82a449631f50a21335913618,f87dae16c4798192b496b3fc0c93b3e30bc95a6ff23a95a4bd14cff3c0fa96e4,32f1aaefe0f456d8a2c122d9a3946300e9da695e81c5cf287cdbf7293d8b36bd,"```{.python .input}
+def get_lstm_params(vocab_size, num_hiddens, device):
+    num_inputs = num_outputs = vocab_size
+
+    def normal(shape):
+        return np.random.normal(scale=0.01, size=shape, ctx=device)
+
+    def three():
+        return (normal((num_inputs, num_hiddens)),
+                normal((num_hiddens, num_hiddens)),
+                np.zeros(num_hiddens, ctx=device))
+
+    W_xi, W_hi, b_i = three()  # Input gate parameters
+    W_xf, W_hf, b_f = three()  # Forget gate parameters
+    W_xo, W_ho, b_o = three()  # Output gate parameters
+    W_xc, W_hc, b_c = three()  # Candidate memory cell parameters
+    # Output layer parameters
+    W_hq = normal((num_hiddens, num_outputs))
+    b_q = np.zeros(num_outputs, ctx=device)
+    # Attach gradients
+    params = [W_xi, W_hi, b_i, W_xf, W_hf, b_f, W_xo, W_ho, b_o, W_xc, W_hc,
+              b_c, W_hq, b_q]
+    for param in params:
+        param.attach_grad()
+    return params
+```"
+blind_52b4b9b4b5d966891790f603,d2lce_c6c1c6e96c39b88a9f94e8d9,d2lce_c6c1c6e96c39b88a9f94e8d9,ctx_d97ae77a3b700998ac63cadd,BACKUP,B3,input gate,d2l_recurrent_modern_lstm_b038,d2l_recurrent_modern,sentence_95d3eecd0e190204ceeb33f8,3a89755d01def81dfe93e85ab32c15756b167fd48c53ebe335576641d3674de9,e318cbf19e59e1c93722717020704103d0f43a3592699cb83be196a0a9d0fdff,"```{.python .input}
+#@tab pytorch
+def get_lstm_params(vocab_size, num_hiddens, device):
+    num_inputs = num_outputs = vocab_size
+
+    def normal(shape):
+        return torch.randn(size=shape, device=device)*0.01
+
+    def three():
+        return (normal((num_inputs, num_hiddens)),
+                normal((num_hiddens, num_hiddens)),
+                d2l.zeros(num_hiddens, device=device))
+
+    W_xi, W_hi, b_i = three()  # Input gate parameters
+    W_xf, W_hf, b_f = three()  # Forget gate parameters
+    W_xo, W_ho, b_o = three()  # Output gate parameters
+    W_xc, W_hc, b_c = three()  # Candidate memory cell parameters
+    # Output layer parameters
+    W_hq = normal((num_hiddens, num_outputs))
+    b_q = d2l.zeros(num_outputs, device=device)
+    # Attach gradients
+    params = [W_xi, W_hi, b_i, W_xf, W_hf, b_f, W_xo, W_ho, b_o, W_xc, W_hc,
+              b_c, W_hq, b_q]
+    for param in params:
+        param.requires_grad_(True)
+    return params
+```"
+blind_52b4b9b4b5d966891790f603,d2lce_c6c1c6e96c39b88a9f94e8d9,d2lce_c6c1c6e96c39b88a9f94e8d9,ctx_ef08148c1866b77ae7d4ed7f,PRIMARY,C1,input gate,d2l_recurrent_modern_lstm_b004,d2l_recurrent_modern,sentence_5c55018b2481b5ab6faeb4f1,5c1f9bb4f29285dd86b408780f367e05e57b35c26a2ffadd7a291b8878796160,5d9a5991940951c74d1ff4a4ea2994880adc6628ae7b3ae3a80b4ae8c11c4b08,We refer to this as the *input gate*.
+blind_52b4b9b4b5d966891790f603,d2lce_c6c1c6e96c39b88a9f94e8d9,d2lce_c6c1c6e96c39b88a9f94e8d9,ctx_55d21390aec0ff7a7336858a,PRIMARY,C2,input gate,d2l_recurrent_modern_lstm_b008,d2l_recurrent_modern,sentence_fcdc03178a1ddc209508d444,90b884665dd6ee49dfa5fee913f093b60d52f116cc3d78195ba9b97803f2cebb,4407b53e429c89391b96b06825ba6a02c2c0ba80b9f52e05812ae2fa01805d90,"Correspondingly, the gates at time step $t$
+are defined as follows: the input gate is $\mathbf{I}_t \in \mathbb{R}^{n \times h}$, the forget gate is $\mathbf{F}_t \in \mathbb{R}^{n \times h}$, and the output gate is $\mathbf{O}_t \in \mathbb{R}^{n \times h}$."
+blind_52b4b9b4b5d966891790f603,d2lce_c6c1c6e96c39b88a9f94e8d9,d2lce_c6c1c6e96c39b88a9f94e8d9,ctx_6c0d6d0d558005aaf9be6fc3,PRIMARY,C5,input gate,d2l_recurrent_modern_lstm_b020,d2l_recurrent_modern,sentence_d9eab84c98c32b0f1e563a2d,5dca5c30d09667c90ed8c7f0378328b9f18139891b58d13735d880f3e42c7028,8006c90c98149f20737509823d529a10e800a6abccc1da893da773aa251661ad,"If the forget gate is always approximately 1 and the input gate is always approximately 0, the past memory cells $\mathbf{C}_{t-1}$ will be saved over time and passed to the current time step."
+blind_52b4b9b4b5d966891790f603,d2lce_c6c1c6e96c39b88a9f94e8d9,d2lce_c6c1c6e96c39b88a9f94e8d9,ctx_6a19e08d950ca7bef8fb4c89,PRIMARY,C3,input gate,d2l_recurrent_modern_lstm_b005,d2l_recurrent_modern,sentence_677a13b6f66d36d6302a385a,b3c049aeabeabb53e9775b793ce86f1addf8e527937ad51b8a8c2d6dd3fdbcd1,55d6325998de6f37ead7690202fa241d8477bbfbc7cbe68dcb7a98de772910a7,"### Input Gate, Forget Gate, and Output Gate"
+blind_52b4b9b4b5d966891790f603,d2lce_c6c1c6e96c39b88a9f94e8d9,d2lce_c6c1c6e96c39b88a9f94e8d9,ctx_9ee60265b7c99b18fa9a46f2,PRIMARY,C4,input gate,d2l_recurrent_modern_lstm_b007,d2l_recurrent_modern,sentence_233f5dae07761e1a4528c1bc,8786cd0135697b270c7b754861ef2c97fb7f7333492b0c23b14c1d7b01335a01,bf83f81f27a1eb73359700492f280e4ac8bfb224cc3387212aa4a4bd23fd91d9,"![Computing the input gate, the forget gate, and the output gate in an LSTM model.](../img/lstm-0.svg)
+:label:`lstm_0`"
+blind_82cd72541ee30790b3a3273b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctx_a07c31185d557a9cba947172,BACKUP,B1,caser,d2l_recommender_systems_seqrec_b005,d2l_recommender_systems,sentence_2782fb7a8705fe01395419b5,61cef2ad8b392cc69045d11760b0ed13e94bf53e7fbd68dc6013046ca32c7bd2,c316e3c242eed87faa84e6909be8255b5ab4bc6f98fb759eaaf556b1ebe57ce3,The goal of Caser is to recommend item by considering user general tastes as well as short-term intention.
+blind_82cd72541ee30790b3a3273b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctx_27b2e4936143566a8ca5e421,BACKUP,B2,caser,d2l_recommender_systems_seqrec_b016,d2l_recommender_systems,sentence_a0972456818b2b9f0adb09ec,8a49400dbf82bc6bd7c344a8d614847eb36f0ffb3e69cc62c2494b9bd446a22f,9f3a88d402de799d9dc16937414828780e6523e7b27a377661fc582532025529,The architecture of Caser is shown below:
+blind_82cd72541ee30790b3a3273b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctx_26a6365155d601f3009c3236,BACKUP,B3,caser,d2l_recommender_systems_seqrec_b017,d2l_recommender_systems,sentence_83121b0683367ef9a6f6ae98,4c8124024270c7dfedf48aa55166740d49df99da9d4f69febf44f5b0d8d3ba24,78b353ddd63170acda68b59e537d7dc4136b4c8109762fafd0e37b23e90786c7,![Illustration of the Caser Model](../img/rec-caser.svg)
+blind_82cd72541ee30790b3a3273b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctx_c48fb3f822f811ccbb8750b6,PRIMARY,C3,caser,d2l_recommender_systems_seqrec_b003,d2l_recommender_systems,sentence_c26e9a92679c70ae156ff685,fd78fac28fb3d1c8ba9f312905ce9903a0f28f92046c7a01abd102c3340a4999,b6a360495343f0f8a089eea64a3ae68eb8dfb9890e3e0b26352b0eee3d85e0cb,"The model we will introduce, Caser :cite:`Tang.Wang.2018`, short for convolutional sequence embedding recommendation model, adopts convolutional neural networks capture the dynamic pattern influences of users' recent activities."
+blind_82cd72541ee30790b3a3273b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctx_efedd61e884ed0fdc81eff25,PRIMARY,C4,caser,d2l_recommender_systems_seqrec_b003,d2l_recommender_systems,sentence_cc4e0ff54c598e39504930cb,8b62e12453d9654faf3a86272ae6769d458e560bf152950d08f12280d540c1e1,684df94a437d3298a84c71eb1f36aecf0ace43c8e84cb4ea465dcb3956674591,"The main component of Caser consists of a horizontal convolutional network and a vertical convolutional network, aiming to uncover the union-level and point-level sequence patterns, respectively."
+blind_82cd72541ee30790b3a3273b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctx_b400985b05d02328a55f0c52,PRIMARY,C2,caser,d2l_recommender_systems_seqrec_b021,d2l_recommender_systems,sentence_d6c3cc690e394aff5da8633b,03e5d55b50f33dc2759d510e8c9ff747a4be7b2aac9275ca5eb4d740ce1cae09,13f84e8637575225d01791446e8f0eb47a7f78048f09fd428a7329fc862ae1f8,"```{.python .input  n=4}
+class Caser(nn.Block):
+    def __init__(self, num_factors, num_users, num_items, L=5, d=16,
+                 d_prime=4, drop_ratio=0.05, **kwargs):
+        super(Caser, self).__init__(**kwargs)
+        self.P = nn.Embedding(num_users, num_factors)
+        self.Q = nn.Embedding(num_items, num_factors)
+        self.d_prime, self.d = d_prime, d
+        # Vertical convolution layer
+        self.conv_v = nn.Conv2D(d_prime, (L, 1), in_channels=1)
+        # Horizontal convolution layer
+        h = [i + 1 for i in range(L)]
+        self.conv_h, self.max_pool = nn.Sequential(), nn.Sequential()
+        for i in h:
+            self.conv_h.add(nn.Conv2D(d, (i, num_factors), in_channels=1))
+            self.max_pool.add(nn.MaxPool1D(L - i + 1))
+        # Fully-connected layer
+        self.fc1_dim_v, self.fc1_dim_h = d_prime * num_factors, d * len(h)
+        self.fc = nn.Dense(in_units=d_prime * num_factors + d * L,
+                           activation='relu', units=num_factors)
+        self.Q_prime = nn.Embedding(num_items, num_factors * 2)
+        self.b = nn.Embedding(num_items, 1)
+        self.dropout = nn.Dropout(drop_ratio)
+
+    def forward(self, user_id, seq, item_id):
+        item_embs = np.expand_dims(self.Q(seq), 1)
+        user_emb = self.P(user_id)
+        out, out_h, out_v, out_hs = None, None, None, []
+        if self.d_prime:
+            out_v = self.conv_v(item_embs)
+            out_v = out_v.reshape(out_v.shape[0], self.fc1_dim_v)
+        if self.d:
+            for conv, maxp in zip(self.conv_h, self.max_pool):
+                conv_out = np.squeeze(npx.relu(conv(item_embs)), axis=3)
+                t = maxp(conv_out)
+                pool_out = np.squeeze(t, axis=2)
+                out_hs.append(pool_out)
+            out_h = np.concatenate(out_hs, axis=1)
+        out = np.concatenate([out_v, out_h], axis=1)
+        z = self.fc(self.dropout(out))
+        x = np.concatenate([z, user_emb], axis=1)
+        q_prime_i = np.squeeze(self.Q_prime(item_id))
+        b = np.squeeze(self.b(item_id))
+        res = (x * q_prime_i).sum(1) + b
+        return res
+```"
+blind_82cd72541ee30790b3a3273b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctx_89f8785f0d47f0a72eb28a8d,PRIMARY,C1,caser,d2l_recommender_systems_seqrec_b020,d2l_recommender_systems,sentence_ff6999abe1481494f88a8061,e61731440f89e4123138286751b14b1b23b78a700964ec48330b756dcacf2c7a,d181d3fbe9f59babe127f11a0c985f50700c7e1aa5437658bb2e54919315b03b,"## Model Implementation
+The following code implements the Caser model."
+blind_82cd72541ee30790b3a3273b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctx_f3d1cfd65cb60c18b67864a5,PRIMARY,C5,caser,d2l_recommender_systems_seqrec_b030,d2l_recommender_systems,sentence_65b6653cbfccefea9ccdce40,1ed16af86383a1f20e90aab5979f0d04147ebba0948a579e1b72669d031e4345,af4f79ff854880205d5a506c13d8ca71b26103c5b81b40e95e2d4d44e49def2b,"```{.python .input  n=7}
+devices = d2l.try_all_gpus()
+net = Caser(10, num_users, num_items, L)
+net.initialize(ctx=devices, force_reinit=True, init=mx.init.Normal(0.01))
+lr, num_epochs, wd, optimizer = 0.04, 8, 1e-5, 'adam'
+loss = d2l.BPRLoss()
+trainer = gluon.Trainer(net.collect_params(), optimizer,
+                        {""learning_rate"": lr, 'wd': wd})
+
+d2l.train_ranking(net, train_iter, test_iter, loss, trainer, test_seq_iter,
+                  num_users, num_items, num_epochs, devices,
+                  d2l.evaluate_ranking, candidates, eval_step=1)
+```"
+blind_3d2a8f57ca45b5bc455e652a,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctx_654cb542dec605b7a07f0d38,BACKUP,B1,convolutional neural networks,d2l_deep_learning_computation_model_construction_b032,d2l_deep_learning_computation,sentence_7ab04d8f07da1c8d3c9f9710,6456cd8f5c97da27809f754d167701f53c2e3ec7a9a7e0ef5bd810128316bec6,c6b7a829e888aadaeac522ab4d84267bf0949a2b2e0b8de0a552150485f3b595,"We exploit this versatility
+throughout the following chapters,
+such as when addressing
+convolutional neural networks."
+blind_3d2a8f57ca45b5bc455e652a,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctx_d32ca634c60e5bdb199798a6,BACKUP,B2,convolutional neural networks,d2l_convolutional_modern_index_b001,d2l_convolutional_modern,sentence_4b08f1470009e48006b44e05,2b9a367ff58792d134748a5cd50df6ed08b28c94fa0b36dd80e0df80a8eb5165,ca1082a0ae05cfc72ab636fb13130efb7e3da8485a1f2bcf5b04ab81126fbfb4,"# Modern Convolutional Neural Networks
+:label:`chap_modern_cnn`"
+blind_3d2a8f57ca45b5bc455e652a,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctx_d72570c9e0d6a16eed3d4320,BACKUP,B3,convolutional neural networks,d2l_optimization_lr_scheduler_b007,d2l_optimization,sentence_f1351f02c1b8d1a32749acc0,b07bb86b33969fd39776a647de0d44169a466df14bef5926b05603c97bf4270e,9a9f94d826f0a115fbd6218e2e836416c9912e850410a4d4883925fd75c7ac4d,"```{.python .input}
+%matplotlib inline
+from d2l import mxnet as d2l
+from mxnet import autograd, gluon, init, lr_scheduler, np, npx
+from mxnet.gluon import nn
+npx.set_np()
+
+net = nn.HybridSequential()
+net.add(nn.Conv2D(channels=6, kernel_size=5, padding=2, activation='relu'),
+        nn.MaxPool2D(pool_size=2, strides=2),
+        nn.Conv2D(channels=16, kernel_size=5, activation='relu'),
+        nn.MaxPool2D(pool_size=2, strides=2),
+        nn.Dense(120, activation='relu'),
+        nn.Dense(84, activation='relu'),
+        nn.Dense(10))
+net.hybridize()
+loss = gluon.loss.SoftmaxCrossEntropyLoss()
+device = d2l.try_gpu()
+
+batch_size = 256
+train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size=batch_size)
+
+# The code is almost identical to `d2l.train_ch6` defined in the 
+# lenet section of chapter convolutional neural networks
+def train(net, train_iter, test_iter, num_epochs, loss, trainer, device):
+    net.initialize(force_reinit=True, ctx=device, init=init.Xavier())
+    animator = d2l.Animator(xlabel='epoch', xlim=[0, num_epochs],
+                            legend=['train loss', 'train acc', 'test acc'])
+    for epoch in range(num_epochs):
+        metric = d2l.Accumulator(3)  # train_loss, train_acc, num_examples
+        for i, (X, y) in enumerate(train_iter):
+            X, y = X.as_in_ctx(device), y.as_in_ctx(device)
+            with autograd.record():
+                y_hat = net(X)
+                l = loss(y_hat, y)
+            l.backward()
+            trainer.step(X.shape[0])
+            metric.add(l.sum(), d2l.accuracy(y_hat, y), X.shape[0])
+            train_loss = metric[0] / metric[2]
+            train_acc = metric[1] / metric[2]
+            if (i + 1) % 50 == 0:
+                animator.add(epoch + i / len(train_iter),
+                             (train_loss, train_acc, None))
+        test_acc = d2l.evaluate_accuracy_gpu(net, test_iter)
+        animator.add(epoch + 1, (None, None, test_acc))
+    print(f'train loss {train_loss:.3f}, train acc {train_acc:.3f}, '
+          f'test acc {test_acc:.3f}')
+```"
+blind_3d2a8f57ca45b5bc455e652a,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctx_ae21d86ceba363f31d12fca3,PRIMARY,C1,convolutional neural networks,d2l_preface_index_b022,d2l_preface,sentence_bf72dc8151fca388a6abaa77,c858d06dde8d1b92cd97b8b5bee9e4abe0fa8d213b51bbc09d20b3e5b3c68873,149e35f5004e67b716976a9d4f2913315010bd193e8e945fb8dd6c587afab3d8,"Next, :numref:`chap_cnn` and :numref:`chap_modern_cnn`,
+introduce convolutional neural networks (CNNs), 
+powerful tools that form the backbone 
+of most modern computer vision systems."
+blind_3d2a8f57ca45b5bc455e652a,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctx_7d255ebc2d354c8e85c00cb4,PRIMARY,C2,convolutional neural networks,d2l_convolutional_neural_networks_index_b001,d2l_convolutional_neural_networks,sentence_de1a5ce03ba43dcf9380b546,02f6c169354f041c310b6e7363fa8dc59cac81af4477ba51d42f16a6b70d55fd,78e5cfd42c7f56cfc519fe9035eaa3867c2cd617be966b7a9158e8c5e70058dd,"# Convolutional Neural Networks
+:label:`chap_cnn`"
+blind_3d2a8f57ca45b5bc455e652a,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctx_ffd36cb1d841c0421cbd90cc,PRIMARY,C5,cnns,d2l_recurrent_neural_networks_index_b005,d2l_recurrent_neural_networks,sentence_b3798d7240c67f79bb65225e,8273046fad3d8d335c9d128e0320408240f4012e1811126b296738121fdab1c4,56655a1443c854179e4be71ce7dd8ac0c42b8cf873fa343f2b6d0d5a5f27e457,"In short, while CNNs can efficiently process spatial information, *recurrent neural networks* (RNNs) are designed to better handle sequential information."
+blind_3d2a8f57ca45b5bc455e652a,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctx_9ddb8f2418fda4eee49c9494,PRIMARY,C3,convolutional neural networks,d2l_introduction_index_b132,d2l_introduction,sentence_6c97a4a20050b15946fd48a2,7421665a2152817221e204576f333e86ba447b29e6792bace8fb376fc6f9ad58,3ee3c04f6c5c152acbc12e26bdc5256286a0bff431515670b8a435ed0c51dbad,"This is also one of the reasons why many of the mainstays
+of deep learning, such as multilayer perceptrons
+:cite:`McCulloch.Pitts.1943`, convolutional neural networks
+:cite:`LeCun.Bottou.Bengio.ea.1998`, long short-term memory
+:cite:`Hochreiter.Schmidhuber.1997`,
+and Q-Learning :cite:`Watkins.Dayan.1992`,
+were essentially ""rediscovered"" in the past decade,
+after laying comparatively dormant for considerable time."
+blind_3d2a8f57ca45b5bc455e652a,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctx_cba7a66d443fedea8b0f37bf,PRIMARY,C4,cnns,d2l_attention_mechanisms_self_attention_and_positional_encoding_b002,d2l_attention_mechanisms,sentence_e9773094eed8fd27302cd957,87399d9dcbd6873e89e75f2933a522963be478102f3e7f5121173f6396b4794b,38a2428b88b76a2879e9c5cde628801cac5db60f0310197a3c6d425206525ded,"In deep learning,
+we often use CNNs or RNNs to encode a sequence."

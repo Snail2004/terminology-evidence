@@ -1,0 +1,20 @@
+{
+  "schema_id": "D2LCSTStageAConsensusPolicyV1",
+  "policy_id": "d2l_cst_stage_a_evidence_aware_consensus_v1_2",
+  "review_policy_id": "d2l_cst_stage_a_evidence_aware_review_v1_2",
+  "reviewer_slots": 3,
+  "automatic_development_finalization": {
+    "required_exact_agreement": 3,
+    "require_complete_independent_provenance": true,
+    "require_confirmed_evidence_roles": true,
+    "require_positive_definition_evidence": true,
+    "require_positive_pos_evidence": true,
+    "forbid_semantic_blockers": true
+  },
+  "majority_2_of_3_action": "ADJUDICATION_REQUIRED",
+  "no_majority_action": "ADJUDICATION_REQUIRED",
+  "synthetic_positive_action": "ADJUDICATION_REQUIRED",
+  "sense_or_pos_conflation_action": "SPLIT_REQUIRED",
+  "confidence_vote_weight": false,
+  "final_glossary_decision": null
+}

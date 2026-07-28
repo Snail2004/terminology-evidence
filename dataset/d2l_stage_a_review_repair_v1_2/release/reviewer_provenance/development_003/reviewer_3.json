@@ -1,0 +1,22 @@
+{
+  "schema_id": "D2LCSTReviewerProvenanceV1",
+  "status": "PENDING_OWNER_ATTESTATION",
+  "batch_id": "development_003",
+  "reviewer_slot": 3,
+  "reviewer_output_ref": "dataset/d2l_stage_a_review_batches_v1/release/batches/development_003/result/human_3.csv",
+  "reviewer_output_sha256": "857217adaf1055bf04982e79d47a557f72c4a1bf7c909bf30c2d24eced3aa9a0",
+  "reviewer_type": null,
+  "reviewer_id": null,
+  "model_route": null,
+  "model_provider": null,
+  "model_version": null,
+  "prompt_sha256": null,
+  "instruction_sha256": "d2667208e5eedb8636b291b3cfc5b1b167e54e5f5046e30e0685d9b6a0120295",
+  "source_bundle_sha256": "585aae04a3d96ba796a5031d4ce973c3e0dc768cb133725cb1e6d48961957746",
+  "run_id": null,
+  "started_at": null,
+  "completed_at": null,
+  "independence_attestation": null,
+  "other_reviewer_outputs_visible": null,
+  "provenance_sha256": "bd7b61c0a740e5cf7f41706837e921a7f3e604792a7b0721079f56fbe2cf4c6a"
+}

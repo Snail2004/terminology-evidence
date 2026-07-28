@@ -1,0 +1,2 @@
+# Generated evidence preserves source-text whitespace inside CSV/Markdown fields.
+release/** -whitespace
