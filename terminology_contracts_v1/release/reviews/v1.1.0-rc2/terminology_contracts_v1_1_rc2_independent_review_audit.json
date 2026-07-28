@@ -1,0 +1,55 @@
+{
+  "schema_id": "TerminologyContractsV1_1RC2IndependentReviewAuditV1",
+  "artifact": "terminology_contracts_v1_1_rc2.zip",
+  "release_zip_sha256": "2530ebf80d4826a740d1d1efad5952adf8611cec67797d7bd806731a15cb1954",
+  "external_checksum_verification": "PASS",
+  "internal_checksum_verification": "PASS",
+  "manifest_verification": "PASS",
+  "zip_safety": "PASS",
+  "credential_scan": "PASS",
+  "packaged_cache_scan": "PASS",
+  "tests_without_dataset_root": {
+    "passed": 77,
+    "skipped": 2,
+    "failed": 0
+  },
+  "tests_with_real_v3_and_pilot": {
+    "passed": 79,
+    "skipped": 0,
+    "failed": 0
+  },
+  "rc1_findings_recheck": "CLOSED",
+  "verdict": {
+    "release_engineering": "PASS",
+    "common_authority_freeze": "BLOCKED",
+    "publish_to_agents": "NOT_YET"
+  },
+  "blocking_findings": [
+    {
+      "id": "P0-N1",
+      "title": "C/E evidence signals are not required to project into GateResultSet",
+      "reproduced": true,
+      "accepted_invalid_cases": [
+        "missing contrastive signal with gate false",
+        "attestation unjudgeable with gate false",
+        "wrong-sense critical flag with gate false"
+      ]
+    },
+    {
+      "id": "P0-N2",
+      "title": "No sealed per-gate action policy; wrong_sense can CAP_PROVISIONAL",
+      "reproduced": true
+    }
+  ],
+  "high_priority": [
+    {
+      "id": "P1-N1",
+      "title": "Collision index hash is not externally bundle-verified"
+    },
+    {
+      "id": "P1-N2",
+      "title": "Calibration artifact lacks threshold stability bootstrap metadata"
+    }
+  ],
+  "recommended_next_release": "v1.1.0-rc3"
+}

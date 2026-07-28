@@ -1,0 +1,148 @@
+{
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "cand-inference-vi-01",
+    "candidate_version": "fixture-candidate-v1",
+    "candidate_vi": "suy luận",
+    "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
+    "scope_id": "machine_learning",
+    "sense_id": "model_execution",
+    "sense_inventory_version": "sense-v1",
+    "source_term": "inference"
+  },
+  "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+  "gate_policy_version": "1.0.0",
+  "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
+  "integrity": {
+    "self_sha256": "abc0dd6a58fa5797b79506b027083def7747c7d395415f3ce53cc9e5b1f26b69"
+  },
+  "observations": [
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "input_contract_mismatch",
+      "reason_codes": [],
+      "source_modules": [
+        "CONTRACT"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "input_contract_mismatch",
+      "reason_codes": [],
+      "source_modules": [
+        "SENSE"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "unresolved_polysemy",
+      "reason_codes": [],
+      "source_modules": [
+        "SENSE"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "concept_mismatch",
+      "reason_codes": [],
+      "source_modules": [
+        "C",
+        "E"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "wrong_sense",
+      "reason_codes": [],
+      "source_modules": [
+        "C"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "contradiction",
+      "reason_codes": [],
+      "source_modules": [
+        "C",
+        "E"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "target_collision",
+      "reason_codes": [],
+      "source_modules": [
+        "GLOBAL"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "judge_disagreement",
+      "reason_codes": [],
+      "source_modules": [
+        "C",
+        "E"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "insufficient_evidence",
+      "reason_codes": [],
+      "source_modules": [
+        "C",
+        "E"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "missing_contrastive_context",
+      "reason_codes": [],
+      "source_modules": [
+        "C"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "incomplete_context_type_coverage",
+      "reason_codes": [],
+      "source_modules": [
+        "C"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "attestation_unjudgeable",
+      "reason_codes": [],
+      "source_modules": [
+        "E"
+      ],
+      "triggered": false
+    }
+  ],
+  "schema_id": "GateResultSetV1",
+  "schema_version": "1.1.0"
+}

@@ -1,0 +1,334 @@
+﻿case_sha256,term_id,sense_id,context_id,context_groups,block_id,chapter_id,sentence_id,context_role,context_slot,context_type_proposal,sense_relation,matched_surface_exact,content_sha256,context_sha256,source_text
+746c75e0ad178efe82b822a00170508f1a30b83319198b6a8ce11a3398c8a15c,d2lce_fa115d4c3a8140d91339df15,d2lce_fa115d4c3a8140d91339df15,ctx_0a74b6b6fec3cd733bef82fc,backup,d2l_recurrent_neural_networks_sequence_b023,d2l_recurrent_neural_networks,sentence_f8ac4271e634cd9587757c73,BACKUP,B2,C3,SAME_SENSE,reduction,3498a33f5cc91bcc0d76b9203d34935b0c7a838bb82350df977ead48b7b64300,0d27bcc8af45c287082ffc91aa99a7ab7ebff22403b7c247cf87a82efab4d2fe,"```{.python .input}
+# A simple MLP
+def get_net():
+    net = nn.Sequential()
+    net.add(nn.Dense(10, activation='relu'),
+            nn.Dense(1))
+    net.initialize(init.Xavier())
+    return net
+
+# Square loss
+loss = gluon.loss.L2Loss()
+```
+
+```{.python .input}
+#@tab pytorch
+# Function for initializing the weights of the network
+def init_weights(m):
+    if type(m) == nn.Linear:
+        nn.init.xavier_uniform_(m.weight)
+
+# A simple MLP
+def get_net():
+    net = nn.Sequential(nn.Linear(4, 10),
+                        nn.ReLU(),
+                        nn.Linear(10, 1))
+    net.apply(init_weights)
+    return net
+
+# Note: `MSELoss` computes squared error without the 1/2 factor
+loss = nn.MSELoss(reduction='none')
+```
+
+```{.python .input}
+#@tab tensorflow
+# Vanilla MLP architecture
+def get_net():
+    net = tf.keras.Sequential([tf.keras.layers.Dense(10, activation='relu'),
+                              tf.keras.layers.Dense(1)])
+    return net
+
+# Note: `MeanSquaredError` computes squared error without the 1/2 factor
+loss = tf.keras.losses.MeanSquaredError()
+```
+
+Now we are ready to [**train the model**]."
+746c75e0ad178efe82b822a00170508f1a30b83319198b6a8ce11a3398c8a15c,d2lce_fa115d4c3a8140d91339df15,d2lce_fa115d4c3a8140d91339df15,ctx_1181d8a3e218811366f7b56e,primary,d2l_recurrent_modern_seq2seq_b057,d2l_recurrent_modern,sentence_c0b6651133bfb2c216b102f3,PRIMARY,C2,C3,SAME_SENSE,reduction,0ee7373a62db0d64fc72c9556bd4b24831c3edda1e41e874474b6966bce457d5,df260f642fcdc4a67a21e2a6e674c27972ee03393d0376cead196f7106d2c0b2,"```{.python .input}
+#@tab pytorch
+#@save
+class MaskedSoftmaxCELoss(nn.CrossEntropyLoss):
+    """"""The softmax cross-entropy loss with masks.""""""
+    # `pred` shape: (`batch_size`, `num_steps`, `vocab_size`)
+    # `label` shape: (`batch_size`, `num_steps`)
+    # `valid_len` shape: (`batch_size`,)
+    def forward(self, pred, label, valid_len):
+        weights = torch.ones_like(label)
+        weights = sequence_mask(weights, valid_len)
+        self.reduction='none'
+        unweighted_loss = super(MaskedSoftmaxCELoss, self).forward(
+            pred.permute(0, 2, 1), label)
+        weighted_loss = (unweighted_loss * weights).mean(dim=1)
+        return weighted_loss
+```"
+746c75e0ad178efe82b822a00170508f1a30b83319198b6a8ce11a3398c8a15c,d2lce_fa115d4c3a8140d91339df15,d2lce_fa115d4c3a8140d91339df15,ctx_401ea4ab60773305df974141,primary;definition;part_of_speech,d2l_preliminaries_linear_algebra_b078,d2l_preliminaries,sentence_8c6fe6b4ecceaf56e5ce07a0,PRIMARY,C4,C1,SAME_SENSE,Reduction,0dc8665d9fccf570ea68a1f1188acf6aa29fc4941901b588ef23abc3ccd8e0df,179f24ec293c715a41223e792c232a632dac4b992b12ebba54d5c914187dc30b,"## Reduction
+:label:`subseq_lin-alg-reduction`"
+746c75e0ad178efe82b822a00170508f1a30b83319198b6a8ce11a3398c8a15c,d2lce_fa115d4c3a8140d91339df15,d2lce_fa115d4c3a8140d91339df15,ctx_7666d9241aa1a4a1804291fb,primary;definition,d2l_linear_networks_linear_regression_concise_b075,d2l_linear_networks,sentence_abce541d3285632fa0933d34,PRIMARY,C5,C3,SAME_SENSE,reduction,a6c22e819db803a83fff754e3d7c42c96eb8d34d2dbb7da4747b4162e3fc4bd5,f0ef75f42dd04ff4ce7a466c198a934c965917b6378569a6b60e28d3b6741d2e,"If we replace `nn.MSELoss(reduction='sum')` with `nn.MSELoss()`, how can we change the learning rate for the code to behave identically."
+746c75e0ad178efe82b822a00170508f1a30b83319198b6a8ce11a3398c8a15c,d2lce_fa115d4c3a8140d91339df15,d2lce_fa115d4c3a8140d91339df15,ctx_7d313060719ea864c98aabb1,backup,d2l_multilayer_perceptrons_mlp_concise_b013,d2l_multilayer_perceptrons,sentence_da2126c0c7900680522dad43,BACKUP,B3,C3,SAME_SENSE,reduction,52cc3f8e0aa573176535d37892802f9257242c1dc92edaf07896a36aaff81b67,62c73d29244ee0a530ad526de43338c37d92aa7ff1105613a199ec84d3a41333,"```{.python .input}
+#@tab pytorch
+batch_size, lr, num_epochs = 256, 0.1, 10
+loss = nn.CrossEntropyLoss(reduction='none')
+trainer = torch.optim.SGD(net.parameters(), lr=lr)
+```"
+746c75e0ad178efe82b822a00170508f1a30b83319198b6a8ce11a3398c8a15c,d2lce_fa115d4c3a8140d91339df15,d2lce_fa115d4c3a8140d91339df15,ctx_815a4c1f8b1f4b5fb069b1d7,primary;definition;part_of_speech,d2l_deep_learning_computation_custom_layer_b042,d2l_deep_learning_computation,sentence_8d4025f2e327c6f53e5dc465,PRIMARY,C1,C1,SAME_SENSE,reduction,97e19fa0bacbe19827714b13b2b78b2fe6f19b848843765b78fdd27fa87df494,4df2e5ea99936bad43f4257208f4a39bc16bdbf7e11421233da1e0bc75aa33bf,"Design a layer that takes an input and computes a tensor reduction,
+   i.e., it returns $y_k = \sum_{i, j} W_{ijk} x_i x_j$."
+746c75e0ad178efe82b822a00170508f1a30b83319198b6a8ce11a3398c8a15c,d2lce_fa115d4c3a8140d91339df15,d2lce_fa115d4c3a8140d91339df15,ctx_d1f9348ef19cdcd8ff5ac0de,primary,d2l_convolutional_neural_networks_why_conv_b004,d2l_convolutional_neural_networks,sentence_40f4a66605b63242fb8d3765,PRIMARY,C3,C4,SAME_SENSE,reduction,1d20ad2cb9f7c78f49278895ddb1106050df923ac0b7b4ca8b640c8a8220a2c2,98cbcb46135eb1c1df1953ea482532c2ed5dd7a342feaedf50f31517070a93b5,"According to our discussions of parameterization cost
+of fully-connected layers in :numref:`subsec_parameterization-cost-fc-layers`,
+even an aggressive reduction to one thousand hidden dimensions
+would require a fully-connected layer
+characterized by $10^6 \times 10^3 = 10^9$ parameters."
+746c75e0ad178efe82b822a00170508f1a30b83319198b6a8ce11a3398c8a15c,d2lce_fa115d4c3a8140d91339df15,d2lce_fa115d4c3a8140d91339df15,ctx_df2876c9d5c03af64137057f,backup,d2l_attention_mechanisms_nadaraya_watson_b072,d2l_attention_mechanisms,sentence_ce6b7f727c3f5a5f48abd883,BACKUP,B1,C3,SAME_SENSE,reduction,68abccba6e005b824bbcbfe228c02d5cf49fabd0e8c8e100f0a0d973f2bbdc75,31649f4fc3203aeab130b56e9a2384cbd10457d10e3f502852fca4287b15fa9f,"```{.python .input}
+#@tab pytorch
+net = NWKernelRegression()
+loss = nn.MSELoss(reduction='none')
+trainer = torch.optim.SGD(net.parameters(), lr=0.5)
+animator = d2l.Animator(xlabel='epoch', ylabel='loss', xlim=[1, 5])
+
+for epoch in range(5):
+    trainer.zero_grad()
+    l = loss(net(x_train, keys, values), y_train)
+    l.sum().backward()
+    trainer.step()
+    print(f'epoch {epoch + 1}, loss {float(l.sum()):.6f}')
+    animator.add(epoch + 1, float(l.sum()))
+```"
+746c75e0ad178efe82b822a00170508f1a30b83319198b6a8ce11a3398c8a15c,d2lce_fa115d4c3a8140d91339df15,d2lce_fa115d4c3a8140d91339df15,ctxx_7bf4f962ca5e36499fdcecbb,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,reduction,3d13edfcc9ae7a46e43b430ab1f6981b08913402e3a96c4e334070e4a2b3b60a,89379c43c341295e042eaf5fec2a9314261daea43e0b72767508152963703bb8,"Synthetic: The chemistry lab discussed reduction, meaning gain of electrons, which is unrelated to tensor reduction here."
+6207b07577fa4e38be3e4f84f564c180044d41bdb6a122fc5e3a3aa2b905c7a7,d2lce_88251c1ff8b5d3756955ca7b,d2lce_88251c1ff8b5d3756955ca7b,ctx_06e708938888799ff3a5dffa,primary;part_of_speech,d2l_computer_vision_rcnn_b036,d2l_computer_vision,sentence_278aafc8e3137d23294f79e5,PRIMARY,C3,C4,SAME_SENSE,region of interest pooling layer,71bbdcd954f469d02ae72c52e0cc7e9bf080910e8fb98ed6eccf8dad3fbb250f,d77bf219e517adb02b68c94d89c554052a9eb51682aa93e180260943196ddf76,"Specifically,
+the mask R-CNN replaces the
+region of interest pooling layer with the
+*region of interest (RoI) alignment* layer."
+6207b07577fa4e38be3e4f84f564c180044d41bdb6a122fc5e3a3aa2b905c7a7,d2lce_88251c1ff8b5d3756955ca7b,d2lce_88251c1ff8b5d3756955ca7b,ctx_18b4f72effde16746e8f5bd5,primary;definition,d2l_computer_vision_rcnn_b015,d2l_computer_vision,sentence_801eb36ee962c6b4397a874c,PRIMARY,C4,C2,SAME_SENSE,region of interest pooling layer,f25408d24995a4d280fe3375d98cfa104b3649cff677e169ad2e4008fb9473dc,4b011004d6236bb9adf87639665c8c3a66a1ec7baf759a15dce3c2e8d07a2ab1,"Therefore, the region of interest pooling layer can extract features of the same shape 
+even when regions of interest have different shapes."
+6207b07577fa4e38be3e4f84f564c180044d41bdb6a122fc5e3a3aa2b905c7a7,d2lce_88251c1ff8b5d3756955ca7b,d2lce_88251c1ff8b5d3756955ca7b,ctx_1ad01f8bfdd4e76617b7a827,primary,d2l_computer_vision_rcnn_b017,d2l_computer_vision,sentence_d51e1f92bf2a183ba28f5ba3,PRIMARY,C5,C2,SAME_SENSE,region of interest pooling layer,e319228f1c7373b4fcdb6ce91cf47ecef4218957165e59937d2a2bd503144022,393f9a7c9578a41afda861e19a50df1273413aef8f3209206b48eaf5d682966e,"![A $2\times 2$ region of interest pooling layer.](../img/roi.svg)
+:label:`fig_roi`"
+6207b07577fa4e38be3e4f84f564c180044d41bdb6a122fc5e3a3aa2b905c7a7,d2lce_88251c1ff8b5d3756955ca7b,d2lce_88251c1ff8b5d3756955ca7b,ctx_23e5008854737fe4bc296b60,backup,d2l_computer_vision_rcnn_b016,d2l_computer_vision,sentence_e7973b7fb3b497d35ad7b9ca,BACKUP,B1,C2,SAME_SENSE,region of interest pooling layer,af2624b865fdac1e4459bf3b8da0136f065b6fc6a877fa694266a5c0ea89cafb,b7605f2f520225476754e2c596d60a14c7219585057ab15640d97dca7c33b04c,"For this region of interest,
+we use a $2\times 2$ region of interest pooling layer to obtain
+a $2\times 2$ output."
+6207b07577fa4e38be3e4f84f564c180044d41bdb6a122fc5e3a3aa2b905c7a7,d2lce_88251c1ff8b5d3756955ca7b,d2lce_88251c1ff8b5d3756955ca7b,ctx_5091b8db5e4618b9d88151b8,backup,d2l_computer_vision_rcnn_b018,d2l_computer_vision,sentence_afb820984d1d4ca46cf6afcb,BACKUP,B2,C2,SAME_SENSE,region of interest pooling layer,93e55e45463ae7bb9a162e368a8314d045914def1ac9a9cf283c943d57b3b161,fc59feaafff329e96379b71cd86e20ba16759966f9f4dea89470f62271c601b7,Below we demonstrate the computation of the region of interest pooling layer.
+6207b07577fa4e38be3e4f84f564c180044d41bdb6a122fc5e3a3aa2b905c7a7,d2lce_88251c1ff8b5d3756955ca7b,d2lce_88251c1ff8b5d3756955ca7b,ctx_6e7571c8f722862870d999c0,backup,d2l_computer_vision_rcnn_b031,d2l_computer_vision,sentence_c6de77c689c61b3015675bd5,BACKUP,B3,C2,SAME_SENSE,region of interest pooling layer,a7367490590df4eb2879d03f124a3b64fdb8c55d4e08192a06d9ce9943c57250,52307a359b7e3319f056e58669eb3602ba777b82bda07bfae4f0b11a360e08b6,The remaining  predicted bounding boxes for objects are the region proposals required by the region of interest pooling layer.
+6207b07577fa4e38be3e4f84f564c180044d41bdb6a122fc5e3a3aa2b905c7a7,d2lce_88251c1ff8b5d3756955ca7b,d2lce_88251c1ff8b5d3756955ca7b,ctx_788954d63cedc392831d5044,primary;definition;part_of_speech,d2l_computer_vision_rcnn_b014,d2l_computer_vision,sentence_00b9e6f15afebc2d92677ed0,PRIMARY,C1,C1,SAME_SENSE,region of interest pooling layer,feab5ccb1d23d883475724392f87f6ffc4bf3f203b4e61251383f86b7f0650bc,0acd8299c947b7227739abeb423a5177bb31d56e5ebcc0d542c740169e76eceb,The region of interest pooling layer proposed in the fast R-CNN is different from the pooling layer introduced in :numref:`sec_pooling`.
+6207b07577fa4e38be3e4f84f564c180044d41bdb6a122fc5e3a3aa2b905c7a7,d2lce_88251c1ff8b5d3756955ca7b,d2lce_88251c1ff8b5d3756955ca7b,ctx_808752f6de5f09f78b2ac2c6,primary;definition,d2l_computer_vision_rcnn_b014,d2l_computer_vision,sentence_53ab6acdcf93c85b6fc7bc67,PRIMARY,C2,C2,SAME_SENSE,region of interest pooling layer,d1783fa8ce794cb15caf92e338f20083b0fe4701e2646f6cc984bbb250185b97,6a00cf55c5a1ccca9a531d1736b90cc8733fe4099fbd844c783586c9ca3df35c,"In contrast,
+we can directly specify the output shape
+in the region of interest pooling layer."
+6207b07577fa4e38be3e4f84f564c180044d41bdb6a122fc5e3a3aa2b905c7a7,d2lce_88251c1ff8b5d3756955ca7b,d2lce_88251c1ff8b5d3756955ca7b,ctxx_b7279a50f25ae4d072e83b57,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,region of interest pooling layer,67d7e11a04b42e6452bb08b21629e1b3c2ed4254267c681b18f03da7adbc1a02,3542d7a976b6dd18d694a733f7f31613ece8674f4d5548f39f9af043d4292f11,"Synthetic: The region of interest pooling layer pools each proposed box, whereas ordinary pooling layers pool over a regular feature map neighborhood."
+052c1ef5d5c758fedc4d176cadacf58c71886b4551ff3002c524d078d14615ae,d2lce_42900db05a19228ce33eafe0,d2lce_42900db05a19228ce33eafe0,ctx_1c92074d454d9307635f4319,primary;definition,d2l_multilayer_perceptrons_mlp_concise_b007,d2l_multilayer_perceptrons,sentence_be8a28ca7bd0d240d9061bb0,PRIMARY,C2,C1,SAME_SENSE,ReLU activation,edba83a16ed4ea7543aebb9c1413f47faf7da689f935f7659751562c7a1d471c,c656096ef0104ceb5e3f7c9c021a293092f2f61502a7acf8aa720c3f463dbb86,"The first is [**our hidden layer**],
+which (**contains 256 hidden units
+and applies the ReLU activation function**)."
+052c1ef5d5c758fedc4d176cadacf58c71886b4551ff3002c524d078d14615ae,d2lce_42900db05a19228ce33eafe0,d2lce_42900db05a19228ce33eafe0,ctx_42d57a5ddede95c06600e690,primary;definition,d2l_convolutional_modern_alexnet_b033,d2l_convolutional_modern,sentence_3fe49f4c09ef780ea2e78583,PRIMARY,C3,C1,SAME_SENSE,ReLU activation,943f8e31b149abe25de237e85442973344ad2a0420a75872ea0fc55b9614ecf5,3ed7e1f0dd3866b322c9d623c02fa1578ef2c88b5918804ae6586f2829fc7072,"On the other hand, the ReLU activation function makes model training easier when using different parameter initialization methods."
+052c1ef5d5c758fedc4d176cadacf58c71886b4551ff3002c524d078d14615ae,d2lce_42900db05a19228ce33eafe0,d2lce_42900db05a19228ce33eafe0,ctx_6d18c54fb03ed4d0a466cdac,backup,d2l_optimization_optimization_intro_b032,d2l_optimization,sentence_453ed9cc1b53ac8cf9033180,BACKUP,B1,C1,SAME_SENSE,ReLU activation,bedb7ac93126a46481a1883474fb22df462ca37cf0912f06ae404adb4b1fecb9,54c1986359028eeefab1ab97fcc39d667f7bdd4d9e87f224247f7ed8258f35d7,This turns out to be one of the reasons that training deep learning models was quite tricky prior to the introduction of the ReLU activation function.
+052c1ef5d5c758fedc4d176cadacf58c71886b4551ff3002c524d078d14615ae,d2lce_42900db05a19228ce33eafe0,d2lce_42900db05a19228ce33eafe0,ctx_7c7d5d50af4eb953a4e181ba,primary;definition,d2l_deep_learning_computation_model_construction_b008,d2l_deep_learning_computation,sentence_9cf7b7c1c3e52e572c5a7378,PRIMARY,C4,C1,SAME_SENSE,ReLU activation,e559d83b6b5b16033cec0089c5cad3ff2b28a8be8e87386e84433fe4a0bcd026,2a51149740645f5a89ced2a7e5675c41fe3d56afa6c57852986f277e47a58159,"The following code generates a network
+with one fully-connected hidden layer
+with 256 units and ReLU activation,
+followed by a fully-connected output layer
+with 10 units (no activation function)."
+052c1ef5d5c758fedc4d176cadacf58c71886b4551ff3002c524d078d14615ae,d2lce_42900db05a19228ce33eafe0,d2lce_42900db05a19228ce33eafe0,ctx_8c4194ab74302b6b3fccfd63,backup,d2l_multilayer_perceptrons_numerical_stability_and_init_b042,d2l_multilayer_perceptrons,sentence_70a581ba0d8d11602b24f6dc,BACKUP,B2,C1,SAME_SENSE,ReLU activation,ae1a4844ef0db1124c5331581215a56bab3923eb2ac57ede46684ba9c93c7d75,cea98f98cf46b290d53793dc93c214a0158b933a4628b403070ec117b0884b0b,* ReLU activation functions mitigate the vanishing gradient problem.
+052c1ef5d5c758fedc4d176cadacf58c71886b4551ff3002c524d078d14615ae,d2lce_42900db05a19228ce33eafe0,d2lce_42900db05a19228ce33eafe0,ctx_9fd1fe552d657e4fbfcf9abd,backup,d2l_recurrent_neural_networks_sequence_b023,d2l_recurrent_neural_networks,sentence_467449b36bf28a6c820cac7e,BACKUP,B3,C1,SAME_SENSE,ReLU activation,8caecab8ae7aafedb156635763d66d66d844ee93f16f0bbe70b00636517c7198,ef1cb71e73e3468854bc92f765adda487fe40b606a1aefc9d0c538eefed59567,"```{.python .input}
+#@tab mxnet, pytorch
+tau = 4
+features = d2l.zeros((T - tau, tau))
+for i in range(tau):
+    features[:, i] = x[i: T - tau + i]
+labels = d2l.reshape(x[tau:], (-1, 1))
+```
+
+```{.python .input}
+#@tab tensorflow
+tau = 4
+features = tf.Variable(d2l.zeros((T - tau, tau)))
+for i in range(tau):
+    features[:, i].assign(x[i: T - tau + i])
+labels = d2l.reshape(x[tau:], (-1, 1))
+```
+
+```{.python .input}
+#@tab all
+batch_size, n_train = 16, 600
+# Only the first `n_train` examples are used for training
+train_iter = d2l.load_array((features[:n_train], labels[:n_train]),
+                            batch_size, is_train=True)
+```
+
+Here we [**keep the architecture fairly simple:
+just an MLP**] with two fully-connected layers, ReLU activation, and squared loss."
+052c1ef5d5c758fedc4d176cadacf58c71886b4551ff3002c524d078d14615ae,d2lce_42900db05a19228ce33eafe0,d2lce_42900db05a19228ce33eafe0,ctx_bd4860d3d44e08593cf1c9fd,primary;part_of_speech,d2l_multilayer_perceptrons_mlp_scratch_b014,d2l_multilayer_perceptrons,sentence_315b841c88c7375419fe606c,PRIMARY,C5,C1,SAME_SENSE,ReLU activation,eedb7e191c6ed4f37ef3997d6e51dd17e93b1cf50c35ed9024b37ab942ffca3d,fdd2fe5c5bbdb3e54353c10e87a9d5c1045fffa4900a7db804510f9126fecc23,"To make sure we know how everything works,
+we will [**implement the ReLU activation**] ourselves
+using the maximum function rather than
+invoking the built-in `relu` function directly."
+052c1ef5d5c758fedc4d176cadacf58c71886b4551ff3002c524d078d14615ae,d2lce_42900db05a19228ce33eafe0,d2lce_42900db05a19228ce33eafe0,ctx_f9d71dcb8bd80dd6e5eeb4f5,primary;part_of_speech,d2l_generative_adversarial_networks_dcgan_b021,d2l_generative_adversarial_networks,sentence_7ae324ae77fc5723203d7a82,PRIMARY,C1,C1,SAME_SENSE,ReLU activation,2d9373d2d77aba3cf786ae5f8d30c89b4fa52f4567a37494834bdea7d577250d,cf53599c11e89d385bde9e793095e684cd17e04ee6d019048f705f78463fdda3,The basic block of the generator contains a transposed convolution layer followed by the batch normalization and ReLU activation.
+052c1ef5d5c758fedc4d176cadacf58c71886b4551ff3002c524d078d14615ae,d2lce_42900db05a19228ce33eafe0,d2lce_42900db05a19228ce33eafe0,ctxx_20879e21980bfe53804ca4b9,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,ReLU activation,1422eb0ce8b67e24e0c9cc42a56a344c3069bfe51b2d134e902b5a9b1b26291a,9c47147c7752521bff3274a78079aef867551b48b2c0f0174e84736b7f383696,"Synthetic: ReLU activation names the layer’s nonlinearity, not the weight initialization scheme."
+d0a4048c3d2d85bda590d385e0efc0d952e801b715217aba225765f4c551e896,d2lce_f33d434f8362f23d43285427,d2lce_f33d434f8362f23d43285427,ctx_0f6b002a2460b36bc8bbacd6,primary,d2l_recurrent_neural_networks_rnn_scratch_b009,d2l_recurrent_neural_networks,sentence_6ee9ad78e3079f03f54bef5e,PRIMARY,C2,C2,SAME_SENSE,representation,97fb6c08889deef7ba383d769f2cce9187b7d78088a596287f042543f7535c46,2b6c79fba6e45f46b12cb779a8df89747c7385fa20d6b5a5edf0b262d9d03721,"The easiest representation is called *one-hot encoding*,
+which is introduced
+in :numref:`subsec_classification-problem`."
+d0a4048c3d2d85bda590d385e0efc0d952e801b715217aba225765f4c551e896,d2lce_f33d434f8362f23d43285427,d2lce_f33d434f8362f23d43285427,ctx_12689008f7e03f4832cb6a99,primary,d2l_convolutional_neural_networks_why_conv_b014,d2l_convolutional_neural_networks,sentence_1ccc7f4d0be32259794eee59,PRIMARY,C4,C1,SAME_SENSE,representation,7706343a579020e04e53f0d26c5a51055cbde61f57e9683b58dc3cb11f7ea798,e6836ea673efb9c462998918e7d162ec23e131450571209cee3de245059c4d92,"Let $[\mathbf{X}]_{i, j}$ and $[\mathbf{H}]_{i, j}$ denote the pixel
+at location ($i$, $j$)
+in the input image and hidden representation, respectively."
+d0a4048c3d2d85bda590d385e0efc0d952e801b715217aba225765f4c551e896,d2lce_f33d434f8362f23d43285427,d2lce_f33d434f8362f23d43285427,ctx_252c35105ca972372bb2c810,primary,d2l_preface_index_b023,d2l_preface,sentence_888c426ebc8817f2add5c374,PRIMARY,C5,C1,SAME_SENSE,representation,050f3800c90e26b653d3681f5db872b8517d9c28709b75b40aaeda61e2802518,51c1f24b483be3047ae52447fd2f72743d671db1ec866045669ed5d1a24a7e24,"In :numref:`chap_nlp_pretrain` and :numref:`chap_nlp_app`,
+we show how to pretrain language representation models 
+and apply them to natural language processing tasks."
+d0a4048c3d2d85bda590d385e0efc0d952e801b715217aba225765f4c551e896,d2lce_f33d434f8362f23d43285427,d2lce_f33d434f8362f23d43285427,ctx_5f24690542e3c0e46ba4cc69,primary;definition;part_of_speech,d2l_multilayer_perceptrons_mlp_b009,d2l_multilayer_perceptrons,sentence_e5cfefe9eb3ab1c882241ee2,PRIMARY,C3,C1,SAME_SENSE,representation,c0fe07013b60c0c5decdd214bf11653e3d632b556170fd6af0286b6d34f9b9c2,75fed03796e5fc6e80cefe138e549dbf38225b5c5f8cab6599045a89630fc167,"With deep neural networks, we used observational data
+to jointly learn both a representation via hidden layers
+and a linear predictor that acts upon that representation."
+d0a4048c3d2d85bda590d385e0efc0d952e801b715217aba225765f4c551e896,d2lce_f33d434f8362f23d43285427,d2lce_f33d434f8362f23d43285427,ctx_b91f8656a74c323310072798,backup,d2l_convolutional_modern_alexnet_b009,d2l_convolutional_modern,sentence_29771ffb8bc86db8a29dd1ac,BACKUP,B2,C1,SAME_SENSE,representation,d8f0f418f28dcd128cf0de5aecf81f0d3c416e74982490a97f838c89ddd399e0,034ac5c75a3ad10951376f72191413de82d8a76b5bd5de137d7633a0a6c348f4,And up until 2012 the representation was calculated mechanically.
+d0a4048c3d2d85bda590d385e0efc0d952e801b715217aba225765f4c551e896,d2lce_f33d434f8362f23d43285427,d2lce_f33d434f8362f23d43285427,ctx_cb76cb4b95e46eb37730ea64,backup;definition;part_of_speech,d2l_introduction_index_b023,d2l_introduction,sentence_e45bbb35eb51b62731dffa29,BACKUP,B3,C2,SAME_SENSE,representation,aa1c24c130f644daf3a4800203d47e38a1ddb1bc4f09c3097d9737b94e48a788,4c9b07a3b9bce8895cd19f19534a875e8e224d0f0def0cc6e8ed57c99dbfcf4e,"In order to work with data usefully, 
+we typically
+need to come up with a suitable numerical representation."
+d0a4048c3d2d85bda590d385e0efc0d952e801b715217aba225765f4c551e896,d2lce_f33d434f8362f23d43285427,d2lce_f33d434f8362f23d43285427,ctx_d01d38e638f7b5b3665a55bd,primary;definition,d2l_deep_learning_computation_model_construction_b027,d2l_deep_learning_computation,sentence_031eb6b73316eb069b26926b,PRIMARY,C1,C1,SAME_SENSE,representation,29bab4e53d7484a4ed532f2bfec6e989638dbf3898e446339ca0f4b16de187f0,2d4daff09c26232109562f9de1bb7f691d3766680812e8ac8d809f96a02918d9,"Note that it takes `X` as the input,
+calculates the hidden representation
+with the activation function applied,
+and outputs its logits."
+d0a4048c3d2d85bda590d385e0efc0d952e801b715217aba225765f4c551e896,d2lce_f33d434f8362f23d43285427,d2lce_f33d434f8362f23d43285427,ctx_d36c794f5cb48c84cfeb1ae0,backup,d2l_linear_networks_softmax_regression_b051,d2l_linear_networks,sentence_7c25a1a17b44caf561cf3298,BACKUP,B1,C2,SAME_SENSE,representation,68070711a89d0faee5e23627fd76e7604c873014e44f2e1903b4eb7fddad59fb,6cad1a9583b6869ab4c2204516eb3f4d6e0dd8c1ba93e71244a34956ff42310e,We can use the same representation as before for the label $\mathbf{y}$.
+d0a4048c3d2d85bda590d385e0efc0d952e801b715217aba225765f4c551e896,d2lce_f33d434f8362f23d43285427,d2lce_f33d434f8362f23d43285427,ctxx_30b779e89788fa1c53d8f922,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,representation,eb8a795fd28a98e81c549a3119c65e09113ebde10a133c3c9b97a942db23256c,6c5d7026acd4cd4e3e301a2f905effe630b99d0573301c8d52fb3a428259fc59,"Synthetic: The representation from the hidden layer improved classification, but the elected representation changed after the vote."
+389d2bd6b08fa1025c7db0d1aa3ce998bcc8c04ad10292279389fa7c31bc3e39,d2lce_bee01b92f7b0b02cc1d77bd7,d2lce_bee01b92f7b0b02cc1d77bd7,ctx_1f8898813854f010ead57a18,primary,d2l_preliminaries_autograd_b061,d2l_preliminaries,sentence_0f38c2848aa6183aef05f69e,PRIMARY,C5,C2,SAME_SENSE,second derivative,d3e617c1f5688a0b382d3fd6bf0c27bc4facb6c4626e3da07294f03df21c3280,45835134f0878b3c3bea9c7f9c9d8629d080b42e3971edb1ca8f0a5863f362c1,Why is the second derivative much more expensive to compute than the first derivative?
+389d2bd6b08fa1025c7db0d1aa3ce998bcc8c04ad10292279389fa7c31bc3e39,d2lce_bee01b92f7b0b02cc1d77bd7,d2lce_bee01b92f7b0b02cc1d77bd7,ctx_20c88126cf28f7c6338fd7ce,backup,d2l_optimization_optimization_intro_b023,d2l_optimization,sentence_e7b52d0a2b64a0ea1ee9a9c9,BACKUP,B2,C2,SAME_SENSE,second derivative,0c10a7e299ea0f71a1afb70bb26e8eeac8f4c0708d692abf0073bde203accb9f,80b6e2270f02a41a1b0c6a3550731bf6a2017b478e1eb7f924c3d59935cc489d,Its first and second derivative vanish for $x=0$.
+389d2bd6b08fa1025c7db0d1aa3ce998bcc8c04ad10292279389fa7c31bc3e39,d2lce_bee01b92f7b0b02cc1d77bd7,d2lce_bee01b92f7b0b02cc1d77bd7,ctx_48009dd3fb027cf7c0d50839,primary;definition,d2l_optimization_convexity_b050,d2l_optimization,sentence_8ffb40fa4583741e7ddeca57,PRIMARY,C4,C2,SAME_SENSE,second derivative,2359121baa0a567a4024100a6ea4ccdb4ec77978bd9166f650da84593513deff,0d4aa969f0e7ba3982d635805b451ec124b3f2e8b89487eea328406863281e0f,Whenever the second derivative of a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ exists it is very easy to check whether $f$ is convex.
+389d2bd6b08fa1025c7db0d1aa3ce998bcc8c04ad10292279389fa7c31bc3e39,d2lce_bee01b92f7b0b02cc1d77bd7,d2lce_bee01b92f7b0b02cc1d77bd7,ctx_4a0757f79d783bf9dfd3591b,primary;definition;part_of_speech,d2l_appendix_mathematics_for_deep_learning_single_variable_calculus_b068,d2l_appendix_mathematics_for_deep_learning,sentence_ac16f3a5859326b101f95488,PRIMARY,C3,C1,SAME_SENSE,second derivative,836eb0eedb8c663b7170f2ccf8adad80be8f8bf7946ee8f7ad34c527e78bfa27,1b84102a5886b32f32afbadd38bff7cb0cb6567457acc4f96337558e883862de,We will call this the second derivative of $f$.
+389d2bd6b08fa1025c7db0d1aa3ce998bcc8c04ad10292279389fa7c31bc3e39,d2lce_bee01b92f7b0b02cc1d77bd7,d2lce_bee01b92f7b0b02cc1d77bd7,ctx_5b8b82c37cbbe2526e94e29e,backup,d2l_linear_networks_softmax_regression_b069,d2l_linear_networks,sentence_f33bf2896483e0f8aac2167b,BACKUP,B1,C2,SAME_SENSE,second derivative,dbc9b250366700abf8d156cb605e2eba3dcdaeb00bdeaa7e4ff5e0a87aa3aca1,92fdce5ab419fefb29c51f89ab024b22a91cf45244068e287bc69cff682aa142,Compute the variance of the distribution given by $\mathrm{softmax}(\mathbf{o})$ and show that it matches the second derivative computed above.
+389d2bd6b08fa1025c7db0d1aa3ce998bcc8c04ad10292279389fa7c31bc3e39,d2lce_bee01b92f7b0b02cc1d77bd7,d2lce_bee01b92f7b0b02cc1d77bd7,ctx_7882197b45dfa30a41481b4e,backup,d2l_convolutional_neural_networks_conv_layer_b057,d2l_convolutional_neural_networks,sentence_00b1450cc6e1d03f12d47697,BACKUP,B3,C2,SAME_SENSE,second derivative,dfb83a2457b7474b29cfb93686e139cad1fb64ea322857b4c1d4a2f60d24e1d1,73fc2044b905333bd47c9649c480896e566780f244e6564d492ad125f593e1d5,What is the form of a kernel for the second derivative?
+389d2bd6b08fa1025c7db0d1aa3ce998bcc8c04ad10292279389fa7c31bc3e39,d2lce_bee01b92f7b0b02cc1d77bd7,d2lce_bee01b92f7b0b02cc1d77bd7,ctx_8a430806097a3e11f597ee65,primary;definition,d2l_optimization_convexity_b051,d2l_optimization,sentence_3889de1fbb3d0ed3843b8ad6,PRIMARY,C1,C1,SAME_SENSE,second derivative,b90f7d2af91ef1d04924d10cc3555a6d26b2b0d6b0289edc168a356df5bffebc,20dc5364463b2a74474fcae0933c7c25555a2e2dfbad524d470121bf4cad8303,"Formally, a twice-differentiable one-dimensional function $f: \mathbb{R} \rightarrow \mathbb{R}$ is convex
+if and only if its second derivative $f'' \geq 0$."
+389d2bd6b08fa1025c7db0d1aa3ce998bcc8c04ad10292279389fa7c31bc3e39,d2lce_bee01b92f7b0b02cc1d77bd7,d2lce_bee01b92f7b0b02cc1d77bd7,ctx_c63be52377fb45f394c67865,primary;part_of_speech,d2l_linear_networks_softmax_regression_b069,d2l_linear_networks,sentence_9d28ed22f99e9ec6549a425c,PRIMARY,C2,C2,SAME_SENSE,second derivative,3cc7c2cbe97c21a2797caf332d323009e10c0243f47e30fd1a3985b29b24ac9f,932000b0dfbdb312922eadf3a0b912546aa86368788db3a455bc04429033b2a2,"Compute the second derivative of the cross-entropy loss $l(\mathbf{y},\hat{\mathbf{y}})$ for the softmax."
+389d2bd6b08fa1025c7db0d1aa3ce998bcc8c04ad10292279389fa7c31bc3e39,d2lce_bee01b92f7b0b02cc1d77bd7,d2lce_bee01b92f7b0b02cc1d77bd7,ctxx_4f681a1f06ff96894ab423a7,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,second derivative,5d478f5bb9e62708e58cc2e5ad570b68fac6b1c15b289c914c3d5525a9aa0528,7b421da6a2f08076d23ecb55780e47499089e25e9bbc40b6135f16d44e16ff2f,Synthetic: The second derivative in a pricing spreadsheet was left blank because no calculus was being applied.
+b7a04c0d3780379c4913646579def38f04ca487da282ef219fbd61f59a43d9f0,d2lce_bc240ce7b3e0abeb18f82a6b,d2lce_bc240ce7b3e0abeb18f82a6b,ctx_5116b5fdf318003ffedaf8df,primary;definition,d2l_attention_mechanisms_attention_cues_b014,d2l_attention_mechanisms,sentence_0725c06088467dd92ba6e1cc,PRIMARY,C4,C2,SAME_SENSE,sensory inputs,6239b7aad92954331dfb40a556c4496efe604b38c4bceb895afdb2e5358a7c8e,37ae0e32d378c198a8c60a1d897abd789b4886b87b98e33b352cc7b079a9559b,"Given any query,
+attention mechanisms
+bias selection over sensory inputs (e.g., intermediate feature representations)
+via *attention pooling*."
+b7a04c0d3780379c4913646579def38f04ca487da282ef219fbd61f59a43d9f0,d2lce_bc240ce7b3e0abeb18f82a6b,d2lce_bc240ce7b3e0abeb18f82a6b,ctx_718ca2aa7353cfe6ec7be41e,primary;definition;part_of_speech,d2l_attention_mechanisms_index_b002,d2l_attention_mechanisms,sentence_183d1da9ed6d307eb5fea195,PRIMARY,C1,C1,SAME_SENSE,sensory input,39653dbbe0ea765b48de8bafa9888266182aea619fd8856b2e7156440c799c40,8936d3b34a7a4d3936d3c962cd40113ed3c2a4bf1fd73cadbdd925fa59c1da4f,"The optic nerve of a primate's visual system
+receives massive sensory input,
+far exceeding what the brain can fully process."
+b7a04c0d3780379c4913646579def38f04ca487da282ef219fbd61f59a43d9f0,d2lce_bc240ce7b3e0abeb18f82a6b,d2lce_bc240ce7b3e0abeb18f82a6b,ctx_84826f7dac9a86c191985d21,backup;definition,d2l_attention_mechanisms_attention_cues_b013,d2l_attention_mechanisms,sentence_8d1b5572ae649734f295acdc,BACKUP,B2,C2,SAME_SENSE,sensory inputs,5a575238337e15cfed33067ff278d3787af89e17c4836c8a45bd42f7c90d9e86,93bb4153b3a508adb56124ac57e02047b7cfbd1ec9d8c3c4f5da5ace273dd879,"To bias selection over sensory inputs,
+we can simply use
+a parameterized fully-connected layer
+or even non-parameterized
+max or average pooling."
+b7a04c0d3780379c4913646579def38f04ca487da282ef219fbd61f59a43d9f0,d2lce_bc240ce7b3e0abeb18f82a6b,d2lce_bc240ce7b3e0abeb18f82a6b,ctx_94ce02b7241c9ce39ca2bbb4,primary;definition,d2l_attention_mechanisms_attention_cues_b015,d2l_attention_mechanisms,sentence_51f0ad7dd12913eb59a39972,PRIMARY,C5,C2,SAME_SENSE,sensory inputs,a271eab92195cab05498787c0ae5102830efc8c3e485b8c21ef7d36edbdeb983,b086106687dd3f0608e00317b197f4915d690563c02af51b2a7295f0f562b87e,"![Attention mechanisms bias selection over values (sensory inputs) via attention pooling, which incorporates queries (volitional cues) and keys (nonvolitional cues).](../img/qkv.svg)
+:label:`fig_qkv`"
+b7a04c0d3780379c4913646579def38f04ca487da282ef219fbd61f59a43d9f0,d2lce_bc240ce7b3e0abeb18f82a6b,d2lce_bc240ce7b3e0abeb18f82a6b,ctx_a3dea1caaff77f50a3d722b3,backup;definition;part_of_speech,d2l_attention_mechanisms_attention_cues_b004,d2l_attention_mechanisms,sentence_70f09baaf921393fe589d2ea,BACKUP,B1,C1,SAME_SENSE,sensory inputs,a59a744726b5f7d262490fa2e9890f9117814e97ae212077ad17248ab4b9165e,b1b0af427e73d294cd3ed71c1065a7117b8fbeeac55a6f95afb74b12f33a2c29,"Fortunately,
+our ancestors had learned from experience (also known as data)
+that *not all sensory inputs are created equal*."
+b7a04c0d3780379c4913646579def38f04ca487da282ef219fbd61f59a43d9f0,d2lce_bc240ce7b3e0abeb18f82a6b,d2lce_bc240ce7b3e0abeb18f82a6b,ctx_c118b6fc83c7f0f86f025bbe,backup;definition,d2l_attention_mechanisms_attention_cues_b014,d2l_attention_mechanisms,sentence_f8f38f5043c635e81b6279c3,BACKUP,B3,C2,SAME_SENSE,sensory input,52d7c0b26acd117b61f44051a89f38f868b01963c61cc774383a61106ea1c1fc,99120ee8225b694e42e21d2d9e5c622bb3c29d35a13742583da11b7b68f6d584,"More generally,
+every value is paired with a *key*,
+which can be thought of the nonvolitional cue of that sensory input."
+b7a04c0d3780379c4913646579def38f04ca487da282ef219fbd61f59a43d9f0,d2lce_bc240ce7b3e0abeb18f82a6b,d2lce_bc240ce7b3e0abeb18f82a6b,ctx_cc74ec1d4759c01b8c2aeb02,primary;definition,d2l_attention_mechanisms_attention_cues_b014,d2l_attention_mechanisms,sentence_148cff5fea05df5b2c3e4f97,PRIMARY,C2,C2,SAME_SENSE,sensory inputs,50bb6186751528e70bb467c5ec3ef6bbc62a8b3aa4f24d3afdf02ed8fcb78a1d,2cb3a6859ba1b6d6fdf216a8296f36235e32efb840e3aee24e54a4b381be6b98,"As shown in :numref:`fig_qkv`,
+we can design attention pooling
+so that the given query (volitional cue) can interact with keys (nonvolitional cues),
+which guides bias selection over values (sensory inputs)."
+b7a04c0d3780379c4913646579def38f04ca487da282ef219fbd61f59a43d9f0,d2lce_bc240ce7b3e0abeb18f82a6b,d2lce_bc240ce7b3e0abeb18f82a6b,ctx_f2f9bdd4c1c0ac5391f9f713,primary;definition,d2l_attention_mechanisms_attention_cues_b014,d2l_attention_mechanisms,sentence_e79b8cc3fdceb32e5990c22d,PRIMARY,C3,C3,SAME_SENSE,sensory inputs,94838d86363d3eae94b77d5e2be0b3fd9d51d10bdd8e9e895158ed3582207896,dc09ec72f05a22e1624d2848ce8296894419aac54b1adf07242e86768c31fa3c,These sensory inputs are called *values* in the context of attention mechanisms.
+b7a04c0d3780379c4913646579def38f04ca487da282ef219fbd61f59a43d9f0,d2lce_bc240ce7b3e0abeb18f82a6b,d2lce_bc240ce7b3e0abeb18f82a6b,ctxx_62a44bacfcfd9838900887b9,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,sensory input,11f1987f728164a05e09a5e01f94e9a036cb8cfc04dcb264fe6c686f728854de,596d9f93f1709b8e128693674da65cecf0d31a2373e5e8594156ebef41149bf3,Synthetic: The robot lost sensory input from its temperature sensor after the cable broke.
+12bd0559fb6413f6db23c24d6a5ec5566ceded966a46cc6c376a1053e71133f6,d2lce_b85d9a7a642afee03175796f,d2lce_b85d9a7a642afee03175796f,ctx_12a769b04e422d6f6739fc5c,backup,d2l_recurrent_neural_networks_text_preprocessing_b002,d2l_recurrent_neural_networks,sentence_e900511fdfffb46013ebe263,BACKUP,B1,C3,SAME_SENSE,sequence data,df22fc981356a072e8800f67bd9669f3c3ce024dc616ffa3c71b0860dde4cfdd,2964001ceda9ada2bb5fd6ee2599f05074bf42a377b3f5b49e4690be36983b55,"We have reviewed and evaluated
+statistical tools
+and prediction challenges
+for sequence data."
+12bd0559fb6413f6db23c24d6a5ec5566ceded966a46cc6c376a1053e71133f6,d2lce_b85d9a7a642afee03175796f,d2lce_b85d9a7a642afee03175796f,ctx_23bae34b7c7a3e597d0cac0d,backup,d2l_recurrent_modern_index_b002,d2l_recurrent_modern,sentence_a95e7ff23461ab1c56b6fa04,BACKUP,B3,C3,SAME_SENSE,sequence data,7a072df769d391c64331fd6a72543c60828805971e954d00876987dd32075949,1d39efe5931e682c9254589c9142943c1e34098f28ef683a277a5a7cda36f80e,"We have introduced the basics of RNNs,
+which can better handle sequence data."
+12bd0559fb6413f6db23c24d6a5ec5566ceded966a46cc6c376a1053e71133f6,d2lce_b85d9a7a642afee03175796f,d2lce_b85d9a7a642afee03175796f,ctx_283a25d9322a8783b9c51766,primary;definition,d2l_recurrent_neural_networks_sequence_b023,d2l_recurrent_neural_networks,sentence_3baafc3bdc5ce5696a33c74f,PRIMARY,C3,C3,SAME_SENSE,sequence data,4c08ad03fb2ab189f3552ce1bf7fd4a1fe0bb509629d18264dc1555ae9ad5834,fafa52a02efae215c11b2a1a604ebc30c2a6c244398ef04027fda6e69d74f58c,"However, there is just one little problem to this:
+if we observe sequence data only until time step 604, we cannot hope to receive the inputs for all the future one-step-ahead predictions."
+12bd0559fb6413f6db23c24d6a5ec5566ceded966a46cc6c376a1053e71133f6,d2lce_b85d9a7a642afee03175796f,d2lce_b85d9a7a642afee03175796f,ctx_48778feb4f6b4e043ea02087,primary;definition;part_of_speech,d2l_recurrent_neural_networks_sequence_b007,d2l_recurrent_neural_networks,sentence_0a72885cb519c89d820f6fca,PRIMARY,C1,C2,SAME_SENSE,sequence data,3ca9df2a5c7c7889015f697abe1141e1bd86fa51fe3fa00e7d35b1629e0419ee,a1f57e53827c1006c4f53c03f79ee171d6aaac4d80310683e091258d3ee53df1,We need statistical tools and new deep neural network architectures to deal with sequence data.
+12bd0559fb6413f6db23c24d6a5ec5566ceded966a46cc6c376a1053e71133f6,d2lce_b85d9a7a642afee03175796f,d2lce_b85d9a7a642afee03175796f,ctx_49c9f549ad2f64ca91888fd2,primary;part_of_speech,d2l_recurrent_neural_networks_text_preprocessing_b002,d2l_recurrent_neural_networks,sentence_9c2995cd280fd896ad42b2dc,PRIMARY,C5,C2,SAME_SENSE,sequence data,4c66b8d1f235f29480184f9adf20d1eed6a6f76f3c54faf6124c279b5384faee,c256aef53cc1b6c9f71ce2ec3ca40ca7183c1d3b9bf17cb72d346f04404682f6,"To facilitate our future experiments
+with sequence data,
+we will dedicate this section
+to explain common preprocessing steps for text."
+12bd0559fb6413f6db23c24d6a5ec5566ceded966a46cc6c376a1053e71133f6,d2lce_b85d9a7a642afee03175796f,d2lce_b85d9a7a642afee03175796f,ctx_57e94c23a338288414c30cf1,primary;definition,d2l_recurrent_neural_networks_sequence_b023,d2l_recurrent_neural_networks,sentence_aca55f887de2be9f82e4d0fb,PRIMARY,C2,C3,SAME_SENSE,sequence data,0eff7add5ddb489aa8f185605efba3e6cdb9f0e36584e0b84871afb3c06be870,a7c559db81952a954ac62fa5e6999e2a0ae5e1db62e6cd5e161a5d76f847b76b,"To keep things simple we (**generate our sequence data by using a sine function with some additive noise for time steps $1, 2, \ldots, 1000$.**)
+
+```{.python .input}
+%matplotlib inline
+from d2l import mxnet as d2l
+from mxnet import autograd, np, npx, gluon, init
+from mxnet.gluon import nn
+npx.set_np()
+```
+
+```{.python .input}
+#@tab pytorch
+%matplotlib inline
+from d2l import torch as d2l
+import torch
+from torch import nn
+```
+
+```{.python .input}
+#@tab tensorflow
+%matplotlib inline
+from d2l import tensorflow as d2l
+import tensorflow as tf
+```
+
+```{.python .input}
+#@tab mxnet, pytorch
+T = 1000  # Generate a total of 1000 points
+time = d2l.arange(1, T + 1, dtype=d2l.float32)
+x = d2l.sin(0.01 * time) + d2l.normal(0, 0.2, (T,))
+d2l.plot(time, [x], 'time', 'x', xlim=[1, 1000], figsize=(6, 3))
+```
+
+```{.python .input}
+#@tab tensorflow
+T = 1000  # Generate a total of 1000 points
+time = d2l.arange(1, T + 1, dtype=d2l.float32)
+x = d2l.sin(0.01 * time) + d2l.normal([T], 0, 0.2)
+d2l.plot(time, [x], 'time', 'x', xlim=[1, 1000], figsize=(6, 3))
+```
+
+Next, we need to turn such a sequence into features and labels that our model can train on."
+12bd0559fb6413f6db23c24d6a5ec5566ceded966a46cc6c376a1053e71133f6,d2lce_b85d9a7a642afee03175796f,d2lce_b85d9a7a642afee03175796f,ctx_8710926068d0f1fb4746e134,backup;part_of_speech,d2l_recurrent_neural_networks_index_b006,d2l_recurrent_neural_networks,sentence_03c632da4ac49a83a03b81b0,BACKUP,B2,C2,SAME_SENSE,sequence data,1a07ffd35787234818694a992bd8d5838f91e50e58782e9dace8341fa971d5ac,0148e08cbe37ae5078e675c496c25f5a5f0fb409eeffa6ad51147dc29f8e522b,After a more formal review of sequence data we introduce practical techniques for preprocessing text data.
+12bd0559fb6413f6db23c24d6a5ec5566ceded966a46cc6c376a1053e71133f6,d2lce_b85d9a7a642afee03175796f,d2lce_b85d9a7a642afee03175796f,ctx_b6036c566fcf4ded24d31bee,primary,d2l_recurrent_neural_networks_sequence_b004,d2l_recurrent_neural_networks,sentence_1358aa871b30fd6f34ba82fd,PRIMARY,C4,C3,SAME_SENSE,sequence data,523b318389148b4ce25215f6834c7cda57c8d30d341778cfec2bd9eae4e01578,55a43df6e64738afcc77b081a7e4d68b22eaacaea13e8aea8fb28999b570960d,"Of course, sequence data are not just about movie ratings."
+12bd0559fb6413f6db23c24d6a5ec5566ceded966a46cc6c376a1053e71133f6,d2lce_b85d9a7a642afee03175796f,d2lce_b85d9a7a642afee03175796f,ctxx_e699d91caaa3cd6d980d9221,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,sequence data,15ca6cc17fce4c5a68ccb425e286fa05db10763e4857a2b58819986e1b7cde87,06bf59646c8565a02e6dc3860007e70ff0995578bd009954ae0a595b9c39d092,"Synthetic: Although stored in a table, these customer records are not sequence data because the row order carries no meaning."
+b400cda3fd3de19596eb834206dd85696e3029f1f66f399973fd4b52a4e9572b,d2lce_40a50503f2fdc79aa0a549fc,d2lce_40a50503f2fdc79aa0a549fc,ctx_1c286a6e0465f52ed228797c,primary,d2l_convolutional_modern_alexnet_b036,d2l_convolutional_modern,sentence_fc0c69fce2cebcd78ef0e85d,PRIMARY,C3,C4,SAME_SENSE,Sequential,62b869e458073c028ce27e69bfef154001eb05beeacee56bddbd78826de03ba5,b2b914dbabb0de7bdecb12ca89fa1b33d1d17aab03947c31632c025d967e0ba3,"```{.python .input}
+from d2l import mxnet as d2l
+from mxnet import np, npx
+from mxnet.gluon import nn
+npx.set_np()
+
+net = nn.Sequential()
+# Here, we use a larger 11 x 11 window to capture objects."
+b400cda3fd3de19596eb834206dd85696e3029f1f66f399973fd4b52a4e9572b,d2lce_40a50503f2fdc79aa0a549fc,d2lce_40a50503f2fdc79aa0a549fc,ctx_3e14117a045ebf17876f5d0d,primary;definition,d2l_multilayer_perceptrons_mlp_concise_b008,d2l_multilayer_perceptrons,sentence_779a1d617c58a26fbd7c9c1f,PRIMARY,C4,C4,SAME_SENSE,Sequential,639d616151d9cca85649a9008d1a265a9587d3ab5d1aff54542af79c91de861c,ea86a4ff4bc4d23a860710878afa0ec86f186d3e285416adcf40b6fea6146abb,"```{.python .input}
+net = nn.Sequential()
+net.add(nn.Dense(256, activation='relu'),
+        nn.Dense(10))
+net.initialize(init.Normal(sigma=0.01))
+```"
+b400cda3fd3de19596eb834206dd85696e3029f1f66f399973fd4b52a4e9572b,d2lce_40a50503f2fdc79aa0a549fc,d2lce_40a50503f2fdc79aa0a549fc,ctx_4948ac0797bf6c281ee7ac67,primary;definition;part_of_speech,d2l_linear_networks_linear_regression_concise_b020,d2l_linear_networks,sentence_ac62f65bee051048ea698e5a,PRIMARY,C5,C2,SAME_SENSE,Sequential,cf08e05f0db133b65e86a3f6001fedfdb0f33d790fd288fc93cf06a82dbb3228,b5f87124e5738aa2dcab5a7d820d19092bcccd32a526eaa00b36733a5df125ae,"We will first define a model variable `net`,
+which will refer to an instance of the `Sequential` class."
+b400cda3fd3de19596eb834206dd85696e3029f1f66f399973fd4b52a4e9572b,d2lce_40a50503f2fdc79aa0a549fc,d2lce_40a50503f2fdc79aa0a549fc,ctx_4a91c71a44a35cb9a603e221,primary;definition;part_of_speech,d2l_convolutional_neural_networks_lenet_b010,d2l_convolutional_neural_networks,sentence_0a10af56f13dd5d218e9e801,PRIMARY,C1,C2,SAME_SENSE,Sequential,a012d1bd82bfafe6bbbda712cc5b4d1a7140942e22cc888e727648e24bc4137b,933d0fd23a75eac06d162393d6fc545b982e0b4b03217a1ba1170a5a63640a0c,"We need only to instantiate a `Sequential` block
+and chain together the appropriate layers."
+b400cda3fd3de19596eb834206dd85696e3029f1f66f399973fd4b52a4e9572b,d2lce_40a50503f2fdc79aa0a549fc,d2lce_40a50503f2fdc79aa0a549fc,ctx_de121275094e0872769613f6,primary;definition,d2l_deep_learning_computation_model_construction_b009,d2l_deep_learning_computation,sentence_1e0c84ddc22e5eb39771f10f,PRIMARY,C2,C4,SAME_SENSE,Sequential,e05e9d3b34ca1db0c7f2fb40b96f6683b737666820cd20dbea993798210707d0,a604430c1b84725a4cc9b877268aba9df0baddc9fc15e1e8fd1dfa334d3ca640,"```{.python .input}
+from mxnet import np, npx
+from mxnet.gluon import nn
+npx.set_np()
+
+net = nn.Sequential()
+net.add(nn.Dense(256, activation='relu'))
+net.add(nn.Dense(10))
+net.initialize()
+
+X = np.random.uniform(size=(2, 20))
+net(X)
+```"
+b400cda3fd3de19596eb834206dd85696e3029f1f66f399973fd4b52a4e9572b,d2lce_40a50503f2fdc79aa0a549fc,d2lce_40a50503f2fdc79aa0a549fc,ctxx_db6036616175f01970672c09,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,sequential,008e9c8a1d9061d4acc81aab1b67ca4ec197fbb05413ab66133201754eb65b08,ba9a3835e2d1c2f3a52fc7c1601d7f3c29b1820d23b5eadf1666512583d5c0a5,"Synthetic: The frames are sequential, but the model is not built with Sequential."
+1c14ec010e4ba460f25f6d15cf0424368fb463e09ebf7fd7f579de7b7fdee1e9,d2lce_2485cc2d1b2606bcc62d63c1,d2lce_2485cc2d1b2606bcc62d63c1,ctx_2e8cc79d478165e2fadbde2b,primary;definition;part_of_speech,d2l_convolutional_neural_networks_lenet_b008,d2l_convolutional_neural_networks,sentence_9910a4f411497b56c56be39e,PRIMARY,C4,C1,SAME_SENSE,sigmoid activation function,4872b1efebb1c9366b3a4f543e854e59f78e407db2e5a692c7a1a5b4f45d08c4,d0e79805d572104bac0b69a4186637c229b4c907df185ce4cba8471b645ba47c,"The basic units in each convolutional block
+are a convolutional layer, a sigmoid activation function,
+and a subsequent average pooling operation."
+1c14ec010e4ba460f25f6d15cf0424368fb463e09ebf7fd7f579de7b7fdee1e9,d2lce_2485cc2d1b2606bcc62d63c1,d2lce_2485cc2d1b2606bcc62d63c1,ctx_4049427e7cba44c6a4d86b2f,primary;part_of_speech,d2l_convolutional_modern_alexnet_b033,d2l_convolutional_modern,sentence_8752b7f1572cbe09df1c7178,PRIMARY,C3,C1,SAME_SENSE,sigmoid activation function,64a5c219e2fade5530c56c67e78b799307570029827640d7ec6ebc877356de31,85a9b8bab721691d3ce4bdfb41a3c70425a26ddf2276c1b08f73e83750268b74,"Besides, AlexNet changed the sigmoid activation function to a simpler ReLU activation function."
+1c14ec010e4ba460f25f6d15cf0424368fb463e09ebf7fd7f579de7b7fdee1e9,d2lce_2485cc2d1b2606bcc62d63c1,d2lce_2485cc2d1b2606bcc62d63c1,ctx_7440cb039806378db99b4cf3,primary;definition,d2l_convolutional_modern_alexnet_b033,d2l_convolutional_modern,sentence_db1189e5f42172b842d35a3d,PRIMARY,C2,C1,SAME_SENSE,sigmoid activation function,f1c554861f0ae76823c851d6392db304f0be9461209d9bf22462cf388b38acde,61902be3b21d6ec9d113c9ea608f8869e33b436d7e427f1c117eff3ff3e07c60,"This is because, when the output of the sigmoid activation function is very close to 0 or 1, the gradient of these regions is almost 0, so that backpropagation cannot continue to update some of the model parameters."
+1c14ec010e4ba460f25f6d15cf0424368fb463e09ebf7fd7f579de7b7fdee1e9,d2lce_2485cc2d1b2606bcc62d63c1,d2lce_2485cc2d1b2606bcc62d63c1,ctx_81a329be9d149269cbb9e238,primary;definition,d2l_natural_language_processing_pretraining_approx_training_b008,d2l_natural_language_processing_pretraining,sentence_9172893ff95325523c1bdbe4,PRIMARY,C1,C1,SAME_SENSE,sigmoid activation function,b3a900c77c87e1536277405e9cff03a8368587686ac939bef199c14d72899ea2,68cad06d41d08c5b835c5557f15f813117d803cef6760e9756aa212597d84ebb,where $\sigma$ uses the definition of the sigmoid activation function:
+1c14ec010e4ba460f25f6d15cf0424368fb463e09ebf7fd7f579de7b7fdee1e9,d2lce_2485cc2d1b2606bcc62d63c1,d2lce_2485cc2d1b2606bcc62d63c1,ctx_85f3e69f989b8ba0e6c34543,primary,d2l_convolutional_modern_alexnet_b033,d2l_convolutional_modern,sentence_5739ace66d210a66ae4f3bc2,PRIMARY,C5,C1,SAME_SENSE,sigmoid activation function,844158c3376db1dc464a0fa28fd73f3584cd419bc73b84dac848b937b82ddcdd,9983f9ea83d814af7338ee3a8b3a651770be17e012a2d9064702d56a90fdb1bf,"For example, it does not have the exponentiation operation found in the sigmoid activation function."
+1c14ec010e4ba460f25f6d15cf0424368fb463e09ebf7fd7f579de7b7fdee1e9,d2lce_2485cc2d1b2606bcc62d63c1,d2lce_2485cc2d1b2606bcc62d63c1,ctx_a57ada1779c485390423ba15,backup,d2l_convolutional_neural_networks_lenet_b008,d2l_convolutional_neural_networks,sentence_30459325a6bbedbb7af414ec,BACKUP,B1,C1,SAME_SENSE,sigmoid activation function,d002960b0d4c774d03a44613424582af97bdc1b0dcf5a30b725e6ed78a98600f,89d5160c61730a14b7e988420c97cfeec8e8fdb99b1fe0c509eeddcaf772be02,"Each convolutional layer uses a $5\times 5$ kernel
+and a sigmoid activation function."
+1c14ec010e4ba460f25f6d15cf0424368fb463e09ebf7fd7f579de7b7fdee1e9,d2lce_2485cc2d1b2606bcc62d63c1,d2lce_2485cc2d1b2606bcc62d63c1,ctx_b4869503275a2fafa7ed121c,backup,d2l_recommender_systems_neumf_b010,d2l_recommender_systems,sentence_723b414b17ff6a978252f8eb,BACKUP,B3,C1,SAME_SENSE,sigmoid activation function,ae82ce8f3bb2d8574a10ebb1f6451e9c406e0203831d934af9c617a385636d5d,0e1497de6764ee8b0dea82d4b842ca2d2f837f9bfb10699d9852e70b063ab5a9,"Afterwards, the ouputs are projected with matrix $\mathbf{h}$ and a sigmoid activation function."
+1c14ec010e4ba460f25f6d15cf0424368fb463e09ebf7fd7f579de7b7fdee1e9,d2lce_2485cc2d1b2606bcc62d63c1,d2lce_2485cc2d1b2606bcc62d63c1,ctx_fb27ea5cc8cb345d667494e6,backup,d2l_recurrent_modern_gru_b009,d2l_recurrent_modern,sentence_5124ba81bbc32751cf3a0de2,BACKUP,B2,C1,SAME_SENSE,sigmoid activation function,50bb1e197d6c29be52b9b34e8abc9903229c980ea2f6683274c54971784ca96c,2245c91a7ffe4b9ea43290737c039fff9b23df0fed9795690b62c39169b89c21,"The outputs of two gates
+are given by two fully-connected layers
+with a sigmoid activation function."
+1c14ec010e4ba460f25f6d15cf0424368fb463e09ebf7fd7f579de7b7fdee1e9,d2lce_2485cc2d1b2606bcc62d63c1,d2lce_2485cc2d1b2606bcc62d63c1,ctxx_d35dce40a2fd3dd8c0d8f5c4,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,sigmoid activation function,5c596cbbfaf2fe549e7f4da09f5d5a3e303d82b91a46276edf799ceed9d94e85,6cf583dc4047ce0d4e946ea8688bd530dce7bf1eac754e1840a35db787ae7f51,Synthetic: The sigmoid activation function should not be confused with a hard threshold step function.
+67c99267e75a708fe3e94026dd180747575e01e8c09aa00f237d1e678236150f,d2lce_00f50f89defd8652bb8c429e,d2lce_00f50f89defd8652bb8c429e,ctx_0c2556749af5509e2a8a0d38,primary;definition;part_of_speech,d2l_convolutional_neural_networks_lenet_b008,d2l_convolutional_neural_networks,sentence_9910a4f411497b56c56be39e,PRIMARY,C2,C1,SAME_SENSE,sigmoid,4872b1efebb1c9366b3a4f543e854e59f78e407db2e5a692c7a1a5b4f45d08c4,c28b4590d320e05369a4a223f9ce5f788e010b9075cdfe78a6dc0adc23e69d87,"The basic units in each convolutional block
+are a convolutional layer, a sigmoid activation function,
+and a subsequent average pooling operation."
+67c99267e75a708fe3e94026dd180747575e01e8c09aa00f237d1e678236150f,d2lce_00f50f89defd8652bb8c429e,d2lce_00f50f89defd8652bb8c429e,ctx_26b5e8bf7b8da7042c80bc48,backup,d2l_optimization_lr_scheduler_b006,d2l_optimization,sentence_13449a1fb4388af2142a3f0b,BACKUP,B2,C1,SAME_SENSE,sigmoid,976acb1c1fb7d9304d559a5ecadb0f5147e960d1ab87dfb1af08ffe73f66d388,f4c12c1597795ab585b2234203a8fef9197996db3da072737e928e6d0c6ab086,"For that we pick a slightly modernized version of LeNet (`relu` instead of `sigmoid` activation, MaxPooling rather than AveragePooling), as applied to Fashion-MNIST."
+67c99267e75a708fe3e94026dd180747575e01e8c09aa00f237d1e678236150f,d2lce_00f50f89defd8652bb8c429e,d2lce_00f50f89defd8652bb8c429e,ctx_5998384435b11da31468fd92,primary,d2l_natural_language_processing_pretraining_approx_training_b008,d2l_natural_language_processing_pretraining,sentence_9172893ff95325523c1bdbe4,PRIMARY,C5,C1,SAME_SENSE,sigmoid,b3a900c77c87e1536277405e9cff03a8368587686ac939bef199c14d72899ea2,7fc586085e293cdab722a1cefe8cf0cb5a811d1642184904be100a64ea1a1e53,where $\sigma$ uses the definition of the sigmoid activation function:
+67c99267e75a708fe3e94026dd180747575e01e8c09aa00f237d1e678236150f,d2lce_00f50f89defd8652bb8c429e,d2lce_00f50f89defd8652bb8c429e,ctx_677a8cad69668bf7ea4b032d,primary;part_of_speech,d2l_multilayer_perceptrons_mlp_b046,d2l_multilayer_perceptrons,sentence_25d8fe5a35598915ef7691a9,PRIMARY,C3,C1,SAME_SENSE,Sigmoid,ace2b728ae64b4186c924a00d7b4865a2a4bb4d5993081fd168c6ba188bb30de,3a1143e284ded6c06ac8725e63a924f768ae5aba165e294a7ae748a0121f97c3,### Sigmoid Function
+67c99267e75a708fe3e94026dd180747575e01e8c09aa00f237d1e678236150f,d2lce_00f50f89defd8652bb8c429e,d2lce_00f50f89defd8652bb8c429e,ctx_6fba33e1194891da74822687,primary;definition;part_of_speech,d2l_generative_adversarial_networks_gan_b008,d2l_generative_adversarial_networks,sentence_265b9c5d6489e7d62400252e,PRIMARY,C4,C1,SAME_SENSE,sigmoid,a471e0b4dafebce9658d765f9ca8ffbd450659d826eb8ee8dc88a6e24ce80766,048a06400163659d6af5b7fba5ddb21267366c62ce1f7820edcf10ee37ea51be,"Typically, the discriminator outputs a scalar prediction $o\in\mathbb R$ for input $\mathbf x$, such as using a dense layer with hidden size 1, and then applies sigmoid function to obtain the predicted probability $D(\mathbf x) = 1/(1+e^{-o})$."
+67c99267e75a708fe3e94026dd180747575e01e8c09aa00f237d1e678236150f,d2lce_00f50f89defd8652bb8c429e,d2lce_00f50f89defd8652bb8c429e,ctx_83aa1ec70a5aa698b67dadb3,backup,d2l_convolutional_modern_alexnet_b028,d2l_convolutional_modern,sentence_65ea567aa0b1dda573785112,BACKUP,B1,C1,SAME_SENSE,sigmoid,051fc2352c6bdaa9c43a3c71d53e5c07043762f6a6f3736c77e375b2ec3f3a75,e870de26e568611d5c60d5e9d60cf4e1b58682dc2a9c5d739cfbe7bc28fbe9f4,"Second, AlexNet used the ReLU instead of the sigmoid
+as its activation function."
+67c99267e75a708fe3e94026dd180747575e01e8c09aa00f237d1e678236150f,d2lce_00f50f89defd8652bb8c429e,d2lce_00f50f89defd8652bb8c429e,ctx_b1671787eb98927f1ad13a78,primary;definition,d2l_recurrent_modern_gru_b009,d2l_recurrent_modern,sentence_5124ba81bbc32751cf3a0de2,PRIMARY,C1,C1,SAME_SENSE,sigmoid,50bb1e197d6c29be52b9b34e8abc9903229c980ea2f6683274c54971784ca96c,c5be7a546df5329303cc26fdd2b17656a54f49b5c5648a1eb5bbd32b7a022adf,"The outputs of two gates
+are given by two fully-connected layers
+with a sigmoid activation function."
+67c99267e75a708fe3e94026dd180747575e01e8c09aa00f237d1e678236150f,d2lce_00f50f89defd8652bb8c429e,d2lce_00f50f89defd8652bb8c429e,ctx_cf0365ae6ea1bcdfd1296ed3,backup,d2l_recommender_systems_autorec_b015,d2l_recommender_systems,sentence_08d0a03fa0865e47718bd2d0,BACKUP,B3,C1,SAME_SENSE,sigmoid,630566ee5658aa1555d94d7e013a43626c4b811393514b29fe075c6e46ed1ea2,7539ecbb65e1761e4df881ca467e74e0e2e1656af530af347db60da63d911489,The activation of encoder is set to `sigmoid` by default and no activation is applied for decoder.
+67c99267e75a708fe3e94026dd180747575e01e8c09aa00f237d1e678236150f,d2lce_00f50f89defd8652bb8c429e,d2lce_00f50f89defd8652bb8c429e,ctxx_6e2436fba822b8df6af232ec,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,sigmoid function,660f9d93332e0b81159c2f7e7bbb8473cc9694d14c2b86cdf356652251568443,e0319fd30504e69c55f69a38735a36cacdc27aea7c9b23e7699d8229bce44d12,"Synthetic: In medicine, a sigmoid function could be discussed as an S-shaped dose-response curve rather than specifically as a neural-network activation."

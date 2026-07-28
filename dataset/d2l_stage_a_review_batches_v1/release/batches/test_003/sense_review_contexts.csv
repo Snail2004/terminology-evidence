@@ -1,0 +1,140 @@
+﻿case_sha256,term_id,sense_id,context_id,context_groups,block_id,chapter_id,sentence_id,context_role,context_slot,context_type_proposal,sense_relation,matched_surface_exact,content_sha256,context_sha256,source_text
+dcb6e25be4115fa803b25ef0e0feb4cab378c0fb7b47340f919abd8b41f69ff4,d2lce_041add3a2f3aa452408a5384,d2lce_041add3a2f3aa452408a5384,ctx_0c23b9cfe24725bd1e388026,backup,d2l_computer_vision_neural_style_b006,d2l_computer_vision,sentence_3b17d75817e929f2c678875e,BACKUP,B1,C2,SAME_SENSE,style transfer,e617caa892dc09436000fd104db35efd8ccd2f2871a72c3d6f521b9d9735015a,137e33ecaea633bf30b7bae44c39608488137a5f5eb99948834901ec957a9bec,":numref:`fig_style_transfer_model` illustrates
+the CNN-based style transfer method with a simplified example."
+dcb6e25be4115fa803b25ef0e0feb4cab378c0fb7b47340f919abd8b41f69ff4,d2lce_041add3a2f3aa452408a5384,d2lce_041add3a2f3aa452408a5384,ctx_1f5ec6ced6190e5f15225183,backup,d2l_computer_vision_neural_style_b007,d2l_computer_vision,sentence_5f5c7b87d9ad1bcb1bef9741,BACKUP,B3,C2,SAME_SENSE,style transfer,3411a6f3c0ae347c5b29d63478a5a749544500b279559b2741e35b65749f0c89,1d8acd1b2cd3d5461108081a48b0df748dee3cc3bb9b358313bab35453eabcb6,![CNN-based style transfer process.
+dcb6e25be4115fa803b25ef0e0feb4cab378c0fb7b47340f919abd8b41f69ff4,d2lce_041add3a2f3aa452408a5384,d2lce_041add3a2f3aa452408a5384,ctx_654e7ba25bac02b376751b46,backup;part_of_speech,d2l_computer_vision_index_b003,d2l_computer_vision,sentence_4369cda53a0ff8035999d508,BACKUP,B2,C1,SAME_SENSE,style transfer,4f2a88b3f21e111129cfaea816e2bdef08911935e5fdcf8a8044d4f63c3c95fd,87918d33b0908364892970c430fd14b6e7cd431e52ada469541f3d63d237d8dc,"Since deep neural networks can effectively represent images in multiple levels, 
+such layerwise representations have been successfully 
+used in various computer vision tasks such as *object detection*, *semantic segmentation*, and *style transfer*."
+dcb6e25be4115fa803b25ef0e0feb4cab378c0fb7b47340f919abd8b41f69ff4,d2lce_041add3a2f3aa452408a5384,d2lce_041add3a2f3aa452408a5384,ctx_6b687a2d2cfec26c4434d515,primary;definition,d2l_computer_vision_neural_style_b003,d2l_computer_vision,sentence_753438ce17abfe7cd5a9eacf,PRIMARY,C3,C3,SAME_SENSE,style transfer,3e44147b9c870ccb4bde8b98f6c781c5942556c51e30de1f9b79f21bd5bed179,fdc458dae9de1e9a0311b5c435a480e75942b01d4578ae70c18dc73497efe3dd,"In this section, we will
+leverage layerwise representations of a CNN
+to automatically apply the style of one image
+to another image, i.e., *style transfer* :cite:`Gatys.Ecker.Bethge.2016`."
+dcb6e25be4115fa803b25ef0e0feb4cab378c0fb7b47340f919abd8b41f69ff4,d2lce_041add3a2f3aa452408a5384,d2lce_041add3a2f3aa452408a5384,ctx_d719b8db05528e808274fcea,primary;definition;part_of_speech,d2l_computer_vision_index_b003,d2l_computer_vision,sentence_c02d73d611a605229a306084,PRIMARY,C2,C2,SAME_SENSE,style transfer,426959fad926495fdddd3570d41e64f1dc28ec87ad960b84fab1674e5f592ba6,a0ce6db57600da9003c84bf83b0256b396ccb1e99ab9975001a7a8985391246a,Then we will explain how to use style transfer techniques to generate images like the cover of this book.
+dcb6e25be4115fa803b25ef0e0feb4cab378c0fb7b47340f919abd8b41f69ff4,d2lce_041add3a2f3aa452408a5384,d2lce_041add3a2f3aa452408a5384,ctx_deae144867e9bfadbffe6cf7,primary;part_of_speech,d2l_computer_vision_neural_style_b001,d2l_computer_vision,sentence_8d87968228d28ede8b11b2a0,PRIMARY,C1,C1,SAME_SENSE,Style Transfer,aa1e5c64372e70169e7f5fba7ef0d501893caecf8fbe26b753ff18fb5cde9564,c4543f4219b9df5c243d5f3ae1395ae81648182533380e0882ba98983b076c8c,# Neural Style Transfer
+dcb6e25be4115fa803b25ef0e0feb4cab378c0fb7b47340f919abd8b41f69ff4,d2lce_041add3a2f3aa452408a5384,d2lce_041add3a2f3aa452408a5384,ctx_e603f93a871e9ee36882fbe5,primary,d2l_computer_vision_neural_style_b006,d2l_computer_vision,sentence_9e7e466f864bbcd035823dfe,PRIMARY,C4,C4,SAME_SENSE,style transfer,157136fbf6e16b26fd5e901c6178426b86c2ed05f3f676228433c1837452da7f,deb5037067e95bdf1cb2bdf9db8a634c39bd0d700c2e2a2a37b226f159def6c4,"This synthesized image is the only variable that needs to be updated during the style transfer process,
+i.e., the model parameters to be updated during training."
+dcb6e25be4115fa803b25ef0e0feb4cab378c0fb7b47340f919abd8b41f69ff4,d2lce_041add3a2f3aa452408a5384,d2lce_041add3a2f3aa452408a5384,ctx_e9df20e49655a73442ecc990,primary;definition,d2l_computer_vision_neural_style_b004,d2l_computer_vision,sentence_e068ff88f9694e7449d74034,PRIMARY,C5,C3,SAME_SENSE,style transfer,98ef5e2151a021f34f17ce943f4849cb8ada12add0d4a3a150254a32671c5e88,ebae76a613590a5f76986b81459288e73c57e849b65054718f538865ea01c8b8,"![Given content and style images, style transfer outputs a synthesized image.](../img/style-transfer.svg)
+:label:`fig_style_transfer`"
+dcb6e25be4115fa803b25ef0e0feb4cab378c0fb7b47340f919abd8b41f69ff4,d2lce_041add3a2f3aa452408a5384,d2lce_041add3a2f3aa452408a5384,ctxx_910f4d9a65952b578fc14d53,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,style transfer,7797774db74aff87aebb3a99a8f43a39960de36cdc76aa82e86af2c158875f46,687b16a319a9f91809c3bf7484ee76eb4fa9c4387632c2aa66d5e0cfa4d793f4,"Synthetic: The museum studied style transfer across generations of painters, without generating any images computationally."
+a068a0bfe815d36a33ade3e3aa2b7e630ceb1b706bed1a1aa2061fe81958cf9c,d2lce_91002293cea2184b43995f47,d2lce_91002293cea2184b43995f47,ctx_04a4e4586094507de76cea7e,primary;definition;part_of_speech,d2l_computational_performance_hardware_b056,d2l_computational_performance,sentence_dc23b5614d7059c1d5fc7c0a,PRIMARY,C1,C1,SAME_SENSE,switches,6bd80a5119f57b91f997de705ed1a1ea65b75c3fdf910f87cc249aa301ac9628,ffd26b8ccdceac85bb35ac754008ac5b6a841559355c98d0fa4944b70db58093,Note that switches are not unique to traditional computer networks.
+a068a0bfe815d36a33ade3e3aa2b7e630ceb1b706bed1a1aa2061fe81958cf9c,d2lce_91002293cea2184b43995f47,d2lce_91002293cea2184b43995f47,ctx_ad04343cea039cb88b7c242b,part_of_speech,d2l_preliminaries_probability_b059,d2l_preliminaries,sentence_134d3dfadd498f6c0b45f563,UNSELECTED,C2,NONE,INVALID,switch,60fcad87619f8ddbdf2389fb94a008656074159f59657efa0c71c28f9c4d53b0,f74e3958ac04e08fecf7469698e8188354e8a76ff538b4a7b8d7c3bffe99c749,"In contrast, the position of a light switch and the brightness in the room are not (they are not perfectly deterministic, though, since we could always have a broken light bulb, power failure, or a broken switch)."
+a068a0bfe815d36a33ade3e3aa2b7e630ceb1b706bed1a1aa2061fe81958cf9c,d2lce_91002293cea2184b43995f47,d2lce_91002293cea2184b43995f47,ctxx_ed06244d7393e7f5493c7f08,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,switch,e03cb991b087a3a202b545847d0e44597244805756d6caee6c549ded8c98074b,ff9198a9eed6b136e7a5856c5e2cc999cf8b2cb46b392097403a9b64123ab2ba,"Synthetic: The network switch connects devices, but to switch off the bias means to disable a model setting."
+8a6b73ed787234fedc91bf8ec9fe9d344c70b34ceff0ecd7ead5f0dc252996cc,d2lce_d1ca2fd5568e11a79b1b3366,d2lce_d1ca2fd5568e11a79b1b3366,ctx_6b5fc1533573098a302c2aa6,primary,d2l_multilayer_perceptrons_index_b002,d2l_multilayer_perceptrons,sentence_fd05c8e08bde591ad667d072,PRIMARY,C5,C3,SAME_SENSE,train,9ee70e72da7afa01ae1e8004adc67eb31b763d0c938c1d2cb00e567e8c08909d,07512d5ab2d84fa212a13b42198723e6e7a7bdddb314f3e92f5a591193f31880,When we train high-capacity models we run the risk of overfitting.
+8a6b73ed787234fedc91bf8ec9fe9d344c70b34ceff0ecd7ead5f0dc252996cc,d2lce_d1ca2fd5568e11a79b1b3366,d2lce_d1ca2fd5568e11a79b1b3366,ctx_71176d223ed033be9203e626,backup;part_of_speech,d2l_linear_networks_linear_regression_b037,d2l_linear_networks,sentence_45a6666b8d9fefc79de65675,BACKUP,B1,C3,SAME_SENSE,train,53ea1e93b4f92f1672a28f96a78756bd65c08152ccd4e4c28bf268649cb5c45e,4fe59ac02f71b2b940699352a5a29dc579ade699d58825ddb9f00048c33e03a1,"Moreover, for many tasks, those difficult-to-optimize models
+turn out to be so much better that figuring out how to train them
+ends up being well worth the trouble."
+8a6b73ed787234fedc91bf8ec9fe9d344c70b34ceff0ecd7ead5f0dc252996cc,d2lce_d1ca2fd5568e11a79b1b3366,d2lce_d1ca2fd5568e11a79b1b3366,ctx_732118a0817f428f0428816a,backup,d2l_convolutional_modern_alexnet_b006,d2l_convolutional_modern,sentence_dcc3b2b727703dc039a91106,BACKUP,B2,C3,SAME_SENSE,train,eb030d3395a0e10e74295dd769afd775faf07eacb4c9ee955ee9f0b5d79dab14,551047f51718920edcc5acb881360de0341108d411d081cc741b3cb9baea071d,"Dump the resulting representations into your favorite classifier, likely a linear model or kernel method, to train a classifier."
+8a6b73ed787234fedc91bf8ec9fe9d344c70b34ceff0ecd7ead5f0dc252996cc,d2lce_d1ca2fd5568e11a79b1b3366,d2lce_d1ca2fd5568e11a79b1b3366,ctx_9282f3ace8d089f60898e962,primary;definition;part_of_speech,d2l_preliminaries_calculus_b005,d2l_preliminaries,sentence_e00c7fd8152534bcee32ef83,PRIMARY,C3,C3,SAME_SENSE,train,9cf7d4416140998265b123495fcb128309f69f826d9e8c65be7076cd2bddd588,4e871902bdfe570c54b011c33905e8db56dc067d833a7626acde53311e38f852,"In deep learning, we *train* models, updating them successively
+so that they get better and better as they see more and more data."
+8a6b73ed787234fedc91bf8ec9fe9d344c70b34ceff0ecd7ead5f0dc252996cc,d2lce_d1ca2fd5568e11a79b1b3366,d2lce_d1ca2fd5568e11a79b1b3366,ctx_929bfbfdad0e6f80c43c25a6,primary,d2l_deep_learning_computation_parameters_b087,d2l_deep_learning_computation,sentence_a51a5469520ba2a89ae125d2,PRIMARY,C1,C2,SAME_SENSE,train,7d64fda3ff7395b66e073068b275b138d673668b497abd5c8b38bf4fee31af1a,788b4fe1c1a1f0f54b0539e10160adc7681e383fbe16888008735e0f53ef19de,Construct an MLP containing a shared parameter layer and train it.
+8a6b73ed787234fedc91bf8ec9fe9d344c70b34ceff0ecd7ead5f0dc252996cc,d2lce_d1ca2fd5568e11a79b1b3366,d2lce_d1ca2fd5568e11a79b1b3366,ctx_c59d1952fd176678e6067a09,backup,d2l_preface_index_b008,d2l_preface,sentence_9d871f3ee125fae56c9892a9,BACKUP,B3,C2,SAME_SENSE,train,21d21d1b47ecfa98bea4e813a9d921179ba2d9a622fcab8adc6ecb2f5a21c8c0,1c73ce7fa48b941c8a7142eefb9da5391eeb73eb5995645241a44834248b8eed,"Applying deep learning requires simultaneously understanding
+(i) the motivations for casting a problem in a particular way;
+(ii) the mathematical form of a given model;
+(iii) the optimization algorithms for fitting the models to data;
+(iv) the statistical principles that tell us 
+when we should expect our models 
+to generalize to unseen data
+and practical methods for certifying 
+that they have, in fact, generalized;
+and (v) the engineering techniques
+required to train models efficiently,
+navigating the pitfalls of numerical computing
+and getting the most out of available hardware."
+8a6b73ed787234fedc91bf8ec9fe9d344c70b34ceff0ecd7ead5f0dc252996cc,d2lce_d1ca2fd5568e11a79b1b3366,d2lce_d1ca2fd5568e11a79b1b3366,ctx_d6a61508bc9d44444618bd65,primary;definition,d2l_convolutional_neural_networks_lenet_b003,d2l_convolutional_neural_networks,sentence_f881a6cbebb415d00759d864,PRIMARY,C4,C3,SAME_SENSE,train,577ade0b8c35660a506936ced476527308423e582ce21b23840830e3fa7c791b,6853b9fdb12c32318942c4859df5b25156a121638a23e38b7a96657da830ac30,"In 1989, LeCun published the first study to successfully
+train CNNs via backpropagation."
+8a6b73ed787234fedc91bf8ec9fe9d344c70b34ceff0ecd7ead5f0dc252996cc,d2lce_d1ca2fd5568e11a79b1b3366,d2lce_d1ca2fd5568e11a79b1b3366,ctx_ea5790fe6044cd61bc133385,primary;definition;part_of_speech,d2l_introduction_index_b015,d2l_introduction,sentence_4dc923592f20885f25666f07,PRIMARY,C2,C3,SAME_SENSE,train,10b0dab3ded66849c923eb5907da4ea7ec6708746353cf0f2c73d22cbc99aabe,7fa555b9d534cbf56b1bc94cc0b4038fca150150d84e330e02cf51315614ed10,"In other words,
+we *train* our model with data."
+8a6b73ed787234fedc91bf8ec9fe9d344c70b34ceff0ecd7ead5f0dc252996cc,d2lce_d1ca2fd5568e11a79b1b3366,d2lce_d1ca2fd5568e11a79b1b3366,ctxx_341e6741173efa8aa1ba0c71,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,train,5b8f911ed1a3e208cbacc59c83c18cc34a1414da3096d6ff2ab8742411c89ded,0ac66611c0c879c20692be0f35f6bc83aa6ee66153f8c06f768f8af5455d6b21,Synthetic: They train every morning for the marathon before sunrise.
+c1e745732237a80b49d6f96f1bc42301c93405768abf8d6da0f1fe6be6b26497,d2lce_6b1b75f43b72ec9bace62065,d2lce_6b1b75f43b72ec9bace62065,ctx_0f35f327e3ffb1af62c20c1c,primary,d2l_computer_vision_object_detection_dataset_b013,d2l_computer_vision,sentence_44285fa39912d8d4ae38b113,PRIMARY,C3,C4,SAME_SENSE,transpose,5e8af6faca7b7ab8426acb4bf777bd8b629da9cc0fbfb3ceeff52f801d57be20,b9d5c5115e6982cddc852350d1eb0f05584e720f3cae90dfac692eea6519423e,"```{.python .input}
+#@save
+class BananasDataset(gluon.data.Dataset):
+    """"""A customized dataset to load the banana detection dataset.""""""
+    def __init__(self, is_train):
+        self.features, self.labels = read_data_bananas(is_train)
+        print('read ' + str(len(self.features)) + (f' training examples' if
+              is_train else f' validation examples'))
+
+    def __getitem__(self, idx):
+        return (self.features[idx].astype('float32').transpose(2, 0, 1),
+                self.labels[idx])
+
+    def __len__(self):
+        return len(self.features)
+```"
+c1e745732237a80b49d6f96f1bc42301c93405768abf8d6da0f1fe6be6b26497,d2lce_6b1b75f43b72ec9bace62065,d2lce_6b1b75f43b72ec9bace62065,ctx_2514212c3b726616b6545c2c,backup,d2l_generative_adversarial_networks_dcgan_b017,d2l_generative_adversarial_networks,sentence_fd4dfec5b3744860d836f897,BACKUP,B2,C4,SAME_SENSE,transpose,58b3c6398863729ec078a7041cc6e6d799694c4a689f4f28b1b2bf021213371b,72df9554467c3b37551cf0a96269e983e671a9561a284ddc230ccc660b502379,"```{.python .input}
+d2l.set_figsize((4, 4))
+for X, y in data_iter:
+    imgs = X[0:20,:,:,:].transpose(0, 2, 3, 1)/2+0.5
+    d2l.show_images(imgs, num_rows=4, num_cols=5)
+    break
+```"
+c1e745732237a80b49d6f96f1bc42301c93405768abf8d6da0f1fe6be6b26497,d2lce_6b1b75f43b72ec9bace62065,d2lce_6b1b75f43b72ec9bace62065,ctx_282dbeb511791085b7d7db24,backup,d2l_natural_language_processing_applications_sentiment_analysis_cnn_b032,d2l_natural_language_processing_applications,sentence_844fd1f4bcab57e80fd13701,BACKUP,B1,C1,SAME_SENSE,transpose,baf230f5476f3611838354894d53c8049b2c110e60af4c6c3db0463dd7e7e56f,09ae208e7e7daef74b6372f4e0e88cf87e4c508bbc766e8d923a0c9df2bd3c1a,"# of tokens, token vector dimension) along vectors
+        embeddings = np.concatenate((
+            self.embedding(inputs), self.constant_embedding(inputs)), axis=2)
+        # Per the input format of one-dimensional convolutional layers,
+        # rearrange the tensor so that the second dimension stores channels
+        embeddings = embeddings.transpose(0, 2, 1)
+        # For each one-dimensional convolutional layer, after max-over-time
+        # pooling, a tensor of shape (batch size, no."
+c1e745732237a80b49d6f96f1bc42301c93405768abf8d6da0f1fe6be6b26497,d2lce_6b1b75f43b72ec9bace62065,d2lce_6b1b75f43b72ec9bace62065,ctx_8b4f9d8a2db0a1027760532e,primary;definition,d2l_preliminaries_linear_algebra_b043,d2l_preliminaries,sentence_23345862ddbac53a26f53b2e,PRIMARY,C1,C1,SAME_SENSE,transpose,7f8469db0704a90d0ea0b60607bebe2c2e7a0af62aee76f6f042f9119d9f5fbb,76249fbb75c055734cd4b65231381297a3656998ba6986033516249d44e47c72,"When we exchange a matrix's rows and columns,
+the result is called the *transpose* of the matrix."
+c1e745732237a80b49d6f96f1bc42301c93405768abf8d6da0f1fe6be6b26497,d2lce_6b1b75f43b72ec9bace62065,d2lce_6b1b75f43b72ec9bace62065,ctx_b0979095fea4bcd28cf2ac0f,primary;definition;part_of_speech,d2l_recurrent_neural_networks_rnn_scratch_b014,d2l_recurrent_neural_networks,sentence_904fe63a6a933828195cc132,PRIMARY,C4,C1,SAME_SENSE,transpose,3c2bc34ac6049f78c8429fdfc151a8cd89bf4553fafc08e0b7a3a55c510d0994,83115caf0210e5e61d40a0080c1ec62bca232fdaa7f807a6a071e20419b3c4a1,"The `one_hot` function transforms such a minibatch into a three-dimensional tensor with the last dimension equals to the vocabulary size (`len(vocab)`).**)
+We often transpose the input so that we will obtain an
+output of shape
+(number of time steps, batch size, vocabulary size)."
+c1e745732237a80b49d6f96f1bc42301c93405768abf8d6da0f1fe6be6b26497,d2lce_6b1b75f43b72ec9bace62065,d2lce_6b1b75f43b72ec9bace62065,ctx_ca28cbd449972202e89c8206,primary,d2l_notation_index_b008,d2l_notation,sentence_ccd68dd16a68a1e6a6cf0b7b,PRIMARY,C2,C3,SAME_SENSE,transpose,9dd8f9b830ae81f33b9b41093676f578294ee1239e4c1287ce1613c5dd43738b,90fee7e56036c2919463c04225f2985ce38a897da67d56c49a3e58c5f38d2fff,"* $f(\cdot)$: a function
+* $\log(\cdot)$: the natural logarithm (base $e$)
+* $\log_2(\cdot)$: logarithm with base $2$
+* $\exp(\cdot)$: the exponential function
+* $\mathbf{1}(\cdot)$: the indicator function, evaluates to $1$ if the boolean argument is true and $0$ otherwise
+* $\mathbf{1}_{\mathcal{X}}(z)$: the set-membership indicator function, evaluates to $1$ if the element $z$ belongs to the set $\mathcal{X}$ and $0$ otherwise
+* $\mathbf{(\cdot)}^\top$: transpose of a vector or a matrix
+* $\mathbf{X}^{-1}$: inverse of matrix $\mathbf{X}$
+* $\odot$: Hadamard (elementwise) product
+* $[\cdot, \cdot]$: concatenation
+* $\|\cdot\|_p$: $L_p$ norm
+* $\|\cdot\|$: $L_2$ norm
+* $\langle \mathbf{x}, \mathbf{y} \rangle$: dot product of vectors $\mathbf{x}$ and $\mathbf{y}$
+* $\sum$: summation over a collection of elements
+* $\prod$: product over a collection of elements
+* $\stackrel{\mathrm{def}}{=}$: an equality asserted as a definition of the symbol on the left-hand side"
+c1e745732237a80b49d6f96f1bc42301c93405768abf8d6da0f1fe6be6b26497,d2lce_6b1b75f43b72ec9bace62065,d2lce_6b1b75f43b72ec9bace62065,ctx_d57bee107ebd48e4888a2c07,backup,d2l_convolutional_neural_networks_conv_layer_b034,d2l_convolutional_neural_networks,sentence_8891d973c562081a852e26c5,BACKUP,B3,C4,SAME_SENSE,transpose,d4cc1733c2644d55c5a911b0e74daa1b58d4035bfed0760a20e09f4b5229b352,589c6667d4261c46ccfb732f1cadcbd651b673b2d084659ae7b29c7280ed08ef,"```{.python .input}
+#@tab all
+corr2d(d2l.transpose(X), K)
+```"
+c1e745732237a80b49d6f96f1bc42301c93405768abf8d6da0f1fe6be6b26497,d2lce_6b1b75f43b72ec9bace62065,d2lce_6b1b75f43b72ec9bace62065,ctx_f5d11ac90b12d0ac504bdbf3,primary;definition;part_of_speech,d2l_attention_mechanisms_attention_scoring_functions_b046,d2l_attention_mechanisms,sentence_30932a4e9070cc43edd20934,PRIMARY,C5,C1,SAME_SENSE,transpose,cb154a436f55cb3d6fbba3527d6411dd33ae1a52be3f743f087b68f99b47aef8,9414dec00fb28009fd1a16955b1dc109562d14557b796b9baeb603e33fa7da08,"of queries)
+    def forward(self, queries, keys, values, valid_lens=None):
+        d = queries.shape[-1]
+        # Set `transpose_b=True` to swap the last two dimensions of `keys`
+        scores = torch.bmm(queries, keys.transpose(1,2)) / math.sqrt(d)
+        self.attention_weights = masked_softmax(scores, valid_lens)
+        return torch.bmm(self.dropout(self.attention_weights), values)
+```"
+c1e745732237a80b49d6f96f1bc42301c93405768abf8d6da0f1fe6be6b26497,d2lce_6b1b75f43b72ec9bace62065,d2lce_6b1b75f43b72ec9bace62065,ctxx_7b18eca1441d8ef083130efa,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,transpose,4a6002819f82e165a3f713969ab360bee13a4634e12e6eefa8723e9ace33f306,ebec12103ece9710b35f3f167c75ecd0c7ea29462ee82826099201ee8f5b7729,"Synthetic: In music, transpose a melody up by two semitones."
+08bb3be1ee4d4ba800a7e1ff702dc7f1da4ac2dfc76465d80b1a78a0357ffc2c,d2lce_7be1455c48134d411f51fe7c,d2lce_7be1455c48134d411f51fe7c,ctx_5de6c0208178676906d2a0d9,backup,d2l_computer_vision_neural_style_b024,d2l_computer_vision,sentence_376767f8a54af7029dc3389c,BACKUP,B1,C1,SAME_SENSE,VGG network,d37cac57ab1e8adc7a824914946507bbc04c3eef8dc876031ec9bd4c98ae8799,cc15a7de79135b773354038792aaba029c88df70ba3dd7a9bfc0db84489b7264,"As mentioned in :numref:`sec_vgg`,
+the VGG network uses 5 convolutional blocks."
+08bb3be1ee4d4ba800a7e1ff702dc7f1da4ac2dfc76465d80b1a78a0357ffc2c,d2lce_7be1455c48134d411f51fe7c,d2lce_7be1455c48134d411f51fe7c,ctx_63a7e0037fac12cc4fdcdd35,primary;definition,d2l_convolutional_modern_vgg_b016,d2l_convolutional_modern,sentence_5d96099318d04ae35a8c1455,PRIMARY,C3,C1,SAME_SENSE,VGG network,d574dd83d97e30bb7547505d727aa84501dd6a069b21112d134f77304b26575c,75216ef38b5ebc55e75632c420a36a2b5f9610f4a676a7a0dde7dcd649ed96e2,"The original VGG network had 5 convolutional blocks,
+among which the first two have one convolutional layer each
+and the latter three contain two convolutional layers each."
+08bb3be1ee4d4ba800a7e1ff702dc7f1da4ac2dfc76465d80b1a78a0357ffc2c,d2lce_7be1455c48134d411f51fe7c,d2lce_7be1455c48134d411f51fe7c,ctx_a33fa21e3115491f18e2796d,primary;definition;part_of_speech,d2l_convolutional_modern_vgg_b012,d2l_convolutional_modern,sentence_81629386660a806f1e7eff8e,PRIMARY,C1,C1,SAME_SENSE,VGG Network,28323f010c0f4cc6fd4f9e739b641d8b7e79ae0dbf30d0e0447f4227d345963a,e2f562f350131f2e9158b52ea97f0f6cf3afc75b649492986b319f9e40255b1e,## [**VGG Network**]
+08bb3be1ee4d4ba800a7e1ff702dc7f1da4ac2dfc76465d80b1a78a0357ffc2c,d2lce_7be1455c48134d411f51fe7c,d2lce_7be1455c48134d411f51fe7c,ctx_b148bf8074b973465bfd0498,primary,d2l_computer_vision_neural_style_b024,d2l_computer_vision,sentence_0481121647565cd8115371a1,PRIMARY,C2,C2,SAME_SENSE,VGG network,8a7f5bd343e711b50ff3dbcc3d47f7b69b8461caeec741fc01e1176ce1d6db98,f535e556c9a407c0de1701129b8fb5569d82a08f9c35e4d8e9a42e84e9d9907c,"In order to extract the content features and style features of the image, we can select the output of certain layers in the VGG network."
+08bb3be1ee4d4ba800a7e1ff702dc7f1da4ac2dfc76465d80b1a78a0357ffc2c,d2lce_7be1455c48134d411f51fe7c,d2lce_7be1455c48134d411f51fe7c,ctx_bcaefb51afe4e2f9d849b9e3,primary,d2l_convolutional_modern_vgg_b015,d2l_convolutional_modern,sentence_8094262a08748b56bfd74c84,PRIMARY,C5,C1,SAME_SENSE,VGG network,9b332b29c3731ce348215f3e0822c8a37228d94ce444b7ed38eb3f9e3584914d,34ca38b0a382884259120c857a7a9769310b0856f13f608e537a2a7cfd08c6a1,The fully-connected part of the VGG network is identical to that covered in AlexNet.
+08bb3be1ee4d4ba800a7e1ff702dc7f1da4ac2dfc76465d80b1a78a0357ffc2c,d2lce_7be1455c48134d411f51fe7c,d2lce_7be1455c48134d411f51fe7c,ctx_cb058f206f42d3b06990201c,backup,d2l_convolutional_modern_index_b003,d2l_convolutional_modern,sentence_df7daf6167d7f8876fa764d2,BACKUP,B3,C2,SAME_SENSE,VGG network,68a7d333ca53cdddfc627f719e3495e07fee44c374e44635e483a833d1e8547b,7c9fe2bb5cbe1d36cdb307dc4842e606265e8136def56fe56c494f115a2e9a85,"These models include AlexNet, the first large-scale network deployed 
+to beat conventional computer vision methods on a large-scale vision challenge;
+the VGG network, which makes use of a number of repeating blocks of elements; the network in network (NiN) which convolves 
+whole neural networks patch-wise over inputs; 
+GoogLeNet, which uses networks with parallel concatenations;
+residual networks (ResNet), which remain the most popular 
+off-the-shelf architecture in computer vision;
+and densely connected networks (DenseNet), 
+which are expensive to compute but have set some recent benchmarks."
+08bb3be1ee4d4ba800a7e1ff702dc7f1da4ac2dfc76465d80b1a78a0357ffc2c,d2lce_7be1455c48134d411f51fe7c,d2lce_7be1455c48134d411f51fe7c,ctx_d44b321b97faec6a56ab5c33,backup,d2l_computer_vision_ssd_b004,d2l_computer_vision,sentence_b38847b2c3a80d322c8553ea,BACKUP,B2,C2,SAME_SENSE,VGG network,3f458218d03b3b652e9f4b9329f09eca7219b2a9af55dcc1a416c7ff44ca9fed,308c39edba3760e80e80401060829f4446dc18c3a56a2365e77cfc4a6dfaff70,"For example,
+the original single-shot multibox detection paper
+adopts a VGG network truncated before the
+classification layer :cite:`Liu.Anguelov.Erhan.ea.2016`,
+while ResNet has also been commonly used."
+08bb3be1ee4d4ba800a7e1ff702dc7f1da4ac2dfc76465d80b1a78a0357ffc2c,d2lce_7be1455c48134d411f51fe7c,d2lce_7be1455c48134d411f51fe7c,ctx_ece546a2d6d19914a8d8e91c,primary;definition;part_of_speech,d2l_convolutional_modern_vgg_b013,d2l_convolutional_modern,sentence_97cff04d6cd2dbb44e48c3d1,PRIMARY,C4,C1,SAME_SENSE,VGG Network,b7c3e3d22b8609303f834806d2dab1d4f8da9a12d78177570840c1bf92a3511f,5962c4dbcc6c46891264bdb7af137dd3585eb235d28c91353a7a7ea524c95126,"Like AlexNet and LeNet,
+the VGG Network can be partitioned into two parts:
+the first consisting mostly of convolutional and pooling layers
+and the second consisting of fully-connected layers."
+08bb3be1ee4d4ba800a7e1ff702dc7f1da4ac2dfc76465d80b1a78a0357ffc2c,d2lce_7be1455c48134d411f51fe7c,d2lce_7be1455c48134d411f51fe7c,ctxx_b0a67e051ec709b51f04bce9,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,VGG network,76c1b2cc3306ead6d89a0f08c82054c72dcf12d24c929e66bea68a9ded37d26a,f755e6f238b239957e849ad3e9d4a427fdf5d80963cfd60bbfacef8ca9c76614,Synthetic: VGG network sponsored the event as a media company.

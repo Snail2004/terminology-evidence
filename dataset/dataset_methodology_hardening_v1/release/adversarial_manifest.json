@@ -1,0 +1,34 @@
+{
+  "schema_id": "D2LMethodologyAdversarialManifestV1",
+  "schema_version": "1.0.0",
+  "status": "BLOCKED_EXTERNAL_INPUTS",
+  "parent_dataset_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+  "creation_protocol_version": "d2l_adversarial_freeze_protocol_v1",
+  "protocol_frozen_at": "2026-07-29T00:00:00Z",
+  "allowed_generation_sources": [
+    "AUTHOR_DESIGNED",
+    "BLIND_SECOND_PARTY"
+  ],
+  "allowed_attack_types": [
+    "POPULAR_WRONG_CALQUE",
+    "WRONG_SENSE_NATURAL_CANDIDATE",
+    "UNRESOLVED_POLYSEMY",
+    "TARGET_COLLISION",
+    "HIGH_ROUNDTRIP_BUT_WRONG",
+    "MODEL_SELF_PREFERENCE",
+    "TAIL_CONTEXT_FAILURE",
+    "CONTRADICTION",
+    "INSUFFICIENT_EVIDENCE_TRAP"
+  ],
+  "case_count": 0,
+  "source_counts": {
+    "AUTHOR_DESIGNED": 0,
+    "BLIND_SECOND_PARTY": 0
+  },
+  "cases": [],
+  "blockers": [
+    "AUTHOR_DESIGNED cases have not been independently authored and frozen.",
+    "BLIND_SECOND_PARTY creator evidence is not available."
+  ],
+  "runtime_input_policy": "EXPECTED_GATE_FORBIDDEN_FROM_RUNTIME_INPUT"
+}

@@ -1,0 +1,59 @@
+{
+  "schema_id": "TerminologyContractsV1_1RC3IndependentReviewAuditV1",
+  "artifact": "terminology_contracts_v1_1_rc3.zip",
+  "release_zip_sha256": "25e8705631d52cccc8620dc0936c3245897b694abf8eafd8e9f54e0bd94b34f3",
+  "verification": {
+    "external_checksum": "PASS",
+    "internal_checksums": "PASS",
+    "manifest": "PASS",
+    "tests_without_dataset_root": {
+      "passed": 89,
+      "skipped": 2,
+      "failed": 0
+    },
+    "tests_with_real_v3_and_pilot": {
+      "passed": 91,
+      "skipped": 0,
+      "failed": 0
+    },
+    "static_compile": "PASS",
+    "zip_safety": "PASS"
+  },
+  "rc2_findings": "CLOSED",
+  "verdict": {
+    "release_engineering": "PASS",
+    "common_authority_freeze": "BLOCKED",
+    "publish_to_agents": "NOT_YET",
+    "recommended_next_candidate": "v1.1.0-rc4"
+  },
+  "blocking_findings": [
+    {
+      "id": "P0-RC3-1",
+      "title": "Certificate application fields are not derived from or verified against frozen/evidence/calibration artifacts",
+      "reproduced": true,
+      "accepted_mutations": [
+        "injected allowed_variants",
+        "removed forbidden_candidates",
+        "expanded scope_note",
+        "fabricated evidence_summary",
+        "arbitrary threshold_version"
+      ]
+    },
+    {
+      "id": "P0-RC3-2",
+      "title": "Contrastive and negative/boundary refs are accepted as certificate validity contexts",
+      "reproduced": true,
+      "tac_bundle_also_accepted": true
+    }
+  ],
+  "high_priority": [
+    {
+      "id": "P1-1",
+      "title": "Native C/E gate_signals are semantic-required but not JSON-schema-required"
+    },
+    {
+      "id": "P1-2",
+      "title": "Standalone GateResultSet validation does not verify per-gate actions against the sealed policy"
+    }
+  ]
+}

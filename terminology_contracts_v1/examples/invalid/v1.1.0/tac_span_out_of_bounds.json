@@ -1,0 +1,91 @@
+{
+  "certificate": {
+    "allowed_variants": [
+      "quá trình suy luận"
+    ],
+    "attestation_evidence_refs": [
+      {
+        "evidence_id": "att-1",
+        "evidence_type": "ATTESTATION_SOURCE",
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "uri": "artifact://attestation/att-1"
+      }
+    ],
+    "attestation_evidence_sha256": "831cf0d4a5cbbaf508c73a605e86fe66d8f066677080ea6af986637b5dcdf6aa",
+    "binding_status": "COMPLETE",
+    "calibration_artifact_sha256": "e8b3b871dda5a17d2f449ed894b23a4b1d5614180fbc59035f92171560926a76",
+    "candidate_key": {
+      "candidate_id": "cand-inference-vi-01",
+      "candidate_version": "fixture-candidate-v1",
+      "candidate_vi": "suy luận",
+      "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
+      "scope_id": "machine_learning",
+      "sense_id": "model_execution",
+      "sense_inventory_version": "sense-v1",
+      "source_term": "inference"
+    },
+    "certificate_id": "cert-inference-001",
+    "certificate_version": "1",
+    "constraint_evidence_sha256": "d41daa7701022f4fb9c32719a0d9e4dec848becb7501520bba66b81dcbdec374",
+    "context_evidence_sha256": "61bda503eb5eed983cfb095fc84b42bb87161d0ba83781ecebfea48fc06c6cd7",
+    "decision_package_sha256": "5b34085871645c6886f07814d56b65be90584643566c9af1c9100ad42c666990",
+    "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
+    "evidence_summary": {
+      "C_mean": 0.88,
+      "E_features": {
+        "E_authority": 0.75,
+        "E_concept": 0.83,
+        "E_conventionality": 0.6,
+        "E_coverage": 0.8,
+        "E_domain": 1.0,
+        "E_independence": 0.67
+      },
+      "attestation_evidence_sha256": "831cf0d4a5cbbaf508c73a605e86fe66d8f066677080ea6af986637b5dcdf6aa",
+      "context_evidence_sha256": "61bda503eb5eed983cfb095fc84b42bb87161d0ba83781ecebfea48fc06c6cd7"
+    },
+    "forbidden_candidates": [
+      "suy diễn logic"
+    ],
+    "frozen_candidate_contract_sha256": "1cfadf782b4448173516f5cf204abc4db11f9e12c3932efea1c4b35361c92024",
+    "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+    "gate_result_sha256": "ae976a4e05103b67748c6a51be74ba60e3e39c83131f54be42db18370cdaab72",
+    "gate_summary": [],
+    "global_validator_input_sha256": "deccfd5adfd50f5c82fa81d4348b6b2891ef77f2111c2ee8e0531a25dd472e1c",
+    "input_contract_sha256": "e04cfdb3554a73e3da4738f31efbaaeb03f064a0c89b76a9d901a308e58eb354",
+    "integrity": {
+      "self_sha256": "57719d19afb276c6d3a7adffe34f468f404f43bab182cb185f1cbb7f03d5660c"
+    },
+    "issued_at": "2026-07-28T11:30:00+00:00",
+    "policy_version": "global-v1",
+    "schema_id": "TerminologyCertificateV1",
+    "schema_version": "1.1.0",
+    "scope_note": "Machine-learning model execution on new inputs.",
+    "sense_inventory_version": "sense-v1",
+    "status": "AUTO_APPROVED",
+    "threshold_version": "fixture-op-v1",
+    "validity_context_refs": [
+      {
+        "evidence_id": "ctx-1",
+        "evidence_type": "CONTEXT",
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "uri": "artifact://context/ctx-1"
+      }
+    ]
+  },
+  "glossary_version": "glossary-v1",
+  "integrity": {
+    "self_sha256": "b50e5cd9bd8f64df70d3ffa1de8a641691f39402d4ba2b8ae056e0c6ae64b06d"
+  },
+  "occurrence_id": "d2l-ch03-s002-term01",
+  "offset_unit": "UNICODE_CODEPOINT",
+  "schema_id": "TACOccurrenceInputV1",
+  "schema_version": "1.1.0",
+  "source_term_span": {
+    "end": 48,
+    "start": 7
+  },
+  "source_text": "During inference, the model processes new data.",
+  "tac_policy_version": "tac-v1",
+  "target_text": "Trong quá trình suy luận, mô hình xử lý dữ liệu mới."
+}

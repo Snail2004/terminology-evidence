@@ -1,0 +1,305 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesis.local/terminology-contracts/v1.1/calibration_artifact.schema.json",
+  "title": "Sealed Global Calibration Artifact V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "development_dataset_sha256",
+    "validation_dataset_sha256",
+    "feature_contract_version",
+    "gate_policy_version",
+    "metric_target",
+    "model",
+    "operating_point",
+    "calibration_results",
+    "created_at",
+    "integrity",
+    "verification_status",
+    "numerical_tolerance",
+    "gate_policy_artifact_sha256"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "CalibrationArtifactV1"
+    },
+    "schema_version": {
+      "const": "1.1.0"
+    },
+    "development_dataset_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "validation_dataset_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "feature_contract_version": {
+      "const": "1.1.0"
+    },
+    "gate_policy_version": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "metric_target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "auto_approval_precision_target",
+        "confidence_level"
+      ],
+      "properties": {
+        "auto_approval_precision_target": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "confidence_level": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        }
+      }
+    },
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model_type",
+        "parameters",
+        "feature_names"
+      ],
+      "properties": {
+        "model_type": {
+          "enum": [
+            "RULE_SET",
+            "LOGISTIC_REGRESSION",
+            "ISOTONIC",
+            "OTHER"
+          ]
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "feature_names": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "operating_point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "threshold",
+        "observed_precision",
+        "coverage",
+        "precision_lower_bound",
+        "operating_point_id"
+      ],
+      "properties": {
+        "threshold": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "observed_precision": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "coverage": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "precision_lower_bound": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "operating_point_id": {
+          "anyOf": [
+            {
+              "$ref": "common_defs.schema.json#/$defs/identifier"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "calibration_results": {
+      "type": "object"
+    },
+    "created_at": {
+      "$ref": "common_defs.schema.json#/$defs/dateTime"
+    },
+    "integrity": {
+      "$ref": "common_defs.schema.json#/$defs/integrity"
+    },
+    "verification_status": {
+      "enum": [
+        "SEALED",
+        "UNVERIFIED_LEGACY"
+      ]
+    },
+    "numerical_tolerance": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1e-09
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "gate_policy_artifact_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/nullableSha256"
+    },
+    "threshold_stability": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "method",
+            "resampling_unit",
+            "replicate_count",
+            "threshold_median",
+            "threshold_ci_lower",
+            "threshold_ci_upper",
+            "decision_flip_rate"
+          ],
+          "properties": {
+            "method": {
+              "const": "CLUSTER_BOOTSTRAP"
+            },
+            "resampling_unit": {
+              "const": "sense_id"
+            },
+            "replicate_count": {
+              "type": "integer",
+              "minimum": 100
+            },
+            "threshold_median": {
+              "$ref": "common_defs.schema.json#/$defs/score01"
+            },
+            "threshold_ci_lower": {
+              "$ref": "common_defs.schema.json#/$defs/score01"
+            },
+            "threshold_ci_upper": {
+              "$ref": "common_defs.schema.json#/$defs/score01"
+            },
+            "decision_flip_rate": {
+              "$ref": "common_defs.schema.json#/$defs/score01"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "verification_status": {
+            "const": "SEALED"
+          }
+        },
+        "required": [
+          "verification_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "numerical_tolerance": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1e-09
+          },
+          "model": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "model_type",
+              "parameters",
+              "feature_names"
+            ],
+            "properties": {
+              "model_type": {
+                "const": "LOGISTIC_REGRESSION"
+              },
+              "feature_names": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "link_function",
+                  "intercept",
+                  "coefficients"
+                ],
+                "properties": {
+                  "link_function": {
+                    "const": "LOGIT"
+                  },
+                  "intercept": {
+                    "type": "number"
+                  },
+                  "coefficients": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "calibration_results": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "development_sample_count",
+              "validation_sample_count",
+              "uncertainty_method",
+              "selected_operating_point_id"
+            ],
+            "properties": {
+              "development_sample_count": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "validation_sample_count": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "uncertainty_method": {
+                "enum": [
+                  "WILSON_SCORE",
+                  "CLOPPER_PEARSON",
+                  "BOOTSTRAP_PERCENTILE"
+                ]
+              },
+              "selected_operating_point_id": {
+                "$ref": "common_defs.schema.json#/$defs/identifier"
+              }
+            }
+          },
+          "operating_point": {
+            "properties": {
+              "operating_point_id": {
+                "$ref": "common_defs.schema.json#/$defs/identifier"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

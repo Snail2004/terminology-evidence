@@ -1,0 +1,270 @@
+﻿case_sha256,term_id,sense_id,context_id,context_groups,block_id,chapter_id,sentence_id,context_role,context_slot,context_type_proposal,sense_relation,matched_surface_exact,content_sha256,context_sha256,source_text
+8121e403fe74643f279a8ea2a51adf49b4c34c2621cbc6bb784863bb4f28ac84,d2lce_963a14fc5042969e330bb020,d2lce_963a14fc5042969e330bb020,ctx_0540231b9dc01be0b46e98a0,backup,d2l_convolutional_neural_networks_padding_and_strides_b024,d2l_convolutional_neural_networks,sentence_73284ecdf72893aefb140c86,BACKUP,B1,C2,SAME_SENSE,two-dimensional cross-correlation,4aadc215769c0fb26ac1352717a48be66773588d37e23b462ee949cd9eb05a7a,1194d597fb1691f7db6b40097ce868c981be02e57b04380cf3364ee3cfb3e9d7,":numref:`img_conv_stride` shows a two-dimensional cross-correlation operation
+with a stride of 3 vertically and 2 horizontally."
+8121e403fe74643f279a8ea2a51adf49b4c34c2621cbc6bb784863bb4f28ac84,d2lce_963a14fc5042969e330bb020,d2lce_963a14fc5042969e330bb020,ctx_31af545156a8abd1def5ed1d,primary;definition,d2l_convolutional_neural_networks_conv_layer_b007,d2l_convolutional_neural_networks,sentence_0607b1b9ea6d8e6eb451a3b0,PRIMARY,C5,C1,SAME_SENSE,two-dimensional cross-correlation,ddda7615461508a0ec2d64b6661cd55a087518b57196040cc7feb156f4a406fd,30245dadcc45b22c4e60521ea8ac829e64cffff92ba3e4b23fbd61b0dd3bf85d,"Here, the output tensor has a height of 2 and width of 2
+and the four elements are derived from
+the two-dimensional cross-correlation operation:"
+8121e403fe74643f279a8ea2a51adf49b4c34c2621cbc6bb784863bb4f28ac84,d2lce_963a14fc5042969e330bb020,d2lce_963a14fc5042969e330bb020,ctx_72a1c4b96b8dcbf9713e5a69,primary,d2l_convolutional_neural_networks_conv_layer_b016,d2l_convolutional_neural_networks,sentence_ae5b1aa06f0819b04906a18c,PRIMARY,C2,C2,SAME_SENSE,two-dimensional cross-correlation,06b3e06450f60c6f009918d9d680ec5a3276ec84144d2c0838e411b52d4ebea8,8f0fa9295751ae339ba2f6063c02393d4556b2ae0425df89fbfdbdc6e172ad9d,"We can construct the input tensor `X` and the kernel tensor `K`
+from :numref:`fig_correlation`
+to [**validate the output of the above implementation**]
+of the two-dimensional cross-correlation operation."
+8121e403fe74643f279a8ea2a51adf49b4c34c2621cbc6bb784863bb4f28ac84,d2lce_963a14fc5042969e330bb020,d2lce_963a14fc5042969e330bb020,ctx_8378b0547c4e75e694d743d8,backup,d2l_convolutional_neural_networks_conv_layer_b006,d2l_convolutional_neural_networks,sentence_bf69347c7e3dc6963654cd3b,BACKUP,B3,C3,SAME_SENSE,Two-dimensional cross-correlation,ff326c616a6d2f9873b20e5e794decc56f7202876f2b3e4c10011cfc89a4b048,69401c3148a574e3c7b0193b205c777233993e7853247a08ef2a2074fda79fa4,![Two-dimensional cross-correlation operation.
+8121e403fe74643f279a8ea2a51adf49b4c34c2621cbc6bb784863bb4f28ac84,d2lce_963a14fc5042969e330bb020,d2lce_963a14fc5042969e330bb020,ctx_868efbddfe140e3e02c5c89d,backup,d2l_natural_language_processing_applications_sentiment_analysis_cnn_b019,d2l_natural_language_processing_applications,sentence_cbf2869df2a6bb955dafc5f6,BACKUP,B2,C2,SAME_SENSE,two-dimensional cross-correlations,e3a86dd553c072ee7c0d78b3abd1883124636177b76d6020bf2749e4572f686f,2d4f2db50dd89f819a1590f9a89486ee1056d8e3387a291c32379687dce4a7dd,"Note that
+multi-input-channel one-dimensional cross-correlations
+are equivalent
+to 
+single-input-channel 
+two-dimensional cross-correlations."
+8121e403fe74643f279a8ea2a51adf49b4c34c2621cbc6bb784863bb4f28ac84,d2lce_963a14fc5042969e330bb020,d2lce_963a14fc5042969e330bb020,ctx_876dc1724c5a190419098d85,primary;definition;part_of_speech,d2l_convolutional_neural_networks_conv_layer_b055,d2l_convolutional_neural_networks,sentence_27dc73c696402faf51057749,PRIMARY,C4,C1,SAME_SENSE,two-dimensional cross-correlation,33f1e919522e1f6aea3eb1a7d9781cef15b1393bb06b2655b1d460629cc43c29,472b27198c5ef138b3343ebb17e8ea5f934efc8a08e537e4badeff19f75a12eb,* The core computation of a two-dimensional convolutional layer is a two-dimensional cross-correlation operation.
+8121e403fe74643f279a8ea2a51adf49b4c34c2621cbc6bb784863bb4f28ac84,d2lce_963a14fc5042969e330bb020,d2lce_963a14fc5042969e330bb020,ctx_c347d897c071e45dc443bc15,primary;definition;part_of_speech,d2l_convolutional_neural_networks_conv_layer_b007,d2l_convolutional_neural_networks,sentence_42d77bb17dfeb436506bd7e2,PRIMARY,C1,C1,SAME_SENSE,two-dimensional cross-correlation,fc67fa2371003dcf274557a73ea9a4dd51029bba6d6f73d6a86133a0459417e0,e3a097221451cae0049184082daa55d1bbbadeda8395c5fb23384098abe2415f,"In the two-dimensional cross-correlation operation,
+we begin with the convolution window positioned
+at the upper-left corner of the input tensor
+and slide it across the input tensor,
+both from left to right and top to bottom."
+8121e403fe74643f279a8ea2a51adf49b4c34c2621cbc6bb784863bb4f28ac84,d2lce_963a14fc5042969e330bb020,d2lce_963a14fc5042969e330bb020,ctx_d5cacde964394c13f3443d68,primary,d2l_convolutional_neural_networks_padding_and_strides_b007,d2l_convolutional_neural_networks,sentence_3ba492bc9501765bddeda7ec,PRIMARY,C3,C3,SAME_SENSE,Two-dimensional cross-correlation,2dd8219cfd76307f2bff69597161d7a1e795ff8132fcdba19580a47b1a0bf897,2e82183866bc968a4aeadbeffafdb45c04d7c8d578818ac31be9d3ba8bffee08,"![Two-dimensional cross-correlation with padding.](../img/conv-pad.svg)
+:label:`img_conv_pad`"
+8121e403fe74643f279a8ea2a51adf49b4c34c2621cbc6bb784863bb4f28ac84,d2lce_963a14fc5042969e330bb020,d2lce_963a14fc5042969e330bb020,ctxx_2bc34d2f3a78b341b463ae37,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,two-dimensional cross-correlation operation,cd19ad54f6d7992709c157a64d54425e1514253ef17f845da34f40352c652597,200110cf34a2b22bd60e56ae097091f4bc0c797b6692a7ac435307baa0fd8038,"Synthetic boundary probe: ""two-dimensional cross-correlation operation"" is quoted here only as a document label, not as an occurrence of the reviewed D2L sense."
+b687bf4ac67814312ba152a4b51f1d90657c82545b5310cc0c4df0089f773c76,d2lce_9bd5113780f8e8160a24e6ad,d2lce_9bd5113780f8e8160a24e6ad,ctx_2667f83ba76468ba1a7c23ce,primary,d2l_multilayer_perceptrons_numerical_stability_and_init_b008,d2l_multilayer_perceptrons,sentence_ed78535af2344e178de716b0,PRIMARY,C2,C2,SAME_SENSE,underflow,14387279941fa412febb8d4cc9c37c05a4f6fdda61af08ffd57ec297dfac83db,fb99ec80a64cae8534dd62bfeb38469dfa9ae1b89d82c5e6417a4999db5ee191,"Thus we are susceptible to the same
+problems of numerical underflow that often crop up
+when multiplying together too many probabilities."
+b687bf4ac67814312ba152a4b51f1d90657c82545b5310cc0c4df0089f773c76,d2lce_9bd5113780f8e8160a24e6ad,d2lce_9bd5113780f8e8160a24e6ad,ctx_5d3d4728c7288bca4bf4f624,primary;definition;part_of_speech,d2l_appendix_mathematics_for_deep_learning_naive_bayes_b061,d2l_appendix_mathematics_for_deep_learning,sentence_101c36e1adaa2bbe14b86f7a,PRIMARY,C4,C1,SAME_SENSE,underflow,085b618592ba3d91603b6428a27ef5eee884a6f66c0115f6958705a88bae20a3,0fc7d2c530526c73f2c6f9f403412be98685d7cb1b233c25f7b011cf1200e1a8,"What happens is that we experience *numerical underflow*, i.e., multiplying all the small numbers leads to something even smaller until it is rounded down to zero."
+b687bf4ac67814312ba152a4b51f1d90657c82545b5310cc0c4df0089f773c76,d2lce_9bd5113780f8e8160a24e6ad,d2lce_9bd5113780f8e8160a24e6ad,ctx_927dfa6b607b0cdb7925b702,primary;definition,d2l_computational_performance_hardware_b046,d2l_computational_performance,sentence_dffe732b5c8e01acf09b3bfb,PRIMARY,C5,C2,SAME_SENSE,underflow,3095a625c76c1afd68ac971ed457897cbbd9e0bc0228250a476c7a1829c1130e,b340ead0fc73e75b36935b9b38cc92fbcc5c8a3f8888e4d67975037b07334610,"Moreover, accumulating gradients requires higher precision to avoid numerical underflow (or overflow)."
+b687bf4ac67814312ba152a4b51f1d90657c82545b5310cc0c4df0089f773c76,d2lce_9bd5113780f8e8160a24e6ad,d2lce_9bd5113780f8e8160a24e6ad,ctx_9348532807a8c96895b92b49,backup,d2l_appendix_mathematics_for_deep_learning_naive_bayes_b065,d2l_appendix_mathematics_for_deep_learning,sentence_242a0b97685783ec72d94090,BACKUP,B2,C3,SAME_SENSE,underflow,4c9fc6f15c1d898ac6b8557f61271d4924fc6bb733731a73429207e684764154,99efe3bbe14617adfc6bcf151a2a2ac7df0d63994e0cc74b63ffcf61a0e90029,"```{.python .input}
+#@tab tensorflow
+a = 0.1
+print('underflow:', a**784)
+print('logarithm is normal:', 784*tf.math.log(a).numpy())
+```"
+b687bf4ac67814312ba152a4b51f1d90657c82545b5310cc0c4df0089f773c76,d2lce_9bd5113780f8e8160a24e6ad,d2lce_9bd5113780f8e8160a24e6ad,ctx_c429e44e5290244ff93a70cb,backup,d2l_appendix_mathematics_for_deep_learning_naive_bayes_b064,d2l_appendix_mathematics_for_deep_learning,sentence_d0cb030bb187a57acc83232d,BACKUP,B3,C3,SAME_SENSE,underflow,e878d4dd30429ff393734b51469c5d95c57faadcba356e42b10f07ba5a9064cc,da706777a490521a462313da434cdbc96611378699094ee9b6a2797af262824d,"```{.python .input}
+#@tab pytorch
+a = 0.1
+print('underflow:', a**784)
+print('logarithm is normal:', 784*math.log(a))
+```"
+b687bf4ac67814312ba152a4b51f1d90657c82545b5310cc0c4df0089f773c76,d2lce_9bd5113780f8e8160a24e6ad,d2lce_9bd5113780f8e8160a24e6ad,ctx_eb00b5802d52495b67261199,primary,d2l_appendix_mathematics_for_deep_learning_naive_bayes_b063,d2l_appendix_mathematics_for_deep_learning,sentence_6a268a6c6300c9e5d3dcb9de,PRIMARY,C3,C3,SAME_SENSE,underflow,4fb3ba2b46e76ea735a7e5cc370b874ac866f6ba589f835d8e20e01ca4796adc,9e41548533aec3a6e87d3af40013a173c8ba212d1e1ee29a2f438a9e02113138,"```{.python .input}
+a = 0.1
+print('underflow:', a**784)
+print('logarithm is normal:', 784*math.log(a))
+```"
+b687bf4ac67814312ba152a4b51f1d90657c82545b5310cc0c4df0089f773c76,d2lce_9bd5113780f8e8160a24e6ad,d2lce_9bd5113780f8e8160a24e6ad,ctx_f33974c8e2ea51a218101f34,backup,d2l_linear_networks_softmax_regression_scratch_b025,d2l_linear_networks,sentence_394577d9bc4e81a23aca31b6,BACKUP,B1,C2,SAME_SENSE,underflow,ae2711b4127f586e08c583041e3177823788ca8e469cd2619739707dfc92d695,df68ef4b2b651d4efb670e0b231ce0f20d7460cbcd9a8612d3c4e6fa4a5ed323,"Note that while this looks correct mathematically,
+we were a bit sloppy in our implementation
+because we failed to take precautions against numerical overflow or underflow
+due to large or very small elements of the matrix."
+b687bf4ac67814312ba152a4b51f1d90657c82545b5310cc0c4df0089f773c76,d2lce_9bd5113780f8e8160a24e6ad,d2lce_9bd5113780f8e8160a24e6ad,ctx_f6a47145f376202745ec79b1,primary;definition;part_of_speech,d2l_linear_networks_softmax_regression_concise_b017,d2l_linear_networks,sentence_47f926cbd3b52a4ff339aba2,PRIMARY,C1,C1,SAME_SENSE,underflow,a2aaa8548f2929e3a97a329d82990715d5b6d2b3c2ca07423303368484169ddc,443a387156b4162bcac72f7a786e20d9bc85d020b0e07b5c1e2b7d103ad8eb2c,"These might be rounded to zero due to finite precision (i.e., *underflow*),
+making $\hat y_j$ zero and giving us `-inf` for $\log(\hat y_j)$."
+b687bf4ac67814312ba152a4b51f1d90657c82545b5310cc0c4df0089f773c76,d2lce_9bd5113780f8e8160a24e6ad,d2lce_9bd5113780f8e8160a24e6ad,ctxx_84628ffb91c733b908fe79fe,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,underflow,8907b604512d27e086090e82bd757fe834b634107bed35041c50fce8cb9b23aa,f733ecd1d266fffa7c50de1333191edd956826972b71a90681abbf56dd09cfa1,"Synthetic: In fluid dynamics, underflow beneath a dam changed the riverbed."
+f805e7cd00ef98e5b7ac64c39e7871b6c555ca9a5d6ebb0af75f938eeac5d28c,d2lce_9e5c3dd254843c7ec95d4960,d2lce_9e5c3dd254843c7ec95d4960,ctx_086aada07e0f520a618cc583,primary;definition;part_of_speech,d2l_recurrent_neural_networks_text_preprocessing_b015,d2l_recurrent_neural_networks,sentence_3a6897226a094c895c460f6f,PRIMARY,C3,C2,SAME_SENSE,unknown token,c81e5b72b2255bcb6b4bf50d46de90913a8553d30d284e98e2f960f1c27858e2,c35f50eb1698607d3db4548addd1e5c024aab79a29c4559bfbf93742b74ebd95,"```{.python .input}
+#@tab all
+class Vocab:  #@save
+    """"""Vocabulary for text.""""""
+    def __init__(self, tokens=None, min_freq=0, reserved_tokens=None):
+        if tokens is None:
+            tokens = []
+        if reserved_tokens is None:
+            reserved_tokens = []
+        # Sort according to frequencies
+        counter = count_corpus(tokens)
+        self._token_freqs = sorted(counter.items(), key=lambda x: x[1],
+                                   reverse=True)
+        # The index for the unknown token is 0
+        self.idx_to_token = ['<unk>'] + reserved_tokens
+        self.token_to_idx = {token: idx
+                             for idx, token in enumerate(self.idx_to_token)}
+        for token, freq in self._token_freqs:
+            if freq < min_freq:
+                break
+            if token not in self.token_to_idx:
+                self.idx_to_token.append(token)
+                self.token_to_idx[token] = len(self.idx_to_token) - 1
+
+    def __len__(self):
+        return len(self.idx_to_token)
+
+    def __getitem__(self, tokens):
+        if not isinstance(tokens, (list, tuple)):
+            return self.token_to_idx.get(tokens, self.unk)
+        return [self.__getitem__(token) for token in tokens]
+
+    def to_tokens(self, indices):
+        if not isinstance(indices, (list, tuple)):
+            return self.idx_to_token[indices]
+        return [self.idx_to_token[index] for index in indices]
+
+    @property
+    def unk(self):  # Index for the unknown token
+        return 0
+
+    @property
+    def token_freqs(self):  # Index for the unknown token
+        return self._token_freqs
+
+def count_corpus(tokens):  #@save
+    """"""Count token frequencies.""""""
+    # Here `tokens` is a 1D list or 2D list
+    if len(tokens) == 0 or isinstance(tokens[0], list):
+        # Flatten a list of token lists into a list of tokens
+        tokens = [token for line in tokens for token in line]
+    return collections.Counter(tokens)
+```"
+f805e7cd00ef98e5b7ac64c39e7871b6c555ca9a5d6ebb0af75f938eeac5d28c,d2lce_9e5c3dd254843c7ec95d4960,d2lce_9e5c3dd254843c7ec95d4960,ctx_1d2e9339e55b93263b732ad7,primary,d2l_natural_language_processing_pretraining_similarity_analogy_b024,d2l_natural_language_processing_pretraining,sentence_8efab212b0bed0b22d089b56,PRIMARY,C4,C2,SAME_SENSE,unknown token,d771152530a39bc28796747996ef7511c92118972e1f525e674eabf8854a6bc4,5a88f6d54c9bd122cdcf123fb8b6fd67d08aa8dd9c2dc853acb40d2f82bcc8b0,"The vocabulary of the pretrained word vectors
+in `glove_6b50d` contains 400000 words and a special unknown token."
+f805e7cd00ef98e5b7ac64c39e7871b6c555ca9a5d6ebb0af75f938eeac5d28c,d2lce_9e5c3dd254843c7ec95d4960,d2lce_9e5c3dd254843c7ec95d4960,ctx_3866a3d1dc9bad289462f97a,primary,d2l_natural_language_processing_pretraining_similarity_analogy_b012,d2l_natural_language_processing_pretraining,sentence_dc403df437043336eb2b382b,PRIMARY,C5,C2,SAME_SENSE,unknown token,e8b0393bcef72d04b07c431dcd28da14e04a7243dc5bfb10cb78866a93818d13,dd093edf00aae96bbbd2b754fbbebd49db359ee535c1419d4d59d0247da409b0,The vocabulary contains 400000 words (tokens) and a special unknown token.
+f805e7cd00ef98e5b7ac64c39e7871b6c555ca9a5d6ebb0af75f938eeac5d28c,d2lce_9e5c3dd254843c7ec95d4960,d2lce_9e5c3dd254843c7ec95d4960,ctx_9fad57a59804035d85ae8028,backup,d2l_natural_language_processing_pretraining_word_embedding_dataset_b036,d2l_natural_language_processing_pretraining,sentence_7f0fe73e5b161f316b5dc88c,BACKUP,B1,C2,SAME_SENSE,unknown token,9b1223d4d83f7eb5c58e1f46a906e83bd9534b795817d3d8920c4efc9af1e2db,b369765730b4cc0d6e38c4f3e9d75e49f4dfd9aaa36eb4c857fdc596b6e51c69,"(index 0 is the
+    # excluded unknown token) in the vocabulary
+    sampling_weights = [counter[vocab.to_tokens(i)]**0.75
+                        for i in range(1, len(vocab))]
+    all_negatives, generator = [], RandomGenerator(sampling_weights)
+    for contexts in all_contexts:
+        negatives = []
+        while len(negatives) < len(contexts) * K:
+            neg = generator.draw()
+            # Noise words cannot be context words
+            if neg not in contexts:
+                negatives.append(neg)
+        all_negatives.append(negatives)
+    return all_negatives
+
+all_negatives = get_negatives(all_contexts, vocab, counter, 5)
+```"
+f805e7cd00ef98e5b7ac64c39e7871b6c555ca9a5d6ebb0af75f938eeac5d28c,d2lce_9e5c3dd254843c7ec95d4960,d2lce_9e5c3dd254843c7ec95d4960,ctx_c924c2013dba4600e46dd8f8,backup,d2l_natural_language_processing_pretraining_similarity_analogy_b024,d2l_natural_language_processing_pretraining,sentence_3ea4afc86b413cb90f17d9b9,BACKUP,B2,C2,SAME_SENSE,unknown token,a4cc1aabab90527906008eb9976021167603a09dd1d5a7a05797bd3dd43ef93c,deeb51e28c5de036bb44e9e91e2a94dc2740dd71bda3fa5f7b2ee8d4e9f4215a,"Excluding the input word and unknown token,
+among this vocabulary
+let us find 
+three most semantically similar words
+to word ""chip""."
+f805e7cd00ef98e5b7ac64c39e7871b6c555ca9a5d6ebb0af75f938eeac5d28c,d2lce_9e5c3dd254843c7ec95d4960,d2lce_9e5c3dd254843c7ec95d4960,ctx_c9714080bd2e308c662b5227,primary;definition,d2l_recurrent_modern_machine_translation_and_dataset_b034,d2l_recurrent_modern,sentence_377c4ff11e2213a8fe46d093,PRIMARY,C2,C2,SAME_SENSE,unknown token,09d6a34e9538615ca94273883654b43cd2c0d1dda3bcc86e8dd6ceccdbbd2cac,161cf9994d17983598ffb5290ed432988036cd17ccbf6f42042475ad991eb5fb,"To alleviate this, we can treat infrequent tokens as the same unknown token."
+f805e7cd00ef98e5b7ac64c39e7871b6c555ca9a5d6ebb0af75f938eeac5d28c,d2lce_9e5c3dd254843c7ec95d4960,d2lce_9e5c3dd254843c7ec95d4960,ctx_ea66b3ce575e4204be2d5f9e,primary;definition;part_of_speech,d2l_recurrent_neural_networks_text_preprocessing_b014,d2l_recurrent_neural_networks,sentence_43e891d8bf3d0eb20562a95c,PRIMARY,C1,C1,SAME_SENSE,unknown token,21805987b6ca54efd5f966e439d30b79e5a429ac61723510ade762564fe18b94,68668ee3a1a35c8b07833db7fe4b2598b0d74d2c5b7c0057179b3c66e3b84859,Any token that does not exist in the corpus or has been removed is mapped into a special unknown token “&lt;unk&gt;”.
+f805e7cd00ef98e5b7ac64c39e7871b6c555ca9a5d6ebb0af75f938eeac5d28c,d2lce_9e5c3dd254843c7ec95d4960,d2lce_9e5c3dd254843c7ec95d4960,ctxx_9aab1123769ff146c3545c87,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,unknown token,f3a5e801438bd8296e3ce7a4a9addbbcd7b75e4578542e083dd1c96d4be89624,4b0fd3e9619b34f972a6cc6856b6cec18fb21bd5546164b470813335e3d0ccf5,"Synthetic: A token can be any wordpiece, but the unknown token is the special placeholder for out-of-vocabulary items."
+a699ed79c0229ebd69203988c1b5da8276e1140153398b66dc0ea3059cb14296,d2lce_a47c0fa6efae6f5b3c950575,d2lce_a47c0fa6efae6f5b3c950575,ctx_0bbf3a04a91397bf545fe5dc,backup;part_of_speech,d2l_recurrent_modern_gru_b007,d2l_recurrent_modern,sentence_27b1fb9cd75d49a3008ed5c2,BACKUP,B3,C1,SAME_SENSE,Update Gate,7e249488ca4fc82cae299bc4e14c0406f275f9686b4c787e4dcbeb75ca0404c5,a8325b1eb6e85420e2c6ea4d9f7ed1ce73321371ce4782c42f66bd3fb4247e33,### Reset Gate and Update Gate
+a699ed79c0229ebd69203988c1b5da8276e1140153398b66dc0ea3059cb14296,d2lce_a47c0fa6efae6f5b3c950575,d2lce_a47c0fa6efae6f5b3c950575,ctx_2856d35ae63ae8dbd84d644d,primary,d2l_recurrent_modern_gru_b009,d2l_recurrent_modern,sentence_0cdc3b1c74f375a2a14d8afb,PRIMARY,C2,C2,SAME_SENSE,update gates,7fa2dca9d09c8637f983b94b7fb5b1c9f16eb28916972d741cb6940a8eb8a11a,ff9a8069d087d50b415a49cdb9eca6dab65d24efe04ca04ec7a9ab49cc2f86e2,":numref:`fig_gru_1` illustrates the inputs for both
+the reset and update gates in a GRU, given the input
+of the current time step
+and the hidden state of the previous time step."
+a699ed79c0229ebd69203988c1b5da8276e1140153398b66dc0ea3059cb14296,d2lce_a47c0fa6efae6f5b3c950575,d2lce_a47c0fa6efae6f5b3c950575,ctx_2d3d087fad253f4d69369b59,primary,d2l_recurrent_modern_gru_b018,d2l_recurrent_modern,sentence_03ea28e55b65a9bd3c2e1ff6,PRIMARY,C4,C4,SAME_SENSE,update gate,fe2af17a2fd6147f2466f49f350cb51328274d3b507df30706d4b0426e09f739,2973a1dce796df05b20cb5533d007ca57d7ab1f2a20e940ef1bc691a80df1401,The result is a *candidate* since we still need to incorporate the action of the update gate.
+a699ed79c0229ebd69203988c1b5da8276e1140153398b66dc0ea3059cb14296,d2lce_a47c0fa6efae6f5b3c950575,d2lce_a47c0fa6efae6f5b3c950575,ctx_3143c3d658da09d8181b666c,primary;part_of_speech,d2l_recurrent_modern_gru_b008,d2l_recurrent_modern,sentence_b35d3c05bb7a9b102a106f99,PRIMARY,C1,C1,SAME_SENSE,update gate,8e82ac04384eddb86cb1d5cb9043dd778e634ca2a572426b67da97daaf7e3fa7,50b8a5963183a59472123038f140e4b93c226293e00b007602a4322912cd23d2,"The first thing we need to introduce are
+the *reset gate* and the *update gate*."
+a699ed79c0229ebd69203988c1b5da8276e1140153398b66dc0ea3059cb14296,d2lce_a47c0fa6efae6f5b3c950575,d2lce_a47c0fa6efae6f5b3c950575,ctx_57c90277e1fd8433f386654b,primary;definition,d2l_recurrent_modern_gru_b022,d2l_recurrent_modern,sentence_9d1914f5359c26a621565f06,PRIMARY,C5,C3,SAME_SENSE,update gate,510e9cdcc79568b8ee4d8697e36a486a2c646a316eafab2f013bb9d5af3db259,0a649e655960f049e056d7534692943d2a9439f932bca5a36ff027e964690fe0,"The update gate $\mathbf{Z}_t$ can be used for this purpose, simply by taking elementwise convex combinations between both $\mathbf{H}_{t-1}$ and $\tilde{\mathbf{H}}_t$."
+a699ed79c0229ebd69203988c1b5da8276e1140153398b66dc0ea3059cb14296,d2lce_a47c0fa6efae6f5b3c950575,d2lce_a47c0fa6efae6f5b3c950575,ctx_91acf4e9a95c2577a48f754e,backup;definition,d2l_recurrent_modern_gru_b008,d2l_recurrent_modern,sentence_48cb513c5f12aabfec93f7ad,BACKUP,B1,C3,SAME_SENSE,update gate,960652285982af5f307a86599f9617efdd3620ac28ee9501d46f3f592eab478d,ecd178123ea1bd080042d74e7e6f6997a218cb953cdc101e3e3fd737007f769a,"Likewise, an update gate would allow us to control how much of the new state is just a copy of the old state."
+a699ed79c0229ebd69203988c1b5da8276e1140153398b66dc0ea3059cb14296,d2lce_a47c0fa6efae6f5b3c950575,d2lce_a47c0fa6efae6f5b3c950575,ctx_d739879531fc4668a9d14f93,primary;definition;part_of_speech,d2l_recurrent_modern_gru_b011,d2l_recurrent_modern,sentence_e82048f01e0ca1a6967473c3,PRIMARY,C3,C3,SAME_SENSE,update gate,f71580e3ddbac598bab0c7bdbeb3f171c06c8361a43b11169535c57bea5fbd67,e04a6ec0a1e44a3ea40b1f8d32d2e9c2738d5230718ec8bbd1a032b55c8f35cd,"Then, the reset gate $\mathbf{R}_t \in \mathbb{R}^{n \times h}$ and update gate $\mathbf{Z}_t \in \mathbb{R}^{n \times h}$ are computed as follows:"
+a699ed79c0229ebd69203988c1b5da8276e1140153398b66dc0ea3059cb14296,d2lce_a47c0fa6efae6f5b3c950575,d2lce_a47c0fa6efae6f5b3c950575,ctx_e468e6c3444203918151241e,backup,d2l_recurrent_modern_gru_b010,d2l_recurrent_modern,sentence_630e0254f99ea2f5aa43f832,BACKUP,B2,C2,SAME_SENSE,update gate,aba9bb429e95017351c1a84c68d7b092fcdd9c9f37df9130c6e3578a571fadee,5bd1f3f7b875a9bbbc01273649d14a61f34de0229868747c0ed698a5041f4155,"![Computing the reset gate and the update gate in a GRU model.](../img/gru-1.svg)
+:label:`fig_gru_1`"
+a699ed79c0229ebd69203988c1b5da8276e1140153398b66dc0ea3059cb14296,d2lce_a47c0fa6efae6f5b3c950575,d2lce_a47c0fa6efae6f5b3c950575,ctxx_d3c2318dc6ca29fa731dffbf,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,update gate,41b8c83cfc0a60b58ad75cb164c153dcb86df03df27f4f88d3d2e721f825b600,0aa3c9e89e6ccc411b822cbe8d5f51f8276ed8d34a6347e9d67e4a2a0db897f0,"Synthetic: In the castle simulation game, the update gate opens only when engineers install a new software patch."
+a03875ed911d5596606d3bb308ac53a2a865a2d2013c4c8ea3e0e3e766a9d583,d2lce_d7976d0b101e65c34c011871,d2lce_d7976d0b101e65c34c011871,ctx_0c2cf2fa2cea5d19f1f0a29b,backup,d2l_multilayer_perceptrons_mlp_b043,d2l_multilayer_perceptrons,sentence_658ac0c28a3b8930a885c034,BACKUP,B2,C2,SAME_SENSE,vanishing gradients,9eb8ed4e096f8676bae3e5fd4f64875bd77f558c58cf65819d98c5ea397ea0a2,f1696b0a2766eb8670b27c414004d0e55bf07f87389d77b8275a32e0da95d827,"This makes optimization better behaved
+and it mitigated the well-documented problem
+of vanishing gradients that plagued
+previous versions of neural networks (more on this later)."
+a03875ed911d5596606d3bb308ac53a2a865a2d2013c4c8ea3e0e3e766a9d583,d2lce_d7976d0b101e65c34c011871,d2lce_d7976d0b101e65c34c011871,ctx_26abf38904bfba2529b1ab9a,primary;definition;part_of_speech,d2l_multilayer_perceptrons_numerical_stability_and_init_b009,d2l_multilayer_perceptrons,sentence_7ed511e535efa6528cdac98d,PRIMARY,C1,C1,SAME_SENSE,vanishing gradient,2b443dac45d71290055e424d35346e395f4058582952a6f4d10d43406d14c460,3f340f2a08387f638206346e64f9c0fdf7c2a8f9522f178e420718ee42b784ea,"We may be facing parameter updates that are either
+(i) excessively large, destroying our model
+(the *exploding gradient* problem);
+or (ii) excessively small
+(the *vanishing gradient* problem),
+rendering learning impossible as parameters
+hardly move on each update."
+a03875ed911d5596606d3bb308ac53a2a865a2d2013c4c8ea3e0e3e766a9d583,d2lce_d7976d0b101e65c34c011871,d2lce_d7976d0b101e65c34c011871,ctx_2b3bad1bba3a00bca408c517,backup,d2l_optimization_optimization_intro_b014,d2l_optimization,sentence_640b1ea1ca6b8d3217899dec,BACKUP,B3,C2,SAME_SENSE,vanishing gradients,4eb1290bdd01b7824693b67867e21cccdbb398818d70f5efb72330dab84bc209,7cc52c7827d329a28134cef71f80d9af73b0246e0865fd6bad42be16309b8157,"Some of the most vexing ones are local minima, saddle points, and vanishing gradients."
+a03875ed911d5596606d3bb308ac53a2a865a2d2013c4c8ea3e0e3e766a9d583,d2lce_d7976d0b101e65c34c011871,d2lce_d7976d0b101e65c34c011871,ctx_3c0646bacb04e52b12ad59ca,primary;definition,d2l_multilayer_perceptrons_numerical_stability_and_init_b011,d2l_multilayer_perceptrons,sentence_a26f0b64b1c850a20645f708,PRIMARY,C4,C2,SAME_SENSE,vanishing gradient,e71c9ea5cc2a8fd3fdad072b3881bd9a33f068827c8e1cf0daa61ce2011225e0,f90a7df7141ee838350f9b68f3dcb86dcbed13a745633a70fb720e51c9ecfc9e,"One frequent culprit causing the vanishing gradient problem
+is the choice of the activation function $\sigma$
+that is appended following each layer's linear operations."
+a03875ed911d5596606d3bb308ac53a2a865a2d2013c4c8ea3e0e3e766a9d583,d2lce_d7976d0b101e65c34c011871,d2lce_d7976d0b101e65c34c011871,ctx_69b854938dd969b726eb92a0,primary;definition,d2l_recurrent_neural_networks_rnn_scratch_b083,d2l_recurrent_neural_networks,sentence_c41bc5fad40bb35a21bf7ec6,PRIMARY,C2,C2,SAME_SENSE,vanishing gradients,cf26b46232bedbe3c42c7da6bb71d4dad6c8f14de22fe691af55be59fdfef225,e4487cbe772e2c462f2258dd1160cf6696b3efc8336335eabee8b2ccc4cce8b3,"* Gradient clipping prevents gradient explosion, but it cannot fix vanishing gradients."
+a03875ed911d5596606d3bb308ac53a2a865a2d2013c4c8ea3e0e3e766a9d583,d2lce_d7976d0b101e65c34c011871,d2lce_d7976d0b101e65c34c011871,ctx_9a06089aea8285a7f38f5e36,primary;part_of_speech,d2l_multilayer_perceptrons_numerical_stability_and_init_b010,d2l_multilayer_perceptrons,sentence_8bddffb294d670f9c278eb0e,PRIMARY,C3,C1,SAME_SENSE,Vanishing Gradients,99ba044ef85b15b6af09cd8aa7a4d61d1b96661624ec1df545e2a0450e8b3ba9,cad03e9ccaa7f8a7f77c570b5015546be61d3eb6bd98659983f6657681cd6917,### (**Vanishing Gradients**)
+a03875ed911d5596606d3bb308ac53a2a865a2d2013c4c8ea3e0e3e766a9d583,d2lce_d7976d0b101e65c34c011871,d2lce_d7976d0b101e65c34c011871,ctx_ccefa9dc79f5be995f8d5599,primary,d2l_recurrent_modern_gru_b024,d2l_recurrent_modern,sentence_3d4ad80a492713cf79d9a269,PRIMARY,C5,C2,SAME_SENSE,vanishing gradient,d4d79c86a1ef8592f54e39ac09722a082bcf4435188078dec234cf39a27c36d4,0343cc794bb2b6b4ca8c0d287499a19d7f1998a1d653d153f44c3155264ed443,These designs can help us cope with the vanishing gradient problem in RNNs and better capture dependencies for sequences with large time step distances.
+a03875ed911d5596606d3bb308ac53a2a865a2d2013c4c8ea3e0e3e766a9d583,d2lce_d7976d0b101e65c34c011871,d2lce_d7976d0b101e65c34c011871,ctx_e1fa0d830f4e4018432efd83,backup,d2l_multilayer_perceptrons_numerical_stability_and_init_b002,d2l_multilayer_perceptrons,sentence_d91e0a1cbfd4a2fabb35b3a1,BACKUP,B1,C2,SAME_SENSE,vanishing gradients,c30bbdc33e2f395cf01bd72df2184eee7d8b3d74fc6b552add9ee3100ae67563,50a19a705363c3e2330f8155df393b740e54a2610721e40f2289a4d688f3e5c8,"Poor choices here can cause us to encounter
+exploding or vanishing gradients while training."
+a03875ed911d5596606d3bb308ac53a2a865a2d2013c4c8ea3e0e3e766a9d583,d2lce_d7976d0b101e65c34c011871,d2lce_d7976d0b101e65c34c011871,ctxx_81f6cec0f1edf5ca60a5d1d1,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,vanishing gradients,eb4ba85f3f5bd9ed4c1ab553c994e8330a89fb0b2505afda9c6c7b12b7a47f6f,9210703ebf1bcf4c41ceac1b420d6541a18b2d8399f7ceff24dbfa07ae5e6cd8,"Synthetic: In the poster, the designer created vanishing gradients as a color effect from dark blue to white."
+79033e1c4676ccbe38414fdd2cbf20f30ae2bd5a0310010e574091598b16520c,d2lce_ad03ff147d19eb2ea47d5b0e,d2lce_ad03ff147d19eb2ea47d5b0e,ctx_0018248a05d490e292afdea5,backup,d2l_attention_mechanisms_attention_cues_b014,d2l_attention_mechanisms,sentence_b55a324b907b8b68eff4c103,BACKUP,B1,C1,SAME_SENSE,volitional cues,0a66f436bd5b1c95f0d496e2940acceffb42d5a4ecfa5a9418e9a4edda8e0552,b2d137b7b1429d41321ed1465d31587329005708d80f41df7b21621611c1f881,"Therefore,
+what sets attention mechanisms
+apart from those fully-connected layers
+or pooling layers
+is the inclusion of the volitional cues."
+79033e1c4676ccbe38414fdd2cbf20f30ae2bd5a0310010e574091598b16520c,d2lce_ad03ff147d19eb2ea47d5b0e,d2lce_ad03ff147d19eb2ea47d5b0e,ctx_0196df223b107d63e312df82,backup,d2l_attention_mechanisms_attention_cues_b010,d2l_attention_mechanisms,sentence_3245613c96a7ef414afcfc67,BACKUP,B2,C1,SAME_SENSE,volitional cue,8b9584025b9eff7a90df1eb368b0aaa33317a9c77fad6819d02071f3e5e33f99,8a00d5022f4f4f0943ebd1b76e9386fb56035250c5b8496c7ec451578663dc44,"![Using the volitional cue (want to read a book) that is task-dependent, attention is directed to the book under volitional control.](../img/eye-book.svg)
+:width:`400px`
+:label:`fig_eye-book`"
+79033e1c4676ccbe38414fdd2cbf20f30ae2bd5a0310010e574091598b16520c,d2lce_ad03ff147d19eb2ea47d5b0e,d2lce_ad03ff147d19eb2ea47d5b0e,ctx_187de8cd1e12dd890c442ade,backup,d2l_attention_mechanisms_attention_cues_b028,d2l_attention_mechanisms,sentence_0e72c50e800305be82fdf302,BACKUP,B3,C1,SAME_SENSE,volitional cues,dc7b3d1509d9ae52566b88b5eda0f7a5e064b96863d62ec440eaa11008263534,bd61157cfa76db2a4bb2bb4c380c968e22119da458d10e795bcb81f370186c3c,* Attention mechanisms are different from fully-connected layers or pooling layers due to inclusion of the volitional cues.
+79033e1c4676ccbe38414fdd2cbf20f30ae2bd5a0310010e574091598b16520c,d2lce_ad03ff147d19eb2ea47d5b0e,d2lce_ad03ff147d19eb2ea47d5b0e,ctx_31ee4f7a5863ed678a04e350,primary;definition;part_of_speech,d2l_attention_mechanisms_attention_cues_b009,d2l_attention_mechanisms,sentence_5bd2889bd08ca883a7a68773,PRIMARY,C2,C1,SAME_SENSE,volitional cue,d6a1200258bcb65fed7a261f96ed273e21d6e5254cd2063468532b3387803fa8,73db7a3ee783de8f652d5449e7cebdd174cfe5b6f04ab4834c146519329c354e,"Using the volitional cue based on variable selection criteria,
+this form of attention is more deliberate."
+79033e1c4676ccbe38414fdd2cbf20f30ae2bd5a0310010e574091598b16520c,d2lce_ad03ff147d19eb2ea47d5b0e,d2lce_ad03ff147d19eb2ea47d5b0e,ctx_495329d7ea08710cf266062c,primary,d2l_attention_mechanisms_attention_cues_b015,d2l_attention_mechanisms,sentence_51f0ad7dd12913eb59a39972,PRIMARY,C3,C1,SAME_SENSE,volitional cues,a271eab92195cab05498787c0ae5102830efc8c3e485b8c21ef7d36edbdeb983,6165c0309f219d7e3feec3fa46e073168f6ba4cb2b5e63bfbc5c9a008796f15b,"![Attention mechanisms bias selection over values (sensory inputs) via attention pooling, which incorporates queries (volitional cues) and keys (nonvolitional cues).](../img/qkv.svg)
+:label:`fig_qkv`"
+79033e1c4676ccbe38414fdd2cbf20f30ae2bd5a0310010e574091598b16520c,d2lce_ad03ff147d19eb2ea47d5b0e,d2lce_ad03ff147d19eb2ea47d5b0e,ctx_61e1112cbf2424e69a7a2487,primary,d2l_attention_mechanisms_attention_cues_b014,d2l_attention_mechanisms,sentence_148cff5fea05df5b2c3e4f97,PRIMARY,C4,C1,SAME_SENSE,volitional cue,50bb6186751528e70bb467c5ec3ef6bbc62a8b3aa4f24d3afdf02ed8fcb78a1d,26eeb9b0a8e906f2bcfcd0ec7ce46627df9048b437d15106af570077d6bba575,"As shown in :numref:`fig_qkv`,
+we can design attention pooling
+so that the given query (volitional cue) can interact with keys (nonvolitional cues),
+which guides bias selection over values (sensory inputs)."
+79033e1c4676ccbe38414fdd2cbf20f30ae2bd5a0310010e574091598b16520c,d2lce_ad03ff147d19eb2ea47d5b0e,d2lce_ad03ff147d19eb2ea47d5b0e,ctx_6733f9355787febdfa53f095,primary;definition,d2l_attention_mechanisms_attention_cues_b014,d2l_attention_mechanisms,sentence_9b2c8da1beddf86c378cd4df,PRIMARY,C1,C1,SAME_SENSE,volitional cues,43e0428aa804e6ab7a1f52479b059bccf288d16067d75c1afedb0a7b4254b724,a5de127cb7f2e24432871c80b1519880776d5a9ab2a79733f0fffb9ba0d0e142,"In the context of attention mechanisms,
+we refer to volitional cues as *queries*."
+79033e1c4676ccbe38414fdd2cbf20f30ae2bd5a0310010e574091598b16520c,d2lce_ad03ff147d19eb2ea47d5b0e,d2lce_ad03ff147d19eb2ea47d5b0e,ctx_6e5eabbf33032ac2428b591c,primary;part_of_speech,d2l_attention_mechanisms_attention_cues_b006,d2l_attention_mechanisms,sentence_bb624538ad20c0f788c924c6,PRIMARY,C5,C1,SAME_SENSE,volitional cue,0072d5bd1f7ff0f0f712ddb9581c50af35abc6cc24183c58325346e48ba42a69,236fe630316d1f71172afff2762f82a67a218f50ffde770ee77c4c2aa51eac6e,"In this framework,
+subjects selectively direct the spotlight of attention
+using both the *nonvolitional cue* and *volitional cue*."
+79033e1c4676ccbe38414fdd2cbf20f30ae2bd5a0310010e574091598b16520c,d2lce_ad03ff147d19eb2ea47d5b0e,d2lce_ad03ff147d19eb2ea47d5b0e,ctxx_9e314f27a0624fba37123793,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,volitional cue,65ac30c9ebd64634e260fbb9c2276e1eba17949a142ee0aacc23c4f2b1f2396d,69ab99b333807a15713316891344de97fdc3fd30bee60c53369b474c6d3b0102,"Synthetic: A sudden flash acts as a cue, but not a volitional cue, because it captures attention involuntarily."
+d5f37305c2c16f6afb076ffe49f5b99a4dabc6eabf73b640cebbfdd37a3491e8,d2lce_6f3afd43e74e8d70778dc0c8,d2lce_6f3afd43e74e8d70778dc0c8,ctx_078c04e65c06128943224c26,primary,d2l_optimization_lr_scheduler_b062,d2l_optimization,sentence_aec5cffefc5f3011d947c932,PRIMARY,C3,C1,SAME_SENSE,warmup,3971996ec42c5d0ea9712e8b1bd26c2386fd1a5245fad0ba4f79ebc0990219c1,4eef9a764585812d42f00bbcb44d774eb4d8609872bd5f45878bd10514083e40,In particular they find that a warmup phase limits the amount of divergence of parameters in very deep networks.
+d5f37305c2c16f6afb076ffe49f5b99a4dabc6eabf73b640cebbfdd37a3491e8,d2lce_6f3afd43e74e8d70778dc0c8,d2lce_6f3afd43e74e8d70778dc0c8,ctx_10409253f5d4e26f24be38e9,primary,d2l_optimization_lr_scheduler_b033,d2l_optimization,sentence_a3bec3a4b1bc701296b998a0,PRIMARY,C4,C1,SAME_SENSE,warmup,db008af05a060d43bbe917e81f4b53f2d414cae9cd3551f0d3ea5a8818fd522d,b1224fdd964f806af65c6d7453770e3854652cba3a2c13723a22fc0e35526ac9,"It takes a few more parameters, such as warmup period, warmup mode (linear or constant), the maximum number of desired updates, etc.; Going forward we will use the built-in schedulers as appropriate and only explain their functionality here."
+d5f37305c2c16f6afb076ffe49f5b99a4dabc6eabf73b640cebbfdd37a3491e8,d2lce_6f3afd43e74e8d70778dc0c8,d2lce_6f3afd43e74e8d70778dc0c8,ctx_23984c926b405fd7be61d3af,primary;definition,d2l_optimization_lr_scheduler_b064,d2l_optimization,sentence_2f7ffc96316d01dd92a0d17e,PRIMARY,C5,C1,SAME_SENSE,warmup,a83cbd9c6bfcabb52aca5faf30b2668f1db8bf77c90de7c7317e0b9e0ceeb7c1,35288462a2ef76a5bbbcd8deea9764b2bc1ac47a971fb422556955294575a107,* A warmup period before optimization can prevent divergence.
+d5f37305c2c16f6afb076ffe49f5b99a4dabc6eabf73b640cebbfdd37a3491e8,d2lce_6f3afd43e74e8d70778dc0c8,d2lce_6f3afd43e74e8d70778dc0c8,ctx_2b99a602b964180da9cbc38c,backup;part_of_speech,d2l_optimization_lr_scheduler_b062,d2l_optimization,sentence_db1ed2fbbb7bafe99a67c7ac,BACKUP,B1,C1,SAME_SENSE,Warmup,e3bb3df6e4263d8835f6ad7f7ae92c981b22fe6dbf554104401bbb6078b13ada,70b6f866a98209becf43b81189a4ada20d9e207e2f8e8910662e5a4bd82b78fd,Warmup can be applied to any scheduler (not just cosine).
+d5f37305c2c16f6afb076ffe49f5b99a4dabc6eabf73b640cebbfdd37a3491e8,d2lce_6f3afd43e74e8d70778dc0c8,d2lce_6f3afd43e74e8d70778dc0c8,ctx_a1b6c6ab71183a43fe8f7b93,primary;part_of_speech,d2l_optimization_lr_scheduler_b053,d2l_optimization,sentence_e9f18ff7e0555260a1126068,PRIMARY,C2,C1,SAME_SENSE,Warmup,3b7e3157c31fa2d819d0179dabe548a83e0fdb83829afaa9ee7ac6e42ee4cac6,5e5256043426bbbc2d6a704207bc8cbd9b59443242b6750a223c995e5c9dfca5,### Warmup
+d5f37305c2c16f6afb076ffe49f5b99a4dabc6eabf73b640cebbfdd37a3491e8,d2lce_6f3afd43e74e8d70778dc0c8,d2lce_6f3afd43e74e8d70778dc0c8,ctx_a512a07140b183f0582a2fa1,backup;definition,d2l_optimization_lr_scheduler_b003,d2l_optimization,sentence_22501893dac7b20607030026,BACKUP,B2,C1,SAME_SENSE,warmup,82e556ea6475c1d8ef2d7264867f65c93c90efbbfbfff2d94ce92c77169b1ad7,7c03cb3ed1def82236b3d4e3a1982e83baf3ca851e0c22311877a21ff670747a,"This goes under the moniker of *warmup*, i.e., how rapidly we start moving towards the solution initially."
+d5f37305c2c16f6afb076ffe49f5b99a4dabc6eabf73b640cebbfdd37a3491e8,d2lce_6f3afd43e74e8d70778dc0c8,d2lce_6f3afd43e74e8d70778dc0c8,ctx_df53f1201adeb15694c788d5,primary;definition;part_of_speech,d2l_optimization_lr_scheduler_b055,d2l_optimization,sentence_41cc56a427d9a1deb18df9c8,PRIMARY,C1,C1,SAME_SENSE,warmup,e9d225b921269fc1b55c82314549df8350af8b9d04cce5d15a3e12fc04242723,699b773d7ff3a0a50164b2d25ed11b24d33fdb26c07d705b8a4e7f58a3137642,A rather simple fix for this dilemma is to use a warmup period during which the learning rate *increases* to its initial maximum and to cool down the rate until the end of the optimization process.
+d5f37305c2c16f6afb076ffe49f5b99a4dabc6eabf73b640cebbfdd37a3491e8,d2lce_6f3afd43e74e8d70778dc0c8,d2lce_6f3afd43e74e8d70778dc0c8,ctxx_e55058367fc052cda2365416,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,warmup,6fcab1548d67dd59742ef795661787a6ff1f311600e5ced8944d47292ce88800,32268c0a983bf8b041325b3838003cc4df4f89c035d4dd85cde7ec909b8733cc,"Synthetic: As a warmup, compute a tiny matrix product before studying asynchronous execution."
+e1a254332b6982e2bf4654384cb9cd54958b553793421c7cd52cdf3c658ba16d,d2lce_a3e7228aef125ec437a840fa,d2lce_a3e7228aef125ec437a840fa,ctx_07d0a92774325109338bead5,primary;definition;part_of_speech,d2l_attention_mechanisms_attention_cues_b018,d2l_attention_mechanisms,sentence_5171914ec0223429c8fc28f8,PRIMARY,C5,C1,SAME_SENSE,weighted average,3f189fdcc8b00611891cda6d89e6e3795c5666bdb3da9e1f39db78887c04df51,4270d2d83276f439a5e6c77cd2c0883a6c6bfbcac7b1e422794c63028d9cd87c,"In practice,
+attention pooling aggregates values using weighted average, where weights are computed between the given query and different keys."
+e1a254332b6982e2bf4654384cb9cd54958b553793421c7cd52cdf3c658ba16d,d2lce_a3e7228aef125ec437a840fa,d2lce_a3e7228aef125ec437a840fa,ctx_11cbd62463e49bc8907aefef,backup,d2l_attention_mechanisms_nadaraya_watson_b031,d2l_attention_mechanisms,sentence_b966406c02355d5229ad3ac0,BACKUP,B1,C1,SAME_SENSE,weighted average,b7079f28a1277c99f0d722b128bb78bea8e82d3ae2c6013043c50879c863683b,baffa80ca72a0290fb8d4ef8edb88c9afd4cc074b123874f3cc4d6de6a09633d,"Comparing :eqref:`eq_attn-pooling` and :eqref:`eq_avg-pooling`,
+the attention pooling here
+is a weighted average of values $y_i$."
+e1a254332b6982e2bf4654384cb9cd54958b553793421c7cd52cdf3c658ba16d,d2lce_a3e7228aef125ec437a840fa,d2lce_a3e7228aef125ec437a840fa,ctx_19f6562b721592fe470608b6,backup,d2l_natural_language_processing_applications_natural_language_inference_attention_b011,d2l_natural_language_processing_applications,sentence_53dc1acd884d8c7cec8e339e,BACKUP,B2,C1,SAME_SENSE,weighted average,6659511943c70dbc3b71990085fede0d3578626ff32b8baf664effe7d1c7ad41,6e78f69bc45da742f722c03cc1cf433d8f6866ac2e725e36e4e957794b23d351,"Note that such alignment is *soft* using weighted average,
+where ideally large weights are associated with the tokens to be aligned."
+e1a254332b6982e2bf4654384cb9cd54958b553793421c7cd52cdf3c658ba16d,d2lce_a3e7228aef125ec437a840fa,d2lce_a3e7228aef125ec437a840fa,ctx_2b750c7f5d33f647672795c7,primary;definition,d2l_attention_mechanisms_nadaraya_watson_b038,d2l_attention_mechanisms,sentence_c17000397bc037658ee59916,PRIMARY,C4,C4,SAME_SENSE,weighted average,6cd7ebfae82b70b437822104b0f5db067b4d9e3f3d2746b0dc840c89644f57c9,15fe40565a5e7657d5b52323dea9285cd7f43eff90158d9459a4bc06f6d77cf2,"Shape of `attention_weights`:
+# (`n_test`, `n_train`), where each row contains attention weights to be
+# assigned among the values (`y_train`) given each query
+attention_weights = npx.softmax(-(X_repeat - x_train)**2 / 2)
+# Each element of `y_hat` is weighted average of values, where weights are
+# attention weights
+y_hat = d2l.matmul(attention_weights, y_train)
+plot_kernel_reg(y_hat)
+```"
+e1a254332b6982e2bf4654384cb9cd54958b553793421c7cd52cdf3c658ba16d,d2lce_a3e7228aef125ec437a840fa,d2lce_a3e7228aef125ec437a840fa,ctx_560fdd2106e8a9d780a76535,primary,d2l_optimization_momentum_b007,d2l_optimization,sentence_2cf706f97715d63e4bed5b56,PRIMARY,C1,C1,SAME_SENSE,weighted average,a936927c167dfb8ea4ea5f8d14400e9a07065a26c727a4f81e0c9404203bd1be,c7ba5fe01a0f7ae7e8f70f8df8e9f0a78a813ce9e4770e20b5ee7b38574c6670,The new gradient replacement no longer points into the direction of steepest descent on a particular instance any longer but rather in the direction of a weighted average of past gradients.
+e1a254332b6982e2bf4654384cb9cd54958b553793421c7cd52cdf3c658ba16d,d2lce_a3e7228aef125ec437a840fa,d2lce_a3e7228aef125ec437a840fa,ctx_6bf957c26c6e143256cdd035,backup;definition;part_of_speech,d2l_preliminaries_linear_algebra_b130,d2l_preliminaries,sentence_3b08b288fd282f3652131b0b,BACKUP,B3,C2,SAME_SENSE,weighted average,6e19f82472d4520090906ab70e03103e7120b2b7667a1fd0773568938adfd888,197c1603b103525352186d87710b8c757ea98e5a39cee0dafa84e25534a41619,"When the weights are non-negative
+and sum to one (i.e., $\left(\sum_{i=1}^{d} {w_i} = 1\right)$),
+the dot product expresses a *weighted average*."
+e1a254332b6982e2bf4654384cb9cd54958b553793421c7cd52cdf3c658ba16d,d2lce_a3e7228aef125ec437a840fa,d2lce_a3e7228aef125ec437a840fa,ctx_8e04ca81f5cd4758904ce28b,primary;definition,d2l_appendix_mathematics_for_deep_learning_random_variables_b058,d2l_appendix_mathematics_for_deep_learning,sentence_ad9cc7582bac8012c7792143,PRIMARY,C2,C2,SAME_SENSE,weighted average,e258602fc979fbdb5abf2a4a1fd4f32e8900ac6d5f9684cdf5696e724ee7e2c1,8f8c72a0536b48093581297067965f2a11fd64b97666b1c6bcfd8fcf0c7f1e0f,"If we have a discrete random variable $X$, which takes the values $x_i$ with probabilities $p_i$, then the mean is given by the weighted average: sum the values times the probability that the random variable takes on that value:"
+e1a254332b6982e2bf4654384cb9cd54958b553793421c7cd52cdf3c658ba16d,d2lce_a3e7228aef125ec437a840fa,d2lce_a3e7228aef125ec437a840fa,ctx_aba6fee7580baba0771a58d2,primary,d2l_attention_mechanisms_attention_cues_b018,d2l_attention_mechanisms,sentence_2ddf5d1d8c89de42de5a31cc,PRIMARY,C3,C3,SAME_SENSE,weighted average,203c5c822ef1c9042737dd993e51d8478c628df3360d0790e01410d2221d1e08,b17d65b99f861e45fae50089b631351ef3b8a763564b9b0deabaf61345bce7e1,"Average pooling
+can be treated as a weighted average of inputs,
+where weights are uniform."
+e1a254332b6982e2bf4654384cb9cd54958b553793421c7cd52cdf3c658ba16d,d2lce_a3e7228aef125ec437a840fa,d2lce_a3e7228aef125ec437a840fa,ctxx_f815c752c262d1e575571f1a,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,weighted average,cdf2fb3e8334826a4380b1e12a1436fe8835a96bf05cad01540251e1359c0e48,58d4c8dc43f0e0a1fcea0571f39f974f2ba4dbef4532c539018d6ada6805fca8,"Synthetic: The clerk asked for the weighted average grade, not the simple mean."
+9eef1371be3397c930eeb2470e764883b2b4f5370f4a276807954e5956bc4f05,d2lce_ce222dd206341f61f2986f7a,d2lce_ce222dd206341f61f2986f7a,ctx_108640f605901673bf814009,primary;definition;part_of_speech,d2l_natural_language_processing_pretraining_word_embedding_dataset_b002,d2l_natural_language_processing_pretraining,sentence_cb68cdc68d32d94ae2cfbe32,PRIMARY,C5,C2,SAME_SENSE,word embedding,e0a4c042e29073bb097c2e059c036ced3f4a7b62f94698742a69cea21a729358,88470992cb7fcb7b8e2bbe879766176a4335c703549ab3b9fad74c2443e6a02e,"In this section,
+we begin with the dataset
+for pretraining the word embedding model:
+the original format of the data
+will be transformed
+into minibatches
+that can be iterated over during training."
+9eef1371be3397c930eeb2470e764883b2b4f5370f4a276807954e5956bc4f05,d2lce_ce222dd206341f61f2986f7a,d2lce_ce222dd206341f61f2986f7a,ctx_6a9b720f95aced72357fb01b,primary,d2l_natural_language_processing_pretraining_word2vec_b002,d2l_natural_language_processing_pretraining,sentence_0e28a95eebef776622ada161,PRIMARY,C2,C2,SAME_SENSE,word embedding,b3832ab0bd3d511c6610b856c7d8a2748c97cef772c868dd93b37a0fcc3d0b51,8595ab96f6421204c3a320ab1e115d19f49afc1032bec661d9abb87d769ecbec,"In recent years,
+word embedding has gradually become
+the basic knowledge of natural language processing."
+9eef1371be3397c930eeb2470e764883b2b4f5370f4a276807954e5956bc4f05,d2lce_ce222dd206341f61f2986f7a,d2lce_ce222dd206341f61f2986f7a,ctx_6fa666b3c596ae376a5d62df,primary,d2l_natural_language_processing_pretraining_word2vec_b001,d2l_natural_language_processing_pretraining,sentence_0c0693e9549cd69d72226201,PRIMARY,C4,C1,SAME_SENSE,Word Embedding,2ceb0c92e42cb849b54429be5937d7ee9c8f930ed3a77de37b3499aff9e3f0bb,dd6c3f374185dbb7f66412bb92df6ec61467b1e02062797e47960da83357ad5f,"# Word Embedding (word2vec)
+:label:`sec_word2vec`"
+9eef1371be3397c930eeb2470e764883b2b4f5370f4a276807954e5956bc4f05,d2lce_ce222dd206341f61f2986f7a,d2lce_ce222dd206341f61f2986f7a,ctx_817ac1f3936900a301ec3337,primary;definition;part_of_speech,d2l_natural_language_processing_pretraining_word2vec_b002,d2l_natural_language_processing_pretraining,sentence_86174027220eeb667ed8c445,PRIMARY,C3,C1,SAME_SENSE,word embedding,b31eee69a2199eedde2813691f206956539155b33b29c856aa629545767b40f2,7ee14369528a76c2d60beb644a9377a8b6524c902a4e81e4ca5216e98e407d9b,"The technique of mapping words to real vectors
+is called *word embedding*."
+9eef1371be3397c930eeb2470e764883b2b4f5370f4a276807954e5956bc4f05,d2lce_ce222dd206341f61f2986f7a,d2lce_ce222dd206341f61f2986f7a,ctx_a2831abdb2ca55617b3dda12,primary;definition,d2l_natural_language_processing_pretraining_word2vec_b050,d2l_natural_language_processing_pretraining,sentence_72a9a5de89845acc81236618,PRIMARY,C1,C1,SAME_SENSE,word embedding,c52bcc604e2898558953079d45fb3a97316e205bd965c136078b78d1f429d662,01910c34756d3f3b2fb8b5063972cb939f208e2f2a51fc7b8ae2800ee0ebfea5,The technique of mapping words to real vectors is called word embedding.
+9eef1371be3397c930eeb2470e764883b2b4f5370f4a276807954e5956bc4f05,d2lce_ce222dd206341f61f2986f7a,d2lce_ce222dd206341f61f2986f7a,ctx_a988c294df2c935abfa24586,backup,d2l_natural_language_processing_pretraining_word_embedding_dataset_b011,d2l_natural_language_processing_pretraining,sentence_d211d5dde775eea482bebb05,BACKUP,B2,C2,SAME_SENSE,word embedding,ab1e429a4e796a81e0456a3d4838839c3450f5031893911f97737ecf05497cac,fafcbb0824cfed666da4e0a29ea5b0a7992b514f1a2f1b0aa4dd04bdee58184e,"Thus, when training word embedding models, 
+high-frequency words can be *subsampled* :cite:`Mikolov.Sutskever.Chen.ea.2013`."
+9eef1371be3397c930eeb2470e764883b2b4f5370f4a276807954e5956bc4f05,d2lce_ce222dd206341f61f2986f7a,d2lce_ce222dd206341f61f2986f7a,ctx_bb5ae27beb47e44884fd922c,backup,d2l_natural_language_processing_pretraining_approx_training_b010,d2l_natural_language_processing_pretraining,sentence_fd92e4140f27d34a8d1d6196,BACKUP,B1,C2,SAME_SENSE,word embeddings,eff176e2cfcd63ac4eda8a300cb53b5a5664a208985ec6c48890a0fc56a06733,02d597868a86773bce9171ce68c62bb006c269ab68d41150d76197cea63c73ca,"Let us begin by
+maximizing the joint probability of
+all such events in text sequences
+to train word embeddings."
+9eef1371be3397c930eeb2470e764883b2b4f5370f4a276807954e5956bc4f05,d2lce_ce222dd206341f61f2986f7a,d2lce_ce222dd206341f61f2986f7a,ctx_f749ad3cd3bc4c80f1a78ce4,backup,d2l_natural_language_processing_pretraining_word_embedding_dataset_b001,d2l_natural_language_processing_pretraining,sentence_2132c2a201bd78a3fcc7df2b,BACKUP,B3,C2,SAME_SENSE,Word Embeddings,555378e6462c77c47bd56fe4e02c9d3bdfef2d83664adf58d76a51958fface21,d035ecb39f1a4cb2767d2df8f583a415a4853066ae20bd205ff21a3aeff4bc0d,"# The Dataset for Pretraining Word Embeddings
+:label:`sec_word2vec_data`"
+9eef1371be3397c930eeb2470e764883b2b4f5370f4a276807954e5956bc4f05,d2lce_ce222dd206341f61f2986f7a,d2lce_ce222dd206341f61f2986f7a,ctxx_36cabf1c66f9b4ec24b89888,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,word embedding,9645f79e01ddf713658fc715918e72b31e1077ff901c540b9c4463abd86ebd83,8392c5af3e5f18bf5d810904fa878c322f93d40dbe0a5f41e9bc0ca01c7393d2,"Synthetic: In graphic design, the artist used word embedding to place text objects inside a logo shape."
+49bdd4ba0c0a3787c374833d4969259bef6d601a1558af0a5ae7e9833a7b28fe,d2lce_eae5d94b4d2b73165c5d8795,d2lce_eae5d94b4d2b73165c5d8795,ctx_216f6113933e493b68ce8ad9,backup,d2l_multilayer_perceptrons_numerical_stability_and_init_b031,d2l_multilayer_perceptrons,sentence_4db46ee38775e88dd892b8c7,BACKUP,B1,C1,SAME_SENSE,zero mean,1866ecc3322b3ea557d6329790232a1521f3eb409572ad8ef430b0214beab2bc,bb56b9bc6018f3ca847e26973d1c121c214979821ba23da506d4631ffe027aad,"Furthermore, let us assume that this distribution
+has zero mean and variance $\sigma^2$."
+49bdd4ba0c0a3787c374833d4969259bef6d601a1558af0a5ae7e9833a7b28fe,d2lce_eae5d94b4d2b73165c5d8795,d2lce_eae5d94b4d2b73165c5d8795,ctx_26d890099027986105691faa,primary;definition,d2l_multilayer_perceptrons_weight_decay_b025,d2l_multilayer_perceptrons,sentence_660ab0b25fc326a37acc218c,PRIMARY,C2,C1,SAME_SENSE,zero mean,e73fa06b3e1f2145004abe04f6a06066768209a7b62c953c17d77388551b1d93,175f3c9cb2e27d6544df89b2f8765793ec6a3d56001fa029c7a22daad3b2f133,"We choose our label to be a linear function of our inputs,
+corrupted by Gaussian noise with zero mean and standard deviation 0.01."
+49bdd4ba0c0a3787c374833d4969259bef6d601a1558af0a5ae7e9833a7b28fe,d2lce_eae5d94b4d2b73165c5d8795,d2lce_eae5d94b4d2b73165c5d8795,ctx_2aa7827d7befde055f8781f4,primary;definition,d2l_multilayer_perceptrons_numerical_stability_and_init_b035,d2l_multilayer_perceptrons,sentence_319626f740e5c0a7934d3dbc,PRIMARY,C3,C1,SAME_SENSE,zero mean,f39c7e429439c06187a62e64e0ca598360e8d30034007ac9d0e5fa28691561a4,c9713b4a3d2854b90e00e408825ae40da611ca994969f196a1aa64a3fc868976,"Typically, the Xavier initialization
+samples weights from a Gaussian distribution
+with zero mean and variance
+$\sigma^2 = \frac{2}{n_\mathrm{in} + n_\mathrm{out}}$."
+49bdd4ba0c0a3787c374833d4969259bef6d601a1558af0a5ae7e9833a7b28fe,d2lce_eae5d94b4d2b73165c5d8795,d2lce_eae5d94b4d2b73165c5d8795,ctx_4638d23246a5ab6b7fa414b4,backup;part_of_speech,d2l_multilayer_perceptrons_numerical_stability_and_init_b031,d2l_multilayer_perceptrons,sentence_e98fe2b5114aab7ebdd7b3f5,BACKUP,B2,C1,SAME_SENSE,zero mean,534f3f9d4e2b7916386d82637390c2cdc6f61c656a4f8dd9529d9263fd8dfd8a,85f3b9e54856f63b1732cffc88a6c74c76d7a0734aeda4f3780922d5a9d10031,"For now, let us assume that the inputs to the layer $x_j$
+also have zero mean and variance $\gamma^2$
+and that they are independent of $w_{ij}$ and independent of each other."
+49bdd4ba0c0a3787c374833d4969259bef6d601a1558af0a5ae7e9833a7b28fe,d2lce_eae5d94b4d2b73165c5d8795,d2lce_eae5d94b4d2b73165c5d8795,ctx_61a2ce5d13e9164d72ba2a8e,primary,d2l_attention_mechanisms_nadaraya_watson_b010,d2l_attention_mechanisms,sentence_b8dcf9ea0de88e3b644f7e67,PRIMARY,C4,C1,SAME_SENSE,zero mean,07bc566276e171b980525b78cb44075e5c2e89080055148caf750dbe0c9900be,0772831f2a82b9551972d1c9c00cc7aeec31bcef58e62e76e5c330bc9be736e2,where $\epsilon$ obeys a normal distribution with zero mean and standard deviation 0.5.
+49bdd4ba0c0a3787c374833d4969259bef6d601a1558af0a5ae7e9833a7b28fe,d2lce_eae5d94b4d2b73165c5d8795,d2lce_eae5d94b4d2b73165c5d8795,ctx_6fbe686636eef2e18f361982,primary,d2l_linear_networks_softmax_regression_concise_b008,d2l_linear_networks,sentence_e8489670bf2d0efd927a4df6,PRIMARY,C5,C1,SAME_SENSE,zero mean,78bcc136dd77985cb2cbd99834c3b7d8d12f5ddfda30242f69bd6bd5e7000e9c,6c0a5a7d76cd96d1dbc2b96a73b1622ad98f735ba6f82ce762b8a2afb402b2f8,"Again, we initialize the weights at random
+with zero mean and standard deviation 0.01."
+49bdd4ba0c0a3787c374833d4969259bef6d601a1558af0a5ae7e9833a7b28fe,d2lce_eae5d94b4d2b73165c5d8795,d2lce_eae5d94b4d2b73165c5d8795,ctx_7c400e0ce4ae692c14fd57fb,primary;definition;part_of_speech,d2l_convolutional_modern_batch_norm_b012,d2l_convolutional_modern,sentence_bdb4a9d60ff564245ba22e28,PRIMARY,C1,C1,SAME_SENSE,zero mean,5d52e387ce5618fc0e5a2f10c666a79996055cc2953edbcc51d2b8ad63eb175f,451d6a8e884748246f9546bab97ce29b6b5fa20713f0c86f9aea44a89c31b908,"After applying standardization,
+the resulting minibatch
+has zero mean and unit variance."
+49bdd4ba0c0a3787c374833d4969259bef6d601a1558af0a5ae7e9833a7b28fe,d2lce_eae5d94b4d2b73165c5d8795,d2lce_eae5d94b4d2b73165c5d8795,ctx_a0f2cf276864d055204f2564,backup,d2l_recommender_systems_ranking_b010,d2l_recommender_systems,sentence_7a3b60911f4b3588db343b01,BACKUP,B3,C1,SAME_SENSE,zero mean,8eca1c9b749ce6edd347690f216fc588ea0ed49623da59095ed395eafa4ddb0c,4e3f082ffe0a5ecc1e567b384ef5908942b49b8a123fed5095e1f782eb623d63,The prior $p(\Theta)$ is a normal distribution with zero mean and variance-covariance matrix $\Sigma_\Theta$.
+49bdd4ba0c0a3787c374833d4969259bef6d601a1558af0a5ae7e9833a7b28fe,d2lce_eae5d94b4d2b73165c5d8795,d2lce_eae5d94b4d2b73165c5d8795,ctxx_43cadbfc0b9eb9648f51f1d6,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,zero mean,8bb95715060b03ca2afc08087bb54ad59a25fef6abf44e510793e51badf01d76,d54aec59d35a2db0e8080bf2bffc4c238c77376eb2dd3937b9970aaffb1029bd,"Synthetic: In this toy example, the phrase zero mean describes a distribution centered at 0, not a zero-valued sample."

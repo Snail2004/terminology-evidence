@@ -1,0 +1,56 @@
+{
+  "checksum_verification": "PASS",
+  "credential_scan_hits": [],
+  "credential_scan_result": "PASS",
+  "dataset_mapping_inputs": [
+    "D2LContextSupportSetValidationReadyV3",
+    "D2LCSTDevelopmentOnlyPilotV1_1"
+  ],
+  "dataset_mapping_result": {
+    "artifacts": [
+      {
+        "dataset_version": "d2l_context_support_set_validation_ready_v3",
+        "manifest_file_sha256": "b5f2067427c6b88344109f2c62f8db02ac61b0cef76f193d5285f378ff5f96a8",
+        "manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+        "schema_id": "D2LContextSupportSetValidationReadyV3",
+        "schema_version": "3.0.0",
+        "zip_sha256": "2f8e6ad0519854b161eda8cce61b13cdfc2f5ee54d205d18c27f279493c4fe52"
+      },
+      {
+        "dataset_version": null,
+        "manifest_file_sha256": "e45205adfe22b6b6c67680e159c64bb3c69c3a9849a3109a962134dc8cb3dd76",
+        "manifest_sha256": "599692d33f9cc162698bc0e8fc0bf60cce1715cb0f34214fec499f14c1364eb5",
+        "schema_id": "D2LCSTDevelopmentOnlyPilotV1_1",
+        "schema_version": "1.1.0",
+        "zip_sha256": "664cd5bf9e3006ebd77cffa6665a3cd86690dff0201fc518cae407a121aa4f15"
+      }
+    ],
+    "status": "PASS"
+  },
+  "dataset_runtime_dependency": false,
+  "external_api_calls": 0,
+  "file_count": 134,
+  "fixture_count": 51,
+  "legacy_fixture_tree_sha256": "ba94c24c4e939474a380ecdba23b1249b09940c1989be020b2dc35ffd95d85a6",
+  "legacy_schema_count": 12,
+  "legacy_schema_tree_sha256": "e955d9623becb7a96b0ff636f3336a986d7c42068114223e9bd4cd9ba097413b",
+  "manifest_sha256": "6034c59fb87640b5d8d2e404a6aa427b5ef67632b31a4bc280dadf926138670b",
+  "manifest_verification": "PASS",
+  "migration_result": {
+    "deterministic": true,
+    "fixture_count": 10,
+    "status": "PASS"
+  },
+  "package_version": "1.1.0",
+  "pyc_cache_files": [],
+  "pyc_cache_scan_result": "PASS",
+  "release_zip_sha256": "38e2ee307b247d535baedcde83427ebe3f30901d31bb921f03e6681b3160dbdc",
+  "schema_count": 12,
+  "schema_id": "TerminologyContractsV1_1ReleaseAuditV1",
+  "test_count": 53,
+  "test_errors": 0,
+  "test_failures": 0,
+  "test_file_count": 8,
+  "test_result": "PASS",
+  "test_skipped": 0
+}

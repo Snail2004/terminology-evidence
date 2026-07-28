@@ -1,0 +1,485 @@
+﻿case_sha256,term_id,sense_id,context_id,context_groups,block_id,chapter_id,sentence_id,context_role,context_slot,context_type_proposal,sense_relation,matched_surface_exact,content_sha256,context_sha256,source_text
+f932adaca01fe94e65edf4d7eafb1f6050f4f1d28bce8542b42414f00aeb4b55,d2lce_e0c693366d811581abbb9e74,d2lce_e0c693366d811581abbb9e74,ctx_12cee07dbdee67f6be90da20,primary;part_of_speech,d2l_recurrent_modern_gru_b009,d2l_recurrent_modern,sentence_5124ba81bbc32751cf3a0de2,PRIMARY,C4,C3,SAME_SENSE,activation function,50bb1e197d6c29be52b9b34e8abc9903229c980ea2f6683274c54971784ca96c,cf1b04a1920a526b047961f8c6f9148a6af87e4deaea53f8fdf3b92d9104095b,"The outputs of two gates
+are given by two fully-connected layers
+with a sigmoid activation function."
+f932adaca01fe94e65edf4d7eafb1f6050f4f1d28bce8542b42414f00aeb4b55,d2lce_e0c693366d811581abbb9e74,d2lce_e0c693366d811581abbb9e74,ctx_2970e39beda737feef2164c9,primary;definition,d2l_optimization_optimization_intro_b032,d2l_optimization,sentence_453ed9cc1b53ac8cf9033180,PRIMARY,C3,C4,SAME_SENSE,activation function,bedb7ac93126a46481a1883474fb22df462ca37cf0912f06ae404adb4b1fecb9,c3a6beef88c636afeddb886685896fddb6d315f2f3c8841e9234a427dc2104db,This turns out to be one of the reasons that training deep learning models was quite tricky prior to the introduction of the ReLU activation function.
+f932adaca01fe94e65edf4d7eafb1f6050f4f1d28bce8542b42414f00aeb4b55,d2lce_e0c693366d811581abbb9e74,d2lce_e0c693366d811581abbb9e74,ctx_34ee6d32a2ff535ee2d88bde,primary,d2l_attention_mechanisms_attention_scoring_functions_b029,d2l_attention_mechanisms,sentence_e6d40ff587d45d8b3e2770ce,PRIMARY,C5,C3,SAME_SENSE,activation function,6a0479c20bf8dd7292a1cc2fea217d7236f9de5517bd380de68697938f9a6247,3665b4a1e420a6e82999a2356326467228cab0cdc604346bea21b46e212a6815,"By using $\tanh$ as the activation function and disabling
+bias terms,
+we implement additive attention in the following."
+f932adaca01fe94e65edf4d7eafb1f6050f4f1d28bce8542b42414f00aeb4b55,d2lce_e0c693366d811581abbb9e74,d2lce_e0c693366d811581abbb9e74,ctx_42efd998d80ced9a64e32ec8,primary;definition;part_of_speech,d2l_multilayer_perceptrons_mlp_b020,d2l_multilayer_perceptrons,sentence_c446c648e27e3e5c58a44827,PRIMARY,C1,C2,SAME_SENSE,activation function,a5aa30e997f544e69a33ba45007e06200bba28b855378df009a3e4bd3cf1459d,d12b25e22d337a744b915b3654e011de99e37ef116b9b77ee4d08a8b635ce723,"In order to realize the potential of multilayer architectures,
+we need one more key ingredient: a
+nonlinear *activation function* $\sigma$
+to be applied to each hidden unit
+following the affine transformation."
+f932adaca01fe94e65edf4d7eafb1f6050f4f1d28bce8542b42414f00aeb4b55,d2lce_e0c693366d811581abbb9e74,d2lce_e0c693366d811581abbb9e74,ctx_5f040cdbc06a01d2f5cc4d87,primary;definition;part_of_speech,d2l_deep_learning_computation_model_construction_b008,d2l_deep_learning_computation,sentence_9cf7b7c1c3e52e572c5a7378,PRIMARY,C2,C3,SAME_SENSE,activation function,e559d83b6b5b16033cec0089c5cad3ff2b28a8be8e87386e84433fe4a0bcd026,3a1e1cd589ec41f526c304cbf1e314fad11c411a5e397ef1e08ac76d6cce7af9,"The following code generates a network
+with one fully-connected hidden layer
+with 256 units and ReLU activation,
+followed by a fully-connected output layer
+with 10 units (no activation function)."
+f932adaca01fe94e65edf4d7eafb1f6050f4f1d28bce8542b42414f00aeb4b55,d2lce_e0c693366d811581abbb9e74,d2lce_e0c693366d811581abbb9e74,ctx_6882a07f8f604f30a2c75617,backup,d2l_convolutional_modern_alexnet_b004,d2l_convolutional_modern,sentence_50967f5935e5922459e028f7,BACKUP,B3,C4,SAME_SENSE,activation functions,0ca57566f563a7b2db146390b6bf7a5d5176479ef194f616ebdc1df53b17ab09,51fb75e50aacb313a3b7cd1fb174d96450e8c51c3bc526e9e72bc0b1e46198fd,"Added to these obstacles, key tricks for training neural networks
+including parameter initialization heuristics,
+clever variants of stochastic gradient descent,
+non-squashing activation functions,
+and effective regularization techniques were still missing."
+f932adaca01fe94e65edf4d7eafb1f6050f4f1d28bce8542b42414f00aeb4b55,d2lce_e0c693366d811581abbb9e74,d2lce_e0c693366d811581abbb9e74,ctx_6ba311f80c075eceefec2cba,backup,d2l_convolutional_neural_networks_why_conv_b042,d2l_convolutional_neural_networks,sentence_db0493e3a64b2c51cd59409b,BACKUP,B2,C3,SAME_SENSE,activation functions,569ffdf2213ae1c8226d0b738e79fb4225a75dfc9ef4845a6150ca202ec7f1d4,1c2369d379a3ffb18ad5f2ad7310bf7a3ec1690ba19f730093824f3f1131808e,"We also need to decide how to compute things efficiently,
+how to combine multiple layers,
+appropriate activation functions,
+and how to make reasonable design choices
+to yield networks that are effective in practice."
+f932adaca01fe94e65edf4d7eafb1f6050f4f1d28bce8542b42414f00aeb4b55,d2lce_e0c693366d811581abbb9e74,d2lce_e0c693366d811581abbb9e74,ctx_733d98a23bc0d5e7b59bd272,backup;definition,d2l_recurrent_neural_networks_rnn_b010,d2l_recurrent_neural_networks,sentence_c41636447d2a3117402f6335,BACKUP,B1,C2,SAME_SENSE,activation function,4a907ea76623f8587abe1296434d29b76af187ff183eded9d106a652ec5f1aa4,1fb55499f230f870890b03ade54c4a8c8e2b99ceb034d75b1a2d9c2c7dcfabdd,Let the hidden layer's activation function be $\phi$.
+f932adaca01fe94e65edf4d7eafb1f6050f4f1d28bce8542b42414f00aeb4b55,d2lce_e0c693366d811581abbb9e74,d2lce_e0c693366d811581abbb9e74,ctxx_22da2d4feabde1fd9e90c75b,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,activation function,59530524a93c88db858c4e5f0e7fab037f9fbd5f3dec66267a4782a8b37c7efb,2072f7d8441a9f66983be4faad36c8b885b785f1884a4942a02efd06c2aa7773,"Synthetic: In this chapter, activation function means a mathematical mapping in a neural network, not the act of activating a software feature."
+f2d61d8461b16cb31516ad553139210c2180041a018622b2bcaf192ef9294048,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,ctx_3c4a7aaec02b50911df8c766,primary,d2l_recurrent_modern_seq2seq_b065,d2l_recurrent_modern,sentence_a310602f3d1e430e5bfceb85,PRIMARY,C3,C1,SAME_SENSE,adam,c1ec7ab123ff085eef1ad298883abbff3303269df34514e943954ad0174446b1,08c94fcbdffb500a1b1bbe1b3afeac1cd51df183f48bb73545f8065ed0d5717d,"```{.python .input}
+#@save
+def train_seq2seq(net, data_iter, lr, num_epochs, tgt_vocab, device):
+    """"""Train a model for sequence to sequence.""""""
+    net.initialize(init.Xavier(), force_reinit=True, ctx=device)
+    trainer = gluon.Trainer(net.collect_params(), 'adam',
+                            {'learning_rate': lr})
+    loss = MaskedSoftmaxCELoss()
+    animator = d2l.Animator(xlabel='epoch', ylabel='loss',
+                            xlim=[10, num_epochs])
+    for epoch in range(num_epochs):
+        timer = d2l.Timer()
+        metric = d2l.Accumulator(2)  # Sum of training loss, no."
+f2d61d8461b16cb31516ad553139210c2180041a018622b2bcaf192ef9294048,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,ctx_4a985a7867b0862e601aa744,primary;definition,d2l_computer_vision_image_augmentation_b055,d2l_computer_vision,sentence_d271d8883c43dc451760b4cf,PRIMARY,C4,C1,SAME_SENSE,Adam,8b168d2fd60f2411a029cf60441c7389c75ccdbd3de6b62abddba0fe6a1e800b,19b821ba386963dcc6c34b635ee4c0642632895259719fc9982416d3e44633bc,"This function gets all available GPUs, 
+uses Adam as the optimization algorithm,
+applies image augmentation to the training dataset,
+and finally calls the `train_ch13` function just defined to train and evaluate the model."
+f2d61d8461b16cb31516ad553139210c2180041a018622b2bcaf192ef9294048,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,ctx_58c0a9351bd98055ea39a9a0,primary,d2l_natural_language_processing_pretraining_word2vec_pretraining_b036,d2l_natural_language_processing_pretraining,sentence_a93f6bee779d41e73ea2a793,PRIMARY,C5,C1,SAME_SENSE,adam,b897a3b08d83fee5610ef4afd0007c1be31dbccb13d8c51ef091e480f9ecbfc2,aa7446dda7859bbca3031411c690ff8a9bcb79332a65e542d782daa0ca62165a,"```{.python .input}
+def train(net, data_iter, lr, num_epochs, device=d2l.try_gpu()):
+    net.initialize(ctx=device, force_reinit=True)
+    trainer = gluon.Trainer(net.collect_params(), 'adam',
+                            {'learning_rate': lr})
+    animator = d2l.Animator(xlabel='epoch', ylabel='loss',
+                            xlim=[1, num_epochs])
+    # Sum of normalized losses, no."
+f2d61d8461b16cb31516ad553139210c2180041a018622b2bcaf192ef9294048,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,ctx_5c812a90177b5b129b327432,primary;definition,d2l_optimization_index_b002,d2l_optimization,sentence_4e3e135cd20a5f0e48468df9,PRIMARY,C2,C2,SAME_SENSE,Adam,367c7fd3bc00098c51280201953e74ac5a2bd6ce6d64f5bbfc1fd0ff1079e34b,ecf51b34627188e463d13a5f936534bcf79ddc08da9e190eb6de55a8f3cfbac1,"Indeed, anyone content with treating optimization as a black box device to minimize objective functions in a simple setting might well content oneself with the knowledge that there exists an array of incantations of such a procedure (with names such as ""SGD"" and ""Adam"")."
+f2d61d8461b16cb31516ad553139210c2180041a018622b2bcaf192ef9294048,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,ctx_724a58cef32d03f9a90cc4d9,backup,d2l_natural_language_processing_applications_sentiment_analysis_rnn_b024,d2l_natural_language_processing_applications,sentence_6504a010cb03245a1aa6b3d7,BACKUP,B1,C1,SAME_SENSE,adam,537a356344164f7587abc26e44dfefd681557447e126010173b425f633e7affd,58fbfceae113a0876a696822d36ab2c98ee9d93ccff6bdfe0d94260e7d761d6e,"```{.python .input}
+lr, num_epochs = 0.01, 5
+trainer = gluon.Trainer(net.collect_params(), 'adam', {'learning_rate': lr})
+loss = gluon.loss.SoftmaxCrossEntropyLoss()
+d2l.train_ch13(net, train_iter, test_iter, loss, trainer, num_epochs, devices)
+```"
+f2d61d8461b16cb31516ad553139210c2180041a018622b2bcaf192ef9294048,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,ctx_c4effad022bd5e216d2eaf51,backup;definition;part_of_speech,d2l_recurrent_neural_networks_sequence_b023,d2l_recurrent_neural_networks,sentence_babc3cd0613c442b6ef9cb75,BACKUP,B2,C1,SAME_SENSE,adam,9e344e27d68e958e0651dba50b9f91817d9b714ecbe45dd520889a63b3f2dc67,199343a9ea796848a42eabc616f91999879e7dafd214b8eb8c7b955bd832fe64,"```{.python .input}
+def train(net, train_iter, loss, epochs, lr):
+    trainer = gluon.Trainer(net.collect_params(), 'adam',
+                            {'learning_rate': lr})
+    for epoch in range(epochs):
+        for X, y in train_iter:
+            with autograd.record():
+                l = loss(net(X), y)
+            l.backward()
+            trainer.step(batch_size)
+        print(f'epoch {epoch + 1}, '
+              f'loss: {d2l.evaluate_loss(net, train_iter, loss):f}')
+
+net = get_net()
+train(net, train_iter, loss, 5, 0.01)
+```
+
+```{.python .input}
+#@tab pytorch
+def train(net, train_iter, loss, epochs, lr):
+    trainer = torch.optim.Adam(net.parameters(), lr)
+    for epoch in range(epochs):
+        for X, y in train_iter:
+            trainer.zero_grad()
+            l = loss(net(X), y)
+            l.sum().backward()
+            trainer.step()
+        print(f'epoch {epoch + 1}, '
+              f'loss: {d2l.evaluate_loss(net, train_iter, loss):f}')
+
+net = get_net()
+train(net, train_iter, loss, 5, 0.01)
+```
+
+```{.python .input}
+#@tab tensorflow
+def train(net, train_iter, loss, epochs, lr):
+    trainer = tf.keras.optimizers.Adam()
+    for epoch in range(epochs):
+        for X, y in train_iter:
+            with tf.GradientTape() as g:
+                out = net(X)
+                l = loss(y, out)
+                params = net.trainable_variables
+                grads = g.gradient(l, params)
+            trainer.apply_gradients(zip(grads, params))
+        print(f'epoch {epoch + 1}, '
+              f'loss: {d2l.evaluate_loss(net, train_iter, loss):f}')
+
+net = get_net()
+train(net, train_iter, loss, 5, 0.01)
+```
+
+## Prediction
+
+Since the training loss is small, we would expect our model to work well."
+f2d61d8461b16cb31516ad553139210c2180041a018622b2bcaf192ef9294048,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,ctx_feb069ef1ecb8e58ef71c482,primary;definition;part_of_speech,d2l_multilayer_perceptrons_kaggle_house_price_b053,d2l_multilayer_perceptrons,sentence_41b5be4eb9f5dfc1d0103e9d,PRIMARY,C1,C1,SAME_SENSE,Adam,06859437c95124e62cf198f1efaf7e41b748e915e89a59fd6cc43947260da746,12df2ae63d46c527cfd05c30ed3d18e08fede11c94f259c9f130d78d9a652626,"Unlike in previous sections, [**our training functions
+will rely on the Adam optimizer
+(we will describe it in greater detail later)**]."
+f2d61d8461b16cb31516ad553139210c2180041a018622b2bcaf192ef9294048,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,ctxx_01a3b60f74c769d4a3b645f0,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,Adam,10a7e75190f92056bdb8e375ccfcba0c280d251fcf3e03aa42813a196e916c9f,bc96d774b061910db3c138763de8b73e71031dbfaf992b78652d3304c0d62995,"Synthetic: Adam appears in the contributor list as a person's name, not as an optimizer."
+6b4106f4dedddb4eff68780711a794a16d50358ad93f0925f07c96f49508bc21,d2lce_539543a2360129e2a2fa1b6d,d2lce_539543a2360129e2a2fa1b6d,ctx_0cbe39511747c15a73cb01c5,primary;definition,d2l_multilayer_perceptrons_mlp_b004,d2l_multilayer_perceptrons,sentence_07db83b3f2ea24b4ec529dbe,PRIMARY,C3,C4,SAME_SENSE,affine transformation,e4659dd87bd73e47f1b769b1dadc13f19110f6cfab4ffe8dbe372244373d57cf,aaa9d3dbdb06d599dd2d55606ef2d6ed36ddd0b24c455559bec70dc361c44dd3,"We have described the affine transformation in
+:numref:`subsec_linear_model`,
+which is a linear transformation added by a bias."
+6b4106f4dedddb4eff68780711a794a16d50358ad93f0925f07c96f49508bc21,d2lce_539543a2360129e2a2fa1b6d,d2lce_539543a2360129e2a2fa1b6d,ctx_107aaac926dcdc82c5d33f4c,primary,d2l_multilayer_perceptrons_mlp_b020,d2l_multilayer_perceptrons,sentence_c446c648e27e3e5c58a44827,PRIMARY,C1,C2,SAME_SENSE,affine transformation,a5aa30e997f544e69a33ba45007e06200bba28b855378df009a3e4bd3cf1459d,224c3f93316cf9981a1f2ea2f1bf489ce13d22b2f64a76e6ecaf887537f7df12,"In order to realize the potential of multilayer architectures,
+we need one more key ingredient: a
+nonlinear *activation function* $\sigma$
+to be applied to each hidden unit
+following the affine transformation."
+6b4106f4dedddb4eff68780711a794a16d50358ad93f0925f07c96f49508bc21,d2lce_539543a2360129e2a2fa1b6d,d2lce_539543a2360129e2a2fa1b6d,ctx_7121f7a9fa4ce1bf37a4b411,primary;definition;part_of_speech,d2l_linear_networks_linear_regression_b011,d2l_linear_networks,sentence_b46a957553bea93a1be2b5b3,PRIMARY,C2,C4,SAME_SENSE,affine transformation,f0c931bf103a8ef7b7c2957d5a8e5cf575fc31d73bb7d08efa39d8251ff48081,f492e0684168c0e621f765417f7397d52fde27783bc2cb41ef11999ce0d1e882,"Strictly speaking, :eqref:`eq_price-area` is an *affine transformation*
+of input features,
+which is characterized by
+a *linear transformation* of features via weighted sum, combined with
+a *translation* via the added bias."
+6b4106f4dedddb4eff68780711a794a16d50358ad93f0925f07c96f49508bc21,d2lce_539543a2360129e2a2fa1b6d,d2lce_539543a2360129e2a2fa1b6d,ctx_77b69954271f4ff69e4986ca,backup,d2l_multilayer_perceptrons_mlp_b004,d2l_multilayer_perceptrons,sentence_99c102e2d13805c151b8653b,BACKUP,B2,C2,SAME_SENSE,affine transformation,d0c4b7e21787bdd5616ba6a87af105817f5f12859e673975a6a0599b0af59cbe,c7a7e5d87ac941e780f0284553ebc47af8e2603949ecc130530fcbed9f68c841,"If our labels truly were related
+to our input data by an affine transformation,
+then this approach would be sufficient."
+6b4106f4dedddb4eff68780711a794a16d50358ad93f0925f07c96f49508bc21,d2lce_539543a2360129e2a2fa1b6d,d2lce_539543a2360129e2a2fa1b6d,ctx_8cc78c2ac5c8304bb46fbe21,backup,d2l_convolutional_modern_batch_norm_b006,d2l_convolutional_modern,sentence_d02e654dc9063142820c0839,BACKUP,B3,C2,SAME_SENSE,affine transformation,c110b77c0cfaecb3989a913af076a415c835f65a9bab86224b460ce290dc2f0a,7107d63442aa5a8339b538ea655b76d54291f94ae30b87d215be5b7704091f82,"Second, for a typical MLP or CNN, as we train,
+the variables (e.g., affine transformation outputs in MLP)
+in intermediate layers 
+may take values with widely varying magnitudes:
+both along the layers from the input to the output, across units in the same layer,
+and over time due to our updates to the model parameters."
+6b4106f4dedddb4eff68780711a794a16d50358ad93f0925f07c96f49508bc21,d2lce_539543a2360129e2a2fa1b6d,d2lce_539543a2360129e2a2fa1b6d,ctx_a3223aad900f9e33b14c8db7,backup;part_of_speech,d2l_multilayer_perceptrons_mlp_b004,d2l_multilayer_perceptrons,sentence_48cffd99a05596627d6fb189,BACKUP,B1,C2,SAME_SENSE,affine transformation,8817459fa764f174032ec072aa65f3ed9c8d5ffebd317f84766fa0fbfffd1845,79d03cda58c7f4551fa76983f002f4d4c083e92e6a27b109658e67366ed93479,"This model mapped our inputs directly to our outputs
+via a single affine transformation,
+followed by a softmax operation."
+6b4106f4dedddb4eff68780711a794a16d50358ad93f0925f07c96f49508bc21,d2lce_539543a2360129e2a2fa1b6d,d2lce_539543a2360129e2a2fa1b6d,ctx_a9050a3dc5a8ccd5afb793f7,primary,d2l_linear_networks_linear_regression_b012,d2l_linear_networks,sentence_c92b0ae109bc793e79712a07,PRIMARY,C4,C4,SAME_SENSE,affine transformation,cc34972df8e96c06781fac08b69df8a57e331625654104ca2f371b5fd30c61e5,32abb196d126b60654ef1524ac79d36bdd5923c498e0914e309d20048d5dcf69,"Models whose output prediction
+is determined by the affine transformation of input features
+are *linear models*,
+where the affine transformation is specified by the chosen weights and bias."
+6b4106f4dedddb4eff68780711a794a16d50358ad93f0925f07c96f49508bc21,d2lce_539543a2360129e2a2fa1b6d,d2lce_539543a2360129e2a2fa1b6d,ctx_fb1febc2efebf2be14297c4f,primary,d2l_linear_networks_softmax_regression_b029,d2l_linear_networks,sentence_aefada9c81ed6acf6476805f,PRIMARY,C5,C4,SAME_SENSE,affine transformation,380778e345298d9adca5af5588148f1e737df612ebbcf88add1796ef7dbd05bf,a9f9c69812d3067549cda607bccd414861fe4036d0c5c97c9373a283dae8ef58,"Although softmax is a nonlinear function,
+the outputs of softmax regression are still *determined* by
+an affine transformation of input features;
+thus, softmax regression is a linear model."
+6b4106f4dedddb4eff68780711a794a16d50358ad93f0925f07c96f49508bc21,d2lce_539543a2360129e2a2fa1b6d,d2lce_539543a2360129e2a2fa1b6d,ctxx_da7c4af0bfaae364e2438bee,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,affine transformation,6cb862cbe06bb14dfeaa681365404910b3d81de783ae6ce8f4d43acc65fc813a,9117db4a8be6e133737ddd09f710cb2d5dd84762a75a2498a817c37d1cc8e92b,[Synthetic] Her affine transformation after the vacation made her much more patient with students.
+12d9e462e530d11cd6e7a74b52e8215159a4c12972912c90256d2b670bbbfd9a,d2lce_28ab2b419f6b871a62a06060,d2lce_28ab2b419f6b871a62a06060,ctx_12eba5ccda65530aa7ad9f62,primary;definition,d2l_natural_language_processing_pretraining_approx_training_b021,d2l_natural_language_processing_pretraining,sentence_489ef4820301d3293b9a9a0d,PRIMARY,C4,C1,SAME_SENSE,approximate training,389ad33006b014d3cf71323ca31fd4e7a0133576b48f9a038a44607a76fc2b41,f1da1396d7a1451e199c470b810278dc0513875e151435edefd5e04982443a36,"As an alternative approximate training method,
+*hierarchical softmax*
+uses the binary tree,
+a data structure
+illustrated in :numref:`fig_hi_softmax`,
+where each leaf node
+of the tree represents
+a word in dictionary $\mathcal{V}$."
+12d9e462e530d11cd6e7a74b52e8215159a4c12972912c90256d2b670bbbfd9a,d2lce_28ab2b419f6b871a62a06060,d2lce_28ab2b419f6b871a62a06060,ctx_23465c1f0b2d1114ed78c140,backup;part_of_speech,d2l_natural_language_processing_pretraining_approx_training_b001,d2l_natural_language_processing_pretraining,sentence_adac976e3d1a06d789f39eb2,BACKUP,B3,C2,SAME_SENSE,Approximate Training,e30bf86a21211b462cbbe4a84ce40a35fd31b1247c9c4dcbe306d64ef9666cb9,22216fa903725df432bc315e0ebd9bc5601a7bf4894d4287615d0313bdbdbacf,"# Approximate Training
+:label:`sec_approx_train`"
+12d9e462e530d11cd6e7a74b52e8215159a4c12972912c90256d2b670bbbfd9a,d2lce_28ab2b419f6b871a62a06060,d2lce_28ab2b419f6b871a62a06060,ctx_255f8d1d0d00e96535232367,primary;definition,d2l_natural_language_processing_pretraining_approx_training_b030,d2l_natural_language_processing_pretraining,sentence_130f411fe3dc175e430d9970,PRIMARY,C5,C3,SAME_SENSE,approximate training,6ee6a5f89d589859acdae43168aa75e2dae38b1b747ddc4cc65a1365ed722b33,112672a5257b5fecaa016571d4d24f21c282fb19343b5da244f7299e78f739f3,"Fortunately, since $L(w_o)-1$ is on the order of $\mathcal{O}(\text{log}_2|\mathcal{V}|)$ due to the binary tree structure,
+when the dictionary size $\mathcal{V}$ is huge,
+the computational cost for  each training step using hierarchical softmax
+is significantly reduced compared with that
+without approximate training."
+12d9e462e530d11cd6e7a74b52e8215159a4c12972912c90256d2b670bbbfd9a,d2lce_28ab2b419f6b871a62a06060,d2lce_28ab2b419f6b871a62a06060,ctx_3ac4117865b320b21d1179ce,primary;definition,d2l_natural_language_processing_pretraining_approx_training_b004,d2l_natural_language_processing_pretraining,sentence_75973e48121da43210ba0854,PRIMARY,C1,C1,SAME_SENSE,approximate training,77d5462f993d1c1febdd5f268dec0f07bc8c4fe4be7c007f996a3ee84a23e515,36fb1622202415764029ab309e7da2bbf986b486268cbc9405d6020a206db275,"In order to reduce the aforementioned computational complexity, this section will introduce two approximate training methods:
+*negative sampling* and *hierarchical softmax*."
+12d9e462e530d11cd6e7a74b52e8215159a4c12972912c90256d2b670bbbfd9a,d2lce_28ab2b419f6b871a62a06060,d2lce_28ab2b419f6b871a62a06060,ctx_3ef031323fb6394442845745,primary,d2l_natural_language_processing_pretraining_approx_training_b004,d2l_natural_language_processing_pretraining,sentence_4ec673ee2fcee75adf89b472,PRIMARY,C2,C2,SAME_SENSE,approximate training,8bac19c031451f12730fa2f062ec909ab87ea7c51f4cc34120559a2905cde6f6,80ac4cc0505af6b714efad6765a59f649194dda146f1f7103646b48521af2f0b,"Due to the similarity
+between the skip-gram model and
+the continuous bag of words model,
+we will just take the skip-gram model as an example
+to describe these two approximate training methods."
+12d9e462e530d11cd6e7a74b52e8215159a4c12972912c90256d2b670bbbfd9a,d2lce_28ab2b419f6b871a62a06060,d2lce_28ab2b419f6b871a62a06060,ctx_85acded56d4e4fc62d1ebf6b,backup;part_of_speech,d2l_natural_language_processing_pretraining_word_embedding_dataset_b002,d2l_natural_language_processing_pretraining,sentence_273677414d689607f103485e,BACKUP,B1,C2,SAME_SENSE,approximate training,b04242fd2e127d937eb025eed9cfacb54e0e142359dd5e51135a7f5b4c095594,1203bbbd383cb52b989e06dabe77750b0f98c508f7d3b7cfeacb57cfecaf4f5b,"Now that we know the technical details of 
+the word2vec models and approximate training methods,
+let us walk through their implementations."
+12d9e462e530d11cd6e7a74b52e8215159a4c12972912c90256d2b670bbbfd9a,d2lce_28ab2b419f6b871a62a06060,d2lce_28ab2b419f6b871a62a06060,ctx_d114388fd9000ff629d180ce,primary,d2l_natural_language_processing_pretraining_word_embedding_dataset_b031,d2l_natural_language_processing_pretraining,sentence_933d64e6bd74a8d616d072a3,PRIMARY,C3,C3,SAME_SENSE,approximate training,82da75b8c4c5674c4e0a38440ec51dbbdb2a6a6a6f4187c7669f7d33edba3da3,ae3cb83cf3b4396e1db74f9ad5e4fc6295bb33580c9b7d2e6f961f3a3b1be4ba,We use negative sampling for approximate training.
+12d9e462e530d11cd6e7a74b52e8215159a4c12972912c90256d2b670bbbfd9a,d2lce_28ab2b419f6b871a62a06060,d2lce_28ab2b419f6b871a62a06060,ctx_edcd80c52e50572aaffd0ddf,backup,d2l_natural_language_processing_pretraining_approx_training_b022,d2l_natural_language_processing_pretraining,sentence_8fc684b979f03a4be6cf50b4,BACKUP,B2,C2,SAME_SENSE,approximate training,d021c21dc2f4e3c0f3970470a16b4679ffd28fde279258af44581dd203f107a7,0ac8636805d2db0e05f0b6f0e44665d05acd2a2120a97229dd39a98d42781158,"![Hierarchical softmax for approximate training, where each leaf node of the tree represents a word in the dictionary.](../img/hi-softmax.svg)
+:label:`fig_hi_softmax`"
+12d9e462e530d11cd6e7a74b52e8215159a4c12972912c90256d2b670bbbfd9a,d2lce_28ab2b419f6b871a62a06060,d2lce_28ab2b419f6b871a62a06060,ctxx_24e9a9c879174e4c14787b23,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,Approximate training,bff7e74e6b1e5354fd1cdec04b3974d0f3ab290ccf08f2201546a17aa43aaaaf,8ff1bdf0f5802eed2fd6657b150c6661dc9417b05a79966ae444006debe927bc,"[Synthetic] Approximate training cuts computation, whereas exact training evaluates the full objective each step."
+d8b00b84479567fb8372b77ba2c35f2108a61988d2175d209dedd8dbc24a93e5,d2lce_18c3da2d5bdd6d05a83982fa,d2lce_18c3da2d5bdd6d05a83982fa,ctx_320122f21daa284575796213,primary,d2l_attention_mechanisms_attention_scoring_functions_b009,d2l_attention_mechanisms,sentence_f22aad6e2065f76d2658724e,PRIMARY,C3,C1,SAME_SENSE,attention scoring function,8d12b216f639e4a9f2a9edb1970d9a5fc47f7e2b6308642770f92870c8954a46,c7be0a9246bc095a583a96aa489e1cfa7e5430d173287e1dcdb44cab45e20d62,"As we can see,
+different choices of the attention scoring function $a$
+lead to different behaviors of attention pooling."
+d8b00b84479567fb8372b77ba2c35f2108a61988d2175d209dedd8dbc24a93e5,d2lce_18c3da2d5bdd6d05a83982fa,d2lce_18c3da2d5bdd6d05a83982fa,ctx_4619262486ac659e6273c135,primary,d2l_attention_mechanisms_attention_scoring_functions_b027,d2l_attention_mechanisms,sentence_768a18b26c71077f857a5443,PRIMARY,C5,C1,SAME_SENSE,scoring function,3d62e13434d993945036520edfe94f8e43bc1162fe070e40ca38df75ed532fda,cac587b3306df7595938d1a5d19919dd6645e1b11cd50ecd5ced47105e88a002,"Given a query $\mathbf{q} \in \mathbb{R}^q$
+and a key $\mathbf{k} \in \mathbb{R}^k$,
+the *additive attention* scoring function"
+d8b00b84479567fb8372b77ba2c35f2108a61988d2175d209dedd8dbc24a93e5,d2lce_18c3da2d5bdd6d05a83982fa,d2lce_18c3da2d5bdd6d05a83982fa,ctx_8116f867673a73f0e047a71a,primary;definition,d2l_attention_mechanisms_attention_scoring_functions_b007,d2l_attention_mechanisms,sentence_ea729d0d3da5b9eb0e468e4f,PRIMARY,C2,C1,SAME_SENSE,attention scoring function,875704d916d2baad02d02a5998295c909b9c825d5378d3af78fa3a3e7d6713d8,3de593eb6f2444d21b8431354645f3face9f06c0d70d5348a91c3bb9d90e862e,"where
+the attention weight (scalar) for the query $\mathbf{q}$
+and key $\mathbf{k}_i$
+is computed by
+the softmax operation of
+an attention scoring function $a$ that maps two vectors to a scalar:"
+d8b00b84479567fb8372b77ba2c35f2108a61988d2175d209dedd8dbc24a93e5,d2lce_18c3da2d5bdd6d05a83982fa,d2lce_18c3da2d5bdd6d05a83982fa,ctx_aff8a66e4ec4b4cda7dbdf1b,primary;part_of_speech,d2l_attention_mechanisms_attention_scoring_functions_b003,d2l_attention_mechanisms,sentence_ae0a25035b727e474a4ef2a5,PRIMARY,C4,C1,SAME_SENSE,attention scoring function,58c5a72324f8171aea98e91fb195b138dd2117b8f48ac270a200f0d91442050b,50f4d61cebe76da3b90991e9b685c3164d63da02399f4b52d5284eee1cb3bc00,"Denoting an attention scoring function by $a$,
+:numref:`fig_attention_output`
+illustrates how the output of attention pooling
+can be computed as a weighted sum of values."
+d8b00b84479567fb8372b77ba2c35f2108a61988d2175d209dedd8dbc24a93e5,d2lce_18c3da2d5bdd6d05a83982fa,d2lce_18c3da2d5bdd6d05a83982fa,ctx_c42a588ea67a1ab12765c55d,primary;definition;part_of_speech,d2l_attention_mechanisms_attention_scoring_functions_b002,d2l_attention_mechanisms,sentence_7198ca4624e6c6c64d319856,PRIMARY,C1,C1,SAME_SENSE,attention scoring function,7e221bb3bf65a672d5ecb6c7c01d5f5cb975881e53d70dc43927ee6293c3c500,c66aef135d03b20b2ee51f4f23cef1e452b78eddc29fc165e04e6f0511a4e68f,"Treating the exponent of the Gaussian kernel
+in :eqref:`eq_nadaraya-watson-gaussian`
+as an *attention scoring function* (or *scoring function* for short),
+the results of this function were
+essentially fed into
+a softmax operation."
+d8b00b84479567fb8372b77ba2c35f2108a61988d2175d209dedd8dbc24a93e5,d2lce_18c3da2d5bdd6d05a83982fa,d2lce_18c3da2d5bdd6d05a83982fa,ctx_c47eb631641cbc20179e654c,backup,d2l_attention_mechanisms_attention_scoring_functions_b040,d2l_attention_mechanisms,sentence_ea18cfa9837664aefef00cfc,BACKUP,B1,C1,SAME_SENSE,scoring function,9c369413058602e53cbb39aa2bea07e062764c04e401e71c5849c42a07017b78,eb5f200006ac9ba820a3c505edcf399d2eb6b02844dc5c136f2acea0deaf247c,"To ensure that the variance of the dot product
+still remains one regardless of vector length,
+the *scaled dot-product attention* scoring function"
+d8b00b84479567fb8372b77ba2c35f2108a61988d2175d209dedd8dbc24a93e5,d2lce_18c3da2d5bdd6d05a83982fa,d2lce_18c3da2d5bdd6d05a83982fa,ctx_ceff1252a50a323ce62c83d4,backup,d2l_attention_mechanisms_attention_scoring_functions_b027,d2l_attention_mechanisms,sentence_8dd39a9408639f7460d63a07,BACKUP,B2,C1,SAME_SENSE,scoring function,9c3c1e01c6e9f5d8ef704ee39c78f986bbd38a3c098e3336d0eb2c60b4f0d086,eccff4baee81bd285c52441e107d29a69414636e43e1f1336b67ca387f034621,"In general,
+when queries and keys are vectors of different lengths,
+we can use additive attention
+as the scoring function."
+d8b00b84479567fb8372b77ba2c35f2108a61988d2175d209dedd8dbc24a93e5,d2lce_18c3da2d5bdd6d05a83982fa,d2lce_18c3da2d5bdd6d05a83982fa,ctx_d5c7268c2ea127e80cfdfb47,backup,d2l_attention_mechanisms_attention_scoring_functions_b040,d2l_attention_mechanisms,sentence_f4912f15000fc48ca468ee43,BACKUP,B3,C1,SAME_SENSE,scoring function,fd8a5a3e74488c2bac2249e75223ca50f2dc92e564dc394a1c4b37767e7cb07a,fad54199a0586766e7801640655bd6ed8c5dbb22b7e704527cfda1c8444c8c6f,"A more computationally efficient
+design for the scoring function can be
+simply dot product."
+d8b00b84479567fb8372b77ba2c35f2108a61988d2175d209dedd8dbc24a93e5,d2lce_18c3da2d5bdd6d05a83982fa,d2lce_18c3da2d5bdd6d05a83982fa,ctxx_9e8a3fd79bdc855d1a7e0d33,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,attention scoring function,5a8c28ea48b00d5daed7d90e023ea687ebc2b20e3e861a2f54e4437689d5e408,41875f27a707ba0e748f167f94e23590c19a24f21bc095efc863d6343a235b1f,"Synthetic boundary probe: ""attention scoring function"" is quoted here only as a document label, not as an occurrence of the reviewed D2L sense."
+8bf0d0a1af9f3d1d64f0ecdac5710366e56317c4f769d2d826cbbf54854c3550,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctx_2a4b835e03acf05a36784e49,backup,d2l_computer_vision_ssd_b032,d2l_computer_vision,sentence_807f2b5f4d53546ef88545a4,BACKUP,B1,C3,SAME_SENSE,BatchNorm,4acc9619e77ac14c457d4f85b81a34c603eaa25995446bbe27457c1a83bd480c,e1c59cfc6bdfeafa6a5e4821a7098bb4f97060c277664c3c6899ac13b814adca,"```{.python .input}
+def down_sample_blk(num_channels):
+    blk = nn.Sequential()
+    for _ in range(2):
+        blk.add(nn.Conv2D(num_channels, kernel_size=3, padding=1),
+                nn.BatchNorm(in_channels=num_channels),
+                nn.Activation('relu'))
+    blk.add(nn.MaxPool2D(2))
+    return blk
+```"
+8bf0d0a1af9f3d1d64f0ecdac5710366e56317c4f769d2d826cbbf54854c3550,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctx_2bba7bfd16dd89a39a9179f1,primary;definition,d2l_attention_mechanisms_transformer_b025,d2l_attention_mechanisms,sentence_abda4fb08ad484f9abe2d599,PRIMARY,C3,C3,SAME_SENSE,BatchNorm,323ac492e17ba9ea8c45e44ab586c02222ef6a171d309402f77e5db4dbc559d6,24d23e5c86835d2936aa96c5e7f32ab740d9539b4a6e73b6b8d51dc1518a59bf,"```{.python .input}
+ln = nn.LayerNorm()
+ln.initialize()
+bn = nn.BatchNorm()
+bn.initialize()
+X = d2l.tensor([[1, 2], [2, 3]])
+# Compute mean and variance from `X` in the training mode
+with autograd.record():
+    print('layer norm:', ln(X), '\nbatch norm:', bn(X))
+```"
+8bf0d0a1af9f3d1d64f0ecdac5710366e56317c4f769d2d826cbbf54854c3550,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctx_5799f6d95cc38b1ae654394a,primary,d2l_convolutional_modern_batch_norm_b038,d2l_convolutional_modern,sentence_3f14a3f9e581a077bc6c7494,PRIMARY,C4,C2,SAME_SENSE,BatchNorm,31ed74ab78f99ca6ae29eb091ac0fa086f71bc77425843c6bb828b9b84e7ae0e,dec09487513b445ffcff92b12b962c6ac8ea4e1c0374b614762fe129af9c24d0,"```{.python .input}
+class BatchNorm(nn.Block):
+    # `num_features`: the number of outputs for a fully-connected layer
+    # or the number of output channels for a convolutional layer."
+8bf0d0a1af9f3d1d64f0ecdac5710366e56317c4f769d2d826cbbf54854c3550,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctx_8f8f50278fcee237079dc232,primary;definition;part_of_speech,d2l_convolutional_modern_batch_norm_b036,d2l_convolutional_modern,sentence_1fa96965f35b89f840155d8d,PRIMARY,C1,C1,SAME_SENSE,BatchNorm,54b800409b6fa73e9798e375441c62f9ccba45630cedced70409a6a5dd839fd0,f5de4a017b5f777064a003df2e16935426ee9aa0d3686143e7f9d40020fd4eec,"We can now [**create a proper `BatchNorm` layer.**]
+Our layer will maintain proper parameters
+for scale `gamma` and shift `beta`,
+both of which will be updated in the course of training."
+8bf0d0a1af9f3d1d64f0ecdac5710366e56317c4f769d2d826cbbf54854c3550,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctx_97626c8a07aa5d9bfd5cd128,backup;part_of_speech,d2l_computational_performance_multiple_gpus_concise_b007,d2l_computational_performance,sentence_0546ad47666330d1edd4c5aa,BACKUP,B2,C3,SAME_SENSE,BatchNorm,1caf663e80ad05b6a79972e9f98c5c1d6826cce45932cf8d73130a2713a7f1ef,6a923d2f055f5ad0039835a600926fc75b1b41aaeed5231b7269c6a7384c95bc,"```{.python .input}
+#@save
+def resnet18(num_classes):
+    """"""A slightly modified ResNet-18 model.""""""
+    def resnet_block(num_channels, num_residuals, first_block=False):
+        blk = nn.Sequential()
+        for i in range(num_residuals):
+            if i == 0 and not first_block:
+                blk.add(d2l.Residual(
+                    num_channels, use_1x1conv=True, strides=2))
+            else:
+                blk.add(d2l.Residual(num_channels))
+        return blk
+
+    net = nn.Sequential()
+    # This model uses a smaller convolution kernel, stride, and padding and
+    # removes the maximum pooling layer
+    net.add(nn.Conv2D(64, kernel_size=3, strides=1, padding=1),
+            nn.BatchNorm(), nn.Activation('relu'))
+    net.add(resnet_block(64, 2, first_block=True),
+            resnet_block(128, 2),
+            resnet_block(256, 2),
+            resnet_block(512, 2))
+    net.add(nn.GlobalAvgPool2D(), nn.Dense(num_classes))
+    return net
+```"
+8bf0d0a1af9f3d1d64f0ecdac5710366e56317c4f769d2d826cbbf54854c3550,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctx_a112ae80926b023797d45e91,backup;part_of_speech,d2l_generative_adversarial_networks_dcgan_b022,d2l_generative_adversarial_networks,sentence_d6748db1ede7f499b6f6de08,BACKUP,B3,C3,SAME_SENSE,BatchNorm,62c4a1a077bdd330e04cfb93c3ecbb4b6c87c486fb43121c45a276f41bea53eb,29ada0b205afd1283a08de4fe23a7ad7f1d9b9d4a82bac27a1d25488b5014cd5,"```{.python .input}
+class G_block(nn.Block):
+    def __init__(self, channels, kernel_size=4,
+                 strides=2, padding=1, **kwargs):
+        super(G_block, self).__init__(**kwargs)
+        self.conv2d_trans = nn.Conv2DTranspose(
+            channels, kernel_size, strides, padding, use_bias=False)
+        self.batch_norm = nn.BatchNorm()
+        self.activation = nn.Activation('relu')
+
+    def forward(self, X):
+        return self.activation(self.batch_norm(self.conv2d_trans(X)))
+```"
+8bf0d0a1af9f3d1d64f0ecdac5710366e56317c4f769d2d826cbbf54854c3550,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctx_a70b42d220709405815636f8,primary,d2l_convolutional_modern_batch_norm_b039,d2l_convolutional_modern,sentence_f93e61997ff95f848668d9e8,PRIMARY,C5,C2,SAME_SENSE,BatchNorm,af1bab5fd0ea15c6ba743ee7ddf406bce845b5e87c848fa42f6a8e8aaaffc7cb,610c1fbcdb6d37037139f424220e2e11011eaa4b0342e88691c43a97bd61f9ad,"```{.python .input}
+#@tab pytorch
+class BatchNorm(nn.Module):
+    # `num_features`: the number of outputs for a fully-connected layer
+    # or the number of output channels for a convolutional layer."
+8bf0d0a1af9f3d1d64f0ecdac5710366e56317c4f769d2d826cbbf54854c3550,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctx_cc13b838430cc6b65f7256c9,primary;definition,d2l_convolutional_modern_batch_norm_b040,d2l_convolutional_modern,sentence_4cb7687731bad544e6b0d420,PRIMARY,C2,C2,SAME_SENSE,BatchNorm,e1773aa79e5af5c3d2cfc320c7c866c0e428908ebb7c33203f5bd331329a8f08,13171de3623c4ea6f301aecdc1166b6ded4d2c268c8ed686f7dcd28d54abd10c,"```{.python .input}
+#@tab tensorflow
+class BatchNorm(tf.keras.layers.Layer):
+    def __init__(self, **kwargs):
+        super(BatchNorm, self).__init__(**kwargs)
+
+    def build(self, input_shape):
+        weight_shape = [input_shape[-1], ]
+        # The scale parameter and the shift parameter (model parameters) are
+        # initialized to 1 and 0, respectively
+        self.gamma = self.add_weight(name='gamma', shape=weight_shape,
+            initializer=tf.initializers.ones, trainable=True)
+        self.beta = self.add_weight(name='beta', shape=weight_shape,
+            initializer=tf.initializers.zeros, trainable=True)
+        # The variables that are not model parameters are initialized to 0
+        self.moving_mean = self.add_weight(name='moving_mean',
+            shape=weight_shape, initializer=tf.initializers.zeros,
+            trainable=False)
+        self.moving_variance = self.add_weight(name='moving_variance',
+            shape=weight_shape, initializer=tf.initializers.ones,
+            trainable=False)
+        super(BatchNorm, self).build(input_shape)
+
+    def assign_moving_average(self, variable, value):
+        momentum = 0.9
+        delta = variable * momentum + value * (1 - momentum)
+        return variable.assign(delta)
+
+    @tf.function
+    def call(self, inputs, training):
+        if training:
+            axes = list(range(len(inputs.shape) - 1))
+            batch_mean = tf.reduce_mean(inputs, axes, keepdims=True)
+            batch_variance = tf.reduce_mean(tf.math.squared_difference(
+                inputs, tf.stop_gradient(batch_mean)), axes, keepdims=True)
+            batch_mean = tf.squeeze(batch_mean, axes)
+            batch_variance = tf.squeeze(batch_variance, axes)
+            mean_update = self.assign_moving_average(
+                self.moving_mean, batch_mean)
+            variance_update = self.assign_moving_average(
+                self.moving_variance, batch_variance)
+            self.add_update(mean_update)
+            self.add_update(variance_update)
+            mean, variance = batch_mean, batch_variance
+        else:
+            mean, variance = self.moving_mean, self.moving_variance
+        output = batch_norm(inputs, moving_mean=mean, moving_var=variance,
+            beta=self.beta, gamma=self.gamma, eps=1e-5)
+        return output
+```"
+8bf0d0a1af9f3d1d64f0ecdac5710366e56317c4f769d2d826cbbf54854c3550,d2lce_4abd762bcd34d370b4fe6498,d2lce_4abd762bcd34d370b4fe6498,ctxx_e991ae3e7596cfe8d1ca56f6,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,BatchNorm,f1bfe24cf0dfe6603efd19002ff022b990404a24617d715887e4be43b1c00788,9f3dd0e2e9067ab75a44a853525f96aa60a5a4faf4fdd2826e8f57711121e691,"Synthetic: batch norm describes the normalization technique in general, while BatchNorm here is the specific layer/class name used in code."
+c743d8a3fa5be7d21ef83dd489f0d22fa770364741672836c512c0811c47c88e,d2lce_20a7e6887718c68fb6b88a05,d2lce_20a7e6887718c68fb6b88a05,ctx_14774fa1cfce5a1a3478275f,backup,d2l_natural_language_processing_applications_natural_language_inference_attention_b019,d2l_natural_language_processing_applications,sentence_b2be10f9ae2a3e28bdddcaa1,BACKUP,B2,C1,SAME_SENSE,beta,de93c3652d6109e71a4536355beea2d2f3d13059a152f382eab759dd5293456e,4e45f7e73d0a7e7d4c3051f9c2d476527f8062f4bc51e68678cf93d167e7c2d7,"$$
+\boldsymbol{\beta}_i = \sum_{j=1}^{n}\frac{\exp(e_{ij})}{ \sum_{k=1}^{n} \exp(e_{ik})} \mathbf{b}_j."
+c743d8a3fa5be7d21ef83dd489f0d22fa770364741672836c512c0811c47c88e,d2lce_20a7e6887718c68fb6b88a05,d2lce_20a7e6887718c68fb6b88a05,ctx_4cfe5e8d436f58421a53ed72,primary;definition;part_of_speech,d2l_convolutional_modern_batch_norm_b011,d2l_convolutional_modern,sentence_19533f704e6a188cae54194b,PRIMARY,C4,C1,SAME_SENSE,beta,8f4bc2a0b269f3f320210ed2950adacc6095c8d75b2fe43dc945822e29e954b5,c81f0afeba0ed9fac67f409c235b7fb7552f82c69458290d9ad250c3de99c303,"$$\mathrm{BN}(\mathbf{x}) = \boldsymbol{\gamma} \odot \frac{\mathbf{x} - \hat{\boldsymbol{\mu}}_\mathcal{B}}{\hat{\boldsymbol{\sigma}}_\mathcal{B}} + \boldsymbol{\beta}.$$
+:eqlabel:`eq_batchnorm`"
+c743d8a3fa5be7d21ef83dd489f0d22fa770364741672836c512c0811c47c88e,d2lce_20a7e6887718c68fb6b88a05,d2lce_20a7e6887718c68fb6b88a05,ctx_60049e1f8e96ead596f5d3a2,primary;definition,d2l_convolutional_modern_batch_norm_b012,d2l_convolutional_modern,sentence_26fdb5d49e1cbb61731af4a1,PRIMARY,C2,C1,SAME_SENSE,beta,c60f92ae2e863b84caf067fec369c9eda27717196272d7cc672f20a92fe3d2f5,bfcfa6d7d41a96b301f04c85de38b90447732a1304062a0da192f5b57a125eb3,"Note that $\boldsymbol{\gamma}$ and $\boldsymbol{\beta}$ are
+ parameters that need to be learned jointly with the other model parameters."
+c743d8a3fa5be7d21ef83dd489f0d22fa770364741672836c512c0811c47c88e,d2lce_20a7e6887718c68fb6b88a05,d2lce_20a7e6887718c68fb6b88a05,ctx_6c3c6612ebc8fab20277caea,primary;definition,d2l_convolutional_modern_batch_norm_b012,d2l_convolutional_modern,sentence_a6cd5581e6e5eb14ac2087a4,PRIMARY,C3,C1,SAME_SENSE,beta,1ddc8ada6c4695bde42aa441ed25d5bace8507be31f789400982ec33a46de305,833aa1d94ad9ace6c7d57621f4d7a036f468f65e3ca2438161674432c65d9ef8,"some other magic number) is an arbitrary choice,
+we commonly include elementwise
+*scale parameter* $\boldsymbol{\gamma}$ and *shift parameter* $\boldsymbol{\beta}$
+that have the same shape as $\mathbf{x}$."
+c743d8a3fa5be7d21ef83dd489f0d22fa770364741672836c512c0811c47c88e,d2lce_20a7e6887718c68fb6b88a05,d2lce_20a7e6887718c68fb6b88a05,ctx_7f55c44f2cea0740cebddf92,primary;definition,d2l_convolutional_modern_batch_norm_b033,d2l_convolutional_modern,sentence_aab10595f7c1fc86d35a9c71,PRIMARY,C1,C1,SAME_SENSE,beta,611f6e8ceadd19c9fd7a049fbd1d5c1763c95ff7223f26880b3913a07bc2fa2d,b55350bf144f9a9ba6df9173501aeb697307b4d7ad08d6334b0a85875158853b,"Here we
+            # need to maintain the shape of `X`, so that the broadcasting
+            # operation can be carried out later
+            mean = X.mean(axis=(0, 2, 3), keepdims=True)
+            var = ((X - mean) ** 2).mean(axis=(0, 2, 3), keepdims=True)
+        # In training mode, the current mean and variance are used for the
+        # standardization
+        X_hat = (X - mean) / np.sqrt(var + eps)
+        # Update the mean and variance using moving average
+        moving_mean = momentum * moving_mean + (1.0 - momentum) * mean
+        moving_var = momentum * moving_var + (1.0 - momentum) * var
+    Y = gamma * X_hat + beta  # Scale and shift
+    return Y, moving_mean, moving_var
+```"
+c743d8a3fa5be7d21ef83dd489f0d22fa770364741672836c512c0811c47c88e,d2lce_20a7e6887718c68fb6b88a05,d2lce_20a7e6887718c68fb6b88a05,ctx_878c161653cd7f18ca9484fb,primary,d2l_convolutional_modern_batch_norm_b033,d2l_convolutional_modern,sentence_54c8e3411a2c75de2e852488,PRIMARY,C5,C1,SAME_SENSE,beta,bd97e86a77e17e5c447f9ee4ba8271f1f8fa4620774c40948f5f9ac60dc58133,a348e1fe55100dadb26d359f0f67d40f2caddf446345b7ba28a0de135f27a920,"```{.python .input}
+from d2l import mxnet as d2l
+from mxnet import autograd, np, npx, init
+from mxnet.gluon import nn
+npx.set_np()
+
+def batch_norm(X, gamma, beta, moving_mean, moving_var, eps, momentum):
+    # Use `autograd` to determine whether the current mode is training mode or
+    # prediction mode
+    if not autograd.is_training():
+        # If it is prediction mode, directly use the mean and variance
+        # obtained by moving average
+        X_hat = (X - moving_mean) / np.sqrt(moving_var + eps)
+    else:
+        assert len(X.shape) in (2, 4)
+        if len(X.shape) == 2:
+            # When using a fully-connected layer, calculate the mean and
+            # variance on the feature dimension
+            mean = X.mean(axis=0)
+            var = ((X - mean) ** 2).mean(axis=0)
+        else:
+            # When using a two-dimensional convolutional layer, calculate the
+            # mean and variance on the channel dimension (axis=1)."
+c743d8a3fa5be7d21ef83dd489f0d22fa770364741672836c512c0811c47c88e,d2lce_20a7e6887718c68fb6b88a05,d2lce_20a7e6887718c68fb6b88a05,ctx_89205c55ccfdb1cec5251eea,backup;part_of_speech,d2l_appendix_mathematics_for_deep_learning_multivariable_calculus_b116,d2l_appendix_mathematics_for_deep_learning,sentence_0d89db143bf29863a49cd78d,BACKUP,B1,C1,SAME_SENSE,beta,a9b34a2ea2ed6f06d93c4e48b048381e8648e2ddd337cbc03e3b98e99e30c891,d499f41139f2ed6812812af6e1af92b1c96c4b88e016ad89d2386af6ebbfb018,"Suppose that we have some fixed column vector $\boldsymbol{\beta}$, and we want to take the product function $f(\mathbf{x}) = \boldsymbol{\beta}^\top\mathbf{x}$, and understand how the dot product changes when we change $\mathbf{x}$."
+c743d8a3fa5be7d21ef83dd489f0d22fa770364741672836c512c0811c47c88e,d2lce_20a7e6887718c68fb6b88a05,d2lce_20a7e6887718c68fb6b88a05,ctx_ba0d4cc04149820abe45bc7c,backup;part_of_speech,d2l_optimization_convexity_b056,d2l_optimization,sentence_0075d96406d919415f7c1245,BACKUP,B3,C1,SAME_SENSE,beta,37df389ac79c0a530739cfc26741b71f44df41ab0f76df224de89621bc211500,9341b57915ea2a63aa5a543e58b3e3d3be5dd15b0c03283e493191ece625e1e1,"According to the mean value theorem,
+there exist $\alpha \in [a, x]$ and $\beta \in [x, b]$
+such that"
+c743d8a3fa5be7d21ef83dd489f0d22fa770364741672836c512c0811c47c88e,d2lce_20a7e6887718c68fb6b88a05,d2lce_20a7e6887718c68fb6b88a05,ctxx_46d8100baa5bd274aaca168a,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,beta,c4d59362ee11e7a91206861b77e6122ef18741c063f24ed14e5ea06a9870a188,6668f5438f515e50e1d64f76d02ee545db5b69a638064d3a218146ed0a6990a1,"Synthetic: In software versioning, beta refers to a pre-release testing stage, not a mathematical parameter symbol."
+390e5962b931d2715f02885278ba76bce6f33ec49e7df37536b690577bf9c64a,d2lce_80f4d6555a6ea1d2e5e881a1,d2lce_80f4d6555a6ea1d2e5e881a1,ctx_251a0545759171bb473405d4,primary;definition,d2l_recurrent_modern_bi_rnn_b037,d2l_recurrent_modern,sentence_005c09cb8bc853eb1092b037,PRIMARY,C4,C1,SAME_SENSE,bidirectional RNN,0b70b0b3eedb89c0c8cc37b9c50b44058c9431ae8a41cee17b1a1bae9ae9ff22,3658eb300b2e1525b9f5769ef2f77f8858ee95afcde215cb3f8987c4cd02ac6e,One of the key features of a bidirectional RNN is that information from both ends of the sequence is used to estimate the output.
+390e5962b931d2715f02885278ba76bce6f33ec49e7df37536b690577bf9c64a,d2lce_80f4d6555a6ea1d2e5e881a1,d2lce_80f4d6555a6ea1d2e5e881a1,ctx_4da4c97d28bf6a81e6e7e0fb,primary,d2l_natural_language_processing_applications_sentiment_analysis_rnn_b002,d2l_natural_language_processing_applications,sentence_3ce3d6cd6b4c18005972700a,PRIMARY,C5,C1,SAME_SENSE,bidirectional RNN,a88d1e941da6efd10c3b6c155506a52a75d489bf419f3752d7b5ff6e61f5ba64,f9518512b885d38e8abaf9af3ec16f235503f6d1c87b3beda209f47b956535a6,"As a specific example
+illustrated in :numref:`fig_nlp-map-sa-rnn`,
+we will represent each token
+using the pretrained GloVe model,
+and feed these token representations
+into a multilayer bidirectional RNN
+to obtain the text sequence representation,
+which will
+be transformed into 
+sentiment analysis outputs :cite:`Maas.Daly.Pham.ea.2011`."
+390e5962b931d2715f02885278ba76bce6f33ec49e7df37536b690577bf9c64a,d2lce_80f4d6555a6ea1d2e5e881a1,d2lce_80f4d6555a6ea1d2e5e881a1,ctx_6ffe6a41763c493d385a9d08,backup;part_of_speech,d2l_recurrent_modern_bi_rnn_b025,d2l_recurrent_modern,sentence_ab0a2d6ccf4534d8bf82b09a,BACKUP,B1,C1,SAME_SENSE,bidirectional RNN,f42b24bd341ceff008d7243986665641fb66e408e754138f371dcac7dd859797,fe08650dd528f96e995f8fbb74efe3eb9a94cdbf2edd8dc0a8012a7fade1ca44,:numref:`fig_birnn` illustrates the architecture of a bidirectional RNN with a single hidden layer.
+390e5962b931d2715f02885278ba76bce6f33ec49e7df37536b690577bf9c64a,d2lce_80f4d6555a6ea1d2e5e881a1,d2lce_80f4d6555a6ea1d2e5e881a1,ctx_97859a8cd0781c52d0d6f199,primary,d2l_recurrent_modern_bi_rnn_b029,d2l_recurrent_modern,sentence_a1d0023ec0c859f1fb50727f,PRIMARY,C2,C3,SAME_SENSE,Bidirectional RNNs,33e4b1454dee45bd3055685e962c022e605206ca9e5d4d3c8c7e18f9443992d8,5d09047853c17cb732ccfed5d61017e71c28bbab222fbde86cdcd05fe1422008,Bidirectional RNNs were introduced by :cite:`Schuster.Paliwal.1997`.
+390e5962b931d2715f02885278ba76bce6f33ec49e7df37536b690577bf9c64a,d2lce_80f4d6555a6ea1d2e5e881a1,d2lce_80f4d6555a6ea1d2e5e881a1,ctx_a262d765aa2b98acc9fb0307,backup;definition,d2l_recurrent_modern_bi_rnn_b037,d2l_recurrent_modern,sentence_7fcf49b4799559d64c7b563e,BACKUP,B2,C1,SAME_SENSE,bidirectional RNN,27fbd96d361e9177f262ed8f4a2fd976b86e214f3a3f1b3c386db4ab38b92654,731f6aa7c31c724523cd5f39bc9f94cf536bb272f55987da3082bfe86af97619,"Hence, if we were to use a bidirectional RNN naively we would not get a very good accuracy: during training we have past and future data to estimate the present."
+390e5962b931d2715f02885278ba76bce6f33ec49e7df37536b690577bf9c64a,d2lce_80f4d6555a6ea1d2e5e881a1,d2lce_80f4d6555a6ea1d2e5e881a1,ctx_be13633e5269ebd62d16e8f2,backup;definition;part_of_speech,d2l_recurrent_modern_bi_rnn_b025,d2l_recurrent_modern,sentence_29a51bf57acf33d03625c026,BACKUP,B3,C1,SAME_SENSE,Bidirectional RNNs,cfcfed9f8ba8fe4d2a032b2791e7b8eba53b910631eb86327a8f5f773bf5788d,f32668b6dac814d126bc4e1b0008031b2a83a96338cfca3b0d6dc26be9ed673d,*Bidirectional RNNs* add a hidden layer that passes information in a backward direction to more flexibly process such information.
+390e5962b931d2715f02885278ba76bce6f33ec49e7df37536b690577bf9c64a,d2lce_80f4d6555a6ea1d2e5e881a1,d2lce_80f4d6555a6ea1d2e5e881a1,ctx_e8b4b42870033c825829a5f6,primary,d2l_recurrent_modern_bi_rnn_b033,d2l_recurrent_modern,sentence_dd157f046b891c9ac8441939,PRIMARY,C1,C1,SAME_SENSE,bidirectional RNNs,feb327e1617e237ad7f343dcc4064b00aa769c69d52950741adf383231c161ba,0ceddb96ec8d78f072db8f4982b91f98c40ff8e5d9ad5ccb52443df115137067,"In deep bidirectional RNNs with multiple hidden layers,
+such information
+is passed on as *input* to the next bidirectional layer."
+390e5962b931d2715f02885278ba76bce6f33ec49e7df37536b690577bf9c64a,d2lce_80f4d6555a6ea1d2e5e881a1,d2lce_80f4d6555a6ea1d2e5e881a1,ctx_f66d6f0f60f34de0d401b86a,primary,d2l_recurrent_modern_bi_rnn_b026,d2l_recurrent_modern,sentence_5aacd2b8329e21d7f1d3a7bc,PRIMARY,C3,C4,SAME_SENSE,bidirectional RNN,648e0d24ea8bd6c676c678c808389cbd4fc0766e612354de046dc4489cfd48ab,8a81de44eb27af2fd298c149f4b516b1891518a6ffd21e5678b13b68a62fcbde,"![Architecture of a bidirectional RNN.](../img/birnn.svg)
+:label:`fig_birnn`"
+390e5962b931d2715f02885278ba76bce6f33ec49e7df37536b690577bf9c64a,d2lce_80f4d6555a6ea1d2e5e881a1,d2lce_80f4d6555a6ea1d2e5e881a1,ctxx_8f427929265cd736a42fb29a,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,bidirectional RNN,f3c86f987e96980376e041923e6520b8277442f9e4ad96161db46c4cbdced9f6,4473ef055dfe3e426d353204a42d31b876e7df6671c7b7db3e7749e418bb5242,"Synthetic: A bidirectional RNN reads the sequence in both directions, unlike a unidirectional RNN."
+d2f13b66e9db033b668a6f1a3fd889cfdfd954830e3aac6d9e5e945b6bd66d85,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctx_296377e3411a5f06ef38c871,primary,d2l_convolutional_neural_networks_channels_b017,d2l_convolutional_neural_networks,sentence_89a0270c9ee3bf54bf77cbb6,PRIMARY,C5,C3,SAME_SENSE,bit,4e21ccf1075ea50f2ac74b1363de9c3c55c51942cc12ba1322036c7213b11ee6,3cec07d414b8941de50c135462664e371a5af78373d91c4c7d34ea9579a50a6d,Reality is a bit more complicated than the most naive interpretations of this intuition since representations are not learned independent but are rather optimized to be jointly useful.
+d2f13b66e9db033b668a6f1a3fd889cfdfd954830e3aac6d9e5e945b6bd66d85,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctx_30cb9519a863d7ebe60dd4e0,primary;definition,d2l_convolutional_modern_resnet_b002,d2l_convolutional_modern,sentence_7ba14a82f73ae55b00c97352,PRIMARY,C3,C3,SAME_SENSE,bit,5d4f933774563d68094d324677d7119fe3d588118c84c2464fc25b2ca408b573,f904a009eb31efa8419da2df6ec391fea1361f7ec08f43da3ba3eab08ed34a4b,To make some progress we need a bit of mathematics.
+d2f13b66e9db033b668a6f1a3fd889cfdfd954830e3aac6d9e5e945b6bd66d85,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctx_48fb92c20348628ff3c83349,primary;definition,d2l_recurrent_neural_networks_bptt_b002,d2l_recurrent_neural_networks,sentence_aae689ac34173ef51565f6f0,PRIMARY,C2,C3,SAME_SENSE,bit,bae87c4fecd2ad9eb2f60f39d1543431fbf58fda35c5daba4a1aa9f8614e3817,8ea183eb7b4a29b2a352b9420082aed4c153dd791b3208067d4b62906af97686,"In this section,
+we will delve a bit more deeply
+into the details of backpropagation for sequence models and why (and how) the mathematics works."
+d2f13b66e9db033b668a6f1a3fd889cfdfd954830e3aac6d9e5e945b6bd66d85,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctx_5717eff884f463a81a21a526,backup;part_of_speech,d2l_recurrent_modern_deep_rnn_b003,d2l_recurrent_modern,sentence_f3a5b9de51991c70f685669a,BACKUP,B1,C3,SAME_SENSE,bit,8d929fdb2717afccdb8afc4410f74e757405f226adc060a602e91d880064ad9c,719a2c8de506d9117ad025d1163b1bd8cb2819d6e539c286d9830dfed68ef17b,"Within RNNs this is a bit trickier, since we first need to decide how and where to add extra nonlinearity."
+d2f13b66e9db033b668a6f1a3fd889cfdfd954830e3aac6d9e5e945b6bd66d85,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctx_6bf5da537a25d356b2e5e0ac,backup;part_of_speech,d2l_multilayer_perceptrons_mlp_b025,d2l_multilayer_perceptrons,sentence_a1cb1adeff076c6055791d07,BACKUP,B2,C3,SAME_SENSE,bit,53b60ca284c2ec12461002034ab5fac80309d595b5404a711d7864dbf248261d,6339364eec3594b19a15be0c9627fbf479c89ab09f81644392f0ab1cc931ea11,"You might think of your neural network
+as being a bit like the C programming language."
+d2f13b66e9db033b668a6f1a3fd889cfdfd954830e3aac6d9e5e945b6bd66d85,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctx_a08fef290a47362d440d8409,primary,d2l_linear_networks_softmax_regression_b045,d2l_linear_networks,sentence_90891f0ba5affe2b0311ebef,PRIMARY,C4,C3,SAME_SENSE,bit,8c1465390c4542ddfa9a3bedc301c9774d967b659d46a49d80cd3021f0aacd53,3e67e7286d0874a58b9bbf0916cee7d7a2abeb1c8fe995dfca0b6505d38fc08e,"Since the softmax and the corresponding loss are so common,
+it is worth understanding a bit better how it is computed."
+d2f13b66e9db033b668a6f1a3fd889cfdfd954830e3aac6d9e5e945b6bd66d85,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctx_bc735116b032003b647bf1d5,primary;definition;part_of_speech,d2l_preliminaries_index_b004,d2l_preliminaries,sentence_4a62aed2471a33fbe9effd56,PRIMARY,C1,C3,SAME_SENSE,bit,f64296046669180171e64557ea4e4b56430b298a7a2dd14e90a231542944889a,dc303758264ad38596c15d05907f86f684a9157a5c17b8a6ccfd8ec1db233534,"Determining which way to move each parameter at each step of an algorithm
+requires a little bit of calculus, which will be briefly introduced."
+d2f13b66e9db033b668a6f1a3fd889cfdfd954830e3aac6d9e5e945b6bd66d85,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctx_decede697ad47b1366644611,backup,d2l_deep_learning_computation_parameters_b082,d2l_deep_learning_computation,sentence_9dd0cf3c6dd3a3c42043f8b7,BACKUP,B3,C3,SAME_SENSE,bit,8099641428e5c743660c11af0cae70bc0be50f6244f422d78c18b170bb0f17c6,5a0ae09c73bd4607de6b0998aa25efaa9b47e524046ca2c9c40b3ba62dbc305b,"```{.python .input}
+#@tab tensorflow
+# tf.keras behaves a bit differently."
+d2f13b66e9db033b668a6f1a3fd889cfdfd954830e3aac6d9e5e945b6bd66d85,d2lce_53c32398310471fac3dacf35,d2lce_53c32398310471fac3dacf35,ctxx_500edc85fffab271e5a1c3df,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,bit,75e6f6f6f1bf99aa7dcd97c595f5fe20858411518f150f9cb9df206d07ac5863,1d719663ff2edb4dddf17c4bc48f1fdc93c3c17b7d6931d5a1f4ff0b9c26e3c5,"Synthetic: In information theory, a bit is a unit of information rather than just a small amount."
+14aec7b259ba74b01c91b7add539e256a571424046846c7ba7d4504fd685b5ee,d2lce_499fa9391d57e930a19f1b19,d2lce_499fa9391d57e930a19f1b19,ctx_326dc3e07d0b8de256dd37c6,primary;definition,d2l_convolutional_modern_batch_norm_b033,d2l_convolutional_modern,sentence_aab10595f7c1fc86d35a9c71,PRIMARY,C5,C4,SAME_SENSE,broadcasting,611f6e8ceadd19c9fd7a049fbd1d5c1763c95ff7223f26880b3913a07bc2fa2d,19c8f3b25aa551cbf5c66c50961edc1dbd80a90ca9285aa6758e2314d721c85b,"Here we
+            # need to maintain the shape of `X`, so that the broadcasting
+            # operation can be carried out later
+            mean = X.mean(axis=(0, 2, 3), keepdims=True)
+            var = ((X - mean) ** 2).mean(axis=(0, 2, 3), keepdims=True)
+        # In training mode, the current mean and variance are used for the
+        # standardization
+        X_hat = (X - mean) / np.sqrt(var + eps)
+        # Update the mean and variance using moving average
+        moving_mean = momentum * moving_mean + (1.0 - momentum) * mean
+        moving_var = momentum * moving_var + (1.0 - momentum) * var
+    Y = gamma * X_hat + beta  # Scale and shift
+    return Y, moving_mean, moving_var
+```"
+14aec7b259ba74b01c91b7add539e256a571424046846c7ba7d4504fd685b5ee,d2lce_499fa9391d57e930a19f1b19,d2lce_499fa9391d57e930a19f1b19,ctx_55af151b5d571b0a523981a9,primary,d2l_preliminaries_ndarray_b068,d2l_preliminaries,sentence_b9d1826133b3cc5df34a20b1,PRIMARY,C1,C1,SAME_SENSE,Broadcasting,c6080e940692f211a390b8fe261ba59b004351354ab0d4206a373d7be5a98a5f,a88f3da5a1e74380dbf06d8d073374b672c51047ac62c69c3f77c1228f1e9947,"## Broadcasting Mechanism
+:label:`subsec_broadcasting`"
+14aec7b259ba74b01c91b7add539e256a571424046846c7ba7d4504fd685b5ee,d2lce_499fa9391d57e930a19f1b19,d2lce_499fa9391d57e930a19f1b19,ctx_6b24258694566dc3b24b4311,backup;part_of_speech,d2l_linear_networks_linear_regression_b020,d2l_linear_networks,sentence_54f72ea5f0765a10339249c7,BACKUP,B2,C2,SAME_SENSE,broadcasting,f2f63029f8bfd1f7c88782747cdf32059df5b307256267f59398a48d65d0aa2b,599b62c1fee734f29c1bbb88ca8552b639f44abd3f3d9f30ab8d9876b5fcd80e,where broadcasting (see :numref:`subsec_broadcasting`) is applied during the summation.
+14aec7b259ba74b01c91b7add539e256a571424046846c7ba7d4504fd685b5ee,d2lce_499fa9391d57e930a19f1b19,d2lce_499fa9391d57e930a19f1b19,ctx_7b2efc8bfbd4cce59d02222e,backup,d2l_recurrent_modern_gru_b013,d2l_recurrent_modern,sentence_3262e24e2b460e3ca4c69e76,BACKUP,B3,C2,SAME_SENSE,broadcasting,7b5b25cf789f775fd9a8dbc30c1c631b1277680aeb3704ef4c218622328bffdd,8af9c76d74c1a492f9ee9b0d091f9d049898960a21911730661d61606ab6652c,Note that broadcasting (see :numref:`subsec_broadcasting`) is triggered during the summation.
+14aec7b259ba74b01c91b7add539e256a571424046846c7ba7d4504fd685b5ee,d2lce_499fa9391d57e930a19f1b19,d2lce_499fa9391d57e930a19f1b19,ctx_84ba03c3c9e4d38df60e0aac,primary,d2l_recurrent_neural_networks_rnn_b012,d2l_recurrent_neural_networks,sentence_f0e8a17f4d8321f2523a15ef,PRIMARY,C2,C2,SAME_SENSE,broadcasting,89dda91c0a05bb4ed6949147896c9474728b49e71d73d603344e1e6a4641f288,3c456ebdb641ff281d8c18684b5b5299bb0cfde2696ab30b521b50e3af5ce1d4,"Thus, broadcasting (see :numref:`subsec_broadcasting`) is applied during the summation."
+14aec7b259ba74b01c91b7add539e256a571424046846c7ba7d4504fd685b5ee,d2lce_499fa9391d57e930a19f1b19,d2lce_499fa9391d57e930a19f1b19,ctx_84ca6088137d56c32c100be2,primary;definition;part_of_speech,d2l_preliminaries_ndarray_b069,d2l_preliminaries,sentence_ad45075d5590d98295d5a1af,PRIMARY,C4,C4,SAME_SENSE,broadcasting,008408a3e47fb010a600699fdde19015c484efeb5fce1e6dbc8092a98b2a26b9,3e9fa4327c7bff7dff12484f6a90fbe10e275edadcee35b58bd2f757154210ad,"Under certain conditions,
+even when shapes differ, we can still [**perform elementwise operations
+by invoking the *broadcasting mechanism*.**]
+This mechanism works in the following way:
+First, expand one or both arrays
+by copying elements appropriately
+so that after this transformation,
+the two tensors have the same shape."
+14aec7b259ba74b01c91b7add539e256a571424046846c7ba7d4504fd685b5ee,d2lce_499fa9391d57e930a19f1b19,d2lce_499fa9391d57e930a19f1b19,ctx_bcf04980bdfe689c9e1c560b,primary;definition,d2l_multilayer_perceptrons_weight_decay_b041,d2l_multilayer_perceptrons,sentence_6efd8634f23f8de75421becb,PRIMARY,C3,C4,SAME_SENSE,broadcasting,bd60878826fdef71c93545431ab0ac7ed6cb681d91fcbfe70395da4e2831c933,deb9b72b69b4b64e73d0a93b1b4950122a65eb4cbf74d54436642f78b462543c,"```{.python .input}
+def train(lambd):
+    w, b = init_params()
+    net, loss = lambda X: d2l.linreg(X, w, b), d2l.squared_loss
+    num_epochs, lr = 100, 0.003
+    animator = d2l.Animator(xlabel='epochs', ylabel='loss', yscale='log',
+                            xlim=[5, num_epochs], legend=['train', 'test'])
+    for epoch in range(num_epochs):
+        for X, y in train_iter:
+            with autograd.record():
+                # The L2 norm penalty term has been added, and broadcasting
+                # makes `l2_penalty(w)` a vector whose length is `batch_size`
+                l = loss(net(X), y) + lambd * l2_penalty(w)
+            l.backward()
+            d2l.sgd([w, b], lr, batch_size)
+        if (epoch + 1) % 5 == 0:
+            animator.add(epoch + 1, (d2l.evaluate_loss(net, train_iter, loss),
+                                     d2l.evaluate_loss(net, test_iter, loss)))
+    print('L2 norm of w:', np.linalg.norm(w))
+```"
+14aec7b259ba74b01c91b7add539e256a571424046846c7ba7d4504fd685b5ee,d2lce_499fa9391d57e930a19f1b19,d2lce_499fa9391d57e930a19f1b19,ctx_d3acc09e8a6080e3399bae77,backup,d2l_attention_mechanisms_attention_scoring_functions_b030,d2l_attention_mechanisms,sentence_ec001745b5634c818e4c9b7c,BACKUP,B1,C4,SAME_SENSE,broadcasting,414db19563daededfb159d83ddc8e9874e4b34496e2be4836396b4a901c31bcf,a135118208785a8dcbd8d8b315eebd0d9011b851d74bad887fa744ef9c51751a,"Sum them up with
+        # broadcasting
+        features = np.expand_dims(queries, axis=2) + np.expand_dims(
+            keys, axis=1)
+        features = np.tanh(features)
+        # There is only one output of `self.w_v`, so we remove the last
+        # one-dimensional entry from the shape."
+14aec7b259ba74b01c91b7add539e256a571424046846c7ba7d4504fd685b5ee,d2lce_499fa9391d57e930a19f1b19,d2lce_499fa9391d57e930a19f1b19,ctxx_f2b52228b81142cbb519a842,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,broadcasting,a3b1a66621e65928b6f013277ee09cc077544167d9f4aa452590584f58e2f36f,4b0345f1d7372726fd305c3a818da25fbf83afff16f649445c1785515e074aeb,[Synthetic] The broadcasting reached millions of listeners across the country that night.

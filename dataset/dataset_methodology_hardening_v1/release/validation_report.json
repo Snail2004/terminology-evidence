@@ -1,0 +1,59 @@
+{
+  "schema_id": "D2LMethodologyHardeningValidationReportV1",
+  "schema_version": "1.0.0",
+  "status": "PASS_WITH_BLOCKERS",
+  "structural_integrity": "PASS",
+  "methodology_readiness": "BLOCKED_REPAIR_AND_EXTERNAL_INPUTS",
+  "definition_of_done": false,
+  "errors": [],
+  "blockers": [
+    {
+      "code": "PARENT_HUMAN_REVIEW_PENDING",
+      "count": 150,
+      "detail": "Parent term-sense definitions/POS remain pending human review."
+    },
+    {
+      "code": "CROSS_SPLIT_SOURCE_BLOCK_CLUSTER",
+      "count": 45,
+      "detail": "Sentence-safe V3 still shares source blocks across splits."
+    },
+    {
+      "code": "CONTROLLED_VIETNAMESE_REGISTRY_EMPTY",
+      "count": 0,
+      "detail": "No external controlled Vietnamese source has been supplied."
+    },
+    {
+      "code": "BLIND_ADVERSARIAL_SUBSET_PENDING",
+      "count": 0,
+      "detail": "Independent blind creator evidence is unavailable."
+    },
+    {
+      "code": "TAC_DRIFT_CASES_PENDING",
+      "count": 0,
+      "detail": "Natural and synthetic controlled drift cases are not frozen."
+    }
+  ],
+  "checks": {
+    "context_count": 1340,
+    "audit_status_counts": {
+      "FAIL_SYNTHETIC": 140,
+      "PASS_CORPUS_EXTRACTED": 1200
+    },
+    "corpus_context_count": 1200,
+    "synthetic_context_count": 140,
+    "synthetic_in_c_primary_support": 0,
+    "statistical_unit_count": 3474,
+    "duplicate_occurrence_id_count": 0,
+    "cross_split_source_block_cluster_count": 45,
+    "controlled_vietnamese_source_count": 0,
+    "adversarial_case_count": 0,
+    "tac_drift_case_count": 0,
+    "downstream_selected_block_count": 22,
+    "downstream_experiment_arms": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  }
+}

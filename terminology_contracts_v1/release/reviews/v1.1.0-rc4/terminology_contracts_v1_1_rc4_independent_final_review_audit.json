@@ -1,0 +1,42 @@
+{
+  "schema_id": "TerminologyContractsV1_1RC4IndependentFinalReviewAuditV1",
+  "artifact": "terminology_contracts_v1_1_rc4.zip",
+  "artifact_sha256": "2f16fbd2614308be43619a6643f196d74d588ce12e9a4e30dcec3ab669a6f471",
+  "declared_source_commit": "36e041abcaa0a8a34ab892ae094b0b3d9c3af2f4",
+  "verification": {
+    "external_checksum": "PASS",
+    "internal_checksums": "PASS",
+    "manifest": "PASS",
+    "tests_without_dataset_root": {
+      "passed": 113,
+      "skipped": 2,
+      "failed": 0
+    },
+    "tests_with_real_v3_and_pilot": {
+      "passed": 115,
+      "skipped": 0,
+      "failed": 0
+    },
+    "v11_cli": "PASS",
+    "legacy_v10_cli": "PASS",
+    "migrated_v11_cli": "PASS",
+    "external_api_calls": 0
+  },
+  "verdict": {
+    "release_engineering": "PASS",
+    "previous_p0_findings": "CLOSED",
+    "common_authority_freeze": "APPROVED",
+    "publish_to_agents": "APPROVED_AFTER_MAIN_MERGE_CI_TAG"
+  },
+  "non_blocking_backlog": [
+    {
+      "id": "H1",
+      "title": "Evidence-reference type and support-set disjointness validation"
+    },
+    {
+      "id": "H2",
+      "title": "Producer and decision provenance timestamp ordering"
+    }
+  ],
+  "required_authority_tag": "contracts-v1.1.0"
+}
