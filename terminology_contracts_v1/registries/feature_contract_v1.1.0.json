@@ -1,0 +1,59 @@
+{
+  "registry_id": "TerminologyFeatureContractRegistryV1_1",
+  "registry_version": "1.1.0",
+  "core_features": [
+    "C_mean",
+    "C_min",
+    "C_max",
+    "C_range",
+    "C_evidence_coverage",
+    "C_required_context_type_coverage",
+    "C_judge_agreement",
+    "C_valid_context_count",
+    "C_pass_count",
+    "C_minor_count",
+    "C_fail_count",
+    "E_authority",
+    "E_independence",
+    "E_domain",
+    "E_concept",
+    "E_conventionality",
+    "E_coverage"
+  ],
+  "producer_context_features": [
+    "C_mean",
+    "C_min",
+    "C_max",
+    "C_range",
+    "evidence_coverage",
+    "required_context_type_coverage",
+    "judge_agreement",
+    "valid_context_count",
+    "pass_count",
+    "minor_count",
+    "fail_count"
+  ],
+  "producer_attestation_features": [
+    "E_authority",
+    "E_independence",
+    "E_domain",
+    "E_concept",
+    "E_conventionality",
+    "E_coverage"
+  ],
+  "optional_probe_features": [
+    "R_score",
+    "Q_score"
+  ],
+  "diagnostic_features": [
+    "C_replacement_rate",
+    "C_contrastive_boundary_support",
+    "E_strong_positive_cluster_count",
+    "E_conflict_ratio"
+  ],
+  "deprecated_features": [
+    "E_score",
+    "feature_registry_version",
+    "support_context_refs"
+  ]
+}

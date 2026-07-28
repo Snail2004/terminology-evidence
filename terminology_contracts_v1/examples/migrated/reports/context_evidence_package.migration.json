@@ -1,0 +1,15 @@
+{
+  "fields_added": [
+    "$.diagnostics",
+    "$.provenance.execution_config_sha256",
+    "$.provenance.run_spec_id"
+  ],
+  "fields_renamed": [],
+  "migration_tool_version": "1.0.0",
+  "source_schema_id": "ContextEvidencePackageV1",
+  "source_schema_version": "1.0.0",
+  "source_sha256": "3759fde05154f85a57eb9c20f78f17d0c8aa71b345325737882503ec5eb473a9",
+  "target_schema_version": "1.1.0",
+  "target_sha256": "bf898145339354c311c2695dac3fd2f0f25c3248ab30b9514ae9cc5201a0c4b3",
+  "warnings": []
+}

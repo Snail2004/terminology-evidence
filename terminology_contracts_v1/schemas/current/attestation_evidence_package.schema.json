@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesis.local/terminology-contracts/v1.1/attestation_evidence_package.schema.json",
+  "title": "Vietnamese Attestation Evidence Package V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "candidate_key",
+    "input_contract_sha256",
+    "features",
+    "stage_metrics",
+    "flags",
+    "local_status",
+    "accepted_evidence_refs",
+    "rejected_evidence_refs",
+    "observed_variants",
+    "provenance",
+    "final_glossary_decision",
+    "integrity"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "AttestationEvidencePackageV1"
+    },
+    "schema_version": {
+      "const": "1.1.0"
+    },
+    "candidate_key": {
+      "$ref": "common_defs.schema.json#/$defs/candidateKey"
+    },
+    "input_contract_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "features": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "E_authority",
+        "E_independence",
+        "E_domain",
+        "E_concept",
+        "E_conventionality",
+        "E_coverage"
+      ],
+      "properties": {
+        "E_authority": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "E_independence": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "E_domain": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "E_concept": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "E_conventionality": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "E_coverage": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        }
+      }
+    },
+    "stage_metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "search_coverage",
+        "fetch_coverage",
+        "extraction_coverage",
+        "language_coverage",
+        "span_yield",
+        "judge_coverage",
+        "unique_document_count",
+        "duplicate_cluster_count",
+        "independent_organization_count"
+      ],
+      "properties": {
+        "search_coverage": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "fetch_coverage": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "extraction_coverage": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "language_coverage": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "span_yield": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "judge_coverage": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "unique_document_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duplicate_cluster_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "independent_organization_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "$ref": "common_defs.schema.json#/$defs/flag"
+      }
+    },
+    "local_status": {
+      "enum": [
+        "ATTESTED",
+        "WEAKLY_ATTESTED",
+        "NOT_ATTESTED",
+        "CONFLICTING_ATTESTATION",
+        "ATTESTATION_UNJUDGEABLE"
+      ]
+    },
+    "accepted_evidence_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "common_defs.schema.json#/$defs/evidenceRef"
+      }
+    },
+    "rejected_evidence_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "common_defs.schema.json#/$defs/evidenceRef"
+      }
+    },
+    "observed_variants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "surface_vi",
+          "status",
+          "evidence_refs"
+        ],
+        "properties": {
+          "surface_vi": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "const": "PROPOSE_FOR_CST_VARIANT_CHECK"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "common_defs.schema.json#/$defs/evidenceRef"
+            }
+          }
+        }
+      }
+    },
+    "provenance": {
+      "$ref": "common_defs.schema.json#/$defs/provenance"
+    },
+    "final_glossary_decision": {
+      "type": "null"
+    },
+    "integrity": {
+      "$ref": "common_defs.schema.json#/$defs/integrity"
+    },
+    "diagnostics": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "strong_positive_cluster_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "conflict_ratio": {
+              "$ref": "common_defs.schema.json#/$defs/score01"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

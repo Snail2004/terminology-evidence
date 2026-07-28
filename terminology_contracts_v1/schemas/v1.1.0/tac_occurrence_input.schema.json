@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesis.local/terminology-contracts/v1.1/tac_occurrence_input.schema.json",
+  "title": "TAC Occurrence Input V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "occurrence_id",
+    "source_text",
+    "target_text",
+    "source_term_span",
+    "certificate",
+    "glossary_version",
+    "tac_policy_version",
+    "integrity"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "TACOccurrenceInputV1"
+    },
+    "schema_version": {
+      "const": "1.1.0"
+    },
+    "occurrence_id": {
+      "$ref": "common_defs.schema.json#/$defs/identifier"
+    },
+    "source_text": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "target_text": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "source_term_span": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "start",
+        "end"
+      ],
+      "properties": {
+        "start": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "certificate": {
+      "$ref": "terminology_certificate.schema.json"
+    },
+    "glossary_version": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "tac_policy_version": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "integrity": {
+      "$ref": "common_defs.schema.json#/$defs/integrity"
+    }
+  }
+}

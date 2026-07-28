@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesis.local/terminology-contracts/v1.1/global_validator_input.schema.json",
+  "title": "Global Validator Input Envelope V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "candidate_key",
+    "input_contract_sha256",
+    "context_evidence",
+    "attestation_evidence",
+    "optional_probes",
+    "integrity",
+    "assembly_metadata"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "GlobalValidatorInputV1"
+    },
+    "schema_version": {
+      "const": "1.1.0"
+    },
+    "candidate_key": {
+      "$ref": "common_defs.schema.json#/$defs/candidateKey"
+    },
+    "input_contract_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "context_evidence": {
+      "$ref": "context_evidence_package.schema.json"
+    },
+    "attestation_evidence": {
+      "$ref": "attestation_evidence_package.schema.json"
+    },
+    "optional_probes": {
+      "type": "array",
+      "maxItems": 2,
+      "items": {
+        "$ref": "optional_probe_package.schema.json"
+      }
+    },
+    "integrity": {
+      "$ref": "common_defs.schema.json#/$defs/integrity"
+    },
+    "assembly_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assembler_id",
+        "assembler_version",
+        "assembled_at",
+        "source_package_hashes"
+      ],
+      "properties": {
+        "assembler_id": {
+          "$ref": "common_defs.schema.json#/$defs/identifier"
+        },
+        "assembler_version": {
+          "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+        },
+        "assembled_at": {
+          "anyOf": [
+            {
+              "$ref": "common_defs.schema.json#/$defs/dateTime"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_package_hashes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "context_evidence_sha256",
+            "attestation_evidence_sha256"
+          ],
+          "properties": {
+            "context_evidence_sha256": {
+              "$ref": "common_defs.schema.json#/$defs/sha256"
+            },
+            "attestation_evidence_sha256": {
+              "$ref": "common_defs.schema.json#/$defs/sha256"
+            }
+          }
+        }
+      }
+    }
+  }
+}

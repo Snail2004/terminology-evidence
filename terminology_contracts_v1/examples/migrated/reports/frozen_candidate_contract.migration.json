@@ -1,0 +1,15 @@
+{
+  "fields_added": [
+    "$.input_contract_sha256",
+    "$.input_provenance.execution_config_sha256",
+    "$.input_provenance.run_spec_id"
+  ],
+  "fields_renamed": [],
+  "migration_tool_version": "1.0.0",
+  "source_schema_id": "FrozenCandidateContractV1",
+  "source_schema_version": "1.0.0",
+  "source_sha256": "4d964a3f05790178e70c1b1b0b1911940877be20bcaec0a0efb82f161f4164b1",
+  "target_schema_version": "1.1.0",
+  "target_sha256": "376764b5ebe29ee1ac145d93cfa31d3d7963e690e1ebd72bb93792c9fd63faa8",
+  "warnings": []
+}

@@ -1,43 +1,39 @@
-# Agent Integration Rules — MUST / MUST NOT
+# Contract Integration Rules
 
-## Dataset / Sense agent
+## All components
 
-- MUST xuất immutable IDs, versions, manifest hash và reviewed sense-contract hash.
-- MUST tạo artifact mới thay vì sửa artifact frozen.
-- MUST NOT giả lập human labels.
+- Validate schema version, canonical self hash, candidate key, and package hash.
+- Reject cross-package identity or hash drift before scientific scoring.
+- Do not match packages by text, array position, or row order.
+- Do not reinterpret V1.0 as V1.1; use the migration adapter.
 
-## Context Substitution agent
+## Dataset Adapter
 
-- MUST nhận `FrozenCandidateContractV1`.
-- MUST xuất `ContextEvidencePackageV1`.
-- MUST preserve canonical sentence `context_id` trong evidence refs.
-- MUST NOT trả final glossary decision.
-- MUST NOT đọc E output.
+- Emit immutable IDs, versions, dataset manifest hash, and the explicit
+  effective-sense-contract hash.
+- Do not infer or fabricate a human-review binding.
+- Keep raw dataset storage layout outside the runtime contract.
 
-## Vietnamese Attestation agent
+## C and E producers
 
-- MUST nhận cùng `FrozenCandidateContractV1` với C.
-- MUST xuất `AttestationEvidencePackageV1` với sáu E features.
-- MUST preserve accepted/rejected evidence and replay provenance.
-- MUST NOT đọc C output hoặc tự thêm allowed variants.
-- Variant mới chỉ được đề xuất `PROPOSE_FOR_CST_VARIANT_CHECK`.
+- Consume the same `FrozenCandidateContractV1` binding.
+- Preserve provider/run/replay provenance and raw-ledger references.
+- Keep `final_glossary_decision` null.
+- Do not read each other's output.
 
-## Global Validator agent
+## Global Validator
 
-- MUST validate schema, self-hash and all join keys before gates.
-- MUST apply gates before scoring.
-- MUST NOT emit `AUTO_APPROVED` under `DEVELOPMENT_HEURISTIC`.
-- MUST bind a real `CalibrationArtifactV1` for `FROZEN_CALIBRATED`.
-- MUST fail closed on contract mismatch.
+- Apply hard gates before calibrated scoring.
+- Never issue `AUTO_APPROVED` or a certificate in development mode.
+- Load and verify the actual calibration artifact before frozen scoring.
+- Use only registered feature names and the artifact's own threshold.
 
-## TAC agent
+## TAC
 
-- MUST consume a sealed `TerminologyCertificateV1`.
-- MUST operate per occurrence, not revalidate candidate from scratch.
-- MUST record glossary/certificate/TAC policy versions.
+- Consume a complete V1.1 certificate per occurrence.
+- Do not reconstruct or re-decide the candidate from producer internals.
 
-## Breaking changes
+## Release discipline
 
-- Adding optional fields: minor version.
-- Tightening enum, changing meaning, deleting/renaming fields: major version.
-- Every major version requires migration adapter and fixture tests.
+V1.1 becomes immutable after release. Any contract change requires V1.2 or V2,
+an explicit compatibility statement, fixtures, migration impact, and review.

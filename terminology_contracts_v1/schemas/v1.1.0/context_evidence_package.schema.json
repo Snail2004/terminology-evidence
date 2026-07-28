@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesis.local/terminology-contracts/v1.1/context_evidence_package.schema.json",
+  "title": "Context Substitution Evidence Package V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "candidate_key",
+    "input_contract_sha256",
+    "selector_mode",
+    "review_artifact_sha256",
+    "features",
+    "contrastive_status",
+    "flags",
+    "local_status",
+    "support_set",
+    "provenance",
+    "final_glossary_decision",
+    "integrity"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "ContextEvidencePackageV1"
+    },
+    "schema_version": {
+      "const": "1.1.0"
+    },
+    "candidate_key": {
+      "$ref": "common_defs.schema.json#/$defs/candidateKey"
+    },
+    "input_contract_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "selector_mode": {
+      "enum": [
+        "MODEL_CLASSIFICATION_DEVELOPMENT",
+        "FROZEN_HUMAN_REVIEWED_SELECTION"
+      ]
+    },
+    "review_artifact_sha256": {
+      "anyOf": [
+        {
+          "$ref": "common_defs.schema.json#/$defs/sha256"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "features": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "C_mean",
+        "C_min",
+        "C_max",
+        "C_range",
+        "evidence_coverage",
+        "required_context_type_coverage",
+        "judge_agreement",
+        "valid_context_count",
+        "pass_count",
+        "minor_count",
+        "fail_count"
+      ],
+      "properties": {
+        "C_mean": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "C_min": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "C_max": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "C_range": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "evidence_coverage": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "required_context_type_coverage": {
+          "$ref": "common_defs.schema.json#/$defs/score01"
+        },
+        "judge_agreement": {
+          "anyOf": [
+            {
+              "$ref": "common_defs.schema.json#/$defs/score01"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "valid_context_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pass_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "minor_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fail_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "contrastive_status": {
+      "enum": [
+        "AVAILABLE",
+        "ABSENT",
+        "UNJUDGEABLE",
+        "SENSE_BOUNDARY_DETECTED"
+      ]
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "$ref": "common_defs.schema.json#/$defs/flag"
+      }
+    },
+    "local_status": {
+      "enum": [
+        "CONTEXT_SUPPORTED",
+        "CONTEXT_CONDITIONAL",
+        "CONTEXT_UNSUPPORTED",
+        "CONTEXT_UNJUDGEABLE",
+        "SENSE_BOUNDARY_DETECTED"
+      ]
+    },
+    "support_set": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "positive_support_refs",
+        "negative_or_boundary_refs",
+        "contrastive_refs"
+      ],
+      "properties": {
+        "positive_support_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common_defs.schema.json#/$defs/evidenceRef"
+          }
+        },
+        "negative_or_boundary_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common_defs.schema.json#/$defs/evidenceRef"
+          }
+        },
+        "contrastive_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common_defs.schema.json#/$defs/evidenceRef"
+          }
+        }
+      }
+    },
+    "provenance": {
+      "$ref": "common_defs.schema.json#/$defs/provenance"
+    },
+    "final_glossary_decision": {
+      "type": "null"
+    },
+    "integrity": {
+      "$ref": "common_defs.schema.json#/$defs/integrity"
+    },
+    "diagnostics": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "replacement_rate": {
+              "$ref": "common_defs.schema.json#/$defs/score01"
+            },
+            "contrastive_boundary_support": {
+              "$ref": "common_defs.schema.json#/$defs/score01"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

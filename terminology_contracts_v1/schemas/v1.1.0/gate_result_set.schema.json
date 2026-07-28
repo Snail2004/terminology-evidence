@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesis.local/terminology-contracts/v1.1/gate_result_set.schema.json",
+  "title": "Global Hard-Gate Result Set V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "candidate_key",
+    "input_contract_sha256",
+    "gate_policy_version",
+    "observations",
+    "integrity"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "GateResultSetV1"
+    },
+    "schema_version": {
+      "const": "1.1.0"
+    },
+    "candidate_key": {
+      "$ref": "common_defs.schema.json#/$defs/candidateKey"
+    },
+    "input_contract_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "gate_policy_version": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "gate_id",
+          "triggered",
+          "action",
+          "reason_codes",
+          "evidence_refs"
+        ],
+        "properties": {
+          "gate_id": {
+            "enum": [
+              "input_contract_mismatch",
+              "sense_definition_unverified",
+              "unresolved_polysemy",
+              "concept_mismatch",
+              "wrong_sense",
+              "contradiction",
+              "target_collision",
+              "judge_disagreement",
+              "insufficient_evidence",
+              "missing_contrastive_context",
+              "incomplete_context_type_coverage",
+              "attestation_unjudgeable"
+            ]
+          },
+          "triggered": {
+            "type": "boolean"
+          },
+          "action": {
+            "enum": [
+              "NONE",
+              "FATAL_REJECT",
+              "FATAL_SPLIT",
+              "ESCALATE_HUMAN",
+              "CAP_PROVISIONAL"
+            ]
+          },
+          "reason_codes": {
+            "type": "array",
+            "items": {
+              "$ref": "common_defs.schema.json#/$defs/identifier"
+            },
+            "uniqueItems": true
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "common_defs.schema.json#/$defs/evidenceRef"
+            }
+          },
+          "source_modules": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "CONTRACT",
+                "SENSE",
+                "C",
+                "E",
+                "GLOBAL",
+                "HUMAN_REVIEW"
+              ]
+            }
+          }
+        }
+      },
+      "uniqueItems": true
+    },
+    "integrity": {
+      "$ref": "common_defs.schema.json#/$defs/integrity"
+    }
+  }
+}

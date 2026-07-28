@@ -1,0 +1,76 @@
+{
+  "registry_id": "TerminologySchemaRegistryV1_1",
+  "registry_version": "1.1.0",
+  "package_version": "1.1.0",
+  "legacy_versions": [
+    "1.0.0"
+  ],
+  "schemas": [
+    {
+      "schema_id": "AttestationEvidencePackageV1",
+      "schema_version": "1.1.0",
+      "path": "schemas/v1.1.0/attestation_evidence_package.schema.json",
+      "legacy_path": "schemas/legacy/v1.0.0/attestation_evidence_package.schema.json"
+    },
+    {
+      "schema_id": "CalibrationArtifactV1",
+      "schema_version": "1.1.0",
+      "path": "schemas/v1.1.0/calibration_artifact.schema.json",
+      "legacy_path": "schemas/legacy/v1.0.0/calibration_artifact.schema.json"
+    },
+    {
+      "schema_id": "ContextEvidencePackageV1",
+      "schema_version": "1.1.0",
+      "path": "schemas/v1.1.0/context_evidence_package.schema.json",
+      "legacy_path": "schemas/legacy/v1.0.0/context_evidence_package.schema.json"
+    },
+    {
+      "schema_id": "EffectiveSenseContractV1",
+      "schema_version": "1.1.0",
+      "path": "schemas/v1.1.0/effective_sense_contract.schema.json",
+      "legacy_path": "schemas/legacy/v1.0.0/effective_sense_contract.schema.json"
+    },
+    {
+      "schema_id": "FrozenCandidateContractV1",
+      "schema_version": "1.1.0",
+      "path": "schemas/v1.1.0/frozen_candidate_contract.schema.json",
+      "legacy_path": "schemas/legacy/v1.0.0/frozen_candidate_contract.schema.json"
+    },
+    {
+      "schema_id": "GateResultSetV1",
+      "schema_version": "1.1.0",
+      "path": "schemas/v1.1.0/gate_result_set.schema.json",
+      "legacy_path": "schemas/legacy/v1.0.0/gate_result_set.schema.json"
+    },
+    {
+      "schema_id": "GlobalDecisionPackageV1",
+      "schema_version": "1.1.0",
+      "path": "schemas/v1.1.0/global_decision_package.schema.json",
+      "legacy_path": "schemas/legacy/v1.0.0/global_decision_package.schema.json"
+    },
+    {
+      "schema_id": "GlobalValidatorInputV1",
+      "schema_version": "1.1.0",
+      "path": "schemas/v1.1.0/global_validator_input.schema.json",
+      "legacy_path": "schemas/legacy/v1.0.0/global_validator_input.schema.json"
+    },
+    {
+      "schema_id": "OptionalProbePackageV1",
+      "schema_version": "1.1.0",
+      "path": "schemas/v1.1.0/optional_probe_package.schema.json",
+      "legacy_path": "schemas/legacy/v1.0.0/optional_probe_package.schema.json"
+    },
+    {
+      "schema_id": "TACOccurrenceInputV1",
+      "schema_version": "1.1.0",
+      "path": "schemas/v1.1.0/tac_occurrence_input.schema.json",
+      "legacy_path": "schemas/legacy/v1.0.0/tac_occurrence_input.schema.json"
+    },
+    {
+      "schema_id": "TerminologyCertificateV1",
+      "schema_version": "1.1.0",
+      "path": "schemas/v1.1.0/terminology_certificate.schema.json",
+      "legacy_path": "schemas/legacy/v1.0.0/terminology_certificate.schema.json"
+    }
+  ]
+}

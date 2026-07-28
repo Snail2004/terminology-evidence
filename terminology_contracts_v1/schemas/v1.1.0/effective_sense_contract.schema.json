@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesis.local/terminology-contracts/v1.1/effective_sense_contract.schema.json",
+  "title": "Effective Human-Reviewed Sense Contract V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "sense_id",
+    "scope_id",
+    "source_term",
+    "effective_definition_en",
+    "effective_part_of_speech",
+    "scope_note",
+    "domain_profile",
+    "definition_source",
+    "review_status",
+    "sense_inventory_version",
+    "parent_dataset_manifest_sha256",
+    "review_artifact_sha256",
+    "provenance",
+    "integrity"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "EffectiveSenseContractV1"
+    },
+    "schema_version": {
+      "const": "1.1.0"
+    },
+    "sense_id": {
+      "$ref": "common_defs.schema.json#/$defs/identifier"
+    },
+    "scope_id": {
+      "$ref": "common_defs.schema.json#/$defs/identifier"
+    },
+    "source_term": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "effective_definition_en": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "effective_part_of_speech": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "scope_note": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 4096
+    },
+    "domain_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "domain_id",
+        "anchors_en",
+        "anchors_vi"
+      ],
+      "properties": {
+        "domain_id": {
+          "$ref": "common_defs.schema.json#/$defs/identifier"
+        },
+        "anchors_en": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "anchors_vi": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "definition_source": {
+      "enum": [
+        "MODEL_ACCEPTED",
+        "HUMAN_CORRECTED",
+        "HUMAN_AUTHORED"
+      ]
+    },
+    "review_status": {
+      "enum": [
+        "ACCEPTED",
+        "ADJUDICATED"
+      ]
+    },
+    "sense_inventory_version": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "parent_dataset_manifest_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "review_artifact_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    },
+    "provenance": {
+      "$ref": "common_defs.schema.json#/$defs/provenance"
+    },
+    "integrity": {
+      "$ref": "common_defs.schema.json#/$defs/integrity"
+    }
+  }
+}

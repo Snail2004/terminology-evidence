@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thesis.local/terminology-contracts/v1.1/frozen_candidate_contract.schema.json",
+  "title": "Frozen Candidate Contract V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "candidate_key",
+    "effective_definition_en",
+    "effective_part_of_speech",
+    "scope_note",
+    "domain_profile",
+    "surfaces",
+    "alternatives_vi",
+    "input_provenance",
+    "integrity",
+    "input_contract_sha256"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "FrozenCandidateContractV1"
+    },
+    "schema_version": {
+      "const": "1.1.0"
+    },
+    "candidate_key": {
+      "$ref": "common_defs.schema.json#/$defs/candidateKey"
+    },
+    "effective_definition_en": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "effective_part_of_speech": {
+      "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+    },
+    "scope_note": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 4096
+    },
+    "domain_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "domain_id",
+        "anchors_en",
+        "anchors_vi"
+      ],
+      "properties": {
+        "domain_id": {
+          "$ref": "common_defs.schema.json#/$defs/identifier"
+        },
+        "anchors_en": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "anchors_vi": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "surfaces": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_vi",
+        "validated_variants_vi",
+        "rejected_variants_vi"
+      ],
+      "properties": {
+        "canonical_vi": {
+          "$ref": "common_defs.schema.json#/$defs/nonEmptyString"
+        },
+        "validated_variants_vi": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "rejected_variants_vi": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "alternatives_vi": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "input_provenance": {
+      "$ref": "common_defs.schema.json#/$defs/provenance"
+    },
+    "integrity": {
+      "$ref": "common_defs.schema.json#/$defs/integrity"
+    },
+    "input_contract_sha256": {
+      "$ref": "common_defs.schema.json#/$defs/sha256"
+    }
+  }
+}

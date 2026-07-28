@@ -1,0 +1,104 @@
+{
+  "approval_score": 0.91,
+  "attestation_evidence_sha256": "90781725036accdff0bef48dc391f44d8648c1d6ab7c1049d6e11850944228ec",
+  "candidate_key": {
+    "candidate_id": "cand-inference-vi-01",
+    "candidate_version": "1",
+    "candidate_vi": "suy luận",
+    "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "effective_sense_contract_sha256": "82eedc4661ad441fd7e1925b61738b3ad97af9c2eacb9ce99f2209b45fe1dd0b",
+    "scope_id": "machine_learning",
+    "sense_id": "model_execution",
+    "sense_inventory_version": "sense-v1",
+    "source_term": "inference"
+  },
+  "certificate_ref": null,
+  "context_evidence_sha256": "b25632808311efdef1fce79843acdcf6f314c4e8aa9ff921395a674d44a12389",
+  "decision": "AUTO_APPROVED",
+  "decision_features": {
+    "C_mean": 0.88,
+    "C_min": 0.7,
+    "E_authority": 0.75,
+    "E_concept": 0.83,
+    "E_conventionality": 0.6,
+    "E_coverage": 0.8,
+    "E_domain": 1.0,
+    "E_independence": 0.67
+  },
+  "decision_policy": {
+    "calibration_artifact_sha256": "cff82b79f5a100bc868ba0f6e7d98c54677f960114f3f87feff1dcac2ae3e7a2",
+    "feature_contract_version": "1.1.0",
+    "mode": "FROZEN_CALIBRATED",
+    "policy_id": "global-validator",
+    "policy_version": "global-v1",
+    "threshold": 0.84
+  },
+  "decision_reasons": [
+    "CALIBRATED_SCORE_ABOVE_THRESHOLD"
+  ],
+  "gate_results": {
+    "candidate_key": {
+      "candidate_id": "cand-inference-vi-01",
+      "candidate_version": "1",
+      "candidate_vi": "suy luận",
+      "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "effective_sense_contract_sha256": "82eedc4661ad441fd7e1925b61738b3ad97af9c2eacb9ce99f2209b45fe1dd0b",
+      "scope_id": "machine_learning",
+      "sense_id": "model_execution",
+      "sense_inventory_version": "sense-v1",
+      "source_term": "inference"
+    },
+    "gate_policy_version": "gates-v1",
+    "input_contract_sha256": "ad9888fdb98fba49d6a7b50f30d8749694e28c89a5dd3f7fdea0ae490ccdf704",
+    "integrity": {
+      "self_sha256": "e25d13a472b0f0f2d300791c86ce66d5815cd28a9a3ef8c4b0471ed1725caf98"
+    },
+    "observations": [
+      {
+        "action": "NONE",
+        "evidence_refs": [],
+        "gate_id": "wrong_sense",
+        "reason_codes": [],
+        "source_modules": [
+          "C"
+        ],
+        "triggered": false
+      },
+      {
+        "action": "NONE",
+        "evidence_refs": [],
+        "gate_id": "insufficient_evidence",
+        "reason_codes": [],
+        "source_modules": [
+          "C",
+          "E"
+        ],
+        "triggered": false
+      }
+    ],
+    "schema_id": "GateResultSetV1",
+    "schema_version": "1.1.0"
+  },
+  "input_contract_sha256": "ad9888fdb98fba49d6a7b50f30d8749694e28c89a5dd3f7fdea0ae490ccdf704",
+  "integrity": {
+    "self_sha256": "96fa62ea43432911accc032633d9bd625629302c125790c6cfdddb0163818d03"
+  },
+  "run_metadata": {
+    "binding_status": "LEGACY_INCOMPLETE",
+    "completed_at": null,
+    "engine_version": "terminology-contracts-migration-1.0.0",
+    "feature_contract_version": "1.1.0",
+    "gate_policy_version": "gates-v1",
+    "global_run_id": "migrated-facc19566a870474",
+    "global_run_spec_id": "migrated-spec-feedd2a2d201c64f",
+    "input_package_hashes": {
+      "attestation_evidence_sha256": "90781725036accdff0bef48dc391f44d8648c1d6ab7c1049d6e11850944228ec",
+      "context_evidence_sha256": "b25632808311efdef1fce79843acdcf6f314c4e8aa9ff921395a674d44a12389",
+      "global_validator_input_sha256": null
+    },
+    "replay_spec_sha256": "feedd2a2d201c64fdfb4a449bf29ba9d8616e5e7760d33d55103698d686d68bc",
+    "started_at": null
+  },
+  "schema_id": "GlobalDecisionPackageV1",
+  "schema_version": "1.1.0"
+}

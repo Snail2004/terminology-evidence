@@ -1,0 +1,24 @@
+{
+  "fields_added": [
+    "$.attestation_evidence_refs",
+    "$.attestation_evidence_sha256",
+    "$.binding_status",
+    "$.calibration_artifact_sha256",
+    "$.context_evidence_sha256",
+    "$.effective_sense_contract_sha256",
+    "$.gate_result_sha256",
+    "$.input_contract_sha256",
+    "$.sense_inventory_version",
+    "$.threshold_version"
+  ],
+  "fields_renamed": [],
+  "migration_tool_version": "1.0.0",
+  "source_schema_id": "TerminologyCertificateV1",
+  "source_schema_version": "1.0.0",
+  "source_sha256": "a87c8fdb83a3dd29424eb547915d61c142f0a20a1dc88c49c2edf9e851439949",
+  "target_schema_version": "1.1.0",
+  "target_sha256": "80b4ae2d813bf020bc15e3b02d7d1104705119389ca079c321b4ff6ce7a1c9d0",
+  "warnings": [
+    "Legacy certificate remains non-issuable until input, gate, and calibration bindings are supplied from verified artifacts."
+  ]
+}

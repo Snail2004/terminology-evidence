@@ -1,0 +1,43 @@
+{
+  "candidate_key": {
+    "candidate_id": "cand-inference-vi-01",
+    "candidate_version": "1",
+    "candidate_vi": "suy luận",
+    "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "effective_sense_contract_sha256": "82eedc4661ad441fd7e1925b61738b3ad97af9c2eacb9ce99f2209b45fe1dd0b",
+    "scope_id": "machine_learning",
+    "sense_id": "model_execution",
+    "sense_inventory_version": "sense-v1",
+    "source_term": "inference"
+  },
+  "gate_policy_version": "gates-v1",
+  "input_contract_sha256": "ad9888fdb98fba49d6a7b50f30d8749694e28c89a5dd3f7fdea0ae490ccdf704",
+  "integrity": {
+    "self_sha256": "df17ad1f0a10034a63550642302f8b7f6e7703a88e6aa917d0543f95d7ee4111"
+  },
+  "observations": [
+    {
+      "action": "FATAL_REJECT",
+      "evidence_refs": [],
+      "gate_id": "wrong_sense",
+      "reason_codes": [],
+      "source_modules": [
+        "C"
+      ],
+      "triggered": false
+    },
+    {
+      "action": "NONE",
+      "evidence_refs": [],
+      "gate_id": "insufficient_evidence",
+      "reason_codes": [],
+      "source_modules": [
+        "C",
+        "E"
+      ],
+      "triggered": false
+    }
+  ],
+  "schema_id": "GateResultSetV1",
+  "schema_version": "1.1.0"
+}

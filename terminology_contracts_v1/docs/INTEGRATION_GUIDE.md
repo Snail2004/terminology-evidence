@@ -1,44 +1,26 @@
 # Integration Guide
 
-## Stable join key
+## Stable join
 
-Every package carries exactly the same `candidate_key`:
+All packages use the exact nine-field `candidate_key` plus the envelope-level
+`input_contract_sha256`. Any mismatch is a contract failure; never coerce text
+or join by row order.
 
-```text
-candidate_id
-candidate_version
-source_term
-candidate_vi
-sense_id
-scope_id
-sense_inventory_version
-dataset_manifest_sha256
-effective_sense_contract_sha256
-```
+## Version handling
 
-Global Validator additionally requires identical `input_contract_sha256` from the
-frozen candidate contract.
+Validate `schema_version` before selecting a schema. Native runtime emits V1.1.
+V1.0 is accepted only through `schemas/legacy/v1.0.0` or the explicit migration
+adapter, never by treating its bytes as V1.1.
 
-## Join failure
+## Decision order
 
-Any mismatch returns `input_contract_mismatch` with action `ESCALATE_HUMAN` or
-fails the run before scientific scoring. Never silently coerce or match by text.
+1. Validate schema, self hashes, candidate joins, and package hashes.
+2. Evaluate hard gates in registered precedence order.
+3. In development mode, emit at most `PROVISIONAL` or `HUMAN_REVIEW`.
+4. In frozen mode, load and verify the calibration file and its registry.
+5. Issue a certificate only for `AUTO_APPROVED` or `PROVISIONAL`.
 
-## 0–1 feature scale
+## Dataset boundary
 
-C/E normalized evidence features use `[0,1]`. Counts remain integer diagnostics.
-No schema assigns fixed weights. The only approved source of weights/thresholds is a
-sealed `CalibrationArtifactV1`.
-
-## Local versus global authority
-
-- C local status: contextual evidence only.
-- E local status: Vietnamese attestation only.
-- Gate result: non-compensable safety constraints.
-- Global decision: only component allowed to emit final decision.
-
-## Compatibility strategy
-
-An implementation may have internal Pydantic/dataclass models, but its boundary JSON
-must validate against this package. CI should validate valid fixtures and reject all
-invalid fixtures.
+Call `map_candidate_key` with normalized records and explicit immutable hashes.
+The contract runtime never opens or assumes a V3/pilot storage path.

@@ -1,0 +1,14 @@
+{
+  "fields_added": [
+    "$.provenance.execution_config_sha256",
+    "$.provenance.run_spec_id"
+  ],
+  "fields_renamed": [],
+  "migration_tool_version": "1.0.0",
+  "source_schema_id": "EffectiveSenseContractV1",
+  "source_schema_version": "1.0.0",
+  "source_sha256": "1b1e68095fefd9df5057eed684a2cc6f88f01a9ee6a7853f197ab7b7da35e7a2",
+  "target_schema_version": "1.1.0",
+  "target_sha256": "0cb2b56c31936fdb8aedd38b7b4da0ebbd6cdc5ae425943d28d33b390a9db455",
+  "warnings": []
+}

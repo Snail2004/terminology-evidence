@@ -1,0 +1,40 @@
+{
+  "registry_id": "TerminologyGateRegistryV1_1",
+  "registry_version": "1.1.0",
+  "gate_ids": [
+    "input_contract_mismatch",
+    "sense_definition_unverified",
+    "unresolved_polysemy",
+    "concept_mismatch",
+    "wrong_sense",
+    "contradiction",
+    "target_collision",
+    "judge_disagreement",
+    "insufficient_evidence",
+    "missing_contrastive_context",
+    "incomplete_context_type_coverage",
+    "attestation_unjudgeable"
+  ],
+  "actions": [
+    "NONE",
+    "FATAL_REJECT",
+    "FATAL_SPLIT",
+    "ESCALATE_HUMAN",
+    "CAP_PROVISIONAL"
+  ],
+  "precedence": [
+    "FATAL_SPLIT",
+    "FATAL_REJECT",
+    "ESCALATE_HUMAN",
+    "CAP_PROVISIONAL",
+    "NONE"
+  ],
+  "source_modules": [
+    "CONTRACT",
+    "SENSE",
+    "C",
+    "E",
+    "GLOBAL",
+    "HUMAN_REVIEW"
+  ]
+}

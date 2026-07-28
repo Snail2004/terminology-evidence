@@ -1,0 +1,18 @@
+{
+  "fields_added": [
+    "$.decision_policy.feature_contract_version",
+    "$.gate_results.observations[0].source_modules",
+    "$.gate_results.observations[1].source_modules",
+    "$.run_metadata"
+  ],
+  "fields_renamed": [],
+  "migration_tool_version": "1.0.0",
+  "source_schema_id": "GlobalDecisionPackageV1",
+  "source_schema_version": "1.0.0",
+  "source_sha256": "3a21a0e8e513888737d118e037a04deba561024e44a8b9b838f3b14485897bc7",
+  "target_schema_version": "1.1.0",
+  "target_sha256": "28702627d06271c5b8c7de470eb1165ab53ee2c61236174642a0efab8151187e",
+  "warnings": [
+    "Legacy decision has no original GlobalValidatorInput artifact binding."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "fields_added": [
+    "$.assembly_metadata",
+    "$.attestation_evidence.diagnostics",
+    "$.attestation_evidence.provenance.execution_config_sha256",
+    "$.attestation_evidence.provenance.run_spec_id",
+    "$.context_evidence.diagnostics",
+    "$.context_evidence.provenance.execution_config_sha256",
+    "$.context_evidence.provenance.run_spec_id"
+  ],
+  "fields_renamed": [],
+  "migration_tool_version": "1.0.0",
+  "source_schema_id": "GlobalValidatorInputV1",
+  "source_schema_version": "1.0.0",
+  "source_sha256": "80babd715169f39f75a272c011086d2cb6ac7b32df855b0debac6c2d069ea1a2",
+  "target_schema_version": "1.1.0",
+  "target_sha256": "1aade0afb3b2140fcae9df458d8559dc35d573aedc1852ebc868b9a12326c52d",
+  "warnings": []
+}
