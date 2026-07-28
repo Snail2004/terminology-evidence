@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+import shutil
 import sys
 import tempfile
 import unittest
@@ -140,6 +141,66 @@ class ReviewBatchTests(unittest.TestCase):
         self.assertEqual(summary["sense_count"], 10)
         self.assertEqual(summary["resolution_counts"], {"AGREEMENT_3_OF_3": 10})
         self.assertEqual(summary["adjudication_required"], 0)
+
+    def test_merge_rejects_wrong_review_file_cardinality_without_output(self) -> None:
+        batch_root = self.release_root / "batches" / "development_001"
+        review_paths = [batch_root / "ai_1.csv", batch_root / "ai_2.csv"]
+        for count, paths in ((2, review_paths), (4, review_paths * 2)):
+            output_dir = Path(self.temporary.name) / f"wrong_cardinality_{count}"
+            with self.assertRaisesRegex(ValueError, "Exactly three independent"):
+                merge_reviews(batch_root, paths, output_dir)
+            self.assertFalse(output_dir.exists())
+
+    def test_merge_rejects_same_physical_path_reused_without_output(self) -> None:
+        batch_root = self.release_root / "batches" / "development_001"
+        review_path = batch_root / "ai_1.csv"
+        output_dir = Path(self.temporary.name) / "same_path_reused"
+        with self.assertRaisesRegex(ValueError, "distinct physical review file"):
+            merge_reviews(batch_root, [review_path, review_path, review_path], output_dir)
+        self.assertFalse(output_dir.exists())
+
+    def test_distinct_files_with_identical_bytes_are_allowed(self) -> None:
+        batch_root = self.release_root / "batches" / "development_001"
+        cases = {
+            case["sense_id"]: case
+            for case in read_jsonl(batch_root / "sense_review_cases.jsonl")
+        }
+        rows = read_csv(batch_root / "ai_1.csv")
+        for row in rows:
+            case = cases[row["sense_id"]]
+            evidence = next(
+                context["context_id"]
+                for group in case["evidence_contexts"].values()
+                for context in group
+            )
+            row.update(
+                {
+                    "definition_status": "ACCEPTED",
+                    "effective_definition_en": case["model_definition_en"],
+                    "part_of_speech_status": "ACCEPTED",
+                    "effective_part_of_speech": case["model_part_of_speech"],
+                    "scope_note": "same independent conclusion",
+                    "evidence_context_ids": evidence,
+                    "confidence": "0.95",
+                    "rationale": "Supported by the cited corpus context.",
+                    "risk_flags": "",
+                }
+            )
+        first_path = Path(self.temporary.name) / "identical_1.csv"
+        with first_path.open("w", encoding="utf-8-sig", newline="") as handle:
+            writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
+            writer.writeheader()
+            writer.writerows(rows)
+        review_paths = [first_path]
+        for slot in (2, 3):
+            review_path = Path(self.temporary.name) / f"identical_{slot}.csv"
+            shutil.copyfile(first_path, review_path)
+            review_paths.append(review_path)
+        self.assertEqual(len({path.read_bytes() for path in review_paths}), 1)
+
+        output_dir = Path(self.temporary.name) / "identical_bytes_merged"
+        summary = merge_reviews(batch_root, review_paths, output_dir)
+        self.assertEqual(summary["resolution_counts"], {"AGREEMENT_3_OF_3": 10})
 
 
 if __name__ == "__main__":

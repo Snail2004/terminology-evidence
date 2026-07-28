@@ -163,12 +163,23 @@ def merge_reviews(
 ) -> dict[str, Any]:
     if output_dir.exists():
         raise FileExistsError(f"Output already exists: {output_dir}")
-    reports = [validate_review(batch_root, path, True) for path in review_paths]
+    if len(review_paths) != 3:
+        raise ValueError(
+            f"Exactly three independent review files are required; got {len(review_paths)}"
+        )
+    resolved_paths = [path.resolve(strict=True) for path in review_paths]
+    if any(
+        left.samefile(right)
+        for index, left in enumerate(resolved_paths)
+        for right in resolved_paths[index + 1 :]
+    ):
+        raise ValueError("Each reviewer slot must use a distinct physical review file")
+    reports = [validate_review(batch_root, path, True) for path in resolved_paths]
     if any(report["status"] != "PASS" for report in reports):
         raise ValueError(json.dumps(reports, ensure_ascii=False))
     reviews = [
         {row["sense_id"]: row for row in normalized_review_rows(path)}
-        for path in review_paths
+        for path in resolved_paths
     ]
     merged = []
     counts: Counter[str] = Counter()
@@ -207,7 +218,7 @@ def merge_reviews(
         "status": "PASS",
         "review_file_sha256": {
             f"reviewer_{index}": sha256_file(path)
-            for index, path in enumerate(review_paths, start=1)
+            for index, path in enumerate(resolved_paths, start=1)
         },
         "sense_count": len(merged),
         "resolution_counts": dict(sorted(counts.items())),
