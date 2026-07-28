@@ -1,0 +1,20 @@
+{
+  "adapter_policy_id": "d2l_vietnamese_attestation_real_dataset_adapter_v1",
+  "adapter_schema_id": "VietnameseAttestationDatasetAdapterV1",
+  "adapter_schema_version": "1.0.0",
+  "agent": "E",
+  "candidate_count": 15,
+  "context_count": 38,
+  "effective_sense_contract_sha256": null,
+  "final_glossary_decision": null,
+  "mode": "DEVELOPMENT_ZERO_API",
+  "parent_dataset_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+  "provider_call_count": 0,
+  "review_artifact_sha256": null,
+  "source_manifest_file_sha256": "e45205adfe22b6b6c67680e159c64bb3c69c3a9849a3109a962134dc8cb3dd76",
+  "source_manifest_sha256": "599692d33f9cc162698bc0e8fc0bf60cce1715cb0f34214fec499f14c1364eb5",
+  "source_schema_id": "D2LCSTDevelopmentOnlyPilotV1_1",
+  "source_schema_version": "1.1.0",
+  "source_zip_sha256": "664cd5bf9e3006ebd77cffa6665a3cd86690dff0201fc518cae407a121aa4f15",
+  "term_sense_count": 5
+}

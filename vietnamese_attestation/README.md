@@ -1,15 +1,12 @@
 # Vietnamese Attestation Evidence
 
-Status: reserved for a separate implementation session.
+Status: REVIEW.
 
-The future implementation must live under:
+The implementation lives under:
 
-`pipeline/eval/terminology_evidence/vietnamese_attestation/v1/`
+`vietnamese_attestation/v1/`
 
-Its CLI and tests must mirror that path under:
-
-- `pipeline/scripts/terminology_evidence/vietnamese_attestation/v1/`
-- `pipeline/tests/terminology_evidence/vietnamese_attestation/v1/`
+Its CLI and tests remain inside the owned domain at `v1/cli/` and `v1/tests/`.
 
 This domain owns Evidence E only. It must not add files to Context
 Substitution, import Context Substitution internals, or decide the final

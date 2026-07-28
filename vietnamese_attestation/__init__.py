@@ -1,3 +1,3 @@
-"""Reserved namespace for Vietnamese Attestation Evidence E."""
+"""Vietnamese Attestation Evidence E provider namespace."""
 
-__all__: list[str] = []
+__all__ = ["v1"]
