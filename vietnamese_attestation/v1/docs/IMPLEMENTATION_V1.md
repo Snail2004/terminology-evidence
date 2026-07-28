@@ -189,6 +189,34 @@ python -m vietnamese_attestation.v1.cli.replay `
   --output replay.json
 ```
 
+Development pilot zero-API execution:
+
+```powershell
+python -m vietnamese_attestation.v1.cli.zero_api `
+  --source-zip dataset/pilot_dev_only_v1_1.zip `
+  --parent-v3-zip dataset/d2l_context_support_set_validation_ready_v3.zip `
+  --controlled-registry dataset/dataset_methodology_hardening_v1/release/controlled_vietnamese_source_registry.jsonl `
+  --output-root <artifact-root>
+```
+
+This executes the exact 15 pilot candidate identities with deterministic
+offline evidence fixtures. The scenarios cover strong independent evidence,
+duplicate echo, same-organization documents, RELATED, DIFFERENT, UNCERTAIN,
+Judge unavailable, search/fetch/extraction failure, non-Vietnamese content,
+missing spans, suspected machine translation, unknown PDF, and conflicting
+attestation. Each run writes an internal E package, content-addressed audit
+artifacts, raw responses, and verified replay results. External provider calls
+remain zero. `zero_api_artifact_manifest.json` binds every generated file by
+relative path, physical SHA-256, and byte count.
+
+The controlled Vietnamese registry published by Dataset Methodology Hardening
+V1 is currently byte-empty and is reported as `BLOCKED_EXTERNAL_INPUT`.
+Likewise, the development pilot has no effective sense contract SHA, approved
+Vietnamese surface inventory, or domain anchors. Shared V1.1 projection is
+therefore withheld as `BLOCKED_DEVELOPMENT_IDENTITY`; the runner does not invent
+authority hashes or silently coerce development candidates into official
+packages.
+
 ## Remaining gates
 
 - No live Search or Judge request has been made by this implementation gate.
@@ -197,6 +225,8 @@ python -m vietnamese_attestation.v1.cli.replay `
 - Embedding-domain similarity remains a diagnostic proposal, not a gate.
 - New surface discovery remains disabled; `observed_variants` is bounded and
   cannot mutate the candidate contract.
-- The zero-API 5-sense/15-candidate input adapter is complete. Human cluster
-  labels, semantic pilot execution, local-status calibration, and the later
-  150-term research set remain separate review gates.
+- The zero-API 5-sense/15-candidate input adapter and deterministic E2E fixture
+  run are complete. Controlled-corpus retrieval remains blocked by the empty
+  registry, and shared projection remains blocked by development-only identity
+  gaps. Human cluster labels, live semantic pilot execution, local-status
+  calibration, and the later 150-term research set remain separate gates.
