@@ -2,20 +2,20 @@ from __future__ import annotations
 
 from typing import Any, Iterable, Mapping, Sequence
 
-from pipeline.eval.contracts_v1 import ContractValidationError
-from pipeline.eval.terminology_evidence.context_substitution.v2.runtime.aggregation import (
+from context_substitution.v2.contracts.validation import ContractValidationError
+from context_substitution.v2.runtime.aggregation import (
     aggregate_contextual_evidence,
     compute_context_result,
     global_recommendation,
     merge_judge_labels,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.application import (
+from context_substitution.v2.contracts.application import (
     build_application_contract,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.input import (
+from context_substitution.v2.contracts.input import (
     normalize_context_substitution_input,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.common import (
+from context_substitution.v2.contracts.common import (
     AGGREGATION_VERSION,
     APPLICATION_CONTRACT_VERSION,
     CONTEXT_DEDUP_POLICY_VERSION,
@@ -33,24 +33,24 @@ from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.common
     TRIAL_TRANSLATOR_VERSION,
     stable_digest,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.runtime.pairwise import (
+from context_substitution.v2.runtime.pairwise import (
     PAIRWISE_VERSION,
     close_candidate_pairs,
     run_pairwise_tiebreakers,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.runtime.prompts import (
+from context_substitution.v2.runtime.prompts import (
     CONTEXT_JUDGE_SYSTEM_PROMPT,
     CONTRASTIVE_SYSTEM_PROMPT,
     SELECTOR_SYSTEM_PROMPT,
     TRIAL_GATE_SYSTEM_PROMPT,
     TRIAL_SYSTEM_PROMPT,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.providers.base import (
+from context_substitution.v2.providers.base import (
     ContextExecutionError,
     FailoverStructuredModel,
     ProviderCallCollector,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.responses import (
+from context_substitution.v2.contracts.responses import (
     context_judge_schema,
     contrastive_schema,
     selector_schema,
@@ -63,7 +63,7 @@ from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.respon
     validate_trial_gate,
     validate_selector_annotation,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.runtime.selection import (
+from context_substitution.v2.runtime.selection import (
     candidate_profile,
     context_identity,
     missing_required_context_types,
@@ -71,19 +71,19 @@ from pipeline.eval.terminology_evidence.context_substitution.v2.runtime.selectio
     selector_context_payload,
     selector_term_profile,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.runtime.surface import (
+from context_substitution.v2.runtime.surface import (
     trial_surface_binding,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.provenance import (
+from context_substitution.v2.contracts.provenance import (
     source_provenance_from_context,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.evidence.support_set import (
+from context_substitution.v2.evidence.support_set import (
     build_certificate_support_set,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.evidence.provenance import (
+from context_substitution.v2.evidence.provenance import (
     build_candidate_provenance,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.runtime.calibration import (
+from context_substitution.v2.runtime.calibration import (
     ContextThresholdPolicy,
     DEVELOPMENT_HEURISTIC_POLICY,
     validate_evaluation_mode,
@@ -320,7 +320,7 @@ def _run_d2l_context_substitution(
         "pairwise_observations": pairwise_observations,
         "integrity": {"run_sha256": "0" * 64},
     }
-    from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.run import (
+    from context_substitution.v2.contracts.run import (
         seal_context_substitution_run,
     )
 

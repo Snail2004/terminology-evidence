@@ -4,10 +4,10 @@ import re
 import unicodedata
 from typing import Any, Mapping, Sequence
 
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.provenance import (
+from context_substitution.v2.contracts.provenance import (
     source_provenance_from_context,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.common import (
+from context_substitution.v2.contracts.common import (
     REQUIRED_SAME_SENSE_CONTEXT_TYPES,
 )
 

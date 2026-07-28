@@ -5,7 +5,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
-from pipeline.eval.terminology_evidence.context_substitution.v2.dataset.contract import (
+from context_substitution.v2.dataset.contract import (
     ANNOTATION_FILE,
     CANDIDATE_INSTANCES_FILE,
     CANDIDATE_QUEUE_FILE,
@@ -29,7 +29,7 @@ from pipeline.eval.terminology_evidence.context_substitution.v2.dataset.contract
     write_json,
     write_jsonl,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.dataset.sources import (
+from context_substitution.v2.dataset.sources import (
     artifact_binding,
     build_context_candidates,
     candidate_index_rows,

@@ -18,7 +18,7 @@
 | Raw replay | `CONTENT_ADDRESSED_V1` | Required for frozen execution |
 | Development threshold policy | `d2l_context_status_development_heuristic_v2_1` | Cannot authorize frozen test-set evidence |
 | Frozen threshold policy | Calibration-artifact-selected version | Requires exact calibration artifact ref/hash |
-| CLI module | `pipeline.scripts.terminology_evidence.context_substitution.v2.run` | Freeze, validate, adapt, run, project, and gold-evaluate |
+| CLI module | `context_substitution.v2` | Validate, adapt, run, replay, project, release, and gold-evaluate |
 
 Legacy V2.1 payloads are not silently reinterpreted as V2.2. Legacy term-evidence
 V1 remains a compatibility projection and rejects lossy merged two-judge

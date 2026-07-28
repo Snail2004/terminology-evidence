@@ -42,13 +42,13 @@ authority until a complete immutable review artifact is produced.
 ## Reproducible zero-API commands
 
 ```powershell
-python -m pipeline.scripts.terminology_evidence.context_substitution.v2.run reviewed-support-validate `
-  --source pipeline/eval/terminology_evidence/dataset/pilot_dev_only_v1_1 `
-  --parent-v3 pipeline/eval/terminology_evidence/dataset/d2l_context_support_set_validation_ready_v3
+python -m context_substitution.v2 reviewed-support-validate `
+  --source dataset/pilot_dev_only_v1_1 `
+  --parent-v3 dataset/d2l_context_support_set_validation_ready_v3
 
-python -m pipeline.scripts.terminology_evidence.context_substitution.v2.run reviewed-support-to-runtime `
-  --source pipeline/eval/terminology_evidence/dataset/pilot_dev_only_v1_1 `
-  --parent-v3 pipeline/eval/terminology_evidence/dataset/d2l_context_support_set_validation_ready_v3 `
+python -m context_substitution.v2 reviewed-support-to-runtime `
+  --source dataset/pilot_dev_only_v1_1 `
+  --parent-v3 dataset/d2l_context_support_set_validation_ready_v3 `
   --source-split development `
   --output D:/temp/cst-pilot-input.json `
   --receipt D:/temp/cst-pilot-receipt.json
@@ -59,6 +59,12 @@ key environment-variable names, not raw secrets, and may define the three
 registered routes: `shopaikey_gemini`, `ckey_gemini`, and
 `gemini_official`. Frozen runs additionally require a sealed calibration
 artifact and content-addressed response ledger.
+
+`pilot-smoke`, `fake-provider-pilot`, `replay-validate`,
+`project-context-evidence`, and `integration-release` are zero-API integration
+commands. Generated evidence must be written outside the source tree. The
+projection command emits `ContextEvidenceProjectionDraftV2_2`, not the shared
+`ContextEvidencePackageV1.1` authority.
 
 ## Fail-closed behavior
 

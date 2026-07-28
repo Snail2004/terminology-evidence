@@ -8,7 +8,7 @@ from datetime import datetime
 from pathlib import Path, PurePosixPath
 from typing import Any, Mapping, Sequence
 
-from pipeline.eval.contracts_v1 import ContractValidationError
+from context_substitution.v2.contracts.validation import ContractValidationError
 
 
 ANNOTATION_SCHEMA_ID = "D2LPilotHumanAnnotationsV1"

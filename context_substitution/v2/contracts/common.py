@@ -3,7 +3,7 @@ from __future__ import annotations
 import hashlib
 from typing import Any
 
-from pipeline.eval.contracts_v1 import (
+from context_substitution.v2.contracts.validation import (
     CanonicalPolicy,
     ContractValidationError,
 )

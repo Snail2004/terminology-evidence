@@ -5,7 +5,7 @@ import time
 from dataclasses import dataclass, field
 from typing import Any, Mapping
 
-from pipeline.eval.terminology_evidence.context_substitution.v2.providers.base import (
+from context_substitution.v2.providers.base import (
     ContextProviderRoute,
     ProviderRawResponse,
 )
