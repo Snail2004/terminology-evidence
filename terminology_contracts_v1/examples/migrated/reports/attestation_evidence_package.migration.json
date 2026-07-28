@@ -1,0 +1,15 @@
+{
+  "fields_added": [
+    "$.diagnostics",
+    "$.provenance.execution_config_sha256",
+    "$.provenance.run_spec_id"
+  ],
+  "fields_renamed": [],
+  "migration_tool_version": "1.0.0",
+  "source_schema_id": "AttestationEvidencePackageV1",
+  "source_schema_version": "1.0.0",
+  "source_sha256": "dc7caafbf30fab854895bd3af6058e933604a4ea0e720e23cea48787669ec382",
+  "target_schema_version": "1.1.0",
+  "target_sha256": "44069cc76cd76cf0e78d92505db6889717fdb96eea67c32dd5a4ede82c287678",
+  "warnings": []
+}

@@ -1,0 +1,87 @@
+{
+  "schema_id": "D2LCSTStageAReviewBatchV1",
+  "policy_id": "d2l_cst_stage_a_split_safe_batches_v1",
+  "batch_id": "validation_003",
+  "split": "validation",
+  "sense_count": 5,
+  "context_row_count": 40,
+  "sense_ids": [
+    "d2lce_e014da89e120449f8881dd5b",
+    "d2lce_1ff0c13e857af8ab6956fc96",
+    "d2lce_00c0e4f7d0d5537d738af8a7",
+    "d2lce_658174b1687c73f5aa1957ab",
+    "d2lce_73dbe839de3f1d00bf1226f0"
+  ],
+  "case_sha256": [
+    "06612f170e505d8030895ab61d21c0eb3c469930b8bdb71939a8f9dc36929113",
+    "5e239ae0f6d89038f7021704d28d8603e4dcccf21226b90a12e137413b294591",
+    "e1fcce711246594948895b38a4e2d8b340f256077914a5da01e48d48b835d791",
+    "b029111216fdb9b0abda606fdc8c11e663fe88096a8a823f6409a50d85ae2bcc",
+    "cf250e46a0608d37bd1440c06118736e17714dfdbf5d7e2a2be2734458869a8a"
+  ],
+  "missing_optional_evidence_reference_count": 1,
+  "approx_input_tokens": 2986,
+  "files": {
+    "ai_1.csv": {
+      "ref": "ai_1.csv",
+      "sha256": "a783a3c254597b1503cde252ec174bb795e8cc9abf57572c04665e75cd138c77",
+      "size_bytes": 1588
+    },
+    "ai_2.csv": {
+      "ref": "ai_2.csv",
+      "sha256": "a783a3c254597b1503cde252ec174bb795e8cc9abf57572c04665e75cd138c77",
+      "size_bytes": 1588
+    },
+    "ai_3.csv": {
+      "ref": "ai_3.csv",
+      "sha256": "a783a3c254597b1503cde252ec174bb795e8cc9abf57572c04665e75cd138c77",
+      "size_bytes": 1588
+    },
+    "MESSAGE_TO_REVIEWER_1.md": {
+      "ref": "MESSAGE_TO_REVIEWER_1.md",
+      "sha256": "e417c203805b76c60f2138179001fb132d1bfcb50b7130308166907ecef657b2",
+      "size_bytes": 563
+    },
+    "MESSAGE_TO_REVIEWER_2.md": {
+      "ref": "MESSAGE_TO_REVIEWER_2.md",
+      "sha256": "54c0e75eaecc91bc154212cb606eb10ac9de9bbb2bac88262dc8bb378042fe3a",
+      "size_bytes": 563
+    },
+    "MESSAGE_TO_REVIEWER_3.md": {
+      "ref": "MESSAGE_TO_REVIEWER_3.md",
+      "sha256": "a3c954ca7f4aa8a3f0981406a5f767ad527bcee8207d5460eb39cb6ad60d0e58",
+      "size_bytes": 563
+    },
+    "README.md": {
+      "ref": "README.md",
+      "sha256": "43d5dbe3fd88f194c4115a0df981bced09383bee15a1803f5002556020c04a4f",
+      "size_bytes": 253
+    },
+    "REVIEW_INSTRUCTIONS_CSV.md": {
+      "ref": "REVIEW_INSTRUCTIONS_CSV.md",
+      "sha256": "d2667208e5eedb8636b291b3cfc5b1b167e54e5f5046e30e0685d9b6a0120295",
+      "size_bytes": 1202
+    },
+    "SENSE_CASEBOOK.md": {
+      "ref": "SENSE_CASEBOOK.md",
+      "sha256": "0276f38d7e8acf5efdf931249709d498c9f79d7cfd0257f58d037d7f2e1abc8f",
+      "size_bytes": 11942
+    },
+    "sense_review_cases.csv": {
+      "ref": "sense_review_cases.csv",
+      "sha256": "a2f5aa2ebedb5fc40e62308f204e7e6447b849ded44a518223e1066053c30a24",
+      "size_bytes": 2450
+    },
+    "sense_review_cases.jsonl": {
+      "ref": "sense_review_cases.jsonl",
+      "sha256": "d848f06cef29c30cf84b3c558988071314e8d222ae123249e4b04de591b5e2d8",
+      "size_bytes": 46933
+    },
+    "sense_review_contexts.csv": {
+      "ref": "sense_review_contexts.csv",
+      "sha256": "5d566ec704226890c191ba96f0d65c35007de9a68bbe6d5aca49ae57ffd84274",
+      "size_bytes": 22253
+    }
+  },
+  "batch_manifest_sha256": "9e87fcf8c5f16952593544fbbe0a1d3fbad338284f46cacec28f8c2ff08cafa5"
+}

@@ -1,0 +1,16 @@
+{
+  "candidate_keys": [
+    {
+      "candidate_id": "cand-inference-vi-01",
+      "candidate_version": "fixture-candidate-v1",
+      "candidate_vi": "suy luận",
+      "dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "effective_sense_contract_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b",
+      "scope_id": "machine_learning",
+      "sense_id": "model_execution",
+      "sense_inventory_version": "sense-v1",
+      "source_term": "inference"
+    }
+  ],
+  "index_id": "collision-index-fixture-v1"
+}

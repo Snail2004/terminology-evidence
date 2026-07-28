@@ -1,0 +1,60 @@
+{
+  "definition_source": "HUMAN_CORRECTED",
+  "domain_profile": {
+    "anchors_en": [
+      "model",
+      "prediction"
+    ],
+    "anchors_vi": [
+      "mô hình",
+      "dự đoán"
+    ],
+    "domain_id": "machine_learning"
+  },
+  "effective_definition_en": "The process of applying a trained model to new inputs.",
+  "effective_part_of_speech": "noun",
+  "integrity": {
+    "self_sha256": "72d6aa9ac7b2a7bfbbc787f542afc0d752ffd5517feba8a4e4aa4f4a1e1f890b"
+  },
+  "parent_dataset_manifest_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "provenance": {
+    "completed_at": "2026-07-28T10:01:00+00:00",
+    "component_id": "sense-review",
+    "component_version": "1.1.0",
+    "execution_config_sha256": "c3aaf15fa3a27984c4000faecb0f22eee903d721e14da93a315fafb7d91157e0",
+    "model_routes": [
+      {
+        "independence_group": "group-demo",
+        "model_family": "family-demo",
+        "model_id": "model-demo",
+        "provider_id": "provider-demo"
+      }
+    ],
+    "notes": null,
+    "policy_version": "demo-policy-v1",
+    "prompt_hashes": {
+      "main": "9999999999999999999999999999999999999999999999999999999999999999"
+    },
+    "raw_ledger_ref": {
+      "evidence_id": "ledger-001",
+      "evidence_type": "OTHER",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "uri": "artifact://runs/run-demo-001"
+    },
+    "run_id": "fixture-sense-review-run-001",
+    "run_spec_id": "fixture-sense-review-spec-001",
+    "source_artifact_hashes": {
+      "dataset": "1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "started_at": "2026-07-28T10:00:00+00:00"
+  },
+  "review_artifact_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+  "review_status": "ADJUDICATED",
+  "schema_id": "EffectiveSenseContractV1",
+  "schema_version": "1.1.0",
+  "scope_id": "machine_learning",
+  "scope_note": "Machine-learning model execution on new inputs.",
+  "sense_id": "model_execution",
+  "sense_inventory_version": "sense-v1",
+  "source_term": "inference"
+}

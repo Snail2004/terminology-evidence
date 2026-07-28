@@ -1,0 +1,26 @@
+{
+  "schema_id": "D2LMethodologyTACDriftManifestV1",
+  "schema_version": "1.0.0",
+  "status": "BLOCKED_CASE_COLLECTION",
+  "parent_dataset_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+  "allowed_drift_types": [
+    "NATURAL_DRIFT",
+    "SYNTHETIC_CONTROLLED_DRIFT"
+  ],
+  "expected_classes": [
+    "SAME",
+    "RELATED",
+    "DIFFERENT",
+    "AMBIGUOUS"
+  ],
+  "natural_multi_sense_surface_count": 0,
+  "natural_multi_sense_surfaces": {},
+  "natural_case_count": 0,
+  "synthetic_controlled_case_count": 0,
+  "cases": [],
+  "c_evidence_policy": "SYNTHETIC_CONTROLLED_DRIFT_EXCLUDED_FROM_C",
+  "blockers": [
+    "The selected 150 senses contain no same-surface multi-sense natural pair.",
+    "Synthetic controlled drift cases have not been independently authored."
+  ]
+}
