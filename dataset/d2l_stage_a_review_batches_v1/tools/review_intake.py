@@ -25,6 +25,7 @@ from review_workflow import merge_reviews, validate_review
 REVIEW_SLOTS = ("ai_1.csv", "ai_2.csv", "ai_3.csv")
 INTAKE_SCHEMA_ID = "D2LCSTStageAReviewIntakeV1"
 INTAKE_POLICY_ID = "d2l_cst_stage_a_review_intake_v1"
+GLOBAL_RECORD_SCHEMA_ID = "D2LCSTGlobalMergedReviewRecordV1"
 
 
 def _batch_index(release_root: Path) -> list[dict[str, str]]:
@@ -134,6 +135,62 @@ def inventory_reviews(release_root: Path, intake_root: Path) -> dict[str, Any]:
     }
 
 
+def _capture_review_snapshot(
+    intake_root: Path,
+    inventory: dict[str, Any],
+    snapshot_root: Path,
+) -> dict[str, list[Path]]:
+    records = [record for record in inventory["records"] if record["status"] == "PASS"]
+    if len(records) != 48:
+        raise ValueError("A complete review snapshot requires exactly 48 valid files")
+    captured: dict[str, list[Path]] = {}
+    for record in records:
+        source = intake_root / record["review_ref"]
+        target = snapshot_root / record["review_ref"]
+        expected_sha256 = record["review_sha256"]
+        try:
+            before_sha256 = sha256_file(source)
+            if before_sha256 != expected_sha256:
+                raise ValueError(
+                    f"Review input drift detected before capture: {record['review_ref']}"
+                )
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(source, target)
+            captured_sha256 = sha256_file(target)
+            after_sha256 = sha256_file(source)
+        except OSError as error:
+            raise ValueError(
+                f"Review input drift detected during capture: {record['review_ref']}"
+            ) from error
+        if captured_sha256 != expected_sha256 or after_sha256 != expected_sha256:
+            raise ValueError(
+                f"Review input drift detected during capture: {record['review_ref']}"
+            )
+        captured.setdefault(record["batch_id"], []).append(target)
+    for paths in captured.values():
+        paths.sort(key=lambda path: path.name)
+    return captured
+
+
+def _global_review_record(
+    batch_record: dict[str, Any], batch_id: str, split: str
+) -> dict[str, Any]:
+    parent_record_sha256 = batch_record["record_sha256"]
+    projection = dict(batch_record)
+    projection.pop("record_sha256")
+    projection.update(
+        {
+            "schema_id": GLOBAL_RECORD_SCHEMA_ID,
+            "schema_version": "1.0.0",
+            "projection_policy_id": INTAKE_POLICY_ID,
+            "batch_id": batch_id,
+            "split": split,
+            "parent_batch_record_sha256": parent_record_sha256,
+        }
+    )
+    return seal(projection, "record_sha256")
+
+
 def finalize_reviews(
     release_root: Path,
     intake_root: Path,
@@ -155,22 +212,24 @@ def finalize_reviews(
     staging_root = temporary_root / "artifact"
     staging_root.mkdir()
     try:
+        captured_reviews = _capture_review_snapshot(
+            intake_root, inventory, temporary_root / "review_snapshot"
+        )
         merged_rows: list[dict[str, Any]] = []
         batch_summaries: list[dict[str, Any]] = []
         split_counts: Counter[str] = Counter()
         for batch in _batch_index(release_root):
             batch_id = batch["batch_id"]
-            review_paths = [intake_root / batch_id / slot for slot in REVIEW_SLOTS]
             batch_output = staging_root / "batches" / batch_id
             summary = merge_reviews(
                 release_root / "batches" / batch_id,
-                review_paths,
+                captured_reviews[batch_id],
                 batch_output,
             )
-            rows = read_jsonl(batch_output / "merged_three_reviews.jsonl")
-            for row in rows:
-                row["batch_id"] = batch_id
-                row["split"] = batch["split"]
+            rows = [
+                _global_review_record(row, batch_id, batch["split"])
+                for row in read_jsonl(batch_output / "merged_three_reviews.jsonl")
+            ]
             merged_rows.extend(rows)
             split_counts[batch["split"]] += len(rows)
             batch_summaries.append(

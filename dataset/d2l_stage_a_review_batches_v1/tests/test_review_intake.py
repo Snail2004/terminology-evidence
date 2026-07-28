@@ -6,13 +6,14 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[1]
 TOOLS_ROOT = PACKAGE_ROOT / "tools"
 sys.path.insert(0, str(TOOLS_ROOT))
 
-from common import read_csv, read_json, read_jsonl  # noqa: E402
+from common import read_csv, read_json, read_jsonl, sha256_object  # noqa: E402
 from review_intake import finalize_reviews, inventory_reviews  # noqa: E402
 
 
@@ -87,9 +88,33 @@ class ReviewIntakeTests(unittest.TestCase):
             {"development": 100, "test": 25, "validation": 25},
         )
         self.assertEqual(summary["resolution_counts"], {"AGREEMENT_3_OF_3": 150})
-        self.assertEqual(len(read_jsonl(output / "merged_all_batches.jsonl")), 150)
+        merged = read_jsonl(output / "merged_all_batches.jsonl")
+        self.assertEqual(len(merged), 150)
+        for row in merged:
+            identity = dict(row)
+            claimed = identity.pop("record_sha256")
+            self.assertEqual(claimed, sha256_object(identity))
+            self.assertEqual(row["schema_id"], "D2LCSTGlobalMergedReviewRecordV1")
+            self.assertTrue(row["parent_batch_record_sha256"])
         self.assertEqual(len(read_jsonl(output / "adjudication_queue.jsonl")), 0)
         self.assertEqual(read_json(output / "manifest.json")["status"], "PASS")
+
+    def test_mutation_after_inventory_rejects_without_final_output(self) -> None:
+        drifting = Path(self.temporary.name) / "drifting"
+        shutil.copytree(self.completed_root, drifting)
+        output = Path(self.temporary.name) / "drift_output"
+        original_inventory = inventory_reviews
+
+        def inventory_then_mutate(release_root: Path, intake_root: Path):
+            report = original_inventory(release_root, intake_root)
+            path = intake_root / "development_001" / "ai_1.csv"
+            path.write_bytes(path.read_bytes() + b"\n")
+            return report
+
+        with patch("review_intake.inventory_reviews", side_effect=inventory_then_mutate):
+            with self.assertRaisesRegex(ValueError, "Review input drift detected"):
+                finalize_reviews(self.release_root, drifting, output)
+        self.assertFalse(output.exists())
 
     def test_tampered_review_rejects_without_final_output(self) -> None:
         tampered = Path(self.temporary.name) / "tampered"
