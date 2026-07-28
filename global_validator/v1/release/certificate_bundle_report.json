@@ -1,0 +1,20 @@
+{
+  "approval_score": 0.880481737215655,
+  "bundle_verification": {
+    "certificate_status": "PASS",
+    "checked_files": 13,
+    "checksum_status": "PASS",
+    "status": "PASS"
+  },
+  "certificate_sha256": "c2817d54e67020df4ca3d99b751b4e142f0df03ee07db4a027077d0dced383c9",
+  "decision": "AUTO_APPROVED",
+  "fixture_only": true,
+  "integrity": {
+    "self_sha256": "e5fd0fa1d0d2ed6a6803669928c3b635320ab87d6fa6f993cf8f95522f78769c"
+  },
+  "production_authority": false,
+  "production_blocker": "NO_HUMAN_FROZEN_CALIBRATION_ARTIFACT",
+  "schema_id": "GlobalValidatorCertificateBundleReportV1",
+  "schema_version": "1.0.0",
+  "status": "PASS"
+}

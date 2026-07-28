@@ -1,0 +1,26 @@
+{
+  "action_policy_id": "global-gate-action-selection-v1",
+  "action_policy_sha256": "4220b15b7b5d5b740946b9b258a5e1f25469a8f8409ca6e1a0b399464285c9f5",
+  "action_policy_version": "1.0.0",
+  "actions": {
+    "attestation_unjudgeable": "CAP_PROVISIONAL",
+    "concept_mismatch": "FATAL_REJECT",
+    "contradiction": "FATAL_REJECT",
+    "incomplete_context_type_coverage": "CAP_PROVISIONAL",
+    "input_contract_mismatch": "FATAL_REJECT",
+    "insufficient_evidence": "CAP_PROVISIONAL",
+    "judge_disagreement": "ESCALATE_HUMAN",
+    "missing_contrastive_context": "CAP_PROVISIONAL",
+    "sense_definition_unverified": "ESCALATE_HUMAN",
+    "target_collision": "ESCALATE_HUMAN",
+    "unresolved_polysemy": "FATAL_SPLIT",
+    "wrong_sense": "FATAL_REJECT"
+  },
+  "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+  "integrity": {
+    "self_sha256": "5cf5336fdafa4299793a8fb4526f603181d4cffe2543ea047da770f2f10edff6"
+  },
+  "schema_id": "GlobalValidatorGatePolicyReportV1",
+  "schema_version": "1.0.0",
+  "status": "PASS"
+}

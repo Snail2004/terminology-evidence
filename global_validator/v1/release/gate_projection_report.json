@@ -1,0 +1,25 @@
+{
+  "gate_count": 12,
+  "gate_ids": [
+    "input_contract_mismatch",
+    "sense_definition_unverified",
+    "unresolved_polysemy",
+    "concept_mismatch",
+    "wrong_sense",
+    "contradiction",
+    "target_collision",
+    "judge_disagreement",
+    "insufficient_evidence",
+    "missing_contrastive_context",
+    "incomplete_context_type_coverage",
+    "attestation_unjudgeable"
+  ],
+  "gate_result_sha256": "ae976a4e05103b67748c6a51be74ba60e3e39c83131f54be42db18370cdaab72",
+  "integrity": {
+    "self_sha256": "39b22d51c3ac4fc0cd6573cbb6e27f1bf8674a604ca84b8e25add125a3c4e16f"
+  },
+  "schema_id": "GlobalValidatorGateProjectionReportV1",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "triggered_gate_count": 0
+}

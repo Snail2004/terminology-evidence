@@ -1,0 +1,17 @@
+{
+  "authority_commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+  "authority_tag": "contracts-v1.1.0",
+  "contract_version": "1.1.0",
+  "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+  "integrity": {
+    "self_sha256": "b538e57fadbd7c093db2c9e35f484c34463d4a36e5d6b2e5f624f3d7759080f6"
+  },
+  "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
+  "receipt_integrity_mode": "PINNED_PHYSICAL_FALLBACK",
+  "schema_id": "GlobalValidatorAuthorityVerificationReportV1",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "warnings": [
+    "authority receipt canonical self hash is invalid; exact published receipt bytes were accepted by pinned physical SHA-256"
+  ]
+}
