@@ -1,0 +1,395 @@
+﻿case_sha256,term_id,sense_id,context_id,context_groups,block_id,chapter_id,sentence_id,context_role,context_slot,context_type_proposal,sense_relation,matched_surface_exact,content_sha256,context_sha256,source_text
+1a73be9685db556a492d1e67f082731094659edaed5974c6973edce114679eba,d2lce_abae8f75b732ffe9c8a965c0,d2lce_abae8f75b732ffe9c8a965c0,ctx_1078723c87f441d3c978087a,primary;definition;part_of_speech,d2l_attention_mechanisms_attention_cues_b007,d2l_attention_mechanisms,sentence_020987e6b88d614a6bbd2e83,PRIMARY,C1,C1,SAME_SENSE,nonvolitional cue,521c2e33f035ce326067885e2708e60aab74bb1ded8ac4f6f76fa49e19bb61af,9caa41fdf224a9d802a72f9d0f7f394203b661082b54ca0f624d2381118ac605,"The nonvolitional cue is based on
+the saliency and conspicuity of objects in the environment."
+1a73be9685db556a492d1e67f082731094659edaed5974c6973edce114679eba,d2lce_abae8f75b732ffe9c8a965c0,d2lce_abae8f75b732ffe9c8a965c0,ctx_6e3c3388630aea54771ba51c,primary;definition,d2l_attention_mechanisms_attention_cues_b014,d2l_attention_mechanisms,sentence_148cff5fea05df5b2c3e4f97,PRIMARY,C3,C3,SAME_SENSE,nonvolitional cues,50bb6186751528e70bb467c5ec3ef6bbc62a8b3aa4f24d3afdf02ed8fcb78a1d,5214e2323291da92464772fc8a0c1d7eca660d3757e2181474bc4032ab9ee3b5,"As shown in :numref:`fig_qkv`,
+we can design attention pooling
+so that the given query (volitional cue) can interact with keys (nonvolitional cues),
+which guides bias selection over values (sensory inputs)."
+1a73be9685db556a492d1e67f082731094659edaed5974c6973edce114679eba,d2lce_abae8f75b732ffe9c8a965c0,d2lce_abae8f75b732ffe9c8a965c0,ctx_6f54563163ae90a7881eb6fe,primary,d2l_attention_mechanisms_attention_cues_b013,d2l_attention_mechanisms,sentence_5e4c2f84f474fff9ba694ef3,PRIMARY,C2,C2,SAME_SENSE,nonvolitional cues,9598cdbb72f745c6b0e3e418f1f12ff843813ddc18d4d5c2d1ec598d666d57d6,7f09f0257fa5344a59bd4c9c6660a2add9ef81034adfd6ab18267c0be020cda3,"To begin with, consider the simpler case where only
+nonvolitional cues are available."
+1a73be9685db556a492d1e67f082731094659edaed5974c6973edce114679eba,d2lce_abae8f75b732ffe9c8a965c0,d2lce_abae8f75b732ffe9c8a965c0,ctx_b24d7938abbc76287221b851,primary,d2l_attention_mechanisms_attention_cues_b008,d2l_attention_mechanisms,sentence_0a772e3666225735ece48236,PRIMARY,C4,C4,SAME_SENSE,nonvolitional cue,50b36f72abee831a8d1b045b43db83a7b80f0b676c6bd58aafc70ba155aea23f,0c1ff38ea0dbc9da2012a717040e7868c61ce0b8d2b840f88d76646e9810c623,"![Using the nonvolitional cue based on saliency (red cup, non-paper), attention is involuntarily directed to the coffee.](../img/eye-coffee.svg)
+:width:`400px`
+:label:`fig_eye-coffee`"
+1a73be9685db556a492d1e67f082731094659edaed5974c6973edce114679eba,d2lce_abae8f75b732ffe9c8a965c0,d2lce_abae8f75b732ffe9c8a965c0,ctx_b5ad8a4aa3e90970b3a0f97a,backup,d2l_attention_mechanisms_attention_cues_b015,d2l_attention_mechanisms,sentence_51f0ad7dd12913eb59a39972,BACKUP,B2,C4,SAME_SENSE,nonvolitional cues,a271eab92195cab05498787c0ae5102830efc8c3e485b8c21ef7d36edbdeb983,bb9ef5d189579a315386a07cf2550c37cc74b76fc83a6de63f5b1760650e6bf0,"![Attention mechanisms bias selection over values (sensory inputs) via attention pooling, which incorporates queries (volitional cues) and keys (nonvolitional cues).](../img/qkv.svg)
+:label:`fig_qkv`"
+1a73be9685db556a492d1e67f082731094659edaed5974c6973edce114679eba,d2lce_abae8f75b732ffe9c8a965c0,d2lce_abae8f75b732ffe9c8a965c0,ctx_d3cdd3abd54093da62a2cc19,backup;definition,d2l_attention_mechanisms_attention_cues_b014,d2l_attention_mechanisms,sentence_f8f38f5043c635e81b6279c3,BACKUP,B1,C3,SAME_SENSE,nonvolitional cue,52d7c0b26acd117b61f44051a89f38f868b01963c61cc774383a61106ea1c1fc,a332ff0976d6a9c2ef72187b651257fd94a3cae405fb5c26cbce02534f92cf44,"More generally,
+every value is paired with a *key*,
+which can be thought of the nonvolitional cue of that sensory input."
+1a73be9685db556a492d1e67f082731094659edaed5974c6973edce114679eba,d2lce_abae8f75b732ffe9c8a965c0,d2lce_abae8f75b732ffe9c8a965c0,ctx_d4a06af98b28daa12e898464,primary;definition;part_of_speech,d2l_attention_mechanisms_attention_cues_b006,d2l_attention_mechanisms,sentence_bb624538ad20c0f788c924c6,PRIMARY,C5,C1,SAME_SENSE,nonvolitional cue,0072d5bd1f7ff0f0f712ddb9581c50af35abc6cc24183c58325346e48ba42a69,c6b1c311eaf01906e8a1c63a65dd82dc4b39b7c39744726140fcc8df1af4c8ff,"In this framework,
+subjects selectively direct the spotlight of attention
+using both the *nonvolitional cue* and *volitional cue*."
+1a73be9685db556a492d1e67f082731094659edaed5974c6973edce114679eba,d2lce_abae8f75b732ffe9c8a965c0,d2lce_abae8f75b732ffe9c8a965c0,ctx_f0330e5bbe33531cd9316565,backup,d2l_attention_mechanisms_attention_cues_b028,d2l_attention_mechanisms,sentence_4e7fc31efacc45276c9def8f,BACKUP,B3,C4,SAME_SENSE,nonvolitional cues,1b61a3c5bf3579ea5d4dba04a376680e7f6a416453590f0b16800b3cb7aa390c,81c2313d5e8e35e6a2355122dbff36edb35ff9c8ea34c83eb52868da6c27affb,"* Attention mechanisms bias selection over values (sensory inputs) via attention pooling, which incorporates queries (volitional cues) and keys (nonvolitional cues)."
+1a73be9685db556a492d1e67f082731094659edaed5974c6973edce114679eba,d2lce_abae8f75b732ffe9c8a965c0,d2lce_abae8f75b732ffe9c8a965c0,ctxx_015c489f82e2cf03ab841d57,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,nonvolitional cue,7060e482a86207f3e4c6241a618d048e826df39220f28d903588a1a0a981e52c,6f4a18201e833a0c657e4d2cb37750027d345886b14dfc9e3c116a5c21cf7392,"Synthetic: In psychology, a nonvolitional cue can pull attention to a bright object even when the observer intends to look elsewhere."
+ff6b9d4c16a5d38998776b8f3407f9aa68678b62d8151cbb7fd6e2adcdf9be29,d2lce_11e1c294000ac67785408dcd,d2lce_11e1c294000ac67785408dcd,ctx_0c97ab4184b145c22144afa1,backup,d2l_appendix_mathematics_for_deep_learning_statistics_b060,d2l_appendix_mathematics_for_deep_learning,sentence_37840f0c4cb4b23033d6a8bf,BACKUP,B1,C3,SAME_SENSE,null hypothesis,d16e9b85fd01d498702a7e1801dd780443c4d274ff74cb837606e8ffe536296a,34c82c84045c70ce575202f3636799dd65903c0fff6a30835661a48f0c962377,"The significance level can be explained as the level of risk that we are willing to take, when we reject a true null hypothesis."
+ff6b9d4c16a5d38998776b8f3407f9aa68678b62d8151cbb7fd6e2adcdf9be29,d2lce_11e1c294000ac67785408dcd,d2lce_11e1c294000ac67785408dcd,ctx_22557e183923aa9f4d962fb5,primary;definition;part_of_speech,d2l_appendix_mathematics_for_deep_learning_statistics_b050,d2l_appendix_mathematics_for_deep_learning,sentence_efd02ef47d30ec909dbe9fcb,PRIMARY,C2,C2,SAME_SENSE,null hypothesis,2d0089af6901460402efc50b4b09af708c331d525a15c397f65299331946740e,b085e80dd83130cb7eec907f8f83db559aac5a68db3457229bd51ec6ecc2d5fd,The *alternative hypothesis* $H_A$ (or $H_1$) is a statement that is contrary to the null hypothesis.
+ff6b9d4c16a5d38998776b8f3407f9aa68678b62d8151cbb7fd6e2adcdf9be29,d2lce_11e1c294000ac67785408dcd,d2lce_11e1c294000ac67785408dcd,ctx_3b89d2852c572ba5f6a4df35,primary,d2l_appendix_mathematics_for_deep_learning_statistics_b050,d2l_appendix_mathematics_for_deep_learning,sentence_72a75c25eaabd312b105286a,PRIMARY,C5,C2,SAME_SENSE,null hypothesis,df7f795b4149a598b3eaf7ff58061e5728229177380bab8ddc06e9c075701dfe,c63ba2b9b4baab164d93057cc2b2f2174b52381b1bec7cdfc351790cd0a5c9fe,A null hypothesis is often stated in a declarative form which posits a relationship between variables.
+ff6b9d4c16a5d38998776b8f3407f9aa68678b62d8151cbb7fd6e2adcdf9be29,d2lce_11e1c294000ac67785408dcd,d2lce_11e1c294000ac67785408dcd,ctx_4a439805e5ee6481bd8ca2d7,backup;part_of_speech,d2l_appendix_mathematics_for_deep_learning_statistics_b058,d2l_appendix_mathematics_for_deep_learning,sentence_5d7d4ff0c1add1cb08b271d7,BACKUP,B2,C3,SAME_SENSE,null hypothesis,27c4b9e5ba2b508896a43d40a9ce6eae0fa48dcf478a743550baf039dcf4e03a,7743988276998ece0689aaf249b57fd13fcdf35e5a251f9159211e4c657b7c7b,"The *statistical significance* measures the probability of erroneously rejecting the null hypothesis, $H_0$, when it should not be rejected, i.e.,"
+ff6b9d4c16a5d38998776b8f3407f9aa68678b62d8151cbb7fd6e2adcdf9be29,d2lce_11e1c294000ac67785408dcd,d2lce_11e1c294000ac67785408dcd,ctx_78f8341f577bbf7e3922131c,backup,d2l_appendix_mathematics_for_deep_learning_statistics_b049,d2l_appendix_mathematics_for_deep_learning,sentence_d6b84b16a2c124ccec483fd3,BACKUP,B3,C2,SAME_SENSE,null hypothesis,b841bed06bc0416e3312ed3ad0dec67e35950513c6a8c7b8e5c7011f7bf8b435,74e177ed2c162a29b48f984f9ca43042a9c5ad5655716f78a66c1f612689cc05,"Following that, the modern significance testing is the intelligence heritage by Karl Pearson who invented $p$-value and Pearson's chi-squared test, William Gosset who is the father of Student's t-distribution, and Ronald Fisher who initialed the null hypothesis and the significance test."
+ff6b9d4c16a5d38998776b8f3407f9aa68678b62d8151cbb7fd6e2adcdf9be29,d2lce_11e1c294000ac67785408dcd,d2lce_11e1c294000ac67785408dcd,ctx_a5a1f0f18709f7fa8442aea2,primary;definition;part_of_speech,d2l_appendix_mathematics_for_deep_learning_statistics_b050,d2l_appendix_mathematics_for_deep_learning,sentence_f1cd0baa58accba32b69fd9b,PRIMARY,C1,C1,SAME_SENSE,null hypothesis,0452591ffa7107117b2e50704c36cff924c8a34d2f6ab9ae2100b36780e5d1d2,3fb19aa39d2136b65914361843178769f124a73d2969ccf6b65ea77cdbb39e4f,"We refer the default statement as the *null hypothesis* $H_0$, which we try to reject using the observed data."
+ff6b9d4c16a5d38998776b8f3407f9aa68678b62d8151cbb7fd6e2adcdf9be29,d2lce_11e1c294000ac67785408dcd,d2lce_11e1c294000ac67785408dcd,ctx_e4f5d547b5a2e976a337fefd,primary,d2l_appendix_mathematics_for_deep_learning_statistics_b053,d2l_appendix_mathematics_for_deep_learning,sentence_3d8c41b0e5b790f3a421a923,PRIMARY,C4,C3,SAME_SENSE,null hypothesis,2000063c41086a270f54b50bed2ec4fcd120e9b3d9a1c375a666bd94865f4dd8,18967777874581d37624598ca3482be53979930752190d9848f1bf2b7fea08e6,"In this case, our null hypothesis will be that there is no difference between the two groups, and our alternate will be that there is."
+ff6b9d4c16a5d38998776b8f3407f9aa68678b62d8151cbb7fd6e2adcdf9be29,d2lce_11e1c294000ac67785408dcd,d2lce_11e1c294000ac67785408dcd,ctx_f4392f740a7e9df79b8c5e6a,primary;definition,d2l_appendix_mathematics_for_deep_learning_statistics_b055,d2l_appendix_mathematics_for_deep_learning,sentence_148aa679a04b0c7a92d27869,PRIMARY,C3,C3,SAME_SENSE,null hypothesis,805cd7c07b4adeb0d414701e9f792b12135d705291debc07daa64022308565e8,b0ce9e2808ae9bb61f562af576c9c31c5b5022b4aaaa5232af9c30e5a686d6df,"If we can now show that the null hypothesis is very unlikely to be true, we may reject it with confidence."
+ff6b9d4c16a5d38998776b8f3407f9aa68678b62d8151cbb7fd6e2adcdf9be29,d2lce_11e1c294000ac67785408dcd,d2lce_11e1c294000ac67785408dcd,ctxx_ee2a54b1abc918e1f611434e,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,null hypothesis,6767305e2f82bbd361158590219b204268da3f4651317840944d7d7c842879af,a8888ede641640d19d2365ea4594aa5588f4befb3805572a48061d80381c49b5,"Synthetic: A scientific hypothesis can be any proposed explanation, but a null hypothesis is the specific default claim tested for rejection."
+088402983395209918789eced4b32b6a949eae3805f73e9f4f6c49718ce27a4a,d2lce_1cc990a2aa4f03a55ea8c851,d2lce_1cc990a2aa4f03a55ea8c851,ctx_19f05cc4fb14916ea6c8830b,backup,d2l_computer_vision_multiscale_object_detection_b021,d2l_computer_vision,sentence_2fd6bf708d4482ca2eee62e3,BACKUP,B1,C2,SAME_SENSE,object detection model,b097bd34f36c90fae749947cd6c821b17f7f3c9d177df814231a08b6e37f16be,94540abb35d9d6596da326431ef6a187f911b7f3f6f6af909a8e521f39515040,"At the current scale, the object detection model needs to predict the classes and offsets of $hw$ sets of anchor boxes on the input image, where different sets have different centers."
+088402983395209918789eced4b32b6a949eae3805f73e9f4f6c49718ce27a4a,d2lce_1cc990a2aa4f03a55ea8c851,d2lce_1cc990a2aa4f03a55ea8c851,ctx_37042d54237b28f1a02cd33b,primary,d2l_computer_vision_ssd_b088,d2l_computer_vision,sentence_c99cd7fa2845c1d41edb047b,PRIMARY,C3,C3,SAME_SENSE,object detection model,d504a529e8533f9c458ab184ec0b7d5f77e16f78ce176a0249448a341e964605,564bcaa99aba06058f70571f712bd6ff1b970e4dd0d98f5e44b8ec4c1e34080f,* Single shot multibox detection is a multiscale object detection model.
+088402983395209918789eced4b32b6a949eae3805f73e9f4f6c49718ce27a4a,d2lce_1cc990a2aa4f03a55ea8c851,d2lce_1cc990a2aa4f03a55ea8c851,ctx_75539ee50da6b74f48edbf25,primary;definition,d2l_computer_vision_ssd_b006,d2l_computer_vision,sentence_7add4f94dba6b66e4eebdb8f,PRIMARY,C1,C1,SAME_SENSE,object detection model,ca911c2c29890da32b9566593caf1abc329a738f447137e4cc7dc3d5b76806d1,98cf0fd219a917607f7d32de56420566a9f7289609cb0b5f7824ecd93e37f65d,"In a nutshell,
+via its base network and several multiscale feature map blocks,
+single-shot multibox detection
+generates a varying number of anchor boxes with different sizes,
+and detects varying-size objects
+by predicting classes and offsets
+of these anchor boxes (thus the bounding boxes);
+thus, this is a multiscale object detection model."
+088402983395209918789eced4b32b6a949eae3805f73e9f4f6c49718ce27a4a,d2lce_1cc990a2aa4f03a55ea8c851,d2lce_1cc990a2aa4f03a55ea8c851,ctx_8e94e3fe2eccae4e18df81ce,backup,d2l_computer_vision_anchor_b066,d2l_computer_vision,sentence_53e8aa7f4b6807d2b8557081,BACKUP,B3,C2,SAME_SENSE,object detection model,50116ee6ecf89e1aef8c67ecf0cf9b4f44dde8af9d746551d3da1c542077330d,6a4bd5192d41d403cd31587512bb21714991bc59f9c7f29f68397e6fcf41bfb0,"For a predicted bounding box $B$,
+the object detection model calculates the predicted likelihood
+for each class."
+088402983395209918789eced4b32b6a949eae3805f73e9f4f6c49718ce27a4a,d2lce_1cc990a2aa4f03a55ea8c851,d2lce_1cc990a2aa4f03a55ea8c851,ctx_a80a0f96555a881e8a2d64e2,primary;part_of_speech,d2l_computer_vision_ssd_b002,d2l_computer_vision,sentence_2f2624ed2b721154419d7fd4,PRIMARY,C2,C2,SAME_SENSE,object detection model,02fda0706c201971a672d966ef39a18f06f581dedc718261ce36e04460c58bb8,843159be3ab6af95aa6fbc6003819a1999516ce294071cbf4b71443ef9c73162,"Now we are ready to use such background
+knowledge to design an object detection model:
+single shot multibox detection
+(SSD) :cite:`Liu.Anguelov.Erhan.ea.2016`."
+088402983395209918789eced4b32b6a949eae3805f73e9f4f6c49718ce27a4a,d2lce_1cc990a2aa4f03a55ea8c851,d2lce_1cc990a2aa4f03a55ea8c851,ctx_a91676d4a36f289125221b76,backup;part_of_speech,d2l_computer_vision_anchor_b002,d2l_computer_vision,sentence_da34d0e85903343edd50346f,BACKUP,B2,C2,SAME_SENSE,object detection model,434af871aebc16b6ff2913937f2d0d2a6c6b8834b950584e5aa5bedcd1acd547,f682a9c6f7a33be99eb593047e2fb784d1cf28971fc7a68ca7cae75e26e8308a,"We will design an object detection model
+based on anchor boxes in :numref:`sec_ssd`."
+088402983395209918789eced4b32b6a949eae3805f73e9f4f6c49718ce27a4a,d2lce_1cc990a2aa4f03a55ea8c851,d2lce_1cc990a2aa4f03a55ea8c851,ctx_ae46b94d1a1ad441b6292470,primary;definition,d2l_computer_vision_anchor_b032,d2l_computer_vision,sentence_571f6710b34507f3e982869c,PRIMARY,C5,C1,SAME_SENSE,object detection model,cd8fee977ae7b5524751d6062111b697542353ed76a45c063d4be448a6d70aa3,dcf63e70b951ed62a683bba77c9f0714b2ccaf443b8f71d4b75b2815e539a902,"In order to train an object detection model,
+we need *class* and *offset* labels for each anchor box,
+where the former is
+the class of the object relevant to the anchor box
+and the latter is the offset
+of the ground-truth bounding box relative to the anchor box."
+088402983395209918789eced4b32b6a949eae3805f73e9f4f6c49718ce27a4a,d2lce_1cc990a2aa4f03a55ea8c851,d2lce_1cc990a2aa4f03a55ea8c851,ctx_d86d6e76e7a6fb556d8b58fe,primary,d2l_computer_vision_ssd_b007,d2l_computer_vision,sentence_e36d96d91f6f8c0d7eeadb6a,PRIMARY,C4,C4,SAME_SENSE,object detection model,8b83a3a7b1fb4a132810f29e81ab714f3cf27767817cdaba330cba8f99fd6807,2cff74f45f87f562d957124a16cba16dbc09e42a095b1c6659affd6c0fc8dd07,"![As a multiscale object detection model, single-shot multibox detection mainly consists of a base network followed by several multiscale feature map blocks.](../img/ssd.svg)
+:label:`fig_ssd`"
+088402983395209918789eced4b32b6a949eae3805f73e9f4f6c49718ce27a4a,d2lce_1cc990a2aa4f03a55ea8c851,d2lce_1cc990a2aa4f03a55ea8c851,ctxx_c825c790f8c9fea20851505b,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,object detection model,0979474d04e1b3e199e6a67ffa574b5a66a33bf73b23fdf3fe9be2b6bf0461d9,97298054cc95b8d3744c60e93bb00681f03f88713538c5e44f6f55be79d30a4a,"Synthetic: Object detection is the task, while an object detection model is the trained network that performs it."
+89cc27dc59936ea19db539668ded1daa256a2b0e391ebe7eeec4255583d4239b,d2lce_cf168d11faf5e675efa7e0a3,d2lce_cf168d11faf5e675efa7e0a3,ctx_254e012e0fc7f6d2b7e12488,backup,d2l_computer_vision_anchor_b058,d2l_computer_vision,sentence_9d12d0566fd94f49ba5f262a,BACKUP,B2,C2,SAME_SENSE,objective,c72efae7ff11c31e9a2fa684c2ed3631c12973572d0ff1366945a354efc9ce14,0c5ff565305fdccc60b2718e0e296ac4937500d457633748c87f80d6b79efbc3,"Through elementwise multiplications, zeros in the mask variable will filter out negative class offsets before calculating the objective function."
+89cc27dc59936ea19db539668ded1daa256a2b0e391ebe7eeec4255583d4239b,d2lce_cf168d11faf5e675efa7e0a3,d2lce_cf168d11faf5e675efa7e0a3,ctx_2fe7c674ada36093ebc54726,backup,d2l_recurrent_neural_networks_rnn_scratch_b051,d2l_recurrent_neural_networks,sentence_edec8567f0d431abf7bc5a66,BACKUP,B3,C2,SAME_SENSE,objective,46deef4d852657a0de0efb88e009c5c9b9295b9cc6b881787084e338d7d91830,260ac7fc3fc040304519ae0140a74a0a9c460553768d090c256d9f7be88d39e5,"Let us further assume that the objective function $f$
+is well behaved, say, *Lipschitz continuous* with constant $L$."
+89cc27dc59936ea19db539668ded1daa256a2b0e391ebe7eeec4255583d4239b,d2lce_cf168d11faf5e675efa7e0a3,d2lce_cf168d11faf5e675efa7e0a3,ctx_3b91b2f9f2875a350642ef75,primary;definition;part_of_speech,d2l_multilayer_perceptrons_weight_decay_b007,d2l_multilayer_perceptrons,sentence_964116d34ced1168ead709da,PRIMARY,C4,C1,SAME_SENSE,objective,ac384f5d29d2dd7fdf692aa8838b4cef3a48fcbdc0bbe8d6ecddc44f6052c2a0,65b9a8869b777157290d9ce55b6a806bda6b97b9223af81a8ad926e3d83b1607,"Thus we replace our original objective,
+*minimizing the prediction loss on the training labels*,
+with new objective,
+*minimizing the sum of the prediction loss and the penalty term*."
+89cc27dc59936ea19db539668ded1daa256a2b0e391ebe7eeec4255583d4239b,d2lce_cf168d11faf5e675efa7e0a3,d2lce_cf168d11faf5e675efa7e0a3,ctx_622b0a2786bbcaf9095a093c,primary,d2l_optimization_index_b002,d2l_optimization,sentence_4e3e135cd20a5f0e48468df9,PRIMARY,C2,C2,SAME_SENSE,objective,367c7fd3bc00098c51280201953e74ac5a2bd6ce6d64f5bbfc1fd0ff1079e34b,987071e0d714cef7eb0d2018f1c81615034c62f3d4fc990885bc25a542280c74,"Indeed, anyone content with treating optimization as a black box device to minimize objective functions in a simple setting might well content oneself with the knowledge that there exists an array of incantations of such a procedure (with names such as ""SGD"" and ""Adam"")."
+89cc27dc59936ea19db539668ded1daa256a2b0e391ebe7eeec4255583d4239b,d2lce_cf168d11faf5e675efa7e0a3,d2lce_cf168d11faf5e675efa7e0a3,ctx_654d5b054d1a8a6629be86be,backup,d2l_linear_networks_linear_regression_b067,d2l_linear_networks,sentence_bd2eac065fcc36b3f6f8c54c,BACKUP,B1,C2,SAME_SENSE,objective,67edb27e2b5bac37f5559addf3e44adc6ffabf6adc07535c1560e8ffc9786d66,69a7795c929223f9fe626a9af065478756438f8bf64ac24deb03f9274d19f91a,"While you can already get your hands dirty using only the information above,
+in the following we can more formally motivate the squared loss objective
+via assumptions about the distribution of noise."
+89cc27dc59936ea19db539668ded1daa256a2b0e391ebe7eeec4255583d4239b,d2lce_cf168d11faf5e675efa7e0a3,d2lce_cf168d11faf5e675efa7e0a3,ctx_6f97e9a634e8f6551250acc0,primary;definition,d2l_natural_language_processing_pretraining_approx_training_b006,d2l_natural_language_processing_pretraining,sentence_22ab63bdc2bc3ad0ba997dc1,PRIMARY,C3,C3,SAME_SENSE,objective,e7c7137c2668d2427b36dc6f37f4eb54897720a49f0483977dd717d0839c35cd,330ac6d7528f86881757631e4a6d9bdb9e491270c784610097f2d04e805affe1,Negative sampling modifies the original objective function.
+89cc27dc59936ea19db539668ded1daa256a2b0e391ebe7eeec4255583d4239b,d2lce_cf168d11faf5e675efa7e0a3,d2lce_cf168d11faf5e675efa7e0a3,ctx_71e1b52a108cecca970b6aef,primary;definition,d2l_deep_learning_computation_model_construction_b002,d2l_deep_learning_computation,sentence_fd1aa12d4440905cb73ba45a,PRIMARY,C5,C3,SAME_SENSE,objective,84fea56037232e073b4d4a00993061ca2a777fe71c41233c00a6d453cc31ad52,0ee7af9350aa3bf0dc0355d47964c727710d7c8da3b57b0a80111b2bb421eeb5,"Note that a single neuron
+(i) takes some set of inputs;
+(ii) generates a corresponding scalar output;
+and (iii) has a set of associated parameters that can be updated
+to optimize some objective function of interest."
+89cc27dc59936ea19db539668ded1daa256a2b0e391ebe7eeec4255583d4239b,d2lce_cf168d11faf5e675efa7e0a3,d2lce_cf168d11faf5e675efa7e0a3,ctx_e8877b610c0af1e834561705,primary;definition;part_of_speech,d2l_introduction_index_b021,d2l_introduction,sentence_d478547b3655022e50910adb,PRIMARY,C1,C1,SAME_SENSE,objective,6c033db9313e2160bbb7895c9d1fabc33e1a04e5c718350385bbb5cc3662c465,f3d83f5539a19a5e10f7b84fef0938e531ba870fad758aa4845b79d7b35fedb7,An *algorithm* to adjust the model's parameters to optimize the objective function.
+89cc27dc59936ea19db539668ded1daa256a2b0e391ebe7eeec4255583d4239b,d2lce_cf168d11faf5e675efa7e0a3,d2lce_cf168d11faf5e675efa7e0a3,ctxx_288b025e2226d308d6374f8f,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,objective,372f232cbaabb092d570681a2dc7760f5b685994ea33d1d727ea1e83536ddc56,a861519778f5e621b5db59fa3da745e328c8a4306e330a2a01a9dc42ba8d62f2,Synthetic: The training objective is to minimize prediction error plus regularization.
+64f31475c917aeb7f5334f2649cf7c35d7484186f572603049c0a4e07339667f,d2lce_e749bbd007351d6963f2bbd0,d2lce_e749bbd007351d6963f2bbd0,ctx_00060c0d518148705d609385,primary;definition;part_of_speech,d2l_computer_vision_anchor_b012,d2l_computer_vision,sentence_ef59d2fff01e475633e15828,PRIMARY,C3,C1,SAME_SENSE,Offsets,30426808cba4112255d20b6fc0b94047a0079f4750867a7e52c23e8bd586bb63,5442af42ccfb2299a5713e0c14e51bfec8ba1c2c426ab300256f847c4320d6f2,"```{.python .input}
+#@save
+def multibox_prior(data, sizes, ratios):
+    """"""Generate anchor boxes with different shapes centered on each pixel.""""""
+    in_height, in_width = data.shape[-2:]
+    device, num_sizes, num_ratios = data.ctx, len(sizes), len(ratios)
+    boxes_per_pixel = (num_sizes + num_ratios - 1)
+    size_tensor = d2l.tensor(sizes, ctx=device)
+    ratio_tensor = d2l.tensor(ratios, ctx=device)
+    # Offsets are required to move the anchor to the center of a pixel."
+64f31475c917aeb7f5334f2649cf7c35d7484186f572603049c0a4e07339667f,d2lce_e749bbd007351d6963f2bbd0,d2lce_e749bbd007351d6963f2bbd0,ctx_11250deeba2dfb3a9290f422,primary;definition,d2l_computer_vision_anchor_b043,d2l_computer_vision,sentence_f34a17ada9bd9fe819d2ff43,PRIMARY,C4,C2,SAME_SENSE,offsets,2b42345cfccc03c94bc7f84780a144184c4fb658ee8d80b02616c9ff51dc8813,987a1ec29340aa8846a84d2236576c2050092f839a7ad8ba534587ce43013c12,"Given varying
+positions and sizes of different boxes in the dataset,
+we can apply transformations
+to those relative positions and sizes
+that may lead to 
+more uniformly distributed offsets
+that are easier to fit."
+64f31475c917aeb7f5334f2649cf7c35d7484186f572603049c0a4e07339667f,d2lce_e749bbd007351d6963f2bbd0,d2lce_e749bbd007351d6963f2bbd0,ctx_7c03da734cfb73140f39675c,primary;definition;part_of_speech,d2l_convolutional_neural_networks_why_conv_b016,d2l_convolutional_neural_networks,sentence_1b62cf00c75e3be48f526475,PRIMARY,C5,C1,SAME_SENSE,offsets,77a0223d5cb375cb8ce924bc07d83ad74a961ea4264235ed03920c43a3580413,dcbc6936699c9f802ed2b9d53c1e96e47c3ec107e86ec308d4f3433d235066bb,"The indices $a$ and $b$ run over both positive and negative offsets,
+covering the entire image."
+64f31475c917aeb7f5334f2649cf7c35d7484186f572603049c0a4e07339667f,d2lce_e749bbd007351d6963f2bbd0,d2lce_e749bbd007351d6963f2bbd0,ctx_8b947d5e873543c5099e853b,backup;definition,d2l_recurrent_neural_networks_language_models_and_dataset_b045,d2l_recurrent_neural_networks,sentence_712d1e6d9b1dd3e796636875,BACKUP,B2,C1,SAME_SENSE,offsets,ded19ed1c05d9747749b9b82dae838b722c9585afdf2704e6a25236d174f9b62,db79bdd2dfe8e082cee6a1be7966c3f974563ea72859673d57a3cdd5aac3ccee,"![Different offsets lead to different subsequences when splitting up text.](../img/timemachine-5gram.svg)
+:label:`fig_timemachine_5gram`"
+64f31475c917aeb7f5334f2649cf7c35d7484186f572603049c0a4e07339667f,d2lce_e749bbd007351d6963f2bbd0,d2lce_e749bbd007351d6963f2bbd0,ctx_993688889952b7346efdcaf7,primary;definition;part_of_speech,d2l_computer_vision_anchor_b032,d2l_computer_vision,sentence_a9f5b25456126eb7b7d09fcd,PRIMARY,C2,C2,SAME_SENSE,offsets,0e42090b6c2838191b81e5b65f6528322018757ce81294f6012ce3678369fe73,c020c432b4da382a9585e4e4e9fdacd7b06582e6b597ec15a9390e00424cd5bc,"During the prediction,
+for each image
+we generate multiple anchor boxes,
+predict classes and offsets for all the anchor boxes,
+adjust their positions according to the predicted offsets to obtain the predicted bounding boxes,
+and finally only output those 
+predicted bounding boxes that satisfy certain criteria."
+64f31475c917aeb7f5334f2649cf7c35d7484186f572603049c0a4e07339667f,d2lce_e749bbd007351d6963f2bbd0,d2lce_e749bbd007351d6963f2bbd0,ctx_9af45708693a272ccbee02ce,primary;definition,d2l_computer_vision_anchor_b013,d2l_computer_vision,sentence_9a9e0d6e5fbccd872bfa6d8b,PRIMARY,C1,C1,SAME_SENSE,Offsets,2f5856d07607a408d9988a8cbf44d99df679012ee8bd7bd7744b181b33e4961c,f7a46a71bae9718e25ef6b80e2eeadc66c621230762aaab4d7ccad807ee574cb,"```{.python .input}
+#@tab pytorch
+#@save
+def multibox_prior(data, sizes, ratios):
+    """"""Generate anchor boxes with different shapes centered on each pixel.""""""
+    in_height, in_width = data.shape[-2:]
+    device, num_sizes, num_ratios = data.device, len(sizes), len(ratios)
+    boxes_per_pixel = (num_sizes + num_ratios - 1)
+    size_tensor = d2l.tensor(sizes, device=device)
+    ratio_tensor = d2l.tensor(ratios, device=device)
+    # Offsets are required to move the anchor to the center of a pixel."
+64f31475c917aeb7f5334f2649cf7c35d7484186f572603049c0a4e07339667f,d2lce_e749bbd007351d6963f2bbd0,d2lce_e749bbd007351d6963f2bbd0,ctx_f8448e2bed424bbc3037f2af,backup;definition,d2l_recommender_systems_ctr_b014,d2l_recommender_systems,sentence_e37465900e2a4cd34ef7c8ff,BACKUP,B3,C1,SAME_SENSE,offsets,c38369646373c2eea0fe9889c3afbf61b7874fb2ecd1bb5d1f992d70b0a7184e,3875eb68917893ba9775a190235bd0752172418b51f8f8c3c344c76b303eac17,"```{.python .input  n=13}
+#@save
+class CTRDataset(gluon.data.Dataset):
+    def __init__(self, data_path, feat_mapper=None, defaults=None,
+                 min_threshold=4, num_feat=34):
+        self.NUM_FEATS, self.count, self.data = num_feat, 0, {}
+        feat_cnts = defaultdict(lambda: defaultdict(int))
+        self.feat_mapper, self.defaults = feat_mapper, defaults
+        self.field_dims = np.zeros(self.NUM_FEATS, dtype=np.int64)
+        with open(data_path) as f:
+            for line in f:
+                instance = {}
+                values = line.rstrip('\n').split('\t')
+                if len(values) != self.NUM_FEATS + 1:
+                    continue
+                label = np.float32([0, 0])
+                label[int(values[0])] = 1
+                instance['y'] = [np.float32(values[0])]
+                for i in range(1, self.NUM_FEATS + 1):
+                    feat_cnts[i][values[i]] += 1
+                    instance.setdefault('x', []).append(values[i])
+                self.data[self.count] = instance
+                self.count = self.count + 1
+        if self.feat_mapper is None and self.defaults is None:
+            feat_mapper = {i: {feat for feat, c in cnt.items() if c >=
+                               min_threshold} for i, cnt in feat_cnts.items()}
+            self.feat_mapper = {i: {feat_v: idx for idx, feat_v in enumerate(feat_values)}
+                                for i, feat_values in feat_mapper.items()}
+            self.defaults = {i: len(feat_values) for i, feat_values in feat_mapper.items()}
+        for i, fm in self.feat_mapper.items():
+            self.field_dims[i - 1] = len(fm) + 1
+        self.offsets = np.array((0, *np.cumsum(self.field_dims).asnumpy()
+                                 [:-1]))
+        
+    def __len__(self):
+        return self.count
+    
+    def __getitem__(self, idx):
+        feat = np.array([self.feat_mapper[i + 1].get(v, self.defaults[i + 1])
+                         for i, v in enumerate(self.data[idx]['x'])])
+        return feat + self.offsets, self.data[idx]['y']
+```"
+64f31475c917aeb7f5334f2649cf7c35d7484186f572603049c0a4e07339667f,d2lce_e749bbd007351d6963f2bbd0,d2lce_e749bbd007351d6963f2bbd0,ctx_fa4857a0dd6e85e72fbd8c3a,backup;definition,d2l_computer_vision_anchor_b042,d2l_computer_vision,sentence_dcb7e201582cc077da4cace9,BACKUP,B1,C2,SAME_SENSE,Offsets,08ffbb46ed7cc0722269153ef78e9e239366227193e3c4774e0936bf754ff7df,aaf95ab85a44fb4fea967cce58531f6d3eae2c70492bd207fc729e0e306986cb,### Labeling Classes and Offsets
+64f31475c917aeb7f5334f2649cf7c35d7484186f572603049c0a4e07339667f,d2lce_e749bbd007351d6963f2bbd0,d2lce_e749bbd007351d6963f2bbd0,ctxx_10cb8156b50875d285114451,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,offsets,06e35e9b407bdccddafc524a33e0aec884264083f3066e40be217ce567a90db7,167262d0f58aab8469eac66d8bfd3e0d9ea273b3ffc6f2a1a74c470e85024912,"Synthetic: In accounting, offsets are balancing entries that reduce a debt rather than position shifts."
+0ddccee23d2c6f9eb6544cb386b2e6a05555283239c4dcf4ce652aeb58b1d2fc,d2lce_c6b4477a845e2e0e0e02f088,d2lce_c6b4477a845e2e0e0e02f088,ctx_044bf29b52339083b6accce1,primary;definition;part_of_speech,d2l_recurrent_modern_lstm_b008,d2l_recurrent_modern,sentence_fcdc03178a1ddc209508d444,PRIMARY,C5,C1,SAME_SENSE,output gate,90b884665dd6ee49dfa5fee913f093b60d52f116cc3d78195ba9b97803f2cebb,5e5627bc14acd10a39718858a91cb346157177875555f19b063be3bc1ff6097e,"Correspondingly, the gates at time step $t$
+are defined as follows: the input gate is $\mathbf{I}_t \in \mathbb{R}^{n \times h}$, the forget gate is $\mathbf{F}_t \in \mathbb{R}^{n \times h}$, and the output gate is $\mathbf{O}_t \in \mathbb{R}^{n \times h}$."
+0ddccee23d2c6f9eb6544cb386b2e6a05555283239c4dcf4ce652aeb58b1d2fc,d2lce_c6b4477a845e2e0e0e02f088,d2lce_c6b4477a845e2e0e0e02f088,ctx_1236c8eedefbed662cef9104,primary,d2l_recurrent_modern_lstm_b005,d2l_recurrent_modern,sentence_677a13b6f66d36d6302a385a,PRIMARY,C3,C3,SAME_SENSE,Output Gate,b3c049aeabeabb53e9775b793ce86f1addf8e527937ad51b8a8c2d6dd3fdbcd1,fcd237b968f9fedd54c84ab72a24d8b804ca64e64789b0c6aed0a14c1f1c1438,"### Input Gate, Forget Gate, and Output Gate"
+0ddccee23d2c6f9eb6544cb386b2e6a05555283239c4dcf4ce652aeb58b1d2fc,d2lce_c6b4477a845e2e0e0e02f088,d2lce_c6b4477a845e2e0e0e02f088,ctx_4a8ce9c7f087c3d08d32ccad,primary,d2l_recurrent_modern_lstm_b007,d2l_recurrent_modern,sentence_233f5dae07761e1a4528c1bc,PRIMARY,C4,C4,SAME_SENSE,output gate,8786cd0135697b270c7b754861ef2c97fb7f7333492b0c23b14c1d7b01335a01,bf35d39aa91ca0cc7e62c60b3e184266d39ebd64be5efd1c890805b88fb3e5a0,"![Computing the input gate, the forget gate, and the output gate in an LSTM model.](../img/lstm-0.svg)
+:label:`lstm_0`"
+0ddccee23d2c6f9eb6544cb386b2e6a05555283239c4dcf4ce652aeb58b1d2fc,d2lce_c6b4477a845e2e0e0e02f088,d2lce_c6b4477a845e2e0e0e02f088,ctx_6143b29417b0fe55f7875c10,backup;part_of_speech,d2l_recurrent_modern_lstm_b004,d2l_recurrent_modern,sentence_c1a0b74ee1e94ce189ab28a0,BACKUP,B3,C3,SAME_SENSE,output gate,f03b94d832043611e8a287cdc22d43f2089aabff4dac47555d83413c4ad1aca9,a9dfba7a29427eb6f4e9dbee746bd24be0cb2f9271629542dc4d9734009c3cf3,"We will refer to this as the
+*output gate*."
+0ddccee23d2c6f9eb6544cb386b2e6a05555283239c4dcf4ce652aeb58b1d2fc,d2lce_c6b4477a845e2e0e0e02f088,d2lce_c6b4477a845e2e0e0e02f088,ctx_83304deb770138c0273a3f19,backup,d2l_recurrent_modern_lstm_b038,d2l_recurrent_modern,sentence_95d3eecd0e190204ceeb33f8,BACKUP,B1,C2,SAME_SENSE,Output gate,3a89755d01def81dfe93e85ab32c15756b167fd48c53ebe335576641d3674de9,e61ab08896ca79abc79f6623a63b975fc92dc22f556cb63bdbea0e7248561595,"```{.python .input}
+#@tab pytorch
+def get_lstm_params(vocab_size, num_hiddens, device):
+    num_inputs = num_outputs = vocab_size
+
+    def normal(shape):
+        return torch.randn(size=shape, device=device)*0.01
+
+    def three():
+        return (normal((num_inputs, num_hiddens)),
+                normal((num_hiddens, num_hiddens)),
+                d2l.zeros(num_hiddens, device=device))
+
+    W_xi, W_hi, b_i = three()  # Input gate parameters
+    W_xf, W_hf, b_f = three()  # Forget gate parameters
+    W_xo, W_ho, b_o = three()  # Output gate parameters
+    W_xc, W_hc, b_c = three()  # Candidate memory cell parameters
+    # Output layer parameters
+    W_hq = normal((num_hiddens, num_outputs))
+    b_q = d2l.zeros(num_outputs, device=device)
+    # Attach gradients
+    params = [W_xi, W_hi, b_i, W_xf, W_hf, b_f, W_xo, W_ho, b_o, W_xc, W_hc,
+              b_c, W_hq, b_q]
+    for param in params:
+        param.requires_grad_(True)
+    return params
+```"
+0ddccee23d2c6f9eb6544cb386b2e6a05555283239c4dcf4ce652aeb58b1d2fc,d2lce_c6b4477a845e2e0e0e02f088,d2lce_c6b4477a845e2e0e0e02f088,ctx_ba0d3fd808401fd086323e3f,backup,d2l_recurrent_modern_lstm_b025,d2l_recurrent_modern,sentence_a4e711275fdf4deb49e93e2f,BACKUP,B2,C2,SAME_SENSE,output gate,af4ad6ea00673b85c1e50d1c517f4e7d67ed7b452b71a85ed9f945d928a50000,111ef66102cb71e9d6fbb45015b86721ba3d28f2a1dd0e196664d37282bd08f0,This is where the output gate comes into play.
+0ddccee23d2c6f9eb6544cb386b2e6a05555283239c4dcf4ce652aeb58b1d2fc,d2lce_c6b4477a845e2e0e0e02f088,d2lce_c6b4477a845e2e0e0e02f088,ctx_ce0994b03956d4032b57ec95,primary,d2l_recurrent_modern_lstm_b037,d2l_recurrent_modern,sentence_82a449631f50a21335913618,PRIMARY,C2,C2,SAME_SENSE,Output gate,f87dae16c4798192b496b3fc0c93b3e30bc95a6ff23a95a4bd14cff3c0fa96e4,46494414c86a1f5a0016452265de7ba4d33eb1fbf26b0e81f88fcb880597dd46,"```{.python .input}
+def get_lstm_params(vocab_size, num_hiddens, device):
+    num_inputs = num_outputs = vocab_size
+
+    def normal(shape):
+        return np.random.normal(scale=0.01, size=shape, ctx=device)
+
+    def three():
+        return (normal((num_inputs, num_hiddens)),
+                normal((num_hiddens, num_hiddens)),
+                np.zeros(num_hiddens, ctx=device))
+
+    W_xi, W_hi, b_i = three()  # Input gate parameters
+    W_xf, W_hf, b_f = three()  # Forget gate parameters
+    W_xo, W_ho, b_o = three()  # Output gate parameters
+    W_xc, W_hc, b_c = three()  # Candidate memory cell parameters
+    # Output layer parameters
+    W_hq = normal((num_hiddens, num_outputs))
+    b_q = np.zeros(num_outputs, ctx=device)
+    # Attach gradients
+    params = [W_xi, W_hi, b_i, W_xf, W_hf, b_f, W_xo, W_ho, b_o, W_xc, W_hc,
+              b_c, W_hq, b_q]
+    for param in params:
+        param.attach_grad()
+    return params
+```"
+0ddccee23d2c6f9eb6544cb386b2e6a05555283239c4dcf4ce652aeb58b1d2fc,d2lce_c6b4477a845e2e0e0e02f088,d2lce_c6b4477a845e2e0e0e02f088,ctx_df998c3c68076fd4dfeea859,primary;definition,d2l_recurrent_modern_lstm_b027,d2l_recurrent_modern,sentence_3462d9327f61fa14ef00bdd8,PRIMARY,C1,C1,SAME_SENSE,output gate,cb8bdf85862ae2174d1e6c59de3cb50e3ab6955f43e91f7f7947589acfad2480,c32234a10dbf83f22539073503b041dcd587612a869bdb9195b9074736f5eee1,"Whenever the output gate approximates 1 we effectively pass all memory information through to the predictor, whereas for the output gate close to 0 we retain all the information only within the memory cell and perform no further processing."
+0ddccee23d2c6f9eb6544cb386b2e6a05555283239c4dcf4ce652aeb58b1d2fc,d2lce_c6b4477a845e2e0e0e02f088,d2lce_c6b4477a845e2e0e0e02f088,ctxx_821e879eea68458c73930916,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,output gate,87e5607e8e092662b1012dee6d70dd6e42088333865eeef4f794cf8cd004a548,e947f5aa845765f34a9129c4d437a3b29381c11b02d75c0fd8aafabca5bb0768,"Synthetic: In digital electronics, an output gate may refer to a circuit output stage, not an LSTM component."
+24ff7111064fd79eb2f814ea9621b108b377dfb56e625f70ee6acc1e30604aaf,d2lce_2b9f63478b6ef59511a4f930,d2lce_2b9f63478b6ef59511a4f930,ctx_2caa9497e1430c49c9c6179e,backup;part_of_speech,d2l_convolutional_neural_networks_index_b005,d2l_convolutional_neural_networks,sentence_27f3e0ec9d14cbd6108f4db0,BACKUP,B2,C2,SAME_SENSE,pooling layers,797545d4829d49809c4ef85ee3d9c7449e00ed9ce8b949f0b99dbcb71e1abd60,2afd333e45fd27181e7d7a8068d258800ccf8fa075c122fafa563b254374f343,"These include the convolutional layers themselves,
+nitty-gritty details including padding and stride,
+the pooling layers used to aggregate information
+across adjacent spatial regions,
+the use of multiple channels  at each layer,
+and a careful discussion of the structure of modern architectures."
+24ff7111064fd79eb2f814ea9621b108b377dfb56e625f70ee6acc1e30604aaf,d2lce_2b9f63478b6ef59511a4f930,d2lce_2b9f63478b6ef59511a4f930,ctx_5b2b6c454358b72cbc4ddf00,primary;definition,d2l_convolutional_neural_networks_pooling_b005,d2l_convolutional_neural_networks,sentence_941aa096fd000cb48174287b,PRIMARY,C3,C3,SAME_SENSE,pooling layers,1160598f4c397f2f1c9f0d88da51ab9591637e2435dbddf68d5b64bef299c58b,f9015bbd26119383a7eee84aac9597dd14ddd225c171d36f1f7f18fcc51fa4a4,"This section introduces *pooling layers*,
+which serve the dual purposes of
+mitigating the sensitivity of convolutional layers to location
+and of spatially downsampling representations."
+24ff7111064fd79eb2f814ea9621b108b377dfb56e625f70ee6acc1e30604aaf,d2lce_2b9f63478b6ef59511a4f930,d2lce_2b9f63478b6ef59511a4f930,ctx_5e4de4eeef8a8e535e757172,primary,d2l_convolutional_modern_alexnet_b030,d2l_convolutional_modern,sentence_c1c90ab7150e644dbb1ac3b5,PRIMARY,C5,C2,SAME_SENSE,pooling layers,b8e246c6d8ac0309d5fcc50f263996b07c8a9ebab650e7ac4f6df7acefb32e08,574e2f720057cbb8c16673cc850f764a39942f38fcd5a9f5ee4c04b233a650a0,"In addition, after the first, second, and fifth convolutional layers,
+the network adds maximum pooling layers
+with a window shape of $3\times3$ and a stride of 2."
+24ff7111064fd79eb2f814ea9621b108b377dfb56e625f70ee6acc1e30604aaf,d2lce_2b9f63478b6ef59511a4f930,d2lce_2b9f63478b6ef59511a4f930,ctx_8e23dd2d6763c4ee696bb066,backup,d2l_attention_mechanisms_attention_cues_b014,d2l_attention_mechanisms,sentence_b55a324b907b8b68eff4c103,BACKUP,B3,C2,SAME_SENSE,pooling layers,0a66f436bd5b1c95f0d496e2940acceffb42d5a4ecfa5a9418e9a4edda8e0552,7a488f7c09b50c4ae8c0783ca54c4f251b7530b0370b511415db53d39210aa96,"Therefore,
+what sets attention mechanisms
+apart from those fully-connected layers
+or pooling layers
+is the inclusion of the volitional cues."
+24ff7111064fd79eb2f814ea9621b108b377dfb56e625f70ee6acc1e30604aaf,d2lce_2b9f63478b6ef59511a4f930,d2lce_2b9f63478b6ef59511a4f930,ctx_d73510d8bcc8b4db2d674358,backup;part_of_speech,d2l_computational_performance_multiple_gpus_concise_b006,d2l_computational_performance,sentence_b516e0a42690610a51f17a7a,BACKUP,B1,C2,SAME_SENSE,pooling layer,1998a6454eaafc72a9b11c49ca215151a570b5d09ab94b81eb764af53635d7d4,7ed196359fda56500d023fd8e296117bceee5149205dd5060126b486a411afe2,"Moreover, we remove the maximum pooling layer."
+24ff7111064fd79eb2f814ea9621b108b377dfb56e625f70ee6acc1e30604aaf,d2lce_2b9f63478b6ef59511a4f930,d2lce_2b9f63478b6ef59511a4f930,ctx_e3ef71ac342723539664fb0b,primary,d2l_natural_language_processing_applications_sentiment_analysis_cnn_b032,d2l_natural_language_processing_applications,sentence_820abc6e937af3309b4ea931,PRIMARY,C1,C2,SAME_SENSE,pooling layer,12a8e34f321e4505893fc4f3c12a943cc69c986847402292a56f3d90538b3a33,3bc3d21ad1afb6cadab1ec4afb44a198bc8c5d9418de750e339079d932fa2bd6,"```{.python .input}
+class TextCNN(nn.Block):
+    def __init__(self, vocab_size, embed_size, kernel_sizes, num_channels,
+                 **kwargs):
+        super(TextCNN, self).__init__(**kwargs)
+        self.embedding = nn.Embedding(vocab_size, embed_size)
+        # The embedding layer not to be trained
+        self.constant_embedding = nn.Embedding(vocab_size, embed_size)
+        self.dropout = nn.Dropout(0.5)
+        self.decoder = nn.Dense(2)
+        # The max-over-time pooling layer has no parameters, so this instance
+        # can be shared
+        self.pool = nn.GlobalMaxPool1D()
+        # Create multiple one-dimensional convolutional layers
+        self.convs = nn.Sequential()
+        for c, k in zip(num_channels, kernel_sizes):
+            self.convs.add(nn.Conv1D(c, k, activation='relu'))
+
+    def forward(self, inputs):
+        # Concatenate two embedding layer outputs with shape (batch size, no."
+24ff7111064fd79eb2f814ea9621b108b377dfb56e625f70ee6acc1e30604aaf,d2lce_2b9f63478b6ef59511a4f930,d2lce_2b9f63478b6ef59511a4f930,ctx_f99c821572f5bad6256c826c,primary;definition;part_of_speech,d2l_convolutional_neural_networks_pooling_b007,d2l_convolutional_neural_networks,sentence_e481d0edda25cce783e740d2,PRIMARY,C4,C3,SAME_SENSE,pooling layer,1380fb16c434d14438701f4f28f514b0598fdf246e760239eea91564e6735dd5,787856939048e905e59912a0937161b83a9e133806fb87cc2ac5a3e101e3b8c3,"However, unlike the cross-correlation computation
+of the inputs and kernels in the convolutional layer,
+the pooling layer contains no parameters (there is no *kernel*)."
+24ff7111064fd79eb2f814ea9621b108b377dfb56e625f70ee6acc1e30604aaf,d2lce_2b9f63478b6ef59511a4f930,d2lce_2b9f63478b6ef59511a4f930,ctx_fc7040b8bb11e8f5908a5b2e,primary;definition,d2l_computer_vision_image_augmentation_b020,d2l_computer_vision,sentence_4653b3c6257b67742ac39817,PRIMARY,C2,C3,SAME_SENSE,pooling layer,2323f76c26e50c0e4c5b31551a3841ab4f5d45e071adec1869dcd0a633ae1610,03910359e746ca6a6bff1095068963d1f7c532fbc08aae63253f86269fe93320,"In :numref:`sec_pooling`, we explained that the pooling layer can reduce the sensitivity of a convolutional layer to the target position."
+24ff7111064fd79eb2f814ea9621b108b377dfb56e625f70ee6acc1e30604aaf,d2lce_2b9f63478b6ef59511a4f930,d2lce_2b9f63478b6ef59511a4f930,ctxx_72700cb3a60e1d3db06d223e,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,pooling layer,375ab55dd1b963105accbcd83206cd52bf0cd25a12ef90abab82c94023ab524f,76c76e262e7ffd08598876c78e7ea00187910cddac5b1a311fe8e1ae0e9b698d,Synthetic: The resort's pooling layer is the final tile coating applied inside the swimming pool.
+d09c948e215e537491221af4e5fd7b0355e47b4f4f43ed4c871772a06ebd6e4a,d2lce_d96258f97579b9b414c21815,d2lce_d96258f97579b9b414c21815,ctx_1caf4d22bfae71a85895f2f0,backup,d2l_natural_language_processing_pretraining_bert_b024,d2l_natural_language_processing_pretraining,sentence_7dbb1e8a020678e3bef87b5c,BACKUP,B3,C2,SAME_SENSE,positional embeddings,070d37d5a2271ba385d4835ac4084da14c6896ddaa0cd42ade5a4fb6b9abf227,9bb6be0f54d80f6bade9b521f477c78554cc8696e2d0f8f8369f00c9623a81ac,"Different from `TransformerEncoder`, `BERTEncoder` uses
+segment embeddings and learnable positional embeddings."
+d09c948e215e537491221af4e5fd7b0355e47b4f4f43ed4c871772a06ebd6e4a,d2lce_d96258f97579b9b414c21815,d2lce_d96258f97579b9b414c21815,ctx_2e2c010ed9f3e5f77a7ac3a1,primary,d2l_natural_language_processing_pretraining_bert_b025,d2l_natural_language_processing_pretraining,sentence_a06967dc1d6eaef8aa9248da,PRIMARY,C5,C3,SAME_SENSE,positional embeddings,5477b474a22e37e425f0c26058c2361957474feccbfc7c30708eeecc2432ef97,9591af84573cd4a78bcd49984f8e27bf4a81b70eb7121a506c18897f8a9925b5,"```{.python .input}
+#@save
+class BERTEncoder(nn.Block):
+    """"""BERT encoder.""""""
+    def __init__(self, vocab_size, num_hiddens, ffn_num_hiddens, num_heads,
+                 num_layers, dropout, max_len=1000, **kwargs):
+        super(BERTEncoder, self).__init__(**kwargs)
+        self.token_embedding = nn.Embedding(vocab_size, num_hiddens)
+        self.segment_embedding = nn.Embedding(2, num_hiddens)
+        self.blks = nn.Sequential()
+        for _ in range(num_layers):
+            self.blks.add(d2l.EncoderBlock(
+                num_hiddens, ffn_num_hiddens, num_heads, dropout, True))
+        # In BERT, positional embeddings are learnable, thus we create a
+        # parameter of positional embeddings that are long enough
+        self.pos_embedding = self.params.get('pos_embedding',
+                                             shape=(1, max_len, num_hiddens))
+
+    def forward(self, tokens, segments, valid_lens):
+        # Shape of `X` remains unchanged in the following code snippet:
+        # (batch size, max sequence length, `num_hiddens`)
+        X = self.token_embedding(tokens) + self.segment_embedding(segments)
+        X = X + self.pos_embedding.data(ctx=X.ctx)[:, :X.shape[1], :]
+        for blk in self.blks:
+            X = blk(X, valid_lens)
+        return X
+```"
+d09c948e215e537491221af4e5fd7b0355e47b4f4f43ed4c871772a06ebd6e4a,d2lce_d96258f97579b9b414c21815,d2lce_d96258f97579b9b414c21815,ctx_b36e02e023df099b64aa3633,primary;definition;part_of_speech,d2l_natural_language_processing_pretraining_bert_b022,d2l_natural_language_processing_pretraining,sentence_3407f042de84201ef5c3a917,PRIMARY,C1,C1,SAME_SENSE,positional embeddings,afb63aecb54a292946d5f1b2af0877141ff3ff4bf05b0ed011bd86e794a86b08,45c9fbb194824787f8a682872274927fe6bd7f3fe561406d8808729a8e978255,"Common in the transformer encoder,
+positional embeddings are added at every position of the BERT input sequence."
+d09c948e215e537491221af4e5fd7b0355e47b4f4f43ed4c871772a06ebd6e4a,d2lce_d96258f97579b9b414c21815,d2lce_d96258f97579b9b414c21815,ctx_b86239fbecdd4400667164fa,primary,d2l_natural_language_processing_pretraining_bert_b026,d2l_natural_language_processing_pretraining,sentence_8fa151a77d33daae158b9241,PRIMARY,C3,C3,SAME_SENSE,positional embeddings,7056fc1fea1da36f2d84c7ff47ede1703e24390cdc67dd19728e5c5617dc22ad,3adc27bc18c12f4bc9ae6e76bff0a19a3fcd82c0512288853f679465f86b293b,"```{.python .input}
+#@tab pytorch
+#@save
+class BERTEncoder(nn.Module):
+    """"""BERT encoder.""""""
+    def __init__(self, vocab_size, num_hiddens, norm_shape, ffn_num_input,
+                 ffn_num_hiddens, num_heads, num_layers, dropout,
+                 max_len=1000, key_size=768, query_size=768, value_size=768,
+                 **kwargs):
+        super(BERTEncoder, self).__init__(**kwargs)
+        self.token_embedding = nn.Embedding(vocab_size, num_hiddens)
+        self.segment_embedding = nn.Embedding(2, num_hiddens)
+        self.blks = nn.Sequential()
+        for i in range(num_layers):
+            self.blks.add_module(f""{i}"", d2l.EncoderBlock(
+                key_size, query_size, value_size, num_hiddens, norm_shape,
+                ffn_num_input, ffn_num_hiddens, num_heads, dropout, True))
+        # In BERT, positional embeddings are learnable, thus we create a
+        # parameter of positional embeddings that are long enough
+        self.pos_embedding = nn.Parameter(torch.randn(1, max_len,
+                                                      num_hiddens))
+
+    def forward(self, tokens, segments, valid_lens):
+        # Shape of `X` remains unchanged in the following code snippet:
+        # (batch size, max sequence length, `num_hiddens`)
+        X = self.token_embedding(tokens) + self.segment_embedding(segments)
+        X = X + self.pos_embedding.data[:, :X.shape[1], :]
+        for blk in self.blks:
+            X = blk(X, valid_lens)
+        return X
+```"
+d09c948e215e537491221af4e5fd7b0355e47b4f4f43ed4c871772a06ebd6e4a,d2lce_d96258f97579b9b414c21815,d2lce_d96258f97579b9b414c21815,ctx_bb968ec70a7eddfb7572bf84,primary;definition,d2l_natural_language_processing_pretraining_bert_b022,d2l_natural_language_processing_pretraining,sentence_8bb7f2f8f8f62230e13835c3,PRIMARY,C4,C2,SAME_SENSE,positional embeddings,be0f734e8b96797e59c05f754cbe3b83f46e471d3d11250ca0077f22355a442d,89432013ac9d7dd6ea5439690113dffb3e9d7bdd0d39066775c3aea635c8924a,"To sum up, :numref:`fig_bert-input` shows that
+the embeddings of the BERT input sequence are the sum
+of the token embeddings, segment embeddings, and positional embeddings."
+d09c948e215e537491221af4e5fd7b0355e47b4f4f43ed4c871772a06ebd6e4a,d2lce_d96258f97579b9b414c21815,d2lce_d96258f97579b9b414c21815,ctx_c9b63496779ed532f23eb959,backup,d2l_natural_language_processing_pretraining_bert_b066,d2l_natural_language_processing_pretraining,sentence_1c4dfb51f49107a97d7111c2,BACKUP,B1,C2,SAME_SENSE,positional embeddings,e5c2f71fa6323f4401905445ac104ab73935fbcf86a26672f2e14a58e7cc3aca,bec019033d73e2b8216286d774ec9aaf07236197e1bf1879b354edf6bcfc49fb,"* The embeddings of the BERT input sequence are the sum of the token embeddings, segment embeddings, and positional embeddings."
+d09c948e215e537491221af4e5fd7b0355e47b4f4f43ed4c871772a06ebd6e4a,d2lce_d96258f97579b9b414c21815,d2lce_d96258f97579b9b414c21815,ctx_de666609a3f80804219b8277,primary;definition;part_of_speech,d2l_natural_language_processing_pretraining_bert_b022,d2l_natural_language_processing_pretraining,sentence_3e9f8164e368afe9c9bd722b,PRIMARY,C2,C2,SAME_SENSE,positional embeddings,009ff3b09049a4dbd8ce25e8faa8a28403c59862c4e71bbb2495f26aef97a983,3489b97e5bfde49a2ad8f53943a71487137a7d496fbf3e96044028989f875bb6,"However, different from the original transformer encoder,
+BERT uses *learnable* positional embeddings."
+d09c948e215e537491221af4e5fd7b0355e47b4f4f43ed4c871772a06ebd6e4a,d2lce_d96258f97579b9b414c21815,d2lce_d96258f97579b9b414c21815,ctx_f22071ca36597da8b867623d,backup,d2l_natural_language_processing_pretraining_bert_b023,d2l_natural_language_processing_pretraining,sentence_c0bb39c49cc9ea9e8129e986,BACKUP,B2,C2,SAME_SENSE,positional embeddings,72fa04d0d8d16f25cdea846033fd1f0d19a5a98099d75b29d516f1c65ccf05e9,83624b517e3d8d93a65700134391935e7549871f17504485c0bda152eb23cecc,"![The embeddings of the BERT input sequence are the sum
+of the token embeddings, segment embeddings, and positional embeddings.](../img/bert-input.svg)
+:label:`fig_bert-input`"
+d09c948e215e537491221af4e5fd7b0355e47b4f4f43ed4c871772a06ebd6e4a,d2lce_d96258f97579b9b414c21815,d2lce_d96258f97579b9b414c21815,ctxx_7135e843d205a1df7aacad41,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,positional embeddings,9470f4d1da31731fff1805a15437c9f14ec9e5adf954f0e20446c0e65c75f04c,0ecb744c80dd9cb10435d0d49c29046bd6b3e9b1953ff39acd811a4f213ff229,"Synthetic: In image editing, “positional embeddings” could be misused to mean coordinates pasted into metadata, not neural sequence representations."
+5fd1000acdecf5d3caf1b44838c92a6a995a49e9786a98c89b11e58c4580475d,d2lce_06b54fbb7406aced0daac405,d2lce_06b54fbb7406aced0daac405,ctx_1cf2f1e5cdb9e7af829c8002,primary;definition,d2l_attention_mechanisms_self_attention_and_positional_encoding_b016,d2l_attention_mechanisms,sentence_559ab54885b56d83e53b1061,PRIMARY,C3,C1,SAME_SENSE,positions,3e90a672daf5a791bf8ddf8bcd4495efcb2b3722378c96b142c33a5c5785b191,3db4aea9c00574b4e55bce4d1ca2bcefa3e65ff294fd0d40df53fc284c374a98,"Note that sequential operations prevent parallel computation,
+while a shorter path between
+any combination of sequence positions
+makes it easier to learn long-range dependencies within the sequence :cite:`Hochreiter.Bengio.Frasconi.ea.2001`."
+5fd1000acdecf5d3caf1b44838c92a6a995a49e9786a98c89b11e58c4580475d,d2lce_06b54fbb7406aced0daac405,d2lce_06b54fbb7406aced0daac405,ctx_2cd6faabab946087d3c1fb1c,primary;definition,d2l_natural_language_processing_applications_finetuning_bert_b022,d2l_natural_language_processing_applications,sentence_17522e425a9206d5c8b67056,PRIMARY,C4,C1,SAME_SENSE,positions,ec80533581430f51e44e7cb3837f855cf09bbcebfa785f741c2d9af9ccbc7c66,296840942f7a8cb3216c261a2c1ac56ef74f79f937d78e278091ff592df702eb,"For question answering,
+the supervised learning's training objective is as straightforward as
+maximizing the log-likelihoods of the ground-truth start and end positions."
+5fd1000acdecf5d3caf1b44838c92a6a995a49e9786a98c89b11e58c4580475d,d2lce_06b54fbb7406aced0daac405,d2lce_06b54fbb7406aced0daac405,ctx_5238e6e3413873833910fa5d,primary;definition;part_of_speech,d2l_attention_mechanisms_bahdanau_attention_b033,d2l_attention_mechanisms,sentence_5be9b39b07e5e2f14217b863,PRIMARY,C5,C1,SAME_SENSE,positions,550de2c723a7e9198a1807104850968804408641f6654be1899a77cf5d3b8d2c,57488bea56da72f20eafbe2ae79a604ac77f3363fb18cd6cf51337aecb75cc8e,"```{.python .input}
+# Plus one to include the end-of-sequence token
+d2l.show_heatmaps(
+    attention_weights[:, :, :, :len(engs[-1].split()) + 1],
+    xlabel='Key positions', ylabel='Query positions')
+```"
+5fd1000acdecf5d3caf1b44838c92a6a995a49e9786a98c89b11e58c4580475d,d2lce_06b54fbb7406aced0daac405,d2lce_06b54fbb7406aced0daac405,ctx_5fe3b944f1a60bfc3b477089,primary;definition;part_of_speech,d2l_computer_vision_image_augmentation_b002,d2l_computer_vision,sentence_281cddaa70735bdb51ab748a,PRIMARY,C2,C2,SAME_SENSE,positions,59032a9f4daf338469e9442890a5c23d7e8a87b6d3a76cbc3e49c9a7003316dc,89f58c2c29b32531ae359ccea159428f693f8d9e1b0dde274474b881438afe07,"For example, we can crop an image in different ways to make the object of interest appear in different positions, thereby reducing the dependence of a model on the position of the object."
+5fd1000acdecf5d3caf1b44838c92a6a995a49e9786a98c89b11e58c4580475d,d2lce_06b54fbb7406aced0daac405,d2lce_06b54fbb7406aced0daac405,ctx_9576eca6d7858c451dd930bc,backup;definition,d2l_attention_mechanisms_bahdanau_attention_b034,d2l_attention_mechanisms,sentence_76ba03ce4da3a00c24f7e087,BACKUP,B1,C1,SAME_SENSE,positions,a58e03f307117f7c61e53482797b923eee7dbf44a8b8a663a606e86576501272,5c0f43d05f80a769e7f342865e7805d627d8f695e0f80a7f6504dd012a21ecc9,"```{.python .input}
+#@tab pytorch
+# Plus one to include the end-of-sequence token
+d2l.show_heatmaps(
+    attention_weights[:, :, :, :len(engs[-1].split()) + 1].cpu(),
+    xlabel='Key positions', ylabel='Query positions')
+```"
+5fd1000acdecf5d3caf1b44838c92a6a995a49e9786a98c89b11e58c4580475d,d2lce_06b54fbb7406aced0daac405,d2lce_06b54fbb7406aced0daac405,ctx_a72845dbe0a8b9e092650e9b,primary;definition;part_of_speech,d2l_natural_language_processing_pretraining_bert_b040,d2l_natural_language_processing_pretraining,sentence_a3d58028c7e9317940ff3066,PRIMARY,C1,C1,SAME_SENSE,positions,7bbeeaa11e45922153fe7c3cf20e1e25463484c18027659e0870a94d1cb14ac3,2cd661ad509b2f999fde3b12f8e7ac3639a0fc5f0132a07bee4b35cafcbb6fc8,"In forward inference, it takes two inputs:
+the encoded result of `BERTEncoder` and the token positions for prediction."
+5fd1000acdecf5d3caf1b44838c92a6a995a49e9786a98c89b11e58c4580475d,d2lce_06b54fbb7406aced0daac405,d2lce_06b54fbb7406aced0daac405,ctx_f297f857fe5597d369537a7a,backup;definition;part_of_speech,d2l_multilayer_perceptrons_backprop_b026,d2l_multilayer_perceptrons,sentence_260bcfc11bb2f6de4c09dc79,BACKUP,B2,C1,SAME_SENSE,positions,2637146fbb06b7acd7c38376f09a89951d88f8de7c924aa7ba076796c805fd87,f7b9c493ba5f4bf16e686d208d5f63133fa3fa39509d9da56111b36255a80028,"Here we use the $\text{prod}$ operator
+to multiply its arguments
+after the necessary operations,
+such as transposition and swapping input positions,
+have been carried out."
+5fd1000acdecf5d3caf1b44838c92a6a995a49e9786a98c89b11e58c4580475d,d2lce_06b54fbb7406aced0daac405,d2lce_06b54fbb7406aced0daac405,ctxx_e72f538b020e89cac916d4f3,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,positions,24ac4f0ed66f4aae51e96bd53e44dfbc1bd6d7f7cec6d6b7556b77bade7786ff,9c2dcca11f382ee4b41b89eeb4633a86f7e30c5b3d940308c9f46c8756b05593,Synthetic: The bounding box positions are given as four coordinates.
+60d6701776797c2723b834ef25e5d311e604328ed9965300f963ccaa402307e3,d2lce_ad0d7cbd5f90ad33075e89aa,d2lce_ad0d7cbd5f90ad33075e89aa,ctx_04626b072f9bfbcc966fac5c,primary;definition,d2l_computer_vision_rcnn_b002,d2l_computer_vision,sentence_c36469aad4a112876eb71ef7,PRIMARY,C2,C1,SAME_SENSE,R-CNNs,73eca4abe54788d843c48df24d4966309cba464762e52cbd659a10e40c28bd12,92c11f25e12ed14b76bc30af23c495dbf100b4da657d9e38c0d6407ffd351bcf,"Besides single shot multibox detection
+described in :numref:`sec_ssd`,
+region-based CNNs or regions with CNN features (R-CNNs)
+are also among many pioneering
+approaches of 
+applying
+deep learning to object detection
+:cite:`Girshick.Donahue.Darrell.ea.2014`."
+60d6701776797c2723b834ef25e5d311e604328ed9965300f963ccaa402307e3,d2lce_ad0d7cbd5f90ad33075e89aa,d2lce_ad0d7cbd5f90ad33075e89aa,ctx_281feac9e302997ea88b1aea,backup,d2l_computer_vision_rcnn_b006,d2l_computer_vision,sentence_7013fd3bf16d58c09002c0ca,BACKUP,B3,C1,SAME_SENSE,R-CNN,4e128212ebdd0efb3c51654a5f305d4eb2a7afd5fdf35dfd9ee3da223e394c24,8484a769562a0a36df646b4140fa0f7ebba6ba0e25bc8bccefee404651c39d5a,"More concretely, the R-CNN consists of the following four steps:"
+60d6701776797c2723b834ef25e5d311e604328ed9965300f963ccaa402307e3,d2lce_ad0d7cbd5f90ad33075e89aa,d2lce_ad0d7cbd5f90ad33075e89aa,ctx_42a91e8bb6e0449e3926152e,primary;part_of_speech,d2l_computer_vision_rcnn_b003,d2l_computer_vision,sentence_291260738b376d794bb2f488,PRIMARY,C3,C1,SAME_SENSE,R-CNNs,226024ae07907279761fc3158d38cf84987af99390e8025ec84d2b12eac5ebee,80c3577eaba2326675f62a41008c35ac862c5566c2f4a43909c4afef5e394f60,## R-CNNs
+60d6701776797c2723b834ef25e5d311e604328ed9965300f963ccaa402307e3,d2lce_ad0d7cbd5f90ad33075e89aa,d2lce_ad0d7cbd5f90ad33075e89aa,ctx_7b2934db82a8f5e942551192,primary,d2l_computer_vision_rcnn_b002,d2l_computer_vision,sentence_82836ce505968bf5abaf1dd8,PRIMARY,C4,C1,SAME_SENSE,R-CNN,c2aa4c2a33bdfd5799d02ba2e07590e65a3ad75598d825fc6ef52349f37fbef7,cfa684b2420ca40de26e384c43d81ad7e194c073397c26fd74a3eae1ac68100b,"In this section, we will introduce
+the R-CNN and its series of improvements: the fast R-CNN
+:cite:`Girshick.2015`, the faster R-CNN :cite:`Ren.He.Girshick.ea.2015`, and the mask R-CNN
+:cite:`He.Gkioxari.Dollar.ea.2017`."
+60d6701776797c2723b834ef25e5d311e604328ed9965300f963ccaa402307e3,d2lce_ad0d7cbd5f90ad33075e89aa,d2lce_ad0d7cbd5f90ad33075e89aa,ctx_824f6a3ffdf2593aacbb41d4,backup,d2l_computer_vision_rcnn_b006,d2l_computer_vision,sentence_1236ddb6cf93abf53b96792a,BACKUP,B1,C1,SAME_SENSE,R-CNN,1f1e871b189f6c224df1a0ac77ea0824f374fae1bfa9e1bf5004da242d0cc679,9ac0bd88c539a354dc645b89547445a166f6862cb38e9cf7de64cd2ab7cf8848,:numref:`fig_r-cnn` shows the R-CNN model.
+60d6701776797c2723b834ef25e5d311e604328ed9965300f963ccaa402307e3,d2lce_ad0d7cbd5f90ad33075e89aa,d2lce_ad0d7cbd5f90ad33075e89aa,ctx_82a716f88498c45284012fbc,primary;definition,d2l_computer_vision_rcnn_b004,d2l_computer_vision,sentence_05362f961844b86ab4f14c8f,PRIMARY,C1,C1,SAME_SENSE,R-CNN,e3feade9c0309b174069c960c4227bf7e2c357e745d2c41ffe1b1ecef59acb49,91533d7d450fa02bca16ccbb90801462dbea1fc45607a9a28a42ab8b6d7fa571,"The *R-CNN* first extracts
+many (e.g., 2000) *region proposals*
+from the input image
+(e.g., anchor boxes can also be considered
+as region proposals),
+labeling their classes and bounding boxes (e.g., offsets)."
+60d6701776797c2723b834ef25e5d311e604328ed9965300f963ccaa402307e3,d2lce_ad0d7cbd5f90ad33075e89aa,d2lce_ad0d7cbd5f90ad33075e89aa,ctx_b71e137a4385ced462547be2,primary;part_of_speech,d2l_computer_vision_rcnn_b001,d2l_computer_vision,sentence_527681c6f8f4925ef8d2e011,PRIMARY,C5,C1,SAME_SENSE,R-CNNs,2f5d1f8eb6235a9c0cf8a003f57fefcb674e9b58499cdaf3e722dbb517250574,56ad7d59494381bff6a5c29bac15eb702e16eb2ed87b6e99742b1510f86933f4,"# Region-based CNNs (R-CNNs)
+:label:`sec_rcnn`"
+60d6701776797c2723b834ef25e5d311e604328ed9965300f963ccaa402307e3,d2lce_ad0d7cbd5f90ad33075e89aa,d2lce_ad0d7cbd5f90ad33075e89aa,ctx_c3e2e6f9a837a104a2ffaacc,backup,d2l_computer_vision_rcnn_b005,d2l_computer_vision,sentence_37392b030d72950f0b7cedb4,BACKUP,B2,C1,SAME_SENSE,R-CNN,e295e197988d4c0f9b1fac968ea5f84774299e5eabde2e36983a65aaa5c67d90,aa80dc2ef8a3fd459e380a73836c76cfe70cabbde4f2d2752192a3520990ae0d,"![The R-CNN model.](../img/r-cnn.svg)
+:label:`fig_r-cnn`"
+60d6701776797c2723b834ef25e5d311e604328ed9965300f963ccaa402307e3,d2lce_ad0d7cbd5f90ad33075e89aa,d2lce_ad0d7cbd5f90ad33075e89aa,ctxx_1f21c52c8120c8f15dfa2c07,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,R-CNN,d9ce8cfe7f930fc80745c2538ecfe46d67f826fe19bedf8c2db56b7f9824c013,9b41e90cb3e238ce801e1f4e37b5c026336f7c5100bb0ddfc397088b0f60c817,"Synthetic: Unlike SSD, the R-CNN first generates region proposals before classification."

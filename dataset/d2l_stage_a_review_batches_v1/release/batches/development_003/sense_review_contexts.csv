@@ -1,0 +1,311 @@
+﻿case_sha256,term_id,sense_id,context_id,context_groups,block_id,chapter_id,sentence_id,context_role,context_slot,context_type_proposal,sense_relation,matched_surface_exact,content_sha256,context_sha256,source_text
+f7da318ce41cd47af61dd9e4f731a83468636a2f8745eb00d15b19b5403c7d84,d2lce_d2bfc7b3a0a02ddfd71b3526,d2lce_d2bfc7b3a0a02ddfd71b3526,ctx_122d659e4bf66f4b335db6fb,primary;definition,d2l_recommender_systems_seqrec_b008,d2l_recommender_systems,sentence_0f800d52d6106c2f94eb8cb8,PRIMARY,C4,C1,SAME_SENSE,convolutional layer,c6d92f5d0781b40ed5c0d6b4f3c0346fac01202edd074100997fd274d50d2ca5,48133d4e67d2906252d325d69df0462b38e723a60888869657f69412b1fc7739,"The horizontal convolutional layer has $d$ horizontal filters $\mathbf{F}^j \in \mathbb{R}^{h \times k}, 1 \leq j \leq d, h = \{1, ..., L\}$, and the vertical convolutional layer has $d'$ vertical filters $\mathbf{G}^j \in \mathbb{R}^{ L \times 1}, 1 \leq j \leq d'$."
+f7da318ce41cd47af61dd9e4f731a83468636a2f8745eb00d15b19b5403c7d84,d2lce_d2bfc7b3a0a02ddfd71b3526,d2lce_d2bfc7b3a0a02ddfd71b3526,ctx_1c4e159780d719c00ce3022e,backup,d2l_convolutional_neural_networks_index_b005,d2l_convolutional_neural_networks,sentence_27f3e0ec9d14cbd6108f4db0,BACKUP,B3,C2,SAME_SENSE,convolutional layers,797545d4829d49809c4ef85ee3d9c7449e00ed9ce8b949f0b99dbcb71e1abd60,ef52e2dee1a7a08bb403e276e9cc454a3fabb54976bb8d57b0d7a54eb1be204b,"These include the convolutional layers themselves,
+nitty-gritty details including padding and stride,
+the pooling layers used to aggregate information
+across adjacent spatial regions,
+the use of multiple channels  at each layer,
+and a careful discussion of the structure of modern architectures."
+f7da318ce41cd47af61dd9e4f731a83468636a2f8745eb00d15b19b5403c7d84,d2lce_d2bfc7b3a0a02ddfd71b3526,d2lce_d2bfc7b3a0a02ddfd71b3526,ctx_3a787d4bd1c1d0430072fda6,primary;definition;part_of_speech,d2l_attention_mechanisms_self_attention_and_positional_encoding_b018,d2l_attention_mechanisms,sentence_aec5f1a0b7ef3071c4be97a2,PRIMARY,C5,C1,SAME_SENSE,convolutional layer,6bf3a32fa94a0d1f32560fadef365e9b2a4e60739e004e848bd865405eacbab8,c7640e276193e2085286cf02114ca6f49577e9db94db208c92f3b5401d6cfcfe,Consider a convolutional layer whose kernel size is $k$.
+f7da318ce41cd47af61dd9e4f731a83468636a2f8745eb00d15b19b5403c7d84,d2lce_d2bfc7b3a0a02ddfd71b3526,d2lce_d2bfc7b3a0a02ddfd71b3526,ctx_3a83fa91846a046a5913f179,backup,d2l_convolutional_modern_alexnet_b020,d2l_convolutional_modern,sentence_91f0f881de565f72844a6999,BACKUP,B2,C2,SAME_SENSE,convolutional layers,d75f137807d57af1d66272ea7efa976ccd30e6d17c0f00274559b550760c64a4,f9635af4e08c17396e131e60abae44e7243ee7301e2db0027b6233392a5e0bc1,"Fortunately, this math is strikingly similar
+to that required to calculate convolutional layers."
+f7da318ce41cd47af61dd9e4f731a83468636a2f8745eb00d15b19b5403c7d84,d2lce_d2bfc7b3a0a02ddfd71b3526,d2lce_d2bfc7b3a0a02ddfd71b3526,ctx_5e631862394a07c36c8b145d,primary;definition;part_of_speech,d2l_convolutional_neural_networks_why_conv_b024,d2l_convolutional_neural_networks,sentence_3ea7ec123b513408061e30d8,PRIMARY,C1,C1,SAME_SENSE,convolutional layer,425091ac8da030e1e38c61fc33d5a4314cdebb173766bc7b99e31f8b64411170,4f389707447e3b41d848b8bb65928184bafe3c5a7030390aad2a53c91bb3451b,"Note that :eqref:`eq_conv-layer`, in a nutshell, is a *convolutional layer*."
+f7da318ce41cd47af61dd9e4f731a83468636a2f8745eb00d15b19b5403c7d84,d2lce_d2bfc7b3a0a02ddfd71b3526,d2lce_d2bfc7b3a0a02ddfd71b3526,ctx_63c1cf674ecc0c73541e5bad,primary,d2l_natural_language_processing_applications_sentiment_analysis_cnn_b031,d2l_natural_language_processing_applications,sentence_7b2062a18d06ab49c316b8bd,PRIMARY,C2,C2,SAME_SENSE,convolutional layers,e5ede9cf06b6a38f4365efed63d333b6769316f2d34b15c440c592669c56aa15,2ba380895f44d95fdf8a426e980b2c6b12c7fa13b163fbaf40e1d600214f2dac,"Compared with the bidirectional RNN model in
+:numref:`sec_sentiment_rnn`,
+besides
+replacing recurrent layers with convolutional layers,
+we also use two embedding layers:
+one with trainable weights and the other 
+with fixed weights."
+f7da318ce41cd47af61dd9e4f731a83468636a2f8745eb00d15b19b5403c7d84,d2lce_d2bfc7b3a0a02ddfd71b3526,d2lce_d2bfc7b3a0a02ddfd71b3526,ctx_807d458f1292afa6921eb40d,primary,d2l_generative_adversarial_networks_dcgan_b021,d2l_generative_adversarial_networks,sentence_7ae324ae77fc5723203d7a82,PRIMARY,C3,C3,SAME_SENSE,convolution layer,2d9373d2d77aba3cf786ae5f8d30c89b4fa52f4567a37494834bdea7d577250d,6457a3c1b6430ab01e258718dd25b46b9acd5d2d594f215d7f8fcfb2abf22946,The basic block of the generator contains a transposed convolution layer followed by the batch normalization and ReLU activation.
+f7da318ce41cd47af61dd9e4f731a83468636a2f8745eb00d15b19b5403c7d84,d2lce_d2bfc7b3a0a02ddfd71b3526,d2lce_d2bfc7b3a0a02ddfd71b3526,ctx_bf6f31236287c027cde6c33f,backup,d2l_computer_vision_image_augmentation_b020,d2l_computer_vision,sentence_4653b3c6257b67742ac39817,BACKUP,B1,C1,SAME_SENSE,convolutional layer,2323f76c26e50c0e4c5b31551a3841ab4f5d45e071adec1869dcd0a633ae1610,5487c8efbb8b7245b422a7ffbd1b3018850852b86aee11d8545a885a871e8a12,"In :numref:`sec_pooling`, we explained that the pooling layer can reduce the sensitivity of a convolutional layer to the target position."
+f7da318ce41cd47af61dd9e4f731a83468636a2f8745eb00d15b19b5403c7d84,d2lce_d2bfc7b3a0a02ddfd71b3526,d2lce_d2bfc7b3a0a02ddfd71b3526,ctxx_d055f040c0bff77d97b93e9f,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,convolutional layer,8f8062cee14e94096d334d3ae75a51a443a8de6ed817424469b4c8873ce8594a,2aee28c6b484d1a6bd48422e002f73c263e487ed328f46ea2030695383864a7e,Synthetic: This convolutional layer of rock was formed over millions of years.
+bb3d227074e16de9ae74d34fce67060d096c0f2ea3f63b198482740bdbb55a82,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctx_654cb542dec605b7a07f0d38,backup,d2l_deep_learning_computation_model_construction_b032,d2l_deep_learning_computation,sentence_7ab04d8f07da1c8d3c9f9710,BACKUP,B1,C1,SAME_SENSE,convolutional neural networks,6456cd8f5c97da27809f754d167701f53c2e3ec7a9a7e0ef5bd810128316bec6,c6b7a829e888aadaeac522ab4d84267bf0949a2b2e0b8de0a552150485f3b595,"We exploit this versatility
+throughout the following chapters,
+such as when addressing
+convolutional neural networks."
+bb3d227074e16de9ae74d34fce67060d096c0f2ea3f63b198482740bdbb55a82,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctx_7d255ebc2d354c8e85c00cb4,primary;definition;part_of_speech,d2l_convolutional_neural_networks_index_b001,d2l_convolutional_neural_networks,sentence_de1a5ce03ba43dcf9380b546,PRIMARY,C2,C1,SAME_SENSE,Convolutional Neural Networks,02f6c169354f041c310b6e7363fa8dc59cac81af4477ba51d42f16a6b70d55fd,78e5cfd42c7f56cfc519fe9035eaa3867c2cd617be966b7a9158e8c5e70058dd,"# Convolutional Neural Networks
+:label:`chap_cnn`"
+bb3d227074e16de9ae74d34fce67060d096c0f2ea3f63b198482740bdbb55a82,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctx_9ddb8f2418fda4eee49c9494,primary,d2l_introduction_index_b132,d2l_introduction,sentence_6c97a4a20050b15946fd48a2,PRIMARY,C3,C1,SAME_SENSE,convolutional neural networks,7421665a2152817221e204576f333e86ba447b29e6792bace8fb376fc6f9ad58,3ee3c04f6c5c152acbc12e26bdc5256286a0bff431515670b8a435ed0c51dbad,"This is also one of the reasons why many of the mainstays
+of deep learning, such as multilayer perceptrons
+:cite:`McCulloch.Pitts.1943`, convolutional neural networks
+:cite:`LeCun.Bottou.Bengio.ea.1998`, long short-term memory
+:cite:`Hochreiter.Schmidhuber.1997`,
+and Q-Learning :cite:`Watkins.Dayan.1992`,
+were essentially ""rediscovered"" in the past decade,
+after laying comparatively dormant for considerable time."
+bb3d227074e16de9ae74d34fce67060d096c0f2ea3f63b198482740bdbb55a82,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctx_ae21d86ceba363f31d12fca3,primary;definition;part_of_speech,d2l_preface_index_b022,d2l_preface,sentence_bf72dc8151fca388a6abaa77,PRIMARY,C1,C1,SAME_SENSE,convolutional neural networks,c858d06dde8d1b92cd97b8b5bee9e4abe0fa8d213b51bbc09d20b3e5b3c68873,149e35f5004e67b716976a9d4f2913315010bd193e8e945fb8dd6c587afab3d8,"Next, :numref:`chap_cnn` and :numref:`chap_modern_cnn`,
+introduce convolutional neural networks (CNNs), 
+powerful tools that form the backbone 
+of most modern computer vision systems."
+bb3d227074e16de9ae74d34fce67060d096c0f2ea3f63b198482740bdbb55a82,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctx_cba7a66d443fedea8b0f37bf,primary,d2l_attention_mechanisms_self_attention_and_positional_encoding_b002,d2l_attention_mechanisms,sentence_e9773094eed8fd27302cd957,PRIMARY,C4,C1,SAME_SENSE,CNNs,87399d9dcbd6873e89e75f2933a522963be478102f3e7f5121173f6396b4794b,38a2428b88b76a2879e9c5cde628801cac5db60f0310197a3c6d425206525ded,"In deep learning,
+we often use CNNs or RNNs to encode a sequence."
+bb3d227074e16de9ae74d34fce67060d096c0f2ea3f63b198482740bdbb55a82,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctx_d32ca634c60e5bdb199798a6,backup,d2l_convolutional_modern_index_b001,d2l_convolutional_modern,sentence_4b08f1470009e48006b44e05,BACKUP,B2,C1,SAME_SENSE,Convolutional Neural Networks,2b9a367ff58792d134748a5cd50df6ed08b28c94fa0b36dd80e0df80a8eb5165,ca1082a0ae05cfc72ab636fb13130efb7e3da8485a1f2bcf5b04ab81126fbfb4,"# Modern Convolutional Neural Networks
+:label:`chap_modern_cnn`"
+bb3d227074e16de9ae74d34fce67060d096c0f2ea3f63b198482740bdbb55a82,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctx_d72570c9e0d6a16eed3d4320,backup,d2l_optimization_lr_scheduler_b007,d2l_optimization,sentence_f1351f02c1b8d1a32749acc0,BACKUP,B3,C1,SAME_SENSE,convolutional neural networks,b07bb86b33969fd39776a647de0d44169a466df14bef5926b05603c97bf4270e,9a9f94d826f0a115fbd6218e2e836416c9912e850410a4d4883925fd75c7ac4d,"```{.python .input}
+%matplotlib inline
+from d2l import mxnet as d2l
+from mxnet import autograd, gluon, init, lr_scheduler, np, npx
+from mxnet.gluon import nn
+npx.set_np()
+
+net = nn.HybridSequential()
+net.add(nn.Conv2D(channels=6, kernel_size=5, padding=2, activation='relu'),
+        nn.MaxPool2D(pool_size=2, strides=2),
+        nn.Conv2D(channels=16, kernel_size=5, activation='relu'),
+        nn.MaxPool2D(pool_size=2, strides=2),
+        nn.Dense(120, activation='relu'),
+        nn.Dense(84, activation='relu'),
+        nn.Dense(10))
+net.hybridize()
+loss = gluon.loss.SoftmaxCrossEntropyLoss()
+device = d2l.try_gpu()
+
+batch_size = 256
+train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size=batch_size)
+
+# The code is almost identical to `d2l.train_ch6` defined in the 
+# lenet section of chapter convolutional neural networks
+def train(net, train_iter, test_iter, num_epochs, loss, trainer, device):
+    net.initialize(force_reinit=True, ctx=device, init=init.Xavier())
+    animator = d2l.Animator(xlabel='epoch', xlim=[0, num_epochs],
+                            legend=['train loss', 'train acc', 'test acc'])
+    for epoch in range(num_epochs):
+        metric = d2l.Accumulator(3)  # train_loss, train_acc, num_examples
+        for i, (X, y) in enumerate(train_iter):
+            X, y = X.as_in_ctx(device), y.as_in_ctx(device)
+            with autograd.record():
+                y_hat = net(X)
+                l = loss(y_hat, y)
+            l.backward()
+            trainer.step(X.shape[0])
+            metric.add(l.sum(), d2l.accuracy(y_hat, y), X.shape[0])
+            train_loss = metric[0] / metric[2]
+            train_acc = metric[1] / metric[2]
+            if (i + 1) % 50 == 0:
+                animator.add(epoch + i / len(train_iter),
+                             (train_loss, train_acc, None))
+        test_acc = d2l.evaluate_accuracy_gpu(net, test_iter)
+        animator.add(epoch + 1, (None, None, test_acc))
+    print(f'train loss {train_loss:.3f}, train acc {train_acc:.3f}, '
+          f'test acc {test_acc:.3f}')
+```"
+bb3d227074e16de9ae74d34fce67060d096c0f2ea3f63b198482740bdbb55a82,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctx_ffd36cb1d841c0421cbd90cc,primary;definition,d2l_recurrent_neural_networks_index_b005,d2l_recurrent_neural_networks,sentence_b3798d7240c67f79bb65225e,PRIMARY,C5,C1,SAME_SENSE,CNNs,8273046fad3d8d335c9d128e0320408240f4012e1811126b296738121fdab1c4,56655a1443c854179e4be71ce7dd8ac0c42b8cf873fa343f2b6d0d5a5f27e457,"In short, while CNNs can efficiently process spatial information, *recurrent neural networks* (RNNs) are designed to better handle sequential information."
+bb3d227074e16de9ae74d34fce67060d096c0f2ea3f63b198482740bdbb55a82,d2lce_c4e87e5ee47d3e26ba618290,d2lce_c4e87e5ee47d3e26ba618290,ctxx_00f5dd007cb768664fadf619,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,convolutional neural networks,9c59f3f82367ff1c81d3785e04458d108c08d9663faef713e3bb87bb113be4d1,2a1837f893880c4fe2a261f2ef4d6b5d22cceaf12854a0275358a9b2f9f23637,"Synthetic: This paper trains one convolutional neural network, while related work compares several convolutional neural networks."
+58e2341f08ca20d5b1db2be0b8ce806b217c01ab230359b59883150b31c367b1,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctx_6fcdbf49cf1b09495f5babfd,backup,d2l_computational_performance_async_computation_b014,d2l_computational_performance,sentence_374081957708be44aec706d4,BACKUP,B2,C3,SAME_SENSE,cuda,b7cc30510d541ea3c6a75d1dbd33321f4ac70eabf8b78d59c34a5f7b9abf4ebe,97157c9dd507c4f14166c4e15d1763d81bc379c71ce44c41f51db81c9de5e42a,"```{.python .input}
+#@tab pytorch
+with d2l.Benchmark():
+    for _ in range(10):
+        a = torch.randn(size=(1000, 1000), device=device)
+        b = torch.mm(a, a)
+    torch.cuda.synchronize(device)
+```"
+58e2341f08ca20d5b1db2be0b8ce806b217c01ab230359b59883150b31c367b1,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctx_7f3025aa974fb8d15e3804a4,backup,d2l_convolutional_modern_alexnet_b023,d2l_convolutional_modern,sentence_89fb1e501dd80bdb23c9762f,BACKUP,B3,C3,SAME_SENSE,cuda,05206a85495e7496601d9376eac48cc5ce198cb28458e542746ee8574a5aac45,9e00640f388bb90bf003994a4dddd890b9ffe658294e82dfe7f7a05dfc86e6aa,"The code [cuda-convnet](https://code.google.com/archive/p/cuda-convnet/)
+was good enough that for several years
+it was the industry standard and powered
+the first couple years of the deep learning boom."
+58e2341f08ca20d5b1db2be0b8ce806b217c01ab230359b59883150b31c367b1,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctx_88d4ac7e32b65e492b2dbc3a,backup;definition;part_of_speech,d2l_installation_index_b036,d2l_installation,sentence_7100f0a40cb9caf5c580a105,BACKUP,B1,C3,SAME_SENSE,CUDA,7c84834fd2c70a1ac5adbd1ab1a0d23bb754759a63ad35dfd27ad74960caa9ae,65291784a1b93f525067867d1d2aca90234b1511b02ba74553944e7ad95a3f7e,"If your computer has NVIDIA graphics cards and has installed [CUDA](https://developer.nvidia.com/cuda-downloads),
+then you should install a GPU-enabled version."
+58e2341f08ca20d5b1db2be0b8ce806b217c01ab230359b59883150b31c367b1,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctx_c8b662075f19ab652ddcc0b9,primary,d2l_appendix_tools_for_deep_learning_aws_b003,d2l_appendix_tools_for_deep_learning,sentence_894db673ae6c33ba61af01b3,PRIMARY,C5,C3,SAME_SENSE,CUDA,932e60976f4831cf1a1dc8d6d8e309224851c9bec5ad9be97dd1574ae8d74805,26ae8dbc03703400d11f586a5c2291ee4adee04e7d8043bf7a74a34c94c34057,Optionally: install CUDA or use an AMI with CUDA preinstalled.
+58e2341f08ca20d5b1db2be0b8ce806b217c01ab230359b59883150b31c367b1,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctx_d5e3c3872235604218a2a839,primary;definition,d2l_deep_learning_computation_use_gpu_b004,d2l_deep_learning_computation,sentence_33dad108693a70a5c36db6fb,PRIMARY,C4,C3,SAME_SENSE,CUDA,53039d6a744de991df8fd33c0a53ad1aacd902d08a1387bb093b3dee1636c0e3,96895c01d4f3b420b28094341511b6c32585101a5c40328a17ec3c797769e5d1,"Then, download the [NVIDIA driver and CUDA](https://developer.nvidia.com/cuda-downloads)
+and follow the prompts to set the appropriate path."
+58e2341f08ca20d5b1db2be0b8ce806b217c01ab230359b59883150b31c367b1,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctx_dae4dda67205c6e9b5831f82,primary,d2l_installation_index_b038,d2l_installation,sentence_078075bb2cd028abff9e13a1,PRIMARY,C3,C3,SAME_SENSE,cuda,1f56659d014e06a2f9bdd1fcd5a7d41cd872eac022d4a350d1907eb2970dd4eb,0ed7bfa44179dd73d3f9480d6adec37e833028fdc06d8dfb292bada0a4c22630,"You can check this by running `nvcc --version` 
+or `cat /usr/local/cuda/version.txt`."
+58e2341f08ca20d5b1db2be0b8ce806b217c01ab230359b59883150b31c367b1,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctx_df035bcc5db7501785c43a7e,primary;definition;part_of_speech,d2l_installation_index_b038,d2l_installation,sentence_b08a2b22e6f49c2b7dd6af9f,PRIMARY,C1,C2,SAME_SENSE,CUDA,d4302779d28a3d0b023b1a0cab10ad12a66fc24ea2a2252bb80ad4cf9d0faf31,890fa5c450ec9bf15ce044cc774a321836a71cf0ab8c66a34d10bf5a9cf1b707,We now need to find out what version of CUDA you have installed.
+58e2341f08ca20d5b1db2be0b8ce806b217c01ab230359b59883150b31c367b1,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctx_f0c64b01d15f034d29c1d6ce,primary;definition;part_of_speech,d2l_installation_index_b038,d2l_installation,sentence_3db6a583ed5df7dccea64584,PRIMARY,C2,C3,SAME_SENSE,CUDA,250711f4e7a7798f0059e953368463a96183d024506bb3b4d8a9658b2468e7ed,dd5d7df36ab54b110cc1ecc6f789dd5e8d687b1e310b7fedeac96450b748c9da,"Assume that you have installed CUDA 10.1,
+then you can install with the following command:"
+58e2341f08ca20d5b1db2be0b8ce806b217c01ab230359b59883150b31c367b1,d2lce_ebd36388b50538b928ebbb4a,d2lce_ebd36388b50538b928ebbb4a,ctxx_4dea89c90037f013e133f06d,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,CUDA,315860e51a04b9582dfb997a2be6b7aea06bbb02f88d6399d30b6d54aefb63c1,94d43afbf6be3fd1c0cdecfe92e50f14c720c91a47f212aab3515f6b4520d345,"Synthetic: This project runs on any GPU library, so 'CUDA' here would not refer to the specific NVIDIA platform."
+466598935cfc5bc8f0efd92e9304a4b4570510e1a43908b95231d04ee9664277,d2lce_4d2b37402e25d2f56746ea23,d2lce_4d2b37402e25d2f56746ea23,ctx_01c5f3adb58f2f2203f6a24f,primary,d2l_deep_learning_computation_custom_layer_b031,d2l_deep_learning_computation,sentence_aab4ccb514cb3816db93a978,PRIMARY,C4,C1,SAME_SENSE,custom layers,0c1f4e52ff0b90f9a8e4a1e787bfa9ee3cfd59dcbed13a9a164c767f6f4087a8,0036f69ee0e2e84a64bdd61a5b3930fb439150cc4db749836a60c3beede9a3bb,We can [**directly carry out forward propagation calculations using custom layers.**]
+466598935cfc5bc8f0efd92e9304a4b4570510e1a43908b95231d04ee9664277,d2lce_4d2b37402e25d2f56746ea23,d2lce_4d2b37402e25d2f56746ea23,ctx_30b81bc472e7bfa9272f2568,primary;part_of_speech,d2l_deep_learning_computation_custom_layer_b001,d2l_deep_learning_computation,sentence_003f404b63b7c5511e9e72dd,PRIMARY,C2,C1,SAME_SENSE,Custom Layers,4b4789761cd56f71323195cec36846a870e9f011541ac32bed1041020292db9d,caa3ba24f721a28adabcb0baf422c30a180276fd25a91893238d70018501335c,# Custom Layers
+466598935cfc5bc8f0efd92e9304a4b4570510e1a43908b95231d04ee9664277,d2lce_4d2b37402e25d2f56746ea23,d2lce_4d2b37402e25d2f56746ea23,ctx_51a667c40e6f2983a4ba8c80,primary,d2l_deep_learning_computation_custom_layer_b021,d2l_deep_learning_computation,sentence_3260ee9661797a220ec228c8,PRIMARY,C5,C1,SAME_SENSE,custom layer,2c8887a5ba185a027c8fbd2b11594f0dc4fd29bfb4e03c030097e37185454942,dec23f52b2012b93753e4a369cb9d4a6272e2508bb3f3ad357db2600827a4e01,"This way, among other benefits, we will not need to write
+custom serialization routines for every custom layer."
+466598935cfc5bc8f0efd92e9304a4b4570510e1a43908b95231d04ee9664277,d2lce_4d2b37402e25d2f56746ea23,d2lce_4d2b37402e25d2f56746ea23,ctx_5b4647a086d9552408986cb3,backup;definition;part_of_speech,d2l_deep_learning_computation_custom_layer_b035,d2l_deep_learning_computation,sentence_8c520d8a7324179220de96e3,BACKUP,B1,C1,SAME_SENSE,custom layers,ed4703ec8903fb55121fed39c6af649574c56ad866db385c1cd1fca278730c08,3fb2a2455edf24c83968b53c2502618d68904adf6ffa0a60ab33532df2f40c13,"We can also (**construct models using custom layers.**)
+Once we have that we can use it just like the built-in fully-connected layer."
+466598935cfc5bc8f0efd92e9304a4b4570510e1a43908b95231d04ee9664277,d2lce_4d2b37402e25d2f56746ea23,d2lce_4d2b37402e25d2f56746ea23,ctx_6c7cc3e81d29fe5dcb962f5f,backup,d2l_deep_learning_computation_index_b003,d2l_deep_learning_computation,sentence_d2212eb9f9ae14979349b33d,BACKUP,B2,C1,SAME_SENSE,custom layers,64af754d6c578d5a4b719c578e1a3773d99913ae8dbcfb14560ae86b97b53c5a,733d6a1aefc880a2363d8da8ba4a57aa042acf5fb7ea5af7253e1aa234962a65,"In this chapter, we will peel back the curtain,
+digging deeper into the key components of deep learning computation,
+namely model construction, parameter access and initialization,
+designing custom layers and blocks, reading and writing models to disk,
+and leveraging GPUs to achieve dramatic speedups."
+466598935cfc5bc8f0efd92e9304a4b4570510e1a43908b95231d04ee9664277,d2lce_4d2b37402e25d2f56746ea23,d2lce_4d2b37402e25d2f56746ea23,ctx_73804fdbddef8388a5550f4a,backup,d2l_convolutional_modern_batch_norm_b037,d2l_convolutional_modern,sentence_88458388a6d1feaf20f9b956,BACKUP,B3,C1,SAME_SENSE,custom layer,183ac81c42007397ac06d3e45c8acf60197fabfdde8696ec197d903851e3085c,b86ad9121ecaff4368f674a5bfcea6eb3c62b2fd388fb1562468e7ac2d8d9950,"We then integrate this functionality into a custom layer,
+whose code mostly addresses bookkeeping matters,
+such as moving data to the right device context,
+allocating and initializing any required variables,
+keeping track of moving averages (here for mean and variance), and so on."
+466598935cfc5bc8f0efd92e9304a4b4570510e1a43908b95231d04ee9664277,d2lce_4d2b37402e25d2f56746ea23,d2lce_4d2b37402e25d2f56746ea23,ctx_c650fc71af7d6c2789e47035,primary;definition,d2l_deep_learning_computation_custom_layer_b004,d2l_deep_learning_computation,sentence_42caa2359c8c1411b3abf461,PRIMARY,C3,C1,SAME_SENSE,custom layer,1d285a1681394b126a53045c4a461cb44004718edf73ec2e2c97a8bc01900e5e,dd25698ba144b6146f9db2859b6d2c0befb1f3256dd2c6c77985159acb15b317,"To start, we construct a custom layer
+that does not have any parameters of its own."
+466598935cfc5bc8f0efd92e9304a4b4570510e1a43908b95231d04ee9664277,d2lce_4d2b37402e25d2f56746ea23,d2lce_4d2b37402e25d2f56746ea23,ctx_d91ca38d8df2fb6f84356a08,primary;definition;part_of_speech,d2l_deep_learning_computation_custom_layer_b002,d2l_deep_learning_computation,sentence_6634e9baa52a6da3411e776b,PRIMARY,C1,C1,SAME_SENSE,custom layer,fc762145a44d0814d69957e730334e96bbc0ccc273beeccacc4c4ff839495bfb,b133babe23c1f017155ab20846bbcd4aa52e1d4a0482c8e83d9ef3e19df19331,"In these cases, you must build a custom layer."
+466598935cfc5bc8f0efd92e9304a4b4570510e1a43908b95231d04ee9664277,d2lce_4d2b37402e25d2f56746ea23,d2lce_4d2b37402e25d2f56746ea23,ctxx_11de6b7878d206af216e9882,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,custom layer,7ddb841cae90d9de9cd560ec866aba51416e8281f2f11a258b26b6eeec13b5fd,7c8da51e697f0e4a9abd17fc3b86e14df6f54038b61e50c4787e968671d19266,Synthetic: The custom layer of sediment was added by the artist to the sculpture.
+4a06d43959c09821ea3f691e1f9e7dbf8bce99df7c1f027ee2e8dc395420201e,d2lce_e1a7c8e04c91b48272b3b5ee,d2lce_e1a7c8e04c91b48272b3b5ee,ctx_35cd85b391dd71dfd55cf5b7,primary;definition,d2l_appendix_mathematics_for_deep_learning_random_variables_b004,d2l_appendix_mathematics_for_deep_learning,sentence_fb287baaca698e293962428b,PRIMARY,C3,C5,SAME_SENSE,discrete random variables,fc212815951a51dabc47e6770bb2aba78c636b241a22d6b65a268173ccef2d5a,73b48e4a3dd07360c1dc7e7a54861f4b4423382ae1785d3e74f327f2c88de6a4,Continuous random variables are a significantly more subtle topic than discrete random variables.
+4a06d43959c09821ea3f691e1f9e7dbf8bce99df7c1f027ee2e8dc395420201e,d2lce_e1a7c8e04c91b48272b3b5ee,d2lce_e1a7c8e04c91b48272b3b5ee,ctx_631db6dfad58f0e98ac2eeaa,primary,d2l_appendix_mathematics_for_deep_learning_information_theory_b072,d2l_appendix_mathematics_for_deep_learning,sentence_800985335d6a150119b3b5df,PRIMARY,C4,C1,SAME_SENSE,discrete random variables,72e1d7a20db4c0edbe8ba9bd6f6de497a1ba60235c385a96244ff8d251a385f5,80cd0d8418c072bf62996d115330d519b14524b78ee6ffeb096fc98f6c59affe,"Specifically, if $(X, Y)$ is a pair of discrete random variables, then"
+4a06d43959c09821ea3f691e1f9e7dbf8bce99df7c1f027ee2e8dc395420201e,d2lce_e1a7c8e04c91b48272b3b5ee,d2lce_e1a7c8e04c91b48272b3b5ee,ctx_b4043b79b40224019aa27e38,primary,d2l_appendix_mathematics_for_deep_learning_random_variables_b106,d2l_appendix_mathematics_for_deep_learning,sentence_0d24772a876b5cf0884f867d,PRIMARY,C5,C5,SAME_SENSE,discrete random variables,1c82b5fe1f5c1430b27d167549307454a1a6a87583d4a661202637748b7e5fc0,2620782404d7fb766be74704a2a9d7604960e2b7ef4230cf315944b0271817be,"This has all been in terms of discrete random variables, but the case of continuous random variables is similar."
+4a06d43959c09821ea3f691e1f9e7dbf8bce99df7c1f027ee2e8dc395420201e,d2lce_e1a7c8e04c91b48272b3b5ee,d2lce_e1a7c8e04c91b48272b3b5ee,ctx_be8318b49ee8de45eb672658,backup,d2l_appendix_mathematics_for_deep_learning_random_variables_b208,d2l_appendix_mathematics_for_deep_learning,sentence_911ce5257dff458d08c8facd,BACKUP,B3,C5,SAME_SENSE,discrete random variables,29bc844a39c962c17d77aa26ef6c3ddd10f0902dea8441940aa2c3a29aeb5eb6,e0dcc9895ffb48c8eb3043c6a4819790644de71ce3d9c12c1f4b11532aab7dc5,They have some technical difficulties that make them more challenging to work with compared to discrete random variables.
+4a06d43959c09821ea3f691e1f9e7dbf8bce99df7c1f027ee2e8dc395420201e,d2lce_e1a7c8e04c91b48272b3b5ee,d2lce_e1a7c8e04c91b48272b3b5ee,ctx_dcc2558c83757b30c8a58c12,primary;definition;part_of_speech,d2l_appendix_mathematics_for_deep_learning_random_variables_b002,d2l_appendix_mathematics_for_deep_learning,sentence_66e5c5fb8607b702d5e007b8,PRIMARY,C2,C4,SAME_SENSE,discrete random variables,0caaecc41804066e986cdabe4b882821d424d485a00317d148479bef51e44139,e283223d450c01ab2deb9646caf1168831f4bd779e99078441819fe388e55d49,"In :numref:`sec_prob` we saw the basics of how to work with discrete random variables, which in our case refer to those random variables which take either a finite set of possible values, or the integers."
+4a06d43959c09821ea3f691e1f9e7dbf8bce99df7c1f027ee2e8dc395420201e,d2lce_e1a7c8e04c91b48272b3b5ee,d2lce_e1a7c8e04c91b48272b3b5ee,ctx_ddc48912aae8d4e18d86b760,backup;definition,d2l_appendix_mathematics_for_deep_learning_random_variables_b055,d2l_appendix_mathematics_for_deep_learning,sentence_db31d642ac437bba15285c17,BACKUP,B1,C5,SAME_SENSE,discrete random variables,fd7a10f661c846dd78ef609e60f62800629b085a2d964699b9163347c3406a42,e628905255a3e0f4e4288dd54188a681fc034c4d113fbd00e09d8e631a78083e,"In this example, we see one of the benefits of working with the c.d.f., the ability to deal with continuous or discrete random variables in the same framework, or indeed mixtures of the two (flip a coin: if heads return the roll of a die, if tails return the distance of a dart throw from the center of a dart board)."
+4a06d43959c09821ea3f691e1f9e7dbf8bce99df7c1f027ee2e8dc395420201e,d2lce_e1a7c8e04c91b48272b3b5ee,d2lce_e1a7c8e04c91b48272b3b5ee,ctx_e7f67dd37287b32e45850474,primary;part_of_speech,d2l_appendix_mathematics_for_deep_learning_information_theory_b057,d2l_appendix_mathematics_for_deep_learning,sentence_91ab43549975f0911615e1e7,PRIMARY,C1,C1,SAME_SENSE,discrete random variables,77cf34bebf11b04605ca49d9f4f96b7785e3db300a1665afdedc503df14bfbd2,65ce373cc973f587e56c07d352b0ea686bbb932feb40a9ff72a7e9c5712dfeb6,"Precisely, on the one hand, if $(X, Y)$ is a pair of discrete random variables, then"
+4a06d43959c09821ea3f691e1f9e7dbf8bce99df7c1f027ee2e8dc395420201e,d2lce_e1a7c8e04c91b48272b3b5ee,d2lce_e1a7c8e04c91b48272b3b5ee,ctx_f2b3de5d26527ae31c4c6363,backup,d2l_appendix_mathematics_for_deep_learning_maximum_likelihood_b054,d2l_appendix_mathematics_for_deep_learning,sentence_d257530b82bc8d8b33a7d835,BACKUP,B2,C5,SAME_SENSE,discrete random variables,18b8dd8347a76ed685119a0edffd7542c489ef9f054dc3b2cdd552f20eb8f42a,9c41ad0e397ee68fca7482c53d0a9a5bade31c39694f2f2571bd1c831a292db9,"Everything that we have done so far assumes we are working with discrete random variables, but what if we want to work with continuous ones?"
+4a06d43959c09821ea3f691e1f9e7dbf8bce99df7c1f027ee2e8dc395420201e,d2lce_e1a7c8e04c91b48272b3b5ee,d2lce_e1a7c8e04c91b48272b3b5ee,ctxx_e479e370dcd3d280d6ac3552,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,discrete random variables,6728a8ed9e29abcb2cb23abe83434de3277c31f9996a744d6e71f2a34778bfe2,67363ec8d88c4b899c86b160206dc4ddfb9d9a1fbf61180066fef18e1428db8b,"Synthetic: Unlike discrete random variables, continuous random variables can take values across an interval."
+34798a08c2d624a0aebf13247f72f80c324ee23a057722cf007d8763866a78e9,d2lce_10d4d01fa40b67d92527e5ed,d2lce_10d4d01fa40b67d92527e5ed,ctx_06aa5c9830a79f6132f4e41e,primary;definition;part_of_speech,d2l_optimization_adagrad_b010,d2l_optimization,sentence_c0f3a3d0d840f664adc7f9da,PRIMARY,C3,C1,SAME_SENSE,eigendecomposition,a8cb8335ab8bd4a705b9201b0b78d9e295974ce4f503cd90878b9c1fc34f03f3,da069efe99e62eb9e732fb589e76b9653fdd18f5bb03eac1538c0cfb66f09c7a,"As we saw in :numref:`sec_momentum`, it is possible to rewrite this problem in terms of its eigendecomposition $\mathbf{Q} = \mathbf{U}^\top \boldsymbol{\Lambda} \mathbf{U}$ to arrive at a much simplified problem where each coordinate can be solved individually:"
+34798a08c2d624a0aebf13247f72f80c324ee23a057722cf007d8763866a78e9,d2lce_10d4d01fa40b67d92527e5ed,d2lce_10d4d01fa40b67d92527e5ed,ctx_6ff3b3d4b6e66d2fc939f8c0,primary,d2l_appendix_mathematics_for_deep_learning_eigendecomposition_b032,d2l_appendix_mathematics_for_deep_learning,sentence_7db1f1af91b3102c91fd5699,PRIMARY,C4,C1,SAME_SENSE,Eigendecompositions,f87134f9f79a81c03bbad0dcb90bede19132926a21ca080e987f3aff59b41144,fdd4372a4377069bf114d265b0610319f68fe84dca42fc79f5235060f6cee96f,"## Operations on Eigendecompositions
+One nice thing about eigendecompositions :eqref:`eq_eig_decomp` is that 
+we can write many operations we usually encounter cleanly 
+in terms of the eigendecomposition."
+34798a08c2d624a0aebf13247f72f80c324ee23a057722cf007d8763866a78e9,d2lce_10d4d01fa40b67d92527e5ed,d2lce_10d4d01fa40b67d92527e5ed,ctx_700213fde2209115e3d7cfe0,primary,d2l_appendix_mathematics_for_deep_learning_index_b012,d2l_appendix_mathematics_for_deep_learning,sentence_853642f37d8f953af6e3e685,PRIMARY,C5,C4,SAME_SENSE,eigendecomposition,c5e965084297e021f8c090794e2e2b02c8c95783e157a093c7c605bed1e04884,b2d823e09a327f8f5f54a42b4cda46e3d57b9cfce5dec3e18521936dce03e5b7,"```toc
+:maxdepth: 2
+
+geometry-linear-algebraic-ops
+eigendecomposition
+single-variable-calculus
+multivariable-calculus
+integral-calculus
+random-variables
+maximum-likelihood
+distributions
+naive-bayes
+statistics
+information-theory
+```"
+34798a08c2d624a0aebf13247f72f80c324ee23a057722cf007d8763866a78e9,d2lce_10d4d01fa40b67d92527e5ed,d2lce_10d4d01fa40b67d92527e5ed,ctx_77274f381fb856ef3c8e17d8,backup,d2l_appendix_mathematics_for_deep_learning_index_b006,d2l_appendix_mathematics_for_deep_learning,sentence_7d5ced29c088ac9cfbcd45b1,BACKUP,B1,C1,SAME_SENSE,eigen-decompositions,672ae0301a9fe5db39d7507d09f1450d483942445629c978fad02c04a38c5933,cf21bf96993be1b7ae1aada76e4e67fb40b958ebaf3a2204440ad5c2de624492,A key element is the development of the basics of eigen-decompositions.
+34798a08c2d624a0aebf13247f72f80c324ee23a057722cf007d8763866a78e9,d2lce_10d4d01fa40b67d92527e5ed,d2lce_10d4d01fa40b67d92527e5ed,ctx_e5f07ff7564002cf0a876394,primary,d2l_appendix_mathematics_for_deep_learning_eigendecomposition_b001,d2l_appendix_mathematics_for_deep_learning,sentence_db5ff12cea5868d7d9c5ae40,PRIMARY,C2,C4,SAME_SENSE,Eigendecompositions,3f9713c1fab5f4f1c4f416b1df0d9fc4e95acdaac2e06bfb00b5942f59bb3231,3697500ad53fbb5538f748abcd6c26dd3236d29c6b1a48dd57a790c0fd697aaf,"# Eigendecompositions
+:label:`sec_eigendecompositions`"
+34798a08c2d624a0aebf13247f72f80c324ee23a057722cf007d8763866a78e9,d2lce_10d4d01fa40b67d92527e5ed,d2lce_10d4d01fa40b67d92527e5ed,ctx_e6c6794a381193953f6e941b,backup;definition;part_of_speech,d2l_appendix_mathematics_for_deep_learning_eigendecomposition_b002,d2l_appendix_mathematics_for_deep_learning,sentence_520e50cac7c8421118c65803,BACKUP,B2,C1,SAME_SENSE,eigendecomposition,b8c00188b877cc2ec2d9ee5da07530ed816295b803085662f31c4ffac2f4bc7d,d8881e5e7e0fbefd7a12b16a6c27bc34f288780da085483576be91019982e66e,"Below, we introduce eigendecomposition and 
+try to convey some sense of just why it is so important."
+34798a08c2d624a0aebf13247f72f80c324ee23a057722cf007d8763866a78e9,d2lce_10d4d01fa40b67d92527e5ed,d2lce_10d4d01fa40b67d92527e5ed,ctx_f11208ffa6d465fe135750ee,backup;definition,d2l_optimization_optimization_intro_b028,d2l_optimization,sentence_1c59deebbd7ea53225198a0c,BACKUP,B3,C1,SAME_SENSE,eigendecompositions,cefd088afa48c2615c0266a96de569057676f1839eb813fa4e5bd69edbe33808,4900bba74c0cda560107876a0eafa2c8c6adf320a4f21892eadedb20eee39ea5,"We assume that the input of a function is a $k$-dimensional vector and its
+output is a scalar, so its Hessian matrix will have $k$ eigenvalues
+(refer to the [online appendix on eigendecompositions](https://d2l.ai/chapter_appendix-mathematics-for-deep-learning/eigendecomposition.html))."
+34798a08c2d624a0aebf13247f72f80c324ee23a057722cf007d8763866a78e9,d2lce_10d4d01fa40b67d92527e5ed,d2lce_10d4d01fa40b67d92527e5ed,ctx_f250a8f9c758c2ea0187f79a,primary;definition,d2l_appendix_mathematics_for_deep_learning_eigendecomposition_b034,d2l_appendix_mathematics_for_deep_learning,sentence_e87df87fb4a67f0190a2bb39,PRIMARY,C1,C1,SAME_SENSE,eigendecomposition,394d6801c45357c46b33218626b06e7b9bdd9369af14cf12cfe95261d297ec13,b7bab84792a3bc34f6b6cfc6cde2e45f7b6bc33b48e7887cf72056b0313733f9,"This tells us that for any positive power of a matrix,
+the eigendecomposition is obtained by just raising the eigenvalues to the same power."
+34798a08c2d624a0aebf13247f72f80c324ee23a057722cf007d8763866a78e9,d2lce_10d4d01fa40b67d92527e5ed,d2lce_10d4d01fa40b67d92527e5ed,ctxx_b48926bec7193caca70c4e14,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,eigendecomposition,89e565fdc258982b01ee35faed3da73bcd51592e8e9fe22df625604e6f872116,2f48292d3f7199f2aba92ac0889e3300ebd1a59f7da3e4e69d110344099845a0,"Synthetic: The sound engineer discussed the decomposition of the audio signal, not its eigendecomposition."
+d795ec8d0086559445e64f241f8c7a26e486d9c3817e56e001f1d8f502ba36e7,d2lce_ca2ca961829e131bbc0fd92b,d2lce_ca2ca961829e131bbc0fd92b,ctx_0a0c93e8ea720026fc3f62e7,primary,d2l_natural_language_processing_applications_natural_language_inference_attention_b043,d2l_natural_language_processing_applications,sentence_6749c18b5c58cd3bfb6d8be2,PRIMARY,C3,C2,SAME_SENSE,entailment,550f12cb683ba2647fcc410a205f9716e05ac2cd76bf1f8bb97b4c27f968f2ab,b43939aea754f2409202391ef6da95a2a86acbbaf190b8155718f7995bf83651,"```{.python .input}
+class DecomposableAttention(nn.Block):
+    def __init__(self, vocab, embed_size, num_hiddens, **kwargs):
+        super(DecomposableAttention, self).__init__(**kwargs)
+        self.embedding = nn.Embedding(len(vocab), embed_size)
+        self.attend = Attend(num_hiddens)
+        self.compare = Compare(num_hiddens)
+        # There are 3 possible outputs: entailment, contradiction, and neutral
+        self.aggregate = Aggregate(num_hiddens, 3)
+
+    def forward(self, X):
+        premises, hypotheses = X
+        A = self.embedding(premises)
+        B = self.embedding(hypotheses)
+        beta, alpha = self.attend(A, B)
+        V_A, V_B = self.compare(A, B, beta, alpha)
+        Y_hat = self.aggregate(V_A, V_B)
+        return Y_hat
+```"
+d795ec8d0086559445e64f241f8c7a26e486d9c3817e56e001f1d8f502ba36e7,d2lce_ca2ca961829e131bbc0fd92b,d2lce_ca2ca961829e131bbc0fd92b,ctx_207e82bfd83c7a4eca664a58,primary;definition,d2l_natural_language_processing_applications_natural_language_inference_and_dataset_b006,d2l_natural_language_processing_applications,sentence_de3c6f83198b791596ac5d76,PRIMARY,C4,C2,SAME_SENSE,entailment,2ab2c075e4d8e87709575b22a589a747a8495771c13cf1141b95c8bbc009651a,490f7ad5baf36c7dfbc64416424f3fcd832fef364c82c7011f209943c0cf4d88,"For example, the following pair will be labeled as *entailment* because ""showing affection"" in the hypothesis can be inferred from ""hugging one another"" in the premise."
+d795ec8d0086559445e64f241f8c7a26e486d9c3817e56e001f1d8f502ba36e7,d2lce_ca2ca961829e131bbc0fd92b,d2lce_ca2ca961829e131bbc0fd92b,ctx_347324cc4f55f0de9822bf6d,primary,d2l_natural_language_processing_applications_natural_language_inference_and_dataset_b022,d2l_natural_language_processing_applications,sentence_7dc92f3d64439ccf8f1f531b,PRIMARY,C5,C2,SAME_SENSE,entailment,b8c9774cb0630daf5bdbe7c0481242a12250297644d26c45320ea9874fb9631f,ddec6262a53d6a0f300d20dbbca1c93b0f850bf118463b2f187cd6247ef61b65,"```{.python .input}
+#@tab all
+#@save
+def read_snli(data_dir, is_train):
+    """"""Read the SNLI dataset into premises, hypotheses, and labels.""""""
+    def extract_text(s):
+        # Remove information that will not be used by us
+        s = re.sub('\\(', '', s) 
+        s = re.sub('\\)', '', s)
+        # Substitute two or more consecutive whitespace with space
+        s = re.sub('\\s{2,}', ' ', s)
+        return s.strip()
+    label_set = {'entailment': 0, 'contradiction': 1, 'neutral': 2}
+    file_name = os.path.join(data_dir, 'snli_1.0_train.txt'
+                             if is_train else 'snli_1.0_test.txt')
+    with open(file_name, 'r') as f:
+        rows = [row.split('\t') for row in f.readlines()[1:]]
+    premises = [extract_text(row[1]) for row in rows if row[0] in label_set]
+    hypotheses = [extract_text(row[2]) for row in rows if row[0] in label_set]
+    labels = [label_set[row[0]] for row in rows if row[0] in label_set]
+    return premises, hypotheses, labels
+```"
+d795ec8d0086559445e64f241f8c7a26e486d9c3817e56e001f1d8f502ba36e7,d2lce_ca2ca961829e131bbc0fd92b,d2lce_ca2ca961829e131bbc0fd92b,ctx_3e3799ff4270de82290185f5,backup;definition;part_of_speech,d2l_natural_language_processing_applications_natural_language_inference_and_dataset_b040,d2l_natural_language_processing_applications,sentence_c2465e2f3923c4fe329b7668,BACKUP,B1,C2,SAME_SENSE,entailment,c905debd5100bf051ed79d52f21e5dee1132e364243419db7dcd25c97c3bcc53,77c723746493f1d041a1e2481aeaa9a97abe23227f7c97dc98108f2c69898cc8,"* In natural language inference, relationships between premises and hypotheses include entailment, contradiction, and neutral."
+d795ec8d0086559445e64f241f8c7a26e486d9c3817e56e001f1d8f502ba36e7,d2lce_ca2ca961829e131bbc0fd92b,d2lce_ca2ca961829e131bbc0fd92b,ctx_7ab76b6d9c4d288c677f1a0b,backup,d2l_natural_language_processing_applications_natural_language_inference_and_dataset_b023,d2l_natural_language_processing_applications,sentence_34061ccfff9af966b1c24dc0,BACKUP,B2,C2,SAME_SENSE,entailment,d18c542553f44a08968e1cac202e6cb27ba7eaa1e67c0d0f24b75c06638bf111,af920098afa16490c066178d631cb380a13af50b575b4e457f8941b068c59e85,"Now let us print the first 3 pairs of premise and hypothesis, as well as their labels (""0"", ""1"", and ""2"" correspond to ""entailment"", ""contradiction"", and ""neutral"", respectively )."
+d795ec8d0086559445e64f241f8c7a26e486d9c3817e56e001f1d8f502ba36e7,d2lce_ca2ca961829e131bbc0fd92b,d2lce_ca2ca961829e131bbc0fd92b,ctx_c4a7169a641a791c71788313,primary;definition;part_of_speech,d2l_natural_language_processing_applications_natural_language_inference_and_dataset_b005,d2l_natural_language_processing_applications,sentence_dbe9e5325c5e82620bce9224,PRIMARY,C1,C1,SAME_SENSE,Entailment,e54b2366296c8382d94bd161eec82d12f1da7c595c67ad729050c5fecc0a6cb0,a51d5ce3ce0b2df07fa5fa6dadce2b47cec57488d6011e1a8e62837d6135e756,* *Entailment*: the hypothesis can be inferred from the premise.
+d795ec8d0086559445e64f241f8c7a26e486d9c3817e56e001f1d8f502ba36e7,d2lce_ca2ca961829e131bbc0fd92b,d2lce_ca2ca961829e131bbc0fd92b,ctx_ebc0a0797c85b97bb1f894e1,backup,d2l_natural_language_processing_applications_natural_language_inference_and_dataset_b006,d2l_natural_language_processing_applications,sentence_69d2839052dd1f09fe5a748e,BACKUP,B3,C2,SAME_SENSE,entailment,9b369fef5f3992931e8219c459b348e951951ccb7c9c2865b2322708b4cb038b,96a51dbf7b75c2e0dc2c7628a9f56de3ed5655c1591afddfc855fc25c4f3eb6f,Natural language inference is also known as the recognizing textual entailment task.
+d795ec8d0086559445e64f241f8c7a26e486d9c3817e56e001f1d8f502ba36e7,d2lce_ca2ca961829e131bbc0fd92b,d2lce_ca2ca961829e131bbc0fd92b,ctx_f06f07b9418a51a6b9edecab,primary;part_of_speech,d2l_natural_language_processing_applications_natural_language_inference_and_dataset_b025,d2l_natural_language_processing_applications,sentence_bf3483a65ea77072ca388fb2,PRIMARY,C2,C2,SAME_SENSE,entailment,1f66ede273793ead5304baec1202e4ce8471a5edbdabe1c31db67b17f48c8a87,ea5c74835dd776cf1605d11838c7aaeb3a6a6c7646d856796915ec7ce55eb47d,"The following shows that 
+the three labels ""entailment"", ""contradiction"", and ""neutral"" are balanced in 
+both the training set and the testing set."
+d795ec8d0086559445e64f241f8c7a26e486d9c3817e56e001f1d8f502ba36e7,d2lce_ca2ca961829e131bbc0fd92b,d2lce_ca2ca961829e131bbc0fd92b,ctxx_0db25ab29d9986cef4d46471,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,entailment,889c6a0dbc611eb6d0cbb5a7590e4631a6143f308efbc9dbe269a754aa5a3839,bd95bde9b881d21d3d5a48e3a6779f1b41ae85fe002eef0a73d02c3ccec79c78,"Synthetic: In logic class, entailment is discussed as a formal relation, while here entailment is a dataset label between premise and hypothesis."
+771ca984ce94ec4ef82c8c8aa9af4c3a5cc5e7c15d2992b6c7efe127be0afb1b,d2lce_fbe9efe0d390976cb31e5af7,d2lce_fbe9efe0d390976cb31e5af7,ctx_041277e59fc9e3b32469b673,primary;definition,d2l_attention_mechanisms_nadaraya_watson_b062,d2l_attention_mechanisms,sentence_00a3b866cc361cdda6d9c5d5,PRIMARY,C5,C2,SAME_SENSE,forward,ebf819d66b3846f73cc41b91f40394cebb872ef6b274acf4badc110e589e61ba,7dea4af97920c74ed7d3f045068ac62aebff94594172ee93971bd9e90b89ee7a,"```{.python .input}
+class NWKernelRegression(nn.Block):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.w = self.params.get('w', shape=(1,))
+
+    def forward(self, queries, keys, values):
+        # Shape of the output `queries` and `attention_weights`:
+        # (no."
+771ca984ce94ec4ef82c8c8aa9af4c3a5cc5e7c15d2992b6c7efe127be0afb1b,d2lce_fbe9efe0d390976cb31e5af7,d2lce_fbe9efe0d390976cb31e5af7,ctx_072a83737808daf5abee6df6,primary;definition,d2l_convolutional_neural_networks_conv_layer_b020,d2l_convolutional_neural_networks,sentence_75e7102bfe2b988c71ff802b,PRIMARY,C4,C2,SAME_SENSE,forward,620bbb1a3b75ed0fb56eec85cda880c172d66453075d95c61de4a5f3b50fdd8d,d874b533f827bc8566e3c4cac0161a4555507c5658244c8e9f54e728a4ee3f67,"The forward propagation function
+calls the `corr2d` function and adds the bias."
+771ca984ce94ec4ef82c8c8aa9af4c3a5cc5e7c15d2992b6c7efe127be0afb1b,d2lce_fbe9efe0d390976cb31e5af7,d2lce_fbe9efe0d390976cb31e5af7,ctx_18f5c52c0937b1589d8a6782,primary;definition;part_of_speech,d2l_deep_learning_computation_model_construction_b007,d2l_deep_learning_computation,sentence_783e0e05cb7ea9dc5d5706bc,PRIMARY,C2,C2,SAME_SENSE,forward,b915f7dbfe87b6724299e02e54b856fd2ab195c86f6e9b4b7e3e80dfbf8fca8d,bf52f9447696b8d8cf2f1c0606b8b34aa48226105850fb85cfb536d9a49b1714,"Any subclass of it must define a forward propagation function
+that transforms its input into output
+and must store any necessary parameters."
+771ca984ce94ec4ef82c8c8aa9af4c3a5cc5e7c15d2992b6c7efe127be0afb1b,d2lce_fbe9efe0d390976cb31e5af7,d2lce_fbe9efe0d390976cb31e5af7,ctx_4f8a2ab7305e5e99ddf848a4,primary;definition;part_of_speech,d2l_linear_networks_linear_regression_concise_b059,d2l_linear_networks,sentence_a863389dde3412de453516e8,PRIMARY,C1,C1,SAME_SENSE,forward,75614a4580c25abac6709d5b325d9630a32116da1b0ba428abee64a485efd3b7,596386f48b114d8e691c5984e4d641a82b1425059ceb6c4e9c27cf37f7259681,* Generate predictions by calling `net(X)` and calculate the loss `l` (the forward propagation).
+771ca984ce94ec4ef82c8c8aa9af4c3a5cc5e7c15d2992b6c7efe127be0afb1b,d2lce_fbe9efe0d390976cb31e5af7,d2lce_fbe9efe0d390976cb31e5af7,ctx_d126e74d5ab3240a96363756,primary;definition,d2l_recurrent_modern_index_b003,d2l_recurrent_modern,sentence_d63643c53550b531593efcfc,PRIMARY,C3,C3,SAME_SENSE,forward,98544559fc06314324f0111157daada7498c8cbebeff9836036c70616cdf765c,876dbc08e651c954de91d49229fbf2954095b3c35c6d78f95a2f97b1477fbd6c,"We will describe deep architectures with
+multiple hidden layers,
+and discuss the bidirectional design
+with both forward and backward recurrent computations."
+771ca984ce94ec4ef82c8c8aa9af4c3a5cc5e7c15d2992b6c7efe127be0afb1b,d2lce_fbe9efe0d390976cb31e5af7,d2lce_fbe9efe0d390976cb31e5af7,ctx_e3686abbec23ffeb19f2dfef,backup;definition;part_of_speech,d2l_multilayer_perceptrons_dropout_b013,d2l_multilayer_perceptrons,sentence_fa3308a8e44cabdd2de25110,BACKUP,B1,C1,SAME_SENSE,forward,e4620f19ba23a0e590486902615be3d22d64992491369e1e2326fd41ba074565,cd934c6d08ee116a47f52b9b32e789351380565387606971f0a8b924b7292b55,"Their idea, called *dropout*, involves
+injecting noise while computing
+each internal layer during forward propagation,
+and it has become a standard technique
+for training neural networks."
+771ca984ce94ec4ef82c8c8aa9af4c3a5cc5e7c15d2992b6c7efe127be0afb1b,d2lce_fbe9efe0d390976cb31e5af7,d2lce_fbe9efe0d390976cb31e5af7,ctxx_b0f418c27ca404d28a5696bb,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,forward propagation,75a200917acb06e8577ee5e46406c1c8af5cad49220900bdcf7e06eed9b3b566,00868fcb07e87c8dfd20a0fd738dceea21d5a959883c8155ad09a641df30ee5d,"Synthetic boundary probe: ""forward propagation"" is quoted here only as a document label, not as an occurrence of the reviewed D2L sense."
+54ff1208d98b3f4913c0b4cfcec65afcbdc6ce2ae372791618fbc2d15776f92a,d2lce_24988c975f984ef488776c0b,d2lce_24988c975f984ef488776c0b,ctx_0dd3e0d0f7d3391d566ae6d8,backup;definition,d2l_computational_performance_async_computation_b015,d2l_computational_performance,sentence_6ad8787883ac885842a3b9b4,BACKUP,B2,C2,SAME_SENSE,frontend,07a49c1004538d9a930c8294b209c4af77d9b01e2fe6b0ecd9f628dc062a41b7,14a335414effa6b20a99795fadbd5012dcc0a374df90f96da122509e0efeb7c3,Operations issued by the frontend language are passed on to the backend for execution.
+54ff1208d98b3f4913c0b4cfcec65afcbdc6ce2ae372791618fbc2d15776f92a,d2lce_24988c975f984ef488776c0b,d2lce_24988c975f984ef488776c0b,ctx_33c4a5d0c030d071cbc4dffd,primary,d2l_computational_performance_async_computation_b011,d2l_computational_performance,sentence_1ce998d82e1e2780ce965fc0,PRIMARY,C4,C1,SAME_SENSE,frontend,d5afc70ddf88f166b47dae838a5602d0de17ac30b9656576fa578ae116004ad1,69b170fab8e085388bb5c850613a5f91da8231a57eacd1a5066f76dd2d50d55f,Forcing MXNet to finish all the backend computation prior to returning shows what happened previously: computation is executed by the backend while the frontend returns control to Python.
+54ff1208d98b3f4913c0b4cfcec65afcbdc6ce2ae372791618fbc2d15776f92a,d2lce_24988c975f984ef488776c0b,d2lce_24988c975f984ef488776c0b,ctx_358982713ee189170b08992f,backup,d2l_computational_performance_async_computation_b015,d2l_computational_performance,sentence_bcfa0400368764c217d646a9,BACKUP,B1,C2,SAME_SENSE,frontend,066cb74bd0a165c974babf52da97c4e8ddb87128045e7ba5471f7b6d94692344,dbcdc07a8d738f8a4966c08c953ebcaeb829316b5b9ddeb46196961c145956d5,"As shown in :numref:`fig_frontends`, users can write MXNet programs in various frontend languages, such as Python, R, Scala, and C++."
+54ff1208d98b3f4913c0b4cfcec65afcbdc6ce2ae372791618fbc2d15776f92a,d2lce_24988c975f984ef488776c0b,d2lce_24988c975f984ef488776c0b,ctx_5e61307935b8e7d87220e6f3,primary;definition;part_of_speech,d2l_computational_performance_async_computation_b016,d2l_computational_performance,sentence_9695c4fe856a5f8acb316314,PRIMARY,C3,C1,SAME_SENSE,frontend,42fa87636275aaffa5a8dcc51de1d200027663dc1ffc7d97befa0995ccbc1924,fd6415138f32cd2f4f1555d7136d9ebdbd711ecf436b8cad0af8b631015f8477,":begin_tab:`pytorch`
+Broadly speaking, PyTorch has a frontend for direct interaction with the users, e.g., via Python, as well as a backend used by the system to perform the computation."
+54ff1208d98b3f4913c0b4cfcec65afcbdc6ce2ae372791618fbc2d15776f92a,d2lce_24988c975f984ef488776c0b,d2lce_24988c975f984ef488776c0b,ctx_a2db8ce33d67077666585b97,primary;definition;part_of_speech,d2l_computational_performance_async_computation_b015,d2l_computational_performance,sentence_f8aa91b12ea7e068e7e3275c,PRIMARY,C1,C1,SAME_SENSE,frontend,c8b005e772617cdb5a1a2b431fab5d4494927422d6b8b82237430ae613c51f85,27034010d15ba94b2691c0f4f101c074d96a61c0c0be57d9c067498ec489128d,":begin_tab:`mxnet`
+Broadly speaking, MXNet has a frontend for direct interactions with users, e.g., via Python, as well as a backend used by the system to perform the computation."
+54ff1208d98b3f4913c0b4cfcec65afcbdc6ce2ae372791618fbc2d15776f92a,d2lce_24988c975f984ef488776c0b,d2lce_24988c975f984ef488776c0b,ctx_b19abb42c07be4849d43a0c0,primary,d2l_computational_performance_async_computation_b012,d2l_computational_performance,sentence_8e2b9cdb5362e7ca91d50fc7,PRIMARY,C5,C1,SAME_SENSE,frontend,b3c6415af3a00fc49ec2d945f3358a0703c61b574c0b295d2bfd2a074c1b1f9a,b4d8887170a8e9662dd7dec9e1ec02a36fb20651217bc1a5cb2cd450d9f2b023,"Forcing PyTorch to finish all computation prior to returning shows
+what happened previously: computation is being executed by the backend
+while the frontend returns control to Python."
+54ff1208d98b3f4913c0b4cfcec65afcbdc6ce2ae372791618fbc2d15776f92a,d2lce_24988c975f984ef488776c0b,d2lce_24988c975f984ef488776c0b,ctx_c97c57c246feef065fb19e6c,primary,d2l_computational_performance_async_computation_b016,d2l_computational_performance,sentence_50fa1a695e776f09e377b839,PRIMARY,C2,C2,SAME_SENSE,frontend,c35e60a60f16e107a187fcc4a69d3e5da04f1a2d3764c18f0c31b89a31c5860d,c39da60d56f1f9540491a5065b9833e6f35d400b5dd642e40a56ad9f0799aee1,"As shown in :numref:`fig_frontends`, users can write PyTorch programs in various frontend languages, such as Python and C++."
+54ff1208d98b3f4913c0b4cfcec65afcbdc6ce2ae372791618fbc2d15776f92a,d2lce_24988c975f984ef488776c0b,d2lce_24988c975f984ef488776c0b,ctx_eda09302351a178011612455,backup,d2l_computational_performance_async_computation_b015,d2l_computational_performance,sentence_f65006cddc55844f4ad474e9,BACKUP,B3,C2,SAME_SENSE,frontend,17482bff123f6aacf6c1ca789da7e25801567648c45a307ec51daf95ea1ec284,e856fccbfa5aa530fa2702c41a19c8a070083cd5daccbc4ce0bbfb5e8a0bda94,"Regardless of the frontend programming language used, the execution of MXNet programs occurs primarily in the backend of C++ implementations."
+54ff1208d98b3f4913c0b4cfcec65afcbdc6ce2ae372791618fbc2d15776f92a,d2lce_24988c975f984ef488776c0b,d2lce_24988c975f984ef488776c0b,ctxx_0d564f587c9e8db7c7f40227,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,frontend,e0bdf5379e315a1246abc444ca3a0e9bd9606091eb887ccfe88c3e8535dc2d0e,3938b2910fe1c2941e798b18f1eabd4306900e3401512abd918c30f499c652c5,Synthetic: The frontend of the building was renovated last year.
+4b18a2fb7591573ab9ac84b084c4209f0f5245dd31a5ad2dfb8f0f5fb773d125,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctx_1f4f955fd892e6791b4aeef3,primary;definition,d2l_convolutional_modern_alexnet_b031,d2l_convolutional_modern,sentence_6e49932b0cf8dc03e33f650c,PRIMARY,C3,C1,SAME_SENSE,fully-connected layers,af12d9797a736f3768de2a84c9193b62a3d48996429557ecfc5b953bf79f4c84,af4db0511991c9ba26d797e647e0a908b30e5ce468a833a8068ac6b9bd3a55ab,These two huge fully-connected layers produce model parameters of nearly 1 GB.
+4b18a2fb7591573ab9ac84b084c4209f0f5245dd31a5ad2dfb8f0f5fb773d125,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctx_28b17b3a0950632e4ac5d1f9,primary,d2l_attention_mechanisms_attention_cues_b014,d2l_attention_mechanisms,sentence_b55a324b907b8b68eff4c103,PRIMARY,C2,C3,SAME_SENSE,fully-connected layers,0a66f436bd5b1c95f0d496e2940acceffb42d5a4ecfa5a9418e9a4edda8e0552,65af89720617ae607429baacc7672f1f94cf634f10a0ec0184e0be2b3d89b8b1,"Therefore,
+what sets attention mechanisms
+apart from those fully-connected layers
+or pooling layers
+is the inclusion of the volitional cues."
+4b18a2fb7591573ab9ac84b084c4209f0f5245dd31a5ad2dfb8f0f5fb773d125,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctx_403adb70f5312a0fa35b95be,primary;definition;part_of_speech,d2l_multilayer_perceptrons_mlp_b011,d2l_multilayer_perceptrons,sentence_ee83118332971e9545fef97b,PRIMARY,C4,C1,SAME_SENSE,fully-connected layers,6683d7beb8b72fff1146160f79a85523526ad5a5d9c4ebfcb6e051b7df2a9988,afc09be39adc3d64bb4aaa9878a5bd332ab97c54a72d3d728684e9bb33302b17,"The easiest way to do this is to stack
+many fully-connected layers on top of each other."
+4b18a2fb7591573ab9ac84b084c4209f0f5245dd31a5ad2dfb8f0f5fb773d125,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctx_58323905b57101ea133ca2d9,primary,d2l_recurrent_modern_gru_b009,d2l_recurrent_modern,sentence_5124ba81bbc32751cf3a0de2,PRIMARY,C5,C1,SAME_SENSE,fully-connected layers,50bb1e197d6c29be52b9b34e8abc9903229c980ea2f6683274c54971784ca96c,06af87f0c1bad548a5d219d169ed8cc57e1fa99c73b252f2db51bc56354a213d,"The outputs of two gates
+are given by two fully-connected layers
+with a sigmoid activation function."
+4b18a2fb7591573ab9ac84b084c4209f0f5245dd31a5ad2dfb8f0f5fb773d125,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctx_8ce751d21f2cb72d502c47b8,backup,d2l_deep_learning_computation_model_construction_b013,d2l_deep_learning_computation,sentence_88730d52d54239993b8f0316,BACKUP,B1,C1,SAME_SENSE,fully-connected layers,3a5d9788b3633cb12229a18a33e059ce8730d218001d2b1fb6c951517d820910,efeb1d1feaa8e3b3885e1ba58969e92522dc02cacffb0d61a41484b201073732,"Note that each of the two fully-connected layers is an instance of the `Linear` class
+which is itself a subclass of `Module`."
+4b18a2fb7591573ab9ac84b084c4209f0f5245dd31a5ad2dfb8f0f5fb773d125,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctx_eafeb346f16534dd44c4414d,backup;part_of_speech,d2l_linear_networks_softmax_regression_b018,d2l_linear_networks,sentence_f175f09b17949d79fdfe6562,BACKUP,B2,C1,SAME_SENSE,Fully-Connected Layers,e81b24aac0b3cbd5fe7b40c6bb8b8a70c5da00dcef6b16728375faeaba022ea9,209462aaaabe856b76321b092e6ee9b123e3331300e4b31148effd382c70ec2b,"## Parameterization Cost of Fully-Connected Layers
+:label:`subsec_parameterization-cost-fc-layers`"
+4b18a2fb7591573ab9ac84b084c4209f0f5245dd31a5ad2dfb8f0f5fb773d125,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctx_f4fa216c07f2cf0249eb37ca,backup,d2l_recurrent_neural_networks_sequence_b023,d2l_recurrent_neural_networks,sentence_467449b36bf28a6c820cac7e,BACKUP,B3,C1,SAME_SENSE,fully-connected layers,8caecab8ae7aafedb156635763d66d66d844ee93f16f0bbe70b00636517c7198,0526460416ecb9a4e81b163d3754ebf9d3e718559cac42c5ec9e5ec65b4549e5,"```{.python .input}
+#@tab mxnet, pytorch
+tau = 4
+features = d2l.zeros((T - tau, tau))
+for i in range(tau):
+    features[:, i] = x[i: T - tau + i]
+labels = d2l.reshape(x[tau:], (-1, 1))
+```
+
+```{.python .input}
+#@tab tensorflow
+tau = 4
+features = tf.Variable(d2l.zeros((T - tau, tau)))
+for i in range(tau):
+    features[:, i].assign(x[i: T - tau + i])
+labels = d2l.reshape(x[tau:], (-1, 1))
+```
+
+```{.python .input}
+#@tab all
+batch_size, n_train = 16, 600
+# Only the first `n_train` examples are used for training
+train_iter = d2l.load_array((features[:n_train], labels[:n_train]),
+                            batch_size, is_train=True)
+```
+
+Here we [**keep the architecture fairly simple:
+just an MLP**] with two fully-connected layers, ReLU activation, and squared loss."
+4b18a2fb7591573ab9ac84b084c4209f0f5245dd31a5ad2dfb8f0f5fb773d125,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctx_faa4efe019d52f783381c40a,primary;definition,d2l_convolutional_neural_networks_why_conv_b001,d2l_convolutional_neural_networks,sentence_f0efc3942625f9a21822a8b0,PRIMARY,C1,C1,SAME_SENSE,Fully-Connected Layers,c89f02651a44635d98f6e1da6325d9874a060d9bc215e2106e9369fdddeaa14c,fd5182c340dd172ff7c56861be75e7f107f318710b707b4d4abd5c8a5468aec8,"# From Fully-Connected Layers to Convolutions
+:label:`sec_why-conv`"
+4b18a2fb7591573ab9ac84b084c4209f0f5245dd31a5ad2dfb8f0f5fb773d125,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,ctxx_e58b72f11fa52345b99c8a32,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,Fully-connected layers,d093bc53ce565c6c413587be121af752abab195c83889a5c076cce4f34178a76,1ee3ebb20ae007ea5ab964111d0269bd36f3052346f347b4102b15a57cb25454,"Synthetic: Fully-connected layers connect every unit to all units in the previous layer, unlike convolutional layers with local receptive fields."

@@ -1,0 +1,299 @@
+﻿case_sha256,term_id,sense_id,context_id,context_groups,block_id,chapter_id,sentence_id,context_role,context_slot,context_type_proposal,sense_relation,matched_surface_exact,content_sha256,context_sha256,source_text
+e69411f8e73cc5d357349dcc200faf7f7373097a467881aca856e58d64390c2b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctx_26a6365155d601f3009c3236,backup,d2l_recommender_systems_seqrec_b017,d2l_recommender_systems,sentence_83121b0683367ef9a6f6ae98,BACKUP,B3,C2,SAME_SENSE,Caser,4c8124024270c7dfedf48aa55166740d49df99da9d4f69febf44f5b0d8d3ba24,78b353ddd63170acda68b59e537d7dc4136b4c8109762fafd0e37b23e90786c7,![Illustration of the Caser Model](../img/rec-caser.svg)
+e69411f8e73cc5d357349dcc200faf7f7373097a467881aca856e58d64390c2b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctx_27b2e4936143566a8ca5e421,backup,d2l_recommender_systems_seqrec_b016,d2l_recommender_systems,sentence_a0972456818b2b9f0adb09ec,BACKUP,B2,C2,SAME_SENSE,Caser,8a49400dbf82bc6bd7c344a8d614847eb36f0ffb3e69cc62c2494b9bd446a22f,9f3a88d402de799d9dc16937414828780e6523e7b27a377661fc582532025529,The architecture of Caser is shown below:
+e69411f8e73cc5d357349dcc200faf7f7373097a467881aca856e58d64390c2b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctx_89f8785f0d47f0a72eb28a8d,primary,d2l_recommender_systems_seqrec_b020,d2l_recommender_systems,sentence_ff6999abe1481494f88a8061,PRIMARY,C1,C2,SAME_SENSE,Caser,e61731440f89e4123138286751b14b1b23b78a700964ec48330b756dcacf2c7a,d181d3fbe9f59babe127f11a0c985f50700c7e1aa5437658bb2e54919315b03b,"## Model Implementation
+The following code implements the Caser model."
+e69411f8e73cc5d357349dcc200faf7f7373097a467881aca856e58d64390c2b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctx_a07c31185d557a9cba947172,backup;definition,d2l_recommender_systems_seqrec_b005,d2l_recommender_systems,sentence_2782fb7a8705fe01395419b5,BACKUP,B1,C4,SAME_SENSE,Caser,61cef2ad8b392cc69045d11760b0ed13e94bf53e7fbd68dc6013046ca32c7bd2,c316e3c242eed87faa84e6909be8255b5ab4bc6f98fb759eaaf556b1ebe57ce3,The goal of Caser is to recommend item by considering user general tastes as well as short-term intention.
+e69411f8e73cc5d357349dcc200faf7f7373097a467881aca856e58d64390c2b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctx_b400985b05d02328a55f0c52,primary;part_of_speech,d2l_recommender_systems_seqrec_b021,d2l_recommender_systems,sentence_d6c3cc690e394aff5da8633b,PRIMARY,C2,C4,SAME_SENSE,Caser,03e5d55b50f33dc2759d510e8c9ff747a4be7b2aac9275ca5eb4d740ce1cae09,13f84e8637575225d01791446e8f0eb47a7f78048f09fd428a7329fc862ae1f8,"```{.python .input  n=4}
+class Caser(nn.Block):
+    def __init__(self, num_factors, num_users, num_items, L=5, d=16,
+                 d_prime=4, drop_ratio=0.05, **kwargs):
+        super(Caser, self).__init__(**kwargs)
+        self.P = nn.Embedding(num_users, num_factors)
+        self.Q = nn.Embedding(num_items, num_factors)
+        self.d_prime, self.d = d_prime, d
+        # Vertical convolution layer
+        self.conv_v = nn.Conv2D(d_prime, (L, 1), in_channels=1)
+        # Horizontal convolution layer
+        h = [i + 1 for i in range(L)]
+        self.conv_h, self.max_pool = nn.Sequential(), nn.Sequential()
+        for i in h:
+            self.conv_h.add(nn.Conv2D(d, (i, num_factors), in_channels=1))
+            self.max_pool.add(nn.MaxPool1D(L - i + 1))
+        # Fully-connected layer
+        self.fc1_dim_v, self.fc1_dim_h = d_prime * num_factors, d * len(h)
+        self.fc = nn.Dense(in_units=d_prime * num_factors + d * L,
+                           activation='relu', units=num_factors)
+        self.Q_prime = nn.Embedding(num_items, num_factors * 2)
+        self.b = nn.Embedding(num_items, 1)
+        self.dropout = nn.Dropout(drop_ratio)
+
+    def forward(self, user_id, seq, item_id):
+        item_embs = np.expand_dims(self.Q(seq), 1)
+        user_emb = self.P(user_id)
+        out, out_h, out_v, out_hs = None, None, None, []
+        if self.d_prime:
+            out_v = self.conv_v(item_embs)
+            out_v = out_v.reshape(out_v.shape[0], self.fc1_dim_v)
+        if self.d:
+            for conv, maxp in zip(self.conv_h, self.max_pool):
+                conv_out = np.squeeze(npx.relu(conv(item_embs)), axis=3)
+                t = maxp(conv_out)
+                pool_out = np.squeeze(t, axis=2)
+                out_hs.append(pool_out)
+            out_h = np.concatenate(out_hs, axis=1)
+        out = np.concatenate([out_v, out_h], axis=1)
+        z = self.fc(self.dropout(out))
+        x = np.concatenate([z, user_emb], axis=1)
+        q_prime_i = np.squeeze(self.Q_prime(item_id))
+        b = np.squeeze(self.b(item_id))
+        res = (x * q_prime_i).sum(1) + b
+        return res
+```"
+e69411f8e73cc5d357349dcc200faf7f7373097a467881aca856e58d64390c2b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctx_c48fb3f822f811ccbb8750b6,primary;definition;part_of_speech,d2l_recommender_systems_seqrec_b003,d2l_recommender_systems,sentence_c26e9a92679c70ae156ff685,PRIMARY,C3,C4,SAME_SENSE,Caser,fd78fac28fb3d1c8ba9f312905ce9903a0f28f92046c7a01abd102c3340a4999,b6a360495343f0f8a089eea64a3ae68eb8dfb9890e3e0b26352b0eee3d85e0cb,"The model we will introduce, Caser :cite:`Tang.Wang.2018`, short for convolutional sequence embedding recommendation model, adopts convolutional neural networks capture the dynamic pattern influences of users' recent activities."
+e69411f8e73cc5d357349dcc200faf7f7373097a467881aca856e58d64390c2b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctx_efedd61e884ed0fdc81eff25,primary;definition,d2l_recommender_systems_seqrec_b003,d2l_recommender_systems,sentence_cc4e0ff54c598e39504930cb,PRIMARY,C4,C4,SAME_SENSE,Caser,8b62e12453d9654faf3a86272ae6769d458e560bf152950d08f12280d540c1e1,684df94a437d3298a84c71eb1f36aecf0ace43c8e84cb4ea465dcb3956674591,"The main component of Caser consists of a horizontal convolutional network and a vertical convolutional network, aiming to uncover the union-level and point-level sequence patterns, respectively."
+e69411f8e73cc5d357349dcc200faf7f7373097a467881aca856e58d64390c2b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctx_f3d1cfd65cb60c18b67864a5,primary,d2l_recommender_systems_seqrec_b030,d2l_recommender_systems,sentence_65b6653cbfccefea9ccdce40,PRIMARY,C5,C2,SAME_SENSE,Caser,1ed16af86383a1f20e90aab5979f0d04147ebba0948a579e1b72669d031e4345,af4f79ff854880205d5a506c13d8ca71b26103c5b81b40e95e2d4d44e49def2b,"```{.python .input  n=7}
+devices = d2l.try_all_gpus()
+net = Caser(10, num_users, num_items, L)
+net.initialize(ctx=devices, force_reinit=True, init=mx.init.Normal(0.01))
+lr, num_epochs, wd, optimizer = 0.04, 8, 1e-5, 'adam'
+loss = d2l.BPRLoss()
+trainer = gluon.Trainer(net.collect_params(), optimizer,
+                        {""learning_rate"": lr, 'wd': wd})
+
+d2l.train_ranking(net, train_iter, test_iter, loss, trainer, test_seq_iter,
+                  num_users, num_items, num_epochs, devices,
+                  d2l.evaluate_ranking, candidates, eval_step=1)
+```"
+e69411f8e73cc5d357349dcc200faf7f7373097a467881aca856e58d64390c2b,d2lce_52085fef12f840d2350b2049,d2lce_52085fef12f840d2350b2049,ctxx_bf63c5eaf66d6b7ef991742c,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,Caser,62ba0c13e0f8e8b2fa093a74fd83d53802f1a2e733c9bd61845ed7988da040f1,f02e0cac3fd2b75f0c87b75e82e79b54fcd2cb80536b6cc3a0ecbfa74c2f3281,[Synthetic] Everyone in the lab called him Caser because he always carried old cassette cases.
+033f556bf2ed07a190dd84f9543669c590a2f6db41b405e25cb7b9155040ed2b,d2lce_270e1a75bb70807d9c2dd507,d2lce_270e1a75bb70807d9c2dd507,ctx_0f6cacd1df0fd9a1a8c5ed8d,contrastive,d2l_computational_performance_hardware_b012,d2l_computational_performance,sentence_3a738a5e9091a497fc1c5d6a,CONTRASTIVE,X1,C2,CONTRASTIVE,channels,3a6bb882b6721de46d6a4a2dc67d3ebd5f79320c8b7b05837e6030277141e8ee,61064b872e49b6a6e2bff0847a7d6b5bdfce9af3dab3de7153e2e96f411eef8c,"CPUs have between 2 and 4 memory channels, i.e., they have between 4 0GB/s and 100 GB/s peak memory bandwidth."
+033f556bf2ed07a190dd84f9543669c590a2f6db41b405e25cb7b9155040ed2b,d2lce_270e1a75bb70807d9c2dd507,d2lce_270e1a75bb70807d9c2dd507,ctx_4bb23f20ff0fa67bc6c1be83,primary;definition;part_of_speech,d2l_preliminaries_linear_algebra_b060,d2l_preliminaries,sentence_f6f1f806e59cd3b9f03ea426,PRIMARY,C2,C1,SAME_SENSE,channels,bdffd524bbd8a5b5033d99ced5c6a7692a426dc377fde64e386ca251bc0fc715,ec0f0c8e48f743fc12a00cc67b5c8356a3f53c12df5097b3881af50fbd2c06b6,"Tensors will become more important when we start working with images,
+ which arrive as $n$-dimensional arrays with 3 axes corresponding to the height, width, and a *channel* axis for stacking the color channels (red, green, and blue)."
+033f556bf2ed07a190dd84f9543669c590a2f6db41b405e25cb7b9155040ed2b,d2lce_270e1a75bb70807d9c2dd507,d2lce_270e1a75bb70807d9c2dd507,ctx_50b02cc418dce008fb37b2ea,primary;definition;part_of_speech,d2l_linear_networks_image_classification_dataset_b015,d2l_linear_networks,sentence_780ae211bf62df9f14ff8a9b,PRIMARY,C1,C1,SAME_SENSE,channels,d9cfeb935b830b2b5f9285399c2234408ab760dca2d41a43fb5a4f09cdbff8a9,85604937309ed0d987b5523bdc4fc674e83344828af6b53bb1f855ab35c1bb3d,"Note that the dataset consists of grayscale images, whose number of channels is 1."
+033f556bf2ed07a190dd84f9543669c590a2f6db41b405e25cb7b9155040ed2b,d2lce_270e1a75bb70807d9c2dd507,d2lce_270e1a75bb70807d9c2dd507,ctx_79213e2c4e36b995f90f0b30,primary;definition;part_of_speech,d2l_introduction_index_b024,d2l_introduction,sentence_f17192445be442b75c04dad4,PRIMARY,C3,C1,SAME_SENSE,channels,470b16244bb9fe3305eee8cdca73bb85c2e0c2c6ac8da554b8705d7c863e7d24,ba6ec342999aecb305a64929a5db6a203049617d44200cd5df3e178e161b6f84,"A $200\times 200$ color photograph would consist of $200\times200\times3=120000$
+numerical values, corresponding to the brightness
+of the red, green, and blue channels for each spatial location."
+033f556bf2ed07a190dd84f9543669c590a2f6db41b405e25cb7b9155040ed2b,d2lce_270e1a75bb70807d9c2dd507,d2lce_270e1a75bb70807d9c2dd507,ctx_93be4d86c465d785ac0a0ec1,backup;definition,d2l_attention_mechanisms_self_attention_and_positional_encoding_b018,d2l_attention_mechanisms,sentence_94a8b62946763f26e742db54,BACKUP,B2,C1,SAME_SENSE,channels,c69aa6283b72c21af7c9fd330574d65ee54faefb1da390e5df2caea71eda777b,9564c9c16a72d6896988845e19549b5e28bcab6a4134d416596e19ed8180e846,"For now,
+we only need to know that
+since the sequence length is $n$,
+the numbers of input and output channels are both $d$,
+the computational complexity of the convolutional layer is $\mathcal{O}(knd^2)$."
+033f556bf2ed07a190dd84f9543669c590a2f6db41b405e25cb7b9155040ed2b,d2lce_270e1a75bb70807d9c2dd507,d2lce_270e1a75bb70807d9c2dd507,ctx_e066da075985b1450c0cd804,primary;definition;part_of_speech,d2l_convolutional_neural_networks_index_b005,d2l_convolutional_neural_networks,sentence_27f3e0ec9d14cbd6108f4db0,PRIMARY,C4,C1,SAME_SENSE,channels,797545d4829d49809c4ef85ee3d9c7449e00ed9ce8b949f0b99dbcb71e1abd60,36c1c5fd649bca69b3149222c774242001cf01b7c09c018f75792db45b458890,"These include the convolutional layers themselves,
+nitty-gritty details including padding and stride,
+the pooling layers used to aggregate information
+across adjacent spatial regions,
+the use of multiple channels  at each layer,
+and a careful discussion of the structure of modern architectures."
+033f556bf2ed07a190dd84f9543669c590a2f6db41b405e25cb7b9155040ed2b,d2lce_270e1a75bb70807d9c2dd507,d2lce_270e1a75bb70807d9c2dd507,ctx_e7437fb0f0bdad9c3645e83b,primary;definition,d2l_convolutional_modern_alexnet_b030,d2l_convolutional_modern,sentence_ec2876b3a76c818267c2da4a,PRIMARY,C5,C1,SAME_SENSE,channels,76716911374742231da950761217f574873ccc46d9147ea75de333d80057972c,d086acf8c49c1788b9872727b259c4ffb1c423b45153341ad91fc2db7d570011,"Moreover, AlexNet has ten times more convolution channels than LeNet."
+033f556bf2ed07a190dd84f9543669c590a2f6db41b405e25cb7b9155040ed2b,d2lce_270e1a75bb70807d9c2dd507,d2lce_270e1a75bb70807d9c2dd507,ctx_e7ad2905fd773a830f6b4c43,backup;definition,d2l_optimization_lr_scheduler_b007,d2l_optimization,sentence_f1351f02c1b8d1a32749acc0,BACKUP,B1,C1,SAME_SENSE,channels,b07bb86b33969fd39776a647de0d44169a466df14bef5926b05603c97bf4270e,6ac8758ac6e79af836cdb9cac87e1acd9dd7e1dec905a9ebfbdd5f6484564376,"```{.python .input}
+%matplotlib inline
+from d2l import mxnet as d2l
+from mxnet import autograd, gluon, init, lr_scheduler, np, npx
+from mxnet.gluon import nn
+npx.set_np()
+
+net = nn.HybridSequential()
+net.add(nn.Conv2D(channels=6, kernel_size=5, padding=2, activation='relu'),
+        nn.MaxPool2D(pool_size=2, strides=2),
+        nn.Conv2D(channels=16, kernel_size=5, activation='relu'),
+        nn.MaxPool2D(pool_size=2, strides=2),
+        nn.Dense(120, activation='relu'),
+        nn.Dense(84, activation='relu'),
+        nn.Dense(10))
+net.hybridize()
+loss = gluon.loss.SoftmaxCrossEntropyLoss()
+device = d2l.try_gpu()
+
+batch_size = 256
+train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size=batch_size)
+
+# The code is almost identical to `d2l.train_ch6` defined in the 
+# lenet section of chapter convolutional neural networks
+def train(net, train_iter, test_iter, num_epochs, loss, trainer, device):
+    net.initialize(force_reinit=True, ctx=device, init=init.Xavier())
+    animator = d2l.Animator(xlabel='epoch', xlim=[0, num_epochs],
+                            legend=['train loss', 'train acc', 'test acc'])
+    for epoch in range(num_epochs):
+        metric = d2l.Accumulator(3)  # train_loss, train_acc, num_examples
+        for i, (X, y) in enumerate(train_iter):
+            X, y = X.as_in_ctx(device), y.as_in_ctx(device)
+            with autograd.record():
+                y_hat = net(X)
+                l = loss(y_hat, y)
+            l.backward()
+            trainer.step(X.shape[0])
+            metric.add(l.sum(), d2l.accuracy(y_hat, y), X.shape[0])
+            train_loss = metric[0] / metric[2]
+            train_acc = metric[1] / metric[2]
+            if (i + 1) % 50 == 0:
+                animator.add(epoch + i / len(train_iter),
+                             (train_loss, train_acc, None))
+        test_acc = d2l.evaluate_accuracy_gpu(net, test_iter)
+        animator.add(epoch + 1, (None, None, test_acc))
+    print(f'train loss {train_loss:.3f}, train acc {train_acc:.3f}, '
+          f'test acc {test_acc:.3f}')
+```"
+82fd62556b4e9e0feddd166e43bef8cdcb9a6ed6b867a3ea6ec6b859d314aa02,d2lce_fb9ad6a6ac7e4ba9167913e1,d2lce_fb9ad6a6ac7e4ba9167913e1,ctx_3ef068df4dff9397568c05a1,backup,d2l_recommender_systems_autorec_b002,d2l_recommender_systems,sentence_0bb764c3b6817ba590dab2f9,BACKUP,B2,C3,SAME_SENSE,collaborative filtering,ef68526ff177adb128e9a81f958ab47cbff6a00aff4a5565612fa3b09b350d67,d37821df8a75d7f49672828e2e004cf166fdd7ab10c4644bce94fdb410142aee,It identifies collaborative filtering (CF) with an autoencoder architecture and aims to integrate nonlinear transformations into CF on the basis of explicit feedback.
+82fd62556b4e9e0feddd166e43bef8cdcb9a6ed6b867a3ea6ec6b859d314aa02,d2lce_fb9ad6a6ac7e4ba9167913e1,d2lce_fb9ad6a6ac7e4ba9167913e1,ctx_6c1b00ba70e27b85908261c3,primary,d2l_recommender_systems_neumf_b001,d2l_recommender_systems,sentence_6ea18aee65aded46371b7a8b,PRIMARY,C4,C3,SAME_SENSE,Collaborative Filtering,8be80e9d3e0d0c3eb12f6692120d672d264162066d03ffe86aecd1f2b37f84c6,ec674616e52267fe58daa78b244013eb084bc7e3623517c55f971a34e560c59e,# Neural Collaborative Filtering for Personalized Ranking
+82fd62556b4e9e0feddd166e43bef8cdcb9a6ed6b867a3ea6ec6b859d314aa02,d2lce_fb9ad6a6ac7e4ba9167913e1,d2lce_fb9ad6a6ac7e4ba9167913e1,ctx_6f061caa3cf5adf9643ce3cf,backup;definition;part_of_speech,d2l_recommender_systems_mf_b004,d2l_recommender_systems,sentence_854f69475565dbe45c2494f9,BACKUP,B1,C3,SAME_SENSE,collaborative filtering,1bbf66a9ed0335148bac48c76c8e6ea47de9cb19fd7e80faaaee779811405936,daee81520fb1352492c8690eeb8ab171a525aa7514543d3aed4d5c565c89a117,Matrix factorization is a class of collaborative filtering models.
+82fd62556b4e9e0feddd166e43bef8cdcb9a6ed6b867a3ea6ec6b859d314aa02,d2lce_fb9ad6a6ac7e4ba9167913e1,d2lce_fb9ad6a6ac7e4ba9167913e1,ctx_75434b30d17229e486daa408,primary;part_of_speech,d2l_recommender_systems_recsys_intro_b004,d2l_recommender_systems,sentence_073345c87513bbeda3aa0dd3,PRIMARY,C3,C2,SAME_SENSE,Collaborative Filtering,93c4846d872a0371b821ae1c1c81ffe12512d9482c8709f3b67265edcf0e48cf,d919ec0e195cb28f947cefc29ebd3e01b6db7b696fd348e300c0d759d00e19c1,## Collaborative Filtering
+82fd62556b4e9e0feddd166e43bef8cdcb9a6ed6b867a3ea6ec6b859d314aa02,d2lce_fb9ad6a6ac7e4ba9167913e1,d2lce_fb9ad6a6ac7e4ba9167913e1,ctx_8f9b78e1ec3bfbc4e8e8f524,primary,d2l_recommender_systems_autorec_b002,d2l_recommender_systems,sentence_7dd92fb006c2aeb8dca5e83f,PRIMARY,C2,C3,SAME_SENSE,collaborative filtering,9732c4870fd89ab240693547c1bddbf34d515afe96809bd4cade0ddf6f59377d,a464a7f973dca4ec6d8d30d8141137b167358b39dfb8c0fd583467a5a007d4df,"In this section, we introduce a nonlinear neural network collaborative filtering model, AutoRec :cite:`Sedhain.Menon.Sanner.ea.2015`."
+82fd62556b4e9e0feddd166e43bef8cdcb9a6ed6b867a3ea6ec6b859d314aa02,d2lce_fb9ad6a6ac7e4ba9167913e1,d2lce_fb9ad6a6ac7e4ba9167913e1,ctx_b163c5e1230dbed8d61eda33,backup,d2l_optimization_adagrad_b004,d2l_optimization,sentence_e9818fe4c531422aaf199a92,BACKUP,B3,C3,SAME_SENSE,collaborative filtering,fb882caadadafd0d23f418cb441893c8de10ab2ad15e4192e1909c7c5bc3d4d0,70aa0bf9966a3859db1e66f3a37ee1b139cf61ae4d53e5688848851ae407855a,"However, it is also common in other areas such as computational advertising and personalized collaborative filtering."
+82fd62556b4e9e0feddd166e43bef8cdcb9a6ed6b867a3ea6ec6b859d314aa02,d2lce_fb9ad6a6ac7e4ba9167913e1,d2lce_fb9ad6a6ac7e4ba9167913e1,ctx_bb4169d27d43ea9f72386558,primary;definition;part_of_speech,d2l_recommender_systems_recsys_intro_b005,d2l_recommender_systems,sentence_6a5f1e25806d4cbef44789ed,PRIMARY,C1,C2,SAME_SENSE,collaborative filtering,d873148099c9d227d801f6b7b42dd3b877633a938c1061fd839b345c960095dd,bd46ef4515dd45bd0234fe5a4b621c79f19b590a58547d9ef3105e4922a14037,"We start the journey with the important concept in recommender systems---collaborative filtering
+(CF), which was first coined by the Tapestry system :cite:`Goldberg.Nichols.Oki.ea.1992`, referring to ""people collaborate to help one another perform the filtering process  in order to handle the large amounts of email and messages posted to newsgroups""."
+82fd62556b4e9e0feddd166e43bef8cdcb9a6ed6b867a3ea6ec6b859d314aa02,d2lce_fb9ad6a6ac7e4ba9167913e1,d2lce_fb9ad6a6ac7e4ba9167913e1,ctx_f875ab990af98aaf8fbc46b2,primary;definition,d2l_recommender_systems_recsys_intro_b012,d2l_recommender_systems,sentence_461378f83c359e99b35d020a,PRIMARY,C5,C2,SAME_SENSE,Collaborative filtering,5f327003bc8942b58ef52d7aca91e27d5557d1aea7a89636dc41d55359eabd56,a81327a8ff72ccc7ab98bbb74a85c7f2bea7fd0ca7f8e17370110339f4d801f3,Collaborative filtering is a key concept in recommendation.
+82fd62556b4e9e0feddd166e43bef8cdcb9a6ed6b867a3ea6ec6b859d314aa02,d2lce_fb9ad6a6ac7e4ba9167913e1,d2lce_fb9ad6a6ac7e4ba9167913e1,ctxx_6e73fc3ec644b4b97b928c84,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,collaborative filtering,bbaf7cca8778f883b033a1ef004765d1fb6c4e1c16eb49832a45a6245c0abb76,a08a0c47e57d3e737715b2ad0d3ff3bd7a3919ae3f0db78206aa1732088bb4f8,Synthetic: The moderators used collaborative filtering to jointly sort spam emails by hand.
+484865ef0a0247ed0edf400a7a4b8a6e88617afaf4bf1257b80c5ba9f8c530de,d2lce_6239b2ef1cec1800e3d6f13f,d2lce_6239b2ef1cec1800e3d6f13f,ctx_30ad642fb487987fba85babd,primary;part_of_speech,d2l_multilayer_perceptrons_environment_b019,d2l_multilayer_perceptrons,sentence_94584880575266a9a76c0b7c,PRIMARY,C2,C2,SAME_SENSE,Concept Shift,2da87f55f8123829fbbb2f6422a83f1beeb3a777b3891227773ae5e2b9e97795,d3956d6b557bd11faa8e4868fab5fbe582b57de112b03d80b42f664fa03cf9d4,### Concept Shift
+484865ef0a0247ed0edf400a7a4b8a6e88617afaf4bf1257b80c5ba9f8c530de,d2lce_6239b2ef1cec1800e3d6f13f,d2lce_6239b2ef1cec1800e3d6f13f,ctx_4422b292ae2706ac3853e015,primary;definition,d2l_multilayer_perceptrons_environment_b024,d2l_multilayer_perceptrons,sentence_1f5ef97ddbe81ec4ed337cb4,PRIMARY,C4,C1,SAME_SENSE,concept shift,f50cd877cdd634e57dcde50cb8c2104b21467f2e942a8c4f34f9b40bbe672a3b,bafa95bfde8521314e86ff4c9b8769488e40abd6dc2e8fe81a9e5682e52bf09b,"Before delving into formalism and algorithms,
+we can discuss some concrete situations
+where covariate or concept shift might not be obvious."
+484865ef0a0247ed0edf400a7a4b8a6e88617afaf4bf1257b80c5ba9f8c530de,d2lce_6239b2ef1cec1800e3d6f13f,d2lce_6239b2ef1cec1800e3d6f13f,ctx_65ee0c7626e807bcbfcdf1cf,backup,d2l_multilayer_perceptrons_environment_b038,d2l_multilayer_perceptrons,sentence_103684b7ceaa2aa00a2869a1,BACKUP,B1,C1,SAME_SENSE,concept shift,c714c62df83d59866683a8aa708c1dd88aed20aea9a29c4d085147a651bbf391,77fbbb8b54467a44855659e5189868bfbe0fef4046b159c907844846cd535893,"In some cases, we get lucky and the models work
+despite covariate, label, or concept shift."
+484865ef0a0247ed0edf400a7a4b8a6e88617afaf4bf1257b80c5ba9f8c530de,d2lce_6239b2ef1cec1800e3d6f13f,d2lce_6239b2ef1cec1800e3d6f13f,ctx_661ce5b03c03edebdfde8f55,backup;part_of_speech,d2l_multilayer_perceptrons_environment_b074,d2l_multilayer_perceptrons,sentence_e49dfea4ab00e2cbc6d6c7ce,BACKUP,B2,C2,SAME_SENSE,Concept Shift,c3bef712e18437b8c2337c4a7d6a14bd390d7bc0729578d9359657088e14e930,23e3138fcf846b1d5f12dff8b1e95701846f38b74fb924d7ba2876c21fd6f155,### Concept Shift Correction
+484865ef0a0247ed0edf400a7a4b8a6e88617afaf4bf1257b80c5ba9f8c530de,d2lce_6239b2ef1cec1800e3d6f13f,d2lce_6239b2ef1cec1800e3d6f13f,ctx_877769c7d10adbd8a43011a6,primary;definition,d2l_multilayer_perceptrons_environment_b020,d2l_multilayer_perceptrons,sentence_ee865343b985a0ad58e8a315,PRIMARY,C1,C1,SAME_SENSE,concept shift,dbc55189f23907c2b353a3cf06adabd4a2c23bdac8307680f1285e6e3b024d5d,1b0add80b2f4e8d050d8de21c405be8f2e938e0522f783396f640b0e3f35cfc2,"We may also encounter the related problem of *concept shift*,
+which arises when the very definitions of labels can change."
+484865ef0a0247ed0edf400a7a4b8a6e88617afaf4bf1257b80c5ba9f8c530de,d2lce_6239b2ef1cec1800e3d6f13f,d2lce_6239b2ef1cec1800e3d6f13f,ctx_a28b330881ada6423af8128e,primary,d2l_multilayer_perceptrons_environment_b020,d2l_multilayer_perceptrons,sentence_2c2cb1c93fbb01b360da0fe3,PRIMARY,C5,C1,SAME_SENSE,concept shift,9031bb04eeb0a5b250d68cc6b1e651dabaec9d070d9de75d2cb9c942417d4384,472b7e2f5e8b2fcba6b612349e5f72ff816765cabe4bfd36bf44bee0d29f4e4f,"It turns out that if we navigate around the United States,
+shifting the source of our data by geography,
+we will find considerable concept shift regarding
+the distribution of names for *soft drinks*
+as shown in :numref:`fig_popvssoda`."
+484865ef0a0247ed0edf400a7a4b8a6e88617afaf4bf1257b80c5ba9f8c530de,d2lce_6239b2ef1cec1800e3d6f13f,d2lce_6239b2ef1cec1800e3d6f13f,ctx_a37d035d836b9e4a6c867c99,primary;definition,d2l_multilayer_perceptrons_environment_b020,d2l_multilayer_perceptrons,sentence_98ec65e474e660b9c4a13b13,PRIMARY,C3,C1,SAME_SENSE,concept shift,19f6050eb22fe8829c1416da7fa8622d30432c71848f831e9311ea40663c9a4f,7c1f94e555cc38aab676b68bf6a780208708cac432e15056c09a18948a0e4b4a,"Diagnostic criteria for mental illness,
+what passes for fashionable, and job titles,
+are all subject to considerable
+amounts of concept shift."
+484865ef0a0247ed0edf400a7a4b8a6e88617afaf4bf1257b80c5ba9f8c530de,d2lce_6239b2ef1cec1800e3d6f13f,d2lce_6239b2ef1cec1800e3d6f13f,ctx_dcc02d9a71dc0b1466d0d8f2,backup,d2l_multilayer_perceptrons_environment_b021,d2l_multilayer_perceptrons,sentence_6cbe928043a7495480bdfd4b,BACKUP,B3,C2,SAME_SENSE,Concept shift,c539aeca1558100339e364891081bb9a63b7c2463131e8c0261a979e975b0900,e6cfc986139e62ea4eb0fde890c6546cf96c6bb5b2565e11f4c3ac551568b665,"![Concept shift on soft drink names in the United States.](../img/popvssoda.png)
+:width:`400px`
+:label:`fig_popvssoda`"
+484865ef0a0247ed0edf400a7a4b8a6e88617afaf4bf1257b80c5ba9f8c530de,d2lce_6239b2ef1cec1800e3d6f13f,d2lce_6239b2ef1cec1800e3d6f13f,ctxx_f0910b6ff0468e52839a49e3,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,concept shift,0649d865eb49e42ef904d0debe3365778ca96d6227bb0debce37957d1192733e,76e56f88e23e0ceb5f93c2789be80115021fd4c574bdfe1c003abeaf09258a2e,"Synthetic: A concept shift happens when the meaning of the target label changes, not merely when input features become more common or rare."
+d2177486cf7082cacef2b4e2074101655411efed15f6c71e211e1177c45e6dda,d2lce_7d7b617aacd41c76538d06af,d2lce_7d7b617aacd41c76538d06af,ctx_27c8a3f3418b0aec81720a7a,primary,d2l_deep_learning_computation_model_construction_b025,d2l_deep_learning_computation,sentence_198b8a8d0b03c508fefff5f3,PRIMARY,C3,C1,SAME_SENSE,constructor,b59359e9203d1e75a117d799927284904f8cd0e4dadc04a6108be9b9a96cdfcc,54fa2e74b01063947129a488f37b5b3dc477865dbcdf90531b93eb1c16777a5f,"Here, we declare two fully
+    # connected layers
+    def __init__(self):
+        # Call the constructor of the `MLP` parent class `Module` to perform
+        # the necessary initialization."
+d2177486cf7082cacef2b4e2074101655411efed15f6c71e211e1177c45e6dda,d2lce_7d7b617aacd41c76538d06af,d2lce_7d7b617aacd41c76538d06af,ctx_45e7aa8bb2892e1512df16ec,primary,d2l_deep_learning_computation_model_construction_b026,d2l_deep_learning_computation,sentence_607a06e57f213cad421b2ed1,PRIMARY,C4,C1,SAME_SENSE,constructor,9e9442ed3eb1f838936c31238fc06f043c1b7748431167b552b14f7c81b5a8f3,bd2f48ccc04845055ed4fa2be1542a97cca99ea666b88a586a448ab6443d28ee,"Here, we declare two fully
+    # connected layers
+    def __init__(self):
+        # Call the constructor of the `MLP` parent class `Model` to perform
+        # the necessary initialization."
+d2177486cf7082cacef2b4e2074101655411efed15f6c71e211e1177c45e6dda,d2lce_7d7b617aacd41c76538d06af,d2lce_7d7b617aacd41c76538d06af,ctx_54000812f62f7bf37881febb,primary;definition,d2l_deep_learning_computation_model_construction_b024,d2l_deep_learning_computation,sentence_8e2971f50991228a79af53d2,PRIMARY,C5,C1,SAME_SENSE,constructor,0580df0fadcecdae4e26c395d46261258dd6c04e743c48ebba353b1e4f7d60f3,c882941d97a2a787ac1b8231f1139367f9684a021c3816ded0c9c3aff5ba7291,"Here, we declare two
+    # fully-connected layers
+    def __init__(self, **kwargs):
+        # Call the constructor of the `MLP` parent class `Block` to perform
+        # the necessary initialization."
+d2177486cf7082cacef2b4e2074101655411efed15f6c71e211e1177c45e6dda,d2lce_7d7b617aacd41c76538d06af,d2lce_7d7b617aacd41c76538d06af,ctx_7a88eb1b4219d42a945874f2,backup;part_of_speech,d2l_convolutional_neural_networks_conv_layer_b020,d2l_convolutional_neural_networks,sentence_449844bf7cf84bf7380b4de6,BACKUP,B1,C1,SAME_SENSE,constructor,c2e5865f63044228410d49243ffdd12c5acc917a4b56270277c348dbda51117b,e9691001ccadc9f87153687a3920cfbd47dc7df7399eba2eac86d8e43b28715d,"In the `__init__` constructor function,
+we declare `weight` and `bias` as the two model parameters."
+d2177486cf7082cacef2b4e2074101655411efed15f6c71e211e1177c45e6dda,d2lce_7d7b617aacd41c76538d06af,d2lce_7d7b617aacd41c76538d06af,ctx_7fa9447905f17f25b43e1bbf,primary;definition;part_of_speech,d2l_deep_learning_computation_model_construction_b023,d2l_deep_learning_computation,sentence_18cd83d0db457cfe38af039f,PRIMARY,C1,C1,SAME_SENSE,constructor,bae132e1e11e208ff528c6359e41ad69b4f50eea265ca931e22a386de18d892b,d5c2ef7ced74f4e54722e22465a618691831230c6339f21b039980624790dd21,"We will heavily rely on the parent class's functions,
+supplying only our own constructor (the `__init__` function in Python) and the forward propagation function."
+d2177486cf7082cacef2b4e2074101655411efed15f6c71e211e1177c45e6dda,d2lce_7d7b617aacd41c76538d06af,d2lce_7d7b617aacd41c76538d06af,ctx_8b948684ac54a83a4d0f3076,primary;definition,d2l_deep_learning_computation_model_construction_b028,d2l_deep_learning_computation,sentence_cbd995b887bedcca4f6374ba,PRIMARY,C2,C2,SAME_SENSE,constructor,c53ca56f9dac9355eff182b9e5329f05a8e27b8757b8816d701192b7e3efda43,254ebbf4cd1883038ab1aa23f6a7fb9253f1b09d64f93b9c6d3325985324a26b,"We [**instantiate the MLP's layers**]
+in the constructor
+(**and subsequently invoke these layers**)
+on each call to the forward propagation function."
+d2177486cf7082cacef2b4e2074101655411efed15f6c71e211e1177c45e6dda,d2lce_7d7b617aacd41c76538d06af,d2lce_7d7b617aacd41c76538d06af,ctx_cdfc7e2c9d284b99240ac4e4,backup,d2l_multilayer_perceptrons_dropout_b050,d2l_multilayer_perceptrons,sentence_4f7895f9b493b6761fb308ab,BACKUP,B2,C2,SAME_SENSE,constructor,a27ebce480aa31578c2955fe68dfd6965e13f6a0c36c5a01da3175e8d2f2502e,d1bdc1de65900302066f89f5a5169ef12fde592e94c5ec5109b3684b53d19b7f,"With high-level APIs, all we need to do is add a `Dropout` layer
+after each fully-connected layer,
+passing in the dropout probability
+as the only argument to its constructor."
+d2177486cf7082cacef2b4e2074101655411efed15f6c71e211e1177c45e6dda,d2lce_7d7b617aacd41c76538d06af,d2lce_7d7b617aacd41c76538d06af,ctx_e484e6d55d0193ab9cfe2285,backup,d2l_natural_language_processing_applications_natural_language_inference_and_dataset_b028,d2l_natural_language_processing_applications,sentence_ceaaca6af90d8e7c397729e4,BACKUP,B3,C2,SAME_SENSE,constructor,f02d2584db1bdec6954e32fec35b5b094e282b5c3aba8bf941683fccd0634d59,affdd57e99a41abf7c11a7cb8215afad1a5a950b780141c3afd3f8092a0db729,The argument `num_steps` in the class constructor specifies the length of a text sequence so that each minibatch of sequences will have the same shape.
+d2177486cf7082cacef2b4e2074101655411efed15f6c71e211e1177c45e6dda,d2lce_7d7b617aacd41c76538d06af,d2lce_7d7b617aacd41c76538d06af,ctxx_c47b6ca799a008173ab48724,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,constructor,989b3e887d3f723ece802466f6f5823b2c517c74ca297155e2ab9e9ecc7ceca5,bb53db27e83402ae325e8ee2571fead6115433532324c8c02bac7ab55e66d313,Synthetic: The bridge constructor finished the project ahead of schedule.
+ccecc14b9032d92e12096b94eab46a9c020bcba5a829cf79e577bb465ff4a524,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctx_85c155993547287904ebb77e,primary;definition;part_of_speech,d2l_introduction_index_b097,d2l_introduction,sentence_71c0a96848c7ea21b9125c22,PRIMARY,C3,C1,SAME_SENSE,contexts,2e9b4a7a615d7e253b615ab11deb7ef67d15319493a15af68a785f99ba6d8f47,c54b9d4ecd0c16ce749b6af83d1865e673217482f6eee48a7aa293c9c95d86d6,"For text,
+we can train models 
+to ""fill in the blanks""
+by predicting randomly masked words
+using their surrounding words (contexts)
+in big corpora without any labeling effort :cite:`Devlin.Chang.Lee.ea.2018`!"
+ccecc14b9032d92e12096b94eab46a9c020bcba5a829cf79e577bb465ff4a524,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctx_8d01d5c8ba8b22afa8297f86,primary;definition;part_of_speech,d2l_recurrent_modern_bi_rnn_b048,d2l_recurrent_modern,sentence_8e4b095f9ea2acb1af669d56,PRIMARY,C1,C1,SAME_SENSE,contexts,404186637aafc70e5d97989e826aa761e7488952afc8984e81ec520a44a3cdaf,62b215cd953da8042f3c8aa70ce73388883460961ca9bccae8437e9cd05f1096,"For example, the word ""bank"" has different meanings in contexts “i went to the bank to deposit cash” and “i went to the bank to sit down”."
+ccecc14b9032d92e12096b94eab46a9c020bcba5a829cf79e577bb465ff4a524,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctx_938a7ef4c625c0fdaa81a1ed,primary;definition,d2l_recurrent_neural_networks_language_models_and_dataset_b018,d2l_recurrent_neural_networks,sentence_130a68b37e8c20f51dd5cef9,PRIMARY,C5,C1,SAME_SENSE,contexts,225a3a5932475941e125b45b69e93a55dae539720a549f7172a9c3240e7b3d39,59c72ab28dea52ac67030798f0629d4436f48e32bea975889ffae8802dab99be,"It is quite difficult to adjust such models to additional contexts,
+whereas, deep learning based language models are well suited to
+take this into account."
+ccecc14b9032d92e12096b94eab46a9c020bcba5a829cf79e577bb465ff4a524,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctx_a1d30a054504f29bcb20b25b,primary;definition,d2l_appendix_mathematics_for_deep_learning_geometry_linear_algebraic_ops_b041,d2l_appendix_mathematics_for_deep_learning,sentence_f11e5baf8d21a6b7b707044c,PRIMARY,C2,C3,SAME_SENSE,contexts,e593eb69dbba25e8376c6b0581fd234bc6742d7d66e3f562993829c907ddeddf,6556b0a350aa8d306694947525b95465b05410cbea7d54eaaa16755aa0ead4b0,"### Cosine Similarity
+In ML contexts where the angle is employed
+to measure the closeness of two vectors,
+practitioners adopt the term *cosine similarity*
+to refer to the portion
+$$
+\cos(\theta) = \frac{\mathbf{v}\cdot\mathbf{w}}{\|\mathbf{v}\|\|\mathbf{w}\|}."
+ccecc14b9032d92e12096b94eab46a9c020bcba5a829cf79e577bb465ff4a524,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctx_a703c64944c46d8745b2290e,primary;definition,d2l_natural_language_processing_pretraining_index_b005,d2l_natural_language_processing_pretraining,sentence_e56343ceb6ad1f1e7d8e0138,PRIMARY,C4,C1,SAME_SENSE,contexts,b25643d84eee7994102871fcd24fd6b16581217e6804d408cd084a843f8c7eaf,e22cdf1654db38d320d4849474239e6ceb3a985e5b26dac8460125a59a42e3f4,"Thus, many more recent pretraining models adapt representation of the same token
+to different contexts."
+ccecc14b9032d92e12096b94eab46a9c020bcba5a829cf79e577bb465ff4a524,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctx_ad827e72cc1bfa17dfbdadef,backup;definition;part_of_speech,d2l_preliminaries_linear_algebra_b032,d2l_preliminaries,sentence_03c325de561f2d23147eef5b,BACKUP,B1,C1,SAME_SENSE,contexts,26db49d4937262ccb4a7c5de0ca6f0f3ae774346be20935e664c869f99c94d2e,e3655aa70d5c43882ff561f13624d7bbc9ca4ab8ad08a8a86640d94feb07e389,"Note that the word ""dimension"" tends to get overloaded
+in these contexts and this tends to confuse people."
+ccecc14b9032d92e12096b94eab46a9c020bcba5a829cf79e577bb465ff4a524,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctx_c40b35f077d50245b79ff9f6,backup;definition,d2l_preliminaries_linear_algebra_b130,d2l_preliminaries,sentence_19fa4320a76ca1d1339aca89,BACKUP,B2,C3,SAME_SENSE,contexts,03d557867ebc6f0ee3bddbb5872ec15f60e0a42aa6c1cfde0bb329d836ab31a8,c4fb05b7191d4ac04613500cbcd609c7ed9a7649eafef8d2dfbad3ff1cb47607,Dot products are useful in a wide range of contexts.
+ccecc14b9032d92e12096b94eab46a9c020bcba5a829cf79e577bb465ff4a524,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctx_d84189ac843db03cf9cfdc82,backup;part_of_speech,d2l_deep_learning_computation_custom_layer_b040,d2l_deep_learning_computation,sentence_93fac594047cbaee3f1dc965,BACKUP,B3,C3,SAME_SENSE,contexts,7dd770ad5453ce1ac8269424de4e6429ebe8ad44af61816e80ebd8d20a0ac972,cf1b16b1063f96c268634172fc9427957aff23865102453fe2242d073d93ccf3,"* Once defined, custom layers can be invoked in arbitrary contexts and architectures."
+ccecc14b9032d92e12096b94eab46a9c020bcba5a829cf79e577bb465ff4a524,d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,ctxx_94774b666e3a5ea9bb5cba01,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,contexts,d220baf182b5c0c2209cc7919f8fd3dd36787c5f4b166294d8577886a2a1f6d1,8a163481a63dc7955b9155f0c5678d67f51a80c98f13f52743464e32e2978902,"Synthetic boundary probe: ""contexts"" is quoted here only as a document label, not as an occurrence of the reviewed D2L sense."
+2184956612b8d9e0dab090f53da30f6095d8ba1a3d291b959d1765170b0c3997,d2lce_dc193feb1eeef3a1349d9b74,d2lce_dc193feb1eeef3a1349d9b74,ctx_27620623f1cb8074d3971cbc,backup;part_of_speech,d2l_natural_language_processing_pretraining_word2vec_b009,d2l_natural_language_processing_pretraining,sentence_aba5d702078aed2aa34748dd,BACKUP,B2,C1,SAME_SENSE,continuous bag of words,883a811d1ffb43117ba3a3e6b7d98d0f63e8fd56c6a41488c79947c73309c315,886e76cfa2369bbab2fee350673fa9982073c5bd4656dc84b434a72cb0ae795d,"The word2vec tool contains two models, namely *skip-gram* :cite:`Mikolov.Sutskever.Chen.ea.2013`  and *continuous bag of words* (CBOW) :cite:`Mikolov.Chen.Corrado.ea.2013`."
+2184956612b8d9e0dab090f53da30f6095d8ba1a3d291b959d1765170b0c3997,d2lce_dc193feb1eeef3a1349d9b74,d2lce_dc193feb1eeef3a1349d9b74,ctx_3e4d253c9ff11b6a3080d990,primary;definition,d2l_natural_language_processing_pretraining_word2vec_b032,d2l_natural_language_processing_pretraining,sentence_33191bdfdb87b3833c84d23d,PRIMARY,C4,C1,SAME_SENSE,continuous bag of words,663bbb2ae916c03cff8c654c5a63a15340ba7a1e62b0bba5d19bfa32de69f17b,de5e0c4685467f37c3ad47bd969265e4c1069309d88f003f0938ca2dc50ca990,"For example,
+in the same text sequence ""the"", ""man"", ""loves"", ""his"", and ""son"", with ""loves"" as the center word and the context window size being 2,
+the continuous bag of words model
+considers
+the conditional probability of generating the center word ""loves"" based on the context words ""the"", ""man"", ""his"" and ""son"" (as shown in :numref:`fig_cbow`), which is"
+2184956612b8d9e0dab090f53da30f6095d8ba1a3d291b959d1765170b0c3997,d2lce_dc193feb1eeef3a1349d9b74,d2lce_dc193feb1eeef3a1349d9b74,ctx_500e392a6212984ed97679b6,primary,d2l_natural_language_processing_pretraining_word2vec_b035,d2l_natural_language_processing_pretraining,sentence_18d32bd5e9e5e76b2e7a59e4,PRIMARY,C2,C2,SAME_SENSE,continuous bag of words,f57c87a721200739f29210ce52ba09d4eba123c42b3522057642be23af46903d,d9e5f7251ef6428f91f2a86518d193388d171e226ba277bd4b26f9a7f6177fc3,"Since there are multiple context words
+in the continuous bag of words model,
+these context word vectors are averaged
+in the calculation of the conditional probability."
+2184956612b8d9e0dab090f53da30f6095d8ba1a3d291b959d1765170b0c3997,d2lce_dc193feb1eeef3a1349d9b74,d2lce_dc193feb1eeef3a1349d9b74,ctx_7592d6eb1986a0c2bd965c36,primary;definition,d2l_natural_language_processing_pretraining_word2vec_b032,d2l_natural_language_processing_pretraining,sentence_d817077031ebd0ab4c570d0a,PRIMARY,C5,C1,SAME_SENSE,continuous bag of words,d520a84526c732a100d01121a20c9691e75b37a22fc9bc41ea4828d46b2e0aa3,fd438652fa63477a9f786c8b564addb881c29a1ef1477c114ba1d07c742e98bb,"The major difference
+from the skip-gram model is that
+the continuous bag of words model
+assumes that a center word is generated
+based on its surrounding context words in the text sequence."
+2184956612b8d9e0dab090f53da30f6095d8ba1a3d291b959d1765170b0c3997,d2lce_dc193feb1eeef3a1349d9b74,d2lce_dc193feb1eeef3a1349d9b74,ctx_8ae5ddde35de799cd4b51696,backup,d2l_natural_language_processing_pretraining_word2vec_b009,d2l_natural_language_processing_pretraining,sentence_120717dab0f18c821c479676,BACKUP,B3,C2,SAME_SENSE,continuous bag of words,02351ac6beccf6972aba3fd938662b5ac96f62c6051c924657781c068418345d,29e617155714b24fbabe91fe2f9d9c8f6bb871b8eec69c9b1fac47583a21c592,"Since supervision comes from the data without labels,
+both skip-gram and continuous bag of words
+are self-supervised models."
+2184956612b8d9e0dab090f53da30f6095d8ba1a3d291b959d1765170b0c3997,d2lce_dc193feb1eeef3a1349d9b74,d2lce_dc193feb1eeef3a1349d9b74,ctx_9539bbe8c2ac486d267b808a,backup,d2l_natural_language_processing_pretraining_word2vec_b032,d2l_natural_language_processing_pretraining,sentence_8cf77efb03581702fc05aa42,BACKUP,B1,C1,SAME_SENSE,continuous bag of words,905940cbe5460a9cce711ab6ee4775d282f5302fd6accd53afab4129ffb15ebe,afd85cf5c9d4bdd9476bd7b9af7097b721cf27003d3dbe07a7d3d7ab85667335,The *continuous bag of words* (CBOW) model is similar to the skip-gram model.
+2184956612b8d9e0dab090f53da30f6095d8ba1a3d291b959d1765170b0c3997,d2lce_dc193feb1eeef3a1349d9b74,d2lce_dc193feb1eeef3a1349d9b74,ctx_ba4bc22bf919f20441dc05b2,primary;definition,d2l_natural_language_processing_pretraining_word2vec_b034,d2l_natural_language_processing_pretraining,sentence_33f4778e37d3d9c131a2b938,PRIMARY,C3,C3,SAME_SENSE,continuous bag of words,60daca1fa6009d7c700e4337ae13c4d8035fdf0b0bdad8361b4599b3fc610a22,874fa59346045129bd109431b783a309be790ffb12d59181dabacdc1212a3ab2,"![The continuous bag of words model considers the conditional probability of generating the center word given its surrounding context words.](../img/cbow.svg)
+:eqlabel:`fig_cbow`"
+2184956612b8d9e0dab090f53da30f6095d8ba1a3d291b959d1765170b0c3997,d2lce_dc193feb1eeef3a1349d9b74,d2lce_dc193feb1eeef3a1349d9b74,ctx_c5722940f2ea3be48a188764,primary;part_of_speech,d2l_natural_language_processing_pretraining_word2vec_b031,d2l_natural_language_processing_pretraining,sentence_04b44f341b9230a5d03290b7,PRIMARY,C1,C1,SAME_SENSE,Continuous Bag of Words,becf83192bab1efe28f2abf9c0eda3341e71075556582fe00a98dd31948f5474,bdb1367c59490932130e355997de2cc092e32aafa865b8da24a603b281e42573,## The Continuous Bag of Words (CBOW) Model
+2184956612b8d9e0dab090f53da30f6095d8ba1a3d291b959d1765170b0c3997,d2lce_dc193feb1eeef3a1349d9b74,d2lce_dc193feb1eeef3a1349d9b74,ctxx_48fcd5c971dd15c9961d3824,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,continuous bag of words,cc13a8dfb2d91f369518cb5a636e69668154fc8143d2dc57c1bc0a8b8f8b5eac,c13de774679b48b714280dd988bb72a30495978011953fced284bfd4eaafab23,"Synthetic: The phrase continuous bag of words here refers to a named prediction model, not just any continuously updated bag of vocabulary items."
+4102bbac691c36fb2097b302e3b270c02c632d44d12947a4f2046d7f2e99c038,d2lce_6c7e95cd232fb7fcca6b3bdc,d2lce_6c7e95cd232fb7fcca6b3bdc,ctx_0da3afb393686e85b578238a,primary;definition,d2l_preliminaries_autograd_b046,d2l_preliminaries,sentence_bceeda2d3f81fd4543b8adb8,PRIMARY,C3,C3,SAME_SENSE,control flow,1eb5505a398bb312cd9e8ee24d242eabc0de7fbfa83c1310450202e304b64b59,333027ab9cd0defbfe911dd527bf96b5115527df06888050fe3002f70b89b503,"One benefit of using automatic differentiation
+is that [**even if**] building the computational graph of (**a function
+required passing through a maze of Python control flow**)
+(e.g., conditionals, loops, and arbitrary function calls),
+(**we can still calculate the gradient of the resulting variable.**)
+In the following snippet, note that
+the number of iterations of the `while` loop
+and the evaluation of the `if` statement
+both depend on the value of the input `a`."
+4102bbac691c36fb2097b302e3b270c02c632d44d12947a4f2046d7f2e99c038,d2lce_6c7e95cd232fb7fcca6b3bdc,d2lce_6c7e95cd232fb7fcca6b3bdc,ctx_2ba928581bca7998708eb201,backup,d2l_preliminaries_autograd_b061,d2l_preliminaries,sentence_44ba00ec8c162eb48c03f628,BACKUP,B3,C2,SAME_SENSE,control flow,012a817d243a3982f666f23c8e744c5dfb7cee248281b6a471109a1e15d7d07b,d6cd7665a90e67353aeac319ca2209d70435997df90799d831119815c7654ae9,Redesign an example of finding the gradient of the control flow.
+4102bbac691c36fb2097b302e3b270c02c632d44d12947a4f2046d7f2e99c038,d2lce_6c7e95cd232fb7fcca6b3bdc,d2lce_6c7e95cd232fb7fcca6b3bdc,ctx_404061e58e2c4cb0d3631319,backup;definition;part_of_speech,d2l_deep_learning_computation_model_construction_b047,d2l_deep_learning_computation,sentence_0d56ad41501905432326ac6c,BACKUP,B2,C3,SAME_SENSE,control flow,04e38217681cbe65f1371cdb1b146f479fab5dbc347e4103f8ac1e7da529bb68,aa844dc27403f87c8454487ea651981f5f2feecd771d3b7198431c4791e5c306,"For example, we might want to execute
+Python's control flow within the forward propagation function."
+4102bbac691c36fb2097b302e3b270c02c632d44d12947a4f2046d7f2e99c038,d2lce_6c7e95cd232fb7fcca6b3bdc,d2lce_6c7e95cd232fb7fcca6b3bdc,ctx_57d8f326884934a0af1fb2b4,primary;part_of_speech,d2l_computational_performance_hybridize_b055,d2l_computational_performance,sentence_48ac276831dcf14d4b1f03c8,PRIMARY,C2,C2,SAME_SENSE,control flow,4d52cc1e0be8ed2f13ef981e4c69ac502d59b9163bd90f8acdfaca2cc70bf595,b91c1b35c3e121c608088058455ea7234399c4386e5a9c4f49986243f4d98c20,"Note, though that hybridization can affect model flexibility, in particular in terms of control flow."
+4102bbac691c36fb2097b302e3b270c02c632d44d12947a4f2046d7f2e99c038,d2lce_6c7e95cd232fb7fcca6b3bdc,d2lce_6c7e95cd232fb7fcca6b3bdc,ctx_bc0786f0d324cf5127b590f1,primary;definition,d2l_deep_learning_computation_model_construction_b049,d2l_deep_learning_computation,sentence_c1a451c0ac90b30eae9b9446,PRIMARY,C5,C3,SAME_SENSE,Control flow,e48bdc2f3d69a60021f48d510584f6c6802bb3c441c50a7d7dd32c7e356c2722,0119ef8bf0f3efd57f59ebbb655227fa7ac974dd0008cd43c6d54d6641ca3717,"This is equivalent to sharing
+        # parameters with two fully-connected layers
+        X = self.dense(X)
+        # Control flow
+        while np.abs(X).sum() > 1:
+            X /= 2
+        return X.sum()
+```"
+4102bbac691c36fb2097b302e3b270c02c632d44d12947a4f2046d7f2e99c038,d2lce_6c7e95cd232fb7fcca6b3bdc,d2lce_6c7e95cd232fb7fcca6b3bdc,ctx_cb1896b0540e303727e896ea,primary,d2l_preliminaries_autograd_b061,d2l_preliminaries,sentence_a65f2351f76bc6627dd6bbed,PRIMARY,C4,C4,SAME_SENSE,control flow,26137eea04aca3402cfd4a9caf144bf34c6ddd22cdd0d69e16f1940e04653350,b407ce1ae744580d3f982e970547994c29bb7c6eb8f71fb5e912644cd986e0a8,"In the control flow example where we calculate the derivative of `d` with respect to `a`, what would happen if we changed the variable `a` to a random vector or matrix."
+4102bbac691c36fb2097b302e3b270c02c632d44d12947a4f2046d7f2e99c038,d2lce_6c7e95cd232fb7fcca6b3bdc,d2lce_6c7e95cd232fb7fcca6b3bdc,ctx_e859a0568c857a572640c892,backup,d2l_deep_learning_computation_model_construction_b050,d2l_deep_learning_computation,sentence_61752c55ee55ad8d1b4b12e5,BACKUP,B1,C3,SAME_SENSE,Control flow,0b66f2b507b91bf90a4f327f15f59d48096e4ada088c19225827364a32ae84b6,204135dcd9be1dc1308ce47ca8fe61756c1473a0e558e5ad5918dc68e3ea041b,"This is equivalent to sharing
+        # parameters with two fully-connected layers
+        X = self.linear(X)
+        # Control flow
+        while X.abs().sum() > 1:
+            X /= 2
+        return X.sum()
+```"
+4102bbac691c36fb2097b302e3b270c02c632d44d12947a4f2046d7f2e99c038,d2lce_6c7e95cd232fb7fcca6b3bdc,d2lce_6c7e95cd232fb7fcca6b3bdc,ctx_eaf1420ee977982e7eb8baf6,primary;part_of_speech,d2l_preliminaries_autograd_b045,d2l_preliminaries,sentence_c964b75b062dac43ec1a12f5,PRIMARY,C1,C1,SAME_SENSE,Control Flow,7704edfa68e4ae70cc35ea02ff01918c2f2877daa0fb8c380ff9cb5fcb630045,ca6b59ea66ad3a26122e67951c699e03d18d000fc28694c769492b2af8a9e25c,## Computing the Gradient of Python Control Flow
+4102bbac691c36fb2097b302e3b270c02c632d44d12947a4f2046d7f2e99c038,d2lce_6c7e95cd232fb7fcca6b3bdc,d2lce_6c7e95cd232fb7fcca6b3bdc,ctxx_fd6c9fc1a240e723c479db5f,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,control flow,fddbb0c141e2cdfe1a2846125865302ba0f988a0643f1595ba9adca1754efa0f,433e558f2cf49b3449a625008857e9992f377d79298fb8e9d141e256b9d42f37,Synthetic: Police improved control flow at the intersection during rush hour.
+a73d6c406fd4b343950e2761fa439353fa90d6e3eba3cdfa2268c099ead19ba6,d2lce_0a19e86b29b5e64f79a45ddc,d2lce_0a19e86b29b5e64f79a45ddc,ctx_31af6599f592fa61978eda00,backup;part_of_speech,d2l_appendix_mathematics_for_deep_learning_information_theory_b174,d2l_appendix_mathematics_for_deep_learning,sentence_1aecf176a2fe75f197ab4c2d,BACKUP,B2,C1,SAME_SENSE,convex function,0ecb3d0b2ea23861fe78ffb93e5334baa24cbc2bc7c4eb42ec812597cea3bdd0,b4a87062d52743303227fa0c9a99faa7bb24677b40c4d7b71623d14029725130,"Hint: use Jensen's inequality, i.e., use the fact that $-\log x$ is a convex function."
+a73d6c406fd4b343950e2761fa439353fa90d6e3eba3cdfa2268c099ead19ba6,d2lce_0a19e86b29b5e64f79a45ddc,d2lce_0a19e86b29b5e64f79a45ddc,ctx_69f7abf7e90b1e8df21abc19,backup,d2l_optimization_convexity_b032,d2l_optimization,sentence_4f2057418b86f09d7080a75e,BACKUP,B3,C1,SAME_SENSE,Convex functions,b662353349a7413f482afab7e85adc91388418cc8b4ff4b76b2374e550b4172f,41c5a2ec0288488445cdc8924fe20c1f5c64d1af45c751c4799b2fe066b0f398,Convex functions have many useful properties.
+a73d6c406fd4b343950e2761fa439353fa90d6e3eba3cdfa2268c099ead19ba6,d2lce_0a19e86b29b5e64f79a45ddc,d2lce_0a19e86b29b5e64f79a45ddc,ctx_79f335a2e1adffa9d03d4429,primary,d2l_optimization_convexity_b027,d2l_optimization,sentence_b856653d208e9d9249b6bc5f,PRIMARY,C4,C1,SAME_SENSE,convex function,5892b82f9d5e0b5d3b968de675e12c1e8b5482c2b32301988bbe7e53aab3b102,f1d1913c60d8393effcc11ed2a082364e1316a2945d71c7db4457b2fc955cdd3,"In other words, the expectation of a convex function is no less than the convex function of an expectation, where the latter is usually a simpler expression."
+a73d6c406fd4b343950e2761fa439353fa90d6e3eba3cdfa2268c099ead19ba6,d2lce_0a19e86b29b5e64f79a45ddc,d2lce_0a19e86b29b5e64f79a45ddc,ctx_7bee0abcb221cab547cc2608,primary,d2l_optimization_convexity_b018,d2l_optimization,sentence_4767d0ed2a497152d7b5565c,PRIMARY,C1,C1,SAME_SENSE,Convex Functions,7956183bd8da05a93dd988d3b1e424a339f6b6a677172546cd4c9f6f7f2ea33d,65f960698712324355f4787af7c9442c14e3361e43cab7bc10843a731892ef87,### Convex Functions
+a73d6c406fd4b343950e2761fa439353fa90d6e3eba3cdfa2268c099ead19ba6,d2lce_0a19e86b29b5e64f79a45ddc,d2lce_0a19e86b29b5e64f79a45ddc,ctx_8e344cf296b5641fb066c073,primary;definition,d2l_optimization_convexity_b007,d2l_optimization,sentence_7eebdb58841719ababffc9f0,PRIMARY,C2,C1,SAME_SENSE,convex functions,e36d329b221f0f9a907e519361ac3b6d0e0c47b80b8c52f5f6c0dd02dae1bbf1,d50923773e09990cc58b5a3d534fe8c866084f42bda5f1c34a4226d17fea2f70,"Before convex analysis,
+we need to define *convex sets* and *convex functions*."
+a73d6c406fd4b343950e2761fa439353fa90d6e3eba3cdfa2268c099ead19ba6,d2lce_0a19e86b29b5e64f79a45ddc,d2lce_0a19e86b29b5e64f79a45ddc,ctx_901801bd834259cc113d20db,primary;definition;part_of_speech,d2l_optimization_convexity_b019,d2l_optimization,sentence_5eb309e3a54cef8c055b6314,PRIMARY,C3,C1,SAME_SENSE,convex functions,7f4e2e0fac3b35ff04c23a85b70abe372a9bcb48e82648df353178a1ae3c8d8e,3e6186f4866bd157d5b66ab6262380e0690e5bdf8cd975e6a688aa956e14b96d,Now that we have convex sets we can introduce *convex functions* $f$.
+a73d6c406fd4b343950e2761fa439353fa90d6e3eba3cdfa2268c099ead19ba6,d2lce_0a19e86b29b5e64f79a45ddc,d2lce_0a19e86b29b5e64f79a45ddc,ctx_b12e31c5344ac1b417f474e4,primary;part_of_speech,d2l_optimization_optimization_intro_b030,d2l_optimization,sentence_591ffec0bfe4e931e208a8da,PRIMARY,C5,C1,SAME_SENSE,convex functions,21526ed26fd550b2764df5cc914c39badec328fc732f1b194499668026b1f576,c1706a78c2907d1f75ca8564a1d1d0492e392885c23b2147aaa77973fd00a5ae,"In short, convex functions are those where the eigenvalues of the Hessian are never negative."
+a73d6c406fd4b343950e2761fa439353fa90d6e3eba3cdfa2268c099ead19ba6,d2lce_0a19e86b29b5e64f79a45ddc,d2lce_0a19e86b29b5e64f79a45ddc,ctx_bacc572c06a4d91414ef51a6,backup;definition,d2l_optimization_convexity_b025,d2l_optimization,sentence_eedd4300efab5bec120a4fcb,BACKUP,B1,C1,SAME_SENSE,convex function,343a384a57e2acc1300b6b0f23e60e05b383d6ae7efd6e996d58853974249e29,e7dbec40236551b8f059589d766b36a80e7709127378e0aca1d41dceab84c651,"Given a convex function $f$,
+one of the most useful mathematical tools
+is *Jensen's inequality*."
+a73d6c406fd4b343950e2761fa439353fa90d6e3eba3cdfa2268c099ead19ba6,d2lce_0a19e86b29b5e64f79a45ddc,d2lce_0a19e86b29b5e64f79a45ddc,ctxx_8d0da7248b4a456b1d43166f,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,convex function,12c4139098382629eb68382da6e2a149116244e07c36429f5f67cfb5b21a1706,98c6cbcfa8b63645c52081a977ff63fb781234fab76f61c3aa5d8ab081accc45,"Synthetic: The mirror had a convex function in the decorative engraving, but no mathematical meaning was intended."
+07b4e0a9586ba84e7b5872efedd2daed8faebbce8ea17d68b22e392f6d32ac3f,d2lce_9c874642b8c028465cfbb71e,d2lce_9c874642b8c028465cfbb71e,ctx_019e9ed567f578c8342df0cc,primary,d2l_optimization_convexity_b017,d2l_optimization,sentence_e27df5835573b67ce44609c2,PRIMARY,C3,C3,SAME_SENSE,convex sets,1be26ce2a5160e8f0c2f9b21dd1fda24293b5f762227d7d47272f01c1535278b,272197d10d93182c3184bb45b45835218a982c9411dcfad24efb5727a8d671fb,Typically the problems in deep learning are defined on convex sets.
+07b4e0a9586ba84e7b5872efedd2daed8faebbce8ea17d68b22e392f6d32ac3f,d2lce_9c874642b8c028465cfbb71e,d2lce_9c874642b8c028465cfbb71e,ctx_0786467f80f822e79b33c1be,primary;definition,d2l_optimization_convexity_b015,d2l_optimization,sentence_afdf892a1311a223a7ae3c5a,PRIMARY,C2,C2,SAME_SENSE,convex sets,334b408d8621d1a72f65a5696fb99037c0c8f94523857a3e9a2a6ee25ac64aa7,0fa88a9c2abb7f90b818d85336ae570fadc2ea97261898fc9dd29f9481ea7bdd,"We can strengthen this result with little effort: given convex sets $\mathcal{X}_i$, their intersection $\cap_{i} \mathcal{X}_i$ is convex."
+07b4e0a9586ba84e7b5872efedd2daed8faebbce8ea17d68b22e392f6d32ac3f,d2lce_9c874642b8c028465cfbb71e,d2lce_9c874642b8c028465cfbb71e,ctx_3cd1f9f092ed97036b277ed1,primary,d2l_optimization_convexity_b014,d2l_optimization,sentence_00787b3e7b0f5c49c7394e66,PRIMARY,C5,C2,SAME_SENSE,convex sets,0f9c51f1252ca295c25c45bedbb2cbf3af5f69f507eedeb78dcab97c5aafca07,063968ed486c6dd5f26c6a65377468f985233ffcffc100dd4f60911faf5cb920,"![The intersection between two convex sets is convex.](../img/convex-intersect.svg)
+:label:`fig_convex_intersect`"
+07b4e0a9586ba84e7b5872efedd2daed8faebbce8ea17d68b22e392f6d32ac3f,d2lce_9c874642b8c028465cfbb71e,d2lce_9c874642b8c028465cfbb71e,ctx_ab1437837560228b5ab996d0,primary;definition;part_of_speech,d2l_optimization_convexity_b007,d2l_optimization,sentence_7eebdb58841719ababffc9f0,PRIMARY,C4,C1,SAME_SENSE,convex sets,e36d329b221f0f9a907e519361ac3b6d0e0c47b80b8c52f5f6c0dd02dae1bbf1,6cd4971fcda9420f5b40b572f8cad79322bc3751a6754dd853bfe8800c23a9b8,"Before convex analysis,
+we need to define *convex sets* and *convex functions*."
+07b4e0a9586ba84e7b5872efedd2daed8faebbce8ea17d68b22e392f6d32ac3f,d2lce_9c874642b8c028465cfbb71e,d2lce_9c874642b8c028465cfbb71e,ctx_b8a70afb7e97de94755c1439,backup;definition,d2l_optimization_convexity_b015,d2l_optimization,sentence_9232ce7a8892d384583d5149,BACKUP,B1,C2,SAME_SENSE,convex sets,4e9beb134085c14928137bfd0bc15ca8f4f632af38ff4c9edc8c154db9247696,c4796d5f2837c3a76399a013a7b158cced46dd2e718e5e8dbb841986e5c34840,"Hence the line segment is not in $\mathcal{X} \cup \mathcal{Y}$ either, thus proving that in general unions of convex sets need not be convex."
+07b4e0a9586ba84e7b5872efedd2daed8faebbce8ea17d68b22e392f6d32ac3f,d2lce_9c874642b8c028465cfbb71e,d2lce_9c874642b8c028465cfbb71e,ctx_ca7dbc7a8024211ac2e41dad,backup,d2l_optimization_convexity_b016,d2l_optimization,sentence_85ac89e9908ea5996967695a,BACKUP,B3,C2,SAME_SENSE,convex sets,040eea35e799d7dca7720de36ddb821f6a3966511b922b295ecd2aa542f154ee,58890ca550bab3b86bc66e6dc9ee3c98d6a6fd500dde5f794b54b5a2d6ce1891,"![The union of two convex sets need not be convex.](../img/nonconvex.svg)
+:label:`fig_nonconvex`"
+07b4e0a9586ba84e7b5872efedd2daed8faebbce8ea17d68b22e392f6d32ac3f,d2lce_9c874642b8c028465cfbb71e,d2lce_9c874642b8c028465cfbb71e,ctx_d406fccab1c59c92aff48880,backup,d2l_optimization_convexity_b013,d2l_optimization,sentence_3bfa4a71629e7a3a0a1903a5,BACKUP,B2,C1,SAME_SENSE,convex sets,976febd9c6c2000a8cba94ce03fc6b2c1437425085a1996fe77bfc0807fb4cd9,1e198eddea661288b6177f160c010e8c905925ef3cd38b01d91844bbc25240ad,Assume that $\mathcal{X}$ and $\mathcal{Y}$ are convex sets.
+07b4e0a9586ba84e7b5872efedd2daed8faebbce8ea17d68b22e392f6d32ac3f,d2lce_9c874642b8c028465cfbb71e,d2lce_9c874642b8c028465cfbb71e,ctx_d78c176acb32ac55bfa5fc4f,primary;part_of_speech,d2l_optimization_convexity_b008,d2l_optimization,sentence_820de1fd618884a754652de7,PRIMARY,C1,C1,SAME_SENSE,Convex Sets,f099624aaf621a955c9d016e33da90fe72a5103263ade5a7cb71fd77a7bffa61,39bbc1d25ce25b373d08c87ae97fd6e29ae9d335809a9536f239c926a14f67db,### Convex Sets
+07b4e0a9586ba84e7b5872efedd2daed8faebbce8ea17d68b22e392f6d32ac3f,d2lce_9c874642b8c028465cfbb71e,d2lce_9c874642b8c028465cfbb71e,ctxx_0ae256b503125d8a9be1e7d5,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,convex sets,11ad06e8ea9e8933779e34badbab97772c4d99ef168de6e9d3e6152e88c94b53,7bcda7c1c702285ec3d362b8925641836afc6383571182d7410ef8bf5e2f7d9e,"Synthetic: In a graphics editor, “convex sets” might be mentioned informally for shapes, not as the formal optimization concept defined here."

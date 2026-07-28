@@ -1,0 +1,459 @@
+﻿case_sha256,term_id,sense_id,context_id,context_groups,block_id,chapter_id,sentence_id,context_role,context_slot,context_type_proposal,sense_relation,matched_surface_exact,content_sha256,context_sha256,source_text
+bedf8985b2ba0bdf2db9aea8a92f1d7321e44b0c8f79e59796ef0781d3198fe4,d2lce_152a9bcc9b8b5f6cc5586c54,d2lce_152a9bcc9b8b5f6cc5586c54,ctx_1e4dd1bfa6ccb1046784076e,backup,d2l_optimization_minibatch_sgd_b004,d2l_optimization,sentence_fadc91c539dede92d34b12fb,BACKUP,B2,C1,SAME_SENSE,minibatch size,c23a904c0a7d989d2700906d7907676933c4086a6d96de9dc0671ac4c7a404c2,b38736904bae7eeedc08caeda0e87da89391ae065550d4f9b66c43f78baacec0,With 8 GPUs per server and 16 servers we already arrive at a minibatch size of 128.
+bedf8985b2ba0bdf2db9aea8a92f1d7321e44b0c8f79e59796ef0781d3198fe4,d2lce_152a9bcc9b8b5f6cc5586c54,d2lce_152a9bcc9b8b5f6cc5586c54,ctx_39af2ece89443cd7fa86dfc2,backup,d2l_computational_performance_multiple_gpus_b018,d2l_computational_performance,sentence_4e009808425c43f9200b01cd,BACKUP,B3,C1,SAME_SENSE,minibatch size,96eb9f90a6fb61ec105bc5e9bcec294fbb4a633453e631ecf7004b204cd17e8e,af40572c41fbff718a62361e4438383da1ba6599cf4dfe887d46d416d960cc44,On a 16-GPU server this can increase the minibatch size considerably and we may have to increase the learning rate accordingly.
+bedf8985b2ba0bdf2db9aea8a92f1d7321e44b0c8f79e59796ef0781d3198fe4,d2lce_152a9bcc9b8b5f6cc5586c54,d2lce_152a9bcc9b8b5f6cc5586c54,ctx_78da4af66f0cedb5ae1b160d,primary;definition,d2l_linear_networks_linear_regression_scratch_b024,d2l_linear_networks,sentence_3d62f37069714d058a1103c6,PRIMARY,C2,C1,SAME_SENSE,minibatch size,3087a30d1f77d54ebbf4ef390b58d2398a6525fc647d1911ca18a20071ebf53f,9a4e2f13e564a917414667407353041a0a65fc70f1b9ba3c917835bc909f8128,"The shape of the features in each minibatch tells us
+both the minibatch size and the number of input features."
+bedf8985b2ba0bdf2db9aea8a92f1d7321e44b0c8f79e59796ef0781d3198fe4,d2lce_152a9bcc9b8b5f6cc5586c54,d2lce_152a9bcc9b8b5f6cc5586c54,ctx_7fc6f12ab12ca9a7f0af8274,primary;part_of_speech,d2l_introduction_index_b134,d2l_introduction,sentence_ca5de04b699b26aacff76a17,PRIMARY,C3,C1,SAME_SENSE,minibatch size,f6eb93b57ed9619924460214bfbd29c1cdb2af1f29c518c2d7851450764e7b2a,08a6767495dc2f5d5df46f879e2b5816e8114d6af43c000b8e50e5b563227bbb,"Hence, training on 1024 GPUs with a minibatch size of,
+  say 32 images per batch amounts to an aggregate minibatch
+  of about 32000 images."
+bedf8985b2ba0bdf2db9aea8a92f1d7321e44b0c8f79e59796ef0781d3198fe4,d2lce_152a9bcc9b8b5f6cc5586c54,d2lce_152a9bcc9b8b5f6cc5586c54,ctx_a212b34897ea9058b36ef4f4,primary;definition,d2l_optimization_minibatch_sgd_b060,d2l_optimization,sentence_e2fb7ca26bc68d954ad1433d,PRIMARY,C4,C1,SAME_SENSE,minibatch size,fc8fc663a3ff84e60d1ba78850816b87cd348bc27b7dd839266fe5e0e21aeec8,1dfedb23a277cc5689c7016b2658164b060b3fb091e9ab66cc1095eaaa3c9ba5,A minibatch size of 10 is more efficient than stochastic gradient descent; a minibatch size of 100 even outperforms GD in terms of runtime.
+bedf8985b2ba0bdf2db9aea8a92f1d7321e44b0c8f79e59796ef0781d3198fe4,d2lce_152a9bcc9b8b5f6cc5586c54,d2lce_152a9bcc9b8b5f6cc5586c54,ctx_c15f9d27aeea9362be91cca2,primary;part_of_speech,d2l_recurrent_neural_networks_rnn_b035,d2l_recurrent_neural_networks,sentence_1dc2ce6615515bd62b02350a,PRIMARY,C5,C1,SAME_SENSE,minibatch size,634056da51c96982bdc0a3805600e4ffbfd353332f53a744f508446cc988dcdf,298f4007e2b5a3bec387e65ce14efad7265a02d1b2c8a8eff739d304040e422b,"Let the minibatch size be one, and the sequence of the text be ""machine""."
+bedf8985b2ba0bdf2db9aea8a92f1d7321e44b0c8f79e59796ef0781d3198fe4,d2lce_152a9bcc9b8b5f6cc5586c54,d2lce_152a9bcc9b8b5f6cc5586c54,ctx_d6ab75565ebd010dfbf7b992,backup;definition,d2l_optimization_minibatch_sgd_b052,d2l_optimization,sentence_957a080d232bad99a5bc1c22,BACKUP,B1,C1,SAME_SENSE,minibatch size,a7e8df1c9491fe2eab86a8bb840060427fc2a02a8ab0152ea8920d4990f96837,f9fc9a175969e45d8f0c2e47ce46e766c96f33b4d65ef6695749ed27a056d830,"This can be achieved by setting the minibatch size to 1500 (i.e., to the total number of examples)."
+bedf8985b2ba0bdf2db9aea8a92f1d7321e44b0c8f79e59796ef0781d3198fe4,d2lce_152a9bcc9b8b5f6cc5586c54,d2lce_152a9bcc9b8b5f6cc5586c54,ctx_dc5cb3bfdafeb7c4a403e8a9,primary,d2l_recurrent_neural_networks_language_models_and_dataset_b051,d2l_recurrent_neural_networks,sentence_d9ab5b65dfd5d3f03b039275,PRIMARY,C1,C1,SAME_SENSE,minibatch size,671f1c76930088af2d5f71915b29077ffa0596396f4e8d123cb2de3587de1d27,cb660bae885e2b35f411752eb8bb6356afde4022a9c4bc18c128d0263d4e3ae1,"With a minibatch size of 2, we only get 3 minibatches."
+bedf8985b2ba0bdf2db9aea8a92f1d7321e44b0c8f79e59796ef0781d3198fe4,d2lce_152a9bcc9b8b5f6cc5586c54,d2lce_152a9bcc9b8b5f6cc5586c54,ctxx_5191a23f7110b644d4202364,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,minibatch size,afd1f47687d68b6b28d0c314bb74be6fc29c21986b157e3505ec3662cfa19c6d,f29ff63202f10b5d9b1d28056ce95d077f843fd6d0b8b1236098582064fe3aa9,"[Synthetic] The minibatch size stayed fixed at 32, but the minibatch contents changed every iteration."
+1b7555d781a9263391f24d1497bae05722de43fa6f1d8eaffc509dd0a7c48b17,d2lce_455f2de181035ca8388c30b0,d2lce_455f2de181035ca8388c30b0,ctx_005ac3ba6b11534979ff46ad,primary,d2l_optimization_optimization_intro_b021,d2l_optimization,sentence_ab22d2442f5d5afcbfa31e2f,PRIMARY,C2,C1,SAME_SENSE,minima,357c17d53f07205bb69fcdbabdaf81e4d2c129a5431b1a1198ca62043184372f,860adbb2162fc4c0b36427c86ca5b9c1ba46aa07467afb584dd4d2f585e23413,"In fact, this is one of the beneficial properties of
+minibatch stochastic gradient descent where the natural variation of gradients over minibatches is able to dislodge the parameters from local minima."
+1b7555d781a9263391f24d1497bae05722de43fa6f1d8eaffc509dd0a7c48b17,d2lce_455f2de181035ca8388c30b0,d2lce_455f2de181035ca8388c30b0,ctx_14e7d3c859708f8f0ea7212c,backup,d2l_optimization_optimization_intro_b023,d2l_optimization,sentence_bf2bb6bff4259fb17406c9f3,BACKUP,B1,C1,SAME_SENSE,minima,0265146a5a5415cc922e7493b438b6410ab37501a2320b70a1bb3635da8cb8c7,18876cae750af16465a3b9a6b0144de2cfbf3549078838825aa5cca9fa8d9980,"Besides local minima, saddle points are another reason for gradients to vanish."
+1b7555d781a9263391f24d1497bae05722de43fa6f1d8eaffc509dd0a7c48b17,d2lce_455f2de181035ca8388c30b0,d2lce_455f2de181035ca8388c30b0,ctx_2023e0a03e715e57f08e87ce,primary;definition;part_of_speech,d2l_linear_networks_linear_regression_b047,d2l_linear_networks,sentence_b60badcc0ed9be8bd1ba2189,PRIMARY,C3,C1,SAME_SENSE,minima,5b430b70ae4809c42c982252e7648ce075ac39029007dfb3e6de7ea0b6522d43,c77ae971328e225f02665631440e9c04de147a048555f3120fcffe52fcd30431,"However, for more complicated models, like deep networks,
+the loss surfaces contain many minima."
+1b7555d781a9263391f24d1497bae05722de43fa6f1d8eaffc509dd0a7c48b17,d2lce_455f2de181035ca8388c30b0,d2lce_455f2de181035ca8388c30b0,ctx_245348373fcf03e11c87da71,primary;definition,d2l_optimization_optimization_intro_b036,d2l_optimization,sentence_46e13757f4651d03dc76a5c2,PRIMARY,C4,C1,SAME_SENSE,minima,203ad0042c856a7d82fff505d40cd5c7cdb856c67e0429b3edc78343a6063b99,47c5da9cb2374cda4da0f707134320958ffa2117650e9793aae9c3b46f6205ac,* The optimization problems may have many local minima.
+1b7555d781a9263391f24d1497bae05722de43fa6f1d8eaffc509dd0a7c48b17,d2lce_455f2de181035ca8388c30b0,d2lce_455f2de181035ca8388c30b0,ctx_3edadaa9e9bdcfa46667a9cc,primary;part_of_speech,d2l_optimization_optimization_intro_b014,d2l_optimization,sentence_640b1ea1ca6b8d3217899dec,PRIMARY,C5,C1,SAME_SENSE,minima,4eb1290bdd01b7824693b67867e21cccdbb398818d70f5efb72330dab84bc209,a64d159d318d639e254d968f4e8d05f103545a87004289ab2b16e2777a80720d,"Some of the most vexing ones are local minima, saddle points, and vanishing gradients."
+1b7555d781a9263391f24d1497bae05722de43fa6f1d8eaffc509dd0a7c48b17,d2lce_455f2de181035ca8388c30b0,d2lce_455f2de181035ca8388c30b0,ctx_9fe845c8f1250f89a8604169,primary;definition,d2l_optimization_optimization_intro_b015,d2l_optimization,sentence_6b88dc775fed29c2dd2bf3c0,PRIMARY,C1,C1,SAME_SENSE,Minima,96e7bde9c78435412c93fa6f5408ba585ef346f6e162f190572e998b453a4aea,833720018d8192af1f274361754c6d520100a7422b4f795bdc41bcfd1fd9dffa,### Local Minima
+1b7555d781a9263391f24d1497bae05722de43fa6f1d8eaffc509dd0a7c48b17,d2lce_455f2de181035ca8388c30b0,d2lce_455f2de181035ca8388c30b0,ctx_a9e253f896a3bbfcfaf951f0,backup;definition,d2l_appendix_mathematics_for_deep_learning_multivariable_calculus_b044,d2l_appendix_mathematics_for_deep_learning,sentence_24e7df5ed1304d382d016c34,BACKUP,B3,C1,SAME_SENSE,minima,928e1a8040bb4365b9a0aac625ff56be2117e49477c5f65129b1959b75660240,65aabdea2b451020c6436e27a7579fabc6bcb9e02874e5cf14f861f19d819dde,"The only possible location of minima are at $x = -1, 0, 2$, where the function takes the values $-5,0, -32$ respectively, and thus we can conclude that we minimize our function when $x = 2$."
+1b7555d781a9263391f24d1497bae05722de43fa6f1d8eaffc509dd0a7c48b17,d2lce_455f2de181035ca8388c30b0,d2lce_455f2de181035ca8388c30b0,ctx_eef3a0e3a150b78b03b45d89,backup,d2l_optimization_optimization_intro_b030,d2l_optimization,sentence_c18b91bf97ffd834a47fcc1a,BACKUP,B2,C1,SAME_SENSE,minima,81247662de66e5377af1ac2a1b097a4393482d93e22d3266417ffa87cd0fecdc,933c5c3df2e5955447dc39280560c3c0d02b25dfaa9672f8ea4acf6a180dd8af,This makes saddle points more likely than local minima.
+1b7555d781a9263391f24d1497bae05722de43fa6f1d8eaffc509dd0a7c48b17,d2lce_455f2de181035ca8388c30b0,d2lce_455f2de181035ca8388c30b0,ctxx_04b9adf8a00921e2e82f00b3,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,minima,54a78d11c239b45254891078ca4bc50b39d2b5c3e108bc06904aa5d100736744,bdda7858b87cf10c48b87abe682bfc4082c457fe04ccc9976ac01e4d197c9c48,"Synthetic: In typography, minima can refer to the short downward strokes of letters, not optimization points."
+32d4c5317a39b805ea99df03405fd093eafabf46e51089fd67bdbc5bf4dc147c,d2lce_0ac8f3308547fb001c31e869,d2lce_0ac8f3308547fb001c31e869,ctx_087386cdea1dae5d6dcc3ff7,primary;definition,d2l_attention_mechanisms_attention_scoring_functions_b029,d2l_attention_mechanisms,sentence_6af30fab73067c42cfe42596,PRIMARY,C3,C1,SAME_SENSE,MLP,a6a212244c5d7d7e736ea78288461f12be4a9512ff820951291fe4f49a0aed1b,0ed7817fa5f8cb4dcbe5b2f2ee94d47aabc1ff7eac921d48bfc4bc9dfacec2a7,"Equivalent to :eqref:`eq_additive-attn`,
+the query and the key are concatenated
+and fed into an MLP with a single hidden layer
+whose number of hidden units is $h$, a hyperparameter."
+32d4c5317a39b805ea99df03405fd093eafabf46e51089fd67bdbc5bf4dc147c,d2lce_0ac8f3308547fb001c31e869,d2lce_0ac8f3308547fb001c31e869,ctx_3c67ae78c4b02de37fc6d11f,primary,d2l_convolutional_modern_nin_b002,d2l_convolutional_modern,sentence_45a90c9a6497689330b2033b,PRIMARY,C4,C1,SAME_SENSE,MLP,f313218c0349eecd131ca131c19ea8da80d765c231f620daf0b726863d8390d3,09995fc7f496d799ba91f1f796295182690fea410cc61197d65f9ffc339fcd74,"They were proposed based on a very simple insight:
+to use an MLP on the channels for each pixel separately :cite:`Lin.Chen.Yan.2013`."
+32d4c5317a39b805ea99df03405fd093eafabf46e51089fd67bdbc5bf4dc147c,d2lce_0ac8f3308547fb001c31e869,d2lce_0ac8f3308547fb001c31e869,ctx_4a335ba3f1c5504d0ae19024,primary;definition;part_of_speech,d2l_deep_learning_computation_index_b003,d2l_deep_learning_computation,sentence_2e4fd5233ca2955fda86abd3,PRIMARY,C5,C1,SAME_SENSE,MLP,e2e2258b41e878b82e3059e0ddf6398c6c1d3c42a54ac35768b104782ef5bbd8,c8792837c59187c1ae9b3bd9439374e50872c77f6536af0a5bafdd0fa81f1294,"In the last chapter,
+we implemented each component of an MLP from scratch
+and even showed how to leverage high-level APIs
+to roll out the same models effortlessly."
+32d4c5317a39b805ea99df03405fd093eafabf46e51089fd67bdbc5bf4dc147c,d2lce_0ac8f3308547fb001c31e869,d2lce_0ac8f3308547fb001c31e869,ctx_62a5ada5f1792020bc23cde5,backup;definition;part_of_speech,d2l_recurrent_neural_networks_sequence_b023,d2l_recurrent_neural_networks,sentence_f8ac4271e634cd9587757c73,BACKUP,B1,C1,SAME_SENSE,MLP,3498a33f5cc91bcc0d76b9203d34935b0c7a838bb82350df977ead48b7b64300,ae8a2f840da7100fc742a66a8649b917fbb231c59eb975b303f6d27913323f1d,"```{.python .input}
+# A simple MLP
+def get_net():
+    net = nn.Sequential()
+    net.add(nn.Dense(10, activation='relu'),
+            nn.Dense(1))
+    net.initialize(init.Xavier())
+    return net
+
+# Square loss
+loss = gluon.loss.L2Loss()
+```
+
+```{.python .input}
+#@tab pytorch
+# Function for initializing the weights of the network
+def init_weights(m):
+    if type(m) == nn.Linear:
+        nn.init.xavier_uniform_(m.weight)
+
+# A simple MLP
+def get_net():
+    net = nn.Sequential(nn.Linear(4, 10),
+                        nn.ReLU(),
+                        nn.Linear(10, 1))
+    net.apply(init_weights)
+    return net
+
+# Note: `MSELoss` computes squared error without the 1/2 factor
+loss = nn.MSELoss(reduction='none')
+```
+
+```{.python .input}
+#@tab tensorflow
+# Vanilla MLP architecture
+def get_net():
+    net = tf.keras.Sequential([tf.keras.layers.Dense(10, activation='relu'),
+                              tf.keras.layers.Dense(1)])
+    return net
+
+# Note: `MeanSquaredError` computes squared error without the 1/2 factor
+loss = tf.keras.losses.MeanSquaredError()
+```
+
+Now we are ready to [**train the model**]."
+32d4c5317a39b805ea99df03405fd093eafabf46e51089fd67bdbc5bf4dc147c,d2lce_0ac8f3308547fb001c31e869,d2lce_0ac8f3308547fb001c31e869,ctx_788a11fa6efa6cbc9a413253,backup,d2l_convolutional_neural_networks_index_b002,d2l_convolutional_neural_networks,sentence_679cdc25c51075b32b4e8231,BACKUP,B2,C1,SAME_SENSE,MLP,91f16874d84a63b718b3ffd9862cc6422abd9a86e9866a73c8e941fda527185d,c6370c111716ba6c4cbb8155b1d7ba16d7145b562954f4c9c3b115049b76c7fb,"Because these networks are invariant to the order
+of the features,
+we could get similar results
+regardless of whether we preserve an order 
+corresponding to the spatial structure of the pixels
+or if we permute the columns of our design matrix
+before fitting the MLP's parameters."
+32d4c5317a39b805ea99df03405fd093eafabf46e51089fd67bdbc5bf4dc147c,d2lce_0ac8f3308547fb001c31e869,d2lce_0ac8f3308547fb001c31e869,ctx_849b80c6ea299773a2e4a5c4,backup,d2l_recurrent_modern_gru_b018,d2l_recurrent_modern,sentence_434ee380d490d975299b8a5d,BACKUP,B3,C1,SAME_SENSE,MLP,d097978fd445f3ebacbf89f9e4be4272d46f23b030538f08f1af280cb39a83fd,91ff747fc968e0ae6978d23b49f4a235a39b60e22894aecf98f1cedae82e940d,"For all entries of the reset gate $\mathbf{R}_t$ that are close to 0, the candidate hidden state is the result of an MLP with $\mathbf{X}_t$ as the input."
+32d4c5317a39b805ea99df03405fd093eafabf46e51089fd67bdbc5bf4dc147c,d2lce_0ac8f3308547fb001c31e869,d2lce_0ac8f3308547fb001c31e869,ctx_c1c142be01a5b299b70337c6,primary,d2l_multilayer_perceptrons_index_b003,d2l_multilayer_perceptrons,sentence_fd5911e2988066b82fdc78ad,PRIMARY,C2,C4,SAME_SENSE,mlp,41da60602d4ef281287716348bb89f7eea5835e70c790af413f0e7afc96cc91c,5ca50d5f85cb86f31d453516c0313a2680ab1b39bd8edfa0b62a170372729006,"```toc
+:maxdepth: 2
+
+mlp
+mlp-scratch
+mlp-concise
+underfit-overfit
+weight-decay
+dropout
+backprop
+numerical-stability-and-init
+environment
+kaggle-house-price
+```"
+32d4c5317a39b805ea99df03405fd093eafabf46e51089fd67bdbc5bf4dc147c,d2lce_0ac8f3308547fb001c31e869,d2lce_0ac8f3308547fb001c31e869,ctx_e40cd2162abe8f988abaddfb,primary;definition,d2l_optimization_optimization_intro_b038,d2l_optimization,sentence_ba093069eb316c43ffb54f67,PRIMARY,C1,C1,SAME_SENSE,MLP,aa2d7e9392279814576f9126f921a58a23acd8eb1803358de1a42e56eae4f537,57e3f748a91bed4d0b82caac69c18bb8a89cee959a0aeeb530fa4686e4d1a13c,"Consider a simple MLP with a single hidden layer of, say, $d$ dimensions in the hidden layer and a single output."
+32d4c5317a39b805ea99df03405fd093eafabf46e51089fd67bdbc5bf4dc147c,d2lce_0ac8f3308547fb001c31e869,d2lce_0ac8f3308547fb001c31e869,ctxx_28d8d20b90274cd2c85f8618,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,mlp,ce83d8823ecb4d362175db888865e82aef62f6e76ed3a79b6eebb38628248b48,0e5fce936ce99a87ce91631d703da35f16eb17683cb6344f9e273c6910b7b02a,Synthetic: The file extension .mlp here does not refer to an MLP neural network.
+696dcf21adf623d01f4bd13bf6b2b74bffc998f4927f44885ba69b8fcb275181,d2lce_ed44d125cc1110c1c39f7b3e,d2lce_ed44d125cc1110c1c39f7b3e,ctx_23b189c0f5c5598741fa92a6,primary;definition;part_of_speech,d2l_deep_learning_computation_model_construction_b052,d2l_deep_learning_computation,sentence_96a6dbc4bbd83a1eb40a1fb8,PRIMARY,C1,C1,SAME_SENSE,model parameter,67f8521eddba6871fcb0e1cb8a66382e7ec2af74dee838811c145cfdd08114cc,b8f260cfd7b5f5fc244db49e0f548f3855cfa0617cbb4784ee48d31ab533d2d1,"This weight is not a model parameter
+and thus it is never updated by backpropagation."
+696dcf21adf623d01f4bd13bf6b2b74bffc998f4927f44885ba69b8fcb275181,d2lce_ed44d125cc1110c1c39f7b3e,d2lce_ed44d125cc1110c1c39f7b3e,ctx_345e280a6afc1f3131a69523,backup,d2l_linear_networks_linear_regression_concise_b071,d2l_linear_networks,sentence_eb5d73ff332cb72369d4d2b6,BACKUP,B1,C2,SAME_SENSE,model parameter,37b784e9e70941a230e2a0c6f155961ba8e7ec862ec70dd71e44e92b057d8f5d,38b50808da178ba292b7604bf50052d712acbb76ed946fd50a8f9a48d70ac5d6,* TensorFlow's module `initializers` provides various methods for model parameter initialization.
+696dcf21adf623d01f4bd13bf6b2b74bffc998f4927f44885ba69b8fcb275181,d2lce_ed44d125cc1110c1c39f7b3e,d2lce_ed44d125cc1110c1c39f7b3e,ctx_352eb05d2112f610b0c4b6b2,backup,d2l_linear_networks_linear_regression_concise_b069,d2l_linear_networks,sentence_907571fdfe8f1d665eb640dd,BACKUP,B2,C2,SAME_SENSE,model parameter,28d455ad6d28487231a90729f0d809d56cc7b852cc2cdf33106719b3f2bf10bc,d817577f528b4b0c669bde724cae1ca2449475ee4612c191a757faba7e903287,* MXNet's module `initializer` provides various methods for model parameter initialization.
+696dcf21adf623d01f4bd13bf6b2b74bffc998f4927f44885ba69b8fcb275181,d2lce_ed44d125cc1110c1c39f7b3e,d2lce_ed44d125cc1110c1c39f7b3e,ctx_3c33a18dd04e08da418034a3,backup,d2l_convolutional_modern_googlenet_b044,d2l_convolutional_modern,sentence_82923a2c2d65c921166e6a24,BACKUP,B3,C2,SAME_SENSE,model parameter,85ac6200a8227695cab7997cac9121a803057a50d988283e65c0605233e65c53,fe13d1523ddeb65a6acabd36adb6921d0cad7723d237e441a77e4165f34bb335,"Compare the model parameter sizes of AlexNet, VGG, and NiN with GoogLeNet."
+696dcf21adf623d01f4bd13bf6b2b74bffc998f4927f44885ba69b8fcb275181,d2lce_ed44d125cc1110c1c39f7b3e,d2lce_ed44d125cc1110c1c39f7b3e,ctx_712b9e024f4bb6ad1f3f5876,primary;definition,d2l_optimization_sgd_b037,d2l_optimization,sentence_c5f502499c68c7ce7bee258b,PRIMARY,C3,C1,SAME_SENSE,model parameter,0ae3ae0eddb3e011ff38e13219429ddad7ee557a3147b2533618546c1b9593e3,cbb144159d7678636270f07089b446250754bdcb8f903e60ddbdfcd7defda933,"where $f(\boldsymbol{\xi}_t, \mathbf{x})$
+is the objective function
+with respect to the training example $\boldsymbol{\xi}_t$
+drawn from some distribution
+at step $t$ and $\mathbf{x}$ is the model parameter."
+696dcf21adf623d01f4bd13bf6b2b74bffc998f4927f44885ba69b8fcb275181,d2lce_ed44d125cc1110c1c39f7b3e,d2lce_ed44d125cc1110c1c39f7b3e,ctx_7a8590cce9481296230c2d35,primary,d2l_linear_networks_linear_regression_concise_b034,d2l_linear_networks,sentence_ed76d86d95b14e26380b07eb,PRIMARY,C5,C2,SAME_SENSE,model parameter,d9c0c07197ff709a39a244791d89281c431e98bb713d5b2937d86d66ef7c753a,76bc5c4e8291251ba8c5fbedb5c04c79ebcb42605e37a9020a7451ae97c11176,":begin_tab:`tensorflow`
+The `initializers` module in TensorFlow provides various methods for model parameter initialization."
+696dcf21adf623d01f4bd13bf6b2b74bffc998f4927f44885ba69b8fcb275181,d2lce_ed44d125cc1110c1c39f7b3e,d2lce_ed44d125cc1110c1c39f7b3e,ctx_af69401169f9749c9e888c35,primary;definition;part_of_speech,d2l_recurrent_neural_networks_rnn_scratch_b051,d2l_recurrent_neural_networks,sentence_7eed5adcafab3dd1d0048eef,PRIMARY,C4,C1,SAME_SENSE,model parameter,1093137dc08d270e74235c793c2e4e4444696acdf0ca974045e82a84c38c701b,84b77f5c8ec14fc585f0f4c5a1d648cd1c35283794a33200ea6a848c2ad91fc5,"Generally speaking,
+when solving an optimization problem,
+we take update steps for the model parameter,
+say in the vector form
+$\mathbf{x}$,
+in the direction of the negative gradient $\mathbf{g}$ on a minibatch."
+696dcf21adf623d01f4bd13bf6b2b74bffc998f4927f44885ba69b8fcb275181,d2lce_ed44d125cc1110c1c39f7b3e,d2lce_ed44d125cc1110c1c39f7b3e,ctx_fbb8b66ce00e1ca91661df77,primary;definition,d2l_linear_networks_linear_regression_concise_b032,d2l_linear_networks,sentence_f1271ecfc4d3015f4cf98fc7,PRIMARY,C2,C2,SAME_SENSE,model parameter,4872de2839e56ce8d0eff9614e176708c321c6c24382841994f56e703a8e8d0f,25972f7b48279cc581e9750647cf246d911b20fc0395890842a44a48ef9eead8,This module provides various methods for model parameter initialization.
+696dcf21adf623d01f4bd13bf6b2b74bffc998f4927f44885ba69b8fcb275181,d2lce_ed44d125cc1110c1c39f7b3e,d2lce_ed44d125cc1110c1c39f7b3e,ctxx_c4d879c10574096f39fa32eb,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,model parameter,719bfcba1fea659cf1f9f29130c8a29f1414f7b4243f20c5569bb35053cb9b67,80690e3e5c1060d4a595d92b84c0d21c6a65b0d6a52bf1ec54254d24af97538c,"Synthetic: In the climate model, cloud cover was treated as a fixed model parameter chosen by the researchers."
+0f3cb0e1c80ded364beea3f6153b05fa999c46c81c9189e40b952cb19951bff6,d2lce_addfcc9899bef06c500b6b0e,d2lce_addfcc9899bef06c500b6b0e,ctx_06f4771cf594f1bbed3246e8,primary;definition,d2l_convolutional_modern_batch_norm_b034,d2l_convolutional_modern,sentence_75923b51abf3838d42022400,PRIMARY,C4,C2,SAME_SENSE,momentum,1288bf0796e250baa8d5cf716b2f11b3915005f78057838583bd616206e7e62f,90c165ac0280cdf45be2e43f2ed75120c3b6bb1bfff7bb07d565ee133c9473ca,"Here we
+            # need to maintain the shape of `X`, so that the broadcasting
+            # operation can be carried out later
+            mean = X.mean(dim=(0, 2, 3), keepdim=True)
+            var = ((X - mean) ** 2).mean(dim=(0, 2, 3), keepdim=True)
+        # In training mode, the current mean and variance are used for the
+        # standardization
+        X_hat = (X - mean) / torch.sqrt(var + eps)
+        # Update the mean and variance using moving average
+        moving_mean = momentum * moving_mean + (1.0 - momentum) * mean
+        moving_var = momentum * moving_var + (1.0 - momentum) * var
+    Y = gamma * X_hat + beta  # Scale and shift
+    return Y, moving_mean.data, moving_var.data
+```"
+0f3cb0e1c80ded364beea3f6153b05fa999c46c81c9189e40b952cb19951bff6,d2lce_addfcc9899bef06c500b6b0e,d2lce_addfcc9899bef06c500b6b0e,ctx_3630463c4fd1b1974674bd51,primary;definition,d2l_convolutional_modern_batch_norm_b033,d2l_convolutional_modern,sentence_aab10595f7c1fc86d35a9c71,PRIMARY,C5,C2,SAME_SENSE,momentum,611f6e8ceadd19c9fd7a049fbd1d5c1763c95ff7223f26880b3913a07bc2fa2d,68e14f103f04457eb64aaa7e9418fc934eb6c8b424a138a7d5e486e8ebdbd6af,"Here we
+            # need to maintain the shape of `X`, so that the broadcasting
+            # operation can be carried out later
+            mean = X.mean(axis=(0, 2, 3), keepdims=True)
+            var = ((X - mean) ** 2).mean(axis=(0, 2, 3), keepdims=True)
+        # In training mode, the current mean and variance are used for the
+        # standardization
+        X_hat = (X - mean) / np.sqrt(var + eps)
+        # Update the mean and variance using moving average
+        moving_mean = momentum * moving_mean + (1.0 - momentum) * mean
+        moving_var = momentum * moving_var + (1.0 - momentum) * var
+    Y = gamma * X_hat + beta  # Scale and shift
+    return Y, moving_mean, moving_var
+```"
+0f3cb0e1c80ded364beea3f6153b05fa999c46c81c9189e40b952cb19951bff6,d2lce_addfcc9899bef06c500b6b0e,d2lce_addfcc9899bef06c500b6b0e,ctx_3ccd2fb56cb762a513ca604f,backup,d2l_convolutional_modern_batch_norm_b034,d2l_convolutional_modern,sentence_c8241a56f333fe7039f7fb56,BACKUP,B1,C2,SAME_SENSE,momentum,2b7edd9477f84e23ae75a3409aaf17157477121652a58ff50ea26d7784735564,21ffa89176dbeb14abe198aec766c2756c4f4fbb0eaf7b3efda3ccfd14a6d02c,"```{.python .input}
+#@tab pytorch
+from d2l import torch as d2l
+import torch
+from torch import nn
+
+def batch_norm(X, gamma, beta, moving_mean, moving_var, eps, momentum):
+    # Use `is_grad_enabled` to determine whether the current mode is training
+    # mode or prediction mode
+    if not torch.is_grad_enabled():
+        # If it is prediction mode, directly use the mean and variance
+        # obtained by moving average
+        X_hat = (X - moving_mean) / torch.sqrt(moving_var + eps)
+    else:
+        assert len(X.shape) in (2, 4)
+        if len(X.shape) == 2:
+            # When using a fully-connected layer, calculate the mean and
+            # variance on the feature dimension
+            mean = X.mean(dim=0)
+            var = ((X - mean) ** 2).mean(dim=0)
+        else:
+            # When using a two-dimensional convolutional layer, calculate the
+            # mean and variance on the channel dimension (axis=1)."
+0f3cb0e1c80ded364beea3f6153b05fa999c46c81c9189e40b952cb19951bff6,d2lce_addfcc9899bef06c500b6b0e,d2lce_addfcc9899bef06c500b6b0e,ctx_500ae062c5d8dcb9953ef236,primary,d2l_convolutional_modern_batch_norm_b033,d2l_convolutional_modern,sentence_54c8e3411a2c75de2e852488,PRIMARY,C2,C2,SAME_SENSE,momentum,bd97e86a77e17e5c447f9ee4ba8271f1f8fa4620774c40948f5f9ac60dc58133,2a5de649f0dbc0fc3cdb74d75505f4f1cd2e9713189d3e943f673277d72acf99,"```{.python .input}
+from d2l import mxnet as d2l
+from mxnet import autograd, np, npx, init
+from mxnet.gluon import nn
+npx.set_np()
+
+def batch_norm(X, gamma, beta, moving_mean, moving_var, eps, momentum):
+    # Use `autograd` to determine whether the current mode is training mode or
+    # prediction mode
+    if not autograd.is_training():
+        # If it is prediction mode, directly use the mean and variance
+        # obtained by moving average
+        X_hat = (X - moving_mean) / np.sqrt(moving_var + eps)
+    else:
+        assert len(X.shape) in (2, 4)
+        if len(X.shape) == 2:
+            # When using a fully-connected layer, calculate the mean and
+            # variance on the feature dimension
+            mean = X.mean(axis=0)
+            var = ((X - mean) ** 2).mean(axis=0)
+        else:
+            # When using a two-dimensional convolutional layer, calculate the
+            # mean and variance on the channel dimension (axis=1)."
+0f3cb0e1c80ded364beea3f6153b05fa999c46c81c9189e40b952cb19951bff6,d2lce_addfcc9899bef06c500b6b0e,d2lce_addfcc9899bef06c500b6b0e,ctx_6ac1f400ae1b3195245dc883,backup,d2l_convolutional_modern_batch_norm_b038,d2l_convolutional_modern,sentence_b77bd31a507d30ec70a7b7a4,BACKUP,B3,C2,SAME_SENSE,momentum,79466e0042ccf926419d25b2c56f0d9769f6e5ec4f2b515f9b20fd238f90add1,1fdf62922da5408b0c317a76426fad9d52abb07250e506aa4137b7fa6f37a0f2,"`num_dims`:
+    # 2 for a fully-connected layer and 4 for a convolutional layer
+    def __init__(self, num_features, num_dims, **kwargs):
+        super().__init__(**kwargs)
+        if num_dims == 2:
+            shape = (1, num_features)
+        else:
+            shape = (1, num_features, 1, 1)
+        # The scale parameter and the shift parameter (model parameters) are
+        # initialized to 1 and 0, respectively
+        self.gamma = self.params.get('gamma', shape=shape, init=init.One())
+        self.beta = self.params.get('beta', shape=shape, init=init.Zero())
+        # The variables that are not model parameters are initialized to 0 and 1
+        self.moving_mean = np.zeros(shape)
+        self.moving_var = np.ones(shape)
+
+    def forward(self, X):
+        # If `X` is not on the main memory, copy `moving_mean` and
+        # `moving_var` to the device where `X` is located
+        if self.moving_mean.ctx != X.ctx:
+            self.moving_mean = self.moving_mean.copyto(X.ctx)
+            self.moving_var = self.moving_var.copyto(X.ctx)
+        # Save the updated `moving_mean` and `moving_var`
+        Y, self.moving_mean, self.moving_var = batch_norm(
+            X, self.gamma.data(), self.beta.data(), self.moving_mean,
+            self.moving_var, eps=1e-12, momentum=0.9)
+        return Y
+```"
+0f3cb0e1c80ded364beea3f6153b05fa999c46c81c9189e40b952cb19951bff6,d2lce_addfcc9899bef06c500b6b0e,d2lce_addfcc9899bef06c500b6b0e,ctx_8fa7f6c2ca736e617dfa8130,primary;part_of_speech,d2l_optimization_index_b005,d2l_optimization,sentence_98a82f07b6e77ad4091cf7b2,PRIMARY,C3,C3,SAME_SENSE,momentum,059159df527c51a59cfe12dc4375ebb98fe7845144dfbb457f0fbbd7d5733adf,85677d7ad3ec012424b7a889c584b16f11683befc83f27e395c08a0bc739d8bf,"```toc
+:maxdepth: 2
+
+optimization-intro
+convexity
+gd
+sgd
+minibatch-sgd
+momentum
+adagrad
+rmsprop
+adadelta
+adam
+lr-scheduler
+```"
+0f3cb0e1c80ded364beea3f6153b05fa999c46c81c9189e40b952cb19951bff6,d2lce_addfcc9899bef06c500b6b0e,d2lce_addfcc9899bef06c500b6b0e,ctx_d437426b9a49d27a6fb2a2c3,primary;definition;part_of_speech,d2l_generative_adversarial_networks_dcgan_b066,d2l_generative_adversarial_networks,sentence_b176ea69ff694d868d5c22fb,PRIMARY,C1,C1,SAME_SENSE,momentum,d052f253e20120f112ed214fa374fac600e088ca7e65511fae4c6c2b7becf68b,ae317ffef78cb3d07a7fb915b6820006c67e2b521d4c9a962505cedc149a44d3,"It decreases the smoothness of the momentum, the exponentially weighted moving average of past gradients, to take care of the rapid changing gradients because the generator and the discriminator fight with each other."
+0f3cb0e1c80ded364beea3f6153b05fa999c46c81c9189e40b952cb19951bff6,d2lce_addfcc9899bef06c500b6b0e,d2lce_addfcc9899bef06c500b6b0e,ctx_f1d2db847faaa16d40367e41,backup,d2l_computer_vision_kaggle_cifar10_b052,d2l_computer_vision,sentence_f0d19a4c72bac7375a294640,BACKUP,B2,C2,SAME_SENSE,momentum,5815de2147d4805249619d0da38fd6004302c405ae49fe59f7cea5641828efcc,460607106a3c830822fc9e7a456ab37049a651a2f7c737e0b99fa65ade546165,"```{.python .input}
+def train(net, train_iter, valid_iter, num_epochs, lr, wd, devices, lr_period,
+          lr_decay):
+    trainer = gluon.Trainer(net.collect_params(), 'sgd',
+                            {'learning_rate': lr, 'momentum': 0.9, 'wd': wd})
+    num_batches, timer = len(train_iter), d2l.Timer()
+    legend = ['train loss', 'train acc']
+    if valid_iter is not None:
+        legend.append('valid acc')
+    animator = d2l.Animator(xlabel='epoch', xlim=[1, num_epochs],
+                            legend=legend)
+    for epoch in range(num_epochs):
+        metric = d2l.Accumulator(3)
+        if epoch > 0 and epoch % lr_period == 0:
+            trainer.set_learning_rate(trainer.learning_rate * lr_decay)
+        for i, (features, labels) in enumerate(train_iter):
+            timer.start()
+            l, acc = d2l.train_batch_ch13(
+                net, features, labels.astype('float32'), loss, trainer,
+                devices, d2l.split_batch)
+            metric.add(l, acc, labels.shape[0])
+            timer.stop()
+            if (i + 1) % (num_batches // 5) == 0 or i == num_batches - 1:
+                animator.add(epoch + (i + 1) / num_batches,
+                             (metric[0] / metric[2], metric[1] / metric[2],
+                              None))
+        if valid_iter is not None:
+            valid_acc = d2l.evaluate_accuracy_gpus(net, valid_iter,
+                                                   d2l.split_batch)
+            animator.add(epoch + 1, (None, None, valid_acc))
+    measures = (f'train loss {metric[0] / metric[2]:.3f}, '
+                f'train acc {metric[1] / metric[2]:.3f}')
+    if valid_iter is not None:
+        measures += f', valid acc {valid_acc:.3f}'
+    print(measures + f'\n{metric[2] * num_epochs / timer.sum():.1f}'
+          f' examples/sec on {str(devices)}')
+```"
+0f3cb0e1c80ded364beea3f6153b05fa999c46c81c9189e40b952cb19951bff6,d2lce_addfcc9899bef06c500b6b0e,d2lce_addfcc9899bef06c500b6b0e,ctxx_7fd22e3f605db0d533d0053f,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,momentum,250b5ce7a2a4a165a05994bf40d28ec1869090f01334e326aa8471940d271ed0,68a3eaccad68cdccfdf74fbdd5fecbdb84f33b55e1046d43b807a04165534168,"Synthetic: The ball’s momentum increased after the collision, which is a physics sense unrelated to optimization."
+563aac1c5c068ad2ea948cc94beeb70b92d772cbfff93092550516cafe03b242,d2lce_ceb82e896665f8c0cd942ed6,d2lce_ceb82e896665f8c0cd942ed6,ctx_1a29813f7324a6438bb8baa2,primary,d2l_appendix_mathematics_for_deep_learning_statistics_b031,d2l_appendix_mathematics_for_deep_learning,sentence_7b057c14e695d7a06e8f3839,PRIMARY,C3,C1,SAME_SENSE,MSE,d1c00aed43f22e27e887ff90518c704f0cf1706f17759448453973f98558a8d9,853014fde6deb6f14ca8cad07bdfbba8e9f3f1154b546bc60c251c0663bb3969,"$$
+\begin{aligned}
+\mathrm{MSE} (\hat{\theta}_n, \theta) &= E[(\hat{\theta}_n - \theta)^2] \\
+ &= E[(\hat{\theta}_n)^2] + E[\theta^2] - 2E[\hat{\theta}_n\theta] \\
+ &= \mathrm{Var} [\hat{\theta}_n] + E[\hat{\theta}_n]^2 + \mathrm{Var} [\theta] + E[\theta]^2 - 2E[\hat{\theta}_n]E[\theta] \\
+ &= (E[\hat{\theta}_n] - E[\theta])^2 + \mathrm{Var} [\hat{\theta}_n] + \mathrm{Var} [\theta] \\
+ &= (E[\hat{\theta}_n - \theta])^2 + \mathrm{Var} [\hat{\theta}_n] + \mathrm{Var} [\theta] \\
+ &= (\mathrm{bias} [\hat{\theta}_n])^2 + \mathrm{Var} (\hat{\theta}_n) + \mathrm{Var} [\theta].\\
+\end{aligned}
+$$"
+563aac1c5c068ad2ea948cc94beeb70b92d772cbfff93092550516cafe03b242,d2lce_ceb82e896665f8c0cd942ed6,d2lce_ceb82e896665f8c0cd942ed6,ctx_426bea20b9dba9336b04c813,primary;definition,d2l_appendix_mathematics_for_deep_learning_statistics_b035,d2l_appendix_mathematics_for_deep_learning,sentence_b3f88eb5c92b096637fe15b0,PRIMARY,C5,C1,SAME_SENSE,mse,1d5e9e0d6bbed609043268b0c0d43ac3b6a39ef409d6b25cad7c37f87ea458b9,96b3931af3957bf7c8271ff96d98e36b245f743bff679ae3adee29be2e6a8d8a,"```{.python .input}
+# Statistical bias
+def stat_bias(true_theta, est_theta):
+    return(np.mean(est_theta) - true_theta)
+
+# Mean squared error
+def mse(data, true_theta):
+    return(np.mean(np.square(data - true_theta)))
+```"
+563aac1c5c068ad2ea948cc94beeb70b92d772cbfff93092550516cafe03b242,d2lce_ceb82e896665f8c0cd942ed6,d2lce_ceb82e896665f8c0cd942ed6,ctx_591781cd7583666007c98134,backup,d2l_recommender_systems_fm_b011,d2l_recommender_systems,sentence_d0a17dee3367132496bbbd1b,BACKUP,B2,C1,SAME_SENSE,MSE,9e229fd2f36df6d1e143470948f9cc40a85138211375e322f45bc240206ada1c,1bbd8f887d63162a5f54415818f8925bd25c826fd1f3a0e4d453c2eca48de2f2,"To learn the FM model, we can use the MSE loss for regression task, the cross-entropy loss for classification tasks, and the BPR loss for ranking task."
+563aac1c5c068ad2ea948cc94beeb70b92d772cbfff93092550516cafe03b242,d2lce_ceb82e896665f8c0cd942ed6,d2lce_ceb82e896665f8c0cd942ed6,ctx_5df9fbccc96715edeb610c55,primary;definition,d2l_appendix_mathematics_for_deep_learning_statistics_b016,d2l_appendix_mathematics_for_deep_learning,sentence_400987b37d29f4d2652b1db2,PRIMARY,C2,C1,SAME_SENSE,MSE,d63583b50ecf34f7d295377d30d8224841abe4a3ae15726e58182ac95c8dc6ad,1df59572b0c4318583b45cdb23a655f42d2ca2b1669b6e96cb2be70d0830a331,Perhaps the simplest metric used to evaluate estimators is the *mean squared error (MSE)* (or $l_2$ loss) of an estimator can be defined as
+563aac1c5c068ad2ea948cc94beeb70b92d772cbfff93092550516cafe03b242,d2lce_ceb82e896665f8c0cd942ed6,d2lce_ceb82e896665f8c0cd942ed6,ctx_a9382217a06a988f0ecb9234,primary;definition;part_of_speech,d2l_appendix_mathematics_for_deep_learning_statistics_b017,d2l_appendix_mathematics_for_deep_learning,sentence_dd0e7d43657450abd46aa963,PRIMARY,C1,C1,SAME_SENSE,MSE,7847e5d6ddfb5d10a26afd68dea795d1f7ebc1a7bb8929e7aee797c4a5e4daca,956aaf63cddc15e3fd45b5ea41b9b1b005e2db8bf7ca929d1ba31d05e94f4b9c,"$$\mathrm{MSE} (\hat{\theta}_n, \theta) = E[(\hat{\theta}_n - \theta)^2].$$
+:eqlabel:`eq_mse_est`"
+563aac1c5c068ad2ea948cc94beeb70b92d772cbfff93092550516cafe03b242,d2lce_ceb82e896665f8c0cd942ed6,d2lce_ceb82e896665f8c0cd942ed6,ctx_bc89daf7fd2f4eb40d457f44,backup,d2l_appendix_mathematics_for_deep_learning_statistics_b020,d2l_appendix_mathematics_for_deep_learning,sentence_323932123decc68c338ec659,BACKUP,B1,C1,SAME_SENSE,MSE,b23fedfcd95df816e6ee6fe40c672605a8baf4327252001f733897599f4756bd,65a8674be4916e1a08ba21529c1f41518508cdc3d236b3ca8f228acac09418d0,"The MSE provides a natural metric, but we can easily imagine multiple different phenomena that might make it large."
+563aac1c5c068ad2ea948cc94beeb70b92d772cbfff93092550516cafe03b242,d2lce_ceb82e896665f8c0cd942ed6,d2lce_ceb82e896665f8c0cd942ed6,ctx_fdf0e7090cf0502e217b65eb,primary;definition;part_of_speech,d2l_appendix_mathematics_for_deep_learning_statistics_b018,d2l_appendix_mathematics_for_deep_learning,sentence_b59779aa7819533b06a2a005,PRIMARY,C4,C1,SAME_SENSE,MSE,a1dabedc2609fefeb5899e5f377cc8ec56f6864e4d353328eb98d3c3a6ebef06,e60d0859b14446c418a1bf7b3abfba946554a023bfeab711e4d49fe7dd9477ce,MSE is always non-negative.
+563aac1c5c068ad2ea948cc94beeb70b92d772cbfff93092550516cafe03b242,d2lce_ceb82e896665f8c0cd942ed6,d2lce_ceb82e896665f8c0cd942ed6,ctxx_554a2bbe1b9e303caac14fab,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,MSE,943a023d9257abdb0bbde285f987b3a849b38659e2a21be5f3c5c19845a0adae,f08b4cf063d728eecaf64d8525c8e66e44e83700340057d36454fac6f9c85782,"Synthetic: In a company dashboard, MSE could be an internal project code, not mean squared error."
+4eae8d3db17015b1bda7ea64a16b3ab99d54d38977f64d85c6d01e5bb8c6492d,d2lce_6898a7f7f35ca368f75fda48,d2lce_6898a7f7f35ca368f75fda48,ctx_190c6414d9d03e42a057ce97,backup,d2l_computational_performance_multiple_gpus_b053,d2l_computational_performance,sentence_5e42dc8bc7b2b1b485ccdcd7,BACKUP,B3,C4,SAME_SENSE,multi-GPU training,e9b2ee730d3607df41ca1774409f17c569b020723e03582e894c1c84af599702,3b76fe498a128e9c85d34cb1c47142aa22c950d886cff2905aa01eef31e28d29,"Unfortunately there is no meaningful speedup to be gained here: the model is simply too small; moreover we only have a small dataset, where our slightly unsophisticated approach to implementing multi-GPU training suffered from significant Python overhead."
+4eae8d3db17015b1bda7ea64a16b3ab99d54d38977f64d85c6d01e5bb8c6492d,d2lce_6898a7f7f35ca368f75fda48,d2lce_6898a7f7f35ca368f75fda48,ctx_27e6509f7df6da2429702955,primary;part_of_speech,d2l_computational_performance_multiple_gpus_b018,d2l_computational_performance,sentence_538ed203a8a905a2e00ca186,PRIMARY,C2,C2,SAME_SENSE,multi-GPU training,3d6790302aeff70140a82635f3c769a97631c72933e14c96d88ebe55bc385259,3b450374de83f5928ec79364ad843f197b2275932cace4b827d034c77ec237ee,In what follows we will use a toy network to illustrate multi-GPU training.
+4eae8d3db17015b1bda7ea64a16b3ab99d54d38977f64d85c6d01e5bb8c6492d,d2lce_6898a7f7f35ca368f75fda48,d2lce_6898a7f7f35ca368f75fda48,ctx_9d1a3070565f618918c563b1,primary;part_of_speech,d2l_computer_vision_image_augmentation_b049,d2l_computer_vision,sentence_fdf0ac64fa29a0714f241ec0,PRIMARY,C1,C1,SAME_SENSE,Multi-GPU Training,4f210fbaf5c1c186e09aa0a7a18f9842f2cec0472dbab31558266517241b8357,e41d8a0546fd0e71cf259f29e66c86bd09cd47ead86099e849f49453e652acf8,### Multi-GPU Training
+4eae8d3db17015b1bda7ea64a16b3ab99d54d38977f64d85c6d01e5bb8c6492d,d2lce_6898a7f7f35ca368f75fda48,d2lce_6898a7f7f35ca368f75fda48,ctx_a790a4f33d4d1ca57797120f,backup;definition,d2l_computational_performance_parameterserver_b006,d2l_computational_performance,sentence_6cf6f133bdf5728f744f1b65,BACKUP,B2,C4,SAME_SENSE,multi-GPU training,986ad5d17d5307ff37c572801abf0193103b7383b8aa4d9b7780b39a4cdda9ef,4b17de8ca8f8d3bff679a155f6ffbadc9bdc353e5f663e380043f9c864555e50,"Right: a variant of multi-GPU training: (1) we compute loss and gradient, (2) all gradients are aggregated on one GPU, (3) parameter update happens and the parameters are re-distributed to all GPUs.](../img/ps.svg)
+:label:`fig_parameterserver`"
+4eae8d3db17015b1bda7ea64a16b3ab99d54d38977f64d85c6d01e5bb8c6492d,d2lce_6898a7f7f35ca368f75fda48,d2lce_6898a7f7f35ca368f75fda48,ctx_b75db9e35adbaaf1637e9f5b,primary;definition,d2l_computational_performance_multiple_gpus_b045,d2l_computational_performance,sentence_a56bc536d461fb7dd9888741,PRIMARY,C3,C3,SAME_SENSE,multi-GPU training,3509cf40ee3846a4e345b0f1d0c9816d4b0c27fe76660ae84453fda295838b33,def18f15c74698823d5fcb570d7a124df3baa134b3be3f80610efd416fe28dd2,Now we can implement [**multi-GPU training on a single minibatch**].
+4eae8d3db17015b1bda7ea64a16b3ab99d54d38977f64d85c6d01e5bb8c6492d,d2lce_6898a7f7f35ca368f75fda48,d2lce_6898a7f7f35ca368f75fda48,ctx_d06cbf1985e80a5cb41f32fc,backup,d2l_computational_performance_multiple_gpus_b050,d2l_computational_performance,sentence_2f222231eea2d2071189377b,BACKUP,B1,C4,SAME_SENSE,multi-GPU training,130c2a60d383ca98b8fd58b4eda5d63a4cf45cdef2227793fc76681a5e7e8c16,c03303d0a1f1495e54c5434804f21ddae448e8c3dec4433ab6b30b974fd0e0f8,"```{.python .input}
+#@tab pytorch
+def train(num_gpus, batch_size, lr):
+    train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size)
+    devices = [d2l.try_gpu(i) for i in range(num_gpus)]
+    # Copy model parameters to `num_gpus` GPUs
+    device_params = [get_params(params, d) for d in devices]
+    num_epochs = 10
+    animator = d2l.Animator('epoch', 'test acc', xlim=[1, num_epochs])
+    timer = d2l.Timer()
+    for epoch in range(num_epochs):
+        timer.start()
+        for X, y in train_iter:
+            # Perform multi-GPU training for a single minibatch
+            train_batch(X, y, device_params, devices, lr)
+            torch.cuda.synchronize()
+        timer.stop()
+        # Evaluate the model on GPU 0
+        animator.add(epoch + 1, (d2l.evaluate_accuracy_gpu(
+            lambda x: lenet(x, device_params[0]), test_iter, devices[0]),))
+    print(f'test acc: {animator.Y[0][-1]:.2f}, {timer.avg():.1f} sec/epoch '
+          f'on {str(devices)}')
+```"
+4eae8d3db17015b1bda7ea64a16b3ab99d54d38977f64d85c6d01e5bb8c6492d,d2lce_6898a7f7f35ca368f75fda48,d2lce_6898a7f7f35ca368f75fda48,ctx_dd876433a4a31b49da5e3474,primary;definition;part_of_speech,d2l_computational_performance_multiple_gpus_b026,d2l_computational_performance,sentence_5787e8601d4923ddde8b11ae,PRIMARY,C5,C3,SAME_SENSE,multi-GPU training,30d4c3f3fbbce6e35af8133237140ed931faa6e1cdc721db7ce790bd6c435772,340352bacb8614bc244ba356a963047b3cf6fd1b282e36eed960b9f8c51bf4b5,For efficient multi-GPU training we need two basic operations.
+4eae8d3db17015b1bda7ea64a16b3ab99d54d38977f64d85c6d01e5bb8c6492d,d2lce_6898a7f7f35ca368f75fda48,d2lce_6898a7f7f35ca368f75fda48,ctx_e3dc582632a5a667da04879d,primary,d2l_computational_performance_multiple_gpus_b049,d2l_computational_performance,sentence_d59502dd5b7c15e5d397569d,PRIMARY,C4,C4,SAME_SENSE,multi-GPU training,506f2978b11cc20c1397d4a886f794b0bfb49958d07b8bf255a448998e3ccc39,d38e61e27f723799a8f8346e55adbb622dbc0a0ca2337aea35edb3d5a831b4d5,"```{.python .input}
+def train(num_gpus, batch_size, lr):
+    train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size)
+    devices = [d2l.try_gpu(i) for i in range(num_gpus)]
+    # Copy model parameters to `num_gpus` GPUs
+    device_params = [get_params(params, d) for d in devices]
+    num_epochs = 10
+    animator = d2l.Animator('epoch', 'test acc', xlim=[1, num_epochs])
+    timer = d2l.Timer()
+    for epoch in range(num_epochs):
+        timer.start()
+        for X, y in train_iter:
+            # Perform multi-GPU training for a single minibatch
+            train_batch(X, y, device_params, devices, lr)
+            npx.waitall()
+        timer.stop()
+        # Evaluate the model on GPU 0
+        animator.add(epoch + 1, (d2l.evaluate_accuracy_gpu(
+            lambda x: lenet(x, device_params[0]), test_iter, devices[0]),))
+    print(f'test acc: {animator.Y[0][-1]:.2f}, {timer.avg():.1f} sec/epoch '
+          f'on {str(devices)}')
+```"
+4eae8d3db17015b1bda7ea64a16b3ab99d54d38977f64d85c6d01e5bb8c6492d,d2lce_6898a7f7f35ca368f75fda48,d2lce_6898a7f7f35ca368f75fda48,ctxx_04d9704fff4fcd51f6f64b7c,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,multi-GPU training,23d4c399d2e0ad4868697939140fd51d816588cfb36e0c22b2478fb25826ca9f,cfca5477b69402b3e2fc574540871f365f12aa04b468c8814f692d05cb439ba2,Synthetic: The workshop offered multi-GPU training for new lab technicians learning hardware maintenance.
+0daa1b2db66b6d27003b08b3aad945da2b24a7790f999cd68024aefd33aadc1a,d2lce_ccf7d0a5109d86ee76a75b9c,d2lce_ccf7d0a5109d86ee76a75b9c,ctx_017659fee16b4b1352f9f1b5,primary,d2l_convolutional_neural_networks_why_conv_b039,d2l_convolutional_neural_networks,sentence_5cd498b77e4773058cec9c99,PRIMARY,C4,C3,SAME_SENSE,multiple channels,dbb149e6e4b5dbe64ec5dfb58d42f29c13b9e73d9aeac770d59c29f47e9ba2b6,93a9b23aea56652ebbe6f8ae8d3999de879a577084893f3dee890eb8d27e7796,"To support multiple channels in both inputs ($\mathsf{X}$) and hidden representations ($\mathsf{H}$),
+we can add a fourth coordinate to $\mathsf{V}$: $[\mathsf{V}]_{a, b, c, d}$."
+0daa1b2db66b6d27003b08b3aad945da2b24a7790f999cd68024aefd33aadc1a,d2lce_ccf7d0a5109d86ee76a75b9c,d2lce_ccf7d0a5109d86ee76a75b9c,ctx_3972c87ed9f0cc305dbef415,primary;definition;part_of_speech,d2l_convolutional_neural_networks_channels_b005,d2l_convolutional_neural_networks,sentence_d0e3e7a4e3d16a4ce2e845e8,PRIMARY,C3,C3,SAME_SENSE,multiple channels,97fec598084a82fd7a88d3787a0c5f096effd73ab989ac9efb3766e6b1f30c85,503fb012959da8c0a6b76f92879deed8537839c0cd062d9c2c9659013109e4c5,"When the input data contain multiple channels,
+we need to construct a convolution kernel
+with the same number of input channels as the input data,
+so that it can perform cross-correlation with the input data."
+0daa1b2db66b6d27003b08b3aad945da2b24a7790f999cd68024aefd33aadc1a,d2lce_ccf7d0a5109d86ee76a75b9c,d2lce_ccf7d0a5109d86ee76a75b9c,ctx_3ca9380a219c00402d68c678,primary;part_of_speech,d2l_natural_language_processing_applications_sentiment_analysis_cnn_b015,d2l_natural_language_processing_applications,sentence_3c394edc4ba7c1cb1494e805,PRIMARY,C5,C3,SAME_SENSE,multiple channels,9f32e35824d0414f982c7e03dcc11ad820bb6f8a816106c8a3148bcf8f579304,0d23af19abae3e8301ae77f70a18376053476b192984febcd67580a9faddd2b5,"For any
+one-dimensional input with multiple channels,
+the convolution kernel
+needs to have the same number of input channels."
+0daa1b2db66b6d27003b08b3aad945da2b24a7790f999cd68024aefd33aadc1a,d2lce_ccf7d0a5109d86ee76a75b9c,d2lce_ccf7d0a5109d86ee76a75b9c,ctx_516a4df8d34c7a0c4415302b,primary;definition,d2l_convolutional_neural_networks_why_conv_b041,d2l_convolutional_neural_networks,sentence_57f2398d4946c29ecd8c3a58,PRIMARY,C1,C1,SAME_SENSE,multiple channels,31d017163384910f6463c79b70e5ec004f074b0e514097b8723d65b7ef7f290f,8be839e0754c6883185b3e3003b93d3afe2b65cca833283011d15848ac694f3e,"Being more general,
+:eqref:`eq_conv-layer-channels` is
+the definition of a convolutional layer for multiple channels, where $\mathsf{V}$ is a kernel or filter of the layer."
+0daa1b2db66b6d27003b08b3aad945da2b24a7790f999cd68024aefd33aadc1a,d2lce_ccf7d0a5109d86ee76a75b9c,d2lce_ccf7d0a5109d86ee76a75b9c,ctx_54f8c3cb816277ace430df97,backup;part_of_speech,d2l_convolutional_neural_networks_index_b005,d2l_convolutional_neural_networks,sentence_27f3e0ec9d14cbd6108f4db0,BACKUP,B2,C2,SAME_SENSE,multiple channels,797545d4829d49809c4ef85ee3d9c7449e00ed9ce8b949f0b99dbcb71e1abd60,802bf37ab3e509cd61f00e3c54cdb2c5f85c2d5f8855084e502845be21aa0a8c,"These include the convolutional layers themselves,
+nitty-gritty details including padding and stride,
+the pooling layers used to aggregate information
+across adjacent spatial regions,
+the use of multiple channels  at each layer,
+and a careful discussion of the structure of modern architectures."
+0daa1b2db66b6d27003b08b3aad945da2b24a7790f999cd68024aefd33aadc1a,d2lce_ccf7d0a5109d86ee76a75b9c,d2lce_ccf7d0a5109d86ee76a75b9c,ctx_7a827358f51118bb50e2b2a8,primary;definition,d2l_convolutional_neural_networks_channels_b002,d2l_convolutional_neural_networks,sentence_91b5f8bd289018160e44e66d,PRIMARY,C2,C2,SAME_SENSE,multiple channels,9e9886f279a4497375374a55f1782f356011209da08ab22b43b25a0d1ec18c25,33e400ad7193f1848c742ab9ce7b011f6d8d44631fbcee309164d962f0d4af9e,"While we have described the multiple channels
+that comprise each image (e.g., color images have the standard RGB channels
+to indicate the amount of red, green and blue) and convolutional layers for multiple channels in :numref:`subsec_why-conv-channels`,
+until now, we simplified all of our numerical examples
+by working with just a single input and a single output channel."
+0daa1b2db66b6d27003b08b3aad945da2b24a7790f999cd68024aefd33aadc1a,d2lce_ccf7d0a5109d86ee76a75b9c,d2lce_ccf7d0a5109d86ee76a75b9c,ctx_7c6a965613332587c6fca111,backup,d2l_computer_vision_transposed_conv_b017,d2l_computer_vision,sentence_a0998ace497a7cd7b9a2737e,BACKUP,B1,C2,SAME_SENSE,Multiple Channels,058459f5c07a7ddc15c0171926a5a55d1df61fd79c137e87874dd2592891fdfc,dc3af1cda2332277f149b4e2520575765839a31fe226ecdea294abc3b9742bce,"## [**Padding, Strides, and Multiple Channels**]"
+0daa1b2db66b6d27003b08b3aad945da2b24a7790f999cd68024aefd33aadc1a,d2lce_ccf7d0a5109d86ee76a75b9c,d2lce_ccf7d0a5109d86ee76a75b9c,ctx_ba2a299168416499932ae161,contrastive,d2l_computational_performance_hardware_b012,d2l_computational_performance,sentence_f550204cc50dc417135582aa,CONTRASTIVE,X1,C4,CONTRASTIVE,multiple channels,019f668b09d2996e0bb94a30756658487232b4b44b5d5cb26b25e7f17bf1fb0a,702e5f6cbf098db7baae2cbd0a87f5c985426445df670ca0e03beefacf92015e,Typically pairs of memory modules are used to allow for multiple channels.
+4244ab3b80e29ea0a559759e4d1fd9e7e42753b509a93ee5cb099b58f70a9a86,d2lce_609638f74bc5b32d32469bbc,d2lce_609638f74bc5b32d32469bbc,ctx_21a455b6628cf522b79a5f32,backup;definition,d2l_introduction_index_b006,d2l_introduction,sentence_a925857d80e262b455395ad4,BACKUP,B1,C2,SAME_SENSE,natural language processing,779c9d3e11026602a9bbe4554067361cc88140e7fae0623b6c5498f1b897ae2a,b6ad9bab2d938f002ee8c4ecb83b78e790a65cc209757fc85902b956089b9af6,"In this book, we will teach you the fundamentals of machine learning,
+and focus in particular on *deep learning*, 
+a powerful set of techniques
+driving innovations in areas as diverse as computer vision,
+natural language processing, healthcare, and genomics."
+4244ab3b80e29ea0a559759e4d1fd9e7e42753b509a93ee5cb099b58f70a9a86,d2lce_609638f74bc5b32d32469bbc,d2lce_609638f74bc5b32d32469bbc,ctx_3a53b83e0b10536984dc1341,primary;part_of_speech,d2l_natural_language_processing_pretraining_index_b001,d2l_natural_language_processing_pretraining,sentence_d7ee415d2638b6e062e802f6,PRIMARY,C5,C1,SAME_SENSE,Natural Language Processing,33c6c9655df8d3f949d25dfad5420b0eb054016412374724eef6b75cfb1c335d,dd658a5fe7f40fee215f8a87db6c2405c0fd2028443a25df0ab38c4a32cf6d74,"# Natural Language Processing: Pretraining
+:label:`chap_nlp_pretrain`"
+4244ab3b80e29ea0a559759e4d1fd9e7e42753b509a93ee5cb099b58f70a9a86,d2lce_609638f74bc5b32d32469bbc,d2lce_609638f74bc5b32d32469bbc,ctx_4606fac8f850444f6ad9ec05,backup;definition,d2l_recurrent_neural_networks_language_models_and_dataset_b064,d2l_recurrent_neural_networks,sentence_742d3e3bc14189919547ed04,BACKUP,B2,C3,SAME_SENSE,natural language processing,461a9656d3a98d7dee785678c8101d527017ffedc61232cbaf79b6a16f7f6440,2a435e55f9b711368d3763c61427df9402b945dccea377a6b8513429d8ff5f76,* Language models are key to natural language processing.
+4244ab3b80e29ea0a559759e4d1fd9e7e42753b509a93ee5cb099b58f70a9a86,d2lce_609638f74bc5b32d32469bbc,d2lce_609638f74bc5b32d32469bbc,ctx_7ce4cad6244e99bb3c578b48,primary,d2l_attention_mechanisms_transformer_b023,d2l_attention_mechanisms,sentence_e8c2f1d6fe7c013e8b66bc77,PRIMARY,C4,C4,SAME_SENSE,natural language processing,31c2f7515d87dde2e8510654af3d7232865e9362d5321fdd39c08adbe10d6b04,4c84c5b9c49a3afa19fd0008581feab3b5702921fd29d9d96f997402b2b3c8bc,"Despite its pervasive applications
+in computer vision,
+batch normalization
+is usually empirically
+less effective than layer normalization
+in natural language processing
+tasks, whose inputs are often
+variable-length sequences."
+4244ab3b80e29ea0a559759e4d1fd9e7e42753b509a93ee5cb099b58f70a9a86,d2lce_609638f74bc5b32d32469bbc,d2lce_609638f74bc5b32d32469bbc,ctx_957202f18613badf579e7070,primary;definition;part_of_speech,d2l_natural_language_processing_applications_index_b001,d2l_natural_language_processing_applications,sentence_132cf73d2330ec2bdc56fb73,PRIMARY,C1,C1,SAME_SENSE,Natural Language Processing,dc96b5550863fb49ae08155686c19b79d934858b0f76666db7cc647106e7f614,4c786a60315d5d8f22c6768ea915bdacb38f394055ce0fe536877c2635202215,"# Natural Language Processing: Applications
+:label:`chap_nlp_app`"
+4244ab3b80e29ea0a559759e4d1fd9e7e42753b509a93ee5cb099b58f70a9a86,d2lce_609638f74bc5b32d32469bbc,d2lce_609638f74bc5b32d32469bbc,ctx_db7608ae418801ae81a4cf5c,primary;definition;part_of_speech,d2l_preface_index_b003,d2l_preface,sentence_cff7df59ea4a4b2c9b1a9d1b,PRIMARY,C2,C2,SAME_SENSE,natural language processing,311f2b226447eebad12519e1abdb2d3b5fd4bf30e46c6a8a756fe06a5c05a7f5,38d8e120fef96c5307967e4eeaac074f77087d4c7c0ad4fd54f62b8159c88f6d,"In just the past five years, deep learning has taken the world by surprise,
+driving rapid progress in such diverse fields 
+as computer vision, natural language processing, 
+automatic speech recognition, reinforcement learning, 
+and biomedical informatics."
+4244ab3b80e29ea0a559759e4d1fd9e7e42753b509a93ee5cb099b58f70a9a86,d2lce_609638f74bc5b32d32469bbc,d2lce_609638f74bc5b32d32469bbc,ctx_e596c2db961d7da1d125a384,primary,d2l_recurrent_modern_machine_translation_and_dataset_b002,d2l_recurrent_modern,sentence_46f9bf7d3f2a444b7ecfac8c,PRIMARY,C3,C3,SAME_SENSE,natural language processing,79eded5db07c078d0a6b6a1199874aa2392f1e4813b3de38519a069a55ee302f,87685a1a7593f4cb4de1bc6e45f14dcfc8e7a78442a1c338b3817cacb0ebf9c7,"We have used RNNs to design language models,
+which are key to natural language processing."
+4244ab3b80e29ea0a559759e4d1fd9e7e42753b509a93ee5cb099b58f70a9a86,d2lce_609638f74bc5b32d32469bbc,d2lce_609638f74bc5b32d32469bbc,ctx_f89df5c093f024523f393168,backup,d2l_deep_learning_computation_model_construction_b004,d2l_deep_learning_computation,sentence_131b10f408750d0b523927b2,BACKUP,B3,C2,SAME_SENSE,natural language processing,d2fd72c26433350fed0ecdacb28edd1906fb1cc4c121d51cb1b1427b824a8d3a,74caeea8a65c6acb78a3669d96a9f2499078094b69121aa3d4cc1a92c92a36db,"Similar architectures in which layers are arranged
+in various repeating patterns
+are now ubiquitous in other domains,
+including natural language processing and speech."
+4244ab3b80e29ea0a559759e4d1fd9e7e42753b509a93ee5cb099b58f70a9a86,d2lce_609638f74bc5b32d32469bbc,d2lce_609638f74bc5b32d32469bbc,ctxx_d87f28982cf81a72d04a6b0d,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,natural language processing,7393dc3ee88269fcf0fe82ad1d97eb8519560930972f5fd351881e3367ce6fbd,eb0ae5df06904d5d174e6ed1adbdeb5bfa45e3337e025f5e9ac75e6fe3a94c55,"Synthetic: The phrase natural language processing here refers to a computing field, not to a person informally polishing everyday speech."
+2f12b6f8f6e5eb2356eda41684911a6c8746785e0ef54f90c40dd6acdb99b5fd,d2lce_5c270f3b3ebe4f0059649e18,d2lce_5c270f3b3ebe4f0059649e18,ctx_20ec226227eb3377a4675027,primary,d2l_natural_language_processing_pretraining_approx_training_b032,d2l_natural_language_processing_pretraining,sentence_8c288e6fb42ede3a07ddc65b,PRIMARY,C2,C2,SAME_SENSE,noise words,098a4ad12f854707d0587f2f06f5c4b88a35efa18d06cf94576b02c856951b34,119e0ded89387611d4519b53864b0a74cb9bfd5fd9550827aaceb466ee3d68d0,The computational cost for training is linearly dependent on the number of noise words at each step.
+2f12b6f8f6e5eb2356eda41684911a6c8746785e0ef54f90c40dd6acdb99b5fd,d2lce_5c270f3b3ebe4f0059649e18,d2lce_5c270f3b3ebe4f0059649e18,ctx_6c68ff8f58bf4e101cf66d9f,primary;definition,d2l_natural_language_processing_pretraining_word_embedding_dataset_b031,d2l_natural_language_processing_pretraining,sentence_35c6bbcba6cbab670d1fbbd7,PRIMARY,C3,C1,SAME_SENSE,noise words,f7233b4e06c1766173e9d73ce2cb690f996fe5ed45733693d5fb6ac8bc08129f,403f26f0edbc25801c0f5663539ab399702ed44695f9cc9dc4b3e0b460b2f36a,"To sample noise words according to 
+a predefined distribution,
+we define the following `RandomGenerator` class,
+where the (possibly unnormalized) sampling distribution is passed
+via the argument `sampling_weights`."
+2f12b6f8f6e5eb2356eda41684911a6c8746785e0ef54f90c40dd6acdb99b5fd,d2lce_5c270f3b3ebe4f0059649e18,d2lce_5c270f3b3ebe4f0059649e18,ctx_8a60b064bcb2036082395b15,backup,d2l_natural_language_processing_pretraining_approx_training_b034,d2l_natural_language_processing_pretraining,sentence_a6136d42e3a5b589cd260c1f,BACKUP,B2,C2,SAME_SENSE,noise words,d41581fb961b7c2e00ecb8e08822c73bda5e4ceb7026d76688d30463c29c7ed3,402ca184f468e683c4f970c16cbe4211ccc6009a9ebeab98bf1ae80f93a3b1db,How can we sample noise words in negative sampling?
+2f12b6f8f6e5eb2356eda41684911a6c8746785e0ef54f90c40dd6acdb99b5fd,d2lce_5c270f3b3ebe4f0059649e18,d2lce_5c270f3b3ebe4f0059649e18,ctx_8ee1967b4d544ce02f2d1be9,primary;definition,d2l_natural_language_processing_pretraining_word_embedding_dataset_b036,d2l_natural_language_processing_pretraining,sentence_7f0fe73e5b161f316b5dc88c,PRIMARY,C5,C1,SAME_SENSE,Noise words,9b1223d4d83f7eb5c58e1f46a906e83bd9534b795817d3d8920c4efc9af1e2db,9f78ad157d4b1154c67665f1f326ab1279e1a41f90e42e2c47ae88592f5d9483,"(index 0 is the
+    # excluded unknown token) in the vocabulary
+    sampling_weights = [counter[vocab.to_tokens(i)]**0.75
+                        for i in range(1, len(vocab))]
+    all_negatives, generator = [], RandomGenerator(sampling_weights)
+    for contexts in all_contexts:
+        negatives = []
+        while len(negatives) < len(contexts) * K:
+            neg = generator.draw()
+            # Noise words cannot be context words
+            if neg not in contexts:
+                negatives.append(neg)
+        all_negatives.append(negatives)
+    return all_negatives
+
+all_negatives = get_negatives(all_contexts, vocab, counter, 5)
+```"
+2f12b6f8f6e5eb2356eda41684911a6c8746785e0ef54f90c40dd6acdb99b5fd,d2lce_5c270f3b3ebe4f0059649e18,d2lce_5c270f3b3ebe4f0059649e18,ctx_bd85a6abb1abf1675645f0ec,backup;part_of_speech,d2l_natural_language_processing_pretraining_word_embedding_dataset_b036,d2l_natural_language_processing_pretraining,sentence_d54ca92179389b3eb24c4d67,BACKUP,B1,C1,SAME_SENSE,noise words,ccecf4e1ef8e5a044778408d4497927e8fe122e5afa4f03ff57203cc73c02cbd,027f0b05e4887cfff2069dc2469d76dc265e2c3d1e0df79bbb616747451ee124,"```{.python .input}
+#@tab all
+#@save
+def get_negatives(all_contexts, vocab, counter, K):
+    """"""Return noise words in negative sampling.""""""
+    # Sampling weights for words with indices 1, 2, ..."
+2f12b6f8f6e5eb2356eda41684911a6c8746785e0ef54f90c40dd6acdb99b5fd,d2lce_5c270f3b3ebe4f0059649e18,d2lce_5c270f3b3ebe4f0059649e18,ctx_c2cff6800a035ffeaff0c52d,primary;definition;part_of_speech,d2l_natural_language_processing_pretraining_approx_training_b013,d2l_natural_language_processing_pretraining,sentence_b56db25533a2cfd630c86937,PRIMARY,C1,C1,SAME_SENSE,noise words,65377e55611aaa5d3070a263faa23699b0b503541324cfa4156625a0dcf5732e,7de40d54fa1b1a6eafb3ffb0c985fff610e75b228989be414dab2c928cf93ffd,"For this event involving $w_o$,
+from a predefined distribution $P(w)$
+sample $K$ *noise words*
+that are not from this context window."
+2f12b6f8f6e5eb2356eda41684911a6c8746785e0ef54f90c40dd6acdb99b5fd,d2lce_5c270f3b3ebe4f0059649e18,d2lce_5c270f3b3ebe4f0059649e18,ctx_e871cab6ee40803901bb1ec7,primary,d2l_natural_language_processing_pretraining_word_embedding_dataset_b035,d2l_natural_language_processing_pretraining,sentence_85902cbc725264b2eed2ac4c,PRIMARY,C4,C1,SAME_SENSE,noise words,43749de9ff33d1aa48ed07500ca86d28d212c0bbfd47a0c5597cc0b71dec619c,cde28e9a9c935a78b4c15bebaf7a9c5f0ce1f256811cc9c327142dfac2e01c08,"For a pair of center word and context word, 
+we randomly sample `K` (5 in the experiment) noise words."
+2f12b6f8f6e5eb2356eda41684911a6c8746785e0ef54f90c40dd6acdb99b5fd,d2lce_5c270f3b3ebe4f0059649e18,d2lce_5c270f3b3ebe4f0059649e18,ctx_fad78fb3a08530724c4b2aef,backup,d2l_natural_language_processing_pretraining_word_embedding_dataset_b038,d2l_natural_language_processing_pretraining,sentence_0409e07b40e56bc8456f99c0,BACKUP,B3,C2,SAME_SENSE,noise words,0889e7380519840c3e0581f866cc29957eaf7ba3cf84e49ec4a13e4b6c8c5d1d,8f5ed8856ec9bd169e6ce1b58d8ce3d4da72dda2b7202fd29a94727f8308da8f,"After
+all the center words
+together with their
+context words and sampled noise words are extracted,
+they will be transformed into 
+minibatches of examples
+that can be iteratively loaded
+during training."
+2f12b6f8f6e5eb2356eda41684911a6c8746785e0ef54f90c40dd6acdb99b5fd,d2lce_5c270f3b3ebe4f0059649e18,d2lce_5c270f3b3ebe4f0059649e18,ctxx_ffaf1f7294086734a7ca9f06,contrastive,,,,CONTRASTIVE,X1,CONTRASTIVE,CONTRASTIVE,noise words,1055c1dc8e29098c676da66abe1a85b95244fb24e889dd53a0e6a41adc935d25,01312a43f1992fb39d49580dafa0deb92c8a0af38785cc7a11e76d764f4673b3,"Synthetic: Here, noise words are sampled negative examples rather than merely messy or misspelled words in a corpus."

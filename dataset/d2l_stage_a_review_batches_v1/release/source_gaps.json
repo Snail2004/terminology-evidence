@@ -1,0 +1,30 @@
+{
+  "schema_id": "D2LCSTStageASourceGapReportV1",
+  "policy_id": "d2l_cst_stage_a_split_safe_batches_v1",
+  "status": "SOURCE_GAPS_RETAINED_WITHOUT_MUTATING_V3",
+  "sense_count": 2,
+  "missing_reference_count": 2,
+  "rows": [
+    {
+      "sense_id": "d2lce_73dbe839de3f1d00bf1226f0",
+      "source_term": "uncertainty",
+      "split": "validation",
+      "missing_evidence_context_ids": {
+        "part_of_speech": [
+          "ctx_a5bf53f3daed100d0d815e2a"
+        ]
+      }
+    },
+    {
+      "sense_id": "d2lce_c9e2beab505998c5b3b560b5",
+      "source_term": "risk",
+      "split": "test",
+      "missing_evidence_context_ids": {
+        "definition": [
+          "ctx_157199781ed5147360a98494"
+        ]
+      }
+    }
+  ],
+  "source_gaps_sha256": "9d9ef213f9009023fc697d8339b5e2e65ab84ad009571563c9b606be2b42f02a"
+}
