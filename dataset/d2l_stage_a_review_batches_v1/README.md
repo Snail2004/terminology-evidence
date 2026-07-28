@@ -61,3 +61,36 @@ python dataset/d2l_stage_a_review_batches_v1/tools/review_workflow.py merge `
   --review-3 C:/path/to/ai_3.csv `
   --output-dir C:/path/to/development_001_merged
 ```
+
+## Collecting all 48 returned reviews
+
+Place returned files under one intake root. Each batch must contain three
+physically distinct files, even when independent reviewers reach byte-identical
+conclusions:
+
+```text
+completed_reviews/
+  development_001/ai_1.csv
+  development_001/ai_2.csv
+  development_001/ai_3.csv
+  ...
+  test_003/ai_3.csv
+```
+
+Check progress without creating output:
+
+```powershell
+python dataset/d2l_stage_a_review_batches_v1/tools/review_intake.py status `
+  --release-root dataset/d2l_stage_a_review_batches_v1/release `
+  --intake-root C:/path/to/completed_reviews
+```
+
+After all 48 files pass, finalize all 16 batches atomically into one 150-sense
+artifact. A validation or merge failure leaves the requested output path absent.
+
+```powershell
+python dataset/d2l_stage_a_review_batches_v1/tools/review_intake.py finalize `
+  --release-root dataset/d2l_stage_a_review_batches_v1/release `
+  --intake-root C:/path/to/completed_reviews `
+  --output-root C:/path/to/finalized_stage_a_reviews
+```
