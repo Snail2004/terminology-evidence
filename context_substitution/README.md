@@ -29,9 +29,10 @@ python -m context_substitution.v2 --help
 
 The integration-readiness layer lives under `v2/integration`. It provides a
 zero-API directory/ZIP pilot receipt, deterministic fake-provider coverage,
-content-addressed replay verification, a decision-neutral projection draft,
-and a deterministic release bundle. The projection remains explicitly pending
-until the shared `ContextEvidencePackageV1.1` authority is released.
+content-addressed replay verification, an official decision-neutral
+`ContextEvidencePackageV1@1.1.0` producer, and a deterministic release bundle.
+The producer is pinned to local authority tag `contracts-v1.1.0`; local pilot
+packages remain on HOLD while the Global Validator is unavailable.
 
 This domain must not implement Vietnamese attestation, web/corpus attestation,
 Global Validator decisions, or final glossary sealing. The 150 term-sense V3

@@ -24,7 +24,8 @@ _REQUIRED_EVIDENCE = (
     "pilot_adapter_receipt.json",
     "pilot_runtime_receipt.json",
     "pilot_zero_api_summary.json",
-    "contract_projection_report.json",
+    "development_frozen_candidates.json",
+    "context_evidence_packages/manifest.json",
     "replay_report.json",
     "fake_run.json",
     "pilot_input.json",
@@ -63,7 +64,13 @@ def build_integration_release(
     (staging / "evidence").mkdir(parents=True)
     _copy_source(source_root, staging / "source" / "context_substitution")
     for name in _REQUIRED_EVIDENCE:
-        shutil.copy2(evidence_root / name, staging / "evidence" / name)
+        destination = staging / "evidence" / name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(evidence_root / name, destination)
+    shutil.copytree(
+        evidence_root / "context_evidence_packages" / "packages",
+        staging / "evidence" / "context_evidence_packages" / "packages",
+    )
     shutil.copytree(
         ledger_root / "provider_responses",
         staging / "evidence" / "provider_responses",
@@ -108,7 +115,7 @@ def build_integration_release(
         "junit": junit_summary,
         "provider_call_count": 0,
         "final_glossary_decision": None,
-        "contract_authority_status": "WAITING_FOR_CONTEXT_EVIDENCE_PACKAGE_V1_1",
+        "contract_authority_status": "ADOPTED_CONTRACTS_V1_1_0",
         "known_gaps": sorted(set(known_gaps)),
         "file_inventory": inventory,
         "integrity": {},

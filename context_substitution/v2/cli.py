@@ -15,10 +15,17 @@ from context_substitution.v2.dataset.reviewed_support import (
     validate_reviewed_support_bundle,
 )
 from context_substitution.v2.evaluation.gold import evaluate_gold_cases
+from context_substitution.v2.integration.authority import validate_authority
 from context_substitution.v2.integration.common import load_json, write_json
+from context_substitution.v2.integration.development_fixtures import (
+    build_development_frozen_candidate_fixtures,
+)
 from context_substitution.v2.integration.fake_provider import run_fake_provider_pilot
 from context_substitution.v2.integration.pilot import run_zero_api_pilot_smoke
-from context_substitution.v2.integration.projection import project_context_evidence_draft
+from context_substitution.v2.integration.projection import (
+    build_projection_binding_from_ledger,
+    write_context_evidence_package_set,
+)
 from context_substitution.v2.integration.replay import replay_context_run
 from context_substitution.v2.integration.release import build_integration_release
 from context_substitution.v2.providers.base import FailoverStructuredModel
@@ -66,7 +73,17 @@ def parser() -> argparse.ArgumentParser:
 
     projection = commands.add_parser("project-context-evidence")
     projection.add_argument("--run", type=Path, required=True)
-    projection.add_argument("--output", type=Path, required=True)
+    projection.add_argument("--frozen-candidates", type=Path, required=True)
+    projection.add_argument("--ledger", type=Path, required=True)
+    projection.add_argument("--output-directory", type=Path, required=True)
+
+    development_freeze = commands.add_parser("development-fixture-freeze")
+    development_freeze.add_argument("--input", type=Path, required=True)
+    development_freeze.add_argument("--run", type=Path, required=True)
+    development_freeze.add_argument("--ledger", type=Path, required=True)
+    development_freeze.add_argument("--output", type=Path, required=True)
+
+    commands.add_parser("authority-validate")
 
     gold = commands.add_parser("gold-evaluate")
     gold.add_argument("--cases", type=Path, required=True)
@@ -173,15 +190,50 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         return 0
     if args.command == "project-context-evidence":
-        result = project_context_evidence_draft(load_json(args.run))
+        run_payload = load_json(args.run)
+        frozen_set = load_json(args.frozen_candidates)
+        result = write_context_evidence_package_set(
+            run_payload=run_payload,
+            frozen_candidates=_frozen_candidates(frozen_set),
+            binding=build_projection_binding_from_ledger(
+                run_payload=run_payload,
+                ledger_path=args.ledger,
+            ),
+            output_directory=args.output_directory,
+        )
+        _print(
+            {
+                "output_directory": str(args.output_directory.resolve()),
+                "package_count": result["package_count"],
+                "status": result["status"],
+                "manifest_sha256": result["integrity"]["manifest_sha256"],
+            }
+        )
+        return 0
+    if args.command == "development-fixture-freeze":
+        run_payload = load_json(args.run)
+        binding = build_projection_binding_from_ledger(
+            run_payload=run_payload,
+            ledger_path=args.ledger,
+        )
+        result = build_development_frozen_candidate_fixtures(
+            input_payload=load_json(args.input),
+            run_payload=run_payload,
+            started_at=binding["started_at"],
+            completed_at=binding["completed_at"],
+        )
         write_json(args.output, result)
         _print(
             {
                 "output": str(args.output.resolve()),
-                "package_count": result["package_count"],
-                "contract_authority_status": result["contract_authority_status"],
+                "status": result["status"],
+                "candidate_count": result["candidate_count"],
+                "fixture_set_sha256": result["integrity"]["fixture_set_sha256"],
             }
         )
+        return 0
+    if args.command == "authority-validate":
+        _print(validate_authority())
         return 0
     if args.command == "gold-evaluate":
         raw = load_json(args.cases)
@@ -224,10 +276,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             output_directory=args.output_directory,
             commands=_integration_commands(),
             known_gaps=(
-                "ContextEvidencePackageV1.1 authority is not released on this branch",
                 "human-reviewed frozen artifact is not available",
                 "API canary was not run",
                 "validation/test dataset splits and the full 150-sense API run were not run",
+                "Global Validator is not implemented; package set remains on HOLD",
             ),
         )
         _print(result)
@@ -293,6 +345,18 @@ def _route_settings(value: Any) -> list[GoogleRouteSettings]:
     return result
 
 
+def _frozen_candidates(value: Any) -> list[Mapping[str, Any]]:
+    if isinstance(value, Mapping) and isinstance(value.get("candidates"), list):
+        rows = value["candidates"]
+    elif isinstance(value, list):
+        rows = value
+    else:
+        raise ValueError("frozen candidate input must be a list or fixture set")
+    if not rows or not all(isinstance(row, Mapping) for row in rows):
+        raise ValueError("frozen candidate input must contain candidate objects")
+    return list(rows)
+
+
 def _print(value: Any) -> None:
     print(json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True))
 
@@ -304,7 +368,8 @@ def _integration_commands() -> tuple[str, ...]:
         "python -B -m context_substitution.v2 reviewed-support-to-runtime --source <pilot-dir> --parent-v3 <v3-dir> --source-split development --output <evidence>/pilot_input.json --receipt <evidence>/pilot_runtime_receipt.json",
         "python -B -m context_substitution.v2 fake-provider-pilot --input <evidence>/pilot_input.json --ledger-root <evidence>/fake_ledger --run-output <evidence>/fake_run.json --summary-output <evidence>/pilot_zero_api_summary.json",
         "python -B -m context_substitution.v2 replay-validate --input <evidence>/pilot_input.json --run <evidence>/fake_run.json --ledger-root <evidence>/fake_ledger --output <evidence>/replay_report.json",
-        "python -B -m context_substitution.v2 project-context-evidence --run <evidence>/fake_run.json --output <evidence>/contract_projection_report.json",
+        "python -B -m context_substitution.v2 development-fixture-freeze --input <evidence>/pilot_input.json --run <evidence>/fake_run.json --ledger <evidence>/fake_ledger/provider_attempts.jsonl --output <evidence>/development_frozen_candidates.json",
+        "python -B -m context_substitution.v2 project-context-evidence --run <evidence>/fake_run.json --frozen-candidates <evidence>/development_frozen_candidates.json --ledger <evidence>/fake_ledger/provider_attempts.jsonl --output-directory <evidence>/context_evidence_packages",
     )
 
 

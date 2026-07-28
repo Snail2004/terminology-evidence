@@ -16,6 +16,9 @@
 | Context Judge | `d2l_context_judge_v2_1` | Pinned model identity; no Gemini-only restriction |
 | Aggregation | `d2l_context_aggregate_normalized_v2_1` | Missing contrastive/type coverage cannot become eligible |
 | Raw replay | `CONTENT_ADDRESSED_V1` | Required for frozen execution |
+| Shared authority | `contracts-v1.1.0` / `38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed` | Official immutable C/E/Global contract authority |
+| Context evidence output | `ContextEvidencePackageV1` / `1.1.0` | Candidate/input/provenance bound; C gate signals only; final decision null |
+| Local package-set manifest | `ContextEvidencePackageSetManifestC1` / `1.0.0` | HOLD while Global Validator is unavailable |
 | Development threshold policy | `d2l_context_status_development_heuristic_v2_1` | Cannot authorize frozen test-set evidence |
 | Frozen threshold policy | Calibration-artifact-selected version | Requires exact calibration artifact ref/hash |
 | CLI module | `context_substitution.v2` | Validate, adapt, run, replay, project, release, and gold-evaluate |

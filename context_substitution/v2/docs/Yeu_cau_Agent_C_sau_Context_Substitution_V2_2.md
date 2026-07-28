@@ -290,34 +290,28 @@ Không gọi development review pack là human-frozen authority.
 
 ---
 
-## 9. Chờ contract chính thức rồi tích hợp
+## 9. Contract authority đã được tích hợp
 
-Shared contract hiện tại chỉ dùng cho development và chưa phải V1.1 authority.
-
-Không khóa serializer cuối theo RC2.
-
-Khi Contract Steward phát hành:
+Authority chính thức:
 
 ```text
 contracts-v1.1.0
 ```
 
-thực hiện:
+đã được Project Maintainer phát hành và merge nguyên trạng vào branch C. C chỉ
+tiêu thụ package chung, không direct-edit `terminology_contracts_v1/**`.
 
-Agent C không tự fetch/rebase trong standalone repository. Khi Contract
-Steward phát hành commit/tag `contracts-v1.1.0`, Project Maintainer sẽ tích
-hợp authority đó hoặc cấp một reservation cụ thể cho C.
-
-Sau đó:
+Closure:
 
 1. thay provisional projection bằng schema chính thức;
 2. bind đúng `input_contract_sha256`;
 3. xuất `ContextEvidencePackageV1.1`;
 4. xuất `gate_signals` theo contract chính thức;
 5. chạy contract conformance tests;
-6. tạo 15 C evidence packages cho zero-API integration với Global Validator.
+6. tạo 15 C evidence packages zero-API ở trạng thái local HOLD.
 
 Không copy schema contract vào module C. C phải import contract authority chung.
+Global Validator chưa được xây dựng nên chưa có handoff hoặc dependency runtime.
 
 ---
 
@@ -424,7 +418,9 @@ static_scan.json
 credential_scan.json
 pilot_adapter_receipt.json
 pilot_zero_api_summary.json
-contract_projection_report.json
+development_frozen_candidates.json
+context_evidence_packages/manifest.json
+context_evidence_packages/packages/
 provider_attempts.jsonl
 provider_responses/
 replay_report.json
@@ -491,10 +487,10 @@ Làm theo thứ tự:
    global gate action và không sửa contract chung.
 7. Thêm tests cho FROZEN_HUMAN_REVIEWED_SELECTION. Frozen mode phải dùng
    trực tiếp reviewed rows và fail closed khi review/effective-sense hash lệch.
-8. Chưa khóa serializer cuối theo RC2. Khi tag contracts-v1.1.0 được phát hành,
-   rebase tag đó, triển khai projection chính thức và chạy conformance tests.
-9. Sau khi contract integration pass, bàn giao 15 ContextEvidencePackage
-   zero-API cho Global Validator.
+8. Serializer chính thức dùng authority `contracts-v1.1.0`; RC2-RC4 chỉ là
+   review evidence, không phải runtime authority.
+9. Sau khi contract integration pass, giữ 15 ContextEvidencePackage zero-API
+   ở local HOLD cho tới khi maintainer mở phase Global Validator riêng.
 10. Chưa chạy validation/test, chưa chạy 150 senses và chưa chạy API diện rộng.
 
 Artifact bàn giao:
@@ -509,7 +505,9 @@ static_scan.json
 credential_scan.json
 pilot_adapter_receipt.json
 pilot_zero_api_summary.json
-contract_projection_report.json
+development_frozen_candidates.json
+context_evidence_packages/manifest.json
+context_evidence_packages/packages/
 provider_attempts.jsonl
 provider_responses/
 replay_report.json

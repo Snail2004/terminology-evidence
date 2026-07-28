@@ -61,10 +61,12 @@ registered routes: `shopaikey_gemini`, `ckey_gemini`, and
 artifact and content-addressed response ledger.
 
 `pilot-smoke`, `fake-provider-pilot`, `replay-validate`,
-`project-context-evidence`, and `integration-release` are zero-API integration
-commands. Generated evidence must be written outside the source tree. The
-projection command emits `ContextEvidenceProjectionDraftV2_2`, not the shared
-`ContextEvidencePackageV1.1` authority.
+`development-fixture-freeze`, `project-context-evidence`, and
+`integration-release` are zero-API integration commands. Generated evidence
+must be written outside the source tree. The projection command emits official
+`ContextEvidencePackageV1@1.1.0` payloads pinned to `contracts-v1.1.0`. The
+development fixture freezer is conformance-only; its packages remain on HOLD
+and cannot be treated as reviewed Frozen Candidate authority.
 
 ## Fail-closed behavior
 

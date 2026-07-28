@@ -15,9 +15,25 @@ from context_substitution.v2.contracts.validation import ContractValidationError
 from context_substitution.v2.dataset.reviewed_support import (
     reviewed_support_to_context_substitution_input,
 )
+from context_substitution.v2.integration.authority import (
+    AUTHORITY_COMMIT,
+    AUTHORITY_TAG,
+    CONTRACT_MANIFEST_SHA256,
+    seal_frozen_candidate_contract,
+    validate_authority,
+)
+from context_substitution.v2.integration.development_fixtures import (
+    FIXTURE_HOLD_STATUS,
+    build_development_frozen_candidate_fixtures,
+)
 from context_substitution.v2.integration.fake_provider import run_fake_provider_pilot
 from context_substitution.v2.integration.pilot import run_zero_api_pilot_smoke
-from context_substitution.v2.integration.projection import project_context_evidence_draft
+from context_substitution.v2.integration.projection import (
+    PACKAGE_SET_HOLD_STATUS,
+    build_projection_binding_from_ledger,
+    project_context_evidence_packages,
+    write_context_evidence_package_set,
+)
 from context_substitution.v2.integration.replay import replay_context_run
 from context_substitution.v2.runtime.engine import _classify_and_select_contexts
 
@@ -47,12 +63,38 @@ def integration_run(tmp_path_factory: pytest.TempPathFactory) -> dict[str, Any]:
         original_run=result["run"],
         ledger_root=root / "ledger",
     )
+    ledger_path = root / "ledger" / "provider_attempts.jsonl"
+    binding = build_projection_binding_from_ledger(
+        run_payload=result["run"], ledger_path=ledger_path
+    )
+    frozen = build_development_frozen_candidate_fixtures(
+        input_payload=adapted["input"],
+        run_payload=result["run"],
+        started_at=binding["started_at"],
+        completed_at=binding["completed_at"],
+    )
+    packages = project_context_evidence_packages(
+        run_payload=result["run"],
+        frozen_candidates=frozen["candidates"],
+        binding=binding,
+    )
+    manifest = write_context_evidence_package_set(
+        run_payload=result["run"],
+        frozen_candidates=frozen["candidates"],
+        binding=binding,
+        output_directory=root / "context_evidence_packages",
+    )
     return {
         "root": root,
         "input": adapted["input"],
         "run": result["run"],
         "summary": result["summary"],
         "replay": replay,
+        "ledger_path": ledger_path,
+        "binding": binding,
+        "frozen": frozen,
+        "packages": packages,
+        "manifest": manifest,
     }
 
 
@@ -69,6 +111,8 @@ def test_standalone_cli_exposes_required_commands() -> None:
         "context-run",
         "run-validate",
         "project-context-evidence",
+        "development-fixture-freeze",
+        "authority-validate",
         "gold-evaluate",
     } <= choices
 
@@ -150,17 +194,66 @@ def test_raw_response_tamper_breaks_replay(
         )
 
 
-def test_projection_is_separate_and_decision_neutral(
+def test_projection_emits_official_v1_1_packages_and_remains_decision_neutral(
     integration_run: dict[str, Any],
 ) -> None:
-    report = project_context_evidence_draft(integration_run["run"])
-    assert report["package_count"] == 15
-    assert report["contract_authority_status"] == (
-        "WAITING_FOR_CONTEXT_EVIDENCE_PACKAGE_V1_1"
-    )
-    assert report["final_glossary_decision"] is None
-    assert all(package["final_glossary_decision"] is None for package in report["packages"])
-    assert all(len(package["gate_signals"]) == 7 for package in report["packages"])
+    packages = integration_run["packages"]
+    assert len(packages) == 15
+    assert all(package["schema_id"] == "ContextEvidencePackageV1" for package in packages)
+    assert all(package["schema_version"] == "1.1.0" for package in packages)
+    assert all(package["final_glossary_decision"] is None for package in packages)
+    assert all(len(package["gate_signals"]) == 7 for package in packages)
+    assert all("global_gate_action" not in package for package in packages)
+    assert integration_run["frozen"]["status"] == FIXTURE_HOLD_STATUS
+    assert integration_run["manifest"]["status"] == PACKAGE_SET_HOLD_STATUS
+    assert integration_run["manifest"]["global_gate_action"] is None
+
+
+def test_projection_preserves_candidate_and_input_contract_bindings(
+    integration_run: dict[str, Any],
+) -> None:
+    frozen = {
+        row["candidate_key"]["candidate_id"]: row
+        for row in integration_run["frozen"]["candidates"]
+    }
+    for package in integration_run["packages"]:
+        source = frozen[package["candidate_key"]["candidate_id"]]
+        assert package["candidate_key"] == source["candidate_key"]
+        assert package["input_contract_sha256"] == source["input_contract_sha256"]
+
+
+def test_projection_rejects_validly_resealed_foreign_candidate(
+    integration_run: dict[str, Any],
+) -> None:
+    forged = copy.deepcopy(integration_run["frozen"]["candidates"])
+    forged[0]["candidate_key"]["source_term"] = "foreign-source-term"
+    forged[0] = seal_frozen_candidate_contract(forged[0])
+    with pytest.raises(ValueError, match="source_term differs"):
+        project_context_evidence_packages(
+            run_payload=integration_run["run"],
+            frozen_candidates=forged,
+            binding=integration_run["binding"],
+        )
+
+
+def test_projection_rejects_authority_binding_drift(
+    integration_run: dict[str, Any],
+) -> None:
+    forged = copy.deepcopy(integration_run["binding"])
+    forged["authority_commit"] = HASH_A
+    with pytest.raises(ValueError, match="authority commit mismatch"):
+        project_context_evidence_packages(
+            run_payload=integration_run["run"],
+            frozen_candidates=integration_run["frozen"]["candidates"],
+            binding=forged,
+        )
+
+
+def test_frozen_authority_receipt_matches_published_contract() -> None:
+    receipt = validate_authority()
+    assert receipt["authority_tag"] == AUTHORITY_TAG
+    assert receipt["authority_commit"] == AUTHORITY_COMMIT
+    assert receipt["manifest_sha256"] == CONTRACT_MANIFEST_SHA256
 
 
 def test_pending_review_pack_cannot_claim_frozen_authority() -> None:
