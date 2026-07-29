@@ -1,0 +1,68 @@
+{
+  "batch_count": 10,
+  "batches": [
+    {
+      "batch_id": "batch_001",
+      "case_count": 4,
+      "zip_path": "handoff/batch_001_reviewer_3_adjudication.zip",
+      "zip_sha256": "60f2e0a34facf29cc852fa20e1a9c20d97a3bea6442138b033b2a3fac19233b3"
+    },
+    {
+      "batch_id": "batch_002",
+      "case_count": 5,
+      "zip_path": "handoff/batch_002_reviewer_3_adjudication.zip",
+      "zip_sha256": "eb7ba395cb9124edcddfc1f922151d900d8e691c2aa325583f80c46733852e13"
+    },
+    {
+      "batch_id": "batch_003",
+      "case_count": 6,
+      "zip_path": "handoff/batch_003_reviewer_3_adjudication.zip",
+      "zip_sha256": "d9f32ff9c15a00a5e64061134b80ebee36d26425fb6abfaf1f7173372c17fb3f"
+    },
+    {
+      "batch_id": "batch_004",
+      "case_count": 3,
+      "zip_path": "handoff/batch_004_reviewer_3_adjudication.zip",
+      "zip_sha256": "422524a2e4551a40279bed852eda41aa5d3f377f1339cbfd988a031b14444679"
+    },
+    {
+      "batch_id": "batch_005",
+      "case_count": 5,
+      "zip_path": "handoff/batch_005_reviewer_3_adjudication.zip",
+      "zip_sha256": "3e0c172a4c74f5c83f8b6c29cd3123913b435e0d6dc322c34de6525c8c668b7e"
+    },
+    {
+      "batch_id": "batch_006",
+      "case_count": 4,
+      "zip_path": "handoff/batch_006_reviewer_3_adjudication.zip",
+      "zip_sha256": "c70fcd5b8388b066c6a0a5191405795b78fabf6617b2bc9b47f81af1621152c9"
+    },
+    {
+      "batch_id": "batch_007",
+      "case_count": 3,
+      "zip_path": "handoff/batch_007_reviewer_3_adjudication.zip",
+      "zip_sha256": "7e24de1a8ad875335dcf93461c2e0e765e5c4c320c73c685358b930ae2f56ebf"
+    },
+    {
+      "batch_id": "batch_008",
+      "case_count": 6,
+      "zip_path": "handoff/batch_008_reviewer_3_adjudication.zip",
+      "zip_sha256": "630b86f4a28c45b95faa184352a76caf2266428c4ba87d664fc30cb61e96c6da"
+    },
+    {
+      "batch_id": "batch_009",
+      "case_count": 5,
+      "zip_path": "handoff/batch_009_reviewer_3_adjudication.zip",
+      "zip_sha256": "715b136d59193fec66de69aa33f690da7de5fc5a335303d24a1b5ff0adfdd1f5"
+    },
+    {
+      "batch_id": "batch_010",
+      "case_count": 4,
+      "zip_path": "handoff/batch_010_reviewer_3_adjudication.zip",
+      "zip_sha256": "09d44e03a4e6ca72bbacb790d4a96191e287906f17d5e088e5e82f5a7207bab3"
+    }
+  ],
+  "case_count": 45,
+  "policy_id": "d2l-remaining-100-stage-a-review-intake-v1.0",
+  "schema_id": "D2LRemaining100StageAReviewer3BatchIndexV1"
+}

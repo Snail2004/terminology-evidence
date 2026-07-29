@@ -1,0 +1,11 @@
+{
+  "corrected_case_count": 6,
+  "final_glossary_decision": null,
+  "policy_id": "d2l-remaining-100-stage-a-reviewer2-targeted-repair-v1.0",
+  "provider_call_count": 0,
+  "repair_input_sha256": "54fa45e42a744d883ec326c90b6d6bc3e2487ca326086de92c086b9cd1bfb4b9",
+  "repair_response_sha256": "df3989dfbe01afeb849d41c6c130ad132e7d317d9de4be13244231bd0b1e5e73",
+  "schema_id": "D2LRemaining100StageAReviewer2CorrectionReceiptV1",
+  "source_review_inventory_sha256": "f84bda2052a1a2245c94eebfa2ee74811a2a290a1f7cd3eeaaadaf48706a85d0",
+  "stage_b_gold_autofill_count": 0
+}
