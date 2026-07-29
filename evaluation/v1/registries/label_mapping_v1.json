@@ -1,0 +1,16 @@
+{
+  "schema_id": "EvaluationLabelMappingV1",
+  "schema_version": "1.0.0",
+  "gold_labels": ["ACCEPT", "CONDITIONAL", "REJECT", "SPLIT_REQUIRED", "HUMAN_UNJUDGEABLE"],
+  "global_statuses": ["AUTO_APPROVED", "PROVISIONAL", "HUMAN_REVIEW", "REJECTED", "SPLIT_REQUIRED"],
+  "primary_binary": {
+    "positive": ["ACCEPT"],
+    "negative": ["REJECT", "SPLIT_REQUIRED"],
+    "excluded": ["CONDITIONAL", "HUMAN_UNJUDGEABLE"]
+  },
+  "secondary_binary": {
+    "usable": ["ACCEPT", "CONDITIONAL"],
+    "not_usable": ["REJECT", "SPLIT_REQUIRED"],
+    "excluded": ["HUMAN_UNJUDGEABLE"]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schema_id": "EvaluationMetricRegistryV1",
+  "schema_version": "1.0.0",
+  "primary_metrics": [
+    "auto_approved_precision",
+    "auto_approved_coverage",
+    "false_approval_count",
+    "human_review_rate",
+    "hard_rejection_accuracy"
+  ],
+  "metrics": [
+    {"id": "auto_approved_precision", "family": "global", "unit": "proportion", "primary": true},
+    {"id": "auto_approved_coverage", "family": "global", "unit": "proportion", "primary": true},
+    {"id": "false_approval_count", "family": "global", "unit": "count", "primary": true},
+    {"id": "human_review_rate", "family": "global", "unit": "proportion", "primary": true},
+    {"id": "hard_rejection_accuracy", "family": "global", "unit": "proportion", "primary": true},
+    {"id": "macro_precision", "family": "classification", "unit": "proportion", "primary": false},
+    {"id": "macro_recall", "family": "classification", "unit": "proportion", "primary": false},
+    {"id": "f1_accept_vs_rest", "family": "classification", "unit": "proportion", "primary": false},
+    {"id": "brier_score", "family": "calibration", "unit": "score", "primary": false},
+    {"id": "log_loss", "family": "calibration", "unit": "score", "primary": false},
+    {"id": "threshold_flip_rate", "family": "calibration", "unit": "proportion", "primary": false},
+    {"id": "c_wrong_sense_recall", "family": "context", "unit": "proportion", "primary": false},
+    {"id": "e_same_precision", "family": "attestation", "unit": "proportion", "primary": false},
+    {"id": "gate_trigger_rate", "family": "gate", "unit": "proportion", "primary": false},
+    {"id": "tac_wrong_sense_recall", "family": "tac", "unit": "proportion", "primary": false},
+    {"id": "terminology_correctness", "family": "downstream", "unit": "proportion", "primary": false}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_id": "EvaluationExperimentRegistryV1",
+  "schema_version": "1.0.0",
+  "experiments": [
+    {"id": "E0", "kind": "contract_conformance", "split": "synthetic", "network": false},
+    {"id": "E1", "kind": "development_zero_network", "split": "development", "network": false},
+    {"id": "E2", "kind": "context_component", "split": "development", "network": false},
+    {"id": "E3", "kind": "attestation_component", "split": "development", "network": false},
+    {"id": "E4", "kind": "global_development", "split": "development", "network": false},
+    {"id": "E5", "kind": "calibration", "split": "validation", "network": false},
+    {"id": "E6", "kind": "hidden_test", "split": "test", "network": false},
+    {"id": "E7", "kind": "ablation", "split": "development", "network": false},
+    {"id": "E8", "kind": "downstream_arms", "split": "development", "network": false},
+    {"id": "E9", "kind": "tac", "split": "development", "network": false}
+  ]
+}

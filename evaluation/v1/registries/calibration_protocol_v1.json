@@ -1,0 +1,13 @@
+{
+  "schema_id": "EvaluationCalibrationProtocolV1",
+  "schema_version": "1.0.0",
+  "model": "logistic_regression",
+  "feature_registry": "terminology_contracts_v1.1.0",
+  "training_split": "development",
+  "operating_split": "validation",
+  "bootstrap_group": "sense_id",
+  "bootstrap_replicates": 2000,
+  "precision_target": 0.95,
+  "operating_rule": "maximize_coverage_subject_to_lower_bound_precision_target",
+  "production_artifact_owner": "maintainer"
+}

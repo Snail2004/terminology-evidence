@@ -1,0 +1,9 @@
+{
+  "schema_id": "EvaluationSplitPolicyV1",
+  "schema_version": "1.0.0",
+  "splits": ["development", "validation", "test"],
+  "group_keys": ["sense_id", "source_block_cluster"],
+  "forbidden_overlap": ["candidate_key", "sense_id", "source_block_cluster", "evidence_source_id"],
+  "test_access": "ONE_TIME_AFTER_FREEZE",
+  "access_log_required": true
+}

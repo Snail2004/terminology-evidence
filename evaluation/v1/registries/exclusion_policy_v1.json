@@ -1,0 +1,14 @@
+{
+  "schema_id": "EvaluationExclusionPolicyV1",
+  "schema_version": "1.0.0",
+  "allowed_reason_codes": [
+    "CORRUPT_ARTIFACT",
+    "MISSING_REQUIRED_GOLD",
+    "INVALID_SCHEMA",
+    "UNRESOLVED_SENSE_AUTHORITY",
+    "HUMAN_UNJUDGEABLE",
+    "PROTOCOL_VIOLATION"
+  ],
+  "forbidden_reasons": ["SYSTEM_PERFORMED_BADLY", "LOW_SCORE", "HARD_CASE", "UNFAVORABLE_GATE"],
+  "required_fields": ["candidate_key", "reason", "artifact_ref", "timestamp", "reviewer_approval"]
+}

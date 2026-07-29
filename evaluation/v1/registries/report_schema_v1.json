@@ -1,0 +1,16 @@
+{
+  "schema_id": "EvaluationReportSchemaV1",
+  "schema_version": "1.0.0",
+  "required_metric_fields": [
+    "name",
+    "definition",
+    "unit",
+    "eligible_n",
+    "excluded_n",
+    "estimate",
+    "confidence_interval",
+    "split",
+    "artifact_hashes"
+  ],
+  "formats": ["json", "csv", "markdown"]
+}
