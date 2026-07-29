@@ -24,6 +24,20 @@ from context_substitution.v2.integration.common import (
 from context_substitution.v2.integration.ledger_binding import (
     build_provider_ledger_manifest,
 )
+from context_substitution.v2.integration.official_dataset import (
+    OFFICIAL_ADAPTER_RECEIPT_SCHEMA_ID,
+    OFFICIAL_RUNTIME_RECEIPT_SCHEMA_ID,
+    load_official_dataset_pilot,
+)
+from context_substitution.v2.integration.official_dataset_projection import (
+    build_official_dataset_inputs,
+    validate_official_adapter_receipt,
+    validate_official_runtime_receipt,
+)
+from context_substitution.v2.integration.official_pilot import (
+    OFFICIAL_PILOT_REPORT_SCHEMA_ID,
+    OFFICIAL_PILOT_REPORT_SCHEMA_VERSION,
+)
 from context_substitution.v2.integration.projection import (
     PACKAGE_SET_COMPLETE_STATUS,
     PACKAGE_SET_SCHEMA_ID,
@@ -55,12 +69,32 @@ def validate_integration_evidence(
     if run["input_sha256"] != input_payload["integrity"]["input_sha256"]:
         raise ValueError("fake run is bound to another Context Substitution input")
 
-    adapter = _verify_nested_self_hash(
-        _load(root / "pilot_adapter_receipt.json"), "receipt_sha256"
+    adapter_raw = _load(root / "pilot_adapter_receipt.json")
+    adapter = (
+        validate_official_adapter_receipt(adapter_raw)
+        if adapter_raw.get("schema_id") == OFFICIAL_ADAPTER_RECEIPT_SCHEMA_ID
+        else _verify_nested_self_hash(adapter_raw, "receipt_sha256")
     )
-    runtime = validate_reviewed_support_receipt(
-        _load(root / "pilot_runtime_receipt.json")
+    runtime_raw = _load(root / "pilot_runtime_receipt.json")
+    runtime = (
+        validate_official_runtime_receipt(runtime_raw)
+        if runtime_raw.get("schema_id") == OFFICIAL_RUNTIME_RECEIPT_SCHEMA_ID
+        else validate_reviewed_support_receipt(runtime_raw)
     )
+    official_expected = None
+    if runtime.get("schema_id") == OFFICIAL_RUNTIME_RECEIPT_SCHEMA_ID:
+        official_expected = build_official_dataset_inputs(
+            load_official_dataset_pilot(
+                root / "official_dataset_source.zip",
+                root / "official_dataset_input_pin_v1.json",
+            )
+        )
+        if input_payload != official_expected["input"]:
+            raise ValueError("official C input differs from the pinned Dataset ZIP")
+        if adapter != official_expected["adapter_receipt"]:
+            raise ValueError("official C adapter receipt differs from Dataset authority")
+        if runtime != official_expected["runtime_receipt"]:
+            raise ValueError("official C runtime receipt differs from Dataset authority")
     summary = _verify_nested_self_hash(
         _load(root / "pilot_zero_api_summary.json"), "summary_sha256"
     )
@@ -80,9 +114,12 @@ def validate_integration_evidence(
         run_payload=run,
         ledger_path=root / "fake_ledger" / "provider_attempts.jsonl",
     )
-    frozen = _validate_dataset_frozen_set(
-        _load(root / "frozen_candidates.json"), run=run
-    )
+    frozen_raw = _load(root / "frozen_candidates.json")
+    if official_expected is not None and frozen_raw != official_expected[
+        "frozen_candidates"
+    ]:
+        raise ValueError("official Frozen Candidate set differs from Dataset authority")
+    frozen = _validate_dataset_frozen_set(frozen_raw, run=run)
     package_root = root / "context_evidence_packages"
     package_manifest = _verify_nested_self_hash(
         _load(package_root / "manifest.json"), "manifest_sha256"
@@ -104,6 +141,19 @@ def validate_integration_evidence(
         run=run,
         ledger_manifest=ledger_manifest,
     )
+    official_report_sha256 = None
+    if runtime.get("schema_id") == OFFICIAL_RUNTIME_RECEIPT_SCHEMA_ID:
+        official_report = _verify_nested_self_hash(
+            _load(root / "official_pilot_report.json"), "report_sha256"
+        )
+        _validate_official_pilot_report(
+            official_report,
+            runtime=runtime,
+            run=run,
+            package_manifest=package_manifest,
+            replay=replay,
+        )
+        official_report_sha256 = official_report["integrity"]["report_sha256"]
     return {
         "status": "PASS",
         "authority": authority,
@@ -116,9 +166,56 @@ def validate_integration_evidence(
         "package_count": len(packages),
         "package_manifest_sha256": package_manifest["integrity"]["manifest_sha256"],
         "projection_report_sha256": projection_report["integrity"]["report_sha256"],
+        "official_pilot_report_sha256": official_report_sha256,
         "provider_call_count": 0,
         "final_glossary_decision": None,
     }
+
+
+def _validate_official_pilot_report(
+    value: Mapping[str, Any],
+    *,
+    runtime: Mapping[str, Any],
+    run: Mapping[str, Any],
+    package_manifest: Mapping[str, Any],
+    replay: Mapping[str, Any],
+) -> None:
+    expected = {
+        "schema_id": OFFICIAL_PILOT_REPORT_SCHEMA_ID,
+        "schema_version": OFFICIAL_PILOT_REPORT_SCHEMA_VERSION,
+        "status": "PASS",
+        "source_zip_sha256": runtime["source_zip_sha256"],
+        "source_pin_self_sha256": runtime["source_pin_self_sha256"],
+        "official_manifest_sha256": runtime["official_manifest_sha256"],
+        "source_input_sha256": run["input_sha256"],
+        "source_run_sha256": run["integrity"]["run_sha256"],
+        "effective_sense_contract_count": 5,
+        "frozen_candidate_contract_count": 15,
+        "constraint_evidence_package_count": 15,
+        "context_evidence_package_count": 15,
+        "package_manifest_sha256": package_manifest["integrity"]["manifest_sha256"],
+        "replay_report_sha256": replay["integrity"]["report_sha256"],
+        "local_fake_attempt_count": len(run["provider_attempts"]),
+        "accepted_fake_attempt_count": run["usage"]["accepted_count"],
+        "rejected_fake_attempt_count": run["usage"]["rejected_count"],
+        "candidate_package_failures": [],
+        "provider_call_count": 0,
+        "network_call_count": 0,
+        "final_glossary_decision": None,
+        "global_gate_action": None,
+    }
+    for key, expected_value in expected.items():
+        if value.get(key) != expected_value:
+            raise ValueError(f"official C pilot report {key} mismatch")
+    outcomes = value.get("candidate_outcomes")
+    if not isinstance(outcomes, list) or len(outcomes) != 15:
+        raise ValueError("official C pilot report candidate outcomes mismatch")
+    expected_ids = sorted(row["candidate_id"] for row in run["candidates"])
+    actual_ids = [row.get("candidate_id") for row in outcomes]
+    if actual_ids != expected_ids or any(
+        row.get("final_glossary_decision") is not None for row in outcomes
+    ):
+        raise ValueError("official C pilot report candidate boundary mismatch")
 
 
 def _validate_junit(
@@ -148,8 +245,16 @@ def _validate_zero_api_receipts(
             raise ValueError(f"{name} evidence contains a final glossary decision")
     if adapter.get("provider_call_count") != 0 or runtime.get("provider_call_count") != 0:
         raise ValueError("zero-API receipts report provider calls")
+    if adapter.get("network_call_count", 0) != 0 or runtime.get(
+        "network_call_count", 0
+    ) != 0:
+        raise ValueError("zero-API receipts report network calls")
     if runtime.get("final_glossary_decision") is not None:
         raise ValueError("runtime receipt contains a final glossary decision")
+    if adapter.get("global_gate_action") is not None or runtime.get(
+        "global_gate_action"
+    ) is not None:
+        raise ValueError("C receipt contains a Global action")
     if runtime.get("input_sha256") != input_payload["integrity"]["input_sha256"]:
         raise ValueError("runtime receipt input binding mismatch")
     selection = input_payload["selection_contract"]

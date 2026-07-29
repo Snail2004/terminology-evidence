@@ -25,6 +25,9 @@ from context_substitution.v2.integration.development_fixtures import (
     build_development_frozen_candidate_fixtures,
 )
 from context_substitution.v2.integration.fake_provider import run_fake_provider_pilot
+from context_substitution.v2.integration.official_pilot import (
+    run_official_zero_provider_pilot,
+)
 from context_substitution.v2.integration.pilot import run_zero_api_pilot_smoke
 from context_substitution.v2.integration.projection import (
     build_projection_binding_from_ledger,
@@ -111,6 +114,11 @@ def parser() -> argparse.ArgumentParser:
     fake.add_argument("--run-output", type=Path, required=True)
     fake.add_argument("--summary-output", type=Path, required=True)
 
+    official = commands.add_parser("official-five-sense-pilot")
+    official.add_argument("--dataset-zip", type=Path, required=True)
+    official.add_argument("--dataset-pin", type=Path, required=True)
+    official.add_argument("--evidence-root", type=Path, required=True)
+
     replay = commands.add_parser("replay-validate")
     replay.add_argument("--input", type=Path, required=True)
     replay.add_argument("--run", type=Path, required=True)
@@ -125,6 +133,7 @@ def parser() -> argparse.ArgumentParser:
         type=Path,
         default=DEFAULT_AUTHORITY_RECEIPT_PATH,
     )
+    release.add_argument("--release-name")
 
     measurements = commands.add_parser("measurements-project")
     measurements.add_argument("--run", type=Path, required=True)
@@ -279,6 +288,14 @@ def main(argv: Sequence[str] | None = None) -> int:
         write_json(args.summary_output, result["summary"])
         _print(result["summary"])
         return 0
+    if args.command == "official-five-sense-pilot":
+        result = run_official_zero_provider_pilot(
+            dataset_zip=args.dataset_zip,
+            dataset_pin=args.dataset_pin,
+            evidence_root=args.evidence_root,
+        )
+        _print(result)
+        return 0
     if args.command == "replay-validate":
         result = replay_context_run(
             input_payload=load_json(args.input),
@@ -300,6 +317,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 "real Global pilot awaits COMPLETE E and Dataset packages",
             ),
             authority_receipt_path=args.authority_receipt,
+            **({} if args.release_name is None else {"release_name": args.release_name}),
         )
         _print(result)
         return 0
