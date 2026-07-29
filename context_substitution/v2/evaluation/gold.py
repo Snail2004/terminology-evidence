@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections import Counter
 from typing import Any, Mapping, Sequence
 
-from pipeline.eval.contracts_v1 import (
+from context_substitution.v2.contracts.validation import (
     ContractValidationError,
     require_enum,
     require_exact_keys,
@@ -13,7 +13,7 @@ from pipeline.eval.contracts_v1 import (
     require_string,
     require_unique,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.common import (
+from context_substitution.v2.contracts.common import (
     GOLD_SCHEMA_ID,
     GOLD_SCHEMA_VERSION,
     require_bool,

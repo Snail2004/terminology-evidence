@@ -4,18 +4,19 @@ import json
 from contextlib import contextmanager
 from contextvars import ContextVar
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from typing import Any, Callable, Iterable, Mapping, Protocol, Sequence
 
-from pipeline.eval.contracts_v1 import (
+from context_substitution.v2.contracts.validation import (
     ContractValidationError,
     require_nullable_string,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.common import (
+from context_substitution.v2.contracts.common import (
     PROVIDER_ROUTE_IDS,
     nonnegative_int,
     sha256_text,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.providers.ledger import (
+from context_substitution.v2.providers.ledger import (
     LEDGER_POLICY,
     ProviderResponseLedger,
 )
@@ -88,6 +89,7 @@ class FailoverStructuredModel:
         routes: Sequence[ContextProviderRoute],
         *,
         response_ledger: ProviderResponseLedger | None = None,
+        audit_run_id: str | None = None,
     ) -> None:
         if not routes:
             raise ValueError("at least one Context Judge route is required")
@@ -96,6 +98,7 @@ class FailoverStructuredModel:
             raise ValueError("Context Judge route IDs must be unique")
         self.routes = tuple(routes)
         self.response_ledger = response_ledger
+        self.audit_run_id = audit_run_id
         self.successful_calls: list[dict[str, Any]] = []
         self.attempted_calls: list[dict[str, Any]] = []
         self._active_collector: ContextVar[ProviderCallCollector | None] = (
@@ -134,11 +137,16 @@ class FailoverStructuredModel:
         if collector is not None:
             collector.successful_calls.append(dict(row))
 
-    def _record_attempt(self, attempt: Mapping[str, Any]) -> None:
+    def _record_attempt(
+        self,
+        attempt: Mapping[str, Any],
+        *,
+        audit: Mapping[str, Any] | None = None,
+    ) -> None:
         row = dict(attempt)
         self.attempted_calls.append(row)
         if self.response_ledger is not None:
-            self.response_ledger.record_attempt(row)
+            self.response_ledger.record_attempt(row, audit=audit)
         collector = self._active_collector.get()
         if collector is not None:
             collector.attempted_calls.append(dict(row))
@@ -182,6 +190,7 @@ class FailoverStructuredModel:
                 (prompt_version, system_prompt, user_payload_json, schema_json)
             )
         )
+        request_sha256 = sha256_text(user_payload_json)
         available = [
             route
             for route in self.routes
@@ -194,7 +203,8 @@ class FailoverStructuredModel:
                 f"{role}: no independent provider route remains"
             )
         failures: list[str] = []
-        for route in available:
+        for retry_index, route in enumerate(available):
+            attempt_started_at = _utc_now()
             raw: ProviderRawResponse | None = None
             raw_fields = {
                 "raw_response_ref": None,
@@ -245,7 +255,15 @@ class FailoverStructuredModel:
                         **raw_fields,
                         "accepted": True,
                         "failure_kind": None,
-                    }
+                    },
+                    audit=_attempt_audit(
+                        audit_run_id=self.audit_run_id,
+                        tag=tag,
+                        request_sha256=request_sha256,
+                        retry_index=retry_index,
+                        started_at=attempt_started_at,
+                        completed_at=_utc_now(),
+                    ),
                 )
                 return validated, provenance
             except (
@@ -273,7 +291,15 @@ class FailoverStructuredModel:
                             **raw_fields,
                             "accepted": False,
                             "failure_kind": exc.__class__.__name__,
-                        }
+                        },
+                        audit=_attempt_audit(
+                            audit_run_id=self.audit_run_id,
+                            tag=tag,
+                            request_sha256=request_sha256,
+                            retry_index=retry_index,
+                            started_at=attempt_started_at,
+                            completed_at=_utc_now(),
+                        ),
                     )
             except Exception as exc:
                 if not provider_failure_is_retryable(exc):
@@ -299,7 +325,15 @@ class FailoverStructuredModel:
                         **raw_fields,
                         "accepted": False,
                         "failure_kind": exc.__class__.__name__,
-                    }
+                    },
+                    audit=_attempt_audit(
+                        audit_run_id=self.audit_run_id,
+                        tag=tag,
+                        request_sha256=request_sha256,
+                        retry_index=retry_index,
+                        started_at=attempt_started_at,
+                        completed_at=_utc_now(),
+                    ),
                 )
         rendered = ", ".join(failures) if failures else "no route attempted"
         raise ContextExecutionError(
@@ -336,6 +370,47 @@ def provider_failure_is_retryable(exc: Exception) -> bool:
             "malformed",
         )
     )
+
+
+def _utc_now() -> str:
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def _attempt_audit(
+    *,
+    audit_run_id: str | None,
+    tag: str,
+    request_sha256: str,
+    retry_index: int,
+    started_at: str,
+    completed_at: str,
+) -> dict[str, Any]:
+    identity = _identity_from_tag(tag)
+    return {
+        "run_id": audit_run_id,
+        "tag": tag,
+        "candidate_id": identity["candidate_id"],
+        "context_id": identity["context_id"],
+        "request_sha256": request_sha256,
+        "retry_index": retry_index,
+        "started_at": started_at,
+        "completed_at": completed_at,
+    }
+
+
+def _identity_from_tag(tag: str) -> dict[str, str | None]:
+    parts = tag.split(":")
+    if parts[0] in {"trial", "trial-gate", "context-judge", "contrastive"}:
+        return {
+            "candidate_id": parts[1] if len(parts) > 1 else None,
+            "context_id": parts[2] if len(parts) > 2 else None,
+        }
+    if parts[0] == "pairwise":
+        return {
+            "candidate_id": "|".join(parts[2:4]) if len(parts) >= 4 else None,
+            "context_id": None,
+        }
+    return {"candidate_id": None, "context_id": None}
 
 
 def provider_provenance(
@@ -383,4 +458,3 @@ def provider_provenance(
             raw.latency_ms, path="$.provider.latency_ms"
         ),
     }
-

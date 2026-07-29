@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any, Mapping
 
-from pipeline.eval.contracts_v1 import (
+from context_substitution.v2.contracts.validation import (
     CanonicalPolicy,
     ContractValidationError,
     canonicalize,
@@ -17,11 +17,11 @@ from pipeline.eval.contracts_v1 import (
     seal_payload,
     verify_payload_hash,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.common import (
+from context_substitution.v2.contracts.common import (
     SENSE_DEFINITION_STATUSES,
     sha256_text,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.provenance import (
+from context_substitution.v2.contracts.provenance import (
     validate_source_artifact_bindings,
     validate_source_provenance,
 )
@@ -87,7 +87,7 @@ def normalize_context_substitution_input(
 def legacy_input_to_context_substitution_input(
     payload: Mapping[str, Any],
 ) -> dict[str, Any]:
-    from pipeline.eval.terminology_evidence.legacy_term_evidence.v1 import (
+    from legacy_term_evidence.v1 import (
         validate_d2l_term_evidence_input,
     )
 
@@ -673,7 +673,7 @@ def _validate_reviewed_selection(value: Any, *, path: str) -> dict[str, str] | N
         },
         path=path,
     )
-    from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.responses import (
+    from context_substitution.v2.contracts.responses import (
         validate_selector_annotation,
     )
 

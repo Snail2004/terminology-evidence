@@ -6,16 +6,16 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
-from pipeline.eval.contracts_v1 import ContractValidationError
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.input import (
+from context_substitution.v2.contracts.validation import ContractValidationError
+from context_substitution.v2.contracts.input import (
     INPUT_SCHEMA_ID,
     INPUT_SCHEMA_VERSION,
     seal_context_substitution_input,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.provenance import (
+from context_substitution.v2.contracts.provenance import (
     SOURCE_LOCATOR_KIND,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.dataset.contract import (
+from context_substitution.v2.dataset.contract import (
     CANDIDATE_INSTANCES_FILE,
     CANDIDATE_SLOTS_FILE,
     CONTEXTS_FILE,
@@ -65,7 +65,7 @@ def freeze_to_context_substitution_input(
         "D2LContextSupportSetValidationReadyV3",
         "D2LCSTDevelopmentOnlyPilotV1_1",
     }:
-        from pipeline.eval.terminology_evidence.context_substitution.v2.dataset.reviewed_support import (
+        from context_substitution.v2.dataset.reviewed_support import (
             ReviewedSupportCandidatePolicy,
             reviewed_support_to_context_substitution_input,
         )

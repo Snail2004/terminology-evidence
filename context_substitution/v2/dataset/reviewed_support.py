@@ -12,13 +12,13 @@ from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterator, Mapping, Sequence
 
-from pipeline.eval.contracts_v1 import ContractValidationError
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.input import (
+from context_substitution.v2.contracts.validation import ContractValidationError
+from context_substitution.v2.contracts.input import (
     INPUT_SCHEMA_ID,
     INPUT_SCHEMA_VERSION,
     seal_context_substitution_input,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.provenance import (
+from context_substitution.v2.contracts.provenance import (
     SOURCE_LOCATOR_KIND,
 )
 ADAPTER_SCHEMA_ID = "D2LContextSubstitutionReviewedSupportAdapterV1"
@@ -178,7 +178,7 @@ def reviewed_support_to_context_substitution_input(
                 "$.review_artifact",
                 "frozen human review is defined for pilot V1.1 only",
             )
-        from pipeline.eval.terminology_evidence.context_substitution.v2.dataset.reviewed_selection import (
+        from context_substitution.v2.dataset.reviewed_selection import (
             load_frozen_review_selection,
         )
 

@@ -1,11 +1,11 @@
 """Context Substitution V2 execution internals."""
 
-from pipeline.eval.terminology_evidence.context_substitution.v2.runtime.calibration import (
+from context_substitution.v2.runtime.calibration import (
     ContextThresholdPolicy,
     DEVELOPMENT_HEURISTIC_POLICY,
     frozen_validation_policy,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.runtime.calibration_artifact import (
+from context_substitution.v2.runtime.calibration_artifact import (
     CALIBRATION_POLICY_ID,
     CALIBRATION_SCHEMA_ID,
     CALIBRATION_SCHEMA_VERSION,

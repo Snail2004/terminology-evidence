@@ -3,10 +3,10 @@ from __future__ import annotations
 from collections import defaultdict
 from typing import Any, Mapping, Sequence
 
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.common import (
+from context_substitution.v2.contracts.common import (
     APPLICATION_CONTRACT_VERSION,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.runtime.surface import (
+from context_substitution.v2.runtime.surface import (
     contains_surface,
     normalized_surface,
     surfaces_equivalent,

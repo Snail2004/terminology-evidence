@@ -8,7 +8,7 @@ from collections import defaultdict, deque
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
-from pipeline.eval.terminology_evidence.context_substitution.v2.dataset.contract import (
+from context_substitution.v2.dataset.contract import (
     FreezeValidationError,
     sha256_bytes,
     sha256_text,

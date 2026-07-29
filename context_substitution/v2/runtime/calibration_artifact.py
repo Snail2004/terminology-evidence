@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from typing import Any, Mapping
 
-from pipeline.eval.contracts_v1 import ContractValidationError
+from context_substitution.v2.contracts.validation import ContractValidationError
 
 
 CALIBRATION_SCHEMA_ID = "CSTCalibrationArtifactV1"
