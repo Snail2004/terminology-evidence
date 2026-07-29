@@ -1,0 +1,82 @@
+{
+  "allowed_prefixes": [
+    "terminology_contracts_v1/release/"
+  ],
+  "base_main_commit": "677ef6b434f268153363ea06b335cb8df188ee19",
+  "changed_paths": [
+    {
+      "path": "terminology_contracts_v1/release/authority_maintenance_v1/docs/AUTHORITY_RECEIPT_R2_NOTES.md",
+      "status": "A"
+    },
+    {
+      "path": "terminology_contracts_v1/release/authority_maintenance_v1/docs/README.md",
+      "status": "A"
+    },
+    {
+      "path": "terminology_contracts_v1/release/authority_maintenance_v1/docs/V1_1_1_BACKLOG.md",
+      "status": "A"
+    },
+    {
+      "path": "terminology_contracts_v1/release/authority_maintenance_v1/history/contracts_v1_1_0_authority_receipt_r1_invalid.json",
+      "status": "A"
+    },
+    {
+      "path": "terminology_contracts_v1/release/authority_maintenance_v1/history/contracts_v1_1_0_authority_receipt_r1_resealed.json",
+      "status": "A"
+    },
+    {
+      "path": "terminology_contracts_v1/release/authority_maintenance_v1/tests/authority_fixtures.py",
+      "status": "A"
+    },
+    {
+      "path": "terminology_contracts_v1/release/authority_maintenance_v1/tests/test_authority_builder.py",
+      "status": "A"
+    },
+    {
+      "path": "terminology_contracts_v1/release/authority_maintenance_v1/tests/test_authority_receipt.py",
+      "status": "A"
+    },
+    {
+      "path": "terminology_contracts_v1/release/authority_maintenance_v1/tools/authority_common.py",
+      "status": "A"
+    },
+    {
+      "path": "terminology_contracts_v1/release/authority_maintenance_v1/tools/authority_verifier.py",
+      "status": "A"
+    },
+    {
+      "path": "terminology_contracts_v1/release/authority_maintenance_v1/tools/build_authority_release.py",
+      "status": "A"
+    },
+    {
+      "path": "terminology_contracts_v1/release/authority_maintenance_v1/tools/verify_authority_receipt.py",
+      "status": "A"
+    },
+    {
+      "path": "terminology_contracts_v1/release/v1.1.0-rc1/commands.txt",
+      "status": "R100"
+    },
+    {
+      "path": "terminology_contracts_v1/release/v1.1.0-rc1/junit.xml",
+      "status": "R100"
+    },
+    {
+      "path": "terminology_contracts_v1/release/v1.1.0-rc1/terminology_contracts_v1_1.zip",
+      "status": "R100"
+    },
+    {
+      "path": "terminology_contracts_v1/release/v1.1.0-rc1/terminology_contracts_v1_1.zip.sha256",
+      "status": "R100"
+    },
+    {
+      "path": "terminology_contracts_v1/release/v1.1.0-rc1/terminology_contracts_v1_1_audit.json",
+      "status": "R100"
+    }
+  ],
+  "implementation_commit": "3efc430312f080b4f8b1752e18173501283292f8",
+  "integrity": {
+    "self_sha256": "83cdab167e4e9fc61091b809fee38166f8599f147ee142dbc544ef46b605d65c"
+  },
+  "result": "PASS",
+  "schema_id": "TerminologyContractsAuthorityOwnershipScanV1"
+}

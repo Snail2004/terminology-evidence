@@ -1,0 +1,28 @@
+{
+  "authority_commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+  "authority_tag": "contracts-v1.1.0",
+  "authority_tag_object_sha": "1a8c00d12f100145a276cd8304440ff0a7e8d2a1",
+  "canonical_repo": "C:\\work\\terminology_evidence",
+  "checksums_file_sha256": "099a3c864b892d3390d290dd8900d6558e4771c0bf9178812eaeba514b158b9d",
+  "consumer_rule": "Use authority_tag and authority_commit; C and E remain evidence-only and final_glossary_decision must remain null.",
+  "contract_version": "1.1.0",
+  "feature_contract_file_sha256": "78a0cc6e969c88173a2203c76e41411e836a326616da452f38148c9f0c960244",
+  "feature_contract_version": "1.1.0",
+  "final_zip_checksum_path": "C:\\work\\terminology-evidence-authority\\contracts-v1.1.0\\terminology_contracts_v1_1.zip.sha256",
+  "final_zip_path": "C:\\work\\terminology-evidence-authority\\contracts-v1.1.0\\terminology_contracts_v1_1.zip",
+  "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+  "gate_policy_file_sha256": "3d9fe31a96eecb0ae5f84823f87c7bb4739bd8139942e7b04ac279cc8c39dc85",
+  "integrity": {
+    "self_sha256": "a95e50a6074fc8f3b749ebdf0e00657370bdc068a4d9efa7ffec27bbd807cb12"
+  },
+  "junit_path": "C:\\work\\terminology-evidence-authority\\contracts-v1.1.0\\junit.xml",
+  "manifest_file_sha256": "383884e28e9b9203b0ce346d8ad08572dea235a2d53c40c07bf1de22403f73fc",
+  "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
+  "publication_status": "PUBLISHED_LOCAL_NO_REMOTE",
+  "release_audit_path": "C:\\work\\terminology-evidence-authority\\contracts-v1.1.0\\terminology_contracts_v1_1_audit.json",
+  "release_zip_sha256": "2f16fbd2614308be43619a6643f196d74d588ce12e9a4e30dcec3ab669a6f471",
+  "repo_relative_package_path": "terminology_contracts_v1/",
+  "review_evidence_commit": "147080746afee4f0059d9e51617097f7e383a8d1",
+  "reviewed_content_commit": "36e041abcaa0a8a34ab892ae094b0b3d9c3af2f4",
+  "schema_id": "TerminologyContractsAuthorityReceiptV1"
+}
