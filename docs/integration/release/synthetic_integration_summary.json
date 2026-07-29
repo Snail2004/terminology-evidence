@@ -1,0 +1,26 @@
+{
+  "schema_id": "SystemIntegrationSyntheticSummaryV1",
+  "status": "PASS",
+  "evidence_kind": "SYNTHETIC_LOCAL_CONFORMANCE",
+  "mode": "REAL_DEVELOPMENT_ZERO_NETWORK",
+  "candidate_count": 15,
+  "package_count": 75,
+  "support_artifact_count": 1,
+  "joined_count": 15,
+  "global_input_count": 15,
+  "auto_approved_count": 0,
+  "certificate_count": 0,
+  "provider_network_calls": 0,
+  "replay_pass_count": 15,
+  "public_global_cli": true,
+  "authority": {
+    "tag": "contracts-v1.1.0",
+    "commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+    "contracts_manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
+    "action_policy_sha256": "4220b15b7b5d5b740946b9b258a5e1f25469a8f8409ca6e1a0b399464285c9f5"
+  },
+  "real_pilot_status": "REAL_PILOT_NOT_EXECUTED",
+  "real_pilot_blockers": [
+    "official Dataset/C/E packages and reviewed Global release must be supplied as complete release artifacts"
+  ]
+}

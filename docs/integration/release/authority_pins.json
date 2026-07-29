@@ -1,0 +1,10 @@
+{
+  "schema_id": "SystemIntegrationAuthorityPinsV1",
+  "authority_tag": "contracts-v1.1.0",
+  "authority_commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+  "authority_receipt_self_sha256": "c2e291510f43f2fb82461c5aacd3085948346e98451e218f73192b0eb3c47ed4",
+  "authority_receipt_physical_sha256": "3497460f16ca478dada7b25425775882f10d1cb2b5d3638c36cba4ec5fb2791b",
+  "contracts_manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
+  "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+  "global_action_policy_sha256": "4220b15b7b5d5b740946b9b258a5e1f25469a8f8409ca6e1a0b399464285c9f5"
+}

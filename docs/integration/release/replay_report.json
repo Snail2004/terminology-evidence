@@ -1,0 +1,11 @@
+{
+  "schema_id": "SystemIntegrationReplayReportV1",
+  "status": "PASS",
+  "evidence_kind": "SYNTHETIC_LOCAL_CONFORMANCE",
+  "candidate_count": 15,
+  "replay_pass_count": 15,
+  "semantic_replay": "PUBLIC_CLI_REPLAY_PASS",
+  "checksum_first": true,
+  "original_absolute_path_required": false,
+  "provider_network_calls": 0
+}

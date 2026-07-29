@@ -1,0 +1,15 @@
+{
+  "schema_id": "SystemIntegrationFaultInjectionReportV1",
+  "status": "PASS",
+  "fault_count": 6,
+  "fail_closed_count": 6,
+  "faults": [
+    {"fault": "missing_package", "expected": "REJECTED_REPLAY", "observed": "PASS"},
+    {"fault": "duplicate_json_key", "expected": "REJECTED_REPLAY", "observed": "PASS"},
+    {"fault": "nan", "expected": "REJECTED_REPLAY", "observed": "PASS"},
+    {"fault": "checksum_drift", "expected": "REJECTED_REPLAY", "observed": "PASS"},
+    {"fault": "identity_mismatch", "expected": "REJECTED_JOIN", "observed": "PASS"},
+    {"fault": "path_traversal", "expected": "REJECTED_REPLAY", "observed": "PASS"}
+  ],
+  "provider_network_calls": 0
+}

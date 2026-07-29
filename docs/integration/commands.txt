@@ -1,0 +1,11 @@
+# System Integration Harness V1 verification commands
+
+$env:PYTHONPATH = "$PWD;$PWD\terminology_contracts_v1\python"
+
+python -B -m pytest -q tests\system_integration --tb=short -p no:cacheprovider
+python -B -m py_compile (Get-ChildItem integration_harness -Filter '*.py' -File | % FullName)
+python -B -m integration_harness --help
+python -B -m integration_harness build-release --repository-root . --output-dir release
+
+# Real development/replay requires explicit, externally supplied authority and
+# producer manifests. Do not substitute a fixture receipt for a real release.
