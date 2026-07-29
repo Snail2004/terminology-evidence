@@ -25,6 +25,12 @@ from vietnamese_attestation.v1.readiness.junit import (
     EXPECTED_E_SUITE_TESTCASE_IDENTITIES,
 )
 from vietnamese_attestation.v1.cli.readiness import main as readiness_cli_main
+from vietnamese_attestation.v1.dataset import (
+    OFFICIAL_PILOT_MANIFEST_SHA256,
+    OFFICIAL_PILOT_MEMBER_COUNT,
+    OFFICIAL_PILOT_PIN_SHA256,
+    OFFICIAL_PILOT_ZIP_SHA256,
+)
 from vietnamese_attestation.v1.zero_api.artifacts import (
     file_sha256,
     self_sha256,
@@ -34,6 +40,9 @@ from vietnamese_attestation.v1.zero_api.artifacts import (
 
 ZERO_API_ARTIFACT = Path(
     r"C:\work\terminology-evidence-artifacts\vietnamese-attestation-v1.1-zero-api-20260729-v3"
+)
+OFFICIAL_DATASET_RELATIVE = Path(
+    "review_evidence/dataset/d2l-stage-a-official-5-sense-pilot-v1"
 )
 
 
@@ -390,6 +399,7 @@ def test_post_zero_api_release_is_commit_bound_cache_free_and_honest(
     repository = r2_repository
     source = _repository_root()
     commit = _git(source, "rev-parse", "HEAD")
+    official_dataset = _official_dataset_paths()
     summary = build_post_zero_api_release(
         repository_root=repository,
         authority_receipt=_r2_receipt(repository),
@@ -406,6 +416,8 @@ def test_post_zero_api_release_is_commit_bound_cache_free_and_honest(
         junit_path=(
             _write_junit(tmp_path / "valid.xml")
         ),
+        dataset_release_zip=official_dataset["zip"],
+        dataset_input_pin=official_dataset["pin"],
     )
 
     assert summary["status"] == "PASS_WITH_EXTERNAL_HOLDS"
@@ -416,7 +428,6 @@ def test_post_zero_api_release_is_commit_bound_cache_free_and_honest(
     assert summary["test_gate"]["failures"] == 0
     assert summary["test_gate"]["errors"] == 0
     assert summary["holds"] == [
-        "BLOCKED_BY_DATASET_AUTHORITY",
         "BLOCKED_BY_CONTROLLED_REGISTRY",
         "BLOCKED_BY_LIVE_CANARY_APPROVAL",
     ]
@@ -435,8 +446,12 @@ def test_post_zero_api_release_is_commit_bound_cache_free_and_honest(
     assert receipt["implementation_commit"] == commit
     assert receipt["source_snapshot_mode"] == "GIT_OBJECT_DATABASE"
     assert findings["status"] == "HOLD_EXTERNAL_INPUTS"
-    assert dataset["status"] == "BLOCKED_BY_DATASET_AUTHORITY"
-    assert projection["artifact_class"] == "OFFLINE_PROJECTION_CONFORMANCE_ONLY"
+    assert dataset["status"] == "PASS_EXACT_OFFICIAL_DATASET_BINDING"
+    assert dataset["dataset_release_zip_sha256"] == OFFICIAL_PILOT_ZIP_SHA256
+    assert dataset["dataset_manifest_sha256"] == OFFICIAL_PILOT_MANIFEST_SHA256
+    assert dataset["dataset_input_pin_sha256"] == OFFICIAL_PILOT_PIN_SHA256
+    assert dataset["official_candidate_count"] == OFFICIAL_PILOT_MEMBER_COUNT
+    assert projection["artifact_class"] == "OFFICIAL_INPUT_CONFORMANCE_ONLY"
     assert projection["real_evidence_authority"] is False
     assert canary["status"] == "BLOCKED_BY_LIVE_CANARY_APPROVAL"
     assert canary["external_provider_call_count"] == 0
@@ -478,6 +493,8 @@ def test_post_zero_api_release_is_commit_bound_cache_free_and_honest(
         output_root=tmp_path / "release-second",
         implementation_commit=commit,
         junit_path=tmp_path / "valid.xml",
+        dataset_release_zip=official_dataset["zip"],
+        dataset_input_pin=official_dataset["pin"],
     )
     assert second["release_zip_sha256"] == summary["release_zip_sha256"]
 
@@ -486,6 +503,22 @@ def _repository_root() -> Path:
     root = Path(__file__).resolve().parents[3]
     assert ZERO_API_ARTIFACT.is_dir()
     return root
+
+
+def _official_dataset_paths() -> dict[str, Path]:
+    supplied = os.environ.get("D2L_OFFICIAL_DATASET_AUTHORITY_ROOT")
+    root = (
+        Path(supplied)
+        if supplied
+        else _repository_root() / OFFICIAL_DATASET_RELATIVE
+    )
+    zip_path = (
+        root / "d2l_stage_a_pilot_5_senses_official_v1_reviewer_handoff.zip"
+    )
+    pin_path = root / "official_dataset_input_pin_v1.json"
+    assert zip_path.is_file()
+    assert pin_path.is_file()
+    return {"zip": zip_path, "pin": pin_path}
 
 
 def _git(repository: Path, *args: str) -> str:

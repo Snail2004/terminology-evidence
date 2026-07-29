@@ -1,7 +1,7 @@
 """Git-bound exact execution identity policy for the Evidence E test suite."""
 
 EXPECTED_E_SUITE_TEST_SOURCE_TREE_SHA256 = (
-    "52f01b6cf611d62554a3364eefe27d7bf13f98984affb516064e988c74dd5134"
+    "2fa2f63e596e4412e044460a152d97de156e32df4ab55d266f0bd3d9c3244e24"
 )
 EXPECTED_E_SUITE_TESTCASE_IDENTITY_SHA256 = (
     "76df1856fa27c938120bbf9299d2defe5da98b348ccfcc3aa7b7713a9bfda36a"

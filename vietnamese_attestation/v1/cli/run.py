@@ -16,6 +16,7 @@ from vietnamese_attestation.v1.contracts.shared import (
 )
 from vietnamese_attestation.v1.dataset import (
     load_official_frozen_candidate_set,
+    load_official_frozen_candidate_zip,
 )
 from vietnamese_attestation.v1.judging import (
     CKeyJudgeProvider,
@@ -56,6 +57,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--dataset-release-receipt", type=Path)
     parser.add_argument("--dataset-release-receipt-sha256")
     parser.add_argument("--candidate-root", type=Path)
+    parser.add_argument("--dataset-release-zip", type=Path)
+    parser.add_argument("--dataset-input-pin", type=Path)
+    parser.add_argument("--expected-dataset-release-zip-sha256")
+    parser.add_argument("--expected-dataset-manifest-sha256")
+    parser.add_argument("--expected-dataset-input-pin-sha256")
     parser.add_argument("--official-candidate-id")
     parser.add_argument("--config", type=Path)
     parser.add_argument("--offline-fixture", type=Path)
@@ -263,32 +269,73 @@ def _required_env(name: str) -> str:
 def _input_candidate(
     args: argparse.Namespace, parser: argparse.ArgumentParser
 ) -> Mapping[str, Any]:
-    official_values = {
+    legacy_values = {
         "--dataset-release-manifest": args.dataset_release_manifest,
         "--dataset-release-receipt": args.dataset_release_receipt,
         "--dataset-release-receipt-sha256": (
             args.dataset_release_receipt_sha256
         ),
         "--candidate-root": args.candidate_root,
-        "--official-candidate-id": args.official_candidate_id,
     }
-    official_requested = any(value is not None for value in official_values.values())
+    zip_values = {
+        "--dataset-release-zip": args.dataset_release_zip,
+        "--dataset-input-pin": args.dataset_input_pin,
+        "--expected-dataset-release-zip-sha256": (
+            args.expected_dataset_release_zip_sha256
+        ),
+        "--expected-dataset-manifest-sha256": (
+            args.expected_dataset_manifest_sha256
+        ),
+    }
+    legacy_requested = any(value is not None for value in legacy_values.values())
+    zip_requested = any(value is not None for value in zip_values.values())
+    official_requested = legacy_requested or zip_requested or (
+        args.official_candidate_id is not None
+    )
     if args.candidate is not None and official_requested:
         parser.error("--candidate cannot be combined with official Dataset input")
     if args.candidate is None and not official_requested:
         parser.error("provide --candidate or the complete official Dataset input set")
     if official_requested:
-        missing = [name for name, value in official_values.items() if value is None]
+        if legacy_requested and zip_requested:
+            parser.error("legacy and ZIP Dataset inputs cannot be combined")
+        selected_values = zip_values if zip_requested else legacy_values
+        missing = [
+            name for name, value in selected_values.items() if value is None
+        ]
+        if args.official_candidate_id is None:
+            missing.append("--official-candidate-id")
         if missing:
             parser.error("official Dataset input requires " + ", ".join(missing))
         if args.development_input:
             parser.error("--development-input cannot be used with official Dataset input")
-        official = load_official_frozen_candidate_set(
-            args.dataset_release_manifest,
-            args.dataset_release_receipt,
-            args.candidate_root,
-            expected_receipt_sha256=args.dataset_release_receipt_sha256,
-        )
+        if zip_requested:
+            official = load_official_frozen_candidate_zip(
+                args.dataset_release_zip,
+                args.dataset_input_pin,
+                expected_release_zip_sha256=(
+                    args.expected_dataset_release_zip_sha256
+                ),
+                expected_manifest_sha256=(
+                    args.expected_dataset_manifest_sha256
+                ),
+                **(
+                    {
+                        "expected_pin_sha256": (
+                            args.expected_dataset_input_pin_sha256
+                        )
+                    }
+                    if args.expected_dataset_input_pin_sha256 is not None
+                    else {}
+                ),
+            )
+        else:
+            official = load_official_frozen_candidate_set(
+                args.dataset_release_manifest,
+                args.dataset_release_receipt,
+                args.candidate_root,
+                expected_receipt_sha256=args.dataset_release_receipt_sha256,
+            )
         matches = [
             candidate
             for candidate in official.candidates

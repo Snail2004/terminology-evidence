@@ -3,7 +3,10 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import os
+import subprocess
 from pathlib import Path
+from pathlib import PurePosixPath
 
 import pytest
 from terminology_contracts.bindings import seal_frozen_candidate_contract
@@ -13,11 +16,19 @@ from vietnamese_attestation.v1.cli.run import main as run_main
 from vietnamese_attestation.v1.dataset import (
     OFFICIAL_DATASET_AUTHORITY_OWNER,
     OFFICIAL_DATASET_PRODUCER_COMPONENT_ID,
+    OFFICIAL_PILOT_ARCHIVE_MEMBER_COUNT,
+    OFFICIAL_PILOT_MANIFEST_SCHEMA_ID,
+    OFFICIAL_PILOT_MANIFEST_SHA256,
     OFFICIAL_PILOT_MEMBER_COUNT,
+    OFFICIAL_PILOT_PIN_SCHEMA_ID,
+    OFFICIAL_PILOT_PIN_SHA256,
+    OFFICIAL_PILOT_SENSE_COUNT,
+    OFFICIAL_PILOT_ZIP_SHA256,
     OFFICIAL_SET_MANIFEST_SCHEMA_ID,
     OFFICIAL_SET_RECEIPT_SCHEMA_ID,
     OFFICIAL_SET_SCHEMA_VERSION,
     load_official_frozen_candidate_set,
+    load_official_frozen_candidate_zip,
 )
 from vietnamese_attestation.v1.runtime.audit import FileRunAuditStore
 from vietnamese_attestation.v1.runtime.replay import AuditReplayReader
@@ -35,29 +46,50 @@ SHARED_EXAMPLE = (
     / "v1.1.0"
     / "frozen_candidate_contract.json"
 )
+OFFICIAL_AUTHORITY_RELATIVE = Path(
+    "review_evidence/dataset/d2l-stage-a-official-5-sense-pilot-v1"
+)
+OFFICIAL_ZIP_NAME = "d2l_stage_a_pilot_5_senses_official_v1_reviewer_handoff.zip"
+OFFICIAL_PIN_NAME = "official_dataset_input_pin_v1.json"
 
 
 def test_official_dataset_set_binds_receipt_members_and_candidate_identity(
     tmp_path: Path,
 ) -> None:
-    paths = _make_official_set(tmp_path)
-    loaded = load_official_frozen_candidate_set(
-        paths["manifest"],
-        paths["receipt"],
-        paths["root"],
-        expected_receipt_sha256=paths["receipt_sha256"],
+    del tmp_path
+    paths = _official_authority_paths()
+    loaded = load_official_frozen_candidate_zip(
+        paths["zip"],
+        paths["pin"],
+        expected_release_zip_sha256=OFFICIAL_PILOT_ZIP_SHA256,
+        expected_manifest_sha256=OFFICIAL_PILOT_MANIFEST_SHA256,
+        expected_pin_sha256=OFFICIAL_PILOT_PIN_SHA256,
     )
     assert len(loaded.candidates) == OFFICIAL_PILOT_MEMBER_COUNT
-    assert loaded.manifest["producer"]["authority_owner"] == (
-        OFFICIAL_DATASET_AUTHORITY_OWNER
-    )
+    assert loaded.manifest["schema_id"] == OFFICIAL_PILOT_MANIFEST_SCHEMA_ID
+    assert loaded.receipt["schema_id"] == OFFICIAL_PILOT_PIN_SCHEMA_ID
+    assert loaded.release_zip_physical_sha256 == OFFICIAL_PILOT_ZIP_SHA256
+    assert loaded.archive_member_count == OFFICIAL_PILOT_ARCHIVE_MEMBER_COUNT
+    assert len(
+        {row["candidate_key"]["sense_id"] for row in loaded.candidates}
+    ) == OFFICIAL_PILOT_SENSE_COUNT
+    assert {
+        row["input_provenance"]["component_id"] for row in loaded.candidates
+    } == {OFFICIAL_DATASET_PRODUCER_COMPONENT_ID}
     assert loaded.candidates[0]["binding_status"] == "COMPLETE"
 
 
 def test_official_cli_rejects_loose_complete_input_and_accepts_release_set(
     tmp_path: Path,
 ) -> None:
-    paths = _make_official_set(tmp_path)
+    paths = _official_authority_paths()
+    official = load_official_frozen_candidate_zip(
+        paths["zip"],
+        paths["pin"],
+        expected_release_zip_sha256=OFFICIAL_PILOT_ZIP_SHA256,
+        expected_manifest_sha256=OFFICIAL_PILOT_MANIFEST_SHA256,
+    )
+    candidate_id = official.candidates[0]["candidate_key"]["candidate_id"]
     candidate = json.loads(SHARED_EXAMPLE.read_text(encoding="utf-8"))
     loose = tmp_path / "loose.json"
     loose.write_text(json.dumps(candidate), encoding="utf-8")
@@ -79,16 +111,16 @@ def test_official_cli_rejects_loose_complete_input_and_accepts_release_set(
     assert (
         run_main(
             [
-                "--dataset-release-manifest",
-                str(paths["manifest"]),
-                "--dataset-release-receipt",
-                str(paths["receipt"]),
-                "--dataset-release-receipt-sha256",
-                paths["receipt_sha256"],
-                "--candidate-root",
-                str(paths["root"]),
+                "--dataset-release-zip",
+                str(paths["zip"]),
+                "--dataset-input-pin",
+                str(paths["pin"]),
+                "--expected-dataset-release-zip-sha256",
+                OFFICIAL_PILOT_ZIP_SHA256,
+                "--expected-dataset-manifest-sha256",
+                OFFICIAL_PILOT_MANIFEST_SHA256,
                 "--official-candidate-id",
-                "cand-000",
+                candidate_id,
                 "--offline-fixture",
                 str(fixture),
                 "--output",
@@ -99,7 +131,7 @@ def test_official_cli_rejects_loose_complete_input_and_accepts_release_set(
     )
     assert json.loads(output.read_text(encoding="utf-8"))["candidate_key"][
         "candidate_id"
-    ] == "cand-000"
+    ] == candidate_id
 
 
 def test_cli_json_loader_rejects_duplicate_keys(tmp_path: Path) -> None:
@@ -121,32 +153,114 @@ def test_cli_json_loader_rejects_duplicate_keys(tmp_path: Path) -> None:
 def test_official_loader_rejects_receipt_tamper_and_producer_drift(
     tmp_path: Path,
 ) -> None:
-    paths = _make_official_set(tmp_path)
-    original_receipt = paths["receipt"].read_bytes()
-    paths["receipt"].write_bytes(original_receipt + b"\n")
-    with pytest.raises(ValueError, match="receipt physical"):
-        load_official_frozen_candidate_set(
-            paths["manifest"],
-            paths["receipt"],
-            paths["root"],
-            expected_receipt_sha256=paths["receipt_sha256"],
+    authority = _official_authority_paths()
+    tampered_zip = tmp_path / "tampered.zip"
+    tampered_zip.write_bytes(authority["zip"].read_bytes() + b"\x00")
+    with pytest.raises(ValueError, match="ZIP physical"):
+        load_official_frozen_candidate_zip(
+            tampered_zip,
+            authority["pin"],
+            expected_release_zip_sha256=OFFICIAL_PILOT_ZIP_SHA256,
+            expected_manifest_sha256=OFFICIAL_PILOT_MANIFEST_SHA256,
         )
 
-    paths = _make_official_set(tmp_path / "producer-drift")
-    manifest = json.loads(paths["manifest"].read_text(encoding="utf-8"))
+    tampered_pin = tmp_path / "tampered-pin.json"
+    pin = json.loads(authority["pin"].read_text(encoding="utf-8"))
+    pin["artifact"]["physical_sha256"] = "0" * 64
+    tampered_pin.write_text(json.dumps(pin), encoding="utf-8")
+    with pytest.raises(ValueError, match="self-hash|accepted ZIP"):
+        load_official_frozen_candidate_zip(
+            authority["zip"],
+            tampered_pin,
+            expected_release_zip_sha256=OFFICIAL_PILOT_ZIP_SHA256,
+            expected_manifest_sha256=OFFICIAL_PILOT_MANIFEST_SHA256,
+        )
+
+    for name, field in (("zip-parent-link", "zip"), ("pin-parent-link", "pin")):
+        link = tmp_path / name
+        os.symlink(authority[field].parent, link, target_is_directory=True)
+        supplied = link / authority[field].name
+        with pytest.raises(ValueError, match="symlink|reparse|junction"):
+            load_official_frozen_candidate_zip(
+                supplied if field == "zip" else authority["zip"],
+                supplied if field == "pin" else authority["pin"],
+                expected_release_zip_sha256=OFFICIAL_PILOT_ZIP_SHA256,
+                expected_manifest_sha256=OFFICIAL_PILOT_MANIFEST_SHA256,
+            )
+
+    paths = _make_official_set(tmp_path / "path-chain")
+    for name, field in (
+        ("manifest-link", "manifest"),
+        ("receipt-link", "receipt"),
+        ("candidate-link", "root"),
+    ):
+        link = tmp_path / name
+        os.symlink(paths[field].parent, link, target_is_directory=True)
+        supplied = link / paths[field].name
+        arguments = {
+            "manifest": paths["manifest"],
+            "receipt": paths["receipt"],
+            "root": paths["root"],
+        }
+        arguments[field] = supplied
+        with pytest.raises(ValueError, match="symlink|reparse|junction"):
+            load_official_frozen_candidate_set(
+                arguments["manifest"],
+                arguments["receipt"],
+                arguments["root"],
+                expected_receipt_sha256=paths["receipt_sha256"],
+            )
+
+    if os.name == "nt":
+        junction = tmp_path / "candidate-junction"
+        result = subprocess.run(
+            ["cmd", "/c", "mklink", "/J", str(junction), str(paths["root"])],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        assert result.returncode == 0, result.stderr
+        with pytest.raises(ValueError, match="reparse|junction"):
+            load_official_frozen_candidate_set(
+                paths["manifest"],
+                paths["receipt"],
+                junction,
+                expected_receipt_sha256=paths["receipt_sha256"],
+            )
+
+    with pytest.raises(ValueError, match="authority pin"):
+        load_official_frozen_candidate_zip(
+            authority["zip"],
+            authority["pin"],
+            expected_release_zip_sha256="0" * 64,
+            expected_manifest_sha256=OFFICIAL_PILOT_MANIFEST_SHA256,
+        )
+
+    with pytest.raises(ValueError, match="manifest authority"):
+        load_official_frozen_candidate_zip(
+            authority["zip"],
+            authority["pin"],
+            expected_release_zip_sha256=OFFICIAL_PILOT_ZIP_SHA256,
+            expected_manifest_sha256="0" * 64,
+        )
+
+    producer_drift = _make_official_set(tmp_path / "producer-drift")
+    manifest = json.loads(producer_drift["manifest"].read_text(encoding="utf-8"))
     manifest["producer"]["component_id"] = "vietnamese-attestation"
-    _write_sealed(paths["manifest"], manifest)
-    receipt = json.loads(paths["receipt"].read_text(encoding="utf-8"))
-    receipt["manifest_physical_sha256"] = _sha256_file(paths["manifest"])
+    _write_sealed(producer_drift["manifest"], manifest)
+    receipt = json.loads(producer_drift["receipt"].read_text(encoding="utf-8"))
+    receipt["manifest_physical_sha256"] = _sha256_file(
+        producer_drift["manifest"]
+    )
     receipt["manifest_self_sha256"] = manifest["integrity"]["self_sha256"]
     receipt["producer"] = copy.deepcopy(manifest["producer"])
-    _write_sealed(paths["receipt"], receipt)
+    _write_sealed(producer_drift["receipt"], receipt)
     with pytest.raises(ValueError, match="producer.component_id"):
         load_official_frozen_candidate_set(
-            paths["manifest"],
-            paths["receipt"],
-            paths["root"],
-            expected_receipt_sha256=_sha256_file(paths["receipt"]),
+            producer_drift["manifest"],
+            producer_drift["receipt"],
+            producer_drift["root"],
+            expected_receipt_sha256=_sha256_file(producer_drift["receipt"]),
         )
 
 
@@ -183,6 +297,14 @@ def test_direct_replay_requires_external_manifest_anchor_and_strict_rows(
         == 0
     )
     assert json.loads(output.read_text(encoding="utf-8"))["manifest_sha256"] == manifest_sha
+
+    manifest_parent_link = tmp_path / "replay-manifest-parent-link"
+    os.symlink(manifest_path.parent, manifest_parent_link, target_is_directory=True)
+    with pytest.raises(ValueError, match="symlink|reparse|junction"):
+        AuditReplayReader(
+            manifest_parent_link / manifest_path.name,
+            expected_manifest_sha256=manifest_sha,
+        )
 
     stream = manifest_path.parent / "search" / "requests.jsonl"
     stream.write_bytes(b'{"x":1,"x":2}\n')
@@ -249,7 +371,7 @@ def _make_official_set(tmp_path: Path) -> dict[str, object]:
         candidate = seal_frozen_candidate_contract(candidate)
         key = candidate["candidate_key"]
         ref = f"candidates/candidate-{index:03d}.json"
-        path = root / ref.replace("/", "\\")
+        path = root.joinpath(*PurePosixPath(ref).parts)
         path.parent.mkdir(parents=True, exist_ok=True)
         raw = _canonical_bytes(candidate)
         path.write_bytes(raw)
@@ -371,3 +493,16 @@ def _sha256_file(path: Path) -> str:
 
 def _sha256_text(value: str) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
+def _official_authority_paths() -> dict[str, Path]:
+    supplied = os.environ.get("D2L_OFFICIAL_DATASET_AUTHORITY_ROOT")
+    root = Path(supplied) if supplied else REPO_ROOT / OFFICIAL_AUTHORITY_RELATIVE
+    zip_path = root / OFFICIAL_ZIP_NAME
+    pin_path = root / OFFICIAL_PIN_NAME
+    if not zip_path.is_file() or not pin_path.is_file():
+        raise AssertionError(
+            "exact official Dataset authority is unavailable; set "
+            "D2L_OFFICIAL_DATASET_AUTHORITY_ROOT"
+        )
+    return {"zip": zip_path, "pin": pin_path}

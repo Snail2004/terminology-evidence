@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import math
 import os
+import stat
 import unicodedata
 from pathlib import Path, PurePosixPath
 from typing import Any
@@ -66,7 +67,8 @@ def strict_jsonl_loads(text: str, *, source: str = "JSONL") -> list[dict[str, An
 
 def load_strict_json(path: Path) -> Any:
     try:
-        raw = path.read_bytes()
+        resolved = _strict_regular_file(path)
+        raw = resolved.read_bytes()
         text = raw.decode("utf-8", errors="strict")
     except (OSError, UnicodeError) as exc:
         raise ValueError(f"cannot read strict JSON: {path}") from exc
@@ -82,7 +84,8 @@ def load_strict_json_object(path: Path) -> dict[str, Any]:
 
 def load_strict_jsonl(path: Path) -> list[dict[str, Any]]:
     try:
-        text = path.read_bytes().decode("utf-8", errors="strict")
+        resolved = _strict_regular_file(path)
+        text = resolved.read_bytes().decode("utf-8", errors="strict")
     except (OSError, UnicodeError) as exc:
         raise ValueError(f"cannot read strict JSONL: {path}") from exc
     return strict_jsonl_loads(text, source=str(path))
@@ -106,12 +109,39 @@ def reject_symlink_tree(root: Path) -> None:
 
 
 def reject_link(path: Path) -> None:
+    supplied = Path(path).absolute()
+    for component in [*reversed(supplied.parents), supplied]:
+        try:
+            metadata = component.lstat()
+        except FileNotFoundError:
+            continue
+        except OSError as exc:
+            raise ValueError(f"cannot inspect artifact path: {component}") from exc
+        try:
+            is_junction = bool(
+                getattr(component, "is_junction", lambda: False)()
+            )
+        except OSError as exc:
+            raise ValueError(f"cannot inspect artifact path: {component}") from exc
+        file_attributes = int(getattr(metadata, "st_file_attributes", 0))
+        is_reparse_point = bool(file_attributes & 0x400)
+        if stat.S_ISLNK(metadata.st_mode) or is_junction or is_reparse_point:
+            raise ValueError(
+                f"symlink or junction/reparse point is forbidden: {component}"
+            )
+
+
+def _strict_regular_file(path: Path) -> Path:
+    supplied = Path(path).absolute()
+    reject_link(supplied)
     try:
-        is_junction = bool(getattr(path, "is_junction", lambda: False)())
+        resolved = supplied.resolve(strict=True)
     except OSError as exc:
-        raise ValueError(f"cannot inspect artifact path: {path}") from exc
-    if path.is_symlink() or is_junction:
-        raise ValueError(f"symlink or junction is forbidden: {path}")
+        raise ValueError(f"cannot resolve artifact path: {path}") from exc
+    reject_link(resolved)
+    if not resolved.is_file():
+        raise ValueError(f"artifact path is not a regular file: {path}")
+    return resolved
 
 
 def canonical_relative_ref(value: Any) -> tuple[str, str]:

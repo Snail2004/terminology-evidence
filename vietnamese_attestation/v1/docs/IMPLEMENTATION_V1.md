@@ -161,12 +161,14 @@ python -m vietnamese_attestation.v1.cli.run `
   --output attestation.json
 ```
 
-`--development-input` is fixture-only. Official execution must instead provide
-all of `--dataset-release-manifest`, `--dataset-release-receipt`,
-`--dataset-release-receipt-sha256`, `--candidate-root` and
-`--official-candidate-id`. The loader verifies the externally pinned receipt,
-exact 15-member set, producer, physical hashes, candidate self-hashes and all
-candidate/sense/scope/dataset/effective-sense/input joins before engine setup.
+`--development-input` is fixture-only. The accepted five-sense official input
+uses `--dataset-release-zip`, `--dataset-input-pin`, both externally supplied
+expected hashes, and `--official-candidate-id`. The loader verifies the exact
+Main-pinned ZIP and pin, the `D2LOfficial5SensePilotManifestV1` self-hash,
+complete CHECKSUMS and package inventories, exact 15 candidates/five senses,
+the Dataset projector identity, candidate self-hashes and every
+candidate/sense/scope/dataset/effective-sense/input join before engine setup.
+The older detached manifest/receipt form remains fixture compatibility only.
 The run store also contains the rich internal replay package. Running directly
 from the repository requires both package roots on `PYTHONPATH`:
 
@@ -179,10 +181,10 @@ Judge credentials, and a cache root:
 
 ```powershell
 python -m vietnamese_attestation.v1.cli.run `
-  --dataset-release-manifest dataset_release_manifest.json `
-  --dataset-release-receipt dataset_release_receipt.json `
-  --dataset-release-receipt-sha256 <trusted-receipt-physical-sha256> `
-  --candidate-root frozen_candidates `
+  --dataset-release-zip d2l_stage_a_pilot_5_senses_official_v1_reviewer_handoff.zip `
+  --dataset-input-pin official_dataset_input_pin_v1.json `
+  --expected-dataset-release-zip-sha256 9b6a9ee1272b6403054b61f5399d4391328d1d2d8a964b1102af0a2656bc2738 `
+  --expected-dataset-manifest-sha256 16bd2b9c7a974bdccfb977384fa1a35381e6e810c110f489f31d1606398ce2f5 `
   --official-candidate-id <candidate-id> `
   --cache-root .cache/vietnamese-attestation `
   --run-store-root .artifacts/vietnamese-attestation `
