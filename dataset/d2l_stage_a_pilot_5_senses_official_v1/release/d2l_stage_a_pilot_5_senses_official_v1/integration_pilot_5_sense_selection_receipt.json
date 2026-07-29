@@ -1,0 +1,86 @@
+{
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "708f6ee0943726a43d615b1dbd25152097409f1a80c28381d6a57088f5d7985f"
+  },
+  "policy_id": "d2l-stage-a-p0b-official-5-sense-v1.0",
+  "provider_call_count": 0,
+  "records": [
+    {
+      "candidate_ids": [
+        "candidate_d748abf800aca789e0a6959f",
+        "candidate_7687a5984af335e4ef18f0e0",
+        "candidate_60299cfb31868af34ac36c58"
+      ],
+      "parent_review_decision_sha256": "1b0016c537e017bea6e18a68d8e1975c18a8783023b223daaa707cc4cd40cc65",
+      "reason": "R0 source-ground case with blind-audit binding and contrasting Vietnamese candidates.",
+      "selection_group": "CLEAR_LOW_RISK",
+      "selection_status": "OFFICIAL_SUBSET_SELECTED",
+      "sense_id": "d2lce_11e1c294000ac67785408dcd",
+      "source_term": "null hypothesis"
+    },
+    {
+      "candidate_ids": [
+        "candidate_53d82847c792e05a168ce72e",
+        "candidate_cfd5638007633bf28dbcd24c",
+        "candidate_7777b315af84852fc15da7b4"
+      ],
+      "parent_review_decision_sha256": "9b496d329dfe32e8e76f8c271650ab57d664f9cff1039d7b33d89889782db638",
+      "reason": "Domain-specific R2 sense with stable source evidence.",
+      "selection_group": "CLEAR_LOW_RISK",
+      "selection_status": "OFFICIAL_SUBSET_SELECTED",
+      "sense_id": "d2lce_c6b4477a845e2e0e0e02f088",
+      "source_term": "output gate"
+    },
+    {
+      "candidate_ids": [
+        "candidate_2cd868cd5a887ba0ad603218",
+        "candidate_f6b58c6b3105859b4723abdb",
+        "candidate_e022d537a48001c6bce1d0a5"
+      ],
+      "parent_review_decision_sha256": "7ffdd06dd3fd616d0382d25c513e923d3568ef67de4eb9c85b58ac21bb70a657",
+      "reason": "Borrowed and localized Vietnamese candidate variants.",
+      "selection_group": "AMBIGUOUS_POLYSEMOUS",
+      "selection_status": "OFFICIAL_SUBSET_SELECTED",
+      "sense_id": "d2lce_1a91fdded89249a5cd89ec14",
+      "source_term": "Jupyter notebook"
+    },
+    {
+      "candidate_ids": [
+        "candidate_46aef7b0d650be04eb350c62",
+        "candidate_608318c4819a9ca6886b86c1",
+        "candidate_b73c29ba5efc3cff5b96816d"
+      ],
+      "parent_review_decision_sha256": "e1606278ef1c76d91a9e4ca92e64bfc230b9e4618967f5da58b5261fcfdca2f8",
+      "reason": "Singular, plural, and competing Vietnamese terminology variants.",
+      "selection_group": "AMBIGUOUS_POLYSEMOUS",
+      "selection_status": "OFFICIAL_SUBSET_SELECTED",
+      "sense_id": "d2lce_cc4cb853eff638abcbdf7691",
+      "source_term": "learning rate"
+    },
+    {
+      "candidate_ids": [
+        "candidate_cf6b5d7ea384065914c1c69d",
+        "candidate_cc725f7224eaaf21d14846d2",
+        "candidate_21094d94f5b8d8d982190730"
+      ],
+      "parent_review_decision_sha256": "3d522651b969f483353111cbc62b85e186e3d4582ce596dd3b8ad31b28bd8def",
+      "reason": "Includes a deliberately incompatible candidate for real pilot gate behavior.",
+      "selection_group": "GATE_ADJUDICATION_RISK",
+      "selection_status": "OFFICIAL_SUBSET_SELECTED",
+      "sense_id": "d2lce_382e4bbab285d56a08249753",
+      "source_term": "contexts"
+    }
+  ],
+  "required_shape": {
+    "ambiguous": 2,
+    "clear": 2,
+    "gate": 1
+  },
+  "schema_id": "D2LIntegrationPilot5SelectionReceiptV1",
+  "schema_version": "1.0.0",
+  "selected_at": "2026-07-29T08:00:00Z",
+  "selection_status": "OFFICIAL_SUBSET_SELECTED",
+  "source_dataset_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+  "source_reviewed_manifest_sha256": "e602af02edf1fb877a9541c5e37f939f4f35ded34ac878d773fc83b96ed3fb48"
+}

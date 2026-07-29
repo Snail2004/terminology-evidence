@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="d2l_stage_a_p0b_build_gate" tests="1" failures="0" errors="0" skipped="0">
+  <testcase classname="dataset.p0b" name="official_release_internal_gate"/>
+</testsuite>

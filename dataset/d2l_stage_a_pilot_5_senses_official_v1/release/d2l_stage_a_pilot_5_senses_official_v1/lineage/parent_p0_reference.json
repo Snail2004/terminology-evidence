@@ -1,0 +1,13 @@
+{
+  "artifact_name": "d2l_stage_a_pilot_15_senses_v1",
+  "integrity": {
+    "self_sha256": "1c8427de4e9ba859fc4b978fdcc3243cdb5615b5ba92977a88a224bb8d7bc2b3"
+  },
+  "manifest_sha256": "32b3bbea775362504ef698cfe65a4a9e27890f761d7067b1c88dad7a9670bb6e",
+  "materialized_package": false,
+  "original_checksums_file_copied": false,
+  "physical_manifest_sha256": "f13501f3a1d7a3193893da1ca07582641e143c0bfd8ad0f325a21e2869ca2c1c",
+  "reference_only": true,
+  "schema_id": "D2LReferenceOnlyParentPackageV1",
+  "schema_version": "1.0.0"
+}
