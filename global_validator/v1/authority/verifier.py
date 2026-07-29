@@ -19,11 +19,11 @@ AUTHORITY_SCHEMA_ID = "TerminologyContractsAuthorityReceiptV1"
 AUTHORITY_TAG = "contracts-v1.1.0"
 AUTHORITY_COMMIT = "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed"
 CONTRACT_VERSION = "1.1.0"
-AUTHORITY_RECEIPT_DECLARED_SELF_SHA256 = (
-    "a95e50a6074fc8f3b749ebdf0e00657370bdc068a4d9efa7ffec27bbd807cb12"
+AUTHORITY_RECEIPT_SELF_SHA256 = (
+    "c2e291510f43f2fb82461c5aacd3085948346e98451e218f73192b0eb3c47ed4"
 )
 AUTHORITY_RECEIPT_PHYSICAL_SHA256 = (
-    "867c60892587cd108a052bbc16c3f057705360e10fc534ed1bd21ab0d3992d9e"
+    "3497460f16ca478dada7b25425775882f10d1cb2b5d3638c36cba4ec5fb2791b"
 )
 
 
@@ -125,20 +125,15 @@ def _load_receipt(path: Path) -> tuple[dict[str, Any], str, tuple[str, ...]]:
     try:
         verify_self_hash(value, path=str(path))
     except ValueError as exc:
-        declared = value.get("integrity", {}).get("self_sha256")
-        physical = sha256_file(path)
-        if (
-            declared != AUTHORITY_RECEIPT_DECLARED_SELF_SHA256
-            or physical != AUTHORITY_RECEIPT_PHYSICAL_SHA256
-        ):
-            raise AuthorityVerificationError(str(exc)) from exc
-        return (
-            value,
-            "PINNED_PHYSICAL_FALLBACK",
-            (
-                "authority receipt canonical self hash is invalid; exact published "
-                "receipt bytes were accepted by pinned physical SHA-256",
-            ),
+        raise AuthorityVerificationError(str(exc)) from exc
+    declared = value.get("integrity", {}).get("self_sha256")
+    if declared != AUTHORITY_RECEIPT_SELF_SHA256:
+        raise AuthorityVerificationError(
+            "authority receipt canonical self SHA-256 differs from published receipt"
+        )
+    if sha256_file(path) != AUTHORITY_RECEIPT_PHYSICAL_SHA256:
+        raise AuthorityVerificationError(
+            "authority receipt physical SHA-256 differs from published receipt"
         )
     return value, "CANONICAL_SELF_HASH", ()
 

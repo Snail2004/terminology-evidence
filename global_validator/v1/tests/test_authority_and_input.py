@@ -22,7 +22,7 @@ from global_validator.v1.input import (
 from .helpers import load_base_input
 
 
-def test_authority_accepts_only_pinned_published_receipt(
+def test_authority_accepts_canonical_published_receipt_only(
     repository_root: Path, authority_receipt: Path, tmp_path: Path
 ) -> None:
     verified = verify_authority(
@@ -30,12 +30,12 @@ def test_authority_accepts_only_pinned_published_receipt(
         repository_root / "terminology_contracts_v1",
         repository_root=repository_root,
     )
-    assert verified.receipt_integrity_mode == "PINNED_PHYSICAL_FALLBACK"
-    assert verified.warnings
+    assert verified.receipt_integrity_mode == "CANONICAL_SELF_HASH"
+    assert verified.warnings == ()
 
     tampered = tmp_path / "authority_receipt.json"
     tampered.write_bytes(authority_receipt.read_bytes() + b" ")
-    with pytest.raises(AuthorityVerificationError, match="self_sha256 mismatch"):
+    with pytest.raises(AuthorityVerificationError, match="physical SHA-256"):
         verify_authority(
             tampered,
             repository_root / "terminology_contracts_v1",

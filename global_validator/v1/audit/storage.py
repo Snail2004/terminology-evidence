@@ -187,6 +187,7 @@ def _write_json(path: Path, value: Any) -> None:
         json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2, allow_nan=False)
         + "\n",
         encoding="utf-8",
+        newline="\n",
     )
 
 
@@ -198,4 +199,8 @@ def _write_checksums(root: Path) -> None:
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
         relative = path.relative_to(root).as_posix()
         entries.append(f"{digest}  {relative}")
-    (root / "CHECKSUMS.sha256").write_text("\n".join(entries) + "\n", encoding="ascii")
+    (root / "CHECKSUMS.sha256").write_text(
+        "\n".join(entries) + "\n",
+        encoding="ascii",
+        newline="\n",
+    )

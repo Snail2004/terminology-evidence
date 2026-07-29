@@ -106,3 +106,34 @@ This file is append-only for implementation and review findings.
   rejects any other artifact. A copied fixture remains non-production.
 - Review request: publish the reviewed human-frozen calibration hash in a
   future authority artifact so operators do not supply the pin manually.
+
+## GV-F010: Authority receipt canonical reseal closes GV-F005 and GV-F007
+
+- Severity: P1 authority closure.
+- Status: resolved by maintainer publication and consumer rework.
+- Evidence: the maintainer canonically resealed the local authority receipt
+  without changing its tag, commit or manifest. Its canonical self SHA-256 is
+  `c2e291510f43f2fb82461c5aacd3085948346e98451e218f73192b0eb3c47ed4` and
+  its physical SHA-256 is
+  `3497460f16ca478dada7b25425775882f10d1cb2b5d3638c36cba4ec5fb2791b`.
+- Resolution: remove `PINNED_PHYSICAL_FALLBACK`. Authority admission now
+  requires both the published canonical self hash and published physical hash,
+  reports `CANONICAL_SELF_HASH`, and emits zero warnings. Any semantic or byte
+  drift fails closed.
+
+## GV-F011: Replay trusted unverified persisted output hashes
+
+- Severity: P1 replay integrity defect.
+- Status: resolved locally, requiring maintainer re-gate.
+- Evidence: a development decision could be edited from `PROVISIONAL` to
+  `REJECTED` while retaining its old self hash and checksum listing;
+  `replay_run()` previously read that unverified hash as the expected result
+  and returned `matched=True`.
+- Resolution: replay now verifies the canonical complete checksum listing,
+  safe paths, exact bundle surface, symlink exclusion and duplicate-aware
+  strict JSON before loading replay metadata. It then verifies authority,
+  copied authority surfaces, input projections, GateResultSet self hash/schema/
+  policy/bindings, decision self hash/schema/input/run bindings, audit records
+  and any certificate bundle before semantic replay. Recomputed features,
+  gates, decision and certificate must match the verified stored payloads
+  exactly. Stale tamper and coherently resealed semantic drift both fail closed.

@@ -14,7 +14,11 @@
 - Registry-based feature assembly; development and frozen calibrated decision
   modes; deterministic precedence and replay hash.
 - Exact certificate projection, official certificate-bundle verification,
-  immutable run directories, complete checksums and byte-identical replay.
+  immutable run directories, canonical complete checksums and fail-closed
+  semantic replay.
+- Replay preflight verifies strict JSON, safe bundle paths, checksums,
+  authority, copied input projections, gate/decision bindings, audit records
+  and any certificate bundle before recomputation.
 - CLI commands: authority verify, input assembly/validation, run, replay,
   decision verification and certificate-bundle verification.
 - Synthetic zero-API pilot: five senses, 15 candidates, 15 provisional
@@ -35,9 +39,9 @@ The detailed append-only log is
   AUTO_APPROVED and certificate publication remain blocked. The contract
   example requires an explicit test-only flag and is identified by self hash
   even if copied elsewhere.
-- `GV-F005`: the published authority receipt has an invalid canonical self
-  hash. Only the exact published physical bytes are accepted, with a warning.
-  Maintainer re-publication is required.
+- `GV-F005`/`GV-F010`: the maintainer resealed the authority receipt.
+  Admission now reports `CANONICAL_SELF_HASH` with zero warnings and binds both
+  its canonical and physical published hashes; the fallback was removed.
 - `GV-F006`: the shared JSON loader permits duplicate keys. This boundary adds
   duplicate-key rejection without modifying contracts.
 - `GV-F007`: the pinned receipt must be copied byte-for-byte into replay
@@ -46,6 +50,9 @@ The detailed append-only log is
   every mode, not only during certificate publication.
 - `GV-F009`: production frozen mode requires an exact reviewed calibration
   self-hash pin; test-only mode accepts only the known contract fixture.
+- `GV-F011`: persisted replay previously trusted an unverified decision hash.
+  Bundle, gate, decision, certificate and recomputed semantic outputs are now
+  independently verified and cross-bound.
 
 ## Known Gaps
 
@@ -54,12 +61,10 @@ The detailed append-only log is
   C/E and the Dataset Adapter.
 - Frozen score/certificate behavior is implemented and tested only against the
   explicitly non-production contract calibration fixture.
-- The authority receipt should be canonically resealed by the maintainer; the
-  current exact-byte fallback is intentionally narrow.
 
 ## Verification
 
-- Global Validator focused/contract/adversarial/integration suite: `34 passed`.
+- Global Validator focused/contract/adversarial/integration suite: `44 passed`.
 - Shared Contracts V1.1 suite: `113 passed, 2 skipped` (115 collected).
 - Synthetic pilot: `5` senses, `15` candidates, `15/15` replay PASS,
   `0` network/provider calls, `0` AUTO_APPROVED and `0` certificates.
@@ -67,7 +72,7 @@ The detailed append-only log is
   verification PASS; fixture-only certificate is not production authority.
 - Python compileall, wheel package-content check, diff-check, ownership scan and
   credential-pattern scan: PASS.
-- JUnit: `global_validator/v1/release/junit.xml` (`34` tests, zero failures).
+- JUnit: `global_validator/v1/release/junit.xml` (`44` tests, zero failures).
 
 ## Reviewer Focus
 
@@ -76,7 +81,8 @@ The detailed append-only log is
 2. Confirm the sealed-package fallback evidence convention for incomplete
    constraint refs.
 3. Adversarially mutate joins, gate signals, calibration, timestamps,
-   collision index, checksums and authority receipt.
+   collision index, decision/gate/certificate output, checksum listing and
+   authority receipt, including coherent self-hash/checksum reseals.
 4. Confirm no runtime imports producer internals or networking libraries and no
    runtime path reads raw datasets.
 5. Do not treat the frozen fixture certificate as production authority.

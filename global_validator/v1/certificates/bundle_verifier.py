@@ -6,8 +6,8 @@ from typing import Any
 
 from terminology_contracts.validation import verify_certificate_bundle
 
+from ..audit.bundle_verifier import verify_persisted_run_bundle_integrity
 from ..errors import CertificateBindingError, IntegrityValidationError
-from ..jsonio import assert_strict_json_file
 
 
 def verify_persisted_certificate_bundle(
@@ -39,12 +39,10 @@ def verify_persisted_certificate_bundle(
             "certificate bundle is incomplete: " + ", ".join(missing)
         )
     try:
-        for path in run_dir.rglob("*.json"):
-            assert_strict_json_file(path)
-    except (OSError, UnicodeError, ValueError) as exc:
-        raise IntegrityValidationError(f"bundle JSON is not strict: {exc}") from exc
-
-    checksum_errors = _verify_checksums(run_dir)
+        integrity_report = verify_persisted_run_bundle_integrity(run_dir)
+    except IntegrityValidationError as exc:
+        raise CertificateBindingError(str(exc)) from exc
+    checksum_errors: list[str] = []
     if _sha256(paths["feature_registry"]) != _sha256(feature_registry_path):
         checksum_errors.append("feature registry differs from verified authority")
     errors = verify_certificate_bundle(
@@ -72,49 +70,11 @@ def verify_persisted_certificate_bundle(
         )
     return {
         "status": "PASS",
-        "checked_files": len(required) + int(paths["collision_index"].is_file()),
+        "checked_files": integrity_report["checked_files"],
         "checksum_status": "PASS",
+        "strict_json_status": integrity_report["strict_json_status"],
         "certificate_status": "PASS",
     }
-
-
-def _verify_checksums(run_dir: Path) -> list[str]:
-    checksum_path = run_dir / "CHECKSUMS.sha256"
-    if not checksum_path.is_file():
-        return ["CHECKSUMS.sha256 is missing"]
-    errors: list[str] = []
-    seen: set[str] = set()
-    for line_number, line in enumerate(
-        checksum_path.read_text(encoding="ascii").splitlines(), start=1
-    ):
-        if "  " not in line:
-            errors.append(f"invalid checksum line {line_number}")
-            continue
-        expected, relative = line.split("  ", 1)
-        if relative in seen:
-            errors.append(f"duplicate checksum path: {relative}")
-            continue
-        seen.add(relative)
-        candidate = (run_dir / Path(relative)).resolve()
-        try:
-            candidate.relative_to(run_dir)
-        except ValueError:
-            errors.append(f"unsafe checksum path: {relative}")
-            continue
-        if not candidate.is_file():
-            errors.append(f"checksummed file is missing: {relative}")
-            continue
-        actual = hashlib.sha256(candidate.read_bytes()).hexdigest()
-        if actual != expected:
-            errors.append(f"checksum mismatch: {relative}")
-    actual_files = {
-        path.relative_to(run_dir).as_posix()
-        for path in run_dir.rglob("*")
-        if path.is_file() and path != checksum_path
-    }
-    for relative in sorted(actual_files.difference(seen)):
-        errors.append(f"unlisted bundle file: {relative}")
-    return errors
 
 
 def _sha256(path: Path) -> str:

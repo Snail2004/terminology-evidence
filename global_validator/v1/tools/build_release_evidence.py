@@ -286,6 +286,7 @@ def _write_json(path: Path, value: Any) -> None:
         json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2, allow_nan=False)
         + "\n",
         encoding="utf-8",
+        newline="\n",
     )
 
 

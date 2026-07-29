@@ -4,14 +4,12 @@
   "contract_version": "1.1.0",
   "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
   "integrity": {
-    "self_sha256": "b538e57fadbd7c093db2c9e35f484c34463d4a36e5d6b2e5f624f3d7759080f6"
+    "self_sha256": "7101d8b301d15fe7d97863b5681abfc5b0f2b36c6cfa1904d403cb395f7191f2"
   },
   "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
-  "receipt_integrity_mode": "PINNED_PHYSICAL_FALLBACK",
+  "receipt_integrity_mode": "CANONICAL_SELF_HASH",
   "schema_id": "GlobalValidatorAuthorityVerificationReportV1",
   "schema_version": "1.0.0",
   "status": "PASS",
-  "warnings": [
-    "authority receipt canonical self hash is invalid; exact published receipt bytes were accepted by pinned physical SHA-256"
-  ]
+  "warnings": []
 }

@@ -2,9 +2,11 @@ from __future__ import annotations
 
 from pathlib import Path
 import copy
+import hashlib
 import json
 
 import pytest
+from terminology_contracts.bindings import calculate_replay_spec_sha256
 from terminology_contracts.integrity import seal_self_hash
 
 from global_validator.v1.audit import replay_run
@@ -15,6 +17,7 @@ from global_validator.v1.engine import run_global_validator
 from global_validator.v1.errors import (
     CalibrationError,
     CertificateBindingError,
+    DecisionReplayError,
     StorageError,
 )
 from global_validator.v1.input import assemble_global_input
@@ -37,7 +40,7 @@ def test_development_run_is_provisional_certificate_free_and_replayable(
     assert replay_run(result.run_dir).matched is True
     assert (
         result.run_dir / "audit" / "authority_verification.json"
-    ).read_text(encoding="utf-8").find("PINNED_PHYSICAL_FALLBACK") >= 0
+    ).read_text(encoding="utf-8").find("CANONICAL_SELF_HASH") >= 0
 
     with pytest.raises(StorageError, match="already exists"):
         run_global_validator(valid_input_path, config)
@@ -254,3 +257,242 @@ def test_bundle_tamper_is_rejected(
             schema_dir=config.schema_dir,
             feature_registry_path=config.feature_registry_path,
         )
+
+
+def test_replay_rejects_maintainer_decision_tamper_reproduction(
+    valid_input_path: Path, tmp_path: Path, config_factory
+) -> None:
+    result = run_global_validator(
+        valid_input_path,
+        config_factory(output_root=tmp_path, run_id="decision-tamper"),
+    )
+    decision_path = result.run_dir / "output" / "global_decision_package.json"
+    decision = json.loads(decision_path.read_text(encoding="utf-8"))
+    decision["decision"] = "REJECTED"
+    _write_json(decision_path, decision)
+
+    with pytest.raises(DecisionReplayError, match="checksum mismatch.*decision"):
+        replay_run(result.run_dir)
+
+
+@pytest.mark.parametrize(
+    "relative",
+    [
+        "output/gate_result_set.json",
+        "audit/run_spec.json",
+    ],
+)
+def test_replay_rejects_gate_and_run_spec_byte_tamper(
+    relative: str, valid_input_path: Path, tmp_path: Path, config_factory
+) -> None:
+    result = run_global_validator(
+        valid_input_path,
+        config_factory(
+            output_root=tmp_path / relative.replace("/", "-"),
+            run_id="bundle-byte-tamper",
+        ),
+    )
+    path = result.run_dir.joinpath(*relative.split("/"))
+    path.write_bytes(path.read_bytes() + b" ")
+
+    with pytest.raises(DecisionReplayError, match="checksum mismatch"):
+        replay_run(result.run_dir)
+
+
+def test_replay_rejects_checksum_listing_tamper(
+    valid_input_path: Path, tmp_path: Path, config_factory
+) -> None:
+    result = run_global_validator(
+        valid_input_path,
+        config_factory(output_root=tmp_path, run_id="checksum-tamper"),
+    )
+    checksums = result.run_dir / "CHECKSUMS.sha256"
+    lines = checksums.read_text(encoding="ascii").splitlines()
+    lines[0] = ("0" if lines[0][0] != "0" else "1") + lines[0][1:]
+    checksums.write_text("\n".join(lines) + "\n", encoding="ascii", newline="\n")
+
+    with pytest.raises(DecisionReplayError, match="checksum mismatch"):
+        replay_run(result.run_dir)
+
+
+def test_replay_rejects_strict_json_tamper_even_with_refreshed_checksum(
+    valid_input_path: Path, tmp_path: Path, config_factory
+) -> None:
+    result = run_global_validator(
+        valid_input_path,
+        config_factory(output_root=tmp_path, run_id="duplicate-json"),
+    )
+    spec_path = result.run_dir / "audit" / "run_spec.json"
+    spec_path.write_text(
+        '{"schema_id":"GlobalValidatorReplaySpecV1",'
+        '"schema_id":"Other"}\n',
+        encoding="utf-8",
+        newline="\n",
+    )
+    _refresh_checksums(result.run_dir, "audit/run_spec.json")
+
+    with pytest.raises(DecisionReplayError, match="duplicate JSON key"):
+        replay_run(result.run_dir)
+
+
+def test_replay_rejects_rechecksummed_run_spec_binding_drift(
+    valid_input_path: Path, tmp_path: Path, config_factory
+) -> None:
+    result = run_global_validator(
+        valid_input_path,
+        config_factory(output_root=tmp_path, run_id="run-spec-binding"),
+    )
+    spec_path = result.run_dir / "audit" / "run_spec.json"
+    spec = json.loads(spec_path.read_text(encoding="utf-8"))
+    spec["global_run_id"] = "tampered-run-id"
+    _write_json(spec_path, spec)
+    _refresh_checksums(result.run_dir, "audit/run_spec.json")
+
+    with pytest.raises(DecisionReplayError, match="run_metadata.global_run_id"):
+        replay_run(result.run_dir)
+
+
+def test_replay_rejects_authority_byte_tamper_after_checksum_refresh(
+    valid_input_path: Path, tmp_path: Path, config_factory
+) -> None:
+    result = run_global_validator(
+        valid_input_path,
+        config_factory(output_root=tmp_path, run_id="authority-tamper"),
+    )
+    receipt = result.run_dir / "input" / "authority_receipt.json"
+    receipt.write_bytes(receipt.read_bytes() + b" ")
+    _refresh_checksums(result.run_dir, "input/authority_receipt.json")
+
+    with pytest.raises(DecisionReplayError, match="physical SHA-256"):
+        replay_run(result.run_dir)
+
+
+def test_replay_rejects_resealed_semantic_decision_drift(
+    valid_input_path: Path, tmp_path: Path, config_factory
+) -> None:
+    result = run_global_validator(
+        valid_input_path,
+        config_factory(output_root=tmp_path, run_id="resealed-decision"),
+    )
+    decision_path = result.run_dir / "output" / "global_decision_package.json"
+    decision = json.loads(decision_path.read_text(encoding="utf-8"))
+    decision["decision"] = "REJECTED"
+    decision["decision_reasons"] = ["RESEALED_SEMANTIC_DRIFT"]
+    decision = seal_self_hash(decision)
+    _write_json(decision_path, decision)
+
+    run_path = result.run_dir / "audit" / "run.json"
+    run = json.loads(run_path.read_text(encoding="utf-8"))
+    run["decision"] = decision["decision"]
+    run["decision_package_sha256"] = decision["integrity"]["self_sha256"]
+    _write_json(run_path, run)
+    _refresh_checksums(
+        result.run_dir,
+        "audit/run.json",
+        "output/global_decision_package.json",
+    )
+
+    with pytest.raises(
+        DecisionReplayError, match="replayed semantic decision differs"
+    ):
+        replay_run(result.run_dir)
+
+
+def test_replay_rejects_resealed_gate_drift_against_recomputation(
+    valid_input_path: Path, tmp_path: Path, config_factory
+) -> None:
+    result = run_global_validator(
+        valid_input_path,
+        config_factory(output_root=tmp_path, run_id="resealed-gate"),
+    )
+    gate_path = result.run_dir / "output" / "gate_result_set.json"
+    gate = json.loads(gate_path.read_text(encoding="utf-8"))
+    observation = next(
+        item
+        for item in gate["observations"]
+        if item["gate_id"] == "concept_mismatch"
+    )
+    assert observation["triggered"] is False
+    observation["source_modules"] = list(reversed(observation["source_modules"]))
+    gate = seal_self_hash(gate)
+    _write_json(gate_path, gate)
+
+    decision_path = result.run_dir / "output" / "global_decision_package.json"
+    decision = json.loads(decision_path.read_text(encoding="utf-8"))
+    decision["gate_results"] = gate
+    decision["run_metadata"]["input_package_hashes"]["gate_result_sha256"] = gate[
+        "integrity"
+    ]["self_sha256"]
+    decision["run_metadata"]["replay_spec_sha256"] = calculate_replay_spec_sha256(
+        decision
+    )
+    decision = seal_self_hash(decision)
+    _write_json(decision_path, decision)
+
+    run_path = result.run_dir / "audit" / "run.json"
+    run = json.loads(run_path.read_text(encoding="utf-8"))
+    run["decision_package_sha256"] = decision["integrity"]["self_sha256"]
+    _write_json(run_path, run)
+    _refresh_checksums(
+        result.run_dir,
+        "audit/run.json",
+        "output/gate_result_set.json",
+        "output/global_decision_package.json",
+    )
+
+    with pytest.raises(DecisionReplayError, match="replayed gate results differ"):
+        replay_run(result.run_dir)
+
+
+def test_replay_verifies_resealed_certificate_bundle_before_semantic_replay(
+    valid_input_path: Path, tmp_path: Path, config_factory
+) -> None:
+    config = config_factory(
+        mode=ExecutionMode.FROZEN_CALIBRATED,
+        output_root=tmp_path,
+        run_id="certificate-tamper",
+        allow_example_calibration=True,
+    )
+    result = run_global_validator(valid_input_path, config)
+    certificate_path = result.run_dir / "output" / "terminology_certificate.json"
+    certificate = json.loads(certificate_path.read_text(encoding="utf-8"))
+    certificate["allowed_variants"] = ["tampered variant"]
+    certificate = seal_self_hash(certificate)
+    _write_json(certificate_path, certificate)
+
+    run_path = result.run_dir / "audit" / "run.json"
+    run = json.loads(run_path.read_text(encoding="utf-8"))
+    run["certificate_sha256"] = certificate["integrity"]["self_sha256"]
+    _write_json(run_path, run)
+    _refresh_checksums(
+        result.run_dir,
+        "audit/run.json",
+        "output/terminology_certificate.json",
+    )
+
+    with pytest.raises(DecisionReplayError, match="certificate bundle verification"):
+        replay_run(result.run_dir)
+
+
+def _write_json(path: Path, payload: dict) -> None:
+    path.write_text(
+        json.dumps(payload, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+
+
+def _refresh_checksums(run_dir: Path, *relatives: str) -> None:
+    checksums = run_dir / "CHECKSUMS.sha256"
+    entries = {}
+    for line in checksums.read_text(encoding="ascii").splitlines():
+        digest, relative = line.split("  ", 1)
+        entries[relative] = digest
+    for relative in relatives:
+        path = run_dir.joinpath(*relative.split("/"))
+        entries[relative] = hashlib.sha256(path.read_bytes()).hexdigest()
+    checksums.write_text(
+        "\n".join(f"{entries[path]}  {path}" for path in sorted(entries)) + "\n",
+        encoding="ascii",
+        newline="\n",
+    )
