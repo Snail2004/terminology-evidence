@@ -1,0 +1,15 @@
+{
+  "independence_attestation": "OWNER_DECLARED_INDEPENDENT_REVIEWERS",
+  "policy_id": "d2l-dataset-50-senses-stage-b-review-intake-v1.0",
+  "provider_call_count": 0,
+  "review_result_paths_distinct": true,
+  "reviewer_slots_distinct": true,
+  "schema_id": "D2LStageB50ReviewIntakeLineageV1",
+  "schema_version": "1.0.0",
+  "source_artifact_manifest_sha256": "eeac0fcd72e6327cbed463636b19b99eb606dbc0ec8659fe0cf2f280a7727f89",
+  "source_artifact_name": "d2l_dataset_50_senses_150_candidates_stage_b_review_v1",
+  "source_review_result_sha256": {
+    "reviewer_1": "fb566f10497edd28ab17261f8623d5fb351efefb03a70b73c990da5b66c5436b",
+    "reviewer_2": "e880c594ff8d83943ddfa3ef91303fafe82e1e5c98597b5b9e60072e6ac22e90"
+  }
+}
