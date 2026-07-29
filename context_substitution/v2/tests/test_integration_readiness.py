@@ -15,6 +15,7 @@ import pytest
 from context_substitution.v2.cli import parser
 from context_substitution.v2.contracts.common import REQUIRED_SAME_SENSE_CONTEXT_TYPES
 from context_substitution.v2.contracts.input import seal_context_substitution_input
+from context_substitution.v2.contracts.run import seal_context_substitution_run
 from context_substitution.v2.contracts.validation import ContractValidationError
 from context_substitution.v2.dataset.reviewed_support import (
     reviewed_support_to_context_substitution_input,
@@ -59,6 +60,7 @@ from context_substitution.v2.integration.release_validation import (
     DATASET_FROZEN_SET_SCHEMA_VERSION,
 )
 from context_substitution.v2.integration.replay import replay_context_run
+from context_substitution.v2.jsonio import StrictJSONError, loads_strict
 from context_substitution.v2.runtime.aggregation import (
     compute_context_result,
     merge_judge_labels,
@@ -200,6 +202,24 @@ def test_standalone_cli_exposes_required_commands() -> None:
     } <= choices
 
 
+@pytest.mark.parametrize(
+    "payload",
+    (
+        '{"key":1,"key":2}',
+        '{"outer":{"key":1,"key":2}}',
+        '{"value":NaN}',
+        '{"value":Infinity}',
+        '{"value":-Infinity}',
+        '{"value":1e9999}',
+        '{"value":1} trailing',
+        '[1,2,3]',
+    ),
+)
+def test_strict_json_rejects_ambiguous_persisted_values(payload: str) -> None:
+    with pytest.raises(StrictJSONError):
+        loads_strict(payload, require_object=True)
+
+
 def test_real_pilot_directory_and_zip_zero_api_equivalence() -> None:
     _require_external_dependencies(PILOT, PILOT_ZIP, V3, V3_ZIP)
     receipt = run_zero_api_pilot_smoke(
@@ -271,6 +291,78 @@ def test_raw_response_tamper_breaks_replay(
     response = next((forged / "provider_responses").glob("*.txt"))
     response.write_text("tampered", encoding="utf-8")
     with pytest.raises(ValueError, match="raw response hash mismatch"):
+        replay_context_run(
+            input_payload=integration_run["input"],
+            original_run=integration_run["run"],
+            ledger_root=forged,
+        )
+
+
+@pytest.mark.parametrize(
+    "variant",
+    ("extra_capture", "orphan_capture", "missing_capture", "reordered_capture", "attempt_drift"),
+)
+def test_direct_replay_rejects_full_ledger_contract_drift(
+    integration_run: dict[str, Any], tmp_path: Path, variant: str
+) -> None:
+    forged = tmp_path / variant
+    shutil.copytree(integration_run["root"] / "fake_ledger", forged)
+    path = forged / "provider_attempts.jsonl"
+    rows = _ledger_rows(path)
+    capture_indexes = [
+        index for index, row in enumerate(rows) if row["record_kind"] == "RAW_RESPONSE_CAPTURED"
+    ]
+    attempt_indexes = [
+        index for index, row in enumerate(rows) if row["record_kind"] == "PROVIDER_ATTEMPT"
+    ]
+    if variant == "extra_capture":
+        rows.insert(capture_indexes[0] + 1, copy.deepcopy(rows[capture_indexes[0]]))
+    elif variant == "orphan_capture":
+        rows.append(copy.deepcopy(rows[capture_indexes[0]]))
+    elif variant == "missing_capture":
+        del rows[capture_indexes[0]]
+    elif variant == "reordered_capture":
+        first, second = capture_indexes[:2]
+        rows[first], rows[second] = rows[second], rows[first]
+    else:
+        rows[attempt_indexes[0]]["model_id"] = "drifted-model-pinned-v1"
+    _write_ledger(path, rows)
+    with pytest.raises(ValueError):
+        replay_context_run(
+            input_payload=integration_run["input"],
+            original_run=integration_run["run"],
+            ledger_root=forged,
+        )
+
+
+@pytest.mark.parametrize(
+    "variant",
+    ("top_duplicate", "nested_duplicate", "nan", "infinity"),
+)
+def test_provider_ledger_rejects_ambiguous_jsonl(
+    integration_run: dict[str, Any], tmp_path: Path, variant: str
+) -> None:
+    forged = tmp_path / variant
+    shutil.copytree(integration_run["root"] / "fake_ledger", forged)
+    path = forged / "provider_attempts.jsonl"
+    lines = path.read_text(encoding="utf-8").splitlines()
+    if variant in {"top_duplicate", "nested_duplicate"}:
+        index = next(
+            i
+            for i, line in enumerate(lines)
+            if json.loads(line)["record_kind"] == "PROVIDER_ATTEMPT"
+        )
+        row = json.loads(lines[index])
+        lines[index] = (
+            _json_with_duplicate(row, "record_kind")
+            if variant == "top_duplicate"
+            else _json_with_duplicate(row, "input_tokens", nested_object="token_usage")
+        )
+    else:
+        constant = "NaN" if variant == "nan" else "Infinity"
+        lines[0] = f'{{"record_kind":"RAW_RESPONSE_CAPTURED","value":{constant}}}'
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
+    with pytest.raises(StrictJSONError):
         replay_context_run(
             input_payload=integration_run["input"],
             original_run=integration_run["run"],
@@ -395,6 +487,38 @@ def test_authority_receipt_tamper_is_rejected(tmp_path: Path) -> None:
         validate_authority_receipt(forged)
 
 
+@pytest.mark.parametrize(
+    "payload",
+    (
+        '{"schema_id":"one","schema_id":"two"}',
+        '{"integrity":{"self_sha256":"one","self_sha256":"two"}}',
+    ),
+)
+def test_authority_receipt_rejects_duplicate_keys(
+    tmp_path: Path, payload: str
+) -> None:
+    forged = tmp_path / "authority_receipt.json"
+    forged.write_text(payload, encoding="utf-8", newline="\n")
+    with pytest.raises(AuthorityConformanceError, match="duplicate object key"):
+        validate_authority_receipt(forged)
+
+
+@pytest.mark.parametrize(
+    "payload",
+    (
+        '{"package_version":"1.1.0","package_version":"forged"}',
+        '{"integrity":{"manifest_sha256":"one","manifest_sha256":"two"}}',
+    ),
+)
+def test_authority_manifest_rejects_duplicate_keys(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, payload: str
+) -> None:
+    (tmp_path / "manifest.json").write_text(payload, encoding="utf-8", newline="\n")
+    monkeypatch.setenv("TERMINOLOGY_CONTRACTS_ROOT", str(tmp_path))
+    with pytest.raises(AuthorityConformanceError, match="duplicate object key"):
+        validate_authority()
+
+
 def test_pending_review_pack_cannot_claim_frozen_authority() -> None:
     _require_external_dependencies(PILOT, V3, PENDING_REVIEW)
     with pytest.raises(ContractValidationError, match="Dataset authority must publish"):
@@ -462,19 +586,30 @@ def test_replay_rejects_raw_response_path_traversal(
     rows = _ledger_rows(path)
     capture = next(row for row in rows if row["record_kind"] == "RAW_RESPONSE_CAPTURED")
     original_ref = capture["raw_response_ref"]
-    capture["raw_response_ref"] = "../outside.txt"
+    raw_sha = capture["raw_response_sha256"]
+    unsafe_ref = f"provider_responses/{raw_sha}/../{raw_sha}.txt"
+    capture["raw_response_ref"] = unsafe_ref
     attempt = next(
         row
         for row in rows
         if row["record_kind"] == "PROVIDER_ATTEMPT"
         and row.get("raw_response_ref") == original_ref
     )
-    attempt["raw_response_ref"] = "../outside.txt"
+    attempt["raw_response_ref"] = unsafe_ref
     _write_ledger(path, rows)
+    forged_run = copy.deepcopy(integration_run["run"])
+    forged_attempt = next(
+        row
+        for row in forged_run["provider_attempts"]
+        if row.get("raw_response_ref") == original_ref
+    )
+    forged_attempt["raw_response_ref"] = unsafe_ref
+    forged_run["integrity"] = {}
+    forged_run = seal_context_substitution_run(forged_run)
     with pytest.raises(ValueError, match="raw response.*escapes"):
         replay_context_run(
             input_payload=integration_run["input"],
-            original_run=integration_run["run"],
+            original_run=forged_run,
             ledger_root=forged_root,
         )
 
@@ -591,6 +726,58 @@ def test_dataset_finalized_selection_is_consumed_without_vote_resolution(
 
 
 @pytest.mark.parametrize(
+    "payload",
+    (
+        '{"schema_id":"one","schema_id":"two"}',
+        '{"review":{"status":"one","status":"two"}}',
+    ),
+)
+def test_finalized_review_rejects_duplicate_keys(
+    tmp_path: Path, payload: str
+) -> None:
+    (tmp_path / FINALIZED_SELECTION_FILE).write_text(
+        payload,
+        encoding="utf-8",
+        newline="\n",
+    )
+    with pytest.raises(ContractValidationError, match="duplicate object key"):
+        load_frozen_review_selection(
+            tmp_path,
+            source_pilot_manifest_sha256="e" * 64,
+        )
+
+
+@pytest.mark.parametrize(
+    "payload",
+    (
+        '{"status":"PASS","status":"FAIL"}',
+        '{"integrity":{"summary_sha256":"one","summary_sha256":"two"}}',
+        '{"provider_attempt_count":NaN}',
+        '{"provider_attempt_count":Infinity}',
+    ),
+)
+def test_release_evidence_rejects_ambiguous_json(
+    integration_run: dict[str, Any], tmp_path: Path, payload: str
+) -> None:
+    forged = tmp_path / "evidence"
+    shutil.copytree(integration_run["root"], forged)
+    _write_junit(forged / "junit.xml", tests=1)
+    (forged / "pilot_zero_api_summary.json").write_text(
+        payload,
+        encoding="utf-8",
+        newline="\n",
+    )
+    with pytest.raises(StrictJSONError):
+        build_integration_release(
+            source_root=ROOT / "context_substitution",
+            evidence_root=forged,
+            output_directory=tmp_path / "release",
+            commands=("pytest",),
+            known_gaps=("strict JSON regression",),
+        )
+
+
+@pytest.mark.parametrize(
     ("tests", "failures", "errors", "skipped", "message"),
     (
         (0, 0, 0, 0, "no tests executed"),
@@ -646,12 +833,16 @@ def test_release_builder_emits_semantically_valid_rc2(
     integration_run: dict[str, Any], tmp_path: Path
 ) -> None:
     _write_junit(integration_run["root"] / "junit.xml", tests=22)
-    completed = _run_release_cli(integration_run["root"], tmp_path)
+    completed = _run_release_cli(integration_run["root"], tmp_path / "first")
     assert completed.returncode == 0, completed.stderr
     result = json.loads(completed.stdout)
     assert result["status"] == "INTEGRATION_READY_ZERO_API"
     assert result["junit"] == {"tests": 22, "failures": 0, "errors": 0, "skipped": 0}
     assert Path(result["archive"]).is_file()
+    repeated = _run_release_cli(integration_run["root"], tmp_path / "second")
+    assert repeated.returncode == 0, repeated.stderr
+    repeated_result = json.loads(repeated.stdout)
+    assert repeated_result["archive_sha256"] == result["archive_sha256"]
 
 
 def _run_release_cli(evidence_root: Path, output_directory: Path) -> subprocess.CompletedProcess[str]:
@@ -695,6 +886,56 @@ def _write_ledger(path: Path, rows: list[Mapping[str, Any]]) -> None:
         encoding="utf-8",
         newline="\n",
     )
+
+
+def _json_with_duplicate(
+    value: Mapping[str, Any],
+    duplicate_key: str,
+    *,
+    nested_object: str | None = None,
+) -> str:
+    def encode_object(row: Mapping[str, Any], repeated: str) -> str:
+        parts: list[str] = []
+        found = False
+        for key, item in row.items():
+            encoded = json.dumps(
+                item,
+                ensure_ascii=False,
+                sort_keys=True,
+                separators=(",", ":"),
+                allow_nan=False,
+            )
+            pair = f"{json.dumps(key)}:{encoded}"
+            parts.append(pair)
+            if key == repeated:
+                parts.append(pair)
+                found = True
+        if not found:
+            raise AssertionError(f"duplicate test key is missing: {repeated}")
+        return "{" + ",".join(parts) + "}"
+
+    if nested_object is None:
+        return encode_object(value, duplicate_key)
+    parts: list[str] = []
+    found = False
+    for key, item in value.items():
+        if key == nested_object:
+            if not isinstance(item, Mapping):
+                raise AssertionError(f"nested duplicate target is not an object: {key}")
+            encoded = encode_object(item, duplicate_key)
+            found = True
+        else:
+            encoded = json.dumps(
+                item,
+                ensure_ascii=False,
+                sort_keys=True,
+                separators=(",", ":"),
+                allow_nan=False,
+            )
+        parts.append(f"{json.dumps(key)}:{encoded}")
+    if not found:
+        raise AssertionError(f"nested duplicate object is missing: {nested_object}")
+    return "{" + ",".join(parts) + "}"
 
 
 def _write_junit(

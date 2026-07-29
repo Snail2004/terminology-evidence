@@ -7,6 +7,8 @@ import tempfile
 from pathlib import Path
 from typing import Any, Mapping
 
+from context_substitution.v2.jsonio import load_json_file
+
 
 def canonical_bytes(value: Any) -> bytes:
     return json.dumps(
@@ -27,7 +29,7 @@ def file_sha256(path: Path) -> str:
 
 
 def load_json(path: Path) -> Any:
-    return json.loads(Path(path).read_text(encoding="utf-8"))
+    return load_json_file(path, require_object=False)
 
 
 def write_json(path: Path, value: Any) -> None:

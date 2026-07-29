@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 from pathlib import Path, PurePosixPath
 from typing import Any, Mapping
 
@@ -32,6 +31,7 @@ from context_substitution.v2.integration.projection import (
     PROJECTION_REPORT_SCHEMA_ID,
     PROJECTION_REPORT_SCHEMA_VERSION,
 )
+from context_substitution.v2.jsonio import load_json_file
 
 
 DATASET_FROZEN_SET_SCHEMA_ID = "DatasetFrozenCandidateSetV1"
@@ -388,10 +388,4 @@ def _safe_relative_path(value: Any) -> PurePosixPath:
 
 
 def _load(path: Path) -> dict[str, Any]:
-    try:
-        value = json.loads(Path(path).read_text(encoding="utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
-        raise ValueError(f"cannot load integration evidence {path.name}: {exc}") from exc
-    if not isinstance(value, dict):
-        raise ValueError(f"integration evidence {path.name} must be an object")
-    return value
+    return load_json_file(path, require_object=True)

@@ -9,6 +9,8 @@ from pathlib import Path
 from types import ModuleType
 from typing import Any, Mapping
 
+from context_substitution.v2.jsonio import StrictJSONError, loads_strict
+
 
 AUTHORITY_TAG = "contracts-v1.1.0"
 AUTHORITY_TAG_OBJECT = "1a8c00d12f100145a276cd8304440ff0a7e8d2a1"
@@ -56,8 +58,12 @@ def validate_authority() -> dict[str, Any]:
     manifest_path = root / "manifest.json"
     try:
         manifest_bytes = manifest_path.read_bytes()
-        manifest = json.loads(manifest_bytes.decode("utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        manifest = loads_strict(
+            manifest_bytes,
+            source=manifest_path.as_posix(),
+            require_object=True,
+        )
+    except (OSError, StrictJSONError) as exc:
         raise AuthorityConformanceError(
             f"cannot load Terminology Contracts authority manifest: {exc}"
         ) from exc
@@ -91,8 +97,12 @@ def validate_authority_receipt(
     receipt_path = Path(path).resolve()
     try:
         receipt_bytes = receipt_path.read_bytes()
-        receipt = json.loads(receipt_bytes.decode("utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        receipt = loads_strict(
+            receipt_bytes,
+            source=receipt_path.as_posix(),
+            require_object=True,
+        )
+    except (OSError, StrictJSONError) as exc:
         raise AuthorityConformanceError(
             f"cannot load Terminology Contracts authority receipt: {exc}"
         ) from exc

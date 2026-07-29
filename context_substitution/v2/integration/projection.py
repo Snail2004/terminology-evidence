@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
@@ -27,6 +26,7 @@ from context_substitution.v2.integration.ledger_binding import (
     build_provider_ledger_manifest,
     validate_provider_ledger_manifest,
 )
+from context_substitution.v2.jsonio import load_jsonl_objects
 from context_substitution.v2.runtime.aggregation import (
     compute_context_result,
     merge_judge_labels,
@@ -313,10 +313,7 @@ def _validate_binding(
 
 def _ledger_time(path: Path, *, minimum: bool) -> str:
     values = []
-    for line in path.read_text(encoding="utf-8").splitlines():
-        if not line.strip():
-            continue
-        row = json.loads(line)
+    for row in load_jsonl_objects(path):
         if row.get("record_kind") == "PROVIDER_ATTEMPT":
             values.append(str(row["started_at"] if minimum else row["completed_at"]))
     if not values:

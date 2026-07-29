@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 import tempfile
 from dataclasses import dataclass
 from pathlib import Path
@@ -18,8 +17,10 @@ from context_substitution.v2.runtime.calibration import validate_threshold_polic
 from context_substitution.v2.runtime.engine import run_d2l_context_substitution
 from context_substitution.v2.integration.common import seal_object
 from context_substitution.v2.integration.ledger_binding import (
+    build_provider_ledger_manifest,
     read_content_addressed_response,
 )
+from context_substitution.v2.jsonio import load_jsonl_objects
 
 
 REPLAY_REPORT_SCHEMA_ID = "D2LContextSubstitutionReplayReportV1"
@@ -33,7 +34,12 @@ def replay_context_run(
     ledger_root: Path,
 ) -> dict[str, Any]:
     original = validate_context_substitution_run(original_run)
-    plan = _ReplayPlan.load(Path(ledger_root))
+    root = Path(ledger_root)
+    build_provider_ledger_manifest(
+        run_payload=original,
+        ledger_path=root / "provider_attempts.jsonl",
+    )
+    plan = _ReplayPlan.load(root)
     routes = _routes_for_replay(
         plan,
         route_order=original["execution_policy"]["provider_route_order"],
@@ -90,11 +96,7 @@ class _ReplayPlan:
     @classmethod
     def load(cls, root: Path) -> "_ReplayPlan":
         attempt_path = root / "provider_attempts.jsonl"
-        rows = [
-            json.loads(line)
-            for line in attempt_path.read_text(encoding="utf-8").splitlines()
-            if line.strip()
-        ]
+        rows = load_jsonl_objects(attempt_path)
         attempts = [dict(row) for row in rows if row.get("record_kind") == "PROVIDER_ATTEMPT"]
         if not attempts:
             raise ValueError("provider ledger contains no replayable attempts")

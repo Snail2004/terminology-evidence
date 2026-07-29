@@ -1,18 +1,17 @@
 from __future__ import annotations
 
 import hashlib
-import json
 import re
 from pathlib import Path, PurePosixPath
 from typing import Any, Mapping, Sequence
 
 from context_substitution.v2.contracts.run import validate_context_substitution_run
 from context_substitution.v2.integration.common import (
-    canonical_bytes,
     file_sha256,
     object_sha256,
     seal_object,
 )
+from context_substitution.v2.jsonio import load_jsonl_objects
 
 
 LEDGER_MANIFEST_SCHEMA_ID = "ContextSubstitutionProviderLedgerManifestV1"
@@ -144,19 +143,10 @@ def validate_provider_ledger_manifest(
 
 
 def _load_rows(path: Path) -> list[dict[str, Any]]:
-    rows: list[dict[str, Any]] = []
-    for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
-        if not line.strip():
-            continue
-        try:
-            row = json.loads(line)
-        except json.JSONDecodeError as exc:
-            raise ValueError(f"provider ledger line {line_number} is invalid JSON") from exc
-        if not isinstance(row, dict):
-            raise ValueError(f"provider ledger line {line_number} must be an object")
+    rows = load_jsonl_objects(path)
+    for line_number, row in enumerate(rows, 1):
         if row.get("record_kind") not in {"RAW_RESPONSE_CAPTURED", "PROVIDER_ATTEMPT"}:
             raise ValueError(f"provider ledger line {line_number} has unknown record_kind")
-        rows.append(row)
     if not rows:
         raise ValueError("provider ledger is empty")
     return rows

@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any, Mapping, Sequence
 
 from context_substitution.v2.contracts.validation import ContractValidationError
+from context_substitution.v2.jsonio import StrictJSONError, load_json_file
 
 
 ANNOTATION_SCHEMA_ID = "D2LContextSubstitutionFinalizedReviewedSelectionV1"
@@ -268,12 +269,9 @@ def _source_workflow_status(root: Path) -> str:
 
 def _load_json(path: Path) -> dict[str, Any]:
     try:
-        value = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
-        _fail("json", str(path), f"invalid JSON: {exc.__class__.__name__}")
-    if not isinstance(value, dict):
-        _fail("json", str(path), "expected object")
-    return value
+        return load_json_file(path, require_object=True)
+    except StrictJSONError as exc:
+        _fail("json", str(path), f"invalid strict JSON: {exc}")
 
 
 def _require_equal(row: Mapping[str, Any], field: str, expected: str, path: str) -> None:
