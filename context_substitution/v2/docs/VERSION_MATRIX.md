@@ -16,7 +16,8 @@
 | Context Judge | `d2l_context_judge_v2_1` | Pinned model identity; no Gemini-only restriction |
 | Aggregation | `d2l_context_aggregate_normalized_v2_1` | Missing contrastive/type coverage cannot become eligible |
 | Raw replay | `CONTENT_ADDRESSED_V1` | Required for frozen execution |
-| Provider role plan | `ContextSubstitutionProviderRolePlanV1` / `1.0.0` | CKey-first Gemini equivalence; explicit GPT Luna/Terra roles and bounded request budgets |
+| Provider role plan V1 | `cst_live_role_routing_v1` / `ContextSubstitutionProviderRolePlanV1` `1.0.0` | Immutable Gemini-primary replay authority; self `cff7bbf...d3085d9`, physical `1f62b9a...a80315` |
+| Provider role plan V2 | `cst_live_role_routing_gpt_primary_v2` / `ContextSubstitutionProviderRolePlanV1` `1.0.0` | Pre-D0 GPT-primary policy revision; V1 is not overwritten; self `155261f...3e815`, physical `6a22943...52e61` |
 | Provider ledger manifest | `ContextSubstitutionProviderLedgerManifestV1` / `1.1.0` | Exact ordered run/ledger and raw-response-set binding |
 | Shared authority | `contracts-v1.1.0` / `38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed` | Official immutable C/E/Global contract authority |
 | Context evidence output | `ContextEvidencePackageV1` / `1.1.0` | Candidate/input/provenance bound; C gate signals only; final decision null |
@@ -33,3 +34,8 @@ Legacy V2.2 payloads retain their original global-route validation and replay
 semantics; they are not silently reinterpreted as V2.3. Legacy term-evidence
 V1 remains a compatibility projection and rejects lossy merged two-judge
 evidence.
+
+Provider role plan V2 was selected before D0 for quota balance and
+cross-family independence. No claim of superiority over V1 is made. A
+comparative A/B provider-plan pilot is waived; a separately authorized
+one-candidate operational canary remains required before D0.

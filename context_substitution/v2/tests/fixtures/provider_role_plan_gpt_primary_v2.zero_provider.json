@@ -1,0 +1,107 @@
+{
+  "candidate_replicate_cap": 1,
+  "cases": [
+    {
+      "candidate_count": 1,
+      "case_id": "one_candidate",
+      "conditional_semantic_call_caps": {
+        "nonfrozen_context_selector": 1,
+        "pairwise_tiebreaker": 0,
+        "secondary_context_judge": 5,
+        "trial_regeneration_quality_gate": 5,
+        "trial_regeneration_translator": 5
+      },
+      "contrastive_contexts_per_candidate": 1,
+      "mandatory_family_calls": {
+        "gemini-3.5-flash": 5,
+        "gpt-5.6": 11
+      },
+      "mandatory_physical_request_ceiling": 42,
+      "mandatory_semantic_calls": {
+        "context_judge": 5,
+        "context_selector": 0,
+        "contrastive_sense_judge": 1,
+        "pairwise_tiebreaker": 0,
+        "secondary_context_judge": 0,
+        "trial_translation_quality_gate": 5,
+        "trial_translator": 5
+      },
+      "same_sense_contexts_per_candidate": 5,
+      "sense_count": 1
+    },
+    {
+      "candidate_count": 3,
+      "case_id": "one_sense_three_candidates",
+      "conditional_semantic_call_caps": {
+        "nonfrozen_context_selector": 1,
+        "pairwise_tiebreaker": 3,
+        "secondary_context_judge": 15,
+        "trial_regeneration_quality_gate": 15,
+        "trial_regeneration_translator": 15
+      },
+      "contrastive_contexts_per_candidate": 1,
+      "mandatory_family_calls": {
+        "gemini-3.5-flash": 15,
+        "gpt-5.6": 33
+      },
+      "mandatory_physical_request_ceiling": 126,
+      "mandatory_semantic_calls": {
+        "context_judge": 15,
+        "context_selector": 0,
+        "contrastive_sense_judge": 3,
+        "pairwise_tiebreaker": 0,
+        "secondary_context_judge": 0,
+        "trial_translation_quality_gate": 15,
+        "trial_translator": 15
+      },
+      "same_sense_contexts_per_candidate": 5,
+      "sense_count": 1
+    },
+    {
+      "candidate_count": 15,
+      "case_id": "official_scale_five_senses_fifteen_candidates",
+      "conditional_semantic_call_caps": {
+        "nonfrozen_context_selector": 5,
+        "pairwise_tiebreaker": 15,
+        "secondary_context_judge": 75,
+        "trial_regeneration_quality_gate": 75,
+        "trial_regeneration_translator": 75
+      },
+      "contrastive_contexts_per_candidate": 1,
+      "mandatory_family_calls": {
+        "gemini-3.5-flash": 75,
+        "gpt-5.6": 165
+      },
+      "mandatory_physical_request_ceiling": 630,
+      "mandatory_semantic_calls": {
+        "context_judge": 75,
+        "context_selector": 0,
+        "contrastive_sense_judge": 15,
+        "pairwise_tiebreaker": 0,
+        "secondary_context_judge": 0,
+        "trial_translation_quality_gate": 75,
+        "trial_translator": 75
+      },
+      "same_sense_contexts_per_candidate": 5,
+      "sense_count": 5
+    }
+  ],
+  "external_provider_calls": 0,
+  "integrity": {
+    "self_sha256": "5f28c9a4f869ff45938bf3dd80680c39e4e1d3f1881195056c9d20f2c3b7a334"
+  },
+  "network_calls": 0,
+  "notes": [
+    "All cases use frozen human-reviewed selection, so Context Selector makes zero semantic calls.",
+    "The baseline includes one contrastive context per candidate; a second contrastive context adds one GPT Terra-low semantic call per candidate.",
+    "Physical request ceilings assume every sealed transport retry/failover slot is consumed; happy-path physical requests equal semantic calls.",
+    "V2 was selected before D0 for quota balance and cross-family independence. No claim of superiority over V1 is made."
+  ],
+  "provider_role_plan_id": "cst_live_role_routing_gpt_primary_v2",
+  "provider_role_plan_physical_sha256": "6a229435a2d84198dc88bee26c3b4bb5645b7b086849c4f5e1a13217a9152e61",
+  "provider_role_plan_self_sha256": "155261fc2c80e54b6e22e266104fa6a5a2040fa6faf4b8d7865bb970a763e815",
+  "schema_id": "ContextSubstitutionZeroProviderRoutingFixtureV1",
+  "schema_version": "1.0.0",
+  "selector_mode": "FROZEN_HUMAN_REVIEWED_SELECTION",
+  "synthetic_senders_only": true
+}
