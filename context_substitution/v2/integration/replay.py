@@ -19,6 +19,7 @@ from context_substitution.v2.integration.common import seal_object
 from context_substitution.v2.integration.ledger_binding import (
     build_provider_ledger_manifest,
     read_content_addressed_response,
+    validate_provider_ledger_manifest,
 )
 from context_substitution.v2.jsonio import load_jsonl_objects
 
@@ -32,13 +33,21 @@ def replay_context_run(
     input_payload: Mapping[str, Any],
     original_run: Mapping[str, Any],
     ledger_root: Path,
+    expected_ledger_manifest: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     original = validate_context_substitution_run(original_run)
     root = Path(ledger_root)
-    build_provider_ledger_manifest(
+    observed_manifest = build_provider_ledger_manifest(
         run_payload=original,
         ledger_path=root / "provider_attempts.jsonl",
     )
+    if expected_ledger_manifest is not None:
+        expected_manifest = validate_provider_ledger_manifest(
+            expected_ledger_manifest,
+            run_payload=original,
+        )
+        if observed_manifest != expected_manifest:
+            raise ValueError("provider ledger differs from the sealed replay manifest")
     plan = _ReplayPlan.load(root)
     routes = _routes_for_replay(
         plan,

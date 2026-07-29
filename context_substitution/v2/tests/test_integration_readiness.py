@@ -46,6 +46,9 @@ from context_substitution.v2.integration.development_fixtures import (
     build_development_frozen_candidate_fixtures,
 )
 from context_substitution.v2.integration.fake_provider import run_fake_provider_pilot
+from context_substitution.v2.integration.ledger_binding import (
+    build_provider_ledger_manifest,
+)
 from context_substitution.v2.integration.pilot import run_zero_api_pilot_smoke
 from context_substitution.v2.integration.projection import (
     PACKAGE_SET_COMPLETE_STATUS,
@@ -282,6 +285,17 @@ def test_provider_ledger_has_audit_fields_and_replays_exactly(
     assert integration_run["replay"]["provider_call_count"] == 0
 
 
+def test_provider_ledger_manifest_seals_the_complete_event_sequence(
+    integration_run: dict[str, Any],
+) -> None:
+    manifest = build_provider_ledger_manifest(
+        run_payload=integration_run["run"],
+        ledger_path=integration_run["ledger_path"],
+    )
+    assert len(manifest["ledger_event_sequence_sha256"]) == 64
+    assert manifest["schema_version"] == "1.1.0"
+
+
 def test_raw_response_tamper_breaks_replay(
     integration_run: dict[str, Any], tmp_path: Path
 ) -> None:
@@ -300,7 +314,15 @@ def test_raw_response_tamper_breaks_replay(
 
 @pytest.mark.parametrize(
     "variant",
-    ("extra_capture", "orphan_capture", "missing_capture", "reordered_capture", "attempt_drift"),
+    (
+        "extra_capture",
+        "orphan_capture",
+        "missing_capture",
+        "reordered_capture",
+        "all_captures_first",
+        "capture_cross_boundary",
+        "attempt_drift",
+    ),
 )
 def test_direct_replay_rejects_full_ledger_contract_drift(
     integration_run: dict[str, Any], tmp_path: Path, variant: str
@@ -324,6 +346,16 @@ def test_direct_replay_rejects_full_ledger_contract_drift(
     elif variant == "reordered_capture":
         first, second = capture_indexes[:2]
         rows[first], rows[second] = rows[second], rows[first]
+    elif variant == "all_captures_first":
+        rows = [
+            *[rows[index] for index in capture_indexes],
+            *[rows[index] for index in attempt_indexes],
+        ]
+    elif variant == "capture_cross_boundary":
+        first_capture, second_capture = capture_indexes[:2]
+        first_attempt = attempt_indexes[0]
+        rows[first_capture], rows[second_capture] = rows[second_capture], rows[first_capture]
+        assert first_attempt == 1
     else:
         rows[attempt_indexes[0]]["model_id"] = "drifted-model-pinned-v1"
     _write_ledger(path, rows)
@@ -332,6 +364,63 @@ def test_direct_replay_rejects_full_ledger_contract_drift(
             input_payload=integration_run["input"],
             original_run=integration_run["run"],
             ledger_root=forged,
+        )
+
+
+@pytest.mark.parametrize("record_kind", ("RAW_RESPONSE_CAPTURED", "PROVIDER_ATTEMPT"))
+def test_provider_ledger_rejects_unknown_record_fields(
+    integration_run: dict[str, Any], tmp_path: Path, record_kind: str
+) -> None:
+    forged = tmp_path / record_kind
+    shutil.copytree(integration_run["root"] / "fake_ledger", forged)
+    path = forged / "provider_attempts.jsonl"
+    rows = _ledger_rows(path)
+    row = next(item for item in rows if item["record_kind"] == record_kind)
+    row["unexpected_review_field"] = "forged"
+    _write_ledger(path, rows)
+    with pytest.raises(ValueError, match="fields differ"):
+        replay_context_run(
+            input_payload=integration_run["input"],
+            original_run=integration_run["run"],
+            ledger_root=forged,
+        )
+
+
+def test_replay_rejects_event_sequence_manifest_drift(
+    integration_run: dict[str, Any], tmp_path: Path
+) -> None:
+    manifest = build_provider_ledger_manifest(
+        run_payload=integration_run["run"],
+        ledger_path=integration_run["ledger_path"],
+    )
+    forged = dict(manifest)
+    forged["ledger_event_sequence_sha256"] = "f" * 64
+    forged = seal_object(forged, integrity_key="manifest_sha256")
+    with pytest.raises(ValueError, match="differs from the sealed replay manifest"):
+        replay_context_run(
+            input_payload=integration_run["input"],
+            original_run=integration_run["run"],
+            ledger_root=integration_run["root"] / "fake_ledger",
+            expected_ledger_manifest=forged,
+        )
+
+
+def test_replay_rejects_manifest_from_a_different_ledger_bytes(
+    integration_run: dict[str, Any], tmp_path: Path
+) -> None:
+    foreign = tmp_path / "foreign"
+    shutil.copytree(integration_run["root"] / "fake_ledger", foreign)
+    foreign_path = foreign / "provider_attempts.jsonl"
+    foreign_path.write_bytes(foreign_path.read_bytes() + b"\n")
+    foreign_manifest = build_provider_ledger_manifest(
+        run_payload=integration_run["run"], ledger_path=foreign_path
+    )
+    with pytest.raises(ValueError, match="differs from the sealed replay manifest"):
+        replay_context_run(
+            input_payload=integration_run["input"],
+            original_run=integration_run["run"],
+            ledger_root=integration_run["root"] / "fake_ledger",
+            expected_ledger_manifest=foreign_manifest,
         )
 
 
@@ -476,6 +565,63 @@ def test_frozen_authority_receipt_matches_published_contract() -> None:
     published = validate_authority_receipt()
     assert published["integrity"]["self_sha256"] == AUTHORITY_RECEIPT_SELF_SHA256
     assert published["physical_sha256"] == AUTHORITY_RECEIPT_PHYSICAL_SHA256
+
+
+def test_r2_authority_receipt_is_portable_and_revision_bound() -> None:
+    receipt = validate_authority_receipt()
+    assert receipt["receipt_revision"] == 2
+    assert receipt["authority_commit"] == AUTHORITY_COMMIT
+    assert receipt["integrity"]["self_sha256"] == AUTHORITY_RECEIPT_SELF_SHA256
+    assert DEFAULT_AUTHORITY_RECEIPT_PATH.name.endswith("_r2.json")
+
+
+def test_legacy_r1_receipt_cannot_become_active_authority() -> None:
+    r1 = (
+        contract_package_root()
+        / "release"
+        / "v1.1.0-final"
+        / "history"
+        / "contracts_v1_1_0_authority_receipt_r1_resealed.json"
+    )
+    with pytest.raises(AuthorityConformanceError, match="physical SHA mismatch"):
+        validate_authority_receipt(r1)
+
+
+@pytest.mark.parametrize(
+    "variant",
+    (
+        "extra_release_file",
+        "zip_mutation",
+        "receipt_checksum_mutation",
+        "release_audit_mutation",
+        "source_mutation",
+    ),
+)
+def test_r2_authority_rejects_release_or_source_mutation(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, variant: str
+) -> None:
+    source_root = contract_package_root()
+    forged_root = tmp_path / "terminology_contracts_v1"
+    shutil.copytree(source_root, forged_root)
+    release_root = forged_root / "release" / "v1.1.0-final"
+    if variant == "extra_release_file":
+        (release_root / "unreviewed.txt").write_text("forged", encoding="utf-8")
+    elif variant == "zip_mutation":
+        target = release_root / "terminology_contracts_v1_1_0_final.zip"
+        target.write_bytes(target.read_bytes() + b"forged")
+    elif variant == "receipt_checksum_mutation":
+        target = release_root / "contracts_v1_1_0_authority_receipt_r2.json.sha256"
+        target.write_text("f" * 64 + "  forged.json\n", encoding="ascii", newline="\n")
+    elif variant == "release_audit_mutation":
+        target = release_root / "final_release_audit.json"
+        target.write_bytes(target.read_bytes() + b"forged")
+    else:
+        source = forged_root / "python" / "terminology_contracts" / "canonical.py"
+        source.write_bytes(source.read_bytes() + b"\n# forged")
+    monkeypatch.setenv("TERMINOLOGY_CONTRACTS_ROOT", str(forged_root))
+    receipt = release_root / "contracts_v1_1_0_authority_receipt_r2.json"
+    with pytest.raises(AuthorityConformanceError):
+        validate_authority_receipt(receipt)
 
 
 def test_authority_receipt_tamper_is_rejected(tmp_path: Path) -> None:

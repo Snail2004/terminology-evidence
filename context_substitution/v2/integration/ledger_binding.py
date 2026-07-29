@@ -15,8 +15,57 @@ from context_substitution.v2.jsonio import load_jsonl_objects
 
 
 LEDGER_MANIFEST_SCHEMA_ID = "ContextSubstitutionProviderLedgerManifestV1"
-LEDGER_MANIFEST_SCHEMA_VERSION = "1.0.0"
+LEDGER_MANIFEST_SCHEMA_VERSION = "1.1.0"
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
+_CAPTURE_FIELDS = frozenset(
+    {
+        "record_kind",
+        "raw_response_ref",
+        "raw_response_sha256",
+        "raw_response_bytes",
+    }
+)
+_ATTEMPT_FIELDS = frozenset(
+    {
+        "record_kind",
+        "run_id",
+        "tag",
+        "candidate_id",
+        "context_id",
+        "request_sha256",
+        "retry_index",
+        "started_at",
+        "completed_at",
+        "provider_id",
+        "status",
+        "failure_reason",
+        "token_usage",
+        "latency",
+        "provider_route_id",
+        "model_id",
+        "model_family",
+        "independence_group",
+        "role",
+        "prompt_version",
+        "prompt_sha256",
+        "response_sha256",
+        "request_id",
+        "input_tokens",
+        "output_tokens",
+        "reasoning_tokens",
+        "total_tokens",
+        "cached",
+        "latency_ms",
+        "accepted",
+        "failure_kind",
+        "raw_response_ref",
+        "raw_response_sha256",
+        "raw_response_storage_status",
+    }
+)
+_TOKEN_USAGE_FIELDS = frozenset(
+    {"input_tokens", "output_tokens", "reasoning_tokens", "total_tokens"}
+)
 
 
 def build_provider_ledger_manifest(
@@ -64,6 +113,7 @@ def build_provider_ledger_manifest(
         "provider_attempt_count": len(attempts),
         "accepted_attempt_count": sum(bool(row["accepted"]) for row in attempts),
         "rejected_attempt_count": sum(not bool(row["accepted"]) for row in attempts),
+        "ledger_event_sequence_sha256": object_sha256(rows),
         "attempt_sequence_sha256": object_sha256(attempt_identities),
         "raw_response_count": len(captures),
         "raw_response_set_sha256": object_sha256(
@@ -92,6 +142,7 @@ def validate_provider_ledger_manifest(
         "provider_attempt_count",
         "accepted_attempt_count",
         "rejected_attempt_count",
+        "ledger_event_sequence_sha256",
         "attempt_sequence_sha256",
         "raw_response_count",
         "raw_response_set_sha256",
@@ -133,6 +184,7 @@ def validate_provider_ledger_manifest(
     if value["final_glossary_decision"] is not None:
         raise ValueError("provider ledger manifest cannot contain a final decision")
     for key in (
+        "ledger_event_sequence_sha256",
         "attempt_sequence_sha256",
         "raw_response_set_sha256",
         "ledger_physical_sha256",
@@ -145,8 +197,28 @@ def validate_provider_ledger_manifest(
 def _load_rows(path: Path) -> list[dict[str, Any]]:
     rows = load_jsonl_objects(path)
     for line_number, row in enumerate(rows, 1):
-        if row.get("record_kind") not in {"RAW_RESPONSE_CAPTURED", "PROVIDER_ATTEMPT"}:
+        kind = row.get("record_kind")
+        if kind not in {"RAW_RESPONSE_CAPTURED", "PROVIDER_ATTEMPT"}:
             raise ValueError(f"provider ledger line {line_number} has unknown record_kind")
+        expected_fields = _CAPTURE_FIELDS if kind == "RAW_RESPONSE_CAPTURED" else _ATTEMPT_FIELDS
+        if set(row) != expected_fields:
+            missing = sorted(expected_fields - set(row))
+            extra = sorted(set(row) - expected_fields)
+            details = []
+            if missing:
+                details.append("missing=" + ",".join(missing))
+            if extra:
+                details.append("extra=" + ",".join(extra))
+            raise ValueError(
+                f"provider ledger line {line_number} fields differ from {kind}: "
+                + "; ".join(details)
+            )
+        if kind == "PROVIDER_ATTEMPT":
+            usage = row.get("token_usage")
+            if not isinstance(usage, Mapping) or set(usage) != _TOKEN_USAGE_FIELDS:
+                raise ValueError(
+                    f"provider ledger line {line_number} token_usage fields differ from contract"
+                )
     if not rows:
         raise ValueError("provider ledger is empty")
     return rows
@@ -228,16 +300,20 @@ def _attempt_identity(
 def _validate_capture_sequence(
     rows: Sequence[Mapping[str, Any]], *, ledger_root: Path
 ) -> None:
-    pending: list[tuple[str, str]] = []
+    pending: tuple[str, str] | None = None
     capture_count = 0
-    for row in rows:
+    for index, row in enumerate(rows):
         if row["record_kind"] == "RAW_RESPONSE_CAPTURED":
+            if pending is not None:
+                raise ValueError(
+                    "provider response capture is not immediately followed by its attempt"
+                )
             ref = str(row.get("raw_response_ref"))
             sha = str(row.get("raw_response_sha256"))
             data = read_content_addressed_response(ledger_root, ref, sha)
             if row.get("raw_response_bytes") != len(data):
                 raise ValueError("provider response capture byte count mismatch")
-            pending.append((ref, sha))
+            pending = (ref, sha)
             capture_count += 1
             continue
         stored = row.get("raw_response_storage_status") == "STORED"
@@ -246,11 +322,14 @@ def _validate_capture_sequence(
                 str(row.get("raw_response_ref")),
                 str(row.get("raw_response_sha256")),
             )
-            if not pending or pending.pop(0) != expected:
-                raise ValueError("provider response capture sequence differs from attempts")
-        elif pending:
+            if pending != expected:
+                raise ValueError(
+                    f"stored provider attempt {index} lacks its immediately preceding capture"
+                )
+        elif pending is not None:
             raise ValueError("unbound provider response capture precedes an unstored attempt")
-    if pending:
+        pending = None
+    if pending is not None:
         raise ValueError("provider ledger contains unbound response captures")
     if capture_count != sum(
         row.get("raw_response_storage_status") == "STORED"
