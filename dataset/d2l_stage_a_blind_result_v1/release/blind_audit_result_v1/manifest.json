@@ -1,0 +1,62 @@
+{
+  "schema_id": "D2LCSTBlindResultArtifactManifestV1",
+  "policy_id": "d2l_cst_stage_a_blind_result_artifact_v1",
+  "artifact_status": "BLOCKED_PENDING_REVIEWER_PROVENANCE_AND_ADJUDICATION",
+  "summary_sha256": "21d979b7c5f8b76cc5e3217a995d81eda1b3facac91e5d5d98e7d5c1da8bfce2",
+  "input_bindings_sha256": "f521d6cf9befb6e51708b05d88f0b57266f0e30c952fd5b410414b58b9d9b94e",
+  "files": {
+    "adjudication/adjudication_cases.csv": {
+      "sha256": "f8e7e3250634d12d782d42df041f523b5afb82608550c8e2cf8e8ee532f5c0a7",
+      "size_bytes": 2409
+    },
+    "adjudication/ADJUDICATION_INSTRUCTIONS.md": {
+      "sha256": "b899f00f7112bb9b74940ff65fd075c9ff4b4b5e85531a1d16c2c904cccee8d8",
+      "size_bytes": 381
+    },
+    "adjudication/adjudicator.csv": {
+      "sha256": "4b407c0a0c057076dff902af3710720cd5bde52367c53a6ce1c06ae10aec8287",
+      "size_bytes": 739
+    },
+    "blind_consensus.jsonl": {
+      "sha256": "429c880bf54c3a801c23af78ad964c9423687e44ec9c6bcbb09dd73c5d7035d6",
+      "size_bytes": 19950
+    },
+    "input_bindings.json": {
+      "sha256": "cbd46310afd4824206831204a2c60df364d5c6c3aeda7391ae43bd5b2b10c0ef",
+      "size_bytes": 1114
+    },
+    "normalized_reviews/reviewer_1.jsonl": {
+      "sha256": "873dbd3bb960a6874130cb1b158daabb234d99261b8116e21d8dcbee684f7f8a",
+      "size_bytes": 19003
+    },
+    "normalized_reviews/reviewer_2.jsonl": {
+      "sha256": "a1675c291f5d3627aa8c670e7e2cb0c5dd3db15475ad62519e10935dcb45039c",
+      "size_bytes": 18769
+    },
+    "normalized_reviews/reviewer_3.jsonl": {
+      "sha256": "03f9264edb18b88a9300c4ea841914e6f26509e67d23022be7fc5d8d3593f29c",
+      "size_bytes": 17968
+    },
+    "paired_comparison.jsonl": {
+      "sha256": "3a47aff33eac64b1e01663c9102843d4e6b7c03cc5ecd1bcc703f27eb801ec3f",
+      "size_bytes": 20296
+    },
+    "provenance/reviewer_1.json": {
+      "sha256": "2eb825df07040073df89b092c5b66eb94cdd5c24e07a5c072206c84ce44155e8",
+      "size_bytes": 674
+    },
+    "provenance/reviewer_2.json": {
+      "sha256": "236fc354a1f7f95cb67f8c6330b0e1b0e87e7be2111f136aaff2069857472b98",
+      "size_bytes": 674
+    },
+    "provenance/reviewer_3.json": {
+      "sha256": "07d35eb4bbbae288dfc1bc81317eec6e9e2e11aae66af1f66a81f4dc9d1ebeea",
+      "size_bytes": 674
+    },
+    "summary.json": {
+      "sha256": "ef88670e3468f2b81a1dd32ec4ec6a97926682ff5aeca20c75017a17bd3cb569",
+      "size_bytes": 869
+    }
+  },
+  "manifest_sha256": "251a6dec625461883bf9678f767e52389e92e0d5940bd960be73d9dbaa076175"
+}

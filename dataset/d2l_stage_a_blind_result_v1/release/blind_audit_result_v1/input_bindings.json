@@ -1,0 +1,28 @@
+{
+  "schema_id": "D2LCSTBlindResultInputBindingsV1",
+  "policy_id": "d2l_cst_stage_a_blind_result_intake_v1",
+  "blind_pack_manifest_sha256": "2bb2328a28e22c1ce2d9e4a13d8ed684e4efd30804d4e225dd639694858bc297",
+  "anchor_reference_sha256": "62cfea24b23de4b2bd67a2e9739b152cfed0ce1a296f23dcc66da32ad9aea9c9",
+  "anchored_consensus_sha256": "e4019d461284dfe727f7c1cb08a5e6ef41890bef3379d579c6130aa84e5910f2",
+  "review_files": [
+    {
+      "reviewer_slot": 1,
+      "source_file_name": "blind_reviewer_1.csv",
+      "sha256": "5e4e46c40a49ae01e419b50260adc75d9d693c0891741f33678eb0a08f1b28fa",
+      "size_bytes": 9289
+    },
+    {
+      "reviewer_slot": 2,
+      "source_file_name": "blind_reviewer_2.csv",
+      "sha256": "d5a6271060861b43a4d5f6dd3ddb1b13de4674787902dac7e900dd43c48ea514",
+      "size_bytes": 8975
+    },
+    {
+      "reviewer_slot": 3,
+      "source_file_name": "blind_reviewer_3.csv",
+      "sha256": "acb50434f8293f85d3daa338acf17b07243562339691e7c322ce22bfc3909669",
+      "size_bytes": 8383
+    }
+  ],
+  "bindings_sha256": "f521d6cf9befb6e51708b05d88f0b57266f0e30c952fd5b410414b58b9d9b94e"
+}
