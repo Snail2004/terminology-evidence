@@ -1,0 +1,79 @@
+{
+  "artifact_name": "d2l_fast_track_stage_a_r0_repair_reaudit_v1",
+  "candidate_target_repair_count": 4,
+  "canonical_adjudication_manifest_sha256": "95482cd1b495b9014a1f00ba4695324f99f0637c6fb96f17d5ffded44c5e2b5c",
+  "created_at": "2026-07-29T14:00:00Z",
+  "definition_repair_count": 1,
+  "files": {
+    "RELEASE_REPORT.md": {
+      "sha256": "b5e120b0e9012a5be0873294120530905440360c006874c91a7519719f1f8d9a",
+      "size_bytes": 449
+    },
+    "exact_50_gate.json": {
+      "sha256": "fb0bcaa54c8b2e859834b4bbdc4093c8f60d1413f7ea76e3acbfd1aafc577961",
+      "size_bytes": 917
+    },
+    "handoff/r0_repair_reaudit_reviewer.zip": {
+      "sha256": "aea89e81da3aa5c4d5916f5ed9559b04d66b32a567df17e199476e75be1ceab6",
+      "size_bytes": 11285
+    },
+    "handoff/reviewer_input.json": {
+      "sha256": "736457a5bdbc0c04c61dbce1cbffda36cf77513c985f6b07d00e797942207e64",
+      "size_bytes": 45293
+    },
+    "repair_report.json": {
+      "sha256": "481eb425b4c1bc89efad11495646c02eb83637f868ec1acb8f5365568ba87cd6",
+      "size_bytes": 1090
+    },
+    "repaired_r0_cases_4.jsonl": {
+      "sha256": "3f2db72c8dcd39a2184b9b1e4176230a255c00fd72ce3b4786f90cc541c6a4c6",
+      "size_bytes": 36000
+    },
+    "source/.gitattributes": {
+      "sha256": "a51e4210b15c2bac0f4126425e7d418b0ec19314aecb604f8a9940229637c3c4",
+      "size_bytes": 75
+    },
+    "source/README.md": {
+      "sha256": "f7603b2817f4913df27f956ac8a4b041edd6b217cebb7821ba40cc9c3412cef9",
+      "size_bytes": 1145
+    },
+    "source/tests/test_r0_repair_reaudit.py": {
+      "sha256": "1a3510da97251437e84814be2b12e5e564117cac8defd472d0ef7ea7e737fb4d",
+      "size_bytes": 5812
+    },
+    "source/tools/__init__.py": {
+      "sha256": "8e54bb1d41f8db713f28e8fdc2c7eab7628ca5bde1d1abcda5656781964563a1",
+      "size_bytes": 69
+    },
+    "source/tools/build_r0_repair_reaudit.py": {
+      "sha256": "4a90e2dd9647fd8b4e1ca31d8a413eab0ebeab83129e27ac6628a4a4104d91de",
+      "size_bytes": 13460
+    },
+    "source/tools/common.py": {
+      "sha256": "465ea6fc3c941710b939de297cc22389f5e3afd9fd9c0c27ce10da2ff5044e79",
+      "size_bytes": 7501
+    },
+    "source/tools/r0_repair.py": {
+      "sha256": "e0063c5287d7d80b806b71f546bb557dc3bf21658d9443ae1faa112e632923cf",
+      "size_bytes": 7855
+    },
+    "source/tools/spec.py": {
+      "sha256": "02e797b4afc252bcf9057deda11c6ab57dfe7823b27018af56fd9bca76e24c66",
+      "size_bytes": 3370
+    },
+    "source/tools/validate_r0_repair_reaudit.py": {
+      "sha256": "e17cfba05dc2459e08142537826f5e4257e1e3218f0bc50a9dd2ff4b2252e9f7",
+      "size_bytes": 13031
+    }
+  },
+  "final_glossary_decision": null,
+  "manifest_sha256": "7e63e6622e4884fd7a81e84b8f47ee20174ba32d3f674b7ae6c69f3d370adf36",
+  "minimum_ready_r0_acceptances_to_unlock_exact_50": 1,
+  "policy_id": "d2l-fast-track-stage-a-r0-repair-reaudit-v1.0",
+  "provider_call_count": 0,
+  "repair_case_count": 4,
+  "schema_id": "D2LFastTrackStageAR0RepairReauditManifestV1",
+  "schema_version": "1.0.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "READY_FOR_R0_BLIND_REAUDIT"
+}

@@ -1,0 +1,22 @@
+{
+  "artifact_name": "d2l_fast_track_stage_a_r0_repair_reaudit_v1",
+  "candidate_target_repair_count": 4,
+  "canonical_adjudication_manifest_physical_sha256": "339c8d1aeb508c4722b541280f9e416b6fcde2f27fb98ddb79e993b17f3b89fa",
+  "canonical_adjudication_manifest_sha256": "95482cd1b495b9014a1f00ba4695324f99f0637c6fb96f17d5ffded44c5e2b5c",
+  "canonical_r0_queue_sha256": "0934d456391813b52b0cef20a3ca827f50d2c57b5c9089e809c18639f3a5d33b",
+  "created_at": "2026-07-29T14:00:00Z",
+  "definition_repair_count": 1,
+  "final_glossary_decision": null,
+  "handoff_zip": "handoff/r0_repair_reaudit_reviewer.zip",
+  "handoff_zip_sha256": "aea89e81da3aa5c4d5916f5ed9559b04d66b32a567df17e199476e75be1ceab6",
+  "integrity": {
+    "self_sha256": "8f2c59c8aac87f5937c79fe63d48875313fb0e2aa3bd02c3a4665803d2638509"
+  },
+  "policy_id": "d2l-fast-track-stage-a-r0-repair-reaudit-v1.0",
+  "provider_call_count": 0,
+  "repair_case_count": 4,
+  "schema_id": "D2LFastTrackStageAR0RepairReauditReportV1",
+  "schema_version": "1.0.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "READY_FOR_R0_BLIND_REAUDIT"
+}
