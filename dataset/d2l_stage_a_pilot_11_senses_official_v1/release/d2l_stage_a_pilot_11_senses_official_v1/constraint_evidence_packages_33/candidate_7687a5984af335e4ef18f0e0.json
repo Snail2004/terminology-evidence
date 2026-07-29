@@ -1,0 +1,70 @@
+{
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_7687a5984af335e4ef18f0e0",
+    "candidate_version": "3ab700bd8e6064483bf3f65d257098045f9f0965bf605083e963c8f31ef29ec2",
+    "candidate_vi": "giả thuyết không",
+    "dataset_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+    "effective_sense_contract_sha256": "397fc00ebb881e0bb96cdf0f25de7da8276647d2a2698b07f40061bfafd7b3e6",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_11e1c294000ac67785408dcd",
+    "sense_inventory_version": "d2l_context_support_set_validation_ready_v3",
+    "source_term": "null hypothesis"
+  },
+  "input_contract_sha256": "b344fdb1064687a927b0c29afb8dec34372ca91b1e22f35563c90b9a2262dbf0",
+  "integrity": {
+    "self_sha256": "61e3cc6e014720c742020796afc025902d3a2bcbd2acbd924d300067d11b6b2a"
+  },
+  "polysemy_resolution": {
+    "authority_ref": {
+      "evidence_id": "review-binding-d2lce_11e1c294000ac67785408dcd",
+      "evidence_type": "REVIEW_ARTIFACT",
+      "sha256": "65936af84e77fffd33aca38be6a70c0d7ed6a5d9274bad9a2c1616c18f74e141",
+      "uri": "artifact://d2l-stage-a-p0b/review_bindings_11/d2lce_11e1c294000ac67785408dcd.json"
+    },
+    "related_sense_ids": [
+      "d2lce_11e1c294000ac67785408dcd"
+    ],
+    "status": "RESOLVED_SINGLE"
+  },
+  "provenance": {
+    "completed_at": "2026-07-29T08:00:00Z",
+    "component_id": "d2l-dataset-constraint-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "c0a8a26c215ffdd4a5c3586c500adfc4cb7b86691b47f0ba6990857f7bb43e61",
+    "model_routes": [],
+    "notes": "Sense review and polysemy are bound; target collision remains explicitly unjudgeable for downstream review.",
+    "policy_version": "d2l-stage-a-p0b-official-11-sense-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-stage-a-p0b-official-11-sense-release",
+    "run_spec_id": "d2l-stage-a-p0b-official-11-sense-spec-v1",
+    "source_artifact_hashes": {
+      "candidate_instance": "3ab700bd8e6064483bf3f65d257098045f9f0965bf605083e963c8f31ef29ec2",
+      "dataset_manifest": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+      "review_binding": "65936af84e77fffd33aca38be6a70c0d7ed6a5d9274bad9a2c1616c18f74e141",
+      "reviewed_manifest": "e602af02edf1fb877a9541c5e37f939f4f35ded34ac878d773fc83b96ed3fb48",
+      "term_sense": "cfd8d59469c1c638ecf92ee17336551b78b8907febf5706b73ea785b3ea26439"
+    },
+    "started_at": "2026-07-29T08:00:00Z"
+  },
+  "schema_id": "ConstraintEvidencePackageV1",
+  "schema_version": "1.1.0",
+  "sense_review": {
+    "effective_sense_contract_sha256": "397fc00ebb881e0bb96cdf0f25de7da8276647d2a2698b07f40061bfafd7b3e6",
+    "review_artifact_ref": {
+      "evidence_id": "review-binding-d2lce_11e1c294000ac67785408dcd",
+      "evidence_type": "REVIEW_ARTIFACT",
+      "sha256": "65936af84e77fffd33aca38be6a70c0d7ed6a5d9274bad9a2c1616c18f74e141",
+      "uri": "artifact://d2l-stage-a-p0b/review_bindings_11/d2lce_11e1c294000ac67785408dcd.json"
+    },
+    "status": "VERIFIED"
+  },
+  "target_collision": {
+    "collision_index_ref": null,
+    "collision_index_sha256": null,
+    "conflicting_candidate_keys": [],
+    "evidence_refs": [],
+    "status": "UNJUDGEABLE"
+  }
+}

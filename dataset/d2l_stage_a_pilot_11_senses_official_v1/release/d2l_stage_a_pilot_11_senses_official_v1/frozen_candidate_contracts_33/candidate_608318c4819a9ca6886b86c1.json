@@ -1,0 +1,64 @@
+{
+  "alternatives_vi": [
+    "tốc độ học",
+    "hệ số học"
+  ],
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_608318c4819a9ca6886b86c1",
+    "candidate_version": "71cfcc29105afc07532d8e1c7979e91458ab2b935915aa121597ad37cfff677f",
+    "candidate_vi": "các tốc độ học",
+    "dataset_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+    "effective_sense_contract_sha256": "b8a749e0aec0d258be245020d3d9ef6bce3759f37323cdddef50acb08f54a8d3",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_cc4cb853eff638abcbdf7691",
+    "sense_inventory_version": "d2l_context_support_set_validation_ready_v3",
+    "source_term": "learning rate"
+  },
+  "domain_profile": {
+    "anchors_en": [
+      "learning rate"
+    ],
+    "anchors_vi": [
+      "các tốc độ học",
+      "hệ số học",
+      "tốc độ học"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "A training hyperparameter that controls the step size of parameter updates during optimization.",
+  "effective_part_of_speech": "noun_phrase",
+  "input_contract_sha256": "4da29f51a5c19c6735b1460eb8b2c39f920846d470c5c9f7b6dce99b4190b93b",
+  "input_provenance": {
+    "completed_at": "2026-07-29T08:00:00Z",
+    "component_id": "d2l-dataset-frozen-candidate-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "c0a8a26c215ffdd4a5c3586c500adfc4cb7b86691b47f0ba6990857f7bb43e61",
+    "model_routes": [],
+    "notes": "Candidate identity is frozen; no candidate gold label or final glossary decision is assigned.",
+    "policy_version": "d2l-stage-a-p0b-official-11-sense-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-stage-a-p0b-official-11-sense-release",
+    "run_spec_id": "d2l-stage-a-p0b-official-11-sense-spec-v1",
+    "source_artifact_hashes": {
+      "candidate_instance": "71cfcc29105afc07532d8e1c7979e91458ab2b935915aa121597ad37cfff677f",
+      "dataset_manifest": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+      "review_binding": "4b504f224af0f68d0152c18be21ff2ba41a81187a3b7e57d8bb793a6b9719943",
+      "reviewed_manifest": "e602af02edf1fb877a9541c5e37f939f4f35ded34ac878d773fc83b96ed3fb48",
+      "term_sense": "18f27e7c043a00d9c7588b90f125eb8d5b88c1c404f30629a60edf3770bf0e3a"
+    },
+    "started_at": "2026-07-29T08:00:00Z"
+  },
+  "integrity": {
+    "self_sha256": "e03297cb98d0928c3a04ed25914af81ea77121972f8fdaa56e9560d13f02a9ec"
+  },
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.1.0",
+  "scope_note": null,
+  "surfaces": {
+    "canonical_vi": "các tốc độ học",
+    "rejected_variants_vi": [],
+    "validated_variants_vi": []
+  }
+}

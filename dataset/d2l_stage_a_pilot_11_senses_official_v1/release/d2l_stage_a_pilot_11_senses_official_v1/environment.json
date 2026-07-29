@@ -1,0 +1,7 @@
+{
+  "builder_policy": "d2l-stage-a-p0b-official-11-sense-v1.0",
+  "contract_authority_tag": "contracts-v1.1.0",
+  "created_at": "2026-07-29T08:00:00Z",
+  "network_calls": 0,
+  "provider_calls": 0
+}

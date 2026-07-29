@@ -1,0 +1,32 @@
+{
+  "adjudication_ref": null,
+  "blind_audit_ref": null,
+  "boundary_context_ids": [
+    "ctxx_84628ffb91c733b908fe79fe"
+  ],
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "4fc0721636477a7d3f856466199166c72ca366f460270e6ed227a70c7d71350a"
+  },
+  "parent_review_decision_sha256": "ce05f331eb4acecc7421d1b6addaa81d5294318ae829f91a98f7ec665466f297",
+  "policy_id": "d2l-stage-a-p0b-official-11-sense-v1.0",
+  "positive_definition_evidence_ids": [
+    "ctx_5d3d4728c7288bca4bf4f624",
+    "ctx_f6a47145f376202745ec79b1",
+    "ctx_927dfa6b607b0cdb7925b702"
+  ],
+  "positive_pos_evidence_ids": [
+    "ctx_f6a47145f376202745ec79b1",
+    "ctx_5d3d4728c7288bca4bf4f624"
+  ],
+  "review_provenance_refs": [
+    "0ce189d339d22ec5940a70ddacb373b3677a41bd0788f3172b5ed21e515ec247"
+  ],
+  "review_status": "ACCEPTED",
+  "reviewer_roster_attestation_sha256": "434ef46fd51def30c6ba5f8cf5b0ba9b2afa4c95a4c3c8d634487324ea0e4aac",
+  "schema_id": "D2LOfficialSenseReviewBindingV1",
+  "schema_version": "1.0.0",
+  "sense_id": "d2lce_9bd5113780f8e8160a24e6ad",
+  "source_term": "underflow",
+  "source_term_sense_sha256": "f032153974496e057ef7410cd4c6be165b8d8e772b15e1bdb92e0756273193d6"
+}

@@ -1,0 +1,34 @@
+{
+  "adjudication_ref": null,
+  "blind_audit_ref": {
+    "blind_audit_record_sha256": "d0bb88dc54b859e3eda86e5eb604ba2d7036c543b02fd356244a2b63b624538a",
+    "blind_case_id": "pilot15_blind_d2lce_8d226b48ba7ec1493faa4ec8"
+  },
+  "boundary_context_ids": [
+    "ctxx_96e9ef1273e4b1bb986dd43e"
+  ],
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "13b4ade41b25a79f64f8bede27f707baa8463144f746972b6a9df3fd04f6b1d6"
+  },
+  "parent_review_decision_sha256": "01e5a6a17b5889d4b94da3b389f9ca48c57d94ef3f641283b04e969391052bec",
+  "policy_id": "d2l-stage-a-p0b-official-11-sense-v1.0",
+  "positive_definition_evidence_ids": [
+    "ctx_76aaadbd846db473944f5737",
+    "ctx_4464d445a080f2a1433e80df"
+  ],
+  "positive_pos_evidence_ids": [
+    "ctx_5f804b816c9a3019d5cd256d",
+    "ctx_a47529e99ab8712183c51ba6"
+  ],
+  "review_provenance_refs": [
+    "bcdc0a0f707934d42d8da07e4355ba72bac5df817fe5a413b75fd8b3775174b0"
+  ],
+  "review_status": "ACCEPTED",
+  "reviewer_roster_attestation_sha256": "434ef46fd51def30c6ba5f8cf5b0ba9b2afa4c95a4c3c8d634487324ea0e4aac",
+  "schema_id": "D2LOfficialSenseReviewBindingV1",
+  "schema_version": "1.0.0",
+  "sense_id": "d2lce_8d226b48ba7ec1493faa4ec8",
+  "source_term": "Gradient Clipping",
+  "source_term_sense_sha256": "2a9bd4df21c05697b279d243b18ee02219e7fd3b18402f3eca15c2381eb126f9"
+}

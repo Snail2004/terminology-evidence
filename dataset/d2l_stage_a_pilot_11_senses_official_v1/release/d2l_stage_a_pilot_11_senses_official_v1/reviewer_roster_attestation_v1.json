@@ -1,0 +1,87 @@
+{
+  "attestation_scope": "REVIEWER_ROLE_HUMAN_STATUS_AND_DISTINCTNESS",
+  "attested_at": "2026-07-29T08:00:00Z",
+  "distinct_person_assertion": true,
+  "integrity": {
+    "self_sha256": "434ef46fd51def30c6ba5f8cf5b0ba9b2afa4c95a4c3c8d634487324ea0e4aac"
+  },
+  "maintainer_attestation": {
+    "assertion": "The three pseudonymous reviewer IDs identify three distinct human people who performed the assigned review roles.",
+    "assertion_basis": "OWNER_CONFIRMED_IN_PROJECT_TASK",
+    "attestor_role": "DATASET_OWNER",
+    "external_identity_verification": false,
+    "pii_disclosed": false
+  },
+  "policy_id": "d2l-stage-a-p0b-official-11-sense-v1.0",
+  "reviewers": [
+    {
+      "assigned_case_ids": [
+        "d2lce_11e1c294000ac67785408dcd",
+        "d2lce_18c3da2d5bdd6d05a83982fa",
+        "d2lce_1a91fdded89249a5cd89ec14",
+        "d2lce_2684090fd4500122fec2a334",
+        "d2lce_2b76c0f26436945cdf880aed",
+        "d2lce_382e4bbab285d56a08249753",
+        "d2lce_7ef8ed3f93210606a27312a4",
+        "d2lce_8d226b48ba7ec1493faa4ec8",
+        "d2lce_98b37a7bcb47cd2ef2e5f296",
+        "d2lce_9bd5113780f8e8160a24e6ad",
+        "d2lce_addfcc9899bef06c500b6b0e",
+        "d2lce_c6b4477a845e2e0e0e02f088",
+        "d2lce_cc4cb853eff638abcbdf7691",
+        "d2lce_ce222dd206341f61f2986f7a",
+        "d2lce_d7976d0b101e65c34c011871"
+      ],
+      "blindness_assertion": "INDEPENDENT_INPUT_NO_OTHER_REVIEWER_OUTPUT",
+      "instruction_sha256": "de9ac59612f3a6390cd4b028945463975fa31bcede5a80fa42b5f089555a184c",
+      "instruction_version": "dataset-stage-a-pilot-review-v1.0",
+      "review_input_file_sha256": "54993660d76ceeac435efceb384ece2edd9d757ad6bd226d591409c1610fd238",
+      "reviewer_id": "diemphuong",
+      "reviewer_type": "HUMAN",
+      "role": "PRIMARY_REVIEWER"
+    },
+    {
+      "assigned_case_ids": [
+        "d2lce_11e1c294000ac67785408dcd",
+        "d2lce_18c3da2d5bdd6d05a83982fa",
+        "d2lce_1a91fdded89249a5cd89ec14",
+        "d2lce_2684090fd4500122fec2a334",
+        "d2lce_2b76c0f26436945cdf880aed",
+        "d2lce_382e4bbab285d56a08249753",
+        "d2lce_7ef8ed3f93210606a27312a4",
+        "d2lce_8d226b48ba7ec1493faa4ec8",
+        "d2lce_98b37a7bcb47cd2ef2e5f296",
+        "d2lce_addfcc9899bef06c500b6b0e",
+        "d2lce_cc4cb853eff638abcbdf7691",
+        "d2lce_ce222dd206341f61f2986f7a",
+        "d2lce_d7976d0b101e65c34c011871"
+      ],
+      "blind_audit_input_file_sha256": "9259a723548b0dba3eb451b55eea64a6416b6c11b93a645e9f2220ee50459a65",
+      "blindness_assertion": "BLIND_TO_REVIEWER_1_OUTPUT",
+      "instruction_sha256": "de9ac59612f3a6390cd4b028945463975fa31bcede5a80fa42b5f089555a184c",
+      "instruction_version": "dataset-stage-a-pilot-review-v1.0",
+      "review_input_file_sha256": "0f2672527685aac13fae0053aea2077efa0c538d74cb9c72be2b8312e72abb62",
+      "reviewer_id": "reviewer_2",
+      "reviewer_type": "HUMAN",
+      "role": "SECONDARY_AND_BLIND_AUDIT_REVIEWER"
+    },
+    {
+      "assigned_case_ids": [
+        "d2lce_2684090fd4500122fec2a334",
+        "d2lce_2b76c0f26436945cdf880aed",
+        "d2lce_7ef8ed3f93210606a27312a4",
+        "d2lce_98b37a7bcb47cd2ef2e5f296"
+      ],
+      "blindness_assertion": "NOT_APPLICABLE_ADJUDICATOR_SEES_PRIOR_REVIEWS",
+      "instruction_sha256": "de9ac59612f3a6390cd4b028945463975fa31bcede5a80fa42b5f089555a184c",
+      "instruction_version": "dataset-stage-a-pilot-review-v1.0",
+      "review_input_file_sha256": "93e357475cec456247ada86c33fe07de4751ec40a919da4ea4988b52848adff7",
+      "reviewer_id": "snail",
+      "reviewer_type": "HUMAN",
+      "role": "ADJUDICATOR"
+    }
+  ],
+  "schema_id": "D2LReviewerRosterAttestationV1",
+  "schema_version": "1.0.0",
+  "status": "ACCEPTED"
+}

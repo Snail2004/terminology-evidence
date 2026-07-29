@@ -1,0 +1,165 @@
+{
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "1e383d3f883666409c849485a5826de5980ab465f8336cefdbd78da2c252d6ce"
+  },
+  "policy_id": "d2l-stage-a-p0b-official-11-sense-v1.0",
+  "provider_call_count": 0,
+  "records": [
+    {
+      "candidate_ids": [
+        "candidate_d748abf800aca789e0a6959f",
+        "candidate_7687a5984af335e4ef18f0e0",
+        "candidate_60299cfb31868af34ac36c58"
+      ],
+      "parent_review_decision_sha256": "1b0016c537e017bea6e18a68d8e1975c18a8783023b223daaa707cc4cd40cc65",
+      "reason": "R0 source-ground case with blind-audit binding and contrasting Vietnamese candidates.",
+      "selection_group": "CLEAR_LOW_RISK",
+      "selection_status": "OFFICIAL_SUBSET_SELECTED",
+      "sense_id": "d2lce_11e1c294000ac67785408dcd",
+      "source_term": "null hypothesis"
+    },
+    {
+      "candidate_ids": [
+        "candidate_53d82847c792e05a168ce72e",
+        "candidate_cfd5638007633bf28dbcd24c",
+        "candidate_7777b315af84852fc15da7b4"
+      ],
+      "parent_review_decision_sha256": "9b496d329dfe32e8e76f8c271650ab57d664f9cff1039d7b33d89889782db638",
+      "reason": "Domain-specific R2 sense with stable source evidence.",
+      "selection_group": "CLEAR_LOW_RISK",
+      "selection_status": "OFFICIAL_SUBSET_SELECTED",
+      "sense_id": "d2lce_c6b4477a845e2e0e0e02f088",
+      "source_term": "output gate"
+    },
+    {
+      "candidate_ids": [
+        "candidate_2cd868cd5a887ba0ad603218",
+        "candidate_f6b58c6b3105859b4723abdb",
+        "candidate_e022d537a48001c6bce1d0a5"
+      ],
+      "parent_review_decision_sha256": "7ffdd06dd3fd616d0382d25c513e923d3568ef67de4eb9c85b58ac21bb70a657",
+      "reason": "Borrowed and localized Vietnamese candidate variants.",
+      "selection_group": "AMBIGUOUS_POLYSEMOUS",
+      "selection_status": "OFFICIAL_SUBSET_SELECTED",
+      "sense_id": "d2lce_1a91fdded89249a5cd89ec14",
+      "source_term": "Jupyter notebook"
+    },
+    {
+      "candidate_ids": [
+        "candidate_46aef7b0d650be04eb350c62",
+        "candidate_608318c4819a9ca6886b86c1",
+        "candidate_b73c29ba5efc3cff5b96816d"
+      ],
+      "parent_review_decision_sha256": "e1606278ef1c76d91a9e4ca92e64bfc230b9e4618967f5da58b5261fcfdca2f8",
+      "reason": "Singular, plural, and competing Vietnamese terminology variants.",
+      "selection_group": "AMBIGUOUS_POLYSEMOUS",
+      "selection_status": "OFFICIAL_SUBSET_SELECTED",
+      "sense_id": "d2lce_cc4cb853eff638abcbdf7691",
+      "source_term": "learning rate"
+    },
+    {
+      "candidate_ids": [
+        "candidate_cf6b5d7ea384065914c1c69d",
+        "candidate_cc725f7224eaaf21d14846d2",
+        "candidate_21094d94f5b8d8d982190730"
+      ],
+      "parent_review_decision_sha256": "3d522651b969f483353111cbc62b85e186e3d4582ce596dd3b8ad31b28bd8def",
+      "reason": "Includes a deliberately incompatible candidate for real pilot gate behavior.",
+      "selection_group": "GATE_ADJUDICATION_RISK",
+      "selection_status": "OFFICIAL_SUBSET_SELECTED",
+      "sense_id": "d2lce_382e4bbab285d56a08249753",
+      "source_term": "contexts"
+    },
+    {
+      "candidate_ids": [
+        "candidate_aaf6d2b452a6b41bec5670cd",
+        "candidate_4c262d779f9ab62cfcc06941",
+        "candidate_95eb14be22b6ca684d5fce62"
+      ],
+      "parent_review_decision_sha256": "91ef9c3c9c9d7ae1045007b055c2d41ee285ccc64007107d5e3ca2cba5c3af5e",
+      "reason": "Reviewed R3 sense with accepted definition, POS, and evidence boundaries.",
+      "selection_group": "AMBIGUOUS_POLYSEMOUS",
+      "selection_status": "OFFICIAL_SUBSET_SELECTED",
+      "sense_id": "d2lce_18c3da2d5bdd6d05a83982fa",
+      "source_term": "attention scoring function"
+    },
+    {
+      "candidate_ids": [
+        "candidate_204bc4d6c83b3843d0a9cee3",
+        "candidate_254181f580d0e4f1c354eb86",
+        "candidate_f8363b003208850d0ad5c4aa"
+      ],
+      "parent_review_decision_sha256": "01e5a6a17b5889d4b94da3b389f9ca48c57d94ef3f641283b04e969391052bec",
+      "reason": "R0 source-ground case with a sealed blind-audit binding.",
+      "selection_group": "CLEAR_LOW_RISK",
+      "selection_status": "OFFICIAL_SUBSET_SELECTED",
+      "sense_id": "d2lce_8d226b48ba7ec1493faa4ec8",
+      "source_term": "Gradient Clipping"
+    },
+    {
+      "candidate_ids": [
+        "candidate_479fdd8ff6d15304debec117",
+        "candidate_963dd869c9d587f30076cc5d",
+        "candidate_d9f03e66a65a60d095aa8e7f"
+      ],
+      "parent_review_decision_sha256": "ce05f331eb4acecc7421d1b6addaa81d5294318ae829f91a98f7ec665466f297",
+      "reason": "Reviewed R1 sense with accepted qualified scope and evidence boundaries.",
+      "selection_group": "QUALIFIED_SCOPE",
+      "selection_status": "OFFICIAL_SUBSET_SELECTED",
+      "sense_id": "d2lce_9bd5113780f8e8160a24e6ad",
+      "source_term": "underflow"
+    },
+    {
+      "candidate_ids": [
+        "candidate_9a71121fcd6518d56de52f9c",
+        "candidate_c4098f5a8e773ca3b59a1154",
+        "candidate_258ae1b90d8613e645cd9e20"
+      ],
+      "parent_review_decision_sha256": "1f212431d3e943d5e0cee971a5de70dd798269715aae9fa61f7f554e2882c2cb",
+      "reason": "R0 source-ground case with a sealed blind-audit binding.",
+      "selection_group": "CLEAR_LOW_RISK",
+      "selection_status": "OFFICIAL_SUBSET_SELECTED",
+      "sense_id": "d2lce_addfcc9899bef06c500b6b0e",
+      "source_term": "momentum"
+    },
+    {
+      "candidate_ids": [
+        "candidate_b25e12aa07645f2833df3cc1",
+        "candidate_91b5dc2a276c11c0275ee6d6",
+        "candidate_244a187860a4d58e8575a087"
+      ],
+      "parent_review_decision_sha256": "5ee8a75443e362eafb1a0fcd863ab41a4ac51903b66bb63a732ad748ad43ace2",
+      "reason": "Reviewed R3 sense with accepted definition, POS, and evidence boundaries.",
+      "selection_group": "AMBIGUOUS_POLYSEMOUS",
+      "selection_status": "OFFICIAL_SUBSET_SELECTED",
+      "sense_id": "d2lce_ce222dd206341f61f2986f7a",
+      "source_term": "word embedding"
+    },
+    {
+      "candidate_ids": [
+        "candidate_6b435495f9cc857306264175",
+        "candidate_85d912fdabdf61e981f79a5d",
+        "candidate_4bb8afc293ac1b105b95dd62"
+      ],
+      "parent_review_decision_sha256": "067cf6d8eab050df54ee9d0b67b92156b80a12556822104c253d25247d1cbc02",
+      "reason": "Reviewed R3 sense with accepted definition, POS, and evidence boundaries.",
+      "selection_group": "AMBIGUOUS_POLYSEMOUS",
+      "selection_status": "OFFICIAL_SUBSET_SELECTED",
+      "sense_id": "d2lce_d7976d0b101e65c34c011871",
+      "source_term": "vanishing gradients"
+    }
+  ],
+  "reviewed_risk_shape": {
+    "R0_CLEAR": 3,
+    "R1_QUALIFIED": 1,
+    "R2_MISSING": 1,
+    "R3_AMBIGUOUS": 6
+  },
+  "schema_id": "D2LIntegrationPilot11SelectionReceiptV1",
+  "schema_version": "1.0.0",
+  "selected_at": "2026-07-29T08:00:00Z",
+  "selection_status": "OFFICIAL_SUBSET_SELECTED",
+  "source_dataset_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+  "source_reviewed_manifest_sha256": "e602af02edf1fb877a9541c5e37f939f4f35ded34ac878d773fc83b96ed3fb48"
+}

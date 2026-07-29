@@ -1,0 +1,13 @@
+{
+  "artifact_name": "d2l_context_support_set_validation_ready_v3",
+  "integrity": {
+    "self_sha256": "77572ed46dfd63f662d138148a5b5e2e68e2e772e998292632ec6bda8c124ef7"
+  },
+  "manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+  "materialized_package": false,
+  "original_checksums_file_copied": false,
+  "physical_manifest_sha256": "b5f2067427c6b88344109f2c62f8db02ac61b0cef76f193d5285f378ff5f96a8",
+  "reference_only": true,
+  "schema_id": "D2LReferenceOnlyParentPackageV1",
+  "schema_version": "1.0.0"
+}

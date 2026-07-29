@@ -1,0 +1,33 @@
+{
+  "adjudication_ref": null,
+  "blind_audit_ref": null,
+  "boundary_context_ids": [
+    "ctxx_36cabf1c66f9b4ec24b89888"
+  ],
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "721927f51ac95db7440513cce7926537d0de76f477fc2726ff45c608b81fb49c"
+  },
+  "parent_review_decision_sha256": "5ee8a75443e362eafb1a0fcd863ab41a4ac51903b66bb63a732ad748ad43ace2",
+  "policy_id": "d2l-stage-a-p0b-official-11-sense-v1.0",
+  "positive_definition_evidence_ids": [
+    "ctx_817ac1f3936900a301ec3337",
+    "ctx_a2831abdb2ca55617b3dda12",
+    "ctx_108640f605901673bf814009"
+  ],
+  "positive_pos_evidence_ids": [
+    "ctx_817ac1f3936900a301ec3337",
+    "ctx_108640f605901673bf814009"
+  ],
+  "review_provenance_refs": [
+    "9e45caf39c5d880beea430e641d98bb500c68638b89f977f3fd4a23b3a3cc5cb",
+    "4edd9086b78e12404d5147325a9d1f412059c1ddf51053cd1fcdded972d9612f"
+  ],
+  "review_status": "ACCEPTED",
+  "reviewer_roster_attestation_sha256": "434ef46fd51def30c6ba5f8cf5b0ba9b2afa4c95a4c3c8d634487324ea0e4aac",
+  "schema_id": "D2LOfficialSenseReviewBindingV1",
+  "schema_version": "1.0.0",
+  "sense_id": "d2lce_ce222dd206341f61f2986f7a",
+  "source_term": "word embedding",
+  "source_term_sense_sha256": "45e49cdec55003634f587d9f2076503f3678f58ab497d6cb38261bbb5dce2f4b"
+}

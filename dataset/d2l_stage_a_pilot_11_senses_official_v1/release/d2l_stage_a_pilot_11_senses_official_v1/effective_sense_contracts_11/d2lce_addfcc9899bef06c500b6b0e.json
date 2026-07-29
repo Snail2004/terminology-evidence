@@ -1,0 +1,49 @@
+{
+  "definition_source": "MODEL_ACCEPTED",
+  "domain_profile": {
+    "anchors_en": [
+      "momentum"
+    ],
+    "anchors_vi": [
+      "hệ số động lượng",
+      "tham số động lượng",
+      "động lượng"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "a parameter or mechanism that uses an exponentially weighted average of past values, especially past gradients, to smooth updates.",
+  "effective_part_of_speech": "noun",
+  "integrity": {
+    "self_sha256": "4df321b82f7fb1af722e4650ab4c9570bfd61f80716f780fb20ec9c91eb76096"
+  },
+  "parent_dataset_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+  "provenance": {
+    "completed_at": "2026-07-29T08:00:00Z",
+    "component_id": "d2l-dataset-effective-sense-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "c0a8a26c215ffdd4a5c3586c500adfc4cb7b86691b47f0ba6990857f7bb43e61",
+    "model_routes": [],
+    "notes": "Zero-network Dataset projection from human-reviewed Stage A evidence.",
+    "policy_version": "d2l-stage-a-p0b-official-11-sense-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-stage-a-p0b-official-11-sense-release",
+    "run_spec_id": "d2l-stage-a-p0b-official-11-sense-spec-v1",
+    "source_artifact_hashes": {
+      "dataset_manifest": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+      "review_binding": "5911461fb266ac67514ee6ea92f22f9cbeced6023d5821e1c3e79d6325cd5036",
+      "reviewed_manifest": "e602af02edf1fb877a9541c5e37f939f4f35ded34ac878d773fc83b96ed3fb48",
+      "term_sense": "9a08ab5c8f8d96ee186c76eedfd5c4e522269ada60f4ec1ae3da5fe961446b3c"
+    },
+    "started_at": "2026-07-29T08:00:00Z"
+  },
+  "review_artifact_sha256": "5911461fb266ac67514ee6ea92f22f9cbeced6023d5821e1c3e79d6325cd5036",
+  "review_status": "ACCEPTED",
+  "schema_id": "EffectiveSenseContractV1",
+  "schema_version": "1.1.0",
+  "scope_id": "d2l_selected_campaign_scope_v1",
+  "scope_note": null,
+  "sense_id": "d2lce_addfcc9899bef06c500b6b0e",
+  "sense_inventory_version": "d2l_context_support_set_validation_ready_v3",
+  "source_term": "momentum"
+}

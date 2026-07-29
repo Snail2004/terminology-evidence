@@ -1,0 +1,34 @@
+{
+  "adjudication_ref": null,
+  "blind_audit_ref": null,
+  "boundary_context_ids": [
+    "ctxx_7f072bff8c2c84e16d99964b"
+  ],
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "b4186d05012652cc5aadd1959a4363b9941c8600ecaa870a3d8e837750991aaa"
+  },
+  "parent_review_decision_sha256": "7ffdd06dd3fd616d0382d25c513e923d3568ef67de4eb9c85b58ac21bb70a657",
+  "policy_id": "d2l-stage-a-p0b-official-11-sense-v1.0",
+  "positive_definition_evidence_ids": [
+    "ctx_c491125cb400cc10a6b89d1f",
+    "ctx_76220c9bc5e4ee7672fc78b2",
+    "ctx_d2b6cce11380684abd029f58"
+  ],
+  "positive_pos_evidence_ids": [
+    "ctx_80bb0597f481e29198ef67ab",
+    "ctx_57a080760ad64870f38e1944",
+    "ctx_c491125cb400cc10a6b89d1f"
+  ],
+  "review_provenance_refs": [
+    "a40288bef4521790412a9a6368e4642421eb22fde98205546db3394e1399c31d",
+    "4ac3091d2197e1180bed1517bb07ae98ab47e9ae0ae2a2dd6d13b1470137cb7b"
+  ],
+  "review_status": "ACCEPTED",
+  "reviewer_roster_attestation_sha256": "434ef46fd51def30c6ba5f8cf5b0ba9b2afa4c95a4c3c8d634487324ea0e4aac",
+  "schema_id": "D2LOfficialSenseReviewBindingV1",
+  "schema_version": "1.0.0",
+  "sense_id": "d2lce_1a91fdded89249a5cd89ec14",
+  "source_term": "Jupyter notebook",
+  "source_term_sense_sha256": "fb527568f3895bd37b04c6cb7ce9e74df4eb0252fb5f12b03d8670ab02c6bb71"
+}

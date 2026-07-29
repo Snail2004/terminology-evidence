@@ -1,0 +1,64 @@
+{
+  "alternatives_vi": [
+    "sổ tay Jupyter",
+    "sổ ghi chép Jupyter"
+  ],
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_e022d537a48001c6bce1d0a5",
+    "candidate_version": "39c953f5317873ae5e55ac76bfedcdb72cc38b8d3faa5ff403061bbd9e24388d",
+    "candidate_vi": "notebook Jupyter",
+    "dataset_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+    "effective_sense_contract_sha256": "85a4b9942ed87d8c5510da9ebe2467ee4c99300e417ff94a2912f13bd075d78e",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_1a91fdded89249a5cd89ec14",
+    "sense_inventory_version": "d2l_context_support_set_validation_ready_v3",
+    "source_term": "Jupyter notebook"
+  },
+  "domain_profile": {
+    "anchors_en": [
+      "Jupyter notebook"
+    ],
+    "anchors_vi": [
+      "notebook Jupyter",
+      "sổ ghi chép Jupyter",
+      "sổ tay Jupyter"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "An interactive notebook environment used to write, edit, run, and inspect code and related text or documentation.",
+  "effective_part_of_speech": "noun_phrase",
+  "input_contract_sha256": "55eeff89d1b074ae4ddf373d6c4fd45f78ed0efee7ea549546d4e672ba6fb213",
+  "input_provenance": {
+    "completed_at": "2026-07-29T08:00:00Z",
+    "component_id": "d2l-dataset-frozen-candidate-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "c0a8a26c215ffdd4a5c3586c500adfc4cb7b86691b47f0ba6990857f7bb43e61",
+    "model_routes": [],
+    "notes": "Candidate identity is frozen; no candidate gold label or final glossary decision is assigned.",
+    "policy_version": "d2l-stage-a-p0b-official-11-sense-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-stage-a-p0b-official-11-sense-release",
+    "run_spec_id": "d2l-stage-a-p0b-official-11-sense-spec-v1",
+    "source_artifact_hashes": {
+      "candidate_instance": "39c953f5317873ae5e55ac76bfedcdb72cc38b8d3faa5ff403061bbd9e24388d",
+      "dataset_manifest": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+      "review_binding": "b4186d05012652cc5aadd1959a4363b9941c8600ecaa870a3d8e837750991aaa",
+      "reviewed_manifest": "e602af02edf1fb877a9541c5e37f939f4f35ded34ac878d773fc83b96ed3fb48",
+      "term_sense": "fb527568f3895bd37b04c6cb7ce9e74df4eb0252fb5f12b03d8670ab02c6bb71"
+    },
+    "started_at": "2026-07-29T08:00:00Z"
+  },
+  "integrity": {
+    "self_sha256": "d7261ad399a86648934e6bd0d037d25928cb323121001ebddae1cdf91251909d"
+  },
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.1.0",
+  "scope_note": null,
+  "surfaces": {
+    "canonical_vi": "notebook Jupyter",
+    "rejected_variants_vi": [],
+    "validated_variants_vi": []
+  }
+}
