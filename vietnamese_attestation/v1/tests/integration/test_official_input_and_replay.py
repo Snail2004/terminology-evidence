@@ -106,6 +106,20 @@ def test_official_cli_rejects_loose_complete_input_and_accepts_release_set(
                 str(tmp_path / "loose-out.json"),
             ]
         )
+    with pytest.raises(SystemExit):
+        run_main(
+            [
+                "--candidate",
+                str(loose),
+                "--development-input",
+                "--expected-dataset-input-pin-sha256",
+                OFFICIAL_PILOT_PIN_SHA256,
+                "--offline-fixture",
+                str(fixture),
+                "--output",
+                str(tmp_path / "unused-pin-out.json"),
+            ]
+        )
 
     output = tmp_path / "official-out.json"
     assert (
@@ -119,6 +133,8 @@ def test_official_cli_rejects_loose_complete_input_and_accepts_release_set(
                 OFFICIAL_PILOT_ZIP_SHA256,
                 "--expected-dataset-manifest-sha256",
                 OFFICIAL_PILOT_MANIFEST_SHA256,
+                "--expected-dataset-input-pin-sha256",
+                OFFICIAL_PILOT_PIN_SHA256,
                 "--official-candidate-id",
                 candidate_id,
                 "--offline-fixture",

@@ -5,7 +5,7 @@ from __future__ import annotations
 import hashlib
 import platform
 import subprocess
-from pathlib import Path
+from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any
 
 from ..dataset import (
@@ -231,13 +231,30 @@ def _readiness_reports(
 ) -> dict[str, dict[str, Any]]:
     dataset_report = _dataset_input_report(official_dataset)
     has_official_dataset = official_dataset is not None
-    return {
+    findings = findings_report(
+        canonical_main,
+        dataset_conformance=dataset_report,
+    )
+    _validate_dataset_finding_consistency(dataset_report, findings)
+    reports = {
         "git_commit_receipt.json": receipt,
         "authority_verification_report.json": seal(authority),
-        "zero_api_verification_report.json": seal(zero_api),
-        "junit_verification_report.json": seal(junit_report),
+        "zero_api_verification_report.json": seal(
+            _publication_projection(
+                zero_api,
+                artifact_ref="inputs/zero_api_artifact",
+            )
+        ),
+        "junit_verification_report.json": seal(
+            _publication_projection(junit_report, path="junit.xml")
+        ),
         "dataset_input_conformance_report.json": seal(dataset_report),
-        "controlled_registry_adapter_report.json": seal(controlled),
+        "controlled_registry_adapter_report.json": seal(
+            _publication_projection(
+                controlled,
+                registry_ref="inputs/controlled_vietnamese_source_registry.jsonl",
+            )
+        ),
         "provider_canary_report.json": seal(
             {
                 "schema_id": "VietnameseAttestationProviderCanaryReadinessV1",
@@ -273,7 +290,7 @@ def _readiness_reports(
                 "final_glossary_decision": None,
             }
         ),
-        "readiness_findings_report.json": seal(findings_report(canonical_main)),
+        "readiness_findings_report.json": seal(findings),
         "environment.json": seal(
             {
                 "schema_id": "VietnameseAttestationReleaseEnvironmentV1",
@@ -298,6 +315,74 @@ def _readiness_reports(
             }
         ),
     }
+    _reject_absolute_publication_paths(reports)
+    return reports
+
+
+def _publication_projection(
+    report: dict[str, Any],
+    **replacements: Any,
+) -> dict[str, Any]:
+    projected = dict(report)
+    projected.update(replacements)
+    return projected
+
+
+def _validate_dataset_finding_consistency(
+    dataset_report: dict[str, Any],
+    findings: dict[str, Any],
+) -> None:
+    rows = [
+        row
+        for row in findings.get("findings", [])
+        if isinstance(row, dict) and row.get("finding_id") == "E-RDY-002"
+    ]
+    if len(rows) != 1:
+        raise ValueError("readiness findings must contain exactly one E-RDY-002")
+    dataset_pass = (
+        dataset_report.get("status") == "PASS_EXACT_OFFICIAL_DATASET_BINDING"
+    )
+    if dataset_pass and (
+        dataset_report.get("official_candidate_count") != OFFICIAL_PILOT_MEMBER_COUNT
+        or dataset_report.get("required_candidate_count")
+        != OFFICIAL_PILOT_MEMBER_COUNT
+        or dataset_report.get("official_sense_count") != OFFICIAL_PILOT_SENSE_COUNT
+        or dataset_report.get("required_sense_count") != OFFICIAL_PILOT_SENSE_COUNT
+        or dataset_report.get("blockers") != []
+    ):
+        raise ValueError("Dataset conformance PASS has incomplete official binding")
+    dataset_finding_resolved = rows[0].get("status") == "RESOLVED"
+    if dataset_pass != dataset_finding_resolved:
+        raise ValueError(
+            "Dataset conformance and readiness E-RDY-002 status conflict"
+        )
+
+
+def _reject_absolute_publication_paths(
+    reports: dict[str, dict[str, Any]],
+) -> None:
+    findings: list[str] = []
+
+    def visit(value: Any, location: str) -> None:
+        if isinstance(value, dict):
+            for key, child in value.items():
+                visit(child, f"{location}.{key}")
+        elif isinstance(value, list):
+            for index, child in enumerate(value):
+                visit(child, f"{location}[{index}]")
+        elif isinstance(value, str) and (
+            PurePosixPath(value).is_absolute()
+            or PureWindowsPath(value).is_absolute()
+            or value.startswith("\\\\")
+        ):
+            findings.append(location)
+
+    for name, report in reports.items():
+        visit(report, name)
+    if findings:
+        raise ValueError(
+            "release publication contains absolute paths: " + ", ".join(findings)
+        )
 
 
 def _dataset_input_report(

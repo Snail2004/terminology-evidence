@@ -286,6 +286,9 @@ def _input_candidate(
         "--expected-dataset-manifest-sha256": (
             args.expected_dataset_manifest_sha256
         ),
+        "--expected-dataset-input-pin-sha256": (
+            args.expected_dataset_input_pin_sha256
+        ),
     }
     legacy_requested = any(value is not None for value in legacy_values.values())
     zip_requested = any(value is not None for value in zip_values.values())
