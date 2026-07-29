@@ -1,0 +1,34 @@
+{
+  "artifact_status": "BLOCKED_PENDING_RISK_REVIEW_AND_ADJUDICATION",
+  "blind_audit_status": "PENDING_CURRENT_FASTTRACK_BLIND_REVIEW",
+  "blind_case_count": 13,
+  "blind_selection_matches_current_risk_policy": true,
+  "final_glossary_decision": null,
+  "historical_blind_adjudication_case_count": 3,
+  "historical_blind_audit_status": "BLOCKED_PENDING_REVIEWER_PROVENANCE_AND_ADJUDICATION",
+  "historical_blind_case_count": 13,
+  "mapping_counts": {
+    "AMBIGUOUS_MULTI_SENSE": 1,
+    "GLOSSARY_EXACT": 24,
+    "GLOSSARY_MISSING": 114,
+    "GLOSSARY_QUALIFIED": 6,
+    "GLOSSARY_VARIANT": 5
+  },
+  "official_effective_sense_contract_count": 0,
+  "policy_id": "dataset-fasttrack-glossary-first-v1.1",
+  "quarantined_cross_split_cluster_count": 45,
+  "real_positive_context_coverage_count": 150,
+  "real_positive_context_zero_sense_ids": [],
+  "report_sha256": "5636258ffb9dbf1a370de9f14ead38b6ebb85ecadbd3ff6e416199dd736b5cee",
+  "risk_counts": {
+    "R0_CLEAR": 4,
+    "R1_QUALIFIED": 1,
+    "R2_MISSING": 45,
+    "R3_AMBIGUOUS": 99,
+    "R4_SPLIT_OR_POS_RISK": 1
+  },
+  "schema_id": "D2LFastTrackSourceGroundingReportV1",
+  "sense_count": 150,
+  "synthetic_positive_context_count": 0,
+  "unresolved_sense_count": 150
+}

@@ -1,0 +1,9 @@
+*.csv text eol=crlf
+*.json text eol=lf
+*.jsonl text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.sha256 text eol=lf
+*.bin binary
+*.zip binary
+release/d2l_dataset_fasttrack_glossary_first_v1/d2l_vi_glossary_snapshot/* binary -eol -whitespace

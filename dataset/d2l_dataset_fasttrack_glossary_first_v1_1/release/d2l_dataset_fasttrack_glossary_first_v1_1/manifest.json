@@ -1,0 +1,179 @@
+{
+  "artifact_name": "d2l_dataset_fasttrack_glossary_first_v1_1",
+  "counts": {
+    "blind_case": 13,
+    "candidate": 450,
+    "complete_constraint_evidence_package": 0,
+    "complete_frozen_candidate_contract": 0,
+    "glossary_entry": 459,
+    "historical_blind_case": 13,
+    "official_effective_sense_contract": 0,
+    "quarantined_cross_split_cluster": 45,
+    "sense": 150
+  },
+  "created_at": "2026-07-29T00:00:00Z",
+  "files": {
+    "acceptance_gate_report.json": {
+      "sha256": "2855d78764acd249635ce4a4709be999aada45f5227033c5546f6d80f3d62337",
+      "size_bytes": 905
+    },
+    "candidate_generation_receipt.json": {
+      "sha256": "fee21d3fbea9f9a029b7e70a3f6e39fdb1c6626c8f6e8587dffb84c8aed6b3c8",
+      "size_bytes": 701
+    },
+    "candidate_provenance_450.jsonl": {
+      "sha256": "5e8644069ccda4718331bb653b965f0b2bbaa98e1fb62dfeb1619617dd38ddba",
+      "size_bytes": 2069289
+    },
+    "controlled_vietnamese_source_registry.json": {
+      "sha256": "ed92543a479826f3ea1e52baf43c17058b5ffb6a755fc1f08a269be8daa10b7a",
+      "size_bytes": 552
+    },
+    "d2l_vi_glossary_authority_receipt.json": {
+      "sha256": "8b0fcebc85c82b3515ec00097d8ca80909f1ffdaf6e286009b3521ea5d5ff167",
+      "size_bytes": 893
+    },
+    "d2l_vi_glossary_commit_object.bin": {
+      "sha256": "a156400439d136ebcb7021e21736a1eeeff5605e7c0cf6066ee67ba731063872",
+      "size_bytes": 1131
+    },
+    "d2l_vi_glossary_git_acquisition_receipt.json": {
+      "sha256": "bc477ad8ee33bf5a4fe5149d5fb97a249c08782636d0292c3534ba8bf39e65ad",
+      "size_bytes": 1059
+    },
+    "d2l_vi_glossary_snapshot/LICENSE": {
+      "sha256": "1ae14c16adcc310b9ce5bcc939f1467160896eff26ef4d76f9a7c8d7340486c2",
+      "size_bytes": 14999
+    },
+    "d2l_vi_glossary_snapshot/LICENSE-SUMMARY": {
+      "sha256": "0b8feb05d39b91387d6e8edf5a980efb1a98808846a8339f7f0a4d897739f7d5",
+      "size_bytes": 338
+    },
+    "d2l_vi_glossary_snapshot/glossary.md": {
+      "sha256": "98ba1d6421f252dddf1349ed4a542b245d922fcbe3b0fc841386e3919b83a727",
+      "size_bytes": 67097
+    },
+    "dataset_fasttrack_policy_v1_1.md": {
+      "sha256": "81f3d46c8cad9b68775f4f6f2b2525516dfff7316083317d37d922f9bb06b317",
+      "size_bytes": 1775
+    },
+    "effective_sense_contracts/README.md": {
+      "sha256": "9e8308ae4fefd73d2ca318b221c11b81452a7ffba49966e1ccc5a2b26168fc74",
+      "size_bytes": 183
+    },
+    "effective_sense_contracts/official_effective_sense_contracts.jsonl": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    "effective_sense_contracts/pending_effective_sense_projection.jsonl": {
+      "sha256": "56093cfc36b19cd9464dc2ca67bba5632ea0314eb8c15059be9e5b8746f812bf",
+      "size_bytes": 218882
+    },
+    "glossary_mapping_150_senses.csv": {
+      "sha256": "255bc344415f8fe7fa7cabdbda553e018e922897a5de2857521ea7da9985237f",
+      "size_bytes": 48082
+    },
+    "historical_stage_a_blind_audit_pack.zip": {
+      "sha256": "0a1cff9c65b0f2e2f86c07086971fc65a142f5b86c0ad3b909c6389be7e249de",
+      "size_bytes": 45888
+    },
+    "historical_stage_a_blind_audit_result.zip": {
+      "sha256": "008ffdcf19aff4356d44f33810c5c8eafd914ec1990e594cf6f88d3cf71cacaa",
+      "size_bytes": 33547
+    },
+    "historical_stage_a_blind_audit_results.csv": {
+      "sha256": "d2bf54502b42fd5bf04701666a515e0af09eb634049ee59b74415dfc87c9fdf5",
+      "size_bytes": 4131
+    },
+    "pilot_15_readiness_report.json": {
+      "sha256": "89f6a1a3ab6e222c2e9a5b33ca9db1eab74566bffdf2dd10bc634dbc29dad6d7",
+      "size_bytes": 1330
+    },
+    "quarantined_cross_split_source_blocks.jsonl": {
+      "sha256": "8f41bf538d58c4b3c530d59b969e64cf800ace2755b87620949e4f5d9a78d1cb",
+      "size_bytes": 16046
+    },
+    "sense_risk_classification.csv": {
+      "sha256": "0150f36eae10ca61f908acc6f6281088650b3c6b0477f4be4e14739d67d156d5",
+      "size_bytes": 35835
+    },
+    "source_bindings.json": {
+      "sha256": "7bb0ecd8ca033f7bb629479197241036b31a586fdd556f784060c1132c0b8756",
+      "size_bytes": 1395
+    },
+    "split_cluster_repair_report.json": {
+      "sha256": "a791cefd7f16a33f7df6765374d5fb9dcccc80cc345ec01240b1529be43f4b01",
+      "size_bytes": 503
+    },
+    "stage_a_adjudication_001_004.jsonl": {
+      "sha256": "d5607919c1b459039ee5605b44f6a58afcd6509222b4eff205fe77a97e5c1739",
+      "size_bytes": 2132
+    },
+    "stage_a_blind_audit_pack.zip": {
+      "sha256": "d7b0abd66bce2657b3a7b23520a659d574293a3659690120a65d82f1ee9dac04",
+      "size_bytes": 17137
+    },
+    "stage_a_blind_audit_results.csv": {
+      "sha256": "b7ca6cb0bb3b7a01d600166e9ff277a9665e06266da0bec2a28bf9611b59309e",
+      "size_bytes": 1129
+    },
+    "stage_a_blind_selection.csv": {
+      "sha256": "167ecd92a726936248ca65bbeb0573812fb8765486f0ba6ecd9b2c9269b76cb5",
+      "size_bytes": 3399
+    },
+    "stage_a_blind_selection_receipt.json": {
+      "sha256": "8eb51c372cf682225250381ef01e74faf9e5501071f69476f1e1c8319f6844ca",
+      "size_bytes": 1607
+    },
+    "stage_a_source_grounding_report.json": {
+      "sha256": "c0912ec4713330d55c7ae6da0ec4bf7c8ab2d0957cbc6ef24e7cd6a6df636d99",
+      "size_bytes": 1223
+    },
+    "stage_b_annotation_template_450.csv": {
+      "sha256": "417022802a1bd379ff3baf0d32c83bee7df128b373c909e5ea3b0537edccb69c",
+      "size_bytes": 124039
+    },
+    "stage_b_review_instructions.md": {
+      "sha256": "2824f2dd75c700c3902cbc769719e09a2a224fa9344cc401b3f75dbb71ee7ce6",
+      "size_bytes": 513
+    },
+    "stage_b_review_schema.json": {
+      "sha256": "54033eb23fbae0994a98ab485ae585947f36c9c1d873e7f97736cd6a4096aa85",
+      "size_bytes": 1941
+    }
+  },
+  "final_glossary_decision": null,
+  "manifest_sha256": "21d6f61cb21860b32d6596c97956185bfccb8d6398ac98bf400f8c127e43e9d7",
+  "policy_id": "dataset-fasttrack-glossary-first-v1.1",
+  "provider_call_count": 0,
+  "schema_id": "D2LDatasetFastTrackGlossaryFirstManifestV1_1",
+  "schema_version": "1.1.0",
+  "source_bindings": {
+    "dataset_v3": {
+      "manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+      "physical_manifest_sha256": "b5f2067427c6b88344109f2c62f8db02ac61b0cef76f193d5285f378ff5f96a8"
+    },
+    "historical_blind_result": {
+      "manifest_sha256": "251a6dec625461883bf9678f767e52389e92e0d5940bd960be73d9dbaa076175",
+      "physical_manifest_sha256": "a543e480ae97ab2011db5c1308a066b5e198fd414242e9860cf104916153bd3f"
+    },
+    "methodology_hardening": {
+      "manifest_sha256": "801dbcad7a2d9ea42c764b1a8edffff33eb04a7bec21e23f8ddbe21016ca6591",
+      "physical_manifest_sha256": "7830f553ee467ac40c8aefe4a0576faa45e5e1ae8914694df1a45f40957f4a89"
+    },
+    "parent_fasttrack_v1": {
+      "artifact_name": "d2l_dataset_fasttrack_glossary_first_v1",
+      "manifest_sha256": "9a32880e32cea5c5e87f38165142968aeca56f39a12f8bb7c4f1500eb3c49c67",
+      "physical_manifest_sha256": "ebe7003877d955a3575e1e9627fc34e299fdff380d77fb0e3566bde8d52458bb",
+      "policy_id": "dataset-fasttrack-glossary-first-v1.0",
+      "status": "BLOCKED_PENDING_HUMAN_REVIEW_AND_PILOT_CONTRACTS",
+      "zip_sha256": "92f7b15d36ac62ab01be53080b6eceb0e385e97b25ea79c09199e1df1d72fd38"
+    },
+    "terminology_contracts": {
+      "authority_commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+      "authority_tag": "contracts-v1.1.0",
+      "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b"
+    }
+  },
+  "status": "BLOCKED_PENDING_HUMAN_REVIEW_AND_PILOT_CONTRACTS"
+}

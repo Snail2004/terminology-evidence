@@ -1,0 +1,45 @@
+{
+  "available_r0_counts": {
+    "development": 3,
+    "test": 1,
+    "validation": 0
+  },
+  "case_count": 13,
+  "development_only": true,
+  "historical_blind_result_reused_as_current": false,
+  "matches_current_risk_policy": true,
+  "pack_sha256": "d7b0abd66bce2657b3a7b23520a659d574293a3659690120a65d82f1ee9dac04",
+  "policy_id": "d2l_fasttrack_stage_a_blind_selection_v1_1",
+  "receipt_sha256": "f0c88dcb9bfd084b09c4184de02e2293a9fcc6443bf5a6f5db4364315ae580d2",
+  "risk_counts": {
+    "R0_CLEAR": 3,
+    "R2_MISSING": 2,
+    "R3_AMBIGUOUS": 7,
+    "R4_SPLIT_OR_POS_RISK": 1
+  },
+  "schema_id": "D2LFastTrackBlindSelectionReceiptV1",
+  "selected_cases_sha256": "0d546d0685f164f8c91b731f2c2a303bfb07bd31e566484c383c38e6f082c712",
+  "selected_sense_ids": [
+    "d2lce_11e1c294000ac67785408dcd",
+    "d2lce_8d226b48ba7ec1493faa4ec8",
+    "d2lce_addfcc9899bef06c500b6b0e",
+    "d2lce_fa115d4c3a8140d91339df15",
+    "d2lce_e246c0d41c7b8bc2c145f69a",
+    "d2lce_382e4bbab285d56a08249753",
+    "d2lce_98b37a7bcb47cd2ef2e5f296",
+    "d2lce_2684090fd4500122fec2a334",
+    "d2lce_7ef8ed3f93210606a27312a4",
+    "d2lce_cc4cb853eff638abcbdf7691",
+    "d2lce_9cee0f2f668259a2568b89f4",
+    "d2lce_d7976d0b101e65c34c011871",
+    "d2lce_ad0d7cbd5f90ad33075e89aa"
+  ],
+  "selection_counts": {
+    "ALL_AVAILABLE_DEVELOPMENT_R0": 3,
+    "AMBIGUOUS_POLYSEMOUS": 5,
+    "DETERMINISTIC_CLEAR_CONTROL": 2,
+    "REGISTERED_DISAGREEMENT": 3
+  },
+  "selection_rule": "ALL_AVAILABLE_DEVELOPMENT_R0_PLUS_2_PREREGISTERED_CLEAR_CONTROLS_PLUS_3_DISAGREEMENTS_PLUS_5_AMBIGUITY_CASES",
+  "status": "CURRENT_SELECTION_PENDING_REVIEW"
+}

@@ -1,0 +1,19 @@
+{
+  "entries": [
+    {
+      "authority_receipt_ref": "d2l_vi_glossary_authority_receipt.json",
+      "auto_approval_permitted_alone": false,
+      "permitted_roles": [
+        "CANDIDATE_ORIGIN",
+        "VARIANT_SOURCE",
+        "QUALIFIER_HINT"
+      ],
+      "self_attestation_permitted": false,
+      "source_id": "d2l_vi_glossary_c775d6b",
+      "source_kind": "COMMUNITY_TRANSLATION_GLOSSARY",
+      "tier": 3
+    }
+  ],
+  "policy_id": "dataset-fasttrack-glossary-first-v1.1",
+  "schema_id": "D2LFastTrackControlledVietnameseSourceRegistryV1"
+}

@@ -1,0 +1,20 @@
+{
+  "acquired_at": "2026-07-29T00:00:00Z",
+  "commit": "c775d6b4998e6243ec5d11f950e67679555a2c74",
+  "commit_object_payload_sha256": "a156400439d136ebcb7021e21736a1eeeff5605e7c0cf6066ee67ba731063872",
+  "commit_object_ref": "d2l_vi_glossary_commit_object.bin",
+  "commit_signature_present": true,
+  "commit_timestamp": "2022-07-09T01:23:34+02:00",
+  "offline_commit_object_hash_verified": true,
+  "parent_sha1": "925baab1d4c56b0cdd678ea32ca08eb2f643464b",
+  "policy_id": "dataset-fasttrack-glossary-first-v1.1",
+  "receipt_sha256": "1ce8d7d70d2c19078fc98444d793c87af2492ad1d3ec7218d861b0aaa5bd6703",
+  "remote_ref": "refs/remotes/origin/main",
+  "remote_signature_verification_note": "PUBLIC_KEY_NOT_BUNDLED; REMOTE AUTHENTICITY NOT CLAIMED",
+  "remote_signature_verified": false,
+  "repository": "https://github.com/d2l-ai/d2l-vi.git",
+  "schema_id": "D2LVIGlossaryGitAcquisitionReceiptV1",
+  "source_repository_was_shallow": true,
+  "subject": "Fix latex error in exercise numbering naive bayes",
+  "tree_sha1": "847968d8721ab98c4df86dafd6d7f39edc547fd8"
+}
