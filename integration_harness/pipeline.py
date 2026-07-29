@@ -8,7 +8,8 @@ from typing import Any
 
 from .assembler import GlobalCliAdapter
 from .assembly import assemble_candidates
-from .authority import AuthoritySet, resolve_authority
+from .authority import CONTRACTS_R2_CURRENT, SYNTHETIC_LOCAL_CONFORMANCE, resolve_authority
+from .contracts_verifier import PublicContractR2Verifier
 from .errors import ExecutionError
 from .hashing import sha256_bytes
 from .jsonio import canonical_bytes
@@ -28,7 +29,11 @@ def execute_run(
     run_id: str,
     mode: str,
     action_policy: Path | None = None,
+    action_policy_authority: Path | None = None,
+    approval_root: Path | None = None,
+    authority_mode: str | None = None,
     expected_authority: dict[str, Any] | None = None,
+    contract_verifier: PublicContractR2Verifier | None = None,
     adapter: GlobalCliAdapter | None = None,
     repository_root: Path | None = None,
 ) -> Path:
@@ -36,17 +41,27 @@ def execute_run(
 
     output_dir = output_dir.resolve()
     output_dir.parent.mkdir(parents=True, exist_ok=True)
+    repository_root = (repository_root or contracts_root.resolve().parent).resolve()
+    authority_mode = authority_mode or (
+        SYNTHETIC_LOCAL_CONFORMANCE
+        if mode == "FIXTURE_CONFORMANCE"
+        else CONTRACTS_R2_CURRENT
+    )
     inventory = load_inventory(manifest_path)
     authority = resolve_authority(
         authority_receipt,
         contracts_root,
         action_policy_path=action_policy,
+        action_policy_authority_path=action_policy_authority,
+        approval_root=approval_root,
+        repository_root=repository_root,
+        authority_mode=authority_mode,
         expected=expected_authority,
+        contract_verifier=contract_verifier,
     )
     candidates, join_report = validate_and_join(inventory, schema_root=contracts_root)
-    preflight = validate_preflight(candidates, mode=mode)
+    preflight = validate_preflight(candidates, mode=mode, authority=authority)
     if adapter is None:
-        repository_root = (repository_root or contracts_root.resolve().parent).resolve()
         adapter = GlobalCliAdapter(
             repository_root=repository_root,
             authority_receipt=authority.receipt_path,
@@ -82,6 +97,8 @@ def execute_run(
             "schema_version": "1.0.0",
             "run_id": run_id,
             "mode": mode,
+            "authority_mode": authority.authority_mode,
+            "compatibility_mode": authority.compatibility_mode,
             "expected_candidate_count": len(candidates),
             "network_policy": "FORBIDDEN",
             "development_invariants": {
@@ -100,6 +117,7 @@ def execute_run(
             execution_results=execution_results,
             replay_pass_count=0,
             authority_warnings=[],
+            authority=authority.as_dict(),
         )
         return seal_run(
             output_dir,

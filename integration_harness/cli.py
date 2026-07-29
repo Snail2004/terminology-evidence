@@ -11,7 +11,8 @@ from pathlib import Path
 from typing import Any, Sequence
 
 from .assembler import GlobalCliAdapter
-from .authority import resolve_authority
+from .authority import CONTRACTS_R2_CURRENT, SYNTHETIC_LOCAL_CONFORMANCE, resolve_authority
+from .contracts_verifier import PublicContractR2Verifier
 from .faults import FAULTS, inject_fault
 from .inventory import inventory_report, load_inventory
 from .join import validate_and_join
@@ -25,6 +26,13 @@ def _common_authority(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--contracts-root", type=Path, required=True)
     parser.add_argument("--authority-receipt", type=Path, required=True)
     parser.add_argument("--action-policy", type=Path)
+    parser.add_argument("--action-policy-authority", type=Path)
+    parser.add_argument("--approval-root", type=Path)
+    parser.add_argument(
+        "--authority-mode",
+        choices=[SYNTHETIC_LOCAL_CONFORMANCE, CONTRACTS_R2_CURRENT],
+        default=CONTRACTS_R2_CURRENT,
+    )
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -91,7 +99,15 @@ def _emit(value: Any) -> int:
 
 
 def _authority(args: argparse.Namespace) -> dict[str, Any]:
-    authority = resolve_authority(args.authority_receipt, args.contracts_root, action_policy_path=args.action_policy)
+    authority = resolve_authority(
+        args.authority_receipt,
+        args.contracts_root,
+        action_policy_path=args.action_policy,
+        action_policy_authority_path=args.action_policy_authority,
+        approval_root=args.approval_root,
+        repository_root=args.repository_root,
+        authority_mode=args.authority_mode,
+    )
     return {"status": "PASS", **authority.as_dict()}
 
 
@@ -127,6 +143,9 @@ def _run(args: argparse.Namespace) -> dict[str, Any]:
         run_id=args.run_id,
         mode=args.mode,
         action_policy=args.action_policy,
+        action_policy_authority=args.action_policy_authority,
+        approval_root=args.approval_root,
+        authority_mode=args.authority_mode,
         repository_root=args.repository_root,
     )
     return {"status": "PASS", "run_dir": str(output)}
@@ -143,7 +162,18 @@ def _replay(args: argparse.Namespace) -> dict[str, Any]:
             action_policy=args.action_policy,
             contracts_root=args.contracts_root,
         )
-    return replay_run(args.run_dir, adapter=adapter)
+    contract_verifier = None
+    if args.repository_root is not None and args.contracts_root is not None:
+        contract_verifier = PublicContractR2Verifier(
+            args.repository_root, args.contracts_root
+        )
+    return replay_run(
+        args.run_dir,
+        adapter=adapter,
+        contract_verifier=contract_verifier,
+        repository_root=args.repository_root,
+        contracts_root=args.contracts_root,
+    )
 
 
 def _release(args: argparse.Namespace) -> dict[str, Any]:

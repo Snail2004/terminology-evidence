@@ -6,7 +6,8 @@ import shutil
 from pathlib import Path
 
 from .errors import ValidationError
-from .jsonio import load_json
+from .hashing import self_sha256
+from .jsonio import dump_json, load_json
 
 
 FAULTS = {
@@ -16,7 +17,18 @@ FAULTS = {
     "checksum_drift",
     "identity_mismatch",
     "path_traversal",
+    "r2_receipt_drift",
+    "approval_binding_missing",
+    "approval_binding_swap",
+    "approval_artifact_drift",
+    "action_policy_drift",
+    "r1_automatic_fallback",
 }
+
+
+def _replace_json(path: Path, value: dict) -> None:
+    path.unlink()
+    dump_json(path, value)
 
 
 def inject_fault(source: Path, destination: Path, fault: str) -> Path:
@@ -49,4 +61,38 @@ def inject_fault(source: Path, destination: Path, fault: str) -> Path:
     elif fault == "path_traversal":
         path = destination / "CHECKSUMS.sha256"
         path.write_text(path.read_text(encoding="utf-8") + "0  ../escape\n", encoding="utf-8", newline="\n")
+    elif fault == "r2_receipt_drift":
+        path = destination / "input" / "authority" / "authority_receipt.json"
+        value = load_json(path, require_object=True)
+        value["final_release_zip_sha256"] = "0" * 64
+        value["integrity"]["self_sha256"] = self_sha256(value)
+        _replace_json(path, value)
+    elif fault == "approval_binding_missing":
+        path = destination / "input" / "authority" / "approval" / "approval_binding_v1.json"
+        if not path.is_file():
+            raise ValidationError("sealed AR-1 approval binding is unavailable")
+        path.unlink()
+    elif fault == "approval_binding_swap":
+        root = destination / "input" / "authority" / "approval"
+        left = root / "Independent_Review_Contract_Steward_Authority_Maintenance_V1_2_R2.md"
+        right = root / "Hau_Review_Contract_Steward_R2_Authority_Promotion.md"
+        if not left.is_file() or not right.is_file():
+            raise ValidationError("sealed AR-1 evidence is unavailable")
+        left.write_bytes(right.read_bytes())
+    elif fault == "approval_artifact_drift":
+        path = destination / "input" / "authority" / "approval" / "contracts_v1_1_0_authority_receipt_r2_independent_approval.json"
+        if not path.is_file():
+            raise ValidationError("sealed AR-1 approval artifact is unavailable")
+        path.write_bytes(path.read_bytes() + b" ")
+    elif fault == "action_policy_drift":
+        path = destination / "input" / "authority" / "global_action_policy.json"
+        if not path.is_file():
+            raise ValidationError("sealed Global action policy is unavailable")
+        path.write_bytes(path.read_bytes() + b" ")
+    elif fault == "r1_automatic_fallback":
+        path = destination / "run_spec.json"
+        value = load_json(path, require_object=True)
+        value["authority_mode"] = "CONTRACTS_R1_HISTORICAL_REPLAY"
+        value["compatibility_mode"] = "CONTRACTS_R1_HISTORICAL_REPLAY"
+        _replace_json(path, value)
     return destination

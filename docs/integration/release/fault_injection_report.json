@@ -1,15 +1,28 @@
 {
   "schema_id": "SystemIntegrationFaultInjectionReportV1",
   "status": "PASS",
-  "fault_count": 6,
-  "fail_closed_count": 6,
+  "fault_count": 12,
+  "fail_closed_count": 12,
   "faults": [
     {"fault": "missing_package", "expected": "REJECTED_REPLAY", "observed": "PASS"},
     {"fault": "duplicate_json_key", "expected": "REJECTED_REPLAY", "observed": "PASS"},
     {"fault": "nan", "expected": "REJECTED_REPLAY", "observed": "PASS"},
     {"fault": "checksum_drift", "expected": "REJECTED_REPLAY", "observed": "PASS"},
     {"fault": "identity_mismatch", "expected": "REJECTED_JOIN", "observed": "PASS"},
-    {"fault": "path_traversal", "expected": "REJECTED_REPLAY", "observed": "PASS"}
+    {"fault": "path_traversal", "expected": "REJECTED_REPLAY", "observed": "PASS"},
+    {"fault": "r2_receipt_drift", "expected": "REJECTED_AUTHORITY_OR_REPLAY", "observed": "PASS"},
+    {"fault": "approval_binding_missing", "expected": "REJECTED_AUTHORITY_OR_REPLAY", "observed": "PASS"},
+    {"fault": "approval_binding_swap", "expected": "REJECTED_AUTHORITY_OR_REPLAY", "observed": "PASS"},
+    {"fault": "approval_artifact_drift", "expected": "REJECTED_AUTHORITY_OR_REPLAY", "observed": "PASS"},
+    {"fault": "action_policy_drift", "expected": "REJECTED_AUTHORITY_OR_REPLAY", "observed": "PASS"},
+    {"fault": "r1_automatic_fallback", "expected": "REJECTED_REPLAY", "observed": "PASS"}
+  ],
+  "additional_adversarial_gates": [
+    "all six resealed R2 receipt drifts reject",
+    "AR-1 renamed and case-confusable members reject",
+    "AR-1 symlink and reparse members reject",
+    "Global action-policy authority sidecar drift rejects",
+    "R1 cannot start or replace a current-R2 run"
   ],
   "provider_network_calls": 0
 }

@@ -8,6 +8,14 @@ from pathlib import Path
 from typing import Any
 
 from .assembler import GlobalCliAdapter
+from .authority import (
+    CONTRACTS_R1_HISTORICAL_REPLAY,
+    CONTRACTS_R2_CURRENT,
+    SYNTHETIC_LOCAL_CONFORMANCE,
+    resolve_authority,
+    verify_historical_r1_binding,
+)
+from .contracts_verifier import PublicContractR2Verifier
 from .errors import ReplayError
 from .hashing import sha256_file, self_sha256
 from .identity import CandidateIdentity
@@ -90,7 +98,14 @@ def _sealed_inventory(run_dir: Path) -> ArtifactInventory:
     )
 
 
-def replay_run(run_dir: Path, *, adapter: GlobalCliAdapter | None = None) -> dict[str, Any]:
+def replay_run(
+    run_dir: Path,
+    *,
+    adapter: GlobalCliAdapter | None = None,
+    contract_verifier: PublicContractR2Verifier | None = None,
+    repository_root: Path | None = None,
+    contracts_root: Path | None = None,
+) -> dict[str, Any]:
     run_dir = run_dir.resolve()
     checksum = verify_checksums(run_dir)
     manifest = load_json(run_dir / "manifest.json", require_object=True)
@@ -109,6 +124,13 @@ def replay_run(run_dir: Path, *, adapter: GlobalCliAdapter | None = None) -> dic
     if declared_files != actual_files:
         raise ReplayError("run manifest file inventory differs from CHECKSUMS")
     run_spec = load_json(run_dir / "run_spec.json", require_object=True)
+    authority_expected = run_spec.get("authority")
+    if not isinstance(authority_expected, dict):
+        raise ReplayError("sealed run spec has no authority binding")
+    authority_mode = authority_expected.get("authority_mode")
+    compatibility_mode = authority_expected.get("compatibility_mode")
+    if run_spec.get("authority_mode") != authority_mode or run_spec.get("compatibility_mode") != compatibility_mode:
+        raise ReplayError("run-spec authority mode binding mismatch")
     join_report = load_json(run_dir / "audit" / "join_report.json", require_object=True)
     execution = load_json(run_dir / "audit" / "execution_report.json", require_object=True)
     if execution.get("network_calls") != 0:
@@ -118,41 +140,96 @@ def replay_run(run_dir: Path, *, adapter: GlobalCliAdapter | None = None) -> dic
     package_count = len(list((run_dir / "input" / "packages").rglob("*.json")))
     if package_count != join_report.get("candidate_count", 0) * 5:
         raise ReplayError("sealed package count does not match join report")
-    if adapter is not None:
-        sealed_receipt = run_dir / "input" / "authority" / "authority_receipt.json"
-        replay_adapter = replace(adapter, authority_receipt=sealed_receipt)
+    sealed_authority = run_dir / "input" / "authority"
+    sealed_receipt = sealed_authority / "authority_receipt.json"
+    if authority_mode == CONTRACTS_R1_HISTORICAL_REPLAY:
         try:
-            from .authority import resolve_authority
-
-            resolve_authority(
-                sealed_receipt,
-                replay_adapter.contracts_root,
-                action_policy_path=replay_adapter.action_policy,
-                expected=run_spec.get("authority", {}),
+            verify_historical_r1_binding(sealed_receipt, authority_expected)
+        except Exception as exc:
+            raise ReplayError(f"historical R1 authority verification failed: {exc}") from exc
+        semantic = "HISTORICAL_R1_SEALED_REPLAY_PASS"
+    elif authority_mode in {CONTRACTS_R2_CURRENT, SYNTHETIC_LOCAL_CONFORMANCE}:
+        sealed_policy = sealed_authority / "global_action_policy.json"
+        sealed_policy_authority = sealed_authority / "global_action_policy_authority.json"
+        repository_root = (
+            repository_root
+            or (adapter.repository_root if adapter is not None else None)
+        )
+        contracts_root = (
+            contracts_root
+            or (adapter.contracts_root if adapter is not None else None)
+        )
+        if contracts_root is None or repository_root is None:
+            if authority_mode == CONTRACTS_R2_CURRENT:
+                raise ReplayError("R2 replay requires repository and Contracts roots")
+            if sha256_file(sealed_receipt) != authority_expected.get("receipt_physical_sha256"):
+                raise ReplayError("synthetic sealed receipt physical hash mismatch")
+            if sha256_file(sealed_policy) != authority_expected.get("action_policy_file_sha256"):
+                raise ReplayError("synthetic sealed action-policy hash mismatch")
+            if sha256_file(sealed_policy_authority) != authority_expected.get("action_policy_authority_physical_sha256"):
+                raise ReplayError("synthetic sealed action-policy authority hash mismatch")
+        else:
+            approval_root = (
+                sealed_authority / "approval"
+                if authority_mode == CONTRACTS_R2_CURRENT
+                else None
             )
-        except Exception as exc:
-            raise ReplayError(f"sealed authority verification failed: {exc}") from exc
-        try:
-            validate_and_join(_sealed_inventory(run_dir), schema_root=replay_adapter.contracts_root)
-        except Exception as exc:
-            raise ReplayError(f"sealed package rejoin failed: {exc}") from exc
-        expected = {item.get("candidate_id"): item for item in execution.get("results", [])}
-        collision_index = run_dir / "input" / "support" / "collision_index.json"
-        if not collision_index.is_file():
-            collision_index = None
-        with tempfile.TemporaryDirectory(prefix="system-integration-replay-") as temp:
-            for input_path in sorted((run_dir / "input" / "global_inputs").glob("*.json")):
-                replay_adapter.validate_input(input_path, collision_index=collision_index)
-                result = replay_adapter.run(input_path, Path(temp), f"replay-{input_path.stem}", mode="DEVELOPMENT_HEURISTIC", collision_index=collision_index)
-                candidate_id = input_path.stem
-                original = expected.get(candidate_id)
-                if original is None:
-                    raise ReplayError(f"execution report missing candidate: {candidate_id}")
-                if any(result.get(key) != original.get(key) for key in ("decision", "approval_score", "certificate_sha256")):
-                    raise ReplayError(f"semantic decision drift for candidate: {candidate_id}")
-        semantic = "PUBLIC_CLI_REPLAY_PASS"
+            verifier = contract_verifier
+            if authority_mode == CONTRACTS_R2_CURRENT and verifier is None:
+                verifier = PublicContractR2Verifier(repository_root, contracts_root)
+            try:
+                resolve_authority(
+                    sealed_receipt,
+                    contracts_root,
+                    action_policy_path=sealed_policy,
+                    action_policy_authority_path=sealed_policy_authority,
+                    approval_root=approval_root,
+                    repository_root=repository_root,
+                    authority_mode=authority_mode,
+                    expected=authority_expected,
+                    contract_verifier=verifier,
+                )
+            except Exception as exc:
+                raise ReplayError(f"sealed authority verification failed: {exc}") from exc
+        if authority_mode == CONTRACTS_R2_CURRENT:
+            report_path = sealed_authority / "contracts_r2_verifier_report.json"
+            try:
+                report = load_json(report_path, require_object=True)
+            except Exception as exc:
+                raise ReplayError("sealed public Contract verifier report is invalid") from exc
+            if report.get("integrity", {}).get("self_sha256") != authority_expected.get("contract_verifier_report_self_sha256"):
+                raise ReplayError("sealed public Contract verifier report self hash mismatch")
+            if sha256_file(report_path) != authority_expected.get("contract_verifier_report_physical_sha256"):
+                raise ReplayError("sealed public Contract verifier report physical hash mismatch")
+        if adapter is not None:
+            replay_adapter = replace(
+                adapter,
+                authority_receipt=sealed_receipt,
+                action_policy=sealed_policy,
+            )
+            try:
+                validate_and_join(_sealed_inventory(run_dir), schema_root=replay_adapter.contracts_root)
+            except Exception as exc:
+                raise ReplayError(f"sealed package rejoin failed: {exc}") from exc
+            expected = {item.get("candidate_id"): item for item in execution.get("results", [])}
+            collision_index = run_dir / "input" / "support" / "collision_index.json"
+            if not collision_index.is_file():
+                collision_index = None
+            with tempfile.TemporaryDirectory(prefix="system-integration-replay-") as temp:
+                for input_path in sorted((run_dir / "input" / "global_inputs").glob("*.json")):
+                    replay_adapter.validate_input(input_path, collision_index=collision_index)
+                    result = replay_adapter.run(input_path, Path(temp), f"replay-{input_path.stem}", mode="DEVELOPMENT_HEURISTIC", collision_index=collision_index)
+                    candidate_id = input_path.stem
+                    original = expected.get(candidate_id)
+                    if original is None:
+                        raise ReplayError(f"execution report missing candidate: {candidate_id}")
+                    if any(result.get(key) != original.get(key) for key in ("decision", "approval_score", "certificate_sha256")):
+                        raise ReplayError(f"semantic decision drift for candidate: {candidate_id}")
+            semantic = "PUBLIC_CLI_REPLAY_PASS"
+        else:
+            semantic = "SEALED_INPUT_REVALIDATION_ONLY"
     else:
-        semantic = "SEALED_INPUT_REVALIDATION_ONLY"
+        raise ReplayError(f"unsupported sealed authority mode: {authority_mode}")
     return {
         "status": "PASS",
         "matched": True,
@@ -160,4 +237,6 @@ def replay_run(run_dir: Path, *, adapter: GlobalCliAdapter | None = None) -> dic
         "candidate_count": join_report.get("candidate_count", 0),
         "checksum_file_count": checksum["file_count"],
         "semantic_replay": semantic,
+        "authority_mode": authority_mode,
+        "compatibility_mode": compatibility_mode,
     }

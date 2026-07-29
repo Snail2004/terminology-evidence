@@ -2,10 +2,19 @@
 
 $env:PYTHONPATH = "$PWD;$PWD\terminology_contracts_v1\python"
 
+# Harness-owned test suite and static checks.
 python -B -m pytest -q tests\system_integration --tb=short -p no:cacheprovider
 python -B -m py_compile (Get-ChildItem integration_harness -Filter '*.py' -File | % FullName)
 python -B -m integration_harness --help
-python -B -m integration_harness build-release --repository-root . --output-dir release
 
-# Real development/replay requires explicit, externally supplied authority and
-# producer manifests. Do not substitute a fixture receipt for a real release.
+# Public Contract R2 verifier against the exact current authority receipt.
+python -B terminology_contracts_v1\release\authority_maintenance_v1\tools\verify_authority_receipt.py --repo-root . --distribution-root . --receipt terminology_contracts_v1\release\v1.1.0-final\contracts_v1_1_0_authority_receipt_r2.json --report <outside-repo-report.json>
+
+# Current R2 authority plus detached AR-1 admission check. This is read-only.
+python -B -m integration_harness authority-verify --repository-root . --contracts-root terminology_contracts_v1 --authority-receipt terminology_contracts_v1\release\v1.1.0-final\contracts_v1_1_0_authority_receipt_r2.json --approval-root review_evidence\contracts\contracts-v1.1.0\authority-r2 --authority-mode CONTRACTS_R2_CURRENT
+
+# Source release archive. This does not run M6 or call a provider.
+python -B -m integration_harness build-release --repository-root . --output-dir <outside-repo-release-dir>
+
+# New real development runs require current R2 and detached AR-1. R1 can only
+# replay a pre-existing bundle that already seals CONTRACTS_R1_HISTORICAL_REPLAY.

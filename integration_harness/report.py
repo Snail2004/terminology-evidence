@@ -14,9 +14,11 @@ def build_report(
     execution_results: Iterable[Mapping[str, Any]],
     replay_pass_count: int = 0,
     authority_warnings: Iterable[str] = (),
+    authority: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     results = list(execution_results)
     decisions = Counter(str(item.get("decision")) for item in results)
+    authority = dict(authority or {})
     return {
         "schema_id": "SystemIntegrationReportV1",
         "candidate_count": candidates,
@@ -30,4 +32,16 @@ def build_report(
         "provider_network_calls": 0,
         "replay_pass_count": replay_pass_count,
         "authority_warnings": sorted(authority_warnings),
+        "authority_binding": {
+            "authority_mode": authority.get("authority_mode"),
+            "compatibility_mode": authority.get("compatibility_mode"),
+            "receipt_revision": authority.get("receipt_revision"),
+            "receipt_self_sha256": authority.get("receipt_self_sha256"),
+            "receipt_physical_sha256": authority.get("receipt_physical_sha256"),
+            "approval_binding": authority.get("approval_binding"),
+            "contract_verifier_report_physical_sha256": authority.get(
+                "contract_verifier_report_physical_sha256"
+            ),
+            "global_action_policy_sha256": authority.get("action_policy_sha256"),
+        },
     }

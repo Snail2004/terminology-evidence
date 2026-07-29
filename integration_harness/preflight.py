@@ -4,17 +4,52 @@ from __future__ import annotations
 
 from typing import Any
 
+from .authority import (
+    CONTRACTS_R1_HISTORICAL_REPLAY,
+    CONTRACTS_R2_CURRENT,
+    SYNTHETIC_LOCAL_CONFORMANCE,
+    AuthoritySet,
+)
 from .errors import PolicyError
 from .join import JoinedCandidate
 
 
-def validate_preflight(candidates: tuple[JoinedCandidate, ...], *, mode: str) -> dict[str, Any]:
+def validate_preflight(
+    candidates: tuple[JoinedCandidate, ...], *, mode: str, authority: AuthoritySet
+) -> dict[str, Any]:
     if mode not in {"FIXTURE_CONFORMANCE", "REAL_DEVELOPMENT_ZERO_NETWORK", "REAL_DEVELOPMENT_REPLAY"}:
         raise PolicyError(f"unsupported V1 mode: {mode}")
+    if authority.authority_mode == CONTRACTS_R1_HISTORICAL_REPLAY:
+        raise PolicyError("historical R1 authority cannot start a new run")
+    if mode == "FIXTURE_CONFORMANCE":
+        if authority.authority_mode != SYNTHETIC_LOCAL_CONFORMANCE:
+            raise PolicyError("fixture conformance requires synthetic authority")
+        authority_status = "SYNTHETIC_LOCAL_CONFORMANCE"
+    else:
+        if authority.authority_mode != CONTRACTS_R2_CURRENT or authority.approval is None:
+            raise PolicyError("real development requires exact R2 plus detached AR-1 approval")
+        if authority.approval.payload.get("approval_status") != "ACCEPTED_FOR_AUTHORITY_PROMOTION":
+            raise PolicyError("detached AR-1 approval is not accepted")
+        authority_status = "R2_APPROVED_BY_DETACHED_AR1"
     report: dict[str, Any] = {
         "schema_id": "IntegrationPreflightReportV1",
         "mode": mode,
         "candidate_count": len(candidates),
+        "authority_binding": {
+            "authority_mode": authority.authority_mode,
+            "compatibility_mode": authority.compatibility_mode,
+            "authority_status": authority_status,
+            "receipt_revision": authority.receipt_revision,
+            "receipt_self_sha256": authority.receipt_self_sha256,
+            "receipt_physical_sha256": authority.receipt_physical_sha256,
+            "approval_binding_self_sha256": (
+                authority.approval.binding_self_sha256 if authority.approval else None
+            ),
+            "approval_binding_physical_sha256": (
+                authority.approval.binding_physical_sha256 if authority.approval else None
+            ),
+            "global_action_policy_sha256": authority.action_policy_sha256,
+        },
         "checks": [],
     }
     for candidate in candidates:

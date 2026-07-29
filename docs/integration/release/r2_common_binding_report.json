@@ -1,0 +1,43 @@
+{
+  "schema_id": "SystemIntegrationR2CommonBindingReportV1",
+  "status": "PASS",
+  "classification": "COMMON_BINDING_UPDATE",
+  "architecture_change": false,
+  "canonical_main_commit": "7094ee007a1edb2d77ffeb2ab984af5977cec103",
+  "harness_base_commit": "bb063c6519bf368bebff7d1e2b29cef50dc6d82b",
+  "integration_merge_commit": "a4445d55db06ab9dd63cef3531e5783ebb5926f1",
+  "new_run_authority": {
+    "authority_mode": "CONTRACTS_R2_CURRENT",
+    "receipt_revision": 2,
+    "public_contract_verifier": "PASS",
+    "sealed_receipt_checksum_sidecar": true,
+    "detached_ar1": "ACCEPTED_FOR_AUTHORITY_PROMOTION",
+    "global_action_policy_binding": "SEPARATE_REVIEWED_SIDECAR"
+  },
+  "historical_replay": {
+    "authority_mode": "CONTRACTS_R1_HISTORICAL_REPLAY",
+    "exact_sealed_mode_required": true,
+    "new_run_allowed": false,
+    "fallback_allowed": false
+  },
+  "detached_ar1": {
+    "member_count": 6,
+    "checksums_entry_count": 5,
+    "binding_self_sha256": "ab7acbccfbdf64b74071133d4e049a06cbafc66c989f9b9f7ce52a08caa720b2",
+    "binding_physical_sha256": "3ad39870e4e95c51ac88ee6a3d451504d41ba26d3bf5dc6569d25a585a7147a5",
+    "checksums_physical_sha256": "fe0268bc6be8209a2cc90b81833443e4c4f081a4c4e465edf2652e1a228bed43",
+    "path_and_reparse_checks": "PASS"
+  },
+  "adversarial_gate_status": "PASS",
+  "compatibility_gates": {
+    "system_integration_harness": "22 passed, 31 subtests passed",
+    "terminology_contracts_v1": "113 passed, 2 skipped",
+    "global_validator_v1": "80 passed",
+    "vietnamese_attestation_v1": "75 passed",
+    "context_substitution_v2": "79 passed"
+  },
+  "provider_network_calls": 0,
+  "auto_approved_count": 0,
+  "certificate_count": 0,
+  "m6_real_pilot_executed": false
+}

@@ -5,11 +5,14 @@ from __future__ import annotations
 import copy
 import json
 import shutil
+import sys
 from pathlib import Path
 from typing import Any
 
+from integration_harness.contracts_verifier import PublicContractR2Verifier
 from integration_harness.hashing import self_sha256, sha256_bytes, sha256_file
 from integration_harness.jsonio import canonical_bytes, dump_json, load_json, without_self_hash
+from integration_harness.paths import relative_posix
 
 
 ROLES = {
@@ -166,7 +169,56 @@ def make_fixture_repo(repo_root: Path, output_root: Path, count: int = 15) -> di
     manifest_path = output_root / "artifact_manifest.json"
     dump_json(manifest_path, manifest)
     authority = _make_authority(repo_root, output_root)
-    return {"manifest": manifest_path, "authority": authority, "contracts": repo_root / "terminology_contracts_v1", "action_policy": repo_root / "global_validator" / "v1" / "policies" / "gate_action_selection_v1.0.0.json"}
+    return {
+        "manifest": manifest_path,
+        "authority": authority,
+        "contracts": repo_root / "terminology_contracts_v1",
+        "action_policy": repo_root / "global_validator" / "v1" / "policies" / "gate_action_selection_v1.0.0.json",
+        "action_policy_authority": repo_root / "global_validator" / "v1" / "policies" / "gate_action_policy_authority_v1.0.0.json",
+        "approval_root": repo_root / "review_evidence" / "contracts" / "contracts-v1.1.0" / "authority-r2",
+        "r2_receipt": repo_root / "terminology_contracts_v1" / "release" / "v1.1.0-final" / "contracts_v1_1_0_authority_receipt_r2.json",
+    }
+
+
+def fake_contract_verifier(repo_root: Path) -> PublicContractR2Verifier:
+    return PublicContractR2Verifier(
+        repo_root,
+        repo_root / "terminology_contracts_v1",
+        command_prefix=(
+            sys.executable,
+            "-B",
+            str(
+                repo_root
+                / "tests"
+                / "system_integration"
+                / "fixtures"
+                / "public_contract_verifier.py"
+            ),
+        ),
+    )
+
+
+def reseal_test_run(run_dir: Path) -> None:
+    manifest_path = run_dir / "manifest.json"
+    checksums_path = run_dir / "CHECKSUMS.sha256"
+    if checksums_path.exists():
+        checksums_path.unlink()
+    manifest = load_json(manifest_path, require_object=True)
+    if manifest_path.exists():
+        manifest_path.unlink()
+    manifest["files"] = []
+    for path in sorted(run_dir.rglob("*")):
+        if path.is_file() and path.name not in {"manifest.json", "CHECKSUMS.sha256"}:
+            manifest["files"].append(
+                {"path": relative_posix(path, run_dir), "sha256": sha256_file(path)}
+            )
+    manifest["integrity"]["self_sha256"] = self_sha256(manifest)
+    dump_json(manifest_path, manifest)
+    lines = []
+    for path in sorted(run_dir.rglob("*")):
+        if path.is_file() and path.name != "CHECKSUMS.sha256":
+            lines.append(f"{sha256_file(path)}  {relative_posix(path, run_dir)}")
+    checksums_path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 
 
 class FakePublicGlobalAdapter:

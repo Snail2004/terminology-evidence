@@ -8,7 +8,7 @@ import uuid
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
-from .authority import AuthoritySet
+from .authority import CONTRACTS_R2_CURRENT, AuthoritySet
 from .errors import StorageError
 from .hashing import sha256_file, self_sha256
 from .identity import CandidateIdentity
@@ -33,6 +33,15 @@ def _copy_unique(source: Path, destination: Path) -> None:
         shutil.copyfile(source, destination)
     except OSError as exc:
         raise StorageError(f"cannot copy sealed artifact {source}: {exc}") from exc
+
+
+def _write_unique_bytes(destination: Path, raw: bytes) -> None:
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        with destination.open("xb") as stream:
+            stream.write(raw)
+    except FileExistsError as exc:
+        raise StorageError(f"refusing to overwrite sealed artifact: {destination}") from exc
 
 
 def seal_run(
@@ -69,7 +78,31 @@ def seal_run(
                     continue
                 copied_support.add(key)
                 _copy_unique(record.path, input_root / "support" / f"{role}.json")
-        _copy_unique(authority.receipt_path, input_root / "authority" / "authority_receipt.json")
+        authority_root = input_root / "authority"
+        _copy_unique(authority.receipt_path, authority_root / "authority_receipt.json")
+        if authority.authority_mode == CONTRACTS_R2_CURRENT:
+            _write_unique_bytes(
+                authority_root / "authority_receipt.json.sha256",
+                (
+                    f"{authority.receipt_physical_sha256}  authority_receipt.json\n"
+                ).encode("ascii"),
+            )
+        _copy_unique(authority.action_policy_path, authority_root / "global_action_policy.json")
+        _copy_unique(
+            authority.action_policy_authority_path,
+            authority_root / "global_action_policy_authority.json",
+        )
+        if authority.verifier_report is not None:
+            _write_unique_bytes(
+                authority_root / "contracts_r2_verifier_report.json",
+                authority.verifier_report.raw,
+            )
+        if authority.approval is not None:
+            for evidence in authority.approval.files:
+                _copy_unique(
+                    evidence.path,
+                    authority_root / "approval" / evidence.relative_path,
+                )
         for item in assembled:
             _copy_unique(item["path"], input_root / "global_inputs" / f"{item['candidate_id']}.json")
         for candidate_id, execution_dir in (execution_dirs or {}).items():

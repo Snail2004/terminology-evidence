@@ -1,11 +1,36 @@
 {
   "schema_id": "SystemIntegrationReplayReportV1",
   "status": "PASS",
-  "evidence_kind": "SYNTHETIC_LOCAL_CONFORMANCE",
-  "candidate_count": 15,
-  "replay_pass_count": 15,
-  "semantic_replay": "PUBLIC_CLI_REPLAY_PASS",
   "checksum_first": true,
   "original_absolute_path_required": false,
-  "provider_network_calls": 0
+  "cases": [
+    {
+      "evidence_kind": "SYNTHETIC_LOCAL_CONFORMANCE",
+      "authority_mode": "SYNTHETIC_LOCAL_CONFORMANCE",
+      "candidate_count": 15,
+      "semantic_replay": "PUBLIC_CLI_REPLAY_PASS"
+    },
+    {
+      "evidence_kind": "R2_COMMON_BINDING_CONFORMANCE",
+      "authority_mode": "CONTRACTS_R2_CURRENT",
+      "compatibility_mode": "NONE",
+      "candidate_count": 1,
+      "semantic_replay": "PUBLIC_CLI_REPLAY_PASS",
+      "sealed_public_contract_verifier_report": true,
+      "sealed_receipt_checksum_sidecar": true,
+      "sealed_detached_ar1": true,
+      "sealed_global_action_policy_sidecar": true
+    },
+    {
+      "evidence_kind": "HISTORICAL_COMPATIBILITY_CONFORMANCE",
+      "authority_mode": "CONTRACTS_R1_HISTORICAL_REPLAY",
+      "compatibility_mode": "CONTRACTS_R1_HISTORICAL_REPLAY",
+      "candidate_count": 1,
+      "semantic_replay": "HISTORICAL_R1_SEALED_REPLAY_PASS",
+      "new_run_allowed": false,
+      "automatic_fallback_allowed": false
+    }
+  ],
+  "provider_network_calls": 0,
+  "m6_real_pilot_executed": false
 }
