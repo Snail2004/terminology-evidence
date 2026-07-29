@@ -80,3 +80,46 @@ def test_registry_rejects_hash_drift_and_malformed_identity(
         inspect_controlled_registry(path, expected_sha256="0" * 64)
     with pytest.raises(ValueError, match="content_hash is not SHA-256"):
         inspect_controlled_registry(path)
+
+
+def test_registry_rejects_duplicate_keys_at_any_object_depth(
+    tmp_path: Path,
+) -> None:
+    top_level = tmp_path / "top-level.jsonl"
+    top_level.write_text(
+        '{"source_id":"first","source_id":"second"}\n',
+        encoding="utf-8",
+    )
+    nested = tmp_path / "nested.jsonl"
+    nested.write_text(
+        (
+            '{"source_id":"source-1","organization_id":"org-1",'
+            '"document_id":"doc-1","content_hash":"'
+            + "a" * 64
+            + '","dedup_group_id":"dedup-1","source_tier":"OPEN_WEB",'
+            '"metadata":{"label":"one","label":"two"}}\n'
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="invalid controlled registry JSON"):
+        inspect_controlled_registry(top_level)
+    with pytest.raises(ValueError, match="invalid controlled registry JSON"):
+        inspect_controlled_registry(nested)
+
+
+@pytest.mark.parametrize(
+    "raw",
+    (
+        '{"source_id":NaN}\n',
+        '{"source_id":"source-1"} trailing\n',
+    ),
+)
+def test_registry_preserves_nonfinite_and_trailing_garbage_rejection(
+    tmp_path: Path, raw: str
+) -> None:
+    path = tmp_path / "invalid.jsonl"
+    path.write_text(raw, encoding="utf-8")
+
+    with pytest.raises(ValueError, match="invalid controlled registry JSON"):
+        inspect_controlled_registry(path)

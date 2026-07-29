@@ -213,9 +213,22 @@ def write_jsonl(path: Path, rows: Sequence[Mapping[str, Any]]) -> None:
 
 
 def self_sha256(value: Mapping[str, Any]) -> str:
-    payload = json.loads(json.dumps(value, ensure_ascii=False))
-    payload["integrity"]["self_sha256"] = "0" * 64
+    payload = json.loads(
+        json.dumps(value, ensure_ascii=False, allow_nan=False)
+    )
+    integrity = payload.get("integrity")
+    if not isinstance(integrity, dict):
+        raise ValueError("self-hashed artifact requires integrity object")
+    integrity.pop("self_sha256", None)
     return canonical_sha256(payload)
+
+
+def verify_self_sha256(value: Mapping[str, Any]) -> bool:
+    integrity = value.get("integrity")
+    return (
+        isinstance(integrity, Mapping)
+        and integrity.get("self_sha256") == self_sha256(value)
+    )
 
 
 def canonical_sha256(value: Any) -> str:
@@ -242,6 +255,7 @@ __all__ = [
     "projection_report",
     "self_sha256",
     "verify_replay",
+    "verify_self_sha256",
     "write_json",
     "write_jsonl",
 ]

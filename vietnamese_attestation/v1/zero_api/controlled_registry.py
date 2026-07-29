@@ -87,6 +87,7 @@ def _jsonl_rows(raw: bytes) -> list[dict[str, Any]]:
                 parse_constant=lambda item: (_ for _ in ()).throw(
                     ValueError(f"non-finite JSON value: {item}")
                 ),
+                object_pairs_hook=_unique_object,
             )
         except (json.JSONDecodeError, ValueError) as exc:
             raise ValueError(
@@ -98,6 +99,15 @@ def _jsonl_rows(raw: bytes) -> list[dict[str, Any]]:
             )
         rows.append(dict(value))
     return rows
+
+
+def _unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    value: dict[str, Any] = {}
+    for key, item in pairs:
+        if key in value:
+            raise ValueError(f"duplicate JSON object key: {key}")
+        value[key] = item
+    return value
 
 
 def _validate_rows(rows: list[dict[str, Any]]) -> None:

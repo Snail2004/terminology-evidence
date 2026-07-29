@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 from pathlib import Path
@@ -7,6 +8,7 @@ from pathlib import Path
 import pytest
 
 from vietnamese_attestation.v1.runtime.replay import AuditReplayReader
+from vietnamese_attestation.v1.zero_api.artifacts import verify_self_sha256
 from vietnamese_attestation.v1.zero_api.pilot import (
     SCENARIOS,
     run_zero_api_pilot,
@@ -87,6 +89,17 @@ def test_real_pilot_runs_all_15_candidates_without_external_api(
     manifest = json.loads(
         (root / "zero_api_artifact_manifest.json").read_text(encoding="utf-8")
     )
+    stored_summary = json.loads(
+        (root / "pilot_zero_api_summary.json").read_text(encoding="utf-8")
+    )
+    assert verify_self_sha256(stored_summary)
+    assert verify_self_sha256(manifest)
+    assert stored_summary["integrity"]["self_sha256"] == (
+        _authority_self_sha256(stored_summary)
+    )
+    assert manifest["integrity"]["self_sha256"] == (
+        _authority_self_sha256(manifest)
+    )
     assert manifest["file_count"] == len(manifest["files"])
     assert manifest["external_provider_call_count"] == 0
     assert manifest["final_glossary_decision"] is None
@@ -94,6 +107,9 @@ def test_real_pilot_runs_all_15_candidates_without_external_api(
         path = root / row["artifact_ref"]
         assert path.is_file()
         assert _sha256(path) == row["artifact_sha256"]
+    tampered_summary = copy.deepcopy(stored_summary)
+    tampered_summary["candidate_count"] += 1
+    assert not verify_self_sha256(tampered_summary)
     attempts = _jsonl(root / "provider_attempts.jsonl")
     assert len(attempts) == summary["fixture_provider_attempt_count"]
     assert attempts and not any(row["external_api"] for row in attempts)
@@ -168,3 +184,18 @@ def _jsonl(path: Path) -> list[dict[str, object]]:
 
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _authority_self_sha256(value: dict[str, object]) -> str:
+    clone = copy.deepcopy(value)
+    integrity = clone.get("integrity")
+    assert isinstance(integrity, dict)
+    integrity.pop("self_sha256", None)
+    raw = json.dumps(
+        clone,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+        allow_nan=False,
+    ).encode("utf-8")
+    return hashlib.sha256(raw).hexdigest()
