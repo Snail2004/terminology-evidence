@@ -18,8 +18,17 @@ from evaluation.v1.analysis_plan.builder import (
     TABLES_FILE,
     build_analysis_plan_content,
 )
+from evaluation.v1.analysis_plan.publication import (
+    FREEZE_RECEIPT_FILE,
+    FREEZE_STATUS,
+    PUBLICATION_CHECKSUMS_FILE,
+    PUBLICATION_MANIFEST_FILE,
+    AnalysisPlanPublicationError,
+    build_analysis_plan_publication,
+    verify_analysis_plan_publication,
+)
 from evaluation.v1.analysis_plan.verifier import AnalysisPlanError, verify_analysis_plan_content
-from evaluation.v1.jsonio import read_json, write_json
+from evaluation.v1.jsonio import read_json, sha256_value, write_json
 
 
 class AnalysisPlanFreezeTests(unittest.TestCase):
@@ -33,6 +42,11 @@ class AnalysisPlanFreezeTests(unittest.TestCase):
         self.assertEqual(report["status"], "PASS")
         self.assertEqual(report["actual_gold_access_receipt_count"], 0)
         self.assertEqual(report["gold_access_ledger_head"], GENESIS_SHA256)
+        publication = verify_analysis_plan_publication(self.repo)
+        self.assertEqual(publication["status"], FREEZE_STATUS)
+        self.assertEqual(publication["actual_gold_access_receipt_count"], 0)
+        self.assertEqual(publication["network_calls"], 0)
+        self.assertEqual(publication["provider_calls"], 0)
 
         plan = read_json(self.content / PLAN_FILE)
         self.assertEqual(plan["label_mapping"]["primary_binary"]["positive"], ["ACCEPT"])
@@ -65,6 +79,17 @@ class AnalysisPlanFreezeTests(unittest.TestCase):
             for filename in (PLAN_FILE, TABLES_FILE, ACCESS_TEMPLATES_FILE):
                 self.assertEqual((output / filename).read_bytes(), (self.content / filename).read_bytes())
 
+        receipt = read_json(self.content / FREEZE_RECEIPT_FILE)
+        with TemporaryDirectory() as temp:
+            publication = Path(temp) / "publication"
+            build_analysis_plan_publication(
+                repo=self.repo,
+                content_commit=receipt["content_commit"],
+                output=publication,
+            )
+            for filename in (FREEZE_RECEIPT_FILE, PUBLICATION_MANIFEST_FILE, PUBLICATION_CHECKSUMS_FILE):
+                self.assertEqual((publication / filename).read_bytes(), (self.content / filename).read_bytes())
+
     def test_content_tamper_rejects(self):
         with TemporaryDirectory() as temp:
             root = Path(temp) / "repo"
@@ -91,6 +116,22 @@ class AnalysisPlanFreezeTests(unittest.TestCase):
             write_json(plan_path, plan)
             with self.assertRaises(AnalysisPlanError):
                 verify_analysis_plan_content(root)
+
+        with TemporaryDirectory() as temp:
+            publication = Path(temp) / "publication"
+            publication.mkdir()
+            for filename in (FREEZE_RECEIPT_FILE, PUBLICATION_MANIFEST_FILE, PUBLICATION_CHECKSUMS_FILE):
+                shutil.copyfile(self.content / filename, publication / filename)
+            receipt_path = publication / FREEZE_RECEIPT_FILE
+            receipt = read_json(receipt_path)
+            receipt["scope"]["candidate_count"] = 149
+            receipt["integrity"]["self_sha256"] = ""
+            unsigned = dict(receipt)
+            unsigned["integrity"] = {}
+            receipt["integrity"]["self_sha256"] = sha256_value(unsigned)
+            write_json(receipt_path, receipt)
+            with self.assertRaises(AnalysisPlanPublicationError):
+                verify_analysis_plan_publication(self.repo, bundle_root=publication)
 
     def test_gold_access_receipts_enforce_order_hashes_and_time(self):
         freeze_sha = "a" * 64
