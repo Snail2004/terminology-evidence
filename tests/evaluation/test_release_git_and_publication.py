@@ -94,3 +94,9 @@ class ReleaseGitAndPublicationTests(unittest.TestCase):
             with self.assertRaises(PublicationError):
                 with external_atomic_stage(repo / "evaluation" / "release", repo):
                     pass
+            failed_output = root / "failed-release"
+            with self.assertRaises(RuntimeError):
+                with external_atomic_stage(failed_output, repo) as stage:
+                    (stage / "partial.txt").write_text("partial", encoding="ascii")
+                    raise RuntimeError("verification failed before publication")
+            self.assertFalse(failed_output.exists())

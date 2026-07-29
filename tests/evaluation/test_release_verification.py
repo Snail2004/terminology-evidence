@@ -45,6 +45,10 @@ class ReleaseVerificationTests(unittest.TestCase):
         }
         (root / "junit.xml").write_bytes(normalized_junit_bytes(junit_report))
         (root / "payload.txt").write_text("sealed\n", encoding="ascii", newline="\n")
+        report = root / "synthetic" / "report"
+        report.mkdir(parents=True)
+        (report / "EVALUATION_REPORT.md").write_text("# Report\n", encoding="ascii", newline="\n")
+        (report / "bootstrap_summary.json").write_text("{}\n", encoding="ascii", newline="\n")
         files = _file_inventory(root)
         manifest = {
             "schema_id": RELEASE_SCHEMA_ID,

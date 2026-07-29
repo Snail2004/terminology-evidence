@@ -124,20 +124,25 @@ def _scan_source(entries: list[tuple[str, bytes]]) -> tuple[list[str], list[str]
 
 
 def _file_inventory(root: Path) -> list[dict[str, Any]]:
-    rows: list[dict[str, Any]] = []
-    for path in sorted(root.rglob("*")):
+    files: dict[str, Path] = {}
+    for path in root.rglob("*"):
         relative = path.relative_to(root).as_posix()
         if path.is_file() and relative not in {"release_manifest.json", "CHECKSUMS.sha256"}:
-            rows.append({"path": canonical_manifest_path(relative), "bytes": path.stat().st_size, "sha256": sha256_file(path)})
-    return rows
+            canonical = canonical_manifest_path(relative)
+            files[canonical] = path
+    return [
+        {"path": relative, "bytes": files[relative].stat().st_size, "sha256": sha256_file(files[relative])}
+        for relative in sorted(files)
+    ]
 
 
 def _write_checksums(root: Path) -> None:
-    lines = []
-    for path in sorted(root.rglob("*")):
+    files: dict[str, Path] = {}
+    for path in root.rglob("*"):
         relative = path.relative_to(root).as_posix()
         if path.is_file() and relative != "CHECKSUMS.sha256":
-            lines.append(f"{sha256_file(path)}  {canonical_manifest_path(relative)}")
+            files[canonical_manifest_path(relative)] = path
+    lines = [f"{sha256_file(files[relative])}  {relative}" for relative in sorted(files)]
     (root / "CHECKSUMS.sha256").write_text("\n".join(lines) + "\n", encoding="ascii", newline="\n")
 
 
@@ -221,6 +226,7 @@ def build_release(
             manifest["integrity"]["self_sha256"] = sha256_value(_without_self_hash(manifest))
             write_json(stage / "release_manifest.json", manifest)
             _write_checksums(stage)
+            verify_release(stage)
 
     verified = verify_release(output)
     return {
