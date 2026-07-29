@@ -26,7 +26,7 @@ class ReportAndCliTests(unittest.TestCase):
             fixture = root / "fixture"
             output = root / "report"
             write_synthetic_release(fixture)
-            command = [sys.executable, "-m", "evaluation.v1.cli", "evaluate", str(fixture / "rows.json"), str(output), "--replicates", "10"]
+            command = [sys.executable, "-B", "-m", "evaluation.v1.cli", "evaluate", str(fixture / "rows.json"), str(output), "--replicates", "10"]
             result = subprocess.run(command, capture_output=True, text=True, check=False)
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertTrue((output / "evaluation_report.json").is_file())
