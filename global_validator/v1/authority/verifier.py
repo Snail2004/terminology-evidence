@@ -6,24 +6,25 @@ from pathlib import Path
 from typing import Any
 
 from terminology_contracts.integrity import (
+    canonical_sha256,
     load_verified_json_artifact,
     sha256_file,
-    verify_self_hash,
 )
 from terminology_contracts.manifest import verify_manifest
 
 from ..errors import AuthorityVerificationError
 from ..jsonio import assert_strict_json_file, load_json_object
-
-AUTHORITY_SCHEMA_ID = "TerminologyContractsAuthorityReceiptV1"
-AUTHORITY_TAG = "contracts-v1.1.0"
-AUTHORITY_COMMIT = "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed"
-CONTRACT_VERSION = "1.1.0"
-AUTHORITY_RECEIPT_SELF_SHA256 = (
-    "c2e291510f43f2fb82461c5aacd3085948346e98451e218f73192b0eb3c47ed4"
-)
-AUTHORITY_RECEIPT_PHYSICAL_SHA256 = (
-    "3497460f16ca478dada7b25425775882f10d1cb2b5d3638c36cba4ec5fb2791b"
+from .publication import (
+    AUTHORITY_COMMIT,
+    AUTHORITY_CONTRACT_TREE_OID,
+    AUTHORITY_SCHEMA_ID,
+    AUTHORITY_TAG,
+    AUTHORITY_TAG_OBJECT_OID,
+    CONTRACT_VERSION,
+    R2_CONTRACT_TREE_OID,
+    R2_PUBLICATION_COMMIT,
+    load_active_r2_receipt,
+    verify_r2_publication,
 )
 
 
@@ -45,10 +46,12 @@ def verify_authority(
     *,
     repository_root: Path | None = None,
 ) -> VerifiedAuthority:
-    receipt, receipt_integrity_mode, warnings = _load_receipt(receipt_path)
+    receipt = load_active_r2_receipt(receipt_path)
+    receipt_integrity_mode = "CANONICAL_SELF_HASH"
+    warnings: tuple[str, ...] = ()
     _expect(receipt, "schema_id", AUTHORITY_SCHEMA_ID)
     _expect(receipt, "contract_version", CONTRACT_VERSION)
-    _expect(receipt, "feature_contract_version", CONTRACT_VERSION)
+    _expect(receipt, "feature_registry_version", CONTRACT_VERSION)
     _expect(receipt, "authority_tag", AUTHORITY_TAG)
     _expect(receipt, "authority_commit", AUTHORITY_COMMIT)
 
@@ -88,22 +91,34 @@ def verify_authority(
 
     gate_policy = load_verified_json_artifact(
         gate_policy_path,
-        expected_self_sha256=receipt.get("gate_policy_artifact_sha256"),
+        expected_self_sha256=receipt.get("gate_policy_self_sha256"),
     )
     if gate_policy.physical_sha256 != receipt.get("gate_policy_file_sha256"):
         raise AuthorityVerificationError("gate policy physical SHA-256 mismatch")
+    feature_registry = _strict_object(feature_registry_path)
+    _expect(
+        feature_registry,
+        "registry_id",
+        "TerminologyFeatureContractRegistryV1_1",
+    )
+    _expect(feature_registry, "registry_version", CONTRACT_VERSION)
+    if canonical_sha256(feature_registry) != receipt.get(
+        "feature_registry_canonical_sha256"
+    ):
+        raise AuthorityVerificationError("feature registry canonical SHA-256 mismatch")
     if sha256_file(feature_registry_path) != receipt.get(
-        "feature_contract_file_sha256"
+        "feature_registry_file_sha256"
     ):
         raise AuthorityVerificationError("feature registry physical SHA-256 mismatch")
 
+    verify_r2_publication(receipt, contracts_root)
     manifest_errors = verify_manifest(contracts_root)
     if manifest_errors:
         raise AuthorityVerificationError(
             "contracts manifest verification failed: " + "; ".join(manifest_errors)
         )
     if repository_root is not None:
-        _verify_git_authority(repository_root.resolve())
+        _verify_git_authority(repository_root.resolve(), receipt)
 
     return VerifiedAuthority(
         receipt=receipt,
@@ -115,27 +130,6 @@ def verify_authority(
         receipt_integrity_mode=receipt_integrity_mode,
         warnings=warnings,
     )
-
-
-def _load_receipt(path: Path) -> tuple[dict[str, Any], str, tuple[str, ...]]:
-    try:
-        value = load_json_object(path)
-    except (OSError, UnicodeError, ValueError) as exc:
-        raise AuthorityVerificationError(f"cannot load authority receipt: {exc}") from exc
-    try:
-        verify_self_hash(value, path=str(path))
-    except ValueError as exc:
-        raise AuthorityVerificationError(str(exc)) from exc
-    declared = value.get("integrity", {}).get("self_sha256")
-    if declared != AUTHORITY_RECEIPT_SELF_SHA256:
-        raise AuthorityVerificationError(
-            "authority receipt canonical self SHA-256 differs from published receipt"
-        )
-    if sha256_file(path) != AUTHORITY_RECEIPT_PHYSICAL_SHA256:
-        raise AuthorityVerificationError(
-            "authority receipt physical SHA-256 differs from published receipt"
-        )
-    return value, "CANONICAL_SELF_HASH", ()
 
 
 def _strict_object(path: Path) -> dict[str, Any]:
@@ -154,30 +148,75 @@ def _expect(value: Any, field: str, expected: Any) -> None:
         )
 
 
-def _verify_git_authority(repository_root: Path) -> None:
+def _verify_git_authority(
+    repository_root: Path, receipt: dict[str, Any]
+) -> None:
     try:
-        tag_commit = subprocess.run(
-            ["git", "rev-parse", f"{AUTHORITY_TAG}^{{commit}}"],
-            cwd=repository_root,
-            check=True,
-            capture_output=True,
-            text=True,
-        ).stdout.strip()
-        drift = subprocess.run(
-            [
-                "git",
-                "diff",
-                "--quiet",
-                f"{AUTHORITY_TAG}..HEAD",
-                "--",
-                "terminology_contracts_v1",
-            ],
+        tag_type = _git_output(repository_root, "cat-file", "-t", f"refs/tags/{AUTHORITY_TAG}")
+        tag_object = _git_output(repository_root, "rev-parse", f"refs/tags/{AUTHORITY_TAG}")
+        tag_commit = _git_output(repository_root, "rev-parse", f"{AUTHORITY_TAG}^{{commit}}")
+        tag_tree = _git_output(
+            repository_root,
+            "rev-parse",
+            f"{AUTHORITY_TAG}:terminology_contracts_v1",
+        )
+        publication_type = _git_output(
+            repository_root, "cat-file", "-t", R2_PUBLICATION_COMMIT
+        )
+        publication_ancestor = subprocess.run(
+            ["git", "merge-base", "--is-ancestor", R2_PUBLICATION_COMMIT, "HEAD"],
             cwd=repository_root,
             check=False,
+            capture_output=True,
+            text=True,
         ).returncode
+        publication_tree = _git_output(
+            repository_root,
+            "rev-parse",
+            f"{R2_PUBLICATION_COMMIT}:terminology_contracts_v1",
+        )
+        head_tree = _git_output(
+            repository_root, "rev-parse", "HEAD:terminology_contracts_v1"
+        )
+        worktree_status = _git_output(
+            repository_root,
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all",
+            "--",
+            "terminology_contracts_v1",
+        )
     except (OSError, subprocess.SubprocessError) as exc:
         raise AuthorityVerificationError(f"cannot verify Git authority: {exc}") from exc
+    if tag_type != "tag" or tag_object != AUTHORITY_TAG_OBJECT_OID:
+        raise AuthorityVerificationError("authority annotated tag object mismatch")
     if tag_commit != AUTHORITY_COMMIT:
         raise AuthorityVerificationError("authority tag does not resolve to receipt commit")
-    if drift != 0:
-        raise AuthorityVerificationError("contracts tree differs from authority tag")
+    if tag_tree != AUTHORITY_CONTRACT_TREE_OID or tag_tree != receipt.get(
+        "contract_tree_git_oid"
+    ):
+        raise AuthorityVerificationError("authority tag contract tree binding mismatch")
+    if publication_type != "commit" or publication_ancestor != 0:
+        raise AuthorityVerificationError(
+            "reviewed R2 publication commit is not an ancestor of runtime HEAD"
+        )
+    if publication_tree != R2_CONTRACT_TREE_OID:
+        raise AuthorityVerificationError("reviewed R2 publication tree moved")
+    if head_tree != R2_CONTRACT_TREE_OID:
+        raise AuthorityVerificationError(
+            "contracts tree differs from exact reviewed R2 publication"
+        )
+    if worktree_status:
+        raise AuthorityVerificationError(
+            "contracts working tree contains unreviewed mutation"
+        )
+
+
+def _git_output(repository_root: Path, *args: str) -> str:
+    return subprocess.run(
+        ["git", *args],
+        cwd=repository_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()

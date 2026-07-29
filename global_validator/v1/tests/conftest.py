@@ -22,8 +22,12 @@ def repository_root() -> Path:
 
 @pytest.fixture(scope="session")
 def authority_receipt() -> Path:
-    return Path(
-        r"C:\work\terminology-evidence-authority\contracts-v1.1.0\authority_receipt.json"
+    return (
+        REPOSITORY_ROOT
+        / "terminology_contracts_v1"
+        / "release"
+        / "v1.1.0-final"
+        / "contracts_v1_1_0_authority_receipt_r2.json"
     )
 
 

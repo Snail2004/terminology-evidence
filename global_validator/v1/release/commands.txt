@@ -4,5 +4,5 @@ python -m pytest -q terminology_contracts_v1\tests
 python -m compileall -q global_validator
 python -m global_validator.v1.cli --help
 python -m pip wheel --no-deps --no-build-isolation .\global_validator --wheel-dir <temp-wheel-dir>
-python -m global_validator.v1.tools.build_release_evidence --repository-root . --authority-receipt C:\work\terminology-evidence-authority\contracts-v1.1.0\authority_receipt.json --output-dir global_validator\v1\release
+python -m global_validator.v1.tools.build_release_evidence --repository-root . --authority-receipt terminology_contracts_v1\release\v1.1.0-final\contracts_v1_1_0_authority_receipt_r2.json --output-dir global_validator\v1\release
 git diff --check
