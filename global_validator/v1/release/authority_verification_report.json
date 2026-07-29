@@ -1,0 +1,15 @@
+{
+  "authority_commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+  "authority_tag": "contracts-v1.1.0",
+  "contract_version": "1.1.0",
+  "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+  "integrity": {
+    "self_sha256": "7101d8b301d15fe7d97863b5681abfc5b0f2b36c6cfa1904d403cb395f7191f2"
+  },
+  "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
+  "receipt_integrity_mode": "CANONICAL_SELF_HASH",
+  "schema_id": "GlobalValidatorAuthorityVerificationReportV1",
+  "schema_version": "1.0.0",
+  "status": "PASS",
+  "warnings": []
+}

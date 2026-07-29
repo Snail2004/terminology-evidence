@@ -1,0 +1,12 @@
+{
+  "development_baseline_matched": true,
+  "frozen_fixture_matched": true,
+  "integrity": {
+    "self_sha256": "9673ee4da8cf3eac0b4b3b3c4d1da2512cf4bd54522fca01d3722e5e2c1903c7"
+  },
+  "pilot_expected_replay_count": 15,
+  "pilot_replay_count": 15,
+  "schema_id": "GlobalValidatorDecisionReplayReportV1",
+  "schema_version": "1.0.0",
+  "status": "PASS"
+}

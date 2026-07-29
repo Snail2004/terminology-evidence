@@ -1,0 +1,24 @@
+{
+  "schema_id": "GlobalGateActionSelectionPolicyV1",
+  "schema_version": "1.0.0",
+  "policy_id": "global-gate-action-selection-v1",
+  "policy_version": "1.0.0",
+  "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+  "actions": {
+    "input_contract_mismatch": "FATAL_REJECT",
+    "sense_definition_unverified": "ESCALATE_HUMAN",
+    "unresolved_polysemy": "FATAL_SPLIT",
+    "concept_mismatch": "FATAL_REJECT",
+    "wrong_sense": "FATAL_REJECT",
+    "contradiction": "FATAL_REJECT",
+    "target_collision": "ESCALATE_HUMAN",
+    "judge_disagreement": "ESCALATE_HUMAN",
+    "insufficient_evidence": "CAP_PROVISIONAL",
+    "missing_contrastive_context": "CAP_PROVISIONAL",
+    "incomplete_context_type_coverage": "CAP_PROVISIONAL",
+    "attestation_unjudgeable": "CAP_PROVISIONAL"
+  },
+  "integrity": {
+    "self_sha256": "4220b15b7b5d5b740946b9b258a5e1f25469a8f8409ca6e1a0b399464285c9f5"
+  }
+}
