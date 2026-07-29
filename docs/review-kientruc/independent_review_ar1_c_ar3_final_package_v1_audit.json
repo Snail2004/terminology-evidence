@@ -1,0 +1,105 @@
+{
+  "schema_id": "IndependentReviewAR1CAr3FinalV1",
+  "review_date": "2026-07-29",
+  "package": {
+    "name": "AR1_C_AR3_Final_Review_Package_V1.zip",
+    "sha256": "2c3f6bec4225771d2433c25b5751f98fa4dd59ef05de4a267bd4c7a83cee0019",
+    "entries": 57,
+    "duplicate_entries": 0,
+    "unsafe_entries": 0,
+    "symlinks": 0,
+    "manifest_records": 55,
+    "manifest_pass": true,
+    "deliverables_records": 56,
+    "deliverables_pass": true
+  },
+  "ar1": {
+    "verdict": "ACCEPTED",
+    "source_paths": 6,
+    "all_paths_outside_contract_tree": true,
+    "binding_self_sha256": "ab7acbccfbdf64b74071133d4e049a06cbafc66c989f9b9f7ce52a08caa720b2",
+    "binding_physical_sha256": "3ad39870e4e95c51ac88ee6a3d451504d41ba26d3bf5dc6569d25a585a7147a5",
+    "checksums_pass": true,
+    "evidence_inventory_pass": true
+  },
+  "context_substitution": {
+    "commit": "93ebff8e7d4239619626e7cc4b1575c28e028bd1",
+    "verdict": "ACCEPTED_FOR_INTEGRATION_WITH_REQUIRED_EVIDENCE_CORRECTION",
+    "custom_mutations": {
+      "all_captures_first": "REJECTED",
+      "unknown_capture_field": "REJECTED",
+      "unknown_attempt_field": "REJECTED",
+      "cross_boundary_capture": "REJECTED",
+      "valid_sealed_replay": "PASS"
+    },
+    "release_zip_sha256": "502747beaeb6abfe256efcb28900b723c2776931d6e56439b548201e64900d1a",
+    "two_builds_byte_identical": true,
+    "source_collected_tests": 79,
+    "provided_junit_tests": 69,
+    "provided_junit_exactly_matches_full_source": false,
+    "independent_full_rerun": {
+      "passed": 78,
+      "failed": 0,
+      "skipped": 1,
+      "skip_reason": "pilot_normalized_review_pack_v1_4 not materialized"
+    },
+    "release_internal_junit": {
+      "tests": 22,
+      "identity_records": 0
+    }
+  },
+  "harness": {
+    "commit": "339ac9001f8eda54d617189c92aa25bbc5eec8c7",
+    "verdict": "ACCEPTED_FOR_MERGE",
+    "final_source_paths": 24,
+    "final_rework_changed_paths": 12,
+    "final_rework_unchanged_paths": 12,
+    "release_members": 43,
+    "reviewed_source_members_match_release": true,
+    "source_collected_tests": 26,
+    "provided_junit_tests": 26,
+    "junit_identity_set_exact_match": true,
+    "junit_failures": 0,
+    "junit_errors": 0,
+    "junit_skips": 0,
+    "p0_ar3_1": "CLOSED",
+    "canary": {
+      "candidate_count": 1,
+      "authority_mode": "CONTRACTS_R2_CURRENT",
+      "r2_module_file_count": 227,
+      "checksums": 27,
+      "decision": "PROVISIONAL",
+      "auto_approved": 0,
+      "certificates": 0,
+      "provider_calls": 0,
+      "network_calls": 0
+    }
+  },
+  "findings": [
+    {
+      "id": "P1-C-EVID-1",
+      "severity": "P1_EVIDENCE",
+      "title": "The 69-test C JUnit is a focused integration suite, not the full 79-test current source suite",
+      "implementation_blocking": false,
+      "required_action": "Correct report labels and provide a full identity-bound JUnit or explicit focused-suite evidence"
+    },
+    {
+      "id": "P1-HAR-REL-1",
+      "severity": "P1_RELEASE_HARDENING",
+      "title": "Harness release builder is live-filesystem based and is not commit/JUnit/inventory bound",
+      "current_exact_release_affected": false,
+      "merge_blocking": false,
+      "required_before": "next official Harness release or real M6 pilot archive"
+    },
+    {
+      "id": "MERGE-CHECK-GIT-1",
+      "severity": "MERGE_CHECK",
+      "title": "Source-only archives do not independently prove the real Git graph",
+      "required_action": "Main verifies exact commits, parents, ancestry, scopes, frozen files and clean worktrees"
+    }
+  ],
+  "overall_verdict": "ACCEPTED_WITH_NONBLOCKING_EVIDENCE_FINDINGS",
+  "integrity": {
+    "self_sha256": "227225d79f25cf936dd8e6748958a762d2b130de3fc4e2628a8e35a8cbaf094c"
+  }
+}
