@@ -1,0 +1,12 @@
+{
+  "cross_split_active_block_count_after": 0,
+  "cross_split_cluster_count_before": 45,
+  "parent_split_assignments_mutated": false,
+  "policy_id": "dataset-fasttrack-glossary-first-v1.0",
+  "quarantined_block_count": 45,
+  "repair_mode": "COMPANION_ACTIVE_CONTEXT_QUARANTINE",
+  "report_sha256": "4895a9bedc81329da63fa173feb0d00f30a12b88f146fc3039567c6e08793418",
+  "schema_id": "D2LFastTrackSplitClusterRepairReportV1",
+  "sense_count_with_zero_active_real_positive_context": 0,
+  "status": "PASS"
+}

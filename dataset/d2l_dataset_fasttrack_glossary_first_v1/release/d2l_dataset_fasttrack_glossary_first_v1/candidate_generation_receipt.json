@@ -1,0 +1,17 @@
+{
+  "candidate_count": 450,
+  "final_glossary_decision": null,
+  "gold_label_count": 0,
+  "parent_candidate_instances_sha256": "b264c35de3926ab834ebd128872d6d7139df06974f46bc00ad64f2568d1b0e0e",
+  "parent_candidate_slots_sha256": "0e2e0cb896fa4ce550a0e91ca7ad22039fea32f8dedc7ad7aed94b4fa1ac78db",
+  "policy_id": "dataset-fasttrack-glossary-first-v1.0",
+  "provider_call_count": 0,
+  "receipt_sha256": "88a4bd89a985d7fa56d53acc2b9a7c39d5ee237842fdf9d427d1a77cf6b39a7d",
+  "schema_id": "D2LFastTrackCandidateGenerationReceiptV1",
+  "sense_count": 150,
+  "source_type_counts": {
+    "MODEL_PROPOSAL": 238,
+    "RECORDED_PIPELINE_OUTPUT": 212
+  },
+  "status": "PROVENANCE_NORMALIZED_NO_NEW_GENERATION"
+}
