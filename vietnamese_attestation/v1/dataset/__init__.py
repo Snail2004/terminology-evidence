@@ -18,6 +18,16 @@ from .contracts import (
     validate_adapter_candidate,
     validate_adapter_package,
 )
+from .official import (
+    OFFICIAL_DATASET_AUTHORITY_OWNER,
+    OFFICIAL_DATASET_PRODUCER_COMPONENT_ID,
+    OFFICIAL_PILOT_MEMBER_COUNT,
+    OFFICIAL_SET_MANIFEST_SCHEMA_ID,
+    OFFICIAL_SET_RECEIPT_SCHEMA_ID,
+    OFFICIAL_SET_SCHEMA_VERSION,
+    OfficialFrozenCandidateSet,
+    load_official_frozen_candidate_set,
+)
 from .specs import (
     PILOT_MANIFEST_SHA256,
     PILOT_SCHEMA_ID,
@@ -36,6 +46,13 @@ __all__ = [
     "CANDIDATE_SCHEMA_ID",
     "CANDIDATE_SCHEMA_VERSION",
     "DatasetAdapterError",
+    "OFFICIAL_DATASET_AUTHORITY_OWNER",
+    "OFFICIAL_DATASET_PRODUCER_COMPONENT_ID",
+    "OFFICIAL_PILOT_MEMBER_COUNT",
+    "OFFICIAL_SET_MANIFEST_SCHEMA_ID",
+    "OFFICIAL_SET_RECEIPT_SCHEMA_ID",
+    "OFFICIAL_SET_SCHEMA_VERSION",
+    "OfficialFrozenCandidateSet",
     "PILOT_MANIFEST_SHA256",
     "PILOT_SCHEMA_ID",
     "PILOT_SCHEMA_VERSION",
@@ -47,6 +64,7 @@ __all__ = [
     "VerifiedDatasetArchive",
     "adapt_dataset_zip",
     "load_supported_dataset_archive",
+    "load_official_frozen_candidate_set",
     "seal_adapter_candidate",
     "seal_adapter_package",
     "validate_adapter_candidate",

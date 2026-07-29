@@ -155,15 +155,20 @@ Offline fixture execution:
 ```powershell
 python -m vietnamese_attestation.v1.cli.run `
   --candidate candidate.json `
+  --development-input `
   --offline-fixture fixture.json `
   --run-store-root .artifacts/vietnamese-attestation `
   --output attestation.json
 ```
 
-When `candidate.json` uses `FrozenCandidateContractV1`, `attestation.json`
-uses `AttestationEvidencePackageV1`. The run store also contains the rich
-internal replay package. Running directly from the repository requires both
-package roots on `PYTHONPATH`:
+`--development-input` is fixture-only. Official execution must instead provide
+all of `--dataset-release-manifest`, `--dataset-release-receipt`,
+`--dataset-release-receipt-sha256`, `--candidate-root` and
+`--official-candidate-id`. The loader verifies the externally pinned receipt,
+exact 15-member set, producer, physical hashes, candidate self-hashes and all
+candidate/sense/scope/dataset/effective-sense/input joins before engine setup.
+The run store also contains the rich internal replay package. Running directly
+from the repository requires both package roots on `PYTHONPATH`:
 
 ```powershell
 $env:PYTHONPATH="$PWD;$PWD\terminology_contracts_v1\python"
@@ -174,7 +179,11 @@ Judge credentials, and a cache root:
 
 ```powershell
 python -m vietnamese_attestation.v1.cli.run `
-  --candidate candidate.json `
+  --dataset-release-manifest dataset_release_manifest.json `
+  --dataset-release-receipt dataset_release_receipt.json `
+  --dataset-release-receipt-sha256 <trusted-receipt-physical-sha256> `
+  --candidate-root frozen_candidates `
+  --official-candidate-id <candidate-id> `
   --cache-root .cache/vietnamese-attestation `
   --run-store-root .artifacts/vietnamese-attestation `
   --output attestation.json
@@ -185,6 +194,7 @@ Verified replay:
 ```powershell
 python -m vietnamese_attestation.v1.cli.replay `
   --manifest .artifacts/vietnamese-attestation/runs/<execution_id>/run_manifest.json `
+  --expected-manifest-sha256 <externally-sealed-manifest-sha256> `
   --mode REPLAY_FROM_JUDGE `
   --output replay.json
 ```
@@ -224,9 +234,10 @@ replay manifests, zero external calls, and the two external-input HOLD states.
 Offline shared packages remain projection-conformance artifacts only; real E
 evidence authority requires official Dataset inputs, an approved source plan,
 and provider compatibility canaries.
-The release gate also requires a parsed, exact 75-test E-suite JUnit report with
-zero failures and errors; missing or unrelated reports cannot produce a PASS
-release.
+The release gate also requires a parsed, exact 80-test E-suite JUnit report with
+zero failures, errors or skips. Its exact testcase identity set and test-source
+tree are hash-pinned; missing, renamed, fabricated or unrelated reports cannot
+produce a PASS release.
 
 ## Remaining gates
 

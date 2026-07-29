@@ -53,6 +53,12 @@ The package manifest must bind the physical file SHA-256, candidate identity,
 candidate self-hash, dataset manifest and effective-sense contract hash for each
 member. Candidate IDs and candidate versions must be unique.
 
+The standalone E consumer additionally requires the Dataset release receipt's
+physical SHA-256 from an external trusted handoff. The receipt binds the exact
+manifest physical/self hashes, Dataset producer (`candidate-freezer`), Dataset
+manifest and expected count. Self-sealed manifest/receipt files without that
+external receipt pin are not authority.
+
 ## Required provenance
 
 Dataset Agent must retain authority for:

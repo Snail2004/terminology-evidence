@@ -40,7 +40,7 @@ Kết quả đã hoàn thành:
 273 manifest files
 0 manifest/hash error
 66/66 full E tests PASS before readiness rework
-75/75 full E tests PASS after R2 readiness compatibility rework
+80/80 full E tests PASS after post-review authority/replay/JUnit hardening
 8/8 focused readiness tests PASS after readiness rework
 ```
 

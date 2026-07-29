@@ -6,6 +6,7 @@ import shutil
 import subprocess
 import zipfile
 from pathlib import Path
+from xml.sax.saxutils import quoteattr
 
 import pytest
 
@@ -21,6 +22,7 @@ from vietnamese_attestation.v1.readiness.authority import (
 )
 from vietnamese_attestation.v1.readiness.junit import (
     EXPECTED_E_SUITE_TEST_COUNT,
+    EXPECTED_E_SUITE_TESTCASE_IDENTITIES,
 )
 from vietnamese_attestation.v1.cli.readiness import main as readiness_cli_main
 from vietnamese_attestation.v1.zero_api.artifacts import (
@@ -199,6 +201,47 @@ def test_junit_gate_rejects_missing_empty_red_wrong_and_unrelated_reports(
             _junit_xml(
                 EXPECTED_E_SUITE_TEST_COUNT,
                 classname="other.tests.Case",
+            ),
+        ),
+        (
+            "skipped-declared.xml",
+            _junit_xml(
+                EXPECTED_E_SUITE_TEST_COUNT,
+                skipped=EXPECTED_E_SUITE_TEST_COUNT,
+            ),
+        ),
+        (
+            "skipped-element.xml",
+            _junit_xml(
+                EXPECTED_E_SUITE_TEST_COUNT,
+                testcase_skipped=True,
+            ),
+        ),
+        (
+            "fabricated-prefix.xml",
+            _junit_xml(
+                EXPECTED_E_SUITE_TEST_COUNT,
+                classname="vietnamese_attestation.v1.tests.fabricated",
+            ),
+        ),
+        (
+            "renamed.xml",
+            _junit_xml(
+                EXPECTED_E_SUITE_TEST_COUNT,
+                identities=(
+                    "vietnamese_attestation.v1.tests.renamed::forged",
+                    *EXPECTED_E_SUITE_TESTCASE_IDENTITIES[1:],
+                ),
+            ),
+        ),
+        (
+            "missing-with-fake.xml",
+            _junit_xml(
+                EXPECTED_E_SUITE_TEST_COUNT,
+                identities=(
+                    *EXPECTED_E_SUITE_TESTCASE_IDENTITIES[:-1],
+                    "vietnamese_attestation.v1.tests.synthetic::replacement",
+                ),
             ),
         ),
     )
@@ -507,16 +550,31 @@ def _junit_xml(
     *,
     failures: int = 0,
     errors: int = 0,
-    classname: str = "vietnamese_attestation.v1.tests.synthetic",
+    skipped: int = 0,
+    classname: str | None = None,
+    identities: tuple[str, ...] | None = None,
+    testcase_skipped: bool = False,
 ) -> str:
+    if identities is None:
+        if classname is None and count <= len(EXPECTED_E_SUITE_TESTCASE_IDENTITIES):
+            identities = EXPECTED_E_SUITE_TESTCASE_IDENTITIES[:count]
+        else:
+            testcase_class = classname or "vietnamese_attestation.v1.tests.synthetic"
+            identities = tuple(
+                f"{testcase_class}::case-{index}" for index in range(count)
+            )
+    if len(identities) != count:
+        raise ValueError("JUnit fixture identity count mismatch")
+    child = "<skipped />" if testcase_skipped else ""
     cases = "".join(
-        f'<testcase classname="{classname}" name="case-{index}" />'
-        for index in range(count)
+        f"<testcase classname={quoteattr(identity.split('::', 1)[0])} "
+        f"name={quoteattr(identity.split('::', 1)[1])}>{child}</testcase>"
+        for identity in identities
     )
     return (
         '<?xml version="1.0" encoding="utf-8"?>'
         '<testsuites name="pytest tests">'
         f'<testsuite name="pytest" tests="{count}" failures="{failures}" '
-        f'errors="{errors}" skipped="0">{cases}</testsuite>'
+        f'errors="{errors}" skipped="{skipped}">{cases}</testsuite>'
         '</testsuites>'
     )

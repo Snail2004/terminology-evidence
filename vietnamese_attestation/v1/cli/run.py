@@ -14,6 +14,9 @@ from vietnamese_attestation.v1.contracts.shared import (
     adapt_shared_frozen_candidate,
     project_shared_attestation_package,
 )
+from vietnamese_attestation.v1.dataset import (
+    load_official_frozen_candidate_set,
+)
 from vietnamese_attestation.v1.judging import (
     CKeyJudgeProvider,
     FallbackJudgeRouter,
@@ -36,13 +39,24 @@ from vietnamese_attestation.v1.retrieval.urls import (
 from vietnamese_attestation.v1.runtime.engine import (
     AttestationEngine,
 )
+from vietnamese_attestation.v1.strict_json import load_strict_json_object
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description="Run Vietnamese Attestation Evidence V1."
     )
-    parser.add_argument("--candidate", type=Path, required=True)
+    parser.add_argument("--candidate", type=Path)
+    parser.add_argument(
+        "--development-input",
+        action="store_true",
+        help="Explicitly permit a loose shared candidate for fixture-only work.",
+    )
+    parser.add_argument("--dataset-release-manifest", type=Path)
+    parser.add_argument("--dataset-release-receipt", type=Path)
+    parser.add_argument("--dataset-release-receipt-sha256")
+    parser.add_argument("--candidate-root", type=Path)
+    parser.add_argument("--official-candidate-id")
     parser.add_argument("--config", type=Path)
     parser.add_argument("--offline-fixture", type=Path)
     parser.add_argument("--cache-root", type=Path)
@@ -50,7 +64,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args(argv)
 
-    candidate = _object(args.candidate, "candidate")
+    candidate = _input_candidate(args, parser)
     config = (
         AttestationConfig.from_mapping(_object(args.config, "config"))
         if args.config
@@ -246,13 +260,70 @@ def _required_env(name: str) -> str:
     return value
 
 
+def _input_candidate(
+    args: argparse.Namespace, parser: argparse.ArgumentParser
+) -> Mapping[str, Any]:
+    official_values = {
+        "--dataset-release-manifest": args.dataset_release_manifest,
+        "--dataset-release-receipt": args.dataset_release_receipt,
+        "--dataset-release-receipt-sha256": (
+            args.dataset_release_receipt_sha256
+        ),
+        "--candidate-root": args.candidate_root,
+        "--official-candidate-id": args.official_candidate_id,
+    }
+    official_requested = any(value is not None for value in official_values.values())
+    if args.candidate is not None and official_requested:
+        parser.error("--candidate cannot be combined with official Dataset input")
+    if args.candidate is None and not official_requested:
+        parser.error("provide --candidate or the complete official Dataset input set")
+    if official_requested:
+        missing = [name for name, value in official_values.items() if value is None]
+        if missing:
+            parser.error("official Dataset input requires " + ", ".join(missing))
+        if args.development_input:
+            parser.error("--development-input cannot be used with official Dataset input")
+        official = load_official_frozen_candidate_set(
+            args.dataset_release_manifest,
+            args.dataset_release_receipt,
+            args.candidate_root,
+            expected_receipt_sha256=args.dataset_release_receipt_sha256,
+        )
+        matches = [
+            candidate
+            for candidate in official.candidates
+            if candidate["candidate_key"]["candidate_id"]
+            == args.official_candidate_id
+        ]
+        if len(matches) != 1:
+            parser.error("official candidate ID is absent or ambiguous")
+        return matches[0]
+
+    if args.offline_fixture is None:
+        parser.error(
+            "a loose candidate is fixture-only; live execution requires an "
+            "official Dataset release"
+        )
+    candidate = _object(args.candidate, "candidate")
+    if (
+        candidate.get("schema_id") == SHARED_FROZEN_CANDIDATE_SCHEMA_ID
+        and candidate.get("binding_status") == "COMPLETE"
+        and not args.development_input
+    ):
+        parser.error(
+            "a COMPLETE shared candidate requires an official Dataset release; "
+            "use --development-input only for fixture work"
+        )
+    return candidate
+
+
 def _object(path: Path | None, label: str) -> Mapping[str, Any]:
     if path is None:
         raise ValueError(f"{label} path is missing")
-    value = json.loads(path.read_text(encoding="utf-8"))
-    if not isinstance(value, Mapping):
-        raise ValueError(f"{label} must be a JSON object")
-    return value
+    try:
+        return load_strict_json_object(path)
+    except ValueError as exc:
+        raise ValueError(f"invalid strict {label} JSON") from exc
 
 
 def _write_atomic_text(path: Path, value: str) -> None:

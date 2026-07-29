@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from ..zero_api.artifacts import self_sha256
+from .junit import EXPECTED_E_SUITE_TEST_COUNT
 
 
 def seal(value: dict[str, Any]) -> dict[str, Any]:
@@ -139,7 +140,10 @@ def findings_report(canonical_main: str) -> dict[str, Any]:
                 "severity": "P1",
                 "status": "RESOLVED",
                 "summary": "Release could pass without a reviewed test gate",
-                "resolution": "Mandatory exact E-suite JUnit policy with parsed 75-test gate",
+                "resolution": (
+                    "Mandatory exact E-suite JUnit policy with parsed "
+                    f"{EXPECTED_E_SUITE_TEST_COUNT}-test gate"
+                ),
             },
             {
                 "finding_id": "E-RDY-010",

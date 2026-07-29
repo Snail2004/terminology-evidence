@@ -7,16 +7,26 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Any
 
-from .jsonio import reject_link
+from .jsonio import reject_link, reject_symlink_tree
+from .junit_policy import (
+    EXPECTED_E_SUITE_TEST_COUNT,
+    EXPECTED_E_SUITE_TEST_SOURCE_TREE_SHA256,
+    EXPECTED_E_SUITE_TESTCASE_IDENTITIES,
+    EXPECTED_E_SUITE_TESTCASE_IDENTITY_SHA256,
+)
 
 
-EXPECTED_E_SUITE_TEST_COUNT = 75
 E_TESTCASE_PREFIX = "vietnamese_attestation.v1.tests."
 
 
 def verify_junit(
     path: str | Path, *, expected_count: int = EXPECTED_E_SUITE_TEST_COUNT
 ) -> dict[str, Any]:
+    if expected_count != EXPECTED_E_SUITE_TEST_COUNT:
+        raise ValueError("JUnit expected count cannot override the sealed E-suite policy")
+    source_tree_sha256 = _test_source_tree_sha256()
+    if source_tree_sha256 != EXPECTED_E_SUITE_TEST_SOURCE_TREE_SHA256:
+        raise ValueError("JUnit E-suite source tree differs from the sealed policy")
     junit_path = Path(path).absolute()
     reject_link(junit_path)
     try:
@@ -48,8 +58,8 @@ def verify_junit(
         raise ValueError(
             f"JUnit E-suite count mismatch: expected {expected_count}, got {declared_tests}"
         )
-    if declared_failures or declared_errors:
-        raise ValueError("JUnit report contains failures or errors")
+    if declared_failures or declared_errors or declared_skipped:
+        raise ValueError("JUnit report contains failures, errors, or skips")
 
     identities: list[str] = []
     for case in testcases:
@@ -61,13 +71,20 @@ def verify_junit(
             raise ValueError("JUnit testcase name is empty")
         if case.find("failure") is not None or case.find("error") is not None:
             raise ValueError("JUnit testcase contains failure/error element")
+        if case.find("skipped") is not None:
+            raise ValueError("JUnit testcase contains a skipped element")
         identities.append(f"{classname}::{name}")
     if len(set(identities)) != len(identities):
         raise ValueError("JUnit testcase identities are not unique")
 
+    sorted_identities = tuple(sorted(identities))
     identity_sha256 = hashlib.sha256(
-        ("\n".join(sorted(identities)) + "\n").encode("utf-8")
+        ("\n".join(sorted_identities) + "\n").encode("utf-8")
     ).hexdigest()
+    if sorted_identities != EXPECTED_E_SUITE_TESTCASE_IDENTITIES:
+        raise ValueError("JUnit testcase identities differ from the sealed E suite")
+    if identity_sha256 != EXPECTED_E_SUITE_TESTCASE_IDENTITY_SHA256:
+        raise ValueError("JUnit testcase identity SHA-256 differs from policy")
     return {
         "schema_id": "VietnameseAttestationJunitVerificationReportV1",
         "schema_version": "1.0.0",
@@ -79,8 +96,9 @@ def verify_junit(
         "errors": declared_errors,
         "skipped": declared_skipped,
         "testcase_identity_sha256": identity_sha256,
-        "policy_id": "vietnamese-attestation-e-suite-v1",
-        "policy_version": "1.0.0",
+        "test_source_tree_sha256": source_tree_sha256,
+        "policy_id": "vietnamese-attestation-e-suite-v2",
+        "policy_version": "2.0.0",
     }
 
 
@@ -98,8 +116,28 @@ def _sum_nonnegative(suites: list[ET.Element], field: str) -> int:
     return total
 
 
+def _test_source_tree_sha256() -> str:
+    root = Path(__file__).resolve().parents[1] / "tests"
+    reject_symlink_tree(root)
+    digest = hashlib.sha256()
+    sources = sorted(
+        root.rglob("*.py"), key=lambda path: path.relative_to(root).as_posix()
+    )
+    for source in sources:
+        relative = source.relative_to(root).as_posix()
+        raw = source.read_bytes().replace(b"\r\n", b"\n")
+        digest.update(relative.encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(hashlib.sha256(raw).hexdigest().encode("ascii"))
+        digest.update(b"\n")
+    return digest.hexdigest()
+
+
 __all__ = [
     "E_TESTCASE_PREFIX",
     "EXPECTED_E_SUITE_TEST_COUNT",
+    "EXPECTED_E_SUITE_TEST_SOURCE_TREE_SHA256",
+    "EXPECTED_E_SUITE_TESTCASE_IDENTITIES",
+    "EXPECTED_E_SUITE_TESTCASE_IDENTITY_SHA256",
     "verify_junit",
 ]

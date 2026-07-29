@@ -7,10 +7,13 @@ The implementing session owns only `vietnamese_attestation/**`. Evidence E is
 independent from Context Substitution and never emits a final glossary
 decision.
 
-The public standalone boundary accepts `FrozenCandidateContractV1@1.1.0` and
-emits `AttestationEvidencePackageV1@1.1.0` under the locally published
-`contracts-v1.1.0` authority. The richer internal V1.1 package remains a
-content-bound replay ledger and is not a competing shared contract.
+The public official boundary accepts a Dataset-owned set of 15
+`FrozenCandidateContractV1@1.1.0` members only after its externally pinned
+release receipt, manifest, physical member hashes, producer and identity joins
+verify. A loose COMPLETE shared candidate is rejected unless the caller
+explicitly selects fixture-only `--development-input`. Output remains
+`AttestationEvidencePackageV1@1.1.0` under the locally published
+`contracts-v1.1.0` authority.
 
 The development pilot also has a deterministic zero-API runner. It executes
 all 15 real pilot candidate identities against 15 synthetic fixture scenarios,
@@ -36,5 +39,6 @@ cache files without deleting the worktree, verifies Contracts V1.1 and the
 accepted 15/15 zero-API replay, and reports the remaining Dataset, controlled
 registry, and live-canary HOLD states. It does not call a provider and never
 promotes fixture packages to real attestation evidence authority.
-The JUnit input is mandatory and must be the exact 75-test E-suite with zero
-failures and errors.
+The JUnit input is mandatory and must be the exact 80-test E-suite with zero
+failures, errors or skips. Both the testcase identity set and E test-source
+tree are hash-pinned.
