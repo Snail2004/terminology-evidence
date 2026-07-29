@@ -28,6 +28,7 @@ packages = [
   "global_validator.v1.features",
   "global_validator.v1.gates",
   "global_validator.v1.input",
+  "global_validator.v1.policies",
   "global_validator.v1.testing",
   "global_validator.v1.tools",
 ]

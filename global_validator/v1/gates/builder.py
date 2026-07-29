@@ -32,6 +32,14 @@ _OWNER_MODULES: dict[str, list[str]] = {
 _MODULE_ORDER = {name: index for index, name in enumerate(
     ("CONTRACT", "SENSE", "C", "E", "GLOBAL", "HUMAN_REVIEW")
 )}
+_DIRECT_EVIDENCE_REQUIRED_GATES = {
+    "concept_mismatch",
+    "wrong_sense",
+    "contradiction",
+    "judge_disagreement",
+    "missing_contrastive_context",
+    "incomplete_context_type_coverage",
+}
 
 
 def build_gate_result_set(
@@ -128,6 +136,10 @@ def _project_producer_signals(
         target["modules"].append(module)
         target["reasons"].extend(signal.get("reason_codes", []))
         refs = signal.get("evidence_refs", [])
+        if gate_id in _DIRECT_EVIDENCE_REQUIRED_GATES and not refs:
+            raise GateProjectionError(
+                f"{module} asserted {gate_id} requires direct evidence_refs"
+            )
         target["refs"].extend(refs if refs else [package_ref])
 
 

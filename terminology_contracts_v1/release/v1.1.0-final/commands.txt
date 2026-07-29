@@ -1,0 +1,5 @@
+$env:TERMINOLOGY_DATASET_ROOT='E:\Data-KL'
+$env:PYTHONPATH="$pwd\terminology_contracts_v1\python"
+python -m pytest -q terminology_contracts_v1/tests terminology_contracts_v1/release/authority_maintenance_v1/tests --junitxml=<external-junit-path>
+python terminology_contracts_v1/release/authority_maintenance_v1/tools/build_authority_release.py --repo-root . --distribution-root . --junit <external-junit-path> --base-main-commit 677ef6b434f268153363ea06b335cb8df188ee19 --implementation-commit 3efc430312f080b4f8b1752e18173501283292f8 --issued-at 2026-07-29T00:00:00Z
+python terminology_contracts_v1/release/authority_maintenance_v1/tools/verify_authority_receipt.py --repo-root . --distribution-root .

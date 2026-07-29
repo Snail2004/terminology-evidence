@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from typing import Any, Iterable, Mapping, Sequence
 
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.common import (
+from context_substitution.v2.contracts.common import (
     AGGREGATION_VERSION,
     JUDGE_VERSION,
     PROVENANCE_VERSION,

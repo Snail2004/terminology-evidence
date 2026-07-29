@@ -21,27 +21,25 @@ def build_execution_config_sha256(
     *,
     action_policy: GateActionPolicy,
 ) -> str:
-    return canonical_sha256(
-        {
-            "engine_version": ENGINE_VERSION,
-            "global_run_spec_id": GLOBAL_RUN_SPEC_ID,
-            "mode": config.mode.value,
-            "gate_action_policy_sha256": action_policy.self_sha256,
-            "gate_policy_artifact_sha256": (
-                action_policy.gate_policy_artifact_sha256
-            ),
-            "feature_registry_physical_sha256": sha256_file(
-                config.feature_registry_path
-            ),
-            "calibration_self_sha256": (
-                None
-                if config.calibration_path is None
-                else _loaded_self_hash(config.calibration_path)
-            ),
-            "allow_example_calibration": config.allow_example_calibration,
-            "expected_calibration_sha256": config.expected_calibration_sha256,
-        }
-    )
+    payload = {
+        "engine_version": ENGINE_VERSION,
+        "global_run_spec_id": GLOBAL_RUN_SPEC_ID,
+        "mode": config.mode.value,
+        "gate_action_policy_sha256": action_policy.self_sha256,
+        "gate_action_policy_authority_sha256": action_policy.authority_sha256,
+        "gate_policy_artifact_sha256": action_policy.gate_policy_artifact_sha256,
+        "feature_registry_physical_sha256": sha256_file(
+            config.feature_registry_path
+        ),
+        "calibration_self_sha256": (
+            None
+            if config.calibration_path is None
+            else _loaded_self_hash(config.calibration_path)
+        ),
+        "allow_example_calibration": config.allow_example_calibration,
+        "expected_calibration_sha256": config.expected_calibration_sha256,
+    }
+    return canonical_sha256(payload)
 
 
 def build_decision_package(

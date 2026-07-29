@@ -137,3 +137,25 @@ This file is append-only for implementation and review findings.
   and any certificate bundle before semantic replay. Recomputed features,
   gates, decision and certificate must match the verified stored payloads
   exactly. Stale tamper and coherently resealed semantic drift both fail closed.
+
+## GV-F012: Independent review found unpinned policy and partial verifiers
+
+- Severity: P0 decision-authority and P1 evidence/replay portability defects.
+- Status: resolved in the Global-owned review-closure candidate; maintainer
+  re-gate required.
+- Evidence: the independent review of `056b520e` showed that a different
+  self-hashed allowed action policy changed the decision, standalone decision
+  verification accepted a forged execution-config hash and reversed timestamps,
+  fatal C/E signals could use whole-package fallback, and replay bound the
+  original absolute repository path.
+- Resolution: an immutable Global action-policy authority sidecar pins the
+  reviewed policy and Contracts authority. Standalone decision verification
+  now validates the complete run config and compares the full decision with
+  deterministic recomputation. Certificate-bundle verification includes exact
+  replay. Fatal semantic, disagreement and coverage signals require direct
+  evidence refs. Replay spec V1.1 treats the original path as a non-authoritative
+  hint and accepts an explicit authority root whose tag, commit, receipt,
+  manifest, policy and registry are reverified.
+- Review evidence and per-finding dispositions are preserved in
+  `GLOBAL_VALIDATOR_V1_1_REVIEW_DISPOSITION.md` and the self-hashed release
+  report `review_finding_disposition.json`.

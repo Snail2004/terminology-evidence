@@ -1,0 +1,10 @@
+{
+  "integrity": {
+    "self_sha256": "e4f10351c88959c8ddf69e8e6397b9133c368b33c95980934b423573fcbafcca"
+  },
+  "path": "policies/gate_policy_v1.0.0.json",
+  "physical_sha256": "3d9fe31a96eecb0ae5f84823f87c7bb4739bd8139942e7b04ac279cc8c39dc85",
+  "result": "PASS",
+  "schema_id": "TerminologyContractsGatePolicyVerificationReportV1",
+  "self_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2"
+}

@@ -1,0 +1,30 @@
+{
+  "action_policy_authority_sha256": "1fca452c0604b7f41e9ffab72de0c134b108c52cafed279153bd7e98a0e8994a",
+  "current_global_commit": "b35825d1166da630aa9e8b7d551907bbee0b1864",
+  "external_blockers": {
+    "canonical_authority_receipt": "PENDING_EXTERNAL_CONTRACT_REVIEW",
+    "human_frozen_calibration": "OPEN",
+    "real_dataset_c_e_global_input_pilot": "OPEN"
+  },
+  "findings": {
+    "P0-GV-1": "CLOSED_FIXED",
+    "P0-GV-2": "CLOSED_FIXED",
+    "P1-GV-1": "CLOSED_FIXED",
+    "P1-GV-2": "CLOSED_FIXED",
+    "P1-GV-3": "CLOSED_FIXED",
+    "P1-GV-4": "CLOSED_FIXED_IN_4CD7930B",
+    "P1-GV-5": "NOT_APPLICABLE_TO_GIT_INTEGRATION",
+    "P1-GV-6": "CLOSED_BY_INDEPENDENT_GIT_REGATE"
+  },
+  "integrity": {
+    "self_sha256": "49d9da64dd2297df5c9725a0ddcde5fdac3c8567c2e6ed8fcdc6920964146819"
+  },
+  "provider_call_count": 0,
+  "review_audit_sha256": "dee38537fdd8055f81862292c0044d7463a4446869b93da1bbf68d2ab53f0886",
+  "review_report_sha256": "3ef049a4928bc97811d5b2dcc9b02f0743530398f8685aff0082b44e00d2fb64",
+  "reviewed_artifact_commit": "056b520ede25c40aa3c72ca9785dccecab4691d3",
+  "rework_parent_commit": "4cd7930b56fff334b9e790550cbb8e17c373613f",
+  "schema_id": "GlobalValidatorReviewFindingDispositionV1",
+  "schema_version": "1.0.0",
+  "status": "PASS_WITH_EXTERNAL_BLOCKERS"
+}

@@ -1,16 +1,16 @@
 """Context Substitution V2 frozen-dataset tooling."""
-from pipeline.eval.terminology_evidence.context_substitution.v2.dataset.runtime_adapter import (
+from context_substitution.v2.dataset.runtime_adapter import (
     FreezeCandidatePolicy,
     freeze_to_context_substitution_input,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.dataset.reviewed_support import (
+from context_substitution.v2.dataset.reviewed_support import (
     ReviewedSupportCandidatePolicy,
     ReviewedSupportBundle,
     reviewed_support_to_context_substitution_input,
     validate_reviewed_support_bundle,
     validate_reviewed_support_receipt,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.dataset.reviewed_selection import (
+from context_substitution.v2.dataset.reviewed_selection import (
     load_frozen_review_selection,
 )
 

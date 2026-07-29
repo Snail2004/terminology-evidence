@@ -3,11 +3,11 @@ from __future__ import annotations
 from collections import Counter
 from typing import Any, Mapping, Sequence
 
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.common import (
+from context_substitution.v2.contracts.common import (
     AGGREGATION_VERSION,
     LOCAL_HARD_FLAGS,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.runtime.calibration import (
+from context_substitution.v2.runtime.calibration import (
     ContextThresholdPolicy,
     DEVELOPMENT_POLICY_STATUS,
 )

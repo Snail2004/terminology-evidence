@@ -1,0 +1,9 @@
+{
+  "cache_files": [],
+  "integrity": {
+    "self_sha256": "b14f96965e597f4309f5e496bfe93c13b20c7034ea3f843d737975427081c25c"
+  },
+  "module_count": 38,
+  "result": "PASS",
+  "schema_id": "TerminologyContractsAuthorityStaticScanV1"
+}

@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from typing import Any, Mapping, Sequence
 
-from pipeline.eval.contracts_v1 import (
+from context_substitution.v2.contracts.validation import (
     ContractValidationError,
     require_enum,
     require_exact_keys,
@@ -14,15 +14,15 @@ from pipeline.eval.contracts_v1 import (
     require_string,
     require_unique,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.providers.base import (
+from context_substitution.v2.providers.base import (
     ContextExecutionError,
     FailoverStructuredModel,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.common import (
+from context_substitution.v2.contracts.common import (
     PAIRWISE_PREFERENCES,
     sha256_text,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.runtime.selection import (
+from context_substitution.v2.runtime.selection import (
     context_identity,
     selector_context_payload,
 )

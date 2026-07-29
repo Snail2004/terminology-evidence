@@ -1,0 +1,81 @@
+{
+  "schema_id": "TerminologyEvidenceArchitectureDecisionAR1AR2AR3V1",
+  "decision_version": "1.0.0",
+  "issued_at": "2026-07-29T14:22:00+07:00",
+  "source_package": {
+    "name": "architecture-review-consolidated-20260729-v1.zip",
+    "sha256": "6882e05fb625a0db2503693b49eb26e923f5378bc28e6134da409cb2c13633fd",
+    "mode": "REPORT_ONLY"
+  },
+  "AR-1": {
+    "decision": "OPTION_A_DETACHED_HASH_PINNED_APPROVAL_EVIDENCE",
+    "authority_identity": {
+      "type": "EXACT_COMPLETE_CONTRACT_MODULE_TREE",
+      "publication_commit": "282409c470049760904fa16de4c67d711b5fcd00",
+      "module_tree_git_oid": "938bca1f9c60596ef9403a43f0355476ad42afef"
+    },
+    "approval_evidence_class": "EXTERNAL_PROOF_OF_AUTHORITY",
+    "canonical_root": "review_evidence/contracts/contracts-v1.1.0/authority-r2/",
+    "binding_file": "approval_binding_v1.json",
+    "owner": "MAIN_MAINTAINER_REVIEW_GOVERNANCE",
+    "rejected_options": [
+      "B_EXPLICIT_REVIEW_PATH_EXCLUSION",
+      "C_VERSIONED_AUTHORITY_REPUBLICATION_FOR_CURRENT_R2"
+    ],
+    "forbidden": [
+      "EDIT_OR_RESEAL_R2_RECEIPT",
+      "ADD_APPROVAL_EVIDENCE_UNDER_TERMINOLOGY_CONTRACTS_V1",
+      "CHANGE_GLOBAL_TREE_EXCLUSION_POLICY",
+      "MOVE_CONTRACTS_V1_1_0_TAG"
+    ]
+  },
+  "AR-2": {
+    "decision": "APPROVED_WITH_CONSTRAINTS",
+    "implementation_resume_authorized": true,
+    "release_source": "EXACT_GIT_OBJECT",
+    "normal_cli_requires_clean_exact_head": true,
+    "release_staging": "EXTERNAL_ATOMIC",
+    "dirty_path_exceptions": [],
+    "test_identity": "COMMITTED_VERSIONED_SELF_HASHED_EXACT_MANIFEST",
+    "junit_policy": {
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exact_identity_match": true
+    },
+    "receipt_modes": [
+      "REAL_AUTHORITY",
+      "SYNTHETIC_LOCAL_CONFORMANCE",
+      "LEGACY_READ_ONLY"
+    ],
+    "real_authority_uses_external_receipts": true,
+    "durable_state": {
+      "source_of_truth": "APPEND_ONLY_HASH_CHAIN_LEDGER",
+      "writer": "SINGLE_LOCAL_EXCLUSIVE",
+      "projection": "ATOMIC_DERIVED_STATE",
+      "divergence": "FAIL_CLOSED",
+      "recovery": "EXPLICIT_SELF_HASHED_RECOVERY_RECEIPT"
+    },
+    "post_hidden_test_primary_amendments": "FORBIDDEN",
+    "compatibility_mutation": "FORBIDDEN",
+    "canonical_paths": "STRICT_POSIX_RELATIVE_FAIL_CLOSED"
+  },
+  "AR-3": {
+    "decision": "NARROW_R2_COMMON_BINDING_UPDATE_AUTHORIZED",
+    "architecture_change": false,
+    "new_runs": "R2_ONLY_WITH_DETACHED_APPROVAL_BINDING",
+    "historical_r1": "EXPLICIT_REPLAY_MODE_ONLY",
+    "global_action_policy": "SEPARATE_PINNED_SIDECAR",
+    "merge_requires_independent_review": true,
+    "forbidden_scope": [
+      "SHARED_CONTRACT_CHANGE",
+      "DATASET_C_E_OWNERSHIP_CHANGE",
+      "GLOBAL_DECISION_ALGORITHM_CHANGE",
+      "CALIBRATION_CHANGE",
+      "M6_ARCHITECTURE_CHANGE"
+    ]
+  },
+  "integrity": {
+    "self_sha256": "bee8d9a4f4b41838ec0006f793880724e5b9d941cf1e8fa74b24c9bcff4445a2"
+  }
+}

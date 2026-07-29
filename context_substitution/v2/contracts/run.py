@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections import Counter
 from typing import Any, Iterable, Mapping, Sequence
 
-from pipeline.eval.contracts_v1 import (
+from context_substitution.v2.contracts.validation import (
     ContractValidationError,
     canonicalize,
     require_enum,
@@ -19,16 +19,16 @@ from pipeline.eval.contracts_v1 import (
     seal_payload,
     verify_payload_hash,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.runtime.aggregation import (
+from context_substitution.v2.runtime.aggregation import (
     aggregate_contextual_evidence,
     compute_context_result,
     global_recommendation,
     merge_judge_labels,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.application import (
+from context_substitution.v2.contracts.application import (
     build_application_contract,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.common import (
+from context_substitution.v2.contracts.common import (
     AGGREGATION_VERSION,
     APPLICATION_CONTRACT_VERSION,
     CONTEXT_DEDUP_POLICY_VERSION,
@@ -60,33 +60,33 @@ from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.common
     VARIANT_STATUSES,
     require_bool,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.runtime.pairwise import (
+from context_substitution.v2.runtime.pairwise import (
     PAIRWISE_VERSION,
     close_candidate_pairs,
     validate_pairwise_record,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.runtime.surface import (
+from context_substitution.v2.runtime.surface import (
     trial_surface_binding,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.responses import (
+from context_substitution.v2.contracts.responses import (
     validate_context_judge,
     validate_contrastive,
     validate_selector_annotation,
     validate_trial,
     validate_trial_gate,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.provenance import (
+from context_substitution.v2.contracts.provenance import (
     validate_source_artifact_bindings,
     validate_source_provenance,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.evidence.support_set import (
+from context_substitution.v2.evidence.support_set import (
     build_certificate_support_set,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.evidence.provenance import (
+from context_substitution.v2.evidence.provenance import (
     build_candidate_provenance,
     candidate_provider_provenances,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.runtime.calibration import (
+from context_substitution.v2.runtime.calibration import (
     ContextThresholdPolicy,
     validate_evaluation_mode,
     validate_threshold_policy,
@@ -258,7 +258,7 @@ def context_substitution_to_measurements(
     payload: Mapping[str, Any],
 ) -> dict[str, Any]:
     run = validate_context_substitution_run(payload)
-    from pipeline.eval.terminology_evidence.legacy_term_evidence.v1 import (
+    from legacy_term_evidence.v1 import (
         MEASUREMENTS_SCHEMA_ID,
         SCHEMA_VERSION as TERM_EVIDENCE_SCHEMA_VERSION,
         seal_d2l_term_evidence_measurements,

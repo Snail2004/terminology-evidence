@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any, Mapping
 
-from pipeline.eval.contracts_v1 import (
+from context_substitution.v2.contracts.validation import (
     ContractValidationError,
     require_enum,
     require_exact_keys,
@@ -12,7 +12,7 @@ from pipeline.eval.contracts_v1 import (
     require_sha256,
     require_string,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.common import sha256_text
+from context_substitution.v2.contracts.common import sha256_text
 
 
 SOURCE_LOCATOR_KIND = "block_relative_unicode_codepoint_range_v1"

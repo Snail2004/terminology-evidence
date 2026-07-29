@@ -1,0 +1,12 @@
+{
+  "authority_tag": "contracts-v1.1.0",
+  "checksums_sha256": "099a3c864b892d3390d290dd8900d6558e4771c0bf9178812eaeba514b158b9d",
+  "file_count": 157,
+  "integrity": {
+    "self_sha256": "ca0a22d96e38a8fe569f52c0b2a401c191c4638bbf76b35ef1798e76e8cb9e91"
+  },
+  "manifest_file_sha256": "383884e28e9b9203b0ce346d8ad08572dea235a2d53c40c07bf1de22403f73fc",
+  "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
+  "result": "PASS",
+  "schema_id": "TerminologyContractsManifestVerificationReportV1"
+}

@@ -1,0 +1,33 @@
+{
+  "authority_commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+  "authority_tag": "contracts-v1.1.0",
+  "authority_tag_object_oid": "1a8c00d12f100145a276cd8304440ff0a7e8d2a1",
+  "contract_tree_git_oid": "d6386c4c4d19ba2aad982a519b9b59ecfd2213c9",
+  "contract_version": "1.1.0",
+  "credential_scan_result": "PASS",
+  "external_api_calls": 0,
+  "feature_registry_canonical_sha256": "057f47d68097286f04f0870d2e78944e59c07b0cb4e9db7f9d8675c9f2c8b182",
+  "feature_registry_file_sha256": "78a0cc6e969c88173a2203c76e41411e836a326616da452f38148c9f0c960244",
+  "feature_registry_version": "1.1.0",
+  "gate_policy_file_sha256": "3d9fe31a96eecb0ae5f84823f87c7bb4739bd8139942e7b04ac279cc8c39dc85",
+  "gate_policy_self_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+  "historical_receipts_preserved": 2,
+  "integrity": {
+    "self_sha256": "e8cec2de12224f816ca7eb6c8b38d75f2b07f6d99f44c019caae44f45c961202"
+  },
+  "junit_sha256": "21ab37e7194cd249a630bf284dc3421ad2d47b6c80a91f0a03852f9ce6b09316",
+  "manifest_file_sha256": "383884e28e9b9203b0ce346d8ad08572dea235a2d53c40c07bf1de22403f73fc",
+  "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
+  "ownership_scan_result": "PASS",
+  "release_channel": "v1.1.0-final-authority-r2",
+  "release_zip_byte_identical_to_approved_rc4": true,
+  "release_zip_sha256": "2f16fbd2614308be43619a6643f196d74d588ce12e9a4e30dcec3ab669a6f471",
+  "schema_id": "TerminologyContractsAuthorityMaintenanceReleaseAuditV1",
+  "source_ref": "contracts-v1.1.0",
+  "static_scan_result": "PASS",
+  "test_count": 145,
+  "test_errors": 0,
+  "test_failures": 0,
+  "test_result": "PASS",
+  "test_skipped": 0
+}

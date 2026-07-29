@@ -1,0 +1,11 @@
+{
+  "canonical_sha256": "057f47d68097286f04f0870d2e78944e59c07b0cb4e9db7f9d8675c9f2c8b182",
+  "integrity": {
+    "self_sha256": "754f2890073db9b722e003f542d96795ed142ea109ad088b5335a49f413dd689"
+  },
+  "path": "registries/feature_contract_v1.1.0.json",
+  "physical_sha256": "78a0cc6e969c88173a2203c76e41411e836a326616da452f38148c9f0c960244",
+  "result": "PASS",
+  "schema_id": "TerminologyContractsFeatureRegistryVerificationReportV1",
+  "version": "1.1.0"
+}

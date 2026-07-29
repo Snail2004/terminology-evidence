@@ -42,8 +42,35 @@ class ProviderResponseLedger:
             "raw_response_storage_status": "STORED",
         }
 
-    def record_attempt(self, attempt: Mapping[str, Any]) -> None:
-        self._append({"record_kind": "PROVIDER_ATTEMPT", **dict(attempt)})
+    def record_attempt(
+        self,
+        attempt: Mapping[str, Any],
+        *,
+        audit: Mapping[str, Any] | None = None,
+    ) -> None:
+        row = dict(attempt)
+        metadata = dict(audit or {})
+        metadata.update(
+            {
+                "provider_id": row.get("provider_route_id"),
+                "status": "ACCEPTED" if row.get("accepted") else "REJECTED",
+                "failure_reason": row.get("failure_kind"),
+                "token_usage": {
+                    "input_tokens": int(row.get("input_tokens", 0)),
+                    "output_tokens": int(row.get("output_tokens", 0)),
+                    "reasoning_tokens": int(row.get("reasoning_tokens", 0)),
+                    "total_tokens": int(row.get("total_tokens", 0)),
+                },
+                "latency": int(row.get("latency_ms", 0)),
+            }
+        )
+        self._append(
+            {
+                "record_kind": "PROVIDER_ATTEMPT",
+                **metadata,
+                **row,
+            }
+        )
 
     def _append(self, row: Mapping[str, Any]) -> None:
         self.root.mkdir(parents=True, exist_ok=True)

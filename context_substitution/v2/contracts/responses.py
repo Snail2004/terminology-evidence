@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any, Mapping, Sequence
 
-from pipeline.eval.contracts_v1 import (
+from context_substitution.v2.contracts.validation import (
     ContractValidationError,
     require_enum,
     require_exact_keys,
@@ -12,7 +12,7 @@ from pipeline.eval.contracts_v1 import (
     require_string,
     require_unique,
 )
-from pipeline.eval.terminology_evidence.context_substitution.v2.contracts.common import (
+from context_substitution.v2.contracts.common import (
     CONTEXT_TYPES,
     CONTRASTIVE_RESULTS,
     JUDGEABILITY,

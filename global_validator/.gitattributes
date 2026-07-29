@@ -1,0 +1,4 @@
+.gitattributes text eol=lf
+
+# Preserve intentional Markdown hard breaks in immutable review evidence.
+v1/docs/Review_Global_Terminology_Validator_V1_1_Implementation.md whitespace=-blank-at-eol

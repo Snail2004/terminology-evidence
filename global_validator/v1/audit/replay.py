@@ -24,15 +24,19 @@ class ReplayResult:
     matched: bool
 
 
-def replay_run(run_dir: Path) -> ReplayResult:
+def replay_run(
+    run_dir: Path, *, authority_root: Path | None = None
+) -> ReplayResult:
     from ..engine import evaluate_global_input
 
     run_dir = run_dir.resolve()
     try:
         verify_persisted_run_bundle_integrity(run_dir)
         spec = _load_json(run_dir / "audit" / "run_spec.json")
-        _validate_run_spec(spec)
-        config = _config_from_spec(run_dir, spec)
+        _validate_run_spec(spec, explicit_authority_root=authority_root is not None)
+        config = _config_from_spec(
+            run_dir, spec, authority_root=authority_root
+        )
         validate_run_config(config)
 
         authority = verify_authority(
@@ -49,7 +53,16 @@ def replay_run(run_dir: Path) -> ReplayResult:
             raise DecisionReplayError(
                 "run spec gate_action_policy_sha256 differs from persisted policy"
             )
+        _verify_run_spec_authority(spec, authority, action_policy)
         _verify_authority_copies(run_dir, authority)
+        if spec["schema_version"] == "1.1.0":
+            persisted_action_authority = _load_verified_json(
+                run_dir / "input" / "gate_action_policy_authority.json"
+            )
+            if persisted_action_authority != action_policy.authority_payload:
+                raise DecisionReplayError(
+                    "persisted action-policy authority differs from active authority"
+                )
 
         global_input_path = run_dir / "input" / "global_validator_input.json"
         global_input = load_and_validate_global_input(
@@ -72,7 +85,6 @@ def replay_run(run_dir: Path) -> ReplayResult:
             decision_path,
             global_input_path=global_input_path,
             config=config,
-            verify_run_config_binding=True,
         )
         if stored_decision.get("gate_results") != stored_gate:
             raise DecisionReplayError(
@@ -93,6 +105,7 @@ def replay_run(run_dir: Path) -> ReplayResult:
                 run_dir,
                 schema_dir=authority.schema_dir,
                 feature_registry_path=authority.feature_registry_path,
+                exact_replay=False,
             )
             stored_certificate = _load_verified_json(certificate_path)
             certificate_report = _load_json(
@@ -128,8 +141,16 @@ def replay_run(run_dir: Path) -> ReplayResult:
     return ReplayResult(decision_sha, certificate_sha, True)
 
 
-def _config_from_spec(run_dir: Path, spec: dict[str, Any]) -> RunConfig:
-    repository_root = Path(spec["repository_root"])
+def _config_from_spec(
+    run_dir: Path,
+    spec: dict[str, Any],
+    *,
+    authority_root: Path | None,
+) -> RunConfig:
+    if authority_root is not None:
+        repository_root = authority_root.resolve()
+    else:
+        repository_root = Path(spec["repository_root_hint"])
     return RunConfig(
         repository_root=repository_root,
         authority_receipt_path=run_dir / "input" / "authority_receipt.json",
@@ -154,11 +175,12 @@ def _config_from_spec(run_dir: Path, spec: dict[str, Any]) -> RunConfig:
     )
 
 
-def _validate_run_spec(spec: dict[str, Any]) -> None:
-    required = {
+def _validate_run_spec(
+    spec: dict[str, Any], *, explicit_authority_root: bool = False
+) -> None:
+    common = {
         "schema_id",
         "schema_version",
-        "repository_root",
         "mode",
         "global_run_id",
         "started_at",
@@ -168,15 +190,29 @@ def _validate_run_spec(spec: dict[str, Any]) -> None:
         "allow_example_calibration",
         "expected_calibration_sha256",
     }
+    version = spec.get("schema_version")
+    if version == "1.1.0":
+        required = common | {
+            "repository_root_hint",
+            "contracts_authority_tag",
+            "contracts_authority_commit",
+            "contracts_manifest_sha256",
+            "gate_action_policy_authority_sha256",
+        }
+    else:
+        raise DecisionReplayError("unsupported replay spec schema_version")
     if set(spec) != required:
         raise DecisionReplayError("run spec fields differ from GlobalValidatorReplaySpecV1")
     if spec.get("schema_id") != "GlobalValidatorReplaySpecV1":
         raise DecisionReplayError("expected GlobalValidatorReplaySpecV1")
-    if spec.get("schema_version") != "1.0.0":
-        raise DecisionReplayError("unsupported replay spec schema_version")
-    repository_root = spec.get("repository_root")
-    if not isinstance(repository_root, str) or not Path(repository_root).is_absolute():
-        raise DecisionReplayError("run spec repository_root must be absolute")
+    root_field = "repository_root_hint"
+    repository_root_hint = spec.get(root_field)
+    if not isinstance(repository_root_hint, str) or not repository_root_hint.strip():
+        raise DecisionReplayError(
+            f"run spec {root_field} must be a nonempty provenance hint"
+        )
+    if not explicit_authority_root and not Path(repository_root_hint).is_absolute():
+        raise DecisionReplayError(f"run spec {root_field} must be absolute")
     if type(spec.get("allow_example_calibration")) is not bool:
         raise DecisionReplayError("run spec allow_example_calibration must be boolean")
     for field in (
@@ -188,6 +224,14 @@ def _validate_run_spec(spec: dict[str, Any]) -> None:
         if not isinstance(spec.get(field), str) or not spec[field]:
             raise DecisionReplayError(f"run spec {field} must be a nonempty string")
     _require_sha256(spec.get("gate_action_policy_sha256"), "gate_action_policy_sha256")
+    for field in (
+        "contracts_manifest_sha256",
+        "gate_action_policy_authority_sha256",
+    ):
+        _require_sha256(spec.get(field), field)
+    for field in ("contracts_authority_tag", "contracts_authority_commit"):
+        if not isinstance(spec.get(field), str) or not spec[field]:
+            raise DecisionReplayError(f"run spec {field} must be nonempty")
     expected_calibration = spec.get("expected_calibration_sha256")
     if expected_calibration is not None:
         _require_sha256(expected_calibration, "expected_calibration_sha256")
@@ -195,6 +239,20 @@ def _validate_run_spec(spec: dict[str, Any]) -> None:
         ExecutionMode(spec.get("mode"))
     except ValueError as exc:
         raise DecisionReplayError("run spec mode is unsupported") from exc
+
+
+def _verify_run_spec_authority(
+    spec: dict[str, Any], authority: Any, action_policy: Any
+) -> None:
+    expected = {
+        "contracts_authority_tag": authority.receipt["authority_tag"],
+        "contracts_authority_commit": authority.receipt["authority_commit"],
+        "contracts_manifest_sha256": authority.receipt["manifest_sha256"],
+        "gate_action_policy_authority_sha256": action_policy.authority_sha256,
+    }
+    for field, value in expected.items():
+        if spec.get(field) != value:
+            raise DecisionReplayError(f"run spec {field} authority mismatch")
 
 
 def _verify_authority_copies(run_dir: Path, authority: Any) -> None:

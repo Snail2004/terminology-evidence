@@ -1,0 +1,15 @@
+{
+  "commands_physical_sha256": "5f778138e24251ee04dce2659bdc5b358083a955b5f124f1a653ed7a5e0d329a",
+  "integrity": {
+    "self_sha256": "1d52489c999598a0cb9755b5a18d5916d73c807d6a0cb0631c62b30739216246"
+  },
+  "network_calls": 0,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "provider_call_count": 0,
+  "python_dont_write_bytecode": "1",
+  "python_version": "3.13.3",
+  "schema_id": "GlobalValidatorReleaseEnvironmentV1",
+  "schema_version": "1.0.0",
+  "source_commit": "b35825d1166da630aa9e8b7d551907bbee0b1864",
+  "terminology_dataset_root": "E:\\Data-KL"
+}

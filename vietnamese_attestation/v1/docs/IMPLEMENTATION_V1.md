@@ -217,6 +217,17 @@ therefore withheld as `BLOCKED_DEVELOPMENT_IDENTITY`; the runner does not invent
 authority hashes or silently coerce development candidates into official
 packages.
 
+Post-zero-API readiness adds a commit-bound, cache-free source release and
+machine-readable verification reports. The release independently verifies the
+published Contracts V1.1 authority, all 273 zero-API artifact members, 15/15
+replay manifests, zero external calls, and the two external-input HOLD states.
+Offline shared packages remain projection-conformance artifacts only; real E
+evidence authority requires official Dataset inputs, an approved source plan,
+and provider compatibility canaries.
+The release gate also requires a parsed, exact 75-test E-suite JUnit report with
+zero failures and errors; missing or unrelated reports cannot produce a PASS
+release.
+
 ## Remaining gates
 
 - No live Search or Judge request has been made by this implementation gate.

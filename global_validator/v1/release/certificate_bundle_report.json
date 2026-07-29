@@ -1,17 +1,20 @@
 {
   "approval_score": 0.880481737215655,
   "bundle_verification": {
+    "certificate_sha256": "772db7b93f3c96427cea827591290f09707a5b60b503ff74964e1ad86f341fde",
     "certificate_status": "PASS",
-    "checked_files": 20,
+    "checked_files": 21,
     "checksum_status": "PASS",
+    "decision_replay_status": "PASS",
+    "decision_sha256": "0d08bb7a03b82de1a5848769bdc496497c557e1bb07347207488cf76225fb5e3",
     "status": "PASS",
     "strict_json_status": "PASS"
   },
-  "certificate_sha256": "c2817d54e67020df4ca3d99b751b4e142f0df03ee07db4a027077d0dced383c9",
+  "certificate_sha256": "772db7b93f3c96427cea827591290f09707a5b60b503ff74964e1ad86f341fde",
   "decision": "AUTO_APPROVED",
   "fixture_only": true,
   "integrity": {
-    "self_sha256": "7584345eaf0b39a70cdf75b28d41f943c24655af66593b50e6b17e52d6eb2c60"
+    "self_sha256": "eab31ce3de14796910dcd617a861a9216bb40beb36010d124cb351dc3cf841f6"
   },
   "production_authority": false,
   "production_blocker": "NO_HUMAN_FROZEN_CALIBRATION_ARTIFACT",

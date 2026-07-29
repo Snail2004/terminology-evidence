@@ -1,0 +1,52 @@
+{
+  "authority_commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+  "authority_status": "SEALED",
+  "authority_tag": "contracts-v1.1.0",
+  "authority_tag_object_oid": "1a8c00d12f100145a276cd8304440ff0a7e8d2a1",
+  "canonical_main_observed_commit": "677ef6b434f268153363ea06b335cb8df188ee19",
+  "contract_root": "terminology_contracts_v1",
+  "contract_tree_git_oid": "d6386c4c4d19ba2aad982a519b9b59ecfd2213c9",
+  "contract_version": "1.1.0",
+  "feature_registry_canonical_sha256": "057f47d68097286f04f0870d2e78944e59c07b0cb4e9db7f9d8675c9f2c8b182",
+  "feature_registry_file_sha256": "78a0cc6e969c88173a2203c76e41411e836a326616da452f38148c9f0c960244",
+  "feature_registry_path": "registries/feature_contract_v1.1.0.json",
+  "feature_registry_version": "1.1.0",
+  "final_release_audit_path": "release/v1.1.0-final/final_release_audit.json",
+  "final_release_audit_physical_sha256": "21a36752d0e244449c650221a0a89c73376526efd88a3b56f62d0e0c68eedfd3",
+  "final_release_audit_self_sha256": "e8cec2de12224f816ca7eb6c8b38d75f2b07f6d99f44c019caae44f45c961202",
+  "final_release_checksum_path": "release/v1.1.0-final/terminology_contracts_v1_1_0_final.zip.sha256",
+  "final_release_path": "release/v1.1.0-final/terminology_contracts_v1_1_0_final.zip",
+  "final_release_zip_sha256": "2f16fbd2614308be43619a6643f196d74d588ce12e9a4e30dcec3ab669a6f471",
+  "gate_policy_file_sha256": "3d9fe31a96eecb0ae5f84823f87c7bb4739bd8139942e7b04ac279cc8c39dc85",
+  "gate_policy_path": "policies/gate_policy_v1.0.0.json",
+  "gate_policy_self_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+  "integrity": {
+    "self_sha256": "a69b887ae650ba277c25c0d00e917dc834aa509320379a5cd17ff0241cf1b618"
+  },
+  "issued_at": "2026-07-29T00:00:00Z",
+  "manifest_file_sha256": "383884e28e9b9203b0ce346d8ad08572dea235a2d53c40c07bf1de22403f73fc",
+  "manifest_path": "manifest.json",
+  "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
+  "publication_status": "PENDING_INDEPENDENT_REVIEW",
+  "receipt_revision": 2,
+  "review_evidence_commit": "147080746afee4f0059d9e51617097f7e383a8d1",
+  "reviewed_content_commit": "36e041abcaa0a8a34ab892ae094b0b3d9c3af2f4",
+  "schema_id": "TerminologyContractsAuthorityReceiptV1",
+  "schema_version": "1.0.0",
+  "supersedes_receipts": [
+    {
+      "canonical_self_sha256": "c2e291510f43f2fb82461c5aacd3085948346e98451e218f73192b0eb3c47ed4",
+      "declared_self_sha256": "a95e50a6074fc8f3b749ebdf0e00657370bdc068a4d9efa7ffec27bbd807cb12",
+      "path": "release/v1.1.0-final/history/contracts_v1_1_0_authority_receipt_r1_invalid.json",
+      "physical_sha256": "867c60892587cd108a052bbc16c3f057705360e10fc534ed1bd21ab0d3992d9e",
+      "status": "SUPERSEDED_BY_RECEIPT_R2"
+    },
+    {
+      "canonical_self_sha256": "c2e291510f43f2fb82461c5aacd3085948346e98451e218f73192b0eb3c47ed4",
+      "declared_self_sha256": "c2e291510f43f2fb82461c5aacd3085948346e98451e218f73192b0eb3c47ed4",
+      "path": "release/v1.1.0-final/history/contracts_v1_1_0_authority_receipt_r1_resealed.json",
+      "physical_sha256": "3497460f16ca478dada7b25425775882f10d1cb2b5d3638c36cba4ec5fb2791b",
+      "status": "SUPERSEDED_BY_RECEIPT_R2"
+    }
+  ]
+}

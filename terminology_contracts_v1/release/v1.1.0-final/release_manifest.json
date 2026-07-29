@@ -1,0 +1,120 @@
+{
+  "authority_tag": "contracts-v1.1.0",
+  "contract_version": "1.1.0",
+  "files": [
+    {
+      "path": "AUTHORITY_RECEIPT_R2_NOTES.md",
+      "sha256": "9ef63662de8d4ac58d9f5d9916441ef2325c34cf26cff65341940e845f1b9723",
+      "size_bytes": 1905
+    },
+    {
+      "path": "authority_verification_report.json",
+      "sha256": "fae5375ebc5dc0af9269ec01692c707c05e9664bdf02347ff0d8a7a25b0922b3",
+      "size_bytes": 1411
+    },
+    {
+      "path": "commands.txt",
+      "sha256": "8885076961ead731c85ee3ef94211bca3ff6f2fc6644c24f05c3e29bdca94b0d",
+      "size_bytes": 703
+    },
+    {
+      "path": "contracts_v1_1_0_authority_receipt_r2.json",
+      "sha256": "acb1d40b39110470f90d8b793aa162ca02252cb825e51ca94882e85c1f6a2f79",
+      "size_bytes": 3188
+    },
+    {
+      "path": "contracts_v1_1_0_authority_receipt_r2.json.sha256",
+      "sha256": "510315f9cda35fd261eb0fea41c8683247fdc8a7be1d890bed70017918509bcc",
+      "size_bytes": 109
+    },
+    {
+      "path": "credential_scan.json",
+      "sha256": "ac5278ab4acefa7e45cde12a5a0ab4157c8cdb4cd6ea14f9784fc5aa78b6aec8",
+      "size_bytes": 209
+    },
+    {
+      "path": "environment.json",
+      "sha256": "cb0f9eca053bdb5b2ae60e3dbf796558206d7a5a2318de368752681e9694f83e",
+      "size_bytes": 421
+    },
+    {
+      "path": "feature_registry_verification_report.json",
+      "sha256": "f24f4dbb4a112b81e83c4285a904cb623682e60335c22f7a315b6b3f3169379f",
+      "size_bytes": 459
+    },
+    {
+      "path": "final_release_audit.json",
+      "sha256": "21a36752d0e244449c650221a0a89c73376526efd88a3b56f62d0e0c68eedfd3",
+      "size_bytes": 1685
+    },
+    {
+      "path": "gate_policy_verification_report.json",
+      "sha256": "8917f6cf22ce08bc19fc2ec03f9cf380727c13e479a81bb604101457a2bc1861",
+      "size_bytes": 420
+    },
+    {
+      "path": "git_commit_receipt.json",
+      "sha256": "155df64b4fd54add8636a4314e752191877629edeb06408f933457144a473bd7",
+      "size_bytes": 3220
+    },
+    {
+      "path": "history/contracts_v1_1_0_authority_receipt_r1_invalid.json",
+      "sha256": "867c60892587cd108a052bbc16c3f057705360e10fc534ed1bd21ab0d3992d9e",
+      "size_bytes": 1995
+    },
+    {
+      "path": "history/contracts_v1_1_0_authority_receipt_r1_invalid.json.sha256",
+      "sha256": "8ffa103d208f564193a6528df7c8b46ba0306cd97c5ee8e7ff8e10a936cf69fc",
+      "size_bytes": 117
+    },
+    {
+      "path": "history/contracts_v1_1_0_authority_receipt_r1_resealed.json",
+      "sha256": "3497460f16ca478dada7b25425775882f10d1cb2b5d3638c36cba4ec5fb2791b",
+      "size_bytes": 1995
+    },
+    {
+      "path": "history/contracts_v1_1_0_authority_receipt_r1_resealed.json.sha256",
+      "sha256": "94e91b77b52f5d4c50a8e3c60aa80c0ea70690b251b17080b5f4a758f141e13e",
+      "size_bytes": 118
+    },
+    {
+      "path": "junit.xml",
+      "sha256": "21ab37e7194cd249a630bf284dc3421ad2d47b6c80a91f0a03852f9ce6b09316",
+      "size_bytes": 21284
+    },
+    {
+      "path": "manifest_verification_report.json",
+      "sha256": "a0ee352f6f7aacce51cb4847900dcbf7d3f093571668e8620ee6dbfef7462428",
+      "size_bytes": 531
+    },
+    {
+      "path": "ownership_scan.json",
+      "sha256": "16ada43d0960b073eb99ced3fb508bdd1b79507cbbfed62ad2f3fb8cec47bc8c",
+      "size_bytes": 2741
+    },
+    {
+      "path": "static_scan.json",
+      "sha256": "5e18939c8f7e23d373df75740fd85b619fbf8ea66b7c28732fb91d426c9f3b45",
+      "size_bytes": 234
+    },
+    {
+      "path": "terminology_contracts_v1_1_0_final.zip",
+      "sha256": "2f16fbd2614308be43619a6643f196d74d588ce12e9a4e30dcec3ab669a6f471",
+      "size_bytes": 232163
+    },
+    {
+      "path": "terminology_contracts_v1_1_0_final.zip.sha256",
+      "sha256": "aac6d21f8df4edaf1fda8870c55d713b6d0baccee946371b211f2e23cd324f80",
+      "size_bytes": 105
+    },
+    {
+      "path": "V1_1_1_BACKLOG.md",
+      "sha256": "c2dbed36d4d4d66bc3708621a8ab375196a513d18086423908cac23050349600",
+      "size_bytes": 719
+    }
+  ],
+  "integrity": {
+    "self_sha256": "d64b82abb2b74bf7477a1c9f740c8d6a3bc0155dae8d3476b484fee239ad7522"
+  },
+  "schema_id": "TerminologyContractsAuthorityMaintenanceManifestV1"
+}

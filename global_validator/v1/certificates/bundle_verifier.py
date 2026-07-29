@@ -15,6 +15,8 @@ def verify_persisted_certificate_bundle(
     *,
     schema_dir: Path,
     feature_registry_path: Path,
+    authority_root: Path | None = None,
+    exact_replay: bool = True,
 ) -> dict[str, Any]:
     run_dir = run_dir.resolve()
     paths = {
@@ -68,13 +70,25 @@ def verify_persisted_certificate_bundle(
         raise CertificateBindingError(
             "certificate bundle verification failed: " + "; ".join(all_errors)
         )
-    return {
+    report = {
         "status": "PASS",
         "checked_files": integrity_report["checked_files"],
         "checksum_status": "PASS",
         "strict_json_status": integrity_report["strict_json_status"],
         "certificate_status": "PASS",
     }
+    if exact_replay:
+        from ..audit import replay_run
+
+        replayed = replay_run(run_dir, authority_root=authority_root)
+        report.update(
+            {
+                "decision_replay_status": "PASS",
+                "decision_sha256": replayed.decision_sha256,
+                "certificate_sha256": replayed.certificate_sha256,
+            }
+        )
+    return report
 
 
 def _sha256(path: Path) -> str:
