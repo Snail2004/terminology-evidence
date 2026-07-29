@@ -1,0 +1,193 @@
+{
+  "artifact_name": "d2l_stage_a_pilot_15_senses_reviewed_v1",
+  "contract_authority": {
+    "commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+    "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
+    "tag": "contracts-v1.1.0"
+  },
+  "counts": {
+    "adjudication": 4,
+    "blind_audit": 3,
+    "candidate": 45,
+    "official_effective_sense_contract": 0,
+    "pending_resolution": 4,
+    "ready_resolution": 11,
+    "review_provenance": 25,
+    "selected_context": 73,
+    "selected_sense": 15,
+    "stage_b_open_rows": 45
+  },
+  "created_at": "2026-07-29T07:00:00Z",
+  "files": {
+    "REVIEW_REPORT.md": {
+      "sha256": "2f80b8af05e1f5b57e4433b8f1f7510c50951422cbf2e16bb134fe6f6de04e64",
+      "size_bytes": 4324
+    },
+    "commands.txt": {
+      "sha256": "9778fd2ca96044dc9470f938a7be8425696718ceddf41f77bb06dae5b06d164c",
+      "size_bytes": 476
+    },
+    "credential_scan.json": {
+      "sha256": "fa2f9ae8929e46028443b732066a311d89bb079d03218a1155ee2fb1fc282fd3",
+      "size_bytes": 82
+    },
+    "effective_sense_contract_candidates_11.jsonl": {
+      "sha256": "07ecd9af02f78a8f143c5278dc681f0c33394d98e3980d7c9da1b907f97d361b",
+      "size_bytes": 13864
+    },
+    "environment.json": {
+      "sha256": "d76a94c32384b6b591aef896dcdc72cab07c542c5aad67cac40d050e274375f5",
+      "size_bytes": 134
+    },
+    "git_commit_receipt.json": {
+      "sha256": "aacb328dd59296501cf28d2396647ac9d50049fd950fe278d35ff69868023c8f",
+      "size_bytes": 347
+    },
+    "lineage.json": {
+      "sha256": "0a009f0ed965052c2a5c060875125c4acf3561c12c47f01f052848690ba7a581",
+      "size_bytes": 1139
+    },
+    "merged_review_decisions_15.jsonl": {
+      "sha256": "e138c81815956c9f022e7991142556ee77a9d97e9499d5c8ffe08e57e6fd330f",
+      "size_bytes": 27636
+    },
+    "ownership_scan.json": {
+      "sha256": "08183ce022f5b3faef477d05b45310bc8f4833c4f43589c786f5925ac672f55f",
+      "size_bytes": 223
+    },
+    "pending_resolution_4.jsonl": {
+      "sha256": "51e8496d8d29fd14e6321e366a02288787b91c70b852b5c752d31a55803a39e2",
+      "size_bytes": 2880
+    },
+    "review_inputs/INTAKE_RECEIPT.txt": {
+      "sha256": "df5bea5af73ca894282bba811e8474e5c8568eacda19632dc5ab7ee762dbcfec",
+      "size_bytes": 1290
+    },
+    "review_inputs/adjudicator.csv": {
+      "sha256": "93e357475cec456247ada86c33fe07de4751ec40a919da4ea4988b52848adff7",
+      "size_bytes": 4832
+    },
+    "review_inputs/reviewer_1.csv": {
+      "sha256": "54993660d76ceeac435efceb384ece2edd9d757ad6bd226d591409c1610fd238",
+      "size_bytes": 6774
+    },
+    "review_inputs/reviewer_2.csv": {
+      "sha256": "0f2672527685aac13fae0053aea2077efa0c538d74cb9c72be2b8312e72abb62",
+      "size_bytes": 5930
+    },
+    "review_inputs/reviewer_2_blind_audit.csv": {
+      "sha256": "9259a723548b0dba3eb451b55eea64a6416b6c11b93a645e9f2220ee50459a65",
+      "size_bytes": 1644
+    },
+    "review_provenance_15_senses.jsonl": {
+      "sha256": "b0027dac41500267815aabc92d9d74b2620b73751bfd2e63f2c855759d50f70f",
+      "size_bytes": 26338
+    },
+    "source/README.md": {
+      "sha256": "3a6ed32b96935ed57bc93c8e0610cd62b907ddafaa3e094ca27731d46c79130e",
+      "size_bytes": 578
+    },
+    "source/tests/test_reviewed_pilot.py": {
+      "sha256": "71369abd3c52bd5f1aa85e2b2afc4158625f97261fec002b278a49f65a33e1fd",
+      "size_bytes": 4013
+    },
+    "source/tools/__init__.py": {
+      "sha256": "5aef95ce2ff3ef1ed13a75015a378015fbddd81bddce1d3dceba406ccead4a07",
+      "size_bytes": 66
+    },
+    "source/tools/build_reviewed_pilot.py": {
+      "sha256": "170f9b6919c2dabd041334426e2fb632c894c61b613131ad86ca9ea674337c20",
+      "size_bytes": 27822
+    },
+    "source/tools/common.py": {
+      "sha256": "1ae2beff373e1d0a64f3619aa6e943c65486e6289bbb5de37ba44276fd700607",
+      "size_bytes": 5137
+    },
+    "source/tools/review_contract.py": {
+      "sha256": "84c66366c2446992bfe6c965614f899982aae384df7c6098709b8f519f243041",
+      "size_bytes": 21139
+    },
+    "source/tools/validate_reviewed_pilot.py": {
+      "sha256": "a75a198c439c4f01afec571ffd86a9b3d38980d3ca295db2bf513d7abe0e0bb2",
+      "size_bytes": 12110
+    },
+    "source_dataset/CHECKSUMS.sha256": {
+      "sha256": "ba1364247898aea24c93c01eed876aafd73b8338c56b2ffeb425532b651625d3",
+      "size_bytes": 2533
+    },
+    "source_dataset/candidate_index_15.json": {
+      "sha256": "b64c27fe7a61358250af040317676ba9417c5cf08f3d1a204b094a46eff9f1e8",
+      "size_bytes": 11886
+    },
+    "source_dataset/candidate_instances_45.jsonl": {
+      "sha256": "9607ef2bb8f23d1095ea7378e26308b338f1e9286690117eb27caee53c8d58ac",
+      "size_bytes": 236039
+    },
+    "source_dataset/contexts_selected.jsonl": {
+      "sha256": "28c93c1092a4e9dbf4095ac73dfea07cf91194fd08a9684cc29e4d04d6c1d4d6",
+      "size_bytes": 184717
+    },
+    "source_dataset/manifest.json": {
+      "sha256": "f13501f3a1d7a3193893da1ca07582641e143c0bfd8ad0f325a21e2869ca2c1c",
+      "size_bytes": 6739
+    },
+    "source_dataset/pilot_15_sense_selection_receipt.json": {
+      "sha256": "8d2bb1b08abc0d79ee37d35a32ab03f69833d253221ff30ab3a06f110e3877ba",
+      "size_bytes": 31781
+    },
+    "source_dataset/selected_senses_15.jsonl": {
+      "sha256": "b9549c4c180c586cecbecd2924b077cb8c39737609965633b772bc24b59a20f4",
+      "size_bytes": 25882
+    },
+    "source_dataset/stage_b_annotation_template_45.csv": {
+      "sha256": "d07647a6ac3b487c717ee47e004b207005820cf3209bce0ab6e4c26d887a72d0",
+      "size_bytes": 7134
+    },
+    "stage_a_adjudication_15_senses.jsonl": {
+      "sha256": "64669e289bbe923b0e2e8e09372b715ce274deef9c14316b16614457a368b01e",
+      "size_bytes": 6320
+    },
+    "stage_a_blind_audit_results_3.csv": {
+      "sha256": "9259a723548b0dba3eb451b55eea64a6416b6c11b93a645e9f2220ee50459a65",
+      "size_bytes": 1644
+    },
+    "stage_a_pilot_15_acceptance_gate_report.json": {
+      "sha256": "4dcb15f3f5cc3d0806749cedfbcce4e16d274be32653a9d3ebe0d8a949bca4b9",
+      "size_bytes": 1236
+    },
+    "stage_a_pilot_15_summary.json": {
+      "sha256": "85148792307a7f5ddb65f0a48b2623996c33a73e06ecc703be15410e9c5f51f3",
+      "size_bytes": 637
+    },
+    "stage_a_review_results_15_senses.csv": {
+      "sha256": "9fdd38e7831dc550844c9182df8a247fa1aaac67cdb9cd9d710fb7f4f0352bf7",
+      "size_bytes": 14306
+    },
+    "stage_b_annotation_template_45.csv": {
+      "sha256": "9d74d1a504c8b24b7d105d4db154dfc8389bf54d69721d33ac2cce3507cbcecd",
+      "size_bytes": 7410
+    }
+  },
+  "final_glossary_decision": null,
+  "manifest_sha256": "e602af02edf1fb877a9541c5e37f939f4f35ded34ac878d773fc83b96ed3fb48",
+  "parent_artifact_name": "d2l_stage_a_pilot_15_senses_v1",
+  "parent_manifest_sha256": "32b3bbea775362504ef698cfe65a4a9e27890f761d7067b1c88dad7a9670bb6e",
+  "policy_id": "dataset-stage-a-pilot-15-senses-reviewed-v1.0",
+  "provider_call_count": 0,
+  "resolution_counts": {
+    "READY_FOR_CONTRACT_CONSTRUCTION": 11,
+    "REVISION_REQUIRED": 1,
+    "SPLIT_REQUIRED": 1,
+    "UNRESOLVED": 2
+  },
+  "review_input_file_sha256": {
+    "adjudicator": "93e357475cec456247ada86c33fe07de4751ec40a919da4ea4988b52848adff7",
+    "blind_audit": "9259a723548b0dba3eb451b55eea64a6416b6c11b93a645e9f2220ee50459a65",
+    "reviewer_1": "54993660d76ceeac435efceb384ece2edd9d757ad6bd226d591409c1610fd238",
+    "reviewer_2": "0f2672527685aac13fae0053aea2077efa0c538d74cb9c72be2b8312e72abb62"
+  },
+  "schema_id": "D2LStageAPilot15ReviewedManifestV1",
+  "schema_version": "1.0.0",
+  "source_manifest_file_sha256": "f13501f3a1d7a3193893da1ca07582641e143c0bfd8ad0f325a21e2869ca2c1c",
+  "status": "REVIEW_MERGED_PARTIAL_RESOLUTION"
+}

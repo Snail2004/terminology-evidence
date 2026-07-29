@@ -1,0 +1,2 @@
+python tools/build_reviewed_pilot.py --p0-root <P0_RELEASE_ROOT> --reviewer-1 <reviewer1.csv> --reviewer-2 <reviewer2.csv> --blind-audit <blind.csv> --adjudicator <review3.csv> --intake-receipt <INTAKE_RECEIPT.txt> --output-root <OUTPUT_ROOT> --reviewer-1-completed-at 2026-07-29T06:44:14Z --reviewer-2-completed-at 2026-07-29T06:44:14Z --created-at 2026-07-29T07:00:00Z
+python -B source/tools/validate_reviewed_pilot.py --artifact-root <OUTPUT_ROOT> --zip-path <HANDOFF_ZIP>

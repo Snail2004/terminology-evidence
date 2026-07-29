@@ -1,0 +1,21 @@
+Stage A Pilot 15 Review Intake Receipt V1
+recorded_at=2026-07-29T06:44:14Z
+reviewer_1_completed_at=2026-07-29T06:44:14Z
+reviewer_2_completed_at=2026-07-29T06:44:14Z
+distinct_person_assertion=diemphuong|reviewer_2|snail
+assertion_source=user-confirmed in Codex task
+reviewer_1_rows_stamped=15
+reviewer_2_rows_stamped=10
+reviewer_2_unassigned_rows_left_blank=5
+source_hashes:
+  review1=81A6B63A5AC8291A4BFEBF5C61B2889E5F5337E439B030EEFB2ABD598E65ABFA
+  review2=A345A7BDB88F335A6B622DAE56B4936B578676E2412880ACE2E639E25694BAD1
+  blind2=9259A723548B0DBA3EB451B55EEA64A6416B6C11B93A645E9F2220EE50459A65
+  review3=93E357475CEC456247ADA86C33FE07DE4751EC40A919DA4EA4988B52848ADFF7
+output_hashes:
+  stage_a_review_results_15_senses-review1.csv=54993660D76CEEAC435EFCEB384ECE2EDD9D757AD6BD226D591409C1610FD238
+  stage_a_review_results_15_senses-review2.csv=0F2672527685AAC13FAE0053AEA2077EFA0C538D74CB9C72BE2B8312E72ABB62
+  stage_a_blind_audit_template_3-review2.csv=9259A723548B0DBA3EB451B55EEA64A6416B6C11B93A645E9F2220EE50459A65
+  file-review3.csv=93E357475CEC456247ADA86C33FE07DE4751EC40A919DA4EA4988B52848ADFF7
+note=Original Downloads files were not overwritten.
+note=Embedded reviewer artifact hashes were preserved as submitted provenance and were not silently rewritten.

@@ -1,0 +1,26 @@
+{
+  "contract_authority": {
+    "commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+    "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
+    "tag": "contracts-v1.1.0"
+  },
+  "final_glossary_decision": null,
+  "official_contracts_emitted": 0,
+  "parent_artifact_name": "d2l_stage_a_pilot_15_senses_v1",
+  "parent_manifest_file_sha256": "f13501f3a1d7a3193893da1ca07582641e143c0bfd8ad0f325a21e2869ca2c1c",
+  "parent_manifest_sha256": "32b3bbea775362504ef698cfe65a4a9e27890f761d7067b1c88dad7a9670bb6e",
+  "policy_id": "dataset-stage-a-pilot-15-senses-reviewed-v1.0",
+  "provider_call_count": 0,
+  "review_input_file_sha256": {
+    "adjudicator": "93e357475cec456247ada86c33fe07de4751ec40a919da4ea4988b52848adff7",
+    "blind_audit": "9259a723548b0dba3eb451b55eea64a6416b6c11b93a645e9f2220ee50459a65",
+    "reviewer_1": "54993660d76ceeac435efceb384ece2edd9d757ad6bd226d591409c1610fd238",
+    "reviewer_2": "0f2672527685aac13fae0053aea2077efa0c538d74cb9c72be2b8312e72abb62"
+  },
+  "reviewer_ids": [
+    "diemphuong",
+    "reviewer_2",
+    "snail"
+  ],
+  "schema_id": "D2LStageAPilot15ReviewedLineageV1"
+}

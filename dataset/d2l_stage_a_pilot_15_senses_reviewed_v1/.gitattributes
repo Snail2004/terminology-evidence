@@ -1,0 +1,2 @@
+release/**/*.csv binary
+release/**/review_inputs/*.txt binary

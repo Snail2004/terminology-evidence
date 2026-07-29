@@ -1,0 +1,21 @@
+{
+  "adjudication_count": 4,
+  "blind_audit_count": 3,
+  "candidate_count": 45,
+  "final_glossary_decision": null,
+  "official_effective_sense_contract_count": 0,
+  "policy_id": "dataset-stage-a-pilot-15-senses-reviewed-v1.0",
+  "resolution_counts": {
+    "READY_FOR_CONTRACT_CONSTRUCTION": 11,
+    "REVISION_REQUIRED": 1,
+    "SPLIT_REQUIRED": 1,
+    "UNRESOLVED": 2
+  },
+  "review_provenance_count": 25,
+  "schema_id": "D2LStageAPilot15ReviewedSummaryV1",
+  "selected_context_count": 73,
+  "selected_sense_count": 15,
+  "stage_b_gold_autofill_count": 0,
+  "stage_b_open_row_count": 45,
+  "status": "REVIEW_MERGED_PARTIAL_RESOLUTION"
+}
