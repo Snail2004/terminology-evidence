@@ -405,21 +405,43 @@ def test_verify_decision_rejects_resealed_config_binding_drift(
         )
 
 
+@pytest.mark.parametrize(
+    "foreign_platform_hint",
+    [r"C:\work\terminology_evidence", "/var/lib/terminology_evidence"],
+)
 def test_replay_uses_explicit_portable_authority_root(
-    valid_input_path: Path, tmp_path: Path, config_factory
+    foreign_platform_hint: str,
+    valid_input_path: Path,
+    tmp_path: Path,
+    config_factory,
 ) -> None:
     config = config_factory(output_root=tmp_path, run_id="portable-authority")
     result = run_global_validator(valid_input_path, config)
     spec_path = result.run_dir / "audit" / "run_spec.json"
     spec = json.loads(spec_path.read_text(encoding="utf-8"))
     assert spec["schema_version"] == "1.1.0"
-    spec["repository_root_hint"] = str(tmp_path / "missing-original-root")
+    spec["repository_root_hint"] = foreign_platform_hint
     _write_json(spec_path, spec)
     _refresh_checksums(result.run_dir, "audit/run_spec.json")
 
     assert replay_run(
         result.run_dir, authority_root=config.repository_root
     ).matched is True
+
+
+def test_replay_without_authority_root_rejects_relative_hint(
+    valid_input_path: Path, tmp_path: Path, config_factory
+) -> None:
+    config = config_factory(output_root=tmp_path, run_id="relative-hint")
+    result = run_global_validator(valid_input_path, config)
+    spec_path = result.run_dir / "audit" / "run_spec.json"
+    spec = json.loads(spec_path.read_text(encoding="utf-8"))
+    spec["repository_root_hint"] = "relative/provenance-only"
+    _write_json(spec_path, spec)
+    _refresh_checksums(result.run_dir, "audit/run_spec.json")
+
+    with pytest.raises(DecisionReplayError, match="must be absolute"):
+        replay_run(result.run_dir)
 
 
 def test_replay_rejects_resealed_action_policy_authority_drift(

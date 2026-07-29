@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 from typing import Any
 
@@ -10,6 +11,12 @@ class DuplicateJsonKeyError(ValueError):
 
 
 def strict_json_loads_unique(text: str) -> Any:
+    def parse_finite_float(value: str) -> float:
+        parsed = float(value)
+        if not math.isfinite(parsed):
+            raise ValueError("non-finite JSON number is forbidden: exponent overflow")
+        return parsed
+
     def reject_constant(value: str) -> None:
         raise ValueError(f"non-finite JSON number is forbidden: {value}")
 
@@ -24,6 +31,7 @@ def strict_json_loads_unique(text: str) -> Any:
     return json.loads(
         text,
         parse_constant=reject_constant,
+        parse_float=parse_finite_float,
         object_pairs_hook=unique_object,
     )
 

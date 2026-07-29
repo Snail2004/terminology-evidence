@@ -20,6 +20,7 @@ from global_validator.v1.input import (
     load_contract_artifact,
     verify_collision_index_binding,
 )
+from global_validator.v1.jsonio import strict_json_loads_unique
 
 from .helpers import load_base_input
 
@@ -160,6 +161,28 @@ def test_strict_json_rejects_ambiguous_inputs(
                 repository_root / "terminology_contracts_v1" / "schemas" / "v1.1.0"
             ),
         )
+
+
+@pytest.mark.parametrize(
+    "payload",
+    [
+        '{"x":1e9999}',
+        '{"x":-1e9999}',
+        '{"nested":[0,{"x":1e9999}]}',
+        '{"nested":{"items":[-1e9999]}}',
+    ],
+)
+def test_strict_json_rejects_exponent_overflow(payload: str) -> None:
+    with pytest.raises(ValueError, match="exponent overflow"):
+        strict_json_loads_unique(payload)
+
+
+def test_strict_json_accepts_finite_exponents_and_nested_numbers() -> None:
+    value = strict_json_loads_unique(
+        '{"small":1e-300,"nested":[2.5e10,{"ok":-3e-4}]}'
+    )
+    assert value["small"] == 1e-300
+    assert value["nested"][1]["ok"] == -3e-4
 
 
 def test_assembler_rejects_exact_join_mismatch(

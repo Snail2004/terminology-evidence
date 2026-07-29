@@ -33,7 +33,7 @@ def replay_run(
     try:
         verify_persisted_run_bundle_integrity(run_dir)
         spec = _load_json(run_dir / "audit" / "run_spec.json")
-        _validate_run_spec(spec)
+        _validate_run_spec(spec, explicit_authority_root=authority_root is not None)
         config = _config_from_spec(
             run_dir, spec, authority_root=authority_root
         )
@@ -175,7 +175,9 @@ def _config_from_spec(
     )
 
 
-def _validate_run_spec(spec: dict[str, Any]) -> None:
+def _validate_run_spec(
+    spec: dict[str, Any], *, explicit_authority_root: bool = False
+) -> None:
     common = {
         "schema_id",
         "schema_version",
@@ -204,8 +206,12 @@ def _validate_run_spec(spec: dict[str, Any]) -> None:
     if spec.get("schema_id") != "GlobalValidatorReplaySpecV1":
         raise DecisionReplayError("expected GlobalValidatorReplaySpecV1")
     root_field = "repository_root_hint"
-    repository_root = spec.get(root_field)
-    if not isinstance(repository_root, str) or not Path(repository_root).is_absolute():
+    repository_root_hint = spec.get(root_field)
+    if not isinstance(repository_root_hint, str) or not repository_root_hint.strip():
+        raise DecisionReplayError(
+            f"run spec {root_field} must be a nonempty provenance hint"
+        )
+    if not explicit_authority_root and not Path(repository_root_hint).is_absolute():
         raise DecisionReplayError(f"run spec {root_field} must be absolute")
     if type(spec.get("allow_example_calibration")) is not bool:
         raise DecisionReplayError("run spec allow_example_calibration must be boolean")
