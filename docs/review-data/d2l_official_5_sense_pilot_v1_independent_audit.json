@@ -1,0 +1,124 @@
+{
+  "schema_id": "D2LOfficial5SensePilotIndependentAuditV1",
+  "review_date": "2026-07-29",
+  "artifact": {
+    "name": "d2l_stage_a_pilot_5_senses_official_v1_reviewer_handoff.zip",
+    "physical_sha256": "9b6a9ee1272b6403054b61f5399d4391328d1d2d8a964b1102af0a2656bc2738",
+    "size_bytes": 135292,
+    "zip_entries": 70,
+    "duplicate_entries": 0,
+    "unsafe_entries": 0,
+    "symlinks": 0,
+    "checksum_records": 69,
+    "checksums_pass": true,
+    "manifest_records": 68,
+    "manifest_pass": true,
+    "manifest_self_sha256": "16bd2b9c7a974bdccfb977384fa1a35381e6e810c110f489f31d1606398ce2f5"
+  },
+  "self_hash_verification": {
+    "integrity_objects_passed": 49,
+    "integrity_objects_total": 49,
+    "record_hashes_passed": 23,
+    "record_hashes_total": 23
+  },
+  "lineage": {
+    "term_senses_exact_v3": "5/5",
+    "candidate_instances_exact_v3": "15/15",
+    "contexts_exact_reviewed_parent": "29/29",
+    "review_decisions_exact_parent": "5/5",
+    "review_provenance_exact_parent": "8/8",
+    "review_input_hashes_exact_parent": "4/4",
+    "reference_only_parent_layout": true
+  },
+  "human_authority": {
+    "reviewer_count": 3,
+    "distinct_pseudonyms": true,
+    "reviewer_type": "HUMAN_OWNER_ATTESTED",
+    "owner_distinct_person_assertion": true,
+    "external_identity_verification": false,
+    "pii_disclosed": false,
+    "disposition": "ACCEPTED_AS_OWNER_ATTESTED_HUMAN_AUTHORITY"
+  },
+  "blind_audit": {
+    "records": 3,
+    "self_hash_pass": "3/3",
+    "no_split": "3/3",
+    "definition_compatible": "3/3",
+    "pos_compatible": "3/3",
+    "case_bound": "3/3"
+  },
+  "contracts": {
+    "effective_sense": 5,
+    "frozen_candidate": 15,
+    "constraint_evidence": 15,
+    "contract_instances_validated": "35/35",
+    "exact_joins": true,
+    "frozen_complete": "15/15",
+    "constraint_complete": "15/15",
+    "target_collision_unjudgeable": "15/15"
+  },
+  "stage_b": {
+    "rows": 45,
+    "eligible": 33,
+    "blocked_by_stage_a": 12,
+    "gold_autofill": 0
+  },
+  "boundaries": {
+    "final_glossary_decision": null,
+    "global_actions": 0,
+    "calibration_scores": 0,
+    "certificates": 0,
+    "provider_calls": 0,
+    "network_calls": 0
+  },
+  "independent_execution": {
+    "dataset_tests": {
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0
+    },
+    "artifact_validator_errors": 0,
+    "zip_validator_errors": 0,
+    "python_compile": "6/6 PASS",
+    "credential_scan_findings": 0
+  },
+  "rebuild": {
+    "all_member_files_byte_identical": true,
+    "uploaded_zip_sha256": "9b6a9ee1272b6403054b61f5399d4391328d1d2d8a964b1102af0a2656bc2738",
+    "linux_rebuild_zip_sha256": "842ff8a3ba2c7ff8263f4974e9f7a95b4f939c2eed9e1dbf6dda4acf8e4639f2",
+    "difference": "ZipInfo.create_system Windows=0 Linux=3",
+    "cross_platform_physical_identity": false
+  },
+  "findings": [
+    {
+      "id": "P1-DATA-EVID-1",
+      "severity": "P1_EVIDENCE",
+      "title": "Packaged JUnit contains one internal gate, not the exact eight-test Dataset suite",
+      "implementation_blocking": false,
+      "current_artifact_accepted": true,
+      "independent_rerun": "8/8 PASS"
+    },
+    {
+      "id": "MERGE-CHECK-DATA-2",
+      "severity": "MERGE_CHECK",
+      "title": "Release omits exact Git commit and changed-path receipt",
+      "required_action": "Main records producer commit, scope, clean worktree and reviewed ZIP SHA before canonical promotion"
+    },
+    {
+      "id": "P2-DATA-REP-3",
+      "severity": "P2_REPRODUCIBILITY",
+      "title": "ZIP physical identity differs across operating systems because create_system is not explicitly pinned",
+      "content_integrity_affected": false
+    }
+  ],
+  "verdict": {
+    "dataset_official_input": "ACCEPTED",
+    "real_zero_network_pilot": "AUTHORIZED",
+    "candidate_correctness": "NOT_DETERMINED",
+    "production": "NOT_AUTHORIZED",
+    "overall": "ACCEPTED_FOR_REAL_ZERO_NETWORK_PILOT_WITH_NONBLOCKING_RELEASE_EVIDENCE_DISCLOSURES"
+  },
+  "integrity": {
+    "self_sha256": "a31383473b2b259bb52261b935a42549be4402bf11e961cfe3f0e9632ac9af54"
+  }
+}
