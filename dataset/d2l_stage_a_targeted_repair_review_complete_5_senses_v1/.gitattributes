@@ -1,0 +1,3 @@
+inputs/*.csv binary
+release/**/*.csv binary
+release/**/*.zip binary
