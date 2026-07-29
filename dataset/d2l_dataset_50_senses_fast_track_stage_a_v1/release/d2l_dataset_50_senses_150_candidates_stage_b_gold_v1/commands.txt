@@ -1,0 +1,1 @@
+python -m dataset.d2l_dataset_50_senses_fast_track_stage_a_v1.tools.validate_stage_b_gold_release --artifact-root <artifact> --dataset-artifact-root <dataset-artifact> --review-intake-root <review-intake>
