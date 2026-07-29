@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable, Mapping, Sequence
 
-from context_substitution.v2.contracts.common import sha256_text
+from context_substitution.v2.contracts.common import SCHEMA_VERSION, sha256_text
 from context_substitution.v2.contracts.run import validate_context_substitution_run
 from context_substitution.v2.providers.base import (
     ContextProviderRoute,
@@ -13,6 +13,13 @@ from context_substitution.v2.providers.base import (
     ProviderRawResponse,
 )
 from context_substitution.v2.providers.ledger import ProviderResponseLedger
+from context_substitution.v2.providers.role_plan import (
+    ProviderRolePlan,
+    provider_role_plan_from_payload,
+)
+from context_substitution.v2.providers.role_routing import (
+    RoleRoutedStructuredModel,
+)
 from context_substitution.v2.runtime.calibration import validate_threshold_policy
 from context_substitution.v2.runtime.engine import run_d2l_context_substitution
 from context_substitution.v2.integration.common import seal_object
@@ -49,16 +56,30 @@ def replay_context_run(
         if observed_manifest != expected_manifest:
             raise ValueError("provider ledger differs from the sealed replay manifest")
     plan = _ReplayPlan.load(root)
-    routes = _routes_for_replay(
-        plan,
-        route_order=original["execution_policy"]["provider_route_order"],
-    )
     with tempfile.TemporaryDirectory(prefix="cst-replay-") as temporary:
-        model = FailoverStructuredModel(
-            routes,
-            response_ledger=ProviderResponseLedger(Path(temporary) / "ledger"),
-            audit_run_id="replay:" + original["integrity"]["run_sha256"][:24],
-        )
+        if original["schema_version"] == SCHEMA_VERSION:
+            role_plan = provider_role_plan_from_payload(
+                original["execution_policy"]["provider_role_plan"],
+                physical_sha256=original["execution_policy"][
+                    "provider_role_plan_physical_sha256"
+                ],
+            )
+            model = RoleRoutedStructuredModel(
+                plan=role_plan,
+                role_routes=_role_routes_for_replay(plan, role_plan=role_plan),
+                response_ledger=ProviderResponseLedger(Path(temporary) / "ledger"),
+                audit_run_id="replay:" + original["integrity"]["run_sha256"][:24],
+            )
+        else:
+            routes = _routes_for_replay(
+                plan,
+                route_order=original["execution_policy"]["provider_route_order"],
+            )
+            model = FailoverStructuredModel(
+                routes,
+                response_ledger=ProviderResponseLedger(Path(temporary) / "ledger"),
+                audit_run_id="replay:" + original["integrity"]["run_sha256"][:24],
+            )
         replayed = run_d2l_context_substitution(
             input_payload,
             model,
@@ -163,7 +184,7 @@ class _ReplayPlan:
                 raise AssertionError(f"replay request hash mismatch for {tag}")
             ref = row.get("raw_response_ref")
             if ref is None:
-                raise ConnectionError(str(row.get("failure_reason") or "replayed transport failure"))
+                raise _replayed_failure(row)
             text = read_content_addressed_response(
                 self.root,
                 str(ref),
@@ -221,8 +242,60 @@ def _routes_for_replay(
     return routes
 
 
+def _role_routes_for_replay(
+    replay: _ReplayPlan,
+    *,
+    role_plan: ProviderRolePlan,
+) -> dict[str, tuple[ContextProviderRoute, ...]]:
+    result: dict[str, tuple[ContextProviderRoute, ...]] = {}
+    for role_name in role_plan.role_order:
+        role = role_plan.role(role_name)
+        routes: list[ContextProviderRoute] = []
+        for profile_id in role.route_profile_order:
+            profile = role_plan.route_profiles[profile_id]
+            routes.append(
+                ContextProviderRoute(
+                    route_id=profile.route_id,
+                    model_id=profile.model_id,
+                    model_family=profile.model_family,
+                    model_profile=profile.model_profile,
+                    independence_group=profile.independence_group,
+                    role_equivalence_group=profile.role_equivalence_group,
+                    thinking_level=profile.thinking_level,
+                    reasoning_effort=profile.reasoning_effort,
+                    temperature=profile.temperature,
+                    max_output_tokens=role.max_output_tokens,
+                    timeout_seconds=profile.timeout_seconds,
+                    role_plan_sha256=role_plan.self_sha256,
+                    escalation_kind=role.escalation_kind,
+                    max_attempts=profile.transport_retry_cap + 1,
+                    retry_backoff_seconds=profile.retry_backoff_seconds,
+                    sender=replay.sender(profile.route_id),
+                )
+            )
+        result[role_name] = tuple(routes)
+    return result
+
+
 def _unused_route_sender(route_id: str):
     def send(**_: Any) -> ProviderRawResponse:
         raise AssertionError(f"sealed but unused replay route was called: {route_id}")
 
     return send
+
+
+def _replayed_failure(row: Mapping[str, Any]) -> Exception:
+    failure_kind = str(row.get("failure_kind") or "ConnectionError")
+    builtins: dict[str, type[Exception]] = {
+        "TimeoutError": TimeoutError,
+        "ConnectionError": ConnectionError,
+        "OSError": OSError,
+    }
+    exception_type = builtins.get(failure_kind)
+    if exception_type is None:
+        exception_type = type(failure_kind, (RuntimeError,), {})
+    error = exception_type("replayed sealed provider failure")
+    status = row.get("provider_status_code")
+    if isinstance(status, int) and not isinstance(status, bool):
+        setattr(error, "status_code", status)
+    return error

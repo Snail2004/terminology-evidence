@@ -21,6 +21,7 @@ from context_substitution.v2.contracts.common import (
     CONTEXT_DEDUP_POLICY_VERSION,
     CONTRASTIVE_JUDGE_VERSION,
     JUDGE_VERSION,
+    LEGACY_SCHEMA_VERSIONS,
     LOCAL_HARD_FLAGS,
     OOD_POLICY_VERSION,
     REQUIRED_SAME_SENSE_CONTEXT_TYPES,
@@ -49,6 +50,7 @@ from context_substitution.v2.providers.base import (
     ContextExecutionError,
     FailoverStructuredModel,
     ProviderCallCollector,
+    role_output_token_budget,
 )
 from context_substitution.v2.contracts.responses import (
     context_judge_schema,
@@ -254,10 +256,19 @@ def _run_d2l_context_substitution(
 
     candidates.sort(key=lambda row: (row["term_id"], row["candidate_id"]))
     route_order = [route.route_id for route in model.routes]
+    role_plan_payload = getattr(model, "provider_role_plan_payload", None)
+    role_plan_physical_sha256 = getattr(
+        model, "provider_role_plan_physical_sha256", None
+    )
+    schema_version = (
+        SCHEMA_VERSION
+        if role_plan_payload is not None
+        else sorted(LEGACY_SCHEMA_VERSIONS)[-1]
+    )
     provider_attempts = list(call_collector.attempted_calls)
     payload = {
         "schema_id": SCHEMA_ID,
-        "schema_version": SCHEMA_VERSION,
+        "schema_version": schema_version,
         "input_sha256": input_doc["integrity"]["input_sha256"],
         "input_source_artifacts": input_doc["source_artifacts"],
         "execution_policy": {
@@ -282,14 +293,20 @@ def _run_d2l_context_substitution(
             "contrastive_minimum_count": 1,
             "trial_retry_limit": 1,
             "similarity_threshold": 0.82,
-            "second_judge_policy": "conditional_independent_route_v2",
+            "second_judge_policy": (
+                "conditional_explicit_secondary_role_v3"
+                if role_plan_payload is not None
+                else "conditional_independent_route_v2"
+            ),
             "pairwise_tiebreaker_version": PAIRWISE_VERSION,
             "pairwise_policy": (
                 "close_normalized_C_margin_lt_"
                 f"{threshold_policy.pairwise_close_margin}_v2"
             ),
             "provider_failover_policy": (
-                "transport_quota_or_structural_invalid_only_v2"
+                "sealed_role_equivalent_transport_only_v3"
+                if role_plan_payload is not None
+                else "transport_quota_or_structural_invalid_only_v2"
             ),
             "final_decision_owner": "GLOBAL_TERMINOLOGY_VALIDATOR",
             "selector_mode": selection_contract["selector_mode"],
@@ -311,6 +328,16 @@ def _run_d2l_context_substitution(
                 "effective_sense_contract_sha256"
             ],
             "raw_response_ledger_policy": model.raw_response_ledger_policy,
+            **(
+                {}
+                if role_plan_payload is None
+                else {
+                    "provider_role_plan": role_plan_payload,
+                    "provider_role_plan_physical_sha256": (
+                        role_plan_physical_sha256
+                    ),
+                }
+            ),
         },
         "provider_attempts": provider_attempts,
         "usage": context_usage_summary(
@@ -462,7 +489,9 @@ def _classify_and_select_contexts(
                 value, term=term, contexts=contexts
             ),
             tag=f"selector:{term['term_id']}",
-            max_output_tokens=4_096,
+            max_output_tokens=role_output_token_budget(
+                model, role="context_selector", legacy_default=4_096
+            ),
         )
     selected, replacements, contrastive = select_classified_contexts(
         contexts=contexts,
@@ -539,7 +568,9 @@ def _run_trial_attempt(
             f"trial:{candidate['candidate_id']}:"
             f"{context_identity(context)}:{attempt}"
         ),
-        max_output_tokens=4_096,
+        max_output_tokens=role_output_token_budget(
+            model, role="trial_translator", legacy_default=4_096
+        ),
     )
     gate, gate_provenance = model.call(
         role="trial_translation_quality_gate",
@@ -563,7 +594,11 @@ def _run_trial_attempt(
             f"trial-gate:{candidate['candidate_id']}:"
             f"{context_identity(context)}:{attempt}"
         ),
-        max_output_tokens=2_048,
+        max_output_tokens=role_output_token_budget(
+            model,
+            role="trial_translation_quality_gate",
+            legacy_default=2_048,
+        ),
     )
     local_literal_match, observed_surface = trial_surface_binding(
         canonical_target=candidate["candidate_translation"],
@@ -593,9 +628,10 @@ def _run_context_judge(
     excluded_routes: Iterable[str] = (),
     excluded_independence_groups: Iterable[str] = (),
     excluded_model_families: Iterable[str] = (),
+    role: str = "context_judge",
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     return model.call(
-        role="context_judge",
+        role=role,
         prompt_version=JUDGE_VERSION,
         system_prompt=CONTEXT_JUDGE_SYSTEM_PROMPT,
         payload={
@@ -629,7 +665,9 @@ def _run_context_judge(
             f"context-judge:{candidate['candidate_id']}:"
             f"{context_identity(context)}"
         ),
-        max_output_tokens=3_072,
+        max_output_tokens=role_output_token_budget(
+            model, role=role, legacy_default=3_072
+        ),
         excluded_routes=excluded_routes,
         excluded_independence_groups=excluded_independence_groups,
         excluded_model_families=excluded_model_families,
@@ -672,7 +710,11 @@ def _run_contrastive_tests(
                 f"contrastive:{candidate['candidate_id']}:"
                 f"{context_identity(context)}"
             ),
-            max_output_tokens=2_048,
+            max_output_tokens=role_output_token_budget(
+                model,
+                role="contrastive_sense_judge",
+                legacy_default=2_048,
+            ),
         )
         results.append(
             {
@@ -914,21 +956,30 @@ def _apply_second_judge(
         context = by_context_id[row["context_id"]]
         primary = row["primary_judge"]
         try:
-            secondary_output, secondary_provenance = _run_context_judge(
-                model=model,
-                candidate=candidate,
-                context=context,
-                trial={"trial_translation": row["trial_translation"]},
-                excluded_routes={
-                    primary["provenance"]["provider_route_id"]
-                },
-                excluded_model_families={
-                    primary["provenance"]["model_family"]
-                },
-                excluded_independence_groups={
-                    primary["provenance"]["independence_group"]
-                },
-            )
+            if getattr(model, "provider_role_plan_payload", None) is None:
+                secondary_output, secondary_provenance = _run_context_judge(
+                    model=model,
+                    candidate=candidate,
+                    context=context,
+                    trial={"trial_translation": row["trial_translation"]},
+                    excluded_routes={
+                        primary["provenance"]["provider_route_id"]
+                    },
+                    excluded_model_families={
+                        primary["provenance"]["model_family"]
+                    },
+                    excluded_independence_groups={
+                        primary["provenance"]["independence_group"]
+                    },
+                )
+            else:
+                secondary_output, secondary_provenance = _run_context_judge(
+                    model=model,
+                    candidate=candidate,
+                    context=context,
+                    trial={"trial_translation": row["trial_translation"]},
+                    role="secondary_context_judge",
+                )
         except ContextExecutionError:
             unavailable = True
             continue
@@ -1097,9 +1148,20 @@ def _candidate_model_profile(
             "sense_contract",
             "part_of_speech",
             "source_occurrences",
-            "candidate_generation",
         )
     }
+
+
+def audit_candidate_profile(candidate: Mapping[str, Any]) -> dict[str, Any]:
+    """Full audit-only profile; never pass this object to a provider prompt."""
+
+    return {
+        **_candidate_model_profile(candidate),
+        "candidate_generation": candidate.get("candidate_generation"),
+    }
+
+
+blind_model_candidate_profile = _candidate_model_profile
 
 
 def _close_margin_candidate_ids(
@@ -1113,4 +1175,3 @@ def _close_margin_candidate_ids(
     ):
         result.update({candidate_a["candidate_id"], candidate_b["candidate_id"]})
     return result
-

@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import math
+import time
 from contextlib import contextmanager
 from contextvars import ContextVar
 from dataclasses import dataclass
@@ -57,7 +59,18 @@ class ContextProviderRoute:
     model_id: str
     sender: ContextProviderSender
     model_family: str | None = None
+    model_profile: str | None = None
     independence_group: str | None = None
+    role_equivalence_group: str | None = None
+    thinking_level: str | None = None
+    reasoning_effort: str | None = None
+    temperature: float = 0.0
+    max_output_tokens: int | None = None
+    timeout_seconds: int | None = None
+    role_plan_sha256: str | None = None
+    escalation_kind: str | None = None
+    max_attempts: int = 1
+    retry_backoff_seconds: tuple[float, ...] = ()
 
     def __post_init__(self) -> None:
         if self.route_id not in PROVIDER_ROUTE_IDS:
@@ -69,10 +82,63 @@ class ContextProviderRoute:
             or self.model_id.rsplit("/", 1)[-1]
         ).strip().casefold()
         group = (self.independence_group or family).strip().casefold()
-        if not family or not group:
+        profile = (self.model_profile or self.model_id).strip()
+        equivalence = (self.role_equivalence_group or group).strip().casefold()
+        if not family or not group or not profile or not equivalence:
             raise ValueError("model family and independence group must not be empty")
+        if (
+            isinstance(self.temperature, bool)
+            or not isinstance(self.temperature, (int, float))
+            or not math.isfinite(float(self.temperature))
+            or not 0 <= float(self.temperature) <= 2
+        ):
+            raise ValueError("temperature must be a finite number between 0 and 2")
+        if self.max_output_tokens is not None and (
+            isinstance(self.max_output_tokens, bool)
+            or not isinstance(self.max_output_tokens, int)
+            or not 1 <= self.max_output_tokens <= 65_536
+        ):
+            raise ValueError("max_output_tokens must be an integer between 1 and 65536")
+        if self.timeout_seconds is not None and (
+            isinstance(self.timeout_seconds, bool)
+            or not isinstance(self.timeout_seconds, int)
+            or not 1 <= self.timeout_seconds <= 3_600
+        ):
+            raise ValueError("timeout_seconds must be an integer between 1 and 3600")
+        if self.role_plan_sha256 is not None and (
+            len(self.role_plan_sha256) != 64
+            or any(character not in "0123456789abcdef" for character in self.role_plan_sha256)
+        ):
+            raise ValueError("role_plan_sha256 must be a lowercase SHA-256")
+        if (
+            isinstance(self.max_attempts, bool)
+            or not isinstance(self.max_attempts, int)
+            or not 1 <= self.max_attempts <= 5
+        ):
+            raise ValueError("max_attempts must be an integer between 1 and 5")
+        backoff = tuple(float(value) for value in self.retry_backoff_seconds)
+        if len(backoff) != self.max_attempts - 1:
+            raise ValueError(
+                "retry_backoff_seconds must contain max_attempts - 1 values"
+            )
+        if any(value < 0 or value > 60 for value in backoff):
+            raise ValueError("retry backoff must be between 0 and 60 seconds")
         object.__setattr__(self, "model_family", family)
+        object.__setattr__(self, "model_profile", profile)
         object.__setattr__(self, "independence_group", group)
+        object.__setattr__(self, "role_equivalence_group", equivalence)
+        object.__setattr__(self, "temperature", float(self.temperature))
+        object.__setattr__(self, "retry_backoff_seconds", backoff)
+
+    @property
+    def effective_generation_config(self) -> dict[str, Any]:
+        return {
+            "thinking_level": self.thinking_level,
+            "reasoning_effort": self.reasoning_effort,
+            "temperature": self.temperature,
+            "max_output_tokens": self.max_output_tokens,
+            "timeout_seconds": self.timeout_seconds,
+        }
 
 
 @dataclass
@@ -90,6 +156,7 @@ class FailoverStructuredModel:
         *,
         response_ledger: ProviderResponseLedger | None = None,
         audit_run_id: str | None = None,
+        sleep: Callable[[float], None] = time.sleep,
     ) -> None:
         if not routes:
             raise ValueError("at least one Context Judge route is required")
@@ -99,6 +166,7 @@ class FailoverStructuredModel:
         self.routes = tuple(routes)
         self.response_ledger = response_ledger
         self.audit_run_id = audit_run_id
+        self._sleep = sleep
         self.successful_calls: list[dict[str, Any]] = []
         self.attempted_calls: list[dict[str, Any]] = []
         self._active_collector: ContextVar[ProviderCallCollector | None] = (
@@ -203,91 +271,142 @@ class FailoverStructuredModel:
                 f"{role}: no independent provider route remains"
             )
         failures: list[str] = []
-        for retry_index, route in enumerate(available):
-            attempt_started_at = _utc_now()
-            raw: ProviderRawResponse | None = None
-            raw_fields = {
-                "raw_response_ref": None,
-                "raw_response_sha256": None,
-                "raw_response_storage_status": "UNAVAILABLE",
-            }
-            captured_response_text: str | None = None
-            try:
-                raw = route.sender(
-                    system_prompt=system_prompt,
-                    user_payload_json=user_payload_json,
-                    response_schema=response_schema,
-                    max_output_tokens=max_output_tokens,
-                    tag=tag,
-                )
-                captured_response_text = raw.text or json.dumps(
-                    dict(raw.payload or {}),
-                    ensure_ascii=False,
-                    sort_keys=True,
-                    separators=(",", ":"),
-                )
-                if self.response_ledger is not None:
-                    raw_fields = self.response_ledger.capture(captured_response_text)
-                else:
-                    raw_fields = {
-                        "raw_response_ref": None,
-                        "raw_response_sha256": sha256_text(captured_response_text),
-                        "raw_response_storage_status": "NOT_CONFIGURED",
-                    }
-                parsed: Any = (
-                    dict(raw.payload)
-                    if raw.payload is not None
-                    else json.loads(raw.text)
-                )
-                validated = validator(parsed)
-                provenance = provider_provenance(
-                    route=route,
-                    role=role,
-                    prompt_version=prompt_version,
-                    prompt_sha256=prompt_sha256,
-                    response_text=captured_response_text,
-                    raw=raw,
-                )
-                self._record_success(provenance)
-                self._record_attempt(
-                    {
-                        **provenance,
-                        **raw_fields,
-                        "accepted": True,
-                        "failure_kind": None,
-                    },
-                    audit=_attempt_audit(
-                        audit_run_id=self.audit_run_id,
+        retry_index = 0
+        for route in available:
+            for route_attempt_index in range(route.max_attempts):
+                current_retry_index = retry_index
+                retry_index += 1
+                attempt_started_at = _utc_now()
+                raw: ProviderRawResponse | None = None
+                raw_fields = {
+                    "raw_response_ref": None,
+                    "raw_response_sha256": None,
+                    "raw_response_storage_status": "UNAVAILABLE",
+                }
+                captured_response_text: str | None = None
+                try:
+                    raw = route.sender(
+                        system_prompt=system_prompt,
+                        user_payload_json=user_payload_json,
+                        response_schema=response_schema,
+                        max_output_tokens=max_output_tokens,
                         tag=tag,
-                        request_sha256=request_sha256,
-                        retry_index=retry_index,
-                        started_at=attempt_started_at,
-                        completed_at=_utc_now(),
-                    ),
-                )
-                return validated, provenance
-            except (
-                ContractValidationError,
-                ContextExecutionError,
-                json.JSONDecodeError,
-                KeyError,
-                TypeError,
-                ValueError,
-            ) as exc:
-                failures.append(f"{route.route_id}:{exc.__class__.__name__}")
-                if raw is not None:
-                    response_text = captured_response_text or raw.text
-                    rejected = provider_provenance(
+                    )
+                    captured_response_text = raw.text or json.dumps(
+                        dict(raw.payload or {}),
+                        ensure_ascii=False,
+                        sort_keys=True,
+                        separators=(",", ":"),
+                    )
+                    if self.response_ledger is not None:
+                        raw_fields = self.response_ledger.capture(
+                            captured_response_text
+                        )
+                    else:
+                        raw_fields = {
+                            "raw_response_ref": None,
+                            "raw_response_sha256": sha256_text(
+                                captured_response_text
+                            ),
+                            "raw_response_storage_status": "NOT_CONFIGURED",
+                        }
+                    parsed: Any = (
+                        dict(raw.payload)
+                        if raw.payload is not None
+                        else json.loads(raw.text)
+                    )
+                    validated = validator(parsed)
+                    provenance = provider_provenance(
                         route=route,
                         role=role,
                         prompt_version=prompt_version,
                         prompt_sha256=prompt_sha256,
-                        response_text=response_text,
+                        response_text=captured_response_text,
                         raw=raw,
+                    )
+                    self._record_success(provenance)
+                    self._record_attempt(
+                        {
+                            **provenance,
+                            **raw_fields,
+                            "accepted": True,
+                            "failure_kind": None,
+                        },
+                        audit=_attempt_audit(
+                            audit_run_id=self.audit_run_id,
+                            tag=tag,
+                            request_sha256=request_sha256,
+                            retry_index=current_retry_index,
+                            started_at=attempt_started_at,
+                            completed_at=_utc_now(),
+                        ),
+                    )
+                    return validated, provenance
+                except (
+                    ContractValidationError,
+                    ContextExecutionError,
+                    json.JSONDecodeError,
+                    KeyError,
+                    TypeError,
+                    ValueError,
+                ) as exc:
+                    failures.append(
+                        f"{route.route_id}:{exc.__class__.__name__}"
+                    )
+                    if raw is not None:
+                        response_text = captured_response_text or raw.text
+                        rejected = provider_provenance(
+                            route=route,
+                            role=role,
+                            prompt_version=prompt_version,
+                            prompt_sha256=prompt_sha256,
+                            response_text=response_text,
+                            raw=raw,
+                        )
+                        self._record_attempt(
+                            {
+                                **rejected,
+                                **raw_fields,
+                                "accepted": False,
+                                "failure_kind": exc.__class__.__name__,
+                            },
+                            audit=_attempt_audit(
+                                audit_run_id=self.audit_run_id,
+                                tag=tag,
+                                request_sha256=request_sha256,
+                                retry_index=current_retry_index,
+                                started_at=attempt_started_at,
+                                completed_at=_utc_now(),
+                            ),
+                        )
+                    if route_attempt_index + 1 < route.max_attempts:
+                        self._pause_before_retry(route, route_attempt_index)
+                        continue
+                    break
+                except Exception as exc:
+                    disposition = provider_failure_disposition(exc)
+                    if disposition == "RAISE":
+                        raise
+                    failures.append(
+                        f"{route.route_id}:{exc.__class__.__name__}"
                     )
                     self._record_attempt(
                         {
-                            **rejected,
+                            "provider_route_id": route.route_id,
+                            "model_id": route.model_id,
+                            "model_family": route.model_family,
+                            "independence_group": route.independence_group,
+                            "role": role,
+                            "prompt_version": prompt_version,
+                            "prompt_sha256": prompt_sha256,
+                            "response_sha256": None,
+                            "request_id": None,
+                            "input_tokens": 0,
+                            "output_tokens": 0,
+                            "reasoning_tokens": 0,
+                            "total_tokens": 0,
+                            "cached": False,
+                            "latency_ms": 0,
                             **raw_fields,
                             "accepted": False,
                             "failure_kind": exc.__class__.__name__,
@@ -296,80 +415,89 @@ class FailoverStructuredModel:
                             audit_run_id=self.audit_run_id,
                             tag=tag,
                             request_sha256=request_sha256,
-                            retry_index=retry_index,
+                            retry_index=current_retry_index,
                             started_at=attempt_started_at,
                             completed_at=_utc_now(),
                         ),
                     )
-            except Exception as exc:
-                if not provider_failure_is_retryable(exc):
-                    raise
-                failures.append(f"{route.route_id}:{exc.__class__.__name__}")
-                self._record_attempt(
-                    {
-                        "provider_route_id": route.route_id,
-                        "model_id": route.model_id,
-                        "model_family": route.model_family,
-                        "independence_group": route.independence_group,
-                        "role": role,
-                        "prompt_version": prompt_version,
-                        "prompt_sha256": prompt_sha256,
-                        "response_sha256": None,
-                        "request_id": None,
-                        "input_tokens": 0,
-                        "output_tokens": 0,
-                        "reasoning_tokens": 0,
-                        "total_tokens": 0,
-                        "cached": False,
-                        "latency_ms": 0,
-                        **raw_fields,
-                        "accepted": False,
-                        "failure_kind": exc.__class__.__name__,
-                    },
-                    audit=_attempt_audit(
-                        audit_run_id=self.audit_run_id,
-                        tag=tag,
-                        request_sha256=request_sha256,
-                        retry_index=retry_index,
-                        started_at=attempt_started_at,
-                        completed_at=_utc_now(),
-                    ),
-                )
+                    if (
+                        disposition == "RETRY_ROUTE"
+                        and route_attempt_index + 1 < route.max_attempts
+                    ):
+                        self._pause_before_retry(route, route_attempt_index)
+                        continue
+                    break
         rendered = ", ".join(failures) if failures else "no route attempted"
         raise ContextExecutionError(
             f"{role}: all provider routes failed local validation ({rendered})"
         )
 
+    def _pause_before_retry(
+        self,
+        route: ContextProviderRoute,
+        route_attempt_index: int,
+    ) -> None:
+        delay = route.retry_backoff_seconds[route_attempt_index]
+        if delay:
+            self._sleep(delay)
+
 
 def provider_failure_is_retryable(exc: Exception) -> bool:
+    return provider_failure_disposition(exc) != "RAISE"
+
+
+def role_output_token_budget(
+    model: Any,
+    *,
+    role: str,
+    legacy_default: int,
+) -> int:
+    plan = getattr(model, "plan", None)
+    if plan is None:
+        return legacy_default
+    return int(plan.role(role).max_output_tokens)
+
+
+def provider_failure_disposition(exc: Exception) -> str:
+    """Classify a failure without silently replaying unknown outcomes."""
+
     if isinstance(exc, (TimeoutError, ConnectionError, OSError)):
-        return True
+        return "RETRY_ROUTE"
     status = getattr(exc, "status_code", None)
     if status is None:
         status = getattr(exc, "code", None)
-    if isinstance(status, int) and (
-        status in {401, 402, 403, 408, 409, 429} or 500 <= status <= 599
-    ):
-        return True
+    if isinstance(status, int):
+        if status in {401, 402, 403, 429}:
+            return "FAILOVER"
+        if status in {408, 409, 425} or 500 <= status <= 599:
+            return "RETRY_ROUTE"
     rendered = f"{exc.__class__.__name__} {exc}".casefold()
-    return any(
+    if any(
+        marker in rendered
+        for marker in (
+            "quota",
+            "rate limit",
+            "resource exhausted",
+            "unauthorized",
+            "forbidden",
+            "api key",
+        )
+    ):
+        return "FAILOVER"
+    if any(
         marker in rendered
         for marker in (
             "timeout",
             "timed out",
             "connection",
-            "quota",
-            "rate limit",
-            "resource exhausted",
             "temporarily unavailable",
             "service unavailable",
-            "unauthorized",
-            "forbidden",
-            "api key",
             "truncated",
             "malformed",
         )
-    )
+    ):
+        return "RETRY_ROUTE"
+    return "RAISE"
 
 
 def _utc_now() -> str:

@@ -25,6 +25,9 @@ from context_substitution.v2.integration.development_fixtures import (
     build_development_frozen_candidate_fixtures,
 )
 from context_substitution.v2.integration.fake_provider import run_fake_provider_pilot
+from context_substitution.v2.integration.official_pilot import (
+    run_official_zero_provider_pilot,
+)
 from context_substitution.v2.integration.pilot import run_zero_api_pilot_smoke
 from context_substitution.v2.integration.projection import (
     build_projection_binding_from_ledger,
@@ -33,8 +36,20 @@ from context_substitution.v2.integration.projection import (
 from context_substitution.v2.integration.replay import replay_context_run
 from context_substitution.v2.integration.release import build_integration_release
 from context_substitution.v2.providers.base import FailoverStructuredModel
+from context_substitution.v2.providers.catalog import (
+    DEFAULT_PROVIDER_CATALOG_PATH,
+    load_provider_catalog,
+)
 from context_substitution.v2.providers.google import GoogleRouteSettings
 from context_substitution.v2.providers.ledger import ProviderResponseLedger
+from context_substitution.v2.providers.role_plan import (
+    DEFAULT_PROVIDER_ROLE_PLAN_PATH,
+    load_provider_role_plan,
+    reject_protected_provider_overrides,
+)
+from context_substitution.v2.providers.role_routing import (
+    RoleRoutedStructuredModel,
+)
 from context_substitution.v2.runtime.calibration import (
     DEVELOPMENT_HEURISTIC_POLICY,
     frozen_validation_policy,
@@ -44,7 +59,7 @@ from context_substitution.v2.runtime.engine import run_d2l_context_substitution
 
 def parser() -> argparse.ArgumentParser:
     root = argparse.ArgumentParser(
-        description="Context Substitution V2.2 standalone integration CLI"
+        description="Context Substitution V2.3 role-bound integration CLI"
     )
     commands = root.add_subparsers(dest="command", required=True)
 
@@ -59,7 +74,13 @@ def parser() -> argparse.ArgumentParser:
 
     run = commands.add_parser("context-run")
     run.add_argument("--input", type=Path, required=True)
-    run.add_argument("--routes", type=Path, required=True)
+    run.add_argument(
+        "--routes",
+        type=Path,
+        help=argparse.SUPPRESS,
+    )
+    _add_provider_catalog_args(run)
+    _add_provider_role_plan_args(run)
     run.add_argument("--ledger-root", type=Path, required=True)
     run.add_argument("--output", type=Path, required=True)
     run.add_argument("--allow-api", action="store_true")
@@ -111,6 +132,11 @@ def parser() -> argparse.ArgumentParser:
     fake.add_argument("--run-output", type=Path, required=True)
     fake.add_argument("--summary-output", type=Path, required=True)
 
+    official = commands.add_parser("official-five-sense-pilot")
+    official.add_argument("--dataset-zip", type=Path, required=True)
+    official.add_argument("--dataset-pin", type=Path, required=True)
+    official.add_argument("--evidence-root", type=Path, required=True)
+
     replay = commands.add_parser("replay-validate")
     replay.add_argument("--input", type=Path, required=True)
     replay.add_argument("--run", type=Path, required=True)
@@ -125,10 +151,15 @@ def parser() -> argparse.ArgumentParser:
         type=Path,
         default=DEFAULT_AUTHORITY_RECEIPT_PATH,
     )
+    release.add_argument("--release-name")
 
     measurements = commands.add_parser("measurements-project")
     measurements.add_argument("--run", type=Path, required=True)
     measurements.add_argument("--output", type=Path, required=True)
+
+    preflight = commands.add_parser("provider-preflight")
+    _add_provider_catalog_args(preflight)
+    _add_provider_role_plan_args(preflight)
     return root
 
 
@@ -160,9 +191,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         if not args.allow_api:
             raise SystemExit("context-run requires explicit --allow-api")
         input_payload = load_json(args.input)
-        settings = _route_settings(load_json(args.routes))
-        model = FailoverStructuredModel(
-            [item.build() for item in settings],
+        model = _provider_role_model(
+            args,
             response_ledger=ProviderResponseLedger(args.ledger_root),
             audit_run_id="api:" + input_payload["integrity"]["input_sha256"][:24],
         )
@@ -279,6 +309,14 @@ def main(argv: Sequence[str] | None = None) -> int:
         write_json(args.summary_output, result["summary"])
         _print(result["summary"])
         return 0
+    if args.command == "official-five-sense-pilot":
+        result = run_official_zero_provider_pilot(
+            dataset_zip=args.dataset_zip,
+            dataset_pin=args.dataset_pin,
+            evidence_root=args.evidence_root,
+        )
+        _print(result)
+        return 0
     if args.command == "replay-validate":
         result = replay_context_run(
             input_payload=load_json(args.input),
@@ -300,6 +338,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 "real Global pilot awaits COMPLETE E and Dataset packages",
             ),
             authority_receipt_path=args.authority_receipt,
+            **({} if args.release_name is None else {"release_name": args.release_name}),
         )
         _print(result)
         return 0
@@ -308,6 +347,28 @@ def main(argv: Sequence[str] | None = None) -> int:
         result = context_substitution_to_measurements(run)
         write_json(args.output, result)
         _print({"output": str(args.output.resolve())})
+        return 0
+    if args.command == "provider-preflight":
+        role_plan, catalog = _load_live_provider_authority(args)
+        role_plan.build_role_routes(
+            catalog=catalog,
+            credentials_root=args.credentials_root,
+        )
+        summary = catalog.preflight_summary(
+            credentials_root=args.credentials_root,
+            provider_ids=["ckey", "shopapi", "gateway"],
+        )
+        _print(
+            {
+                "status": "PASS",
+                "read_only": True,
+                "provider_calls": 0,
+                "provider_role_plan": role_plan.public_summary(),
+                "transports": summary["providers"],
+                "credentials_root": "<redacted-credentials-root>",
+                "catalog": Path(args.provider_catalog).name,
+            }
+        )
         return 0
     raise AssertionError("unreachable")
 
@@ -330,6 +391,79 @@ def _source_kwargs(args: argparse.Namespace) -> dict[str, Any]:
         "expected_zip_sha256": args.expected_zip_sha256,
         "expected_parent_zip_sha256": args.expected_parent_zip_sha256,
     }
+
+
+def _add_provider_catalog_args(value: argparse.ArgumentParser) -> None:
+    value.add_argument(
+        "--provider-catalog",
+        type=Path,
+        default=DEFAULT_PROVIDER_CATALOG_PATH,
+    )
+    value.add_argument("--credentials-root", type=Path)
+    value.add_argument(
+        "--provider",
+        action="append",
+        help=argparse.SUPPRESS,
+    )
+
+
+def _add_provider_role_plan_args(value: argparse.ArgumentParser) -> None:
+    value.add_argument(
+        "--provider-role-plan",
+        type=Path,
+        default=DEFAULT_PROVIDER_ROLE_PLAN_PATH,
+    )
+    value.add_argument("--provider-role-plan-sha256", required=True)
+
+
+def _load_live_provider_authority(
+    args: argparse.Namespace,
+) -> tuple[Any, Any]:
+    if getattr(args, "routes", None) is not None:
+        raise ValueError("legacy --routes is not permitted for an authorized live run")
+    if args.provider:
+        raise ValueError("provider order is sealed by --provider-role-plan")
+    reject_protected_provider_overrides()
+    plan = load_provider_role_plan(
+        args.provider_role_plan,
+        expected_physical_sha256=args.provider_role_plan_sha256,
+    )
+    catalog = load_provider_catalog(args.provider_catalog, environment={})
+    return plan, catalog
+
+
+def _provider_role_model(
+    args: argparse.Namespace,
+    *,
+    response_ledger: ProviderResponseLedger,
+    audit_run_id: str,
+) -> RoleRoutedStructuredModel:
+    plan, catalog = _load_live_provider_authority(args)
+    return RoleRoutedStructuredModel(
+        plan=plan,
+        role_routes=plan.build_role_routes(
+            catalog=catalog,
+            credentials_root=args.credentials_root,
+        ),
+        response_ledger=response_ledger,
+        audit_run_id=audit_run_id,
+    )
+
+
+def _provider_routes(args: argparse.Namespace) -> list[Any]:
+    if args.routes is not None:
+        if args.credentials_root is not None or args.provider:
+            raise ValueError(
+                "legacy --routes cannot be combined with catalog provider options"
+            )
+        return [item.build() for item in _route_settings(load_json(args.routes))]
+    catalog = load_provider_catalog(args.provider_catalog)
+    return list(
+        catalog.build_routes(
+            credentials_root=args.credentials_root,
+            provider_ids=args.provider,
+        )
+    )
 
 
 def _route_settings(value: Any) -> list[GoogleRouteSettings]:

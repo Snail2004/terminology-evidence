@@ -41,6 +41,7 @@ from context_substitution.v2.contracts.common import (
     GLOBAL_RECOMMENDATIONS,
     HASH_PATH,
     JUDGE_VERSION,
+    LEGACY_SCHEMA_VERSIONS,
     LOCAL_HARD_FLAGS,
     OOD_POLICY_VERSION,
     PROVENANCE_VERSION,
@@ -126,12 +127,22 @@ def validate_context_substitution_run(
         },
         path="$",
     )
+    schema_version = require_enum(
+        root["schema_version"],
+        {SCHEMA_VERSION, *LEGACY_SCHEMA_VERSIONS},
+        path="$.schema_version",
+    )
     execution_policy = _validate_execution_policy(
-        root["execution_policy"], path="$.execution_policy"
+        root["execution_policy"],
+        schema_version=schema_version,
+        path="$.execution_policy",
     )
     attempts = [
         _validate_provider_attempt(
-            row, path=f"$.provider_attempts[{index}]"
+            row,
+            schema_version=schema_version,
+            execution_policy=execution_policy,
+            path=f"$.provider_attempts[{index}]",
         )
         for index, row in enumerate(
             require_list(
@@ -139,6 +150,12 @@ def validate_context_substitution_run(
             )
         )
     ]
+    if schema_version == SCHEMA_VERSION:
+        _validate_role_attempt_sequence(
+            attempts,
+            execution_policy=execution_policy,
+            path="$.provider_attempts",
+        )
     if execution_policy["evaluation_mode"] == "FROZEN_TEST_SET" and any(
         attempt["response_sha256"] is not None
         and attempt["raw_response_storage_status"] != "STORED"
@@ -221,9 +238,7 @@ def validate_context_substitution_run(
         "schema_id": require_enum(
             root["schema_id"], {SCHEMA_ID}, path="$.schema_id"
         ),
-        "schema_version": require_enum(
-            root["schema_version"], {SCHEMA_VERSION}, path="$.schema_version"
-        ),
+        "schema_version": schema_version,
         "input_sha256": require_sha256(
             root["input_sha256"], path="$.input_sha256"
         ),
@@ -322,7 +337,12 @@ def context_substitution_to_measurements(
     )
 
 
-def _validate_execution_policy(value: Any, *, path: str) -> dict[str, Any]:
+def _validate_execution_policy(
+    value: Any,
+    *,
+    schema_version: str,
+    path: str,
+) -> dict[str, Any]:
     row = require_mapping(value, path=path)
     required = {
         "provider_route_order",
@@ -361,6 +381,11 @@ def _validate_execution_policy(value: Any, *, path: str) -> dict[str, Any]:
         "effective_sense_contract_sha256",
         "raw_response_ledger_policy",
     }
+    if schema_version == SCHEMA_VERSION:
+        required |= {
+            "provider_role_plan",
+            "provider_role_plan_physical_sha256",
+        }
     require_exact_keys(row, required=required, path=path)
     route_order = [
         require_enum(
@@ -394,10 +419,16 @@ def _validate_execution_policy(value: Any, *, path: str) -> dict[str, Any]:
         "application_contract_version": APPLICATION_CONTRACT_VERSION,
         "support_set_version": SUPPORT_SET_VERSION,
         "ood_policy_version": OOD_POLICY_VERSION,
-        "second_judge_policy": "conditional_independent_route_v2",
+        "second_judge_policy": (
+            "conditional_explicit_secondary_role_v3"
+            if schema_version == SCHEMA_VERSION
+            else "conditional_independent_route_v2"
+        ),
         "pairwise_tiebreaker_version": PAIRWISE_VERSION,
         "provider_failover_policy": (
-            "transport_quota_or_structural_invalid_only_v2"
+            "sealed_role_equivalent_transport_only_v3"
+            if schema_version == SCHEMA_VERSION
+            else "transport_quota_or_structural_invalid_only_v2"
         ),
         "final_decision_owner": "GLOBAL_TERMINOLOGY_VALIDATOR",
     }
@@ -473,6 +504,33 @@ def _validate_execution_policy(value: Any, *, path: str) -> dict[str, Any]:
             path=f"{path}.raw_response_ledger_policy",
         ),
     }
+    if schema_version == SCHEMA_VERSION:
+        from context_substitution.v2.providers.role_plan import (
+            validate_provider_role_plan,
+        )
+
+        role_plan = validate_provider_role_plan(
+            require_mapping(
+                row["provider_role_plan"],
+                path=f"{path}.provider_role_plan",
+            )
+        )
+        normalized["provider_role_plan"] = role_plan
+        normalized["provider_role_plan_physical_sha256"] = require_sha256(
+            row["provider_role_plan_physical_sha256"],
+            path=f"{path}.provider_role_plan_physical_sha256",
+        )
+        sealed_route_order = []
+        for profile_id in role_plan["profile_order"]:
+            route_id = role_plan["route_profiles"][profile_id]["route_id"]
+            if route_id not in sealed_route_order:
+                sealed_route_order.append(route_id)
+        if route_order != sealed_route_order:
+            raise ContractValidationError(
+                "provider_role_plan",
+                f"{path}.provider_route_order",
+                "route order differs from the sealed role-plan inventory",
+            )
     if normalized["selector_candidate_independent"] is not True:
         raise ContractValidationError(
             "selector_policy",
@@ -664,7 +722,13 @@ def _validate_provider_provenance(
     }
 
 
-def _validate_provider_attempt(value: Any, *, path: str) -> dict[str, Any]:
+def _validate_provider_attempt(
+    value: Any,
+    *,
+    schema_version: str,
+    execution_policy: Mapping[str, Any],
+    path: str,
+) -> dict[str, Any]:
     row = require_mapping(value, path=path)
     required = {
         "provider_route_id",
@@ -688,6 +752,25 @@ def _validate_provider_attempt(value: Any, *, path: str) -> dict[str, Any]:
         "raw_response_sha256",
         "raw_response_storage_status",
     }
+    role_fields = {
+        "model_profile",
+        "role_equivalence_group",
+        "role_plan_sha256",
+        "effective_generation_config",
+        "escalation_kind",
+        "candidate_replicate_index",
+        "semantic_role_call_index",
+        "provider_request_index",
+        "route_attempt_index",
+        "transport_retry_index",
+        "equivalent_failover_from",
+        "provider_status_code",
+        "failure_disposition",
+        "safe_error_code",
+        "budget_units_consumed",
+    }
+    if schema_version == SCHEMA_VERSION:
+        required |= role_fields
     require_exact_keys(row, required=required, path=path)
     provenance_input = {
         key: row[key]
@@ -699,6 +782,7 @@ def _validate_provider_attempt(value: Any, *, path: str) -> dict[str, Any]:
             "raw_response_ref",
             "raw_response_sha256",
             "raw_response_storage_status",
+            *role_fields,
         }
     }
     accepted = require_bool(row["accepted"], path=f"{path}.accepted")
@@ -775,7 +859,7 @@ def _validate_provider_attempt(value: Any, *, path: str) -> dict[str, Any]:
             f"{path}.raw_response_ref",
             "unstored response cannot claim a physical ref",
         )
-    return {
+    result = {
         **normalized,
         "raw_response_ref": raw_ref,
         "raw_response_sha256": raw_sha,
@@ -783,6 +867,295 @@ def _validate_provider_attempt(value: Any, *, path: str) -> dict[str, Any]:
         "accepted": accepted,
         "failure_kind": failure_kind,
     }
+    if schema_version != SCHEMA_VERSION:
+        return result
+
+    plan = execution_policy["provider_role_plan"]
+    role_name = result["role"]
+    sealed_role = plan["roles"][role_name]
+    route_matches = [
+        plan["route_profiles"][profile_id]
+        for profile_id in sealed_role["route_profile_order"]
+        if plan["route_profiles"][profile_id]["route_id"]
+        == result["provider_route_id"]
+    ]
+    if len(route_matches) != 1:
+        raise ContractValidationError(
+            "provider_role_plan",
+            path,
+            "attempt route is not uniquely sealed for its semantic role",
+        )
+    sealed_profile = route_matches[0]
+    effective = _validate_effective_generation_config(
+        row["effective_generation_config"],
+        path=f"{path}.effective_generation_config",
+    )
+    expected_effective = {
+        "thinking_level": sealed_profile["thinking_level"],
+        "reasoning_effort": sealed_profile["reasoning_effort"],
+        "temperature": sealed_profile["temperature"],
+        "max_output_tokens": sealed_role["max_output_tokens"],
+        "timeout_seconds": sealed_profile["timeout_seconds"],
+    }
+    if (
+        result["model_id"] != sealed_profile["model_id"]
+        or result["model_family"] != sealed_profile["model_family"]
+        or result["independence_group"] != sealed_profile["independence_group"]
+        or row["model_profile"] != sealed_profile["model_profile"]
+        or row["role_equivalence_group"]
+        != sealed_profile["role_equivalence_group"]
+        or effective != expected_effective
+        or result["prompt_version"] != sealed_role["prompt_version"]
+        or row["escalation_kind"] != sealed_role["escalation_kind"]
+    ):
+        raise ContractValidationError(
+            "provider_role_plan",
+            path,
+            "attempt semantic identity differs from the sealed role plan",
+        )
+    plan_sha = require_sha256(
+        row["role_plan_sha256"], path=f"{path}.role_plan_sha256"
+    )
+    if plan_sha != plan["integrity"]["self_sha256"]:
+        raise ContractValidationError(
+            "provider_role_plan",
+            f"{path}.role_plan_sha256",
+            "attempt role-plan binding mismatch",
+        )
+    status_code = row["provider_status_code"]
+    if status_code is not None:
+        status_code = require_int(
+            status_code, path=f"{path}.provider_status_code", minimum=100
+        )
+        if status_code > 599:
+            raise ContractValidationError(
+                "range", f"{path}.provider_status_code", "must be <= 599"
+            )
+    failure_disposition = require_enum(
+        row["failure_disposition"],
+        {
+            "ACCEPTED",
+            "RETRY_SAME_ROUTE",
+            "EQUIVALENT_FAILOVER",
+            "EXHAUSTED",
+            "HARD_STOP",
+        },
+        path=f"{path}.failure_disposition",
+    )
+    safe_error = require_nullable_string(
+        row["safe_error_code"],
+        path=f"{path}.safe_error_code",
+        maximum=120,
+    )
+    if accepted:
+        if failure_disposition != "ACCEPTED" or safe_error is not None:
+            raise ContractValidationError(
+                "provider_attempt", path, "accepted attempt has failure metadata"
+            )
+    elif failure_disposition == "ACCEPTED" or safe_error is None:
+        raise ContractValidationError(
+            "provider_attempt", path, "rejected attempt lacks safe failure metadata"
+        )
+    route_index = require_int(
+        row["route_attempt_index"],
+        path=f"{path}.route_attempt_index",
+        minimum=0,
+    )
+    retry_index = require_int(
+        row["transport_retry_index"],
+        path=f"{path}.transport_retry_index",
+        minimum=0,
+    )
+    if route_index >= len(sealed_role["route_profile_order"]):
+        raise ContractValidationError(
+            "provider_attempt", f"{path}.route_attempt_index", "route index exceeds plan"
+        )
+    if retry_index > sealed_profile["transport_retry_cap"]:
+        raise ContractValidationError(
+            "provider_attempt", f"{path}.transport_retry_index", "retry index exceeds plan"
+        )
+    expected_failover_from = None
+    if route_index:
+        previous_profile = plan["route_profiles"][
+            sealed_role["route_profile_order"][route_index - 1]
+        ]
+        expected_failover_from = previous_profile["route_id"]
+    failover_from = require_nullable_string(
+        row["equivalent_failover_from"],
+        path=f"{path}.equivalent_failover_from",
+        maximum=500,
+    )
+    if failover_from != expected_failover_from:
+        raise ContractValidationError(
+            "provider_attempt", path, "equivalent failover ancestry mismatch"
+        )
+    result.update(
+        {
+            "model_profile": require_string(
+                row["model_profile"], path=f"{path}.model_profile", maximum=500
+            ),
+            "role_equivalence_group": require_string(
+                row["role_equivalence_group"],
+                path=f"{path}.role_equivalence_group",
+                maximum=500,
+            ),
+            "role_plan_sha256": plan_sha,
+            "effective_generation_config": effective,
+            "escalation_kind": (
+                None
+                if row["escalation_kind"] is None
+                else require_enum(
+                    row["escalation_kind"],
+                    {"SECONDARY_JUDGE_ESCALATION", "HARD_CASE_ESCALATION"},
+                    path=f"{path}.escalation_kind",
+                )
+            ),
+            "candidate_replicate_index": require_int(
+                row["candidate_replicate_index"],
+                path=f"{path}.candidate_replicate_index",
+                minimum=0,
+            ),
+            "semantic_role_call_index": require_int(
+                row["semantic_role_call_index"],
+                path=f"{path}.semantic_role_call_index",
+                minimum=1,
+            ),
+            "provider_request_index": require_int(
+                row["provider_request_index"],
+                path=f"{path}.provider_request_index",
+                minimum=1,
+            ),
+            "route_attempt_index": route_index,
+            "transport_retry_index": retry_index,
+            "equivalent_failover_from": failover_from,
+            "provider_status_code": status_code,
+            "failure_disposition": failure_disposition,
+            "safe_error_code": safe_error,
+            "budget_units_consumed": require_int(
+                row["budget_units_consumed"],
+                path=f"{path}.budget_units_consumed",
+                minimum=1,
+            ),
+        }
+    )
+    if result["candidate_replicate_index"] >= plan["candidate_replicate_cap"]:
+        raise ContractValidationError(
+            "provider_budget", f"{path}.candidate_replicate_index", "replicate cap exceeded"
+        )
+    if result["budget_units_consumed"] != 1:
+        raise ContractValidationError(
+            "provider_budget", f"{path}.budget_units_consumed", "each request consumes one unit"
+        )
+    return result
+
+
+def _validate_effective_generation_config(
+    value: Any, *, path: str
+) -> dict[str, Any]:
+    row = require_mapping(value, path=path)
+    required = {
+        "thinking_level",
+        "reasoning_effort",
+        "temperature",
+        "max_output_tokens",
+        "timeout_seconds",
+    }
+    require_exact_keys(row, required=required, path=path)
+    thinking = require_nullable_string(
+        row["thinking_level"], path=f"{path}.thinking_level", maximum=20
+    )
+    reasoning = require_nullable_string(
+        row["reasoning_effort"], path=f"{path}.reasoning_effort", maximum=20
+    )
+    if thinking is not None and thinking not in {"LOW", "MEDIUM", "HIGH", "MINIMAL"}:
+        raise ContractValidationError(
+            "generation_config", f"{path}.thinking_level", "unsupported thinking level"
+        )
+    if reasoning is not None and reasoning not in {
+        "none",
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+    }:
+        raise ContractValidationError(
+            "generation_config", f"{path}.reasoning_effort", "unsupported reasoning effort"
+        )
+    if (thinking is None) == (reasoning is None):
+        raise ContractValidationError(
+            "generation_config",
+            path,
+            "exactly one of thinking_level or reasoning_effort is required",
+        )
+    temperature = require_number(
+        row["temperature"], path=f"{path}.temperature", minimum=0
+    )
+    if temperature > 2:
+        raise ContractValidationError(
+            "range", f"{path}.temperature", "must be <= 2"
+        )
+    return {
+        "thinking_level": thinking,
+        "reasoning_effort": reasoning,
+        "temperature": temperature,
+        "max_output_tokens": require_int(
+            row["max_output_tokens"],
+            path=f"{path}.max_output_tokens",
+            minimum=1,
+        ),
+        "timeout_seconds": require_int(
+            row["timeout_seconds"], path=f"{path}.timeout_seconds", minimum=1
+        ),
+    }
+
+
+def _validate_role_attempt_sequence(
+    attempts: Sequence[Mapping[str, Any]],
+    *,
+    execution_policy: Mapping[str, Any],
+    path: str,
+) -> None:
+    plan = execution_policy["provider_role_plan"]
+    request_indices = [int(row["provider_request_index"]) for row in attempts]
+    if request_indices != list(range(1, len(attempts) + 1)):
+        raise ContractValidationError(
+            "provider_sequence",
+            path,
+            "provider_request_index must be exact contiguous ledger order",
+        )
+    if len(attempts) > plan["provider_request_cap_per_run"]:
+        raise ContractValidationError(
+            "provider_budget", path, "provider request cap per run exceeded"
+        )
+    calls_by_role: dict[str, set[int]] = {}
+    requests_by_call: Counter[tuple[str, int]] = Counter()
+    for row in attempts:
+        role = str(row["role"])
+        call_index = int(row["semantic_role_call_index"])
+        calls_by_role.setdefault(role, set()).add(call_index)
+        requests_by_call[(role, call_index)] += int(row["budget_units_consumed"])
+    for role, call_indices in calls_by_role.items():
+        if sorted(call_indices) != list(range(1, len(call_indices) + 1)):
+            raise ContractValidationError(
+                "provider_sequence",
+                path,
+                f"{role} semantic_role_call_index is not contiguous",
+            )
+        sealed = plan["roles"][role]
+        if len(call_indices) > sealed["semantic_role_call_cap_per_run"]:
+            raise ContractValidationError(
+                "provider_budget", path, f"{role} semantic call cap exceeded"
+            )
+        for call_index in call_indices:
+            if requests_by_call[(role, call_index)] > sealed[
+                "provider_request_cap_per_semantic_call"
+            ]:
+                raise ContractValidationError(
+                    "provider_budget",
+                    path,
+                    f"{role} provider request cap per semantic call exceeded",
+                )
 
 
 def _validate_candidate(
@@ -1440,7 +1813,7 @@ def _validate_context_result(
             row["secondary_judge"],
             context_id=context_id,
             candidate_id=candidate_id,
-            expected_role="context_judge",
+            expected_role={"context_judge", "secondary_context_judge"},
             path=f"{path}.secondary_judge",
         )
     )
@@ -1645,7 +2018,7 @@ def _validate_judge_wrapper(
     *,
     context_id: str,
     candidate_id: str,
-    expected_role: str,
+    expected_role: str | set[str],
     path: str,
 ) -> dict[str, Any]:
     row = require_mapping(value, path=path)
@@ -1656,8 +2029,11 @@ def _validate_judge_wrapper(
     provenance = _validate_provider_provenance(
         row["provenance"], path=f"{path}.provenance"
     )
+    allowed_roles = (
+        {expected_role} if isinstance(expected_role, str) else expected_role
+    )
     if (
-        provenance["role"] != expected_role
+        provenance["role"] not in allowed_roles
         or provenance["prompt_version"] != JUDGE_VERSION
     ):
         raise ContractValidationError(

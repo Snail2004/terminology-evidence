@@ -37,6 +37,11 @@ _REQUIRED_EVIDENCE = (
     "fake_run.json",
     "pilot_input.json",
 )
+_OPTIONAL_EVIDENCE = (
+    "official_pilot_report.json",
+    "official_dataset_source.zip",
+    "official_dataset_input_pin_v1.json",
+)
 _SECRET_PATTERNS = {
     "google_api_key": re.compile(rb"AIza[0-9A-Za-z_-]{20,}"),
     "openai_api_key": re.compile(rb"sk-[A-Za-z0-9_-]{20,}"),
@@ -53,12 +58,15 @@ def build_integration_release(
     known_gaps: Iterable[str],
     authority_receipt_path: Path = DEFAULT_AUTHORITY_RECEIPT_PATH,
     expected_allowed_skips: int = 0,
+    release_name: str = RELEASE_NAME,
 ) -> dict[str, Any]:
     source_root = Path(source_root).resolve()
     evidence_root = Path(evidence_root).resolve()
     output_directory = Path(output_directory).resolve()
     if source_root.name != "context_substitution":
         raise ValueError("release source root must be context_substitution")
+    if re.fullmatch(r"[a-z0-9][a-z0-9_.-]{0,127}", release_name) is None:
+        raise ValueError("release name is not canonical")
     for name in _REQUIRED_EVIDENCE:
         if not (evidence_root / name).is_file():
             raise ValueError(f"required integration evidence is missing: {name}")
@@ -74,7 +82,7 @@ def build_integration_release(
         expected_allowed_skips=expected_allowed_skips,
     )
 
-    staging = output_directory / RELEASE_NAME
+    staging = output_directory / release_name
     if staging.exists():
         shutil.rmtree(staging)
     (staging / "source").mkdir(parents=True)
@@ -84,6 +92,10 @@ def build_integration_release(
         destination = staging / "evidence" / name
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(evidence_root / name, destination)
+    for name in _OPTIONAL_EVIDENCE:
+        source = evidence_root / name
+        if source.is_file():
+            shutil.copy2(source, staging / "evidence" / name)
     shutil.copytree(
         evidence_root / "context_evidence_packages" / "packages",
         staging / "evidence" / "context_evidence_packages" / "packages",
@@ -131,7 +143,7 @@ def build_integration_release(
     audit = {
         "schema_id": RELEASE_SCHEMA_ID,
         "schema_version": RELEASE_SCHEMA_VERSION,
-        "release_name": RELEASE_NAME,
+        "release_name": release_name,
         "status": "INTEGRATION_READY_ZERO_API",
         "source_file_count": sum(
             1 for path in (staging / "source").rglob("*") if path.is_file()
@@ -155,10 +167,10 @@ def build_integration_release(
     audit = seal_object(audit, integrity_key="audit_sha256")
     write_json(staging / "context_substitution_v2_2_audit.json", audit)
 
-    archive = output_directory / f"{RELEASE_NAME}.zip"
+    archive = output_directory / f"{release_name}.zip"
     _write_deterministic_zip(staging, archive)
     archive_hash = file_sha256(archive)
-    hash_path = output_directory / f"{RELEASE_NAME}.zip.sha256"
+    hash_path = output_directory / f"{release_name}.zip.sha256"
     hash_path.write_text(
         f"{archive_hash}  {archive.name}\n", encoding="ascii", newline="\n"
     )

@@ -10,7 +10,8 @@ from context_substitution.v2.contracts.validation import (
 
 
 SCHEMA_ID = "D2LContextSubstitutionRunV2"
-SCHEMA_VERSION = "2.2.0"
+SCHEMA_VERSION = "2.3.0"
+LEGACY_SCHEMA_VERSIONS = frozenset({"2.2.0"})
 RUBRIC_VERSION = "d2l_context_substitution_rubric_v2_1"
 SELECTOR_VERSION = "d2l_context_selector_v2_1"
 CONTEXT_DEDUP_POLICY_VERSION = "d2l_context_dedup_lexical_v2"
@@ -31,6 +32,7 @@ PROVIDER_ROUTE_IDS = (
     "shopaikey_gemini",
     "ckey_gemini",
     "gemini_official",
+    "local_gpt_gateway",
 )
 
 HASH_PATH = ("integrity", "run_sha256")
@@ -113,6 +115,7 @@ PROVIDER_ROLES = frozenset(
         "trial_translator",
         "trial_translation_quality_gate",
         "context_judge",
+        "secondary_context_judge",
         "contrastive_sense_judge",
         "pairwise_tiebreaker",
     }
@@ -220,6 +223,13 @@ RUN_POLICY = CanonicalPolicy(
                 "*",
                 "provenance",
                 "prompt_hashes_by_role",
+                "secondary_context_judge",
+            ),
+            (
+                "candidates",
+                "*",
+                "provenance",
+                "prompt_hashes_by_role",
                 "contrastive_sense_judge",
             ),
             (
@@ -234,6 +244,56 @@ RUN_POLICY = CanonicalPolicy(
     semantic_sequence_paths=frozenset(
         {
             ("execution_policy", "provider_route_order"),
+            ("execution_policy", "provider_role_plan", "profile_order"),
+            ("execution_policy", "provider_role_plan", "role_order"),
+            (
+                "execution_policy",
+                "provider_role_plan",
+                "roles",
+                "*",
+                "route_profile_order",
+            ),
+            *(
+                (
+                    "execution_policy",
+                    "provider_role_plan",
+                    "roles",
+                    role,
+                    "route_profile_order",
+                )
+                for role in (
+                    "context_selector",
+                    "trial_translator",
+                    "trial_translation_quality_gate",
+                    "context_judge",
+                    "contrastive_sense_judge",
+                    "secondary_context_judge",
+                    "pairwise_tiebreaker",
+                )
+            ),
+            (
+                "execution_policy",
+                "provider_role_plan",
+                "route_profiles",
+                "*",
+                "retry_backoff_seconds",
+            ),
+            *(
+                (
+                    "execution_policy",
+                    "provider_role_plan",
+                    "route_profiles",
+                    profile,
+                    "retry_backoff_seconds",
+                )
+                for profile in (
+                    "ckey_gemini_3_5_flash_low",
+                    "shopapi_gemini_3_5_flash_low",
+                    "gateway_gpt_5_6_luna_none",
+                    "gateway_gpt_5_6_terra_low",
+                    "gateway_gpt_5_6_terra_medium",
+                )
+            ),
             (
                 "execution_policy",
                 "threshold_policy",
@@ -347,4 +407,3 @@ def sha256_text(value: str) -> str:
 
 def stable_digest(*parts: str) -> str:
     return sha256_text("\0".join(parts))
-

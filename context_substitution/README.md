@@ -37,6 +37,23 @@ Adapter authority. Synthetic zero-API conformance sets use the distinct
 `SYNTHETIC_LOCAL_CONFORMANCE` status. Global Validator V1.1 is an active
 consumer, but C remains decision-neutral and emits no global action.
 
+The official five-sense Dataset pilot is consumed without extraction or
+network access:
+
+```powershell
+python -B -m context_substitution.v2 official-five-sense-pilot `
+  --dataset-zip <official-five-sense.zip> `
+  --dataset-pin <official_dataset_input_pin_v1.json> `
+  --evidence-root <empty-evidence-directory>
+```
+
+The command verifies the pinned ZIP, all 5 Effective Sense contracts, all 15
+Frozen Candidates, all 15 Constraint Evidence packages, and the excluded
+eleven-sense lineage. It then emits exactly 15 decision-neutral C packages,
+an exact replay ledger, and byte-identical copies of the accepted ZIP and pin
+for independent release validation. Local deterministic fake attempts exercise
+the C pipeline; provider and network call counts remain zero.
+
 RC2 admission is fail-closed: JUnit must be green with zero unexpected skips,
 the provider ledger must correspond exactly to the sealed C run, authority
 receipt hashes must match the corrected publication, and Frozen Candidates
