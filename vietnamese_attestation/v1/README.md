@@ -18,3 +18,20 @@ retains file audit streams and raw responses, verifies all replay modes, and
 records zero external provider calls. Development pilot identities are not
 projected to the shared contract because their effective sense contract,
 Vietnamese surface authority, and domain anchors are intentionally unavailable.
+
+Post-zero-API readiness is available through:
+
+```powershell
+python -m vietnamese_attestation.v1.cli.readiness `
+  --repository-root C:\work\terminology_evidence-worktrees\vietnamese-attestation-v1 `
+  --authority-receipt C:\work\terminology-evidence-authority\contracts-v1.1.0\authority_receipt.json `
+  --zero-api-artifact-root C:\work\terminology-evidence-artifacts\vietnamese-attestation-v1.1-zero-api-20260729-v3 `
+  --controlled-registry dataset\dataset_methodology_hardening_v1\release\controlled_vietnamese_source_registry.jsonl `
+  --output-root C:\work\terminology-evidence-artifacts\vietnamese-attestation-v1.1-post-zero-api-rc1
+```
+
+The readiness release reads source bytes from an exact Git commit, excludes
+cache files without deleting the worktree, verifies Contracts V1.1 and the
+accepted 15/15 zero-API replay, and reports the remaining Dataset, controlled
+registry, and live-canary HOLD states. It does not call a provider and never
+promotes fixture packages to real attestation evidence authority.
