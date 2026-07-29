@@ -152,6 +152,40 @@ class AuthorityAndReceiptTests(unittest.TestCase):
                 destination = authority_root / f"{name}{source.suffix}"
                 shutil.copyfile(source, destination)
                 copied[name] = destination
+            receipt = build_receipt(
+                mode=MODE_REAL_AUTHORITY,
+                base_commit=self.commit,
+                repo_root_path=self.git_repo,
+                registry_root_path=registry_root,
+                authority_artifact_paths=copied,
+                authority_root_path=authority_root,
+                artifact_hashes={"plan": "c" * 64},
+            )
+            receipt_path = authority_root / "receipt.json"
+            write_receipt(receipt_path, receipt)
+            capability = verify_real_receipt(
+                receipt_path,
+                receipt_root_path=authority_root,
+                repo_root_path=self.git_repo,
+                registry_root_path=registry_root,
+                authority_artifact_paths=copied,
+                authority_root_path=authority_root,
+            )
+            copied["contracts_checksums"].write_bytes(
+                copied["contracts_checksums"].read_bytes() + b"\n"
+            )
+            with self.assertRaises((ReceiptError, AuthorityProfileError)):
+                verify_real_receipt_capability(capability)
+
+        with TemporaryDirectory() as temp:
+            authority_root = Path(temp)
+            registry_root = authority_root / "registries"
+            shutil.copytree(self.registries, registry_root)
+            copied = {}
+            for name, source in self.artifacts.items():
+                destination = authority_root / f"{name}{source.suffix}"
+                shutil.copyfile(source, destination)
+                copied[name] = destination
             copied["contracts_approval_binding"].write_bytes(
                 copied["contracts_approval_binding"].read_bytes() + b"\n"
             )

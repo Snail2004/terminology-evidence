@@ -12,7 +12,7 @@ from evaluation.v1.preregistration.freeze import (
     FreezeState,
 )
 from evaluation.v1.preregistration.ledger import LedgerError
-from evaluation.v1.preregistration.receipt import build_receipt, verify_real_receipt, write_receipt
+from evaluation.v1.preregistration.receipt import VerifiedRealReceipt, build_receipt, verify_real_receipt, write_receipt
 from evaluation.v1.preregistration.recovery import RecoveryError, recover_projection, verify_recovery_plan, verify_recovery_receipt
 from tests.evaluation.git_context import resolve_test_git_context
 
@@ -103,10 +103,26 @@ class DurableStateTests(unittest.TestCase):
             synthetic_reason="fixture",
         )
         with TemporaryDirectory() as temp:
+            root = Path(temp)
             with self.assertRaises(FreezeError):
-                self._store(Path(temp)).freeze(synthetic, actor="test")
+                self._store(root).freeze(synthetic, actor="test")
             with self.assertRaises(FreezeError):
-                self._store(Path(temp)).freeze(dict(self.real_receipt.receipt), actor="test")
+                self._store(root).freeze(dict(self.real_receipt.receipt), actor="test")
+            forged = VerifiedRealReceipt(
+                receipt=self.real_receipt.receipt,
+                receipt_path=self.real_receipt.receipt_path,
+                receipt_root_path=self.real_receipt.receipt_root_path,
+                receipt_physical_sha256=self.real_receipt.receipt_physical_sha256,
+                verification_report=self.real_receipt.verification_report,
+                repo_root_path=self.real_receipt.repo_root_path,
+                registry_root_path=self.real_receipt.registry_root_path,
+                authority_artifact_paths=self.real_receipt.authority_artifact_paths,
+                authority_root_path=self.real_receipt.authority_root_path,
+                _issuer_nonce="0" * 64,
+            )
+            with self.assertRaises(FreezeError):
+                self._store(root).freeze(forged, actor="test")
+            self.assertFalse((root / "events.jsonl").exists())
 
     def test_concurrent_hidden_test_open_is_exactly_once(self):
         with TemporaryDirectory() as temp:

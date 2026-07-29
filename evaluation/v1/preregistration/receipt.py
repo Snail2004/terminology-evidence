@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import re
+import secrets
 import subprocess
-from dataclasses import dataclass
+import threading
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Mapping
@@ -47,6 +49,8 @@ _COMMON_KEYS = {
 }
 VERIFICATION_REPORT_SCHEMA_ID = "EvaluationRealReceiptVerificationReportV1"
 VERIFICATION_REPORT_SCHEMA_VERSION = "1.0.0"
+_ISSUED_CAPABILITIES: dict[str, str] = {}
+_ISSUED_CAPABILITIES_LOCK = threading.Lock()
 
 
 @dataclass(frozen=True)
@@ -58,6 +62,11 @@ class VerifiedRealReceipt:
     receipt_root_path: Path
     receipt_physical_sha256: str
     verification_report: Mapping[str, Any]
+    repo_root_path: Path
+    registry_root_path: Path
+    authority_artifact_paths: tuple[tuple[str, Path], ...]
+    authority_root_path: Path
+    _issuer_nonce: str = field(repr=False)
 
 
 def _without_self_hash(value: Mapping[str, Any]) -> dict[str, Any]:
@@ -66,6 +75,25 @@ def _without_self_hash(value: Mapping[str, Any]) -> dict[str, Any]:
     integrity.pop("self_sha256", None)
     result["integrity"] = integrity
     return result
+
+
+def _capability_binding(value: VerifiedRealReceipt) -> str:
+    return sha256_value(
+        {
+            "receipt": value.receipt,
+            "receipt_path": str(value.receipt_path),
+            "receipt_root_path": str(value.receipt_root_path),
+            "receipt_physical_sha256": value.receipt_physical_sha256,
+            "verification_report": value.verification_report,
+            "repo_root_path": str(value.repo_root_path),
+            "registry_root_path": str(value.registry_root_path),
+            "authority_artifact_paths": [
+                [name, str(path)] for name, path in value.authority_artifact_paths
+            ],
+            "authority_root_path": str(value.authority_root_path),
+            "issuer_nonce": value._issuer_nonce,
+        }
+    )
 
 
 def _require_commit(value: Any) -> str:
@@ -306,6 +334,10 @@ def _verification_report_hash(value: Mapping[str, Any]) -> str:
 def verify_real_receipt_capability(value: VerifiedRealReceipt) -> str:
     if not isinstance(value, VerifiedRealReceipt):
         raise ReceiptError("freeze requires a VerifiedRealReceipt capability")
+    with _ISSUED_CAPABILITIES_LOCK:
+        issued_binding = _ISSUED_CAPABILITIES.get(value._issuer_nonce)
+    if issued_binding is None or issued_binding != _capability_binding(value):
+        raise ReceiptError("VerifiedRealReceipt was not issued by the current verifier")
     receipt = value.receipt
     verify_receipt_object(receipt)
     if receipt.get("mode") != MODE_REAL_AUTHORITY:
@@ -321,6 +353,25 @@ def verify_real_receipt_capability(value: VerifiedRealReceipt) -> str:
         raise ReceiptError(str(exc)) from exc
     if sha256_file(current_path) != value.receipt_physical_sha256:
         raise ReceiptError("verified preregistration receipt physical bytes drifted")
+    current_receipt = verify_receipt(
+        current_path,
+        registry_root_path=value.registry_root_path,
+        repo_root_path=value.repo_root_path,
+        authority_artifact_paths=dict(value.authority_artifact_paths),
+        authority_root_path=value.authority_root_path,
+    )
+    if current_receipt != receipt:
+        raise ReceiptError("verified preregistration receipt differs from current authority verification")
+    try:
+        checked_after = secure_existing_file(
+            value.receipt_path,
+            trusted_root=value.receipt_root_path,
+            field="verified_preregistration_receipt",
+        )
+    except AuthorityError as exc:
+        raise ReceiptError(str(exc)) from exc
+    if sha256_file(checked_after) != value.receipt_physical_sha256:
+        raise ReceiptError("verified preregistration receipt bytes drifted during capability verification")
     report = value.verification_report
     expected_keys = {
         "schema_id",
@@ -407,12 +458,27 @@ def verify_real_receipt(
         "integrity": {"self_sha256": ""},
     }
     report["integrity"]["self_sha256"] = _verification_report_hash(report)
+    issuer_nonce = secrets.token_hex(32)
     capability = VerifiedRealReceipt(
         receipt=dict(receipt),
         receipt_path=checked_after,
         receipt_root_path=checked_root,
         receipt_physical_sha256=physical_before,
         verification_report=report,
+        repo_root_path=Path(repo_root_path),
+        registry_root_path=Path(registry_root_path),
+        authority_artifact_paths=tuple(
+            sorted((name, Path(path)) for name, path in authority_artifact_paths.items())
+        ),
+        authority_root_path=Path(authority_root_path),
+        _issuer_nonce=issuer_nonce,
     )
-    verify_real_receipt_capability(capability)
+    with _ISSUED_CAPABILITIES_LOCK:
+        _ISSUED_CAPABILITIES[issuer_nonce] = _capability_binding(capability)
+    try:
+        verify_real_receipt_capability(capability)
+    except Exception:
+        with _ISSUED_CAPABILITIES_LOCK:
+            _ISSUED_CAPABILITIES.pop(issuer_nonce, None)
+        raise
     return capability

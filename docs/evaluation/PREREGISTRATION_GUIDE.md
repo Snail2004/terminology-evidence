@@ -18,8 +18,10 @@
    repo va external authority de nhan `VerifiedRealReceipt` capability.
 5. Tao `DurablePreregistrationStore` tren mot state root moi.
 6. Goi `freeze(capability)` mot lan. Raw mapping, ke ca mapping tu reseal hop le,
-   khong co quyen freeze. Ledger event `PREREGISTRATION_FROZEN` luu receipt self
-   SHA, physical SHA va verification-report SHA; `state.json` chi la projection.
+   hoac dataclass tu khoi tao khong co quyen freeze. Freeze kiem lai issuer,
+   receipt physical bytes, Git, registries va bay authority file hien tai.
+   Ledger event `PREREGISTRATION_FROZEN` luu receipt self SHA, physical SHA va
+   verification-report SHA; `state.json` chi la projection.
 
 Khong mo validation neu receipt khong phai `REAL_AUTHORITY` hoac projection khong
 khop replay ledger.

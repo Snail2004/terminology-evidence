@@ -25,7 +25,8 @@ production. Khong co provider/network call.
    `SYNTHETIC_LOCAL_CONFORMANCE`, `LEGACY_READ_ONLY`; real mode bind exact
    Contract R2, detached AR-1 approval, Global action policy, Dataset manifest,
    split assignments va Evaluation registries. State freeze chi nhan
-   `VerifiedRealReceipt` tao tu receipt vat ly va current authority bytes.
+   `VerifiedRealReceipt` do verifier cap va kiem lai receipt vat ly, Git,
+   registries cung current authority bytes ngay truoc transition.
 4. **Durable preregistration state**: append-only hash-chain ledger, single
    exclusive writer, atomic state projection, one-time validation/test access,
    amendment/refreeze policy va projection recovery gom immutable plan,

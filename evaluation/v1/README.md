@@ -48,7 +48,8 @@ Bootstrap resamples complete `sense_id` groups, not individual candidates.
 - `REAL_AUTHORITY`: verifies the reviewed Contract R2, detached approval,
   Global action policy, Dataset manifest/split bindings and Evaluation
   registries. A freeze accepts only the resulting `VerifiedRealReceipt`
-  capability and rechecks its physical receipt bytes immediately before use.
+  capability and rechecks its issuer binding, physical receipt, Git commit,
+  registries and all seven current authority files immediately before use.
 - `SYNTHETIC_LOCAL_CONFORMANCE`: schema, determinism and metric plumbing only;
   it emits `CONFORMANCE_ONLY` and cannot freeze or open any data split.
 - `LEGACY_READ_ONLY`: verifies historical receipt bytes only; it cannot build a
