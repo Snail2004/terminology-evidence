@@ -1,0 +1,56 @@
+{
+  "complete_constraint_package_count": 0,
+  "official_effective_sense_count": 0,
+  "official_frozen_candidate_count": 0,
+  "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+  "receipt_sha256": "364a99c7a2f2951b5ddb4302af605b0e25650c9d56094ecf906a720622593a49",
+  "records": [
+    {
+      "reason": "Provisional 2 clear + 2 ambiguous + 1 gate subset; not official until the 15-sense review is finalized.",
+      "selection_group": "CLEAR_LOW_RISK",
+      "selection_status": "PENDING_STAGE_A_FINALIZATION",
+      "sense_id": "d2lce_addfcc9899bef06c500b6b0e",
+      "source_term": "momentum",
+      "term_id": "d2lce_addfcc9899bef06c500b6b0e"
+    },
+    {
+      "reason": "Provisional 2 clear + 2 ambiguous + 1 gate subset; not official until the 15-sense review is finalized.",
+      "selection_group": "CLEAR_LOW_RISK",
+      "selection_status": "PENDING_STAGE_A_FINALIZATION",
+      "sense_id": "d2lce_9bd5113780f8e8160a24e6ad",
+      "source_term": "underflow",
+      "term_id": "d2lce_9bd5113780f8e8160a24e6ad"
+    },
+    {
+      "reason": "Provisional 2 clear + 2 ambiguous + 1 gate subset; not official until the 15-sense review is finalized.",
+      "selection_group": "AMBIGUOUS_POLYSEMOUS",
+      "selection_status": "PENDING_STAGE_A_FINALIZATION",
+      "sense_id": "d2lce_7ef8ed3f93210606a27312a4",
+      "source_term": "Adam",
+      "term_id": "d2lce_7ef8ed3f93210606a27312a4"
+    },
+    {
+      "reason": "Provisional 2 clear + 2 ambiguous + 1 gate subset; not official until the 15-sense review is finalized.",
+      "selection_group": "AMBIGUOUS_POLYSEMOUS",
+      "selection_status": "PENDING_STAGE_A_FINALIZATION",
+      "sense_id": "d2lce_ce222dd206341f61f2986f7a",
+      "source_term": "word embedding",
+      "term_id": "d2lce_ce222dd206341f61f2986f7a"
+    },
+    {
+      "reason": "Provisional 2 clear + 2 ambiguous + 1 gate subset; not official until the 15-sense review is finalized.",
+      "selection_group": "GATE_ADJUDICATION_RISK",
+      "selection_status": "PENDING_STAGE_A_FINALIZATION",
+      "sense_id": "d2lce_2684090fd4500122fec2a334",
+      "source_term": "in place",
+      "term_id": "d2lce_2684090fd4500122fec2a334"
+    }
+  ],
+  "required_shape": {
+    "ambiguous": 2,
+    "clear": 2,
+    "gate": 1
+  },
+  "schema_id": "D2LIntegrationPilot5SelectionReceiptV1",
+  "selection_status": "PENDING_STAGE_A_FINALIZATION"
+}

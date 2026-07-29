@@ -1,0 +1,681 @@
+{
+  "group_counts": {
+    "AMBIGUOUS_POLYSEMOUS": 5,
+    "CLEAR_LOW_RISK": 5,
+    "GATE_ADJUDICATION_RISK": 5
+  },
+  "parent_dataset_manifest_sha256": "9a32880e32cea5c5e87f38165142968aeca56f39a12f8bb7c4f1500eb3c49c67",
+  "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+  "receipt_sha256": "ab5a4b3a948b878b5dc638b527c027a26f7aae655e9750e4c5194acc5d34d7ea",
+  "records": [
+    {
+      "boundary_context_count": 1,
+      "boundary_context_ids": [
+        "ctxx_96e9ef1273e4b1bb986dd43e"
+      ],
+      "coverage_tags": [
+        "R0_CLEAR",
+        "SOURCE_GROUND",
+        "BLIND_AUDIT"
+      ],
+      "glossary_candidate_vi": "gọt gradient",
+      "glossary_match_status": "GLOSSARY_EXACT",
+      "official_effective_sense_contract_emitted": false,
+      "parent_projection_sha256": "9f197a4bffc4b94d0a5339aa3e85260c3fc10605b1ac504a848b66e3c99b061a",
+      "parent_term_sense_sha256": "2a9bd4df21c05697b279d243b18ee02219e7fd3b18402f3eca15c2381eb126f9",
+      "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+      "positive_context_count": 4,
+      "positive_definition_evidence_ids": [
+        "ctx_76aaadbd846db473944f5737",
+        "ctx_4464d445a080f2a1433e80df"
+      ],
+      "positive_pos_evidence_ids": [
+        "ctx_5f804b816c9a3019d5cd256d",
+        "ctx_a47529e99ab8712183c51ba6"
+      ],
+      "proposed_definition_en": "A training technique that limits gradient size to prevent exploding gradients and improve stable convergence.",
+      "proposed_part_of_speech": "noun_phrase",
+      "proposed_scope_note": null,
+      "review_requirement": "SOURCE_GROUND_PLUS_BLIND_AUDIT",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "risk_class": "R0_CLEAR",
+      "schema_id": "D2LStageAPilotSelectedSenseV1",
+      "selected_sense_sha256": "3c801d9ef7ee818844b34af7f31d18ae5ae54dff72a6c45bed5b10dc475cf652",
+      "selection_group": "CLEAR_LOW_RISK",
+      "selection_policy_version": "dataset-stage-a-pilot-selection-v1.0",
+      "selection_reason": "R0 clear development case with abundant real positive evidence; exercise source-ground and blind-audit path.",
+      "sense_id": "d2lce_8d226b48ba7ec1493faa4ec8",
+      "source_payload_sha256": "d5223c822005009f454b85e817115ebe217ec39a501e59714b88170f68ba40d5",
+      "source_term": "Gradient Clipping",
+      "split": "development",
+      "stratum": "clear",
+      "term_id": "d2lce_8d226b48ba7ec1493faa4ec8"
+    },
+    {
+      "boundary_context_count": 1,
+      "boundary_context_ids": [
+        "ctxx_7fd22e3f605db0d533d0053f"
+      ],
+      "coverage_tags": [
+        "R0_CLEAR",
+        "SOURCE_GROUND",
+        "BLIND_AUDIT"
+      ],
+      "glossary_candidate_vi": "động lượng",
+      "glossary_match_status": "GLOSSARY_EXACT",
+      "official_effective_sense_contract_emitted": false,
+      "parent_projection_sha256": "67195c655a5142295fe424c469c4199b7c9233ec2bd5a0cee743b35477acf766",
+      "parent_term_sense_sha256": "9a08ab5c8f8d96ee186c76eedfd5c4e522269ada60f4ec1ae3da5fe961446b3c",
+      "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+      "positive_context_count": 4,
+      "positive_definition_evidence_ids": [
+        "ctx_d437426b9a49d27a6fb2a2c3",
+        "ctx_3630463c4fd1b1974674bd51",
+        "ctx_06f4771cf594f1bbed3246e8"
+      ],
+      "positive_pos_evidence_ids": [
+        "ctx_8fa7f6c2ca736e617dfa8130",
+        "ctx_d437426b9a49d27a6fb2a2c3"
+      ],
+      "proposed_definition_en": "a parameter or mechanism that uses an exponentially weighted average of past values, especially past gradients, to smooth updates.",
+      "proposed_part_of_speech": "noun",
+      "proposed_scope_note": null,
+      "review_requirement": "SOURCE_GROUND_PLUS_BLIND_AUDIT",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "risk_class": "R0_CLEAR",
+      "schema_id": "D2LStageAPilotSelectedSenseV1",
+      "selected_sense_sha256": "e9d0b7a402a79f7947246fbb72958ab17730fa5a74adc8d1d5d8a527d3f9e432",
+      "selection_group": "CLEAR_LOW_RISK",
+      "selection_policy_version": "dataset-stage-a-pilot-selection-v1.0",
+      "selection_reason": "R0 clear development case with abundant real positive evidence; exercise source-ground and blind-audit path.",
+      "sense_id": "d2lce_addfcc9899bef06c500b6b0e",
+      "source_payload_sha256": "b64349d855e85e212bb63ea8271a12b663151e613328ad37b52c658b28dd159e",
+      "source_term": "momentum",
+      "split": "development",
+      "stratum": "clear",
+      "term_id": "d2lce_addfcc9899bef06c500b6b0e"
+    },
+    {
+      "boundary_context_count": 1,
+      "boundary_context_ids": [
+        "ctxx_ee2a54b1abc918e1f611434e"
+      ],
+      "coverage_tags": [
+        "R0_CLEAR",
+        "SOURCE_GROUND",
+        "BLIND_AUDIT"
+      ],
+      "glossary_candidate_vi": "giả thuyết gốc",
+      "glossary_match_status": "GLOSSARY_EXACT",
+      "official_effective_sense_contract_emitted": false,
+      "parent_projection_sha256": "f6a697b8976d08500562ab7b60fc13cb7f66d375839c03738b409824e2b1370b",
+      "parent_term_sense_sha256": "cfd8d59469c1c638ecf92ee17336551b78b8907febf5706b73ea785b3ea26439",
+      "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+      "positive_context_count": 4,
+      "positive_definition_evidence_ids": [
+        "ctx_a5a1f0f18709f7fa8442aea2",
+        "ctx_22557e183923aa9f4d962fb5",
+        "ctx_f4392f740a7e9df79b8c5e6a"
+      ],
+      "positive_pos_evidence_ids": [
+        "ctx_22557e183923aa9f4d962fb5",
+        "ctx_a5a1f0f18709f7fa8442aea2",
+        "ctx_4a439805e5ee6481bd8ca2d7"
+      ],
+      "proposed_definition_en": "the default hypothesis in significance testing that is tested for possible rejection using observed data.",
+      "proposed_part_of_speech": "noun_phrase",
+      "proposed_scope_note": null,
+      "review_requirement": "SOURCE_GROUND_PLUS_BLIND_AUDIT",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "risk_class": "R0_CLEAR",
+      "schema_id": "D2LStageAPilotSelectedSenseV1",
+      "selected_sense_sha256": "db937310e4e369a235955a8de2e20e6d637594a80102e40eeec3101a1379d10e",
+      "selection_group": "CLEAR_LOW_RISK",
+      "selection_policy_version": "dataset-stage-a-pilot-selection-v1.0",
+      "selection_reason": "R0 clear development case with abundant real positive evidence; exercise source-ground and blind-audit path.",
+      "sense_id": "d2lce_11e1c294000ac67785408dcd",
+      "source_payload_sha256": "1b52829a91ab1e3e8b950cf462f2a6c8f41979efd530e245a7f918ab362449fc",
+      "source_term": "null hypothesis",
+      "split": "development",
+      "stratum": "clear",
+      "term_id": "d2lce_11e1c294000ac67785408dcd"
+    },
+    {
+      "boundary_context_count": 1,
+      "boundary_context_ids": [
+        "ctxx_84628ffb91c733b908fe79fe"
+      ],
+      "coverage_tags": [
+        "R1_QUALIFIED",
+        "ONE_HUMAN_REVIEW"
+      ],
+      "glossary_candidate_vi": "tràn (số) dưới",
+      "glossary_match_status": "GLOSSARY_QUALIFIED",
+      "official_effective_sense_contract_emitted": false,
+      "parent_projection_sha256": "5f8c00b349de1d6adea9eab5faf4f95a3b2174a039d881e8004d74f6830d84a5",
+      "parent_term_sense_sha256": "f032153974496e057ef7410cd4c6be165b8d8e772b15e1bdb92e0756273193d6",
+      "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+      "positive_context_count": 3,
+      "positive_definition_evidence_ids": [
+        "ctx_5d3d4728c7288bca4bf4f624",
+        "ctx_f6a47145f376202745ec79b1",
+        "ctx_927dfa6b607b0cdb7925b702"
+      ],
+      "positive_pos_evidence_ids": [
+        "ctx_f6a47145f376202745ec79b1",
+        "ctx_5d3d4728c7288bca4bf4f624"
+      ],
+      "proposed_definition_en": "a numerical computing condition where a value becomes too small to represent and is rounded to zero",
+      "proposed_part_of_speech": "noun",
+      "proposed_scope_note": null,
+      "review_requirement": "AT_LEAST_ONE_HUMAN_REVIEWER",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "risk_class": "R1_QUALIFIED",
+      "schema_id": "D2LStageAPilotSelectedSenseV1",
+      "selected_sense_sha256": "1212be72396d425f500192d617fea66334cd21bbcb446de485d5e50abeed35d0",
+      "selection_group": "CLEAR_LOW_RISK",
+      "selection_policy_version": "dataset-stage-a-pilot-selection-v1.0",
+      "selection_reason": "R1 qualified case; confirms the one-reviewer confirmation route without relying on glossary gold.",
+      "sense_id": "d2lce_9bd5113780f8e8160a24e6ad",
+      "source_payload_sha256": "e788b05adee807ad4ee28568fe2a020676b5f935371964a3b42bb7bd911b0c2c",
+      "source_term": "underflow",
+      "split": "development",
+      "stratum": "clear",
+      "term_id": "d2lce_9bd5113780f8e8160a24e6ad"
+    },
+    {
+      "boundary_context_count": 1,
+      "boundary_context_ids": [
+        "ctxx_821e879eea68458c73930916"
+      ],
+      "coverage_tags": [
+        "R2_MISSING",
+        "INSUFFICIENT_GLOSSARY_EVIDENCE",
+        "ONE_HUMAN_REVIEW"
+      ],
+      "glossary_candidate_vi": null,
+      "glossary_match_status": "GLOSSARY_MISSING",
+      "official_effective_sense_contract_emitted": false,
+      "parent_projection_sha256": "eb4af2123e08773b8ee0494e6e4e3d1bef750a0cc4864b7588551cf0b017c9be",
+      "parent_term_sense_sha256": "d46ce5e05acd519c876e5c23b91df03f10c5e18bbd41286573a654a1c7f1030f",
+      "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+      "positive_context_count": 3,
+      "positive_definition_evidence_ids": [
+        "ctx_044bf29b52339083b6accce1",
+        "ctx_df998c3c68076fd4dfeea859"
+      ],
+      "positive_pos_evidence_ids": [
+        "ctx_6143b29417b0fe55f7875c10",
+        "ctx_044bf29b52339083b6accce1"
+      ],
+      "proposed_definition_en": "the LSTM gate that controls how much memory information is exposed to the output at a time step.",
+      "proposed_part_of_speech": "noun_phrase",
+      "proposed_scope_note": null,
+      "review_requirement": "AT_LEAST_ONE_HUMAN_REVIEWER",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "risk_class": "R2_MISSING",
+      "schema_id": "D2LStageAPilotSelectedSenseV1",
+      "selected_sense_sha256": "db0c4e4bec422ee0c7439a74947f91451bdf9cb11ece6d47b6180308de503e1f",
+      "selection_group": "CLEAR_LOW_RISK",
+      "selection_policy_version": "dataset-stage-a-pilot-selection-v1.0",
+      "selection_reason": "Clear R2 missing-glossary case; tests insufficient glossary evidence while corpus evidence remains available.",
+      "sense_id": "d2lce_c6b4477a845e2e0e0e02f088",
+      "source_payload_sha256": "bd429387aab13aa9e84f31beb69e1b7f096ed93777962afde6e58880e77686f4",
+      "source_term": "output gate",
+      "split": "development",
+      "stratum": "clear",
+      "term_id": "d2lce_c6b4477a845e2e0e0e02f088"
+    },
+    {
+      "boundary_context_count": 1,
+      "boundary_context_ids": [
+        "ctxx_01a3b60f74c769d4a3b645f0"
+      ],
+      "coverage_tags": [
+        "R3_AMBIGUOUS",
+        "UNRESOLVED_POLYSEMY",
+        "TWO_HUMAN_REVIEWERS"
+      ],
+      "glossary_candidate_vi": null,
+      "glossary_match_status": "GLOSSARY_MISSING",
+      "official_effective_sense_contract_emitted": false,
+      "parent_projection_sha256": "92780fd4590ecf2b59cada22e18d6e0f45290018beb52e23126975a9c0ac4f50",
+      "parent_term_sense_sha256": "28a558c8caaf33b9a1a775d3f29d1685ac75571341a604e2f5c7d9e532e1ca66",
+      "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+      "positive_context_count": 3,
+      "positive_definition_evidence_ids": [
+        "ctx_feb069ef1ecb8e58ef71c482",
+        "ctx_5c812a90177b5b129b327432",
+        "ctx_4a985a7867b0862e601aa744"
+      ],
+      "positive_pos_evidence_ids": [
+        "ctx_feb069ef1ecb8e58ef71c482"
+      ],
+      "proposed_definition_en": "An adaptive gradient-based optimization algorithm used to train models.",
+      "proposed_part_of_speech": "proper_noun",
+      "proposed_scope_note": null,
+      "review_requirement": "TWO_DISTINCT_BLIND_HUMAN_REVIEWERS",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "risk_class": "R3_AMBIGUOUS",
+      "schema_id": "D2LStageAPilotSelectedSenseV1",
+      "selected_sense_sha256": "c6bbbbe46945ff20be32bf3051a9a376494c772b60f10db26929e3ea1695d075",
+      "selection_group": "AMBIGUOUS_POLYSEMOUS",
+      "selection_policy_version": "dataset-stage-a-pilot-selection-v1.0",
+      "selection_reason": "Known ambiguous/polysemous optimizer term requiring two blind reviewers and disagreement escalation.",
+      "sense_id": "d2lce_7ef8ed3f93210606a27312a4",
+      "source_payload_sha256": "dd62b31c8c7853379b690f4ef17c548df8f35d513acdb88cdf6ae8d306351680",
+      "source_term": "Adam",
+      "split": "development",
+      "stratum": "ambiguous",
+      "term_id": "d2lce_7ef8ed3f93210606a27312a4"
+    },
+    {
+      "boundary_context_count": 1,
+      "boundary_context_ids": [
+        "ctxx_7f072bff8c2c84e16d99964b"
+      ],
+      "coverage_tags": [
+        "R3_AMBIGUOUS",
+        "UNRESOLVED_POLYSEMY",
+        "TWO_HUMAN_REVIEWERS"
+      ],
+      "glossary_candidate_vi": null,
+      "glossary_match_status": "GLOSSARY_MISSING",
+      "official_effective_sense_contract_emitted": false,
+      "parent_projection_sha256": "ede11a714b9e1b27bfddb6f73bc22758fb8b94452a3babe0294e7ad715519102",
+      "parent_term_sense_sha256": "fb527568f3895bd37b04c6cb7ce9e74df4eb0252fb5f12b03d8670ab02c6bb71",
+      "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+      "positive_context_count": 5,
+      "positive_definition_evidence_ids": [
+        "ctx_c491125cb400cc10a6b89d1f",
+        "ctx_76220c9bc5e4ee7672fc78b2",
+        "ctx_d2b6cce11380684abd029f58"
+      ],
+      "positive_pos_evidence_ids": [
+        "ctx_80bb0597f481e29198ef67ab",
+        "ctx_57a080760ad64870f38e1944",
+        "ctx_c491125cb400cc10a6b89d1f"
+      ],
+      "proposed_definition_en": "An interactive notebook environment used to write, edit, run, and inspect code and related text or documentation.",
+      "proposed_part_of_speech": "noun_phrase",
+      "proposed_scope_note": null,
+      "review_requirement": "TWO_DISTINCT_BLIND_HUMAN_REVIEWERS",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "risk_class": "R3_AMBIGUOUS",
+      "schema_id": "D2LStageAPilotSelectedSenseV1",
+      "selected_sense_sha256": "23ed72facaae4d8a39f2d750cdd55d654f54f1e6bd7b86abe11904b88a7a9960",
+      "selection_group": "AMBIGUOUS_POLYSEMOUS",
+      "selection_policy_version": "dataset-stage-a-pilot-selection-v1.0",
+      "selection_reason": "R3 ambiguous term selected to exercise independent dual review beyond the legacy disagreement set.",
+      "sense_id": "d2lce_1a91fdded89249a5cd89ec14",
+      "source_payload_sha256": "2f8c8c6c8738ba5bf44657487e41308b0ce4803fab71c47f9b4d593b62c6b2e4",
+      "source_term": "Jupyter notebook",
+      "split": "development",
+      "stratum": "ambiguous",
+      "term_id": "d2lce_1a91fdded89249a5cd89ec14"
+    },
+    {
+      "boundary_context_count": 1,
+      "boundary_context_ids": [
+        "ctxx_074b644581723493cce06e22"
+      ],
+      "coverage_tags": [
+        "R3_AMBIGUOUS",
+        "UNRESOLVED_POLYSEMY",
+        "TWO_HUMAN_REVIEWERS"
+      ],
+      "glossary_candidate_vi": "tốc độ học",
+      "glossary_match_status": "GLOSSARY_EXACT",
+      "official_effective_sense_contract_emitted": false,
+      "parent_projection_sha256": "6649f84fb038b146d6f4c5807a2ba28f13eddfb67bc66c124a461b13467d2717",
+      "parent_term_sense_sha256": "18f27e7c043a00d9c7588b90f125eb8d5b88c1c404f30629a60edf3770bf0e3a",
+      "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+      "positive_context_count": 4,
+      "positive_definition_evidence_ids": [
+        "ctx_6c4a5e45653e72a9298bb89a",
+        "ctx_39e45ec1b48aa92cec021d14",
+        "ctx_4d3789e25e89cb28e438e10a",
+        "ctx_ac1bebe3f69e61f23a9f9382"
+      ],
+      "positive_pos_evidence_ids": [
+        "ctx_6c4a5e45653e72a9298bb89a",
+        "ctx_4d3789e25e89cb28e438e10a"
+      ],
+      "proposed_definition_en": "A training hyperparameter that controls the step size of parameter updates during optimization.",
+      "proposed_part_of_speech": "noun_phrase",
+      "proposed_scope_note": null,
+      "review_requirement": "TWO_DISTINCT_BLIND_HUMAN_REVIEWERS",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "risk_class": "R3_AMBIGUOUS",
+      "schema_id": "D2LStageAPilotSelectedSenseV1",
+      "selected_sense_sha256": "ed20aa8d9ad8e2e7609d5d4f0d2fe1ee71c09c1ece6cebff78444cae045393af",
+      "selection_group": "AMBIGUOUS_POLYSEMOUS",
+      "selection_policy_version": "dataset-stage-a-pilot-selection-v1.0",
+      "selection_reason": "R3 ambiguous term selected to exercise independent dual review and candidate competition.",
+      "sense_id": "d2lce_cc4cb853eff638abcbdf7691",
+      "source_payload_sha256": "99dc34bd50f014abd40e85821b379dcbc77da5af11680472d11f7995a3173f16",
+      "source_term": "learning rate",
+      "split": "development",
+      "stratum": "ambiguous",
+      "term_id": "d2lce_cc4cb853eff638abcbdf7691"
+    },
+    {
+      "boundary_context_count": 1,
+      "boundary_context_ids": [
+        "ctxx_81f6cec0f1edf5ca60a5d1d1"
+      ],
+      "coverage_tags": [
+        "R3_AMBIGUOUS",
+        "UNRESOLVED_POLYSEMY",
+        "TWO_HUMAN_REVIEWERS"
+      ],
+      "glossary_candidate_vi": "tiêu biến gradient",
+      "glossary_match_status": "GLOSSARY_VARIANT",
+      "official_effective_sense_contract_emitted": false,
+      "parent_projection_sha256": "112b1b6dc97c561752084facc26a37b4cc93386d286d936916a09ad69f500972",
+      "parent_term_sense_sha256": "327b2fac48fb735181415ca5e926f369bc7ed4911e522ff3d7a7bda8d6c10c4c",
+      "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+      "positive_context_count": 4,
+      "positive_definition_evidence_ids": [
+        "ctx_26abf38904bfba2529b1ab9a",
+        "ctx_69b854938dd969b726eb92a0",
+        "ctx_3c0646bacb04e52b12ad59ca"
+      ],
+      "positive_pos_evidence_ids": [
+        "ctx_26abf38904bfba2529b1ab9a",
+        "ctx_9a06089aea8285a7f38f5e36"
+      ],
+      "proposed_definition_en": "a training problem where gradients become extremely small, so parameters barely update and learning becomes difficult",
+      "proposed_part_of_speech": "noun_phrase",
+      "proposed_scope_note": null,
+      "review_requirement": "TWO_DISTINCT_BLIND_HUMAN_REVIEWERS",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "risk_class": "R3_AMBIGUOUS",
+      "schema_id": "D2LStageAPilotSelectedSenseV1",
+      "selected_sense_sha256": "49b2e3d377ca709309d16b0a498f591126ffdbdbe0f56a2d9aed2eec2d28b5ab",
+      "selection_group": "AMBIGUOUS_POLYSEMOUS",
+      "selection_policy_version": "dataset-stage-a-pilot-selection-v1.0",
+      "selection_reason": "R3 ambiguous term selected to exercise independent dual review and candidate competition.",
+      "sense_id": "d2lce_d7976d0b101e65c34c011871",
+      "source_payload_sha256": "8d2bf65077abd182860d89ccbfad4b853d341ede5a513883e33b2e4b4fdced44",
+      "source_term": "vanishing gradients",
+      "split": "development",
+      "stratum": "ambiguous",
+      "term_id": "d2lce_d7976d0b101e65c34c011871"
+    },
+    {
+      "boundary_context_count": 1,
+      "boundary_context_ids": [
+        "ctxx_36cabf1c66f9b4ec24b89888"
+      ],
+      "coverage_tags": [
+        "R3_AMBIGUOUS",
+        "UNRESOLVED_POLYSEMY",
+        "TWO_HUMAN_REVIEWERS"
+      ],
+      "glossary_candidate_vi": null,
+      "glossary_match_status": "GLOSSARY_MISSING",
+      "official_effective_sense_contract_emitted": false,
+      "parent_projection_sha256": "a42be0b25915b557258b8448c83abc76cbf7c035da4e8a2343253c38dfd6165b",
+      "parent_term_sense_sha256": "45e49cdec55003634f587d9f2076503f3678f58ab497d6cb38261bbb5dce2f4b",
+      "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+      "positive_context_count": 3,
+      "positive_definition_evidence_ids": [
+        "ctx_817ac1f3936900a301ec3337",
+        "ctx_a2831abdb2ca55617b3dda12",
+        "ctx_108640f605901673bf814009"
+      ],
+      "positive_pos_evidence_ids": [
+        "ctx_817ac1f3936900a301ec3337",
+        "ctx_108640f605901673bf814009"
+      ],
+      "proposed_definition_en": "a technique or model family that maps words to real-valued vectors for representing them in NLP",
+      "proposed_part_of_speech": "noun_phrase",
+      "proposed_scope_note": null,
+      "review_requirement": "TWO_DISTINCT_BLIND_HUMAN_REVIEWERS",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "risk_class": "R3_AMBIGUOUS",
+      "schema_id": "D2LStageAPilotSelectedSenseV1",
+      "selected_sense_sha256": "b75adfda8ef6fa22d3ce58065a5e9fd40c42982193bf2fe40d3367ada40a00bc",
+      "selection_group": "AMBIGUOUS_POLYSEMOUS",
+      "selection_policy_version": "dataset-stage-a-pilot-selection-v1.0",
+      "selection_reason": "R3 ambiguous term selected to exercise independent dual review and candidate competition.",
+      "sense_id": "d2lce_ce222dd206341f61f2986f7a",
+      "source_payload_sha256": "6882a656979177142a3673126a3f10aec87cfabccc6f5ebea5bbc701291616dd",
+      "source_term": "word embedding",
+      "split": "development",
+      "stratum": "ambiguous",
+      "term_id": "d2lce_ce222dd206341f61f2986f7a"
+    },
+    {
+      "boundary_context_count": 1,
+      "boundary_context_ids": [
+        "ctxx_0f47be35d8fd527a99998a48"
+      ],
+      "coverage_tags": [
+        "R4_SPLIT_OR_POS_RISK",
+        "MANDATORY_ADJUDICATION",
+        "WRONG_SENSE_CANDIDATE"
+      ],
+      "glossary_candidate_vi": null,
+      "glossary_match_status": "GLOSSARY_MISSING",
+      "official_effective_sense_contract_emitted": false,
+      "parent_projection_sha256": "9f391479e370ab0f9cd5fbc0cb2058f0178e103589a82282f654892b20938525",
+      "parent_term_sense_sha256": "3533fbb3762cb628d8fc29ee1a59db2f327bb1773d6d2bce7117b0782386f6e5",
+      "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+      "positive_context_count": 5,
+      "positive_definition_evidence_ids": [
+        "ctx_dd4385b29dac92b049208df2",
+        "ctx_51b702393d86c10055ec9803",
+        "ctx_f813489a437efb8e7e42d969",
+        "ctx_b28630d61d9d7f640c9a5483"
+      ],
+      "positive_pos_evidence_ids": [
+        "ctx_dd4385b29dac92b049208df2",
+        "ctx_3d152d0258e0fc757b4f6fc6",
+        "ctx_b28630d61d9d7f640c9a5483"
+      ],
+      "proposed_definition_en": "done directly on the existing object, memory, or arrangement rather than creating a separate replacement; by extension, already established or set up.",
+      "proposed_part_of_speech": "adverb",
+      "proposed_scope_note": null,
+      "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "risk_class": "R4_SPLIT_OR_POS_RISK",
+      "schema_id": "D2LStageAPilotSelectedSenseV1",
+      "selected_sense_sha256": "af9bc7af1cfa2a319c8ed3f3f76441cf87734ffbe70ed2de14e3874808a5a652",
+      "selection_group": "GATE_ADJUDICATION_RISK",
+      "selection_policy_version": "dataset-stage-a-pilot-selection-v1.0",
+      "selection_reason": "R4 known split/POS case with competing target senses; requires mandatory adjudication and wrong-sense review.",
+      "sense_id": "d2lce_2684090fd4500122fec2a334",
+      "source_payload_sha256": "235492cdd4435a09fdc1cd81c01af3509f1d84a475a1e4741f00f6de961e24a9",
+      "source_term": "in place",
+      "split": "development",
+      "stratum": "ambiguous",
+      "term_id": "d2lce_2684090fd4500122fec2a334"
+    },
+    {
+      "boundary_context_count": 1,
+      "boundary_context_ids": [
+        "ctxx_94774b666e3a5ea9bb5cba01"
+      ],
+      "coverage_tags": [
+        "R3_AMBIGUOUS",
+        "TARGET_COLLISION",
+        "WRONG_SENSE_CANDIDATE",
+        "TWO_HUMAN_REVIEWERS"
+      ],
+      "glossary_candidate_vi": null,
+      "glossary_match_status": "GLOSSARY_MISSING",
+      "official_effective_sense_contract_emitted": false,
+      "parent_projection_sha256": "52c3732b612683c48e65e993d650183c469a0555b97a026bb5f96e604a35a3d7",
+      "parent_term_sense_sha256": "323bf626611ef7602a69516df6d8cfb851505442b4ca5849169281e7c9222e7a",
+      "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+      "positive_context_count": 8,
+      "positive_definition_evidence_ids": [
+        "ctx_85c155993547287904ebb77e",
+        "ctx_ad827e72cc1bfa17dfbdadef",
+        "ctx_938a7ef4c625c0fdaa81a1ed",
+        "ctx_8d01d5c8ba8b22afa8297f86",
+        "ctx_a703c64944c46d8745b2290e",
+        "ctx_a1d30a054504f29bcb20b25b",
+        "ctx_c40b35f077d50245b79ff9f6"
+      ],
+      "positive_pos_evidence_ids": [
+        "ctx_85c155993547287904ebb77e",
+        "ctx_ad827e72cc1bfa17dfbdadef",
+        "ctx_d84189ac843db03cf9cfdc82",
+        "ctx_8d01d5c8ba8b22afa8297f86"
+      ],
+      "proposed_definition_en": "surrounding linguistic or situational settings in which something appears or is used",
+      "proposed_part_of_speech": "noun",
+      "proposed_scope_note": null,
+      "review_requirement": "TWO_DISTINCT_BLIND_HUMAN_REVIEWERS",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "risk_class": "R3_AMBIGUOUS",
+      "schema_id": "D2LStageAPilotSelectedSenseV1",
+      "selected_sense_sha256": "0fc0a5d7008487c0fcd802e1a7ade995577a892667c7309aa9114591e790d3ac",
+      "selection_group": "GATE_ADJUDICATION_RISK",
+      "selection_policy_version": "dataset-stage-a-pilot-selection-v1.0",
+      "selection_reason": "Registered target-collision and legacy adjudication case with competing candidate interpretations.",
+      "sense_id": "d2lce_382e4bbab285d56a08249753",
+      "source_payload_sha256": "e3df8e023165a473638c7e1ad071a28acf7e0363225559ee420c1973700c40c4",
+      "source_term": "contexts",
+      "split": "development",
+      "stratum": "collision_or_multi_target",
+      "term_id": "d2lce_382e4bbab285d56a08249753"
+    },
+    {
+      "boundary_context_count": 1,
+      "boundary_context_ids": [
+        "ctxx_e58b72f11fa52345b99c8a32"
+      ],
+      "coverage_tags": [
+        "R3_AMBIGUOUS",
+        "WRONG_SENSE_CANDIDATE",
+        "TWO_HUMAN_REVIEWERS"
+      ],
+      "glossary_candidate_vi": null,
+      "glossary_match_status": "GLOSSARY_MISSING",
+      "official_effective_sense_contract_emitted": false,
+      "parent_projection_sha256": "d9ed08896ae144bb7f813a1a808945122887c122dbd6b2a12a84d58bcdd646b7",
+      "parent_term_sense_sha256": "a900b47b8031cb071bd1025d30ea381fe6ddf4547ad1da5f4056f7b3f12086b0",
+      "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+      "positive_context_count": 4,
+      "positive_definition_evidence_ids": [
+        "ctx_403adb70f5312a0fa35b95be",
+        "ctx_faa4efe019d52f783381c40a",
+        "ctx_1f4f955fd892e6791b4aeef3"
+      ],
+      "positive_pos_evidence_ids": [
+        "ctx_eafeb346f16534dd44c4414d",
+        "ctx_403adb70f5312a0fa35b95be"
+      ],
+      "proposed_definition_en": "layers in which each output unit is connected to all input units from the previous layer",
+      "proposed_part_of_speech": "noun_phrase",
+      "proposed_scope_note": null,
+      "review_requirement": "TWO_DISTINCT_BLIND_HUMAN_REVIEWERS",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "risk_class": "R3_AMBIGUOUS",
+      "schema_id": "D2LStageAPilotSelectedSenseV1",
+      "selected_sense_sha256": "f69421c335c226209abfc6257c65fef3111e80cb2e4c1abb5c3ce44ad7a36ab2",
+      "selection_group": "GATE_ADJUDICATION_RISK",
+      "selection_policy_version": "dataset-stage-a-pilot-selection-v1.0",
+      "selection_reason": "Registered legacy adjudication case with competing candidate interpretations; target-collision is tested by separate collision-stratum cases.",
+      "sense_id": "d2lce_98b37a7bcb47cd2ef2e5f296",
+      "source_payload_sha256": "25458333dda44a59f1542541d906209b177987a1f41738aa6decb433a9c75c4d",
+      "source_term": "fully-connected layers",
+      "split": "development",
+      "stratum": "ambiguous",
+      "term_id": "d2lce_98b37a7bcb47cd2ef2e5f296"
+    },
+    {
+      "boundary_context_count": 1,
+      "boundary_context_ids": [
+        "ctxx_9e8a3fd79bdc855d1a7e0d33"
+      ],
+      "coverage_tags": [
+        "R3_AMBIGUOUS",
+        "TARGET_COLLISION",
+        "TWO_HUMAN_REVIEWERS"
+      ],
+      "glossary_candidate_vi": null,
+      "glossary_match_status": "GLOSSARY_MISSING",
+      "official_effective_sense_contract_emitted": false,
+      "parent_projection_sha256": "7d140ac08b2ac6386db363d0e405bc29542f82e746aac6af5db89e9363b4e04b",
+      "parent_term_sense_sha256": "76a1c81701ff2699dbc9ef154ab20132db3969f32e938db11ff66b7477082452",
+      "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+      "positive_context_count": 3,
+      "positive_definition_evidence_ids": [
+        "ctx_c42a588ea67a1ab12765c55d",
+        "ctx_8116f867673a73f0e047a71a"
+      ],
+      "positive_pos_evidence_ids": [
+        "ctx_c42a588ea67a1ab12765c55d",
+        "ctx_aff8a66e4ec4b4cda7dbdf1b"
+      ],
+      "proposed_definition_en": "a function that maps a query and key to a score used to compute attention weights.",
+      "proposed_part_of_speech": "noun_phrase",
+      "proposed_scope_note": null,
+      "review_requirement": "TWO_DISTINCT_BLIND_HUMAN_REVIEWERS",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "risk_class": "R3_AMBIGUOUS",
+      "schema_id": "D2LStageAPilotSelectedSenseV1",
+      "selected_sense_sha256": "bd4185577c4f7f1b1558c68969a918007aacaed03cb0b458e04c91d105a9f3f9",
+      "selection_group": "GATE_ADJUDICATION_RISK",
+      "selection_policy_version": "dataset-stage-a-pilot-selection-v1.0",
+      "selection_reason": "R3 collision/multi-target case selected to test target-collision handling outside the legacy set.",
+      "sense_id": "d2lce_18c3da2d5bdd6d05a83982fa",
+      "source_payload_sha256": "b8d4cf6fa62f4e54fd77a063fdd4d83ff4b922189616c7a5917ab10ae4507620",
+      "source_term": "attention scoring function",
+      "split": "development",
+      "stratum": "collision_or_multi_target",
+      "term_id": "d2lce_18c3da2d5bdd6d05a83982fa"
+    },
+    {
+      "boundary_context_count": 1,
+      "boundary_context_ids": [
+        "ctx_46209c337eb72da7b6db819f"
+      ],
+      "coverage_tags": [
+        "R3_AMBIGUOUS",
+        "INSUFFICIENT_POSITIVE_EVIDENCE",
+        "E_UNJUDGEABLE_SCENARIO",
+        "TWO_HUMAN_REVIEWERS"
+      ],
+      "glossary_candidate_vi": "năng lực thống kê",
+      "glossary_match_status": "GLOSSARY_EXACT",
+      "official_effective_sense_contract_emitted": false,
+      "parent_projection_sha256": "31ffc557218e8ae4aeb43abc12d00fd6f7163659fbd256ce7d0541612d30d44a",
+      "parent_term_sense_sha256": "9d3be6440657d17db243d3149467d9ee7ff4df32433f3a88e3a5207654cf7f38",
+      "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+      "positive_context_count": 1,
+      "positive_definition_evidence_ids": [
+        "ctx_e35e3b1e2bfeb5965b0bd614"
+      ],
+      "positive_pos_evidence_ids": [
+        "ctx_e35e3b1e2bfeb5965b0bd614"
+      ],
+      "proposed_definition_en": "the probability that a statistical test detects a real effect.",
+      "proposed_part_of_speech": "noun_phrase",
+      "proposed_scope_note": null,
+      "review_requirement": "TWO_DISTINCT_BLIND_HUMAN_REVIEWERS",
+      "review_status": "PENDING_HUMAN_REVIEW",
+      "risk_class": "R3_AMBIGUOUS",
+      "schema_id": "D2LStageAPilotSelectedSenseV1",
+      "selected_sense_sha256": "3e7a44e6dacbeae741810e55323907c12a1dca1b86dd6415d147d0c7574d7a73",
+      "selection_group": "GATE_ADJUDICATION_RISK",
+      "selection_policy_version": "dataset-stage-a-pilot-selection-v1.0",
+      "selection_reason": "Only one active real positive context; tests insufficient evidence and the E-unjudgeable escalation path.",
+      "sense_id": "d2lce_2b76c0f26436945cdf880aed",
+      "source_payload_sha256": "eb9dcf65a0bdbedbfa097e7e3890099902a1c42b8ee16ecf41b2a18b55b99d43",
+      "source_term": "statistical power",
+      "split": "development",
+      "stratum": "collision_or_multi_target",
+      "term_id": "d2lce_2b76c0f26436945cdf880aed"
+    }
+  ],
+  "schema_id": "D2LStageAPilot15SelectionReceiptV1",
+  "selected_sense_count": 15,
+  "selection_policy_version": "dataset-stage-a-pilot-selection-v1.0",
+  "selection_status": "FROZEN_FOR_REAL_HUMAN_REVIEW"
+}
