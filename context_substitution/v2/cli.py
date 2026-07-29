@@ -15,7 +15,11 @@ from context_substitution.v2.dataset.reviewed_support import (
     validate_reviewed_support_bundle,
 )
 from context_substitution.v2.evaluation.gold import evaluate_gold_cases
-from context_substitution.v2.integration.authority import validate_authority
+from context_substitution.v2.integration.authority import (
+    DEFAULT_AUTHORITY_RECEIPT_PATH,
+    validate_authority,
+    validate_authority_receipt,
+)
 from context_substitution.v2.integration.common import load_json, write_json
 from context_substitution.v2.integration.development_fixtures import (
     build_development_frozen_candidate_fixtures,
@@ -83,7 +87,12 @@ def parser() -> argparse.ArgumentParser:
     development_freeze.add_argument("--ledger", type=Path, required=True)
     development_freeze.add_argument("--output", type=Path, required=True)
 
-    commands.add_parser("authority-validate")
+    authority = commands.add_parser("authority-validate")
+    authority.add_argument(
+        "--receipt",
+        type=Path,
+        default=DEFAULT_AUTHORITY_RECEIPT_PATH,
+    )
 
     gold = commands.add_parser("gold-evaluate")
     gold.add_argument("--cases", type=Path, required=True)
@@ -111,6 +120,11 @@ def parser() -> argparse.ArgumentParser:
     release = commands.add_parser("integration-release")
     release.add_argument("--evidence-root", type=Path, required=True)
     release.add_argument("--output-directory", type=Path, required=True)
+    release.add_argument(
+        "--authority-receipt",
+        type=Path,
+        default=DEFAULT_AUTHORITY_RECEIPT_PATH,
+    )
 
     measurements = commands.add_parser("measurements-project")
     measurements.add_argument("--run", type=Path, required=True)
@@ -233,7 +247,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         return 0
     if args.command == "authority-validate":
-        _print(validate_authority())
+        _print(
+            {
+                "authority": validate_authority(),
+                "authority_receipt": validate_authority_receipt(args.receipt),
+            }
+        )
         return 0
     if args.command == "gold-evaluate":
         raw = load_json(args.cases)
@@ -276,11 +295,11 @@ def main(argv: Sequence[str] | None = None) -> int:
             output_directory=args.output_directory,
             commands=_integration_commands(),
             known_gaps=(
-                "human-reviewed frozen artifact is not available",
                 "API canary was not run",
                 "validation/test dataset splits and the full 150-sense API run were not run",
-                "Global Validator is not implemented; package set remains on HOLD",
+                "real Global pilot awaits COMPLETE E and Dataset packages",
             ),
+            authority_receipt_path=args.authority_receipt,
         )
         _print(result)
         return 0
@@ -368,8 +387,8 @@ def _integration_commands() -> tuple[str, ...]:
         "python -B -m context_substitution.v2 reviewed-support-to-runtime --source <pilot-dir> --parent-v3 <v3-dir> --source-split development --output <evidence>/pilot_input.json --receipt <evidence>/pilot_runtime_receipt.json",
         "python -B -m context_substitution.v2 fake-provider-pilot --input <evidence>/pilot_input.json --ledger-root <evidence>/fake_ledger --run-output <evidence>/fake_run.json --summary-output <evidence>/pilot_zero_api_summary.json",
         "python -B -m context_substitution.v2 replay-validate --input <evidence>/pilot_input.json --run <evidence>/fake_run.json --ledger-root <evidence>/fake_ledger --output <evidence>/replay_report.json",
-        "python -B -m context_substitution.v2 development-fixture-freeze --input <evidence>/pilot_input.json --run <evidence>/fake_run.json --ledger <evidence>/fake_ledger/provider_attempts.jsonl --output <evidence>/development_frozen_candidates.json",
-        "python -B -m context_substitution.v2 project-context-evidence --run <evidence>/fake_run.json --frozen-candidates <evidence>/development_frozen_candidates.json --ledger <evidence>/fake_ledger/provider_attempts.jsonl --output-directory <evidence>/context_evidence_packages",
+        "Dataset Adapter publishes <evidence>/frozen_candidates.json as immutable authority input",
+        "python -B -m context_substitution.v2 project-context-evidence --run <evidence>/fake_run.json --frozen-candidates <evidence>/frozen_candidates.json --ledger <evidence>/fake_ledger/provider_attempts.jsonl --output-directory <evidence>/context_evidence_packages",
     )
 
 

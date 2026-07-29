@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import hashlib
 import json
 import tempfile
 from dataclasses import dataclass
@@ -18,6 +17,9 @@ from context_substitution.v2.providers.ledger import ProviderResponseLedger
 from context_substitution.v2.runtime.calibration import validate_threshold_policy
 from context_substitution.v2.runtime.engine import run_d2l_context_substitution
 from context_substitution.v2.integration.common import seal_object
+from context_substitution.v2.integration.ledger_binding import (
+    read_content_addressed_response,
+)
 
 
 REPLAY_REPORT_SCHEMA_ID = "D2LContextSubstitutionReplayReportV1"
@@ -116,11 +118,14 @@ class _ReplayPlan:
             ref = row.get("raw_response_ref")
             if ref is None:
                 continue
-            target = root / Path(str(ref))
-            data = target.read_bytes()
-            digest = hashlib.sha256(data).hexdigest()
-            if digest != row.get("raw_response_sha256"):
-                raise ValueError(f"raw response hash mismatch at attempt {index}")
+            try:
+                read_content_addressed_response(
+                    root,
+                    str(ref),
+                    str(row.get("raw_response_sha256")),
+                )
+            except ValueError as exc:
+                raise ValueError(f"raw response invalid at attempt {index}: {exc}") from exc
             raw_count += 1
         return cls(root=root, attempts=attempts, cursor=0, raw_response_count=raw_count)
 
@@ -148,7 +153,11 @@ class _ReplayPlan:
             ref = row.get("raw_response_ref")
             if ref is None:
                 raise ConnectionError(str(row.get("failure_reason") or "replayed transport failure"))
-            text = (self.root / Path(str(ref))).read_text(encoding="utf-8")
+            text = read_content_addressed_response(
+                self.root,
+                str(ref),
+                str(row.get("raw_response_sha256")),
+            ).decode("utf-8")
             return ProviderRawResponse(
                 text=text,
                 payload=None,

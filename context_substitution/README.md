@@ -31,8 +31,17 @@ The integration-readiness layer lives under `v2/integration`. It provides a
 zero-API directory/ZIP pilot receipt, deterministic fake-provider coverage,
 content-addressed replay verification, an official decision-neutral
 `ContextEvidencePackageV1@1.1.0` producer, and a deterministic release bundle.
-The producer is pinned to local authority tag `contracts-v1.1.0`; local pilot
-packages remain on HOLD while the Global Validator is unavailable.
+The producer is pinned to local authority tag `contracts-v1.1.0`. Official
+package sets are `COMPLETE` only when their Frozen Candidates come from Dataset
+Adapter authority. Synthetic zero-API conformance sets use the distinct
+`SYNTHETIC_LOCAL_CONFORMANCE` status. Global Validator V1.1 is an active
+consumer, but C remains decision-neutral and emits no global action.
+
+RC2 admission is fail-closed: JUnit must be green with zero unexpected skips,
+the provider ledger must correspond exactly to the sealed C run, authority
+receipt hashes must match the corrected publication, and Frozen Candidates
+must come from Dataset Adapter authority. C-local test fixtures cannot enter
+official projection.
 
 This domain must not implement Vietnamese attestation, web/corpus attestation,
 Global Validator decisions, or final glossary sealing. The 150 term-sense V3

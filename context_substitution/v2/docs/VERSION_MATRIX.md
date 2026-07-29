@@ -16,9 +16,14 @@
 | Context Judge | `d2l_context_judge_v2_1` | Pinned model identity; no Gemini-only restriction |
 | Aggregation | `d2l_context_aggregate_normalized_v2_1` | Missing contrastive/type coverage cannot become eligible |
 | Raw replay | `CONTENT_ADDRESSED_V1` | Required for frozen execution |
+| Provider ledger manifest | `ContextSubstitutionProviderLedgerManifestV1` / `1.0.0` | Exact ordered run/ledger and raw-response-set binding |
 | Shared authority | `contracts-v1.1.0` / `38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed` | Official immutable C/E/Global contract authority |
 | Context evidence output | `ContextEvidencePackageV1` / `1.1.0` | Candidate/input/provenance bound; C gate signals only; final decision null |
-| Local package-set manifest | `ContextEvidencePackageSetManifestC1` / `1.0.0` | HOLD while Global Validator is unavailable |
+| Local package-set manifest | `ContextEvidencePackageSetManifestC1` / `1.1.0` | `COMPLETE` for Dataset-authority inputs; `SYNTHETIC_LOCAL_CONFORMANCE` for synthetic fixtures |
+| External consumer | Global Validator V1.1 / canonical integration `b87a1458b3bb0da20792a308769ae0da4442f7e3` | Active consumer; C does not import or inspect Global internals |
+| Finalized reviewed selection input | `D2LContextSubstitutionFinalizedReviewedSelectionV1` / `1.0.0` | Dataset authority output only; no C-side vote resolution |
+| Development candidate fixture | `ContextSubstitutionTestCandidateFixtureV1` / `1.0.0` | Test-only HOLD; cannot enter official projection |
+| Integration release audit | `ContextSubstitutionIntegrationReleaseAuditV1` / `1.1.0` | RC2 fail-closed semantic evidence gate |
 | Development threshold policy | `d2l_context_status_development_heuristic_v2_1` | Cannot authorize frozen test-set evidence |
 | Frozen threshold policy | Calibration-artifact-selected version | Requires exact calibration artifact ref/hash |
 | CLI module | `context_substitution.v2` | Validate, adapt, run, replay, project, release, and gold-evaluate |

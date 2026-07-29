@@ -4,17 +4,14 @@ from typing import Any, Mapping, Sequence
 
 from context_substitution.v2.contracts.input import validate_context_substitution_input
 from context_substitution.v2.contracts.run import validate_context_substitution_run
-from context_substitution.v2.integration.authority import (
-    canonical_sha256,
-    seal_frozen_candidate_contract,
-    validate_official_contract,
-)
+from context_substitution.v2.integration.authority import canonical_sha256
 from context_substitution.v2.integration.common import seal_object
 
 
-FIXTURE_SET_SCHEMA_ID = "ContextSubstitutionDevelopmentFrozenCandidateFixtureSetV1"
-FIXTURE_SET_SCHEMA_VERSION = "1.0.0"
+FIXTURE_SET_SCHEMA_ID = "ContextSubstitutionTestCandidateFixtureSetV1"
+FIXTURE_SET_SCHEMA_VERSION = "2.0.0"
 FIXTURE_HOLD_STATUS = "HOLD_LOCAL_CONFORMANCE_ONLY"
+CANDIDATE_FIXTURE_SCHEMA_ID = "ContextSubstitutionTestCandidateFixtureV1"
 
 
 def build_development_frozen_candidate_fixtures(
@@ -24,7 +21,7 @@ def build_development_frozen_candidate_fixtures(
     started_at: str,
     completed_at: str,
 ) -> dict[str, Any]:
-    """Build upstream-shaped fixtures for zero-API contract conformance only."""
+    """Build test-only rows that cannot validate as FrozenCandidateContractV1."""
 
     source = validate_context_substitution_input(input_payload)
     run = validate_context_substitution_run(run_payload)
@@ -84,8 +81,9 @@ def _freeze_candidate(
         "source_run_sha256": source_run_sha256,
     }
     payload = {
-        "schema_id": "FrozenCandidateContractV1",
-        "schema_version": "1.1.0",
+        "schema_id": CANDIDATE_FIXTURE_SCHEMA_ID,
+        "schema_version": "1.0.0",
+        "status": FIXTURE_HOLD_STATUS,
         "candidate_key": {
             "candidate_id": candidate["candidate_id"],
             "candidate_version": candidate_version,
@@ -132,11 +130,11 @@ def _freeze_candidate(
             "execution_config_sha256": canonical_sha256(config),
         },
         "integrity": {},
-        "input_contract_sha256": "0" * 64,
-        "binding_status": "COMPLETE",
+        "source_input_sha256": source_input_sha256,
+        "source_run_sha256": source_run_sha256,
+        "binding_status": "TEST_ONLY_NOT_AUTHORITY",
     }
-    sealed = seal_frozen_candidate_contract(payload)
-    return validate_official_contract(sealed)
+    return seal_object(payload, integrity_key="fixture_sha256")
 
 
 def _alternatives_by_term(

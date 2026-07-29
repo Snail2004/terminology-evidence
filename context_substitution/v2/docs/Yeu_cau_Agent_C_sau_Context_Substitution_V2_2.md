@@ -11,6 +11,13 @@ Generated reports được ghi ngoài source tree và chỉ đi vào release ZIP
 SHA-256. Cụm từ "chưa chạy validation/test" trong tài liệu này có nghĩa là
 chưa chạy các **dataset split** validation/test; software tests vẫn bắt buộc.
 
+**Global status supersession (2026-07-29):** Global Validator V1.1 is active on
+canonical main. Historical statements below that say Global is unavailable or
+that all 15 packages must remain on local HOLD are superseded. C still does not
+read Global internals or emit a final decision. Official Dataset-bound package
+sets may be `COMPLETE`; synthetic conformance fixtures remain explicitly
+`SYNTHETIC_LOCAL_CONFORMANCE`.
+
 ---
 
 ## 1. Mục tiêu

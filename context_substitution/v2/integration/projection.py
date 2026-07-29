@@ -19,16 +19,27 @@ from context_substitution.v2.integration.authority import (
 )
 from context_substitution.v2.integration.common import (
     file_sha256,
+    object_sha256,
     seal_object,
     write_json,
 )
-from context_substitution.v2.runtime.aggregation import compute_context_result
+from context_substitution.v2.integration.ledger_binding import (
+    build_provider_ledger_manifest,
+    validate_provider_ledger_manifest,
+)
+from context_substitution.v2.runtime.aggregation import (
+    compute_context_result,
+    merge_judge_labels,
+)
 
 
 PACKAGE_SET_SCHEMA_ID = "ContextEvidencePackageSetManifestC1"
-PACKAGE_SET_SCHEMA_VERSION = "1.0.0"
-PACKAGE_SET_HOLD_STATUS = "GLOBAL_VALIDATOR_NOT_AVAILABLE_HOLD"
+PACKAGE_SET_SCHEMA_VERSION = "1.1.0"
+PACKAGE_SET_COMPLETE_STATUS = "COMPLETE"
+PACKAGE_SET_SYNTHETIC_STATUS = "SYNTHETIC_LOCAL_CONFORMANCE"
 COMPONENT_VERSION = "2.2.0"
+PROJECTION_REPORT_SCHEMA_ID = "ContextEvidenceProjectionReportC1"
+PROJECTION_REPORT_SCHEMA_VERSION = "1.0.0"
 
 _GATE_MAP = {
     "concept_mismatch": {
@@ -54,34 +65,29 @@ def build_projection_binding_from_ledger(
 ) -> dict[str, Any]:
     run = validate_context_substitution_run(run_payload)
     path = Path(ledger_path).resolve()
-    attempts = []
-    for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
-        if not line.strip():
-            continue
-        row = json.loads(line)
-        if row.get("record_kind") == "PROVIDER_ATTEMPT":
-            attempts.append(row)
-    if not attempts:
-        raise ValueError("provider ledger has no attempt rows")
-    run_ids = {row.get("run_id") for row in attempts}
-    if len(run_ids) != 1 or not isinstance(next(iter(run_ids)), str):
-        raise ValueError("provider ledger must bind exactly one run_id")
+    manifest = build_provider_ledger_manifest(run_payload=run, ledger_path=path)
     ledger_sha = file_sha256(path)
-    return {
-        "run_id": next(iter(run_ids)),
+    binding = {
+        "schema_id": "ContextSubstitutionProjectionBindingV2",
+        "schema_version": "2.0.0",
+        "run_id": manifest["run_id"],
         "run_spec_id": "cst-v2.2:" + run["input_sha256"][:24],
-        "started_at": min(str(row["started_at"]) for row in attempts),
-        "completed_at": max(str(row["completed_at"]) for row in attempts),
+        "started_at": _ledger_time(path, minimum=True),
+        "completed_at": _ledger_time(path, minimum=False),
+        "source_run_sha256": run["integrity"]["run_sha256"],
         "raw_ledger_ref": {
             "evidence_id": "ledger_" + ledger_sha[:24],
             "evidence_type": "OTHER",
             "uri": f"artifact://ledger/{ledger_sha}/provider_attempts.jsonl",
             "sha256": ledger_sha,
         },
+        "provider_ledger_manifest": manifest,
         "authority_tag": AUTHORITY_TAG,
         "authority_commit": AUTHORITY_COMMIT,
         "contract_manifest_sha256": CONTRACT_MANIFEST_SHA256,
+        "integrity": {},
     }
+    return seal_object(binding, integrity_key="binding_sha256")
 
 
 def project_context_evidence_packages(
@@ -92,7 +98,7 @@ def project_context_evidence_packages(
 ) -> list[dict[str, Any]]:
     validate_authority()
     run = validate_context_substitution_run(run_payload)
-    normalized_binding = _validate_binding(binding)
+    normalized_binding = _validate_binding(binding, run=run)
     frozen_by_id = _validate_frozen_candidates(run, frozen_candidates)
     packages = [
         _project_candidate(
@@ -112,16 +118,23 @@ def write_context_evidence_package_set(
     frozen_candidates: Sequence[Mapping[str, Any]],
     binding: Mapping[str, Any],
     output_directory: Path,
+    package_set_status: str = PACKAGE_SET_COMPLETE_STATUS,
 ) -> dict[str, Any]:
     target = Path(output_directory).resolve()
     if target.exists() and any(target.iterdir()):
         raise ValueError("Context Evidence output directory must be empty")
     target.mkdir(parents=True, exist_ok=True)
+    if package_set_status not in {
+        PACKAGE_SET_COMPLETE_STATUS,
+        PACKAGE_SET_SYNTHETIC_STATUS,
+    }:
+        raise ValueError("Context Evidence package-set status is invalid")
     run = validate_context_substitution_run(run_payload)
+    normalized_binding = _validate_binding(binding, run=run)
     packages = project_context_evidence_packages(
         run_payload=run,
         frozen_candidates=frozen_candidates,
-        binding=binding,
+        binding=normalized_binding,
     )
     entries = []
     package_directory = target / "packages"
@@ -143,7 +156,7 @@ def write_context_evidence_package_set(
     manifest = {
         "schema_id": PACKAGE_SET_SCHEMA_ID,
         "schema_version": PACKAGE_SET_SCHEMA_VERSION,
-        "status": PACKAGE_SET_HOLD_STATUS,
+        "status": package_set_status,
         "authority_tag": AUTHORITY_TAG,
         "authority_commit": AUTHORITY_COMMIT,
         "contract_manifest_sha256": CONTRACT_MANIFEST_SHA256,
@@ -152,12 +165,48 @@ def write_context_evidence_package_set(
         "packages": entries,
         "projection_provider_call_count": 0,
         "source_run_provider_attempt_count": len(run["provider_attempts"]),
+        "provider_ledger_manifest_sha256": normalized_binding[
+            "provider_ledger_manifest"
+        ][
+            "integrity"
+        ]["manifest_sha256"],
         "final_glossary_decision": None,
         "global_gate_action": None,
         "integrity": {},
     }
     manifest = seal_object(manifest, integrity_key="manifest_sha256")
     write_json(target / "manifest.json", manifest)
+    report = {
+        "schema_id": PROJECTION_REPORT_SCHEMA_ID,
+        "schema_version": PROJECTION_REPORT_SCHEMA_VERSION,
+        "status": package_set_status,
+        "agent": "CONTEXT_SUBSTITUTION_C",
+        "authority_tag": AUTHORITY_TAG,
+        "authority_commit": AUTHORITY_COMMIT,
+        "contract_manifest_sha256": CONTRACT_MANIFEST_SHA256,
+        "source_run_sha256": run["integrity"]["run_sha256"],
+        "source_input_sha256": run["input_sha256"],
+        "package_manifest_sha256": manifest["integrity"]["manifest_sha256"],
+        "provider_ledger_manifest_sha256": manifest[
+            "provider_ledger_manifest_sha256"
+        ],
+        "package_count": len(entries),
+        "packages": [
+            {
+                "candidate_id": row["candidate_key"]["candidate_id"],
+                "input_contract_sha256": row["input_contract_sha256"],
+                "package_self_sha256": row["package_self_sha256"],
+                "physical_sha256": row["physical_sha256"],
+            }
+            for row in entries
+        ],
+        "provider_call_count": 0,
+        "final_glossary_decision": None,
+        "global_gate_action": None,
+        "integrity": {},
+    }
+    report = seal_object(report, integrity_key="report_sha256")
+    write_json(target / "projection_report.json", report)
     return manifest
 
 
@@ -193,19 +242,39 @@ def _project_candidate(
     return validate_official_contract(seal_official_contract(package))
 
 
-def _validate_binding(value: Mapping[str, Any]) -> dict[str, Any]:
+def _validate_binding(
+    value: Mapping[str, Any], *, run: Mapping[str, Any]
+) -> dict[str, Any]:
     required = {
+        "schema_id",
+        "schema_version",
         "run_id",
         "run_spec_id",
         "started_at",
         "completed_at",
+        "source_run_sha256",
         "raw_ledger_ref",
+        "provider_ledger_manifest",
         "authority_tag",
         "authority_commit",
         "contract_manifest_sha256",
+        "integrity",
     }
     if set(value) != required:
         raise ValueError("projection binding fields differ from the sealed contract")
+    if value["schema_id"] != "ContextSubstitutionProjectionBindingV2" or value[
+        "schema_version"
+    ] != "2.0.0":
+        raise ValueError("projection binding schema mismatch")
+    integrity = value.get("integrity")
+    if not isinstance(integrity, Mapping) or set(integrity) != {"binding_sha256"}:
+        raise ValueError("projection binding integrity is invalid")
+    identity = dict(value)
+    identity["integrity"] = {}
+    if integrity["binding_sha256"] != object_sha256(identity):
+        raise ValueError("projection binding self-hash mismatch")
+    if value["source_run_sha256"] != run["integrity"]["run_sha256"]:
+        raise ValueError("projection binding source run mismatch")
     if value["authority_tag"] != AUTHORITY_TAG:
         raise ValueError("projection authority tag mismatch")
     if value["authority_commit"] != AUTHORITY_COMMIT:
@@ -223,7 +292,36 @@ def _validate_binding(value: Mapping[str, Any]) -> dict[str, Any]:
         "sha256",
     }:
         raise ValueError("projection raw ledger reference is invalid")
+    ledger_sha = ledger.get("sha256")
+    if (
+        ledger.get("evidence_type") != "OTHER"
+        or not isinstance(ledger_sha, str)
+        or len(ledger_sha) != 64
+        or ledger.get("uri")
+        != f"artifact://ledger/{ledger_sha}/provider_attempts.jsonl"
+    ):
+        raise ValueError("projection raw ledger reference binding is invalid")
+    manifest = validate_provider_ledger_manifest(
+        value["provider_ledger_manifest"], run_payload=run
+    )
+    if manifest["run_id"] != value["run_id"]:
+        raise ValueError("projection binding run_id differs from ledger manifest")
+    if manifest["ledger_physical_sha256"] != ledger["sha256"]:
+        raise ValueError("projection binding ledger hash mismatch")
     return dict(value)
+
+
+def _ledger_time(path: Path, *, minimum: bool) -> str:
+    values = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        row = json.loads(line)
+        if row.get("record_kind") == "PROVIDER_ATTEMPT":
+            values.append(str(row["started_at"] if minimum else row["completed_at"]))
+    if not values:
+        raise ValueError("provider ledger has no attempt rows")
+    return min(values) if minimum else max(values)
 
 
 def _validate_frozen_candidates(
@@ -370,7 +468,9 @@ def _gate_signals(
         for row in candidate["context_results"]
         for flag in row["local_hard_flags"]
     }
-    all_refs = _all_evidence_refs(candidate, support)
+    evidence_by_id = {
+        row["evidence_id"]: row for row in _all_evidence_refs(candidate, support)
+    }
     signals = []
     flags = []
     for gate_id in _GATE_ORDER:
@@ -384,7 +484,15 @@ def _gate_signals(
         ]:
             reasons = reasons or ["INCOMPLETE_CONTEXT_TYPE_COVERAGE"]
         asserted = bool(reasons)
-        evidence_refs = all_refs if asserted else []
+        evidence_refs = (
+            _gate_evidence_refs(
+                gate_id,
+                candidate=candidate,
+                evidence_by_id=evidence_by_id,
+            )
+            if asserted
+            else []
+        )
         signals.append(
             {
                 "gate_id": gate_id,
@@ -403,6 +511,79 @@ def _gate_signals(
                 }
             )
     return signals, flags
+
+
+def _gate_evidence_refs(
+    gate_id: str,
+    *,
+    candidate: Mapping[str, Any],
+    evidence_by_id: Mapping[str, Mapping[str, str]],
+) -> list[dict[str, str]]:
+    if gate_id in {"concept_mismatch", "wrong_sense", "contradiction"}:
+        triggering = [
+            str(row["context_id"])
+            for row in candidate["context_results"]
+            if set(row["local_hard_flags"]) & _GATE_MAP[gate_id]
+        ]
+        refs = [dict(evidence_by_id[value]) for value in triggering if value in evidence_by_id]
+        return sorted(refs, key=lambda row: row["evidence_id"])
+    if gate_id == "judge_disagreement":
+        triggering = [
+            str(row["context_id"])
+            for row in candidate["context_results"]
+            if _judge_result_disagrees(row)
+        ]
+        refs = [dict(evidence_by_id[value]) for value in triggering if value in evidence_by_id]
+        return sorted(refs, key=lambda row: row["evidence_id"])
+    if gate_id == "insufficient_evidence":
+        diagnostic = {
+            "candidate_id": candidate["candidate_id"],
+            "valid_context_ids": sorted(
+                str(row["context_id"]) for row in candidate["context_results"]
+            ),
+            "excluded_context_ids": sorted(
+                str(row["context_id"]) for row in candidate["excluded_contexts"]
+            ),
+        }
+        return [_diagnostic_ref(candidate, "coverage", diagnostic)]
+    support_diagnostic = {
+        "candidate_id": candidate["candidate_id"],
+        "selected_same_sense_context_ids": sorted(
+            str(row["context_id"]) for row in candidate["context_results"]
+        ),
+        "selected_contrastive_context_ids": sorted(
+            str(value) for value in candidate["selected_contrastive_context_ids"]
+        ),
+        "missing_same_sense_context_types": sorted(
+            str(value) for value in candidate["missing_same_sense_context_types"]
+        ),
+    }
+    return [_diagnostic_ref(candidate, "support-set", support_diagnostic)]
+
+
+def _judge_result_disagrees(row: Mapping[str, Any]) -> bool:
+    secondary = row.get("secondary_judge")
+    if secondary is None:
+        return False
+    secondary_output = secondary["output"]
+    if secondary_output["judgeability"] != "JUDGEABLE":
+        return True
+    primary_label = compute_context_result(row["primary_judge"]["output"])[1]
+    secondary_label = compute_context_result(secondary_output)[1]
+    return merge_judge_labels(primary_label, secondary_label)[1]
+
+
+def _diagnostic_ref(
+    candidate: Mapping[str, Any], name: str, value: Mapping[str, Any]
+) -> dict[str, str]:
+    digest = object_sha256(value)
+    candidate_id = str(candidate["candidate_id"])
+    return {
+        "evidence_id": f"{name.replace('-', '_')}_{digest[:24]}",
+        "evidence_type": "SUPPORT_SET" if name == "support-set" else "OTHER",
+        "uri": f"artifact://candidate/{candidate_id}/{name}/{digest}",
+        "sha256": digest,
+    }
 
 
 def _all_evidence_refs(
@@ -481,7 +662,7 @@ def _provenance(
         ],
         "source_artifact_hashes": source_artifacts,
         "raw_ledger_ref": binding["raw_ledger_ref"],
-        "notes": "C evidence only; Global Validator unavailable and no global action emitted.",
+        "notes": "C evidence only; Global Validator input compatible; no global action emitted.",
         "run_spec_id": binding["run_spec_id"],
         "execution_config_sha256": canonical_sha256(policy),
     }

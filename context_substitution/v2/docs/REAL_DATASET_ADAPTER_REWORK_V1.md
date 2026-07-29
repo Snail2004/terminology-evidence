@@ -3,8 +3,10 @@
 ## Scope
 
 This rework closes the Context Substitution C adapter boundary only. It does
-not implement Vietnamese Attestation E, web evidence, the Global Terminology
-Validator, or a final glossary decision.
+not implement Vietnamese Attestation E, web evidence, Global Validator
+internals, or a final glossary decision. Global Validator V1.1 is now an active
+consumer of official shared packages; C only emits the contract-conformant,
+decision-neutral `ContextEvidencePackageV1@1.1.0` input assigned to it.
 
 ## Accepted source artifacts
 
@@ -32,8 +34,9 @@ and verified physical hashes.
 
 `MODEL_CLASSIFICATION_DEVELOPMENT` invokes the candidate-neutral selector and
 cannot claim human authority. `FROZEN_HUMAN_REVIEWED_SELECTION` consumes only
-the immutable reviewed rows bound by the review and effective-sense artifact
-hashes; it does not call the selector model.
+`D2LContextSubstitutionFinalizedReviewedSelectionV1` issued by Dataset
+Review/Adjudication Authority. C never reads raw reviewer votes, calculates a
+2-of-3 majority, or performs adjudication.
 
 The current review pack remains `STAGE_A_HUMAN_REVIEW_PENDING`. It is valid
 input for human review but is not accepted as a frozen Context Substitution
@@ -65,8 +68,12 @@ artifact and content-addressed response ledger.
 `integration-release` are zero-API integration commands. Generated evidence
 must be written outside the source tree. The projection command emits official
 `ContextEvidencePackageV1@1.1.0` payloads pinned to `contracts-v1.1.0`. The
-development fixture freezer is conformance-only; its packages remain on HOLD
-and cannot be treated as reviewed Frozen Candidate authority.
+development fixture freezer now emits a test-only schema which official
+projection rejects. `project-context-evidence` requires Dataset-issued
+`FrozenCandidateContractV1` rows. See `INTEGRATION_DEPENDENCIES_V1.md`.
+Official package sets are labeled `COMPLETE`; synthetic zero-API conformance
+sets are labeled `SYNTHETIC_LOCAL_CONFORMANCE` and cannot enter an integration
+release.
 
 ## Fail-closed behavior
 
@@ -76,6 +83,10 @@ and cannot be treated as reviewed Frozen Candidate authority.
 - fake/zero calibration hashes or precision below the registered floor;
 - missing frozen reviewed context rows;
 - missing raw provider response storage in frozen execution;
+- foreign, subset, extra, reordered, or drifted provider ledger attempts;
+- raw response path traversal, absolute paths, or symlink escape;
+- failing/empty JUnit or semantically inconsistent release evidence;
+- C-local Frozen Candidate fixtures entering official projection;
 - missing contrastive context or incomplete C1-C5 coverage becoming globally
   eligible;
 - any final glossary decision emitted by this adapter.

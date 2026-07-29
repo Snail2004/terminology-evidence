@@ -12,20 +12,27 @@ from pathlib import Path
 from typing import Any, Iterable
 from xml.etree import ElementTree
 
+from context_substitution.v2.integration.authority import (
+    DEFAULT_AUTHORITY_RECEIPT_PATH,
+)
 from context_substitution.v2.integration.common import file_sha256, seal_object, write_json
+from context_substitution.v2.integration.release_validation import (
+    validate_integration_evidence,
+)
 
 
-RELEASE_NAME = "context_substitution_v2_2_integration_rc"
+RELEASE_NAME = "context_substitution_v2_2_integration_rc2"
 RELEASE_SCHEMA_ID = "ContextSubstitutionIntegrationReleaseAuditV1"
-RELEASE_SCHEMA_VERSION = "1.0.0"
+RELEASE_SCHEMA_VERSION = "1.1.0"
 
 _REQUIRED_EVIDENCE = (
     "junit.xml",
     "pilot_adapter_receipt.json",
     "pilot_runtime_receipt.json",
     "pilot_zero_api_summary.json",
-    "development_frozen_candidates.json",
+    "frozen_candidates.json",
     "context_evidence_packages/manifest.json",
+    "context_evidence_packages/projection_report.json",
     "replay_report.json",
     "fake_run.json",
     "pilot_input.json",
@@ -44,6 +51,8 @@ def build_integration_release(
     output_directory: Path,
     commands: Iterable[str],
     known_gaps: Iterable[str],
+    authority_receipt_path: Path = DEFAULT_AUTHORITY_RECEIPT_PATH,
+    expected_allowed_skips: int = 0,
 ) -> dict[str, Any]:
     source_root = Path(source_root).resolve()
     evidence_root = Path(evidence_root).resolve()
@@ -56,6 +65,14 @@ def build_integration_release(
     ledger_root = evidence_root / "fake_ledger"
     if not (ledger_root / "provider_attempts.jsonl").is_file():
         raise ValueError("provider attempt ledger is missing")
+    junit = ElementTree.parse(evidence_root / "junit.xml").getroot()
+    junit_summary = _junit_summary(junit)
+    semantic_validation = validate_integration_evidence(
+        evidence_root=evidence_root,
+        junit_summary=junit_summary,
+        authority_receipt_path=authority_receipt_path,
+        expected_allowed_skips=expected_allowed_skips,
+    )
 
     staging = output_directory / RELEASE_NAME
     if staging.exists():
@@ -79,6 +96,18 @@ def build_integration_release(
         ledger_root / "provider_attempts.jsonl",
         staging / "evidence" / "provider_attempts.jsonl",
     )
+    shutil.copy2(
+        authority_receipt_path,
+        staging / "evidence" / "authority_receipt.json",
+    )
+    shutil.copy2(
+        evidence_root / "context_evidence_packages" / "projection_report.json",
+        staging / "evidence" / "contract_projection_report.json",
+    )
+    write_json(
+        staging / "evidence" / "provider_ledger_manifest.json",
+        semantic_validation["provider_ledger_manifest"],
+    )
 
     (staging / "commands.txt").write_text(
         "\n".join(commands) + "\n", encoding="utf-8", newline="\n"
@@ -99,8 +128,6 @@ def build_integration_release(
         raise ValueError("release scan failed")
 
     inventory = _inventory(staging)
-    junit = ElementTree.parse(staging / "evidence" / "junit.xml").getroot()
-    junit_summary = _junit_summary(junit)
     audit = {
         "schema_id": RELEASE_SCHEMA_ID,
         "schema_version": RELEASE_SCHEMA_VERSION,
@@ -116,6 +143,11 @@ def build_integration_release(
         "provider_call_count": 0,
         "final_glossary_decision": None,
         "contract_authority_status": "ADOPTED_CONTRACTS_V1_1_0",
+        "semantic_evidence_validation": {
+            key: value
+            for key, value in semantic_validation.items()
+            if key != "provider_ledger_manifest"
+        },
         "known_gaps": sorted(set(known_gaps)),
         "file_inventory": inventory,
         "integrity": {},
