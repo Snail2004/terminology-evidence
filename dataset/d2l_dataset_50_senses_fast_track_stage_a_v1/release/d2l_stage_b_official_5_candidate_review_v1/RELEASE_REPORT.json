@@ -1,0 +1,33 @@
+{
+  "authority_commit": "7fd046cc6a9b8f78fd122549feaefa4b2ab83821",
+  "candidate_count": 15,
+  "created_at": "2026-07-29T14:00:00Z",
+  "final_glossary_decision": null,
+  "final_gold_label_count": 0,
+  "handoffs": [
+    {
+      "case_count": 15,
+      "reviewer_slot": "reviewer_1",
+      "zip_path": "handoff/reviewer_1.zip",
+      "zip_sha256": "e5001595cc2d1e649a5f42bbe646ebef0abd566ad98296dfbeef96df60127f28"
+    },
+    {
+      "case_count": 15,
+      "reviewer_slot": "reviewer_2",
+      "zip_path": "handoff/reviewer_2.zip",
+      "zip_sha256": "3f5f78e7a58bf71f9b7aa90a1d9faf2dfc77efef5a44a844c0ed0231e870011b"
+    }
+  ],
+  "integrity": {
+    "self_sha256": "24d1aeba69094404e7f9633655bb29896a5d495ff08662b0be5631290a8e33f3"
+  },
+  "judgments_required": 30,
+  "official_manifest_sha256": "16bd2b9c7a974bdccfb977384fa1a35381e6e810c110f489f31d1606398ce2f5",
+  "policy_id": "d2l-stage-b-official-5-candidate-review-v1.0",
+  "provider_call_count": 0,
+  "reviewer_count": 2,
+  "schema_id": "D2LStageBOfficial5ReviewReportV1",
+  "schema_version": "1.0.0",
+  "sense_count": 5,
+  "status": "READY_FOR_STAGE_B_REVIEW"
+}

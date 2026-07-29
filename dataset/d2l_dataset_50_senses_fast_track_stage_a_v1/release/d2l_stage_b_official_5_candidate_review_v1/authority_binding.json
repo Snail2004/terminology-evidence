@@ -1,0 +1,8 @@
+{
+  "authority_commit": "7fd046cc6a9b8f78fd122549feaefa4b2ab83821",
+  "official_manifest_sha256": "16bd2b9c7a974bdccfb977384fa1a35381e6e810c110f489f31d1606398ce2f5",
+  "official_release_zip_sha256": "9b6a9ee1272b6403054b61f5399d4391328d1d2d8a964b1102af0a2656bc2738",
+  "policy_id": "d2l-stage-b-official-5-candidate-review-v1.0",
+  "schema_id": "D2LStageBAuthorityBindingV1",
+  "source_document_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f"
+}
