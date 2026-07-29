@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Mapping
@@ -9,7 +10,9 @@ from typing import Any, Mapping
 from .approval_binding import VerifiedApprovalBinding, verify_approval_binding
 from .contracts_verifier import (
     ContractVerifierEvidence,
+    PRODUCTION_CANONICAL,
     PublicContractR2Verifier,
+    R2_MODULE_FILE_COUNT,
     RECEIPT_PHYSICAL_SHA256,
     RECEIPT_SELF_SHA256,
 )
@@ -63,6 +66,7 @@ class AuthoritySet:
     contract_tree_git_oid: str | None
     r2_publication_commit: str | None
     r2_module_tree_git_oid: str | None
+    r2_module_file_count: int | None
     contract_version: str
     receipt_revision: int | None
     contracts_manifest_sha256: str
@@ -99,6 +103,7 @@ class AuthoritySet:
             "contract_tree_git_oid": self.contract_tree_git_oid,
             "r2_publication_commit": self.r2_publication_commit,
             "r2_module_tree_git_oid": self.r2_module_tree_git_oid,
+            "r2_module_file_count": self.r2_module_file_count,
             "contract_version": self.contract_version,
             "receipt_revision": self.receipt_revision,
             "contracts_manifest_sha256": self.contracts_manifest_sha256,
@@ -212,8 +217,10 @@ def resolve_authority(
     contract_verifier: PublicContractR2Verifier | None = None,
 ) -> AuthoritySet:
     receipt_path = receipt_path.resolve()
-    contracts_root = contracts_root.resolve()
-    repository_root = (repository_root or contracts_root.parent).resolve()
+    contracts_root = Path(os.path.abspath(os.fspath(contracts_root)))
+    repository_root = Path(
+        os.path.abspath(os.fspath(repository_root or contracts_root.parent))
+    )
     if not receipt_path.is_file() or not contracts_root.is_dir():
         raise AuthorityError("authority receipt/contracts root is unavailable")
     action_policy = (
@@ -239,8 +246,23 @@ def resolve_authority(
     if authority_mode == CONTRACTS_R2_CURRENT:
         if approval_root is None:
             raise AuthorityError("current R2 authority requires detached AR-1 approval")
-        verifier = contract_verifier or PublicContractR2Verifier(repository_root, contracts_root)
+        verifier = contract_verifier or PublicContractR2Verifier(
+            repository_root, contracts_root
+        )
+        if (
+            type(verifier) is not PublicContractR2Verifier
+            or not verifier.is_production_for(repository_root, contracts_root)
+        ):
+            raise AuthorityError(
+                "current R2 authority requires the canonical production Contract verifier"
+            )
         verifier_evidence = verifier.verify(receipt_path)
+        if (
+            verifier_evidence.execution_boundary != PRODUCTION_CANONICAL
+            or verifier_evidence.contracts_tree_git_oid != R2_MODULE_TREE_OID
+            or verifier_evidence.reviewed_file_count != R2_MODULE_FILE_COUNT
+        ):
+            raise AuthorityError("production Contract verifier tree binding mismatch")
         approval = verify_approval_binding(approval_root)
         expected_receipt = {
             "schema_id": "TerminologyContractsAuthorityReceiptV1",
@@ -268,7 +290,11 @@ def resolve_authority(
             raise AuthorityError("R2 authority receipt exact hash mismatch")
         if approval.payload["receipt_canonical_self_sha256"] != receipt_self or approval.payload["receipt_physical_sha256"] != receipt_physical:
             raise AuthorityError("AR-1 approval does not bind the active R2 receipt")
-        if approval.payload["authority_commit"] != R2_PUBLICATION_COMMIT or approval.payload["authority_module_tree_git_oid"] != R2_MODULE_TREE_OID:
+        if (
+            approval.payload["authority_commit"] != R2_PUBLICATION_COMMIT
+            or approval.payload["authority_module_tree_git_oid"]
+            != verifier_evidence.contracts_tree_git_oid
+        ):
             raise AuthorityError("AR-1 approval R2 publication binding mismatch")
         release_root = contracts_root / "release" / "v1.1.0-final"
         release_manifest = load_json(release_root / "release_manifest.json", require_object=True)
@@ -302,7 +328,8 @@ def resolve_authority(
             authority_commit=AUTHORITY_COMMIT,
             contract_tree_git_oid=TAGGED_CONTRACT_TREE_OID,
             r2_publication_commit=R2_PUBLICATION_COMMIT,
-            r2_module_tree_git_oid=R2_MODULE_TREE_OID,
+            r2_module_tree_git_oid=verifier_evidence.contracts_tree_git_oid,
+            r2_module_file_count=verifier_evidence.reviewed_file_count,
             contract_version=CONTRACT_VERSION,
             receipt_revision=2,
             contracts_manifest_sha256=contract_files["manifest_self"],
@@ -351,6 +378,7 @@ def resolve_authority(
             contract_tree_git_oid=None,
             r2_publication_commit=None,
             r2_module_tree_git_oid=None,
+            r2_module_file_count=None,
             contract_version=contract_version,
             receipt_revision=None,
             contracts_manifest_sha256=contract_files["manifest_self"],

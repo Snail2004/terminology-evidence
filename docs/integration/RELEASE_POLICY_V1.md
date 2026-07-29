@@ -12,11 +12,15 @@ requires all of the following to agree exactly:
 
 - the official public Contract R2 verifier report;
 - the pinned R2 receipt and distribution artifacts;
+- the canonical active Contracts Git subtree, exact reviewed tree OID, clean
+  subtree status, and absence of symlink/junction/reparse members;
 - the detached accepted AR-1 binding and its exact six-member evidence root;
 - the separately reviewed Global action policy and authority sidecar.
 
 The Harness seals these public inputs into each run and revalidates them before
 semantic replay. No filename-based or automatic fallback from R2 to R1 exists.
+No caller-supplied verifier command or conformance fixture can establish R2
+authority.
 The exact resealed R1 receipt is accepted only for a run that already records
 `CONTRACTS_R1_HISTORICAL_REPLAY` in its sealed run specification.
 

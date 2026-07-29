@@ -3,6 +3,17 @@
   "status": "PASS",
   "classification": "COMMON_BINDING_UPDATE",
   "architecture_change": false,
+  "p0_ar3_1": {
+    "status": "CLOSED",
+    "finding": "production authority previously reported the reviewed module tree without verifying the active Contracts checkout",
+    "closure": [
+      "repository and Contracts roots are bound to the checkout containing the Harness",
+      "R2 publication ancestry and reviewed subtree OID are verified with Git",
+      "active Contracts subtree status must be clean",
+      "Contracts tree reparse members are rejected",
+      "custom verifier commands are non-production and rejected by current-R2 admission"
+    ]
+  },
   "canonical_main_commit": "7094ee007a1edb2d77ffeb2ab984af5977cec103",
   "harness_base_commit": "bb063c6519bf368bebff7d1e2b29cef50dc6d82b",
   "integration_merge_commit": "a4445d55db06ab9dd63cef3531e5783ebb5926f1",
@@ -10,6 +21,9 @@
     "authority_mode": "CONTRACTS_R2_CURRENT",
     "receipt_revision": 2,
     "public_contract_verifier": "PASS",
+    "contract_verifier_execution_boundary": "PRODUCTION_CANONICAL",
+    "active_contracts_tree_git_oid": "938bca1f9c60596ef9403a43f0355476ad42afef",
+    "active_contracts_reviewed_file_count": 227,
     "sealed_receipt_checksum_sidecar": true,
     "detached_ar1": "ACCEPTED_FOR_AUTHORITY_PROMOTION",
     "global_action_policy_binding": "SEPARATE_REVIEWED_SIDECAR"
@@ -30,7 +44,8 @@
   },
   "adversarial_gate_status": "PASS",
   "compatibility_gates": {
-    "system_integration_harness": "22 passed, 31 subtests passed",
+    "system_integration_harness": "26 passed, 33 subtests passed",
+    "focused_r2_and_replay": "14 passed, 27 subtests passed",
     "terminology_contracts_v1": "113 passed, 2 skipped",
     "global_validator_v1": "80 passed",
     "vietnamese_attestation_v1": "75 passed",

@@ -22,7 +22,11 @@
     "AR-1 renamed and case-confusable members reject",
     "AR-1 symlink and reparse members reject",
     "Global action-policy authority sidecar drift rejects",
-    "R1 cannot start or replace a current-R2 run"
+    "R1 cannot start or replace a current-R2 run",
+    "external copied Contracts root with active schema drift and fake verifier rejects",
+    "exact fake verifier report remains non-production and cannot authorize R2",
+    "active Contracts Git worktree drift rejects",
+    "Contracts repository parent and root reparse paths reject"
   ],
   "provider_network_calls": 0
 }

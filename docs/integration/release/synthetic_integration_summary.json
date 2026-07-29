@@ -31,8 +31,8 @@
     "automatic_fallback": false
   },
   "harness_test_result": {
-    "pytest_tests_passed": 22,
-    "unittest_subtests_passed": 31,
+    "pytest_tests_passed": 26,
+    "unittest_subtests_passed": 33,
     "failures": 0
   },
   "real_pilot_status": "REAL_PILOT_NOT_EXECUTED",

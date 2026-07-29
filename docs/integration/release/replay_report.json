@@ -14,6 +14,8 @@
       "evidence_kind": "R2_COMMON_BINDING_CONFORMANCE",
       "authority_mode": "CONTRACTS_R2_CURRENT",
       "compatibility_mode": "NONE",
+      "contracts_tree_git_oid": "938bca1f9c60596ef9403a43f0355476ad42afef",
+      "contract_verifier_execution_boundary": "PRODUCTION_CANONICAL",
       "candidate_count": 1,
       "semantic_replay": "PUBLIC_CLI_REPLAY_PASS",
       "sealed_public_contract_verifier_report": true,

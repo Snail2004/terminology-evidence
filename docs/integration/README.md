@@ -13,7 +13,11 @@ Global Validator owns the final action and decision.
 - `CONTRACTS_R2_CURRENT`: the only authority admitted for a new real
   development run. It requires the exact public Contract R2 verifier result,
   exact R2 distribution pins, the detached accepted AR-1 directory, and the
-  separately reviewed Global action-policy sidecar.
+  separately reviewed Global action-policy sidecar. The Contracts root must be
+  the exact `terminology_contracts_v1` subtree of the checkout containing the
+  Harness; its active Git tree must equal reviewed tree
+  `938bca1f9c60596ef9403a43f0355476ad42afef`, with no tracked or untracked
+  worktree drift.
 - `CONTRACTS_R1_HISTORICAL_REPLAY`: accepted only when an existing sealed run
   explicitly records this compatibility mode and the exact resealed R1
   receipt. It cannot start a run and is never inferred as a fallback.
@@ -22,6 +26,10 @@ The detached AR-1 evidence is consumed read-only from
 `review_evidence/contracts/contracts-v1.1.0/authority-r2/`. The Harness rejects
 missing, additional, renamed, swapped, tampered, case-confusable, symlink, or
 reparse-point members before package consumption.
+
+The production Contract verifier is selected only from that verified tree.
+Custom commands and exact-report fakes are labeled
+`NON_PRODUCTION_CONFORMANCE` and cannot establish `CONTRACTS_R2_CURRENT`.
 
 ## V1 execution modes
 

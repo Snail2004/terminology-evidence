@@ -9,7 +9,10 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from integration_harness.contracts_verifier import PublicContractR2Verifier
+from integration_harness.contracts_verifier import (
+    NON_PRODUCTION_CONFORMANCE,
+    PublicContractR2Verifier,
+)
 from integration_harness.hashing import self_sha256, sha256_bytes, sha256_file
 from integration_harness.jsonio import canonical_bytes, dump_json, load_json, without_self_hash
 from integration_harness.paths import relative_posix
@@ -195,6 +198,7 @@ def fake_contract_verifier(repo_root: Path) -> PublicContractR2Verifier:
                 / "public_contract_verifier.py"
             ),
         ),
+        execution_boundary=NON_PRODUCTION_CONFORMANCE,
     )
 
 

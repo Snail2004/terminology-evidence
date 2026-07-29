@@ -15,6 +15,10 @@ from integration_harness.authority import (
     CONTRACTS_R2_CURRENT,
     resolve_authority,
 )
+from integration_harness.contracts_verifier import (
+    NON_PRODUCTION_CONFORMANCE,
+    PublicContractR2Verifier,
+)
 from integration_harness.errors import AuthorityError
 from integration_harness.hashing import self_sha256
 from integration_harness.jsonio import dump_json, load_json
@@ -49,7 +53,6 @@ class R2CommonBindingTests(unittest.TestCase):
                 action_policy_authority or fixture["action_policy_authority"]
             ),
             authority_mode=authority_mode,
-            contract_verifier=fake_contract_verifier(root),
         )
 
     def test_exact_r2_and_detached_approval_pass(self) -> None:
@@ -63,11 +66,116 @@ class R2CommonBindingTests(unittest.TestCase):
             action_policy_path=fixture["action_policy"],
             action_policy_authority_path=fixture["action_policy_authority"],
             authority_mode=CONTRACTS_R2_CURRENT,
-            contract_verifier=fake_contract_verifier(root),
         )
         self.assertEqual(authority.receipt_revision, 2)
+        self.assertEqual(authority.r2_module_file_count, 227)
         self.assertEqual(authority.approval.payload["approval_status"], "ACCEPTED_FOR_AUTHORITY_PROMOTION")
         self.assertEqual(authority.compatibility_mode, "NONE")
+
+    def test_nonproduction_exact_report_cannot_authorize_current_r2(self) -> None:
+        root = Path.cwd()
+        fixture = self._fixture(root)
+        verifier = fake_contract_verifier(root)
+        evidence = verifier.verify(fixture["r2_receipt"])
+        self.assertEqual(evidence.execution_boundary, NON_PRODUCTION_CONFORMANCE)
+        with self.assertRaisesRegex(AuthorityError, "canonical production"):
+            resolve_authority(
+                fixture["r2_receipt"],
+                fixture["contracts"],
+                repository_root=root,
+                approval_root=fixture["approval_root"],
+                action_policy_path=fixture["action_policy"],
+                action_policy_authority_path=fixture["action_policy_authority"],
+                authority_mode=CONTRACTS_R2_CURRENT,
+                contract_verifier=verifier,
+            )
+
+    def test_external_drifted_contracts_root_with_fake_wrapper_rejects(self) -> None:
+        root = Path.cwd()
+        fixture = self._fixture(root)
+        with tempfile.TemporaryDirectory() as directory:
+            external = Path(directory) / "terminology_contracts_v1"
+            shutil.copytree(fixture["contracts"], external)
+            schema = external / "schemas" / "current" / "attestation_evidence_package.schema.json"
+            schema.write_bytes(schema.read_bytes() + b"\n")
+            fake_wrapper = (
+                root
+                / "tests"
+                / "system_integration"
+                / "fixtures"
+                / "public_contract_verifier.py"
+            )
+            shutil.copyfile(
+                fake_wrapper,
+                external
+                / "release"
+                / "authority_maintenance_v1"
+                / "tools"
+                / "verify_authority_receipt.py",
+            )
+            from integration_harness import contracts_verifier as verifier_module
+
+            with self.assertRaisesRegex(AuthorityError, "reviewed Git blob"):
+                verifier_module._verify_active_contracts_files(root, external)
+            with self.assertRaisesRegex(AuthorityError, "canonical repository subtree"):
+                resolve_authority(
+                    fixture["r2_receipt"],
+                    external,
+                    repository_root=root,
+                    approval_root=fixture["approval_root"],
+                    action_policy_path=fixture["action_policy"],
+                    action_policy_authority_path=fixture["action_policy_authority"],
+                    authority_mode=CONTRACTS_R2_CURRENT,
+                )
+
+    def test_active_contracts_git_drift_rejects(self) -> None:
+        root = Path.cwd()
+        verifier = PublicContractR2Verifier(root, root / "terminology_contracts_v1")
+        from integration_harness import contracts_verifier as verifier_module
+
+        original_git = verifier_module._git
+
+        def drifted_git(repository_root, args, *, allow_nonzero=False):
+            result = original_git(
+                repository_root, args, allow_nonzero=allow_nonzero
+            )
+            if args and args[0] == "status":
+                return SimpleNamespace(
+                    returncode=0,
+                    stdout=" M terminology_contracts_v1/schemas/current/attestation_evidence_package.schema.json\n",
+                    stderr="",
+                )
+            return result
+
+        with patch(
+            "integration_harness.contracts_verifier._git",
+            side_effect=drifted_git,
+        ), self.assertRaisesRegex(AuthorityError, "worktree differs"):
+            verifier.verify_production_checkout()
+
+    def test_contracts_parent_and_root_reparse_reject(self) -> None:
+        root = Path.cwd()
+        contracts_root = root / "terminology_contracts_v1"
+        original = os.lstat
+
+        for target in (root, contracts_root):
+            verifier = PublicContractR2Verifier(root, contracts_root)
+
+            def fake_lstat(path):
+                value = original(path)
+                if Path(path) == target:
+                    return SimpleNamespace(
+                        st_mode=value.st_mode,
+                        st_file_attributes=getattr(value, "st_file_attributes", 0)
+                        | 0x400,
+                    )
+                return value
+
+            with self.subTest(target=target), patch(
+                "integration_harness.contracts_verifier.os.lstat",
+                side_effect=fake_lstat,
+            ), self.assertRaisesRegex(AuthorityError, "reparse path"):
+                verifier.verify_production_checkout()
 
     def test_all_six_resealed_r2_drifts_reject(self) -> None:
         root = Path.cwd()

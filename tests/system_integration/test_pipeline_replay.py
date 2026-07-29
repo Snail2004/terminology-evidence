@@ -20,7 +20,7 @@ from integration_harness.jsonio import dump_json, load_json
 from integration_harness.pipeline import execute_run
 from integration_harness.replay import replay_run
 
-from .helpers import fake_contract_verifier, make_fixture_repo, reseal_test_run
+from .helpers import make_fixture_repo, reseal_test_run
 
 
 class PipelineReplayTests(unittest.TestCase):
@@ -67,7 +67,6 @@ class PipelineReplayTests(unittest.TestCase):
             fixture = make_fixture_repo(root, work / "fixture", 1)
             adapter = self._global_adapter(root, fixture)
             adapter.authority_receipt = fixture["r2_receipt"]
-            verifier = fake_contract_verifier(root)
             run_dir = execute_run(
                 manifest_path=fixture["manifest"],
                 authority_receipt=fixture["r2_receipt"],
@@ -79,7 +78,6 @@ class PipelineReplayTests(unittest.TestCase):
                 output_dir=work / "r2-run",
                 run_id="integration-r2-001",
                 mode="REAL_DEVELOPMENT_ZERO_NETWORK",
-                contract_verifier=verifier,
                 adapter=adapter,
                 repository_root=root,
             )
@@ -94,7 +92,6 @@ class PipelineReplayTests(unittest.TestCase):
             replay = replay_run(
                 run_dir,
                 adapter=adapter,
-                contract_verifier=verifier,
                 repository_root=root,
                 contracts_root=fixture["contracts"],
             )
@@ -114,7 +111,6 @@ class PipelineReplayTests(unittest.TestCase):
                     with self.assertRaises(ReplayError):
                         replay_run(
                             mutated,
-                            contract_verifier=verifier,
                             repository_root=root,
                             contracts_root=fixture["contracts"],
                         )
