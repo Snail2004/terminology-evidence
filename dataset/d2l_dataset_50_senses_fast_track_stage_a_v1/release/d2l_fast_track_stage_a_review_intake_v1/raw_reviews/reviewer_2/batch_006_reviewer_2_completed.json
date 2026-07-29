@@ -1,0 +1,766 @@
+{
+  "batch_id": "batch_006",
+  "cases": [
+    {
+      "review": {
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "The eligible contexts consistently use mean squared error as a loss, objective, or estimator metric and explicitly relate it to averaging squared prediction error. This supports the proposed definition, noun-phrase POS, scope, and all three Vietnamese formulations. The synthetic boundary row was not used as positive evidence.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_a6d5cf26bae3db5051520575",
+            "candidate_slot": "candidate_slot_55d1dffb4a6401f64324849e",
+            "candidate_target_vi": "trung bình bình phương sai số"
+          },
+          {
+            "candidate_id": "candidate_d1f71f26b2cfccffa627fccf",
+            "candidate_slot": "candidate_slot_afd7ed0adc778a0c5d7f0cf1",
+            "candidate_target_vi": "lỗi bình phương trung bình"
+          },
+          {
+            "candidate_id": "candidate_13429a6d5699c1e0ff2b409d",
+            "candidate_slot": "candidate_slot_cc75565945602f370ade268e",
+            "candidate_target_vi": "sai số bình phương trung bình"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_linear_networks_linear_regression_b084",
+            "boundary_only": false,
+            "chapter_id": "d2l_linear_networks",
+            "content_sha256": "5b1b4b50630bd774c3ff93dc913eb19dfee4544cc1159309d6e7bd50c2db04af",
+            "context_id": "ctx_21ccd6b472be7b8886dfc5ba",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "mean squared error",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_9c5552295878e1132f15cae3",
+            "source_text": "It follows that minimizing the mean squared error\nis equivalent to maximum likelihood estimation\nof a linear model under the assumption of additive Gaussian noise.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_mf_b009",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "c7c6924af61c856974089dcb73da38db40d80da8bb0caf4439c94a3bbd76f90b",
+            "context_id": "ctx_51976c239578153593bf6e10",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_DEFINITION_PROPOSAL"
+            ],
+            "matched_surface": "mean squared error",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_d8950c623215eaf562a15e68",
+            "source_text": "Then, we train the matrix factorization model by minimizing the mean squared error between predicted rating scores and real rating scores.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_linear_networks_linear_regression_concise_b045",
+            "boundary_only": false,
+            "chapter_id": "d2l_linear_networks",
+            "content_sha256": "5f0eca31dfec6fff44585a2de3e814c5e9243979861b6970da09a196685efd6a",
+            "context_id": "ctx_85127e11fd3023a9623643bf",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "mean squared error",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_316daaef04d2ffbc1b88e0cf",
+            "source_text": ":begin_tab:`tensorflow`\nThe `MeanSquaredError` class computes the mean squared error (without the $1/2$ factor in :eqref:`eq_mse`).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_statistics_b014",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+            "content_sha256": "c374011c3a8a2b08580629812ca7560bf0e205177415833d7e4fb42554c0d126",
+            "context_id": "ctx_8773b84dd0e7621c8e9964bc",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_DEFINITION_PROPOSAL"
+            ],
+            "matched_surface": "mean squared error",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_15c9bbe2fb148188a88cfd9b",
+            "source_text": "In this section, we introduce three common methods to evaluate and compare estimators: the mean squared error, the standard deviation, and statistical bias.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_statistics_b015",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+            "content_sha256": "e782f0ddfee1571d294416129aecbce273a244d2641f609a22166222dcb9390f",
+            "context_id": "ctx_a3b09c164d6fc85a35c1c018",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "mean squared error",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_11a03925daf16b0cf05b8b90",
+            "source_text": "### Mean Squared Error",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_linear_networks_linear_regression_b076",
+            "boundary_only": false,
+            "chapter_id": "d2l_linear_networks",
+            "content_sha256": "12d7249c5d8c531e2a8b380f11b0223a066b1fd48c7d5dab385f1c7d3a42dcb7",
+            "context_id": "ctx_aa9bf66af57b4d0277adf479",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "mean squared error",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_03ae04a98853f9ea82372fde",
+            "source_text": "One way to motivate linear regression with the mean squared error loss function (or simply squared loss)\nis to formally assume that observations arise from noisy observations,\nwhere the noise is normally distributed as follows:",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_linear_networks_linear_regression_concise_b044",
+            "boundary_only": false,
+            "chapter_id": "d2l_linear_networks",
+            "content_sha256": "9598c343b8433c6d5a394f6cf837c05de99410e7a098000e143921693aab2ab2",
+            "context_id": "ctx_d54f045d576ae356763b52df",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "mean squared error",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_7d9fe437e922fd0510a7b653",
+            "source_text": ":begin_tab:`pytorch`\n[**The `MSELoss` class computes the mean squared error (without the $1/2$ factor in :eqref:`eq_mse`).**]\nBy default it returns the average loss over examples.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_linear_networks_softmax_regression_b035",
+            "boundary_only": false,
+            "chapter_id": "d2l_linear_networks",
+            "content_sha256": "c992e61143ba4f3910595d2577a6ac54d9d94d117b07b229fec7195dba7ac67d",
+            "context_id": "ctx_f394e4eeabb8358a5b205328",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "mean squared error",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_490dd188ba8c24634b04eec0",
+            "source_text": "We will rely on maximum likelihood estimation,\nthe very same concept that we encountered\nwhen providing a probabilistic justification\nfor the mean squared error objective in linear regression\n(:numref:`subsec_normal_distribution_and_squared_loss`).",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "2dc6ef7e79875141a2b040abe84a7567ebb49884d77f9260d04a06d8b0a0735f",
+            "context_id": "ctxx_ad0c031ce4d8893e1d1ad1ee",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "mean squared error",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: In this note, mean squared error refers to prediction error, not to the mean of arbitrary squared numbers.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_5292c35d30feeea584c806c1",
+        "proposed_definition_en": "The average of squared differences between predicted or estimated values and the true values, used as an error metric or loss.",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+        "risk_class": "R3_AMBIGUOUS",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_49603071e9c21eb4bcbdf1e7",
+        "source_sense_pool_record_sha256": "2c1a2e172bfe546fc7fe4e9279c0dc7e1066d49e0afde34d51c80ac3048cfe48",
+        "source_term": "mean squared error",
+        "stratum": "ambiguous",
+        "term_id": "d2lce_49603071e9c21eb4bcbdf1e7"
+      },
+      "source_payload_sha256": "fbf1a0a929abf473db8ca8eacdb056b3e3d9487aa015df6270dd3058716eee5f"
+    },
+    {
+      "review": {
+        "candidate_replacements": [
+          {
+            "candidate_id": "candidate_0735ea1d9a238c8c02b954ac",
+            "candidate_slot": "candidate_slot_da64e59629a8d1131600fea2",
+            "replacement_target_vi": "chuẩn toán học"
+          }
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "The eligible contexts support the mathematical norm sense through p-norm, L1, L2, and gradient-norm uses; the add-and-norm row is correctly boundary-only. The definition, noun POS, and scope are supported. However, 'chuẩn hóa độ dài' denotes a normalization operation rather than the norm itself, so that candidate should be replaced with 'chuẩn toán học'.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "REVISION_REQUIRED"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_efaa38299ea84f8507065603",
+            "candidate_slot": "candidate_slot_67717a7a8f43f1dbd9e888fb",
+            "candidate_target_vi": "chuẩn"
+          },
+          {
+            "candidate_id": "candidate_e3d9283d0e0d001486b0eaad",
+            "candidate_slot": "candidate_slot_721ec016982e8effa4842931",
+            "candidate_target_vi": "các chuẩn"
+          },
+          {
+            "candidate_id": "candidate_0735ea1d9a238c8c02b954ac",
+            "candidate_slot": "candidate_slot_da64e59629a8d1131600fea2",
+            "candidate_target_vi": "chuẩn hóa độ dài"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_attention_mechanisms_transformer_b022",
+            "boundary_only": true,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "478dbb53683f5f8a317d29b557abe290e3b8f4e8e7f5514d8421eda29e0174af",
+            "context_id": "ctx_08b62bef2e6aa8d336e45cb8",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "norm",
+            "positive_evidence_eligible": false,
+            "sentence_id": "sentence_269b0ae368c8cef42f28ec07",
+            "source_text": "Now let us focus on\nthe \"add & norm\" component in :numref:`fig_transformer`.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_weight_decay_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "2ee4bf0fd3b8e387c6636ecf07a4b4643dbc332829b028ab4ebb78831f2db81d",
+            "context_id": "ctx_3637a629ea39c9358f83dfd8",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "norms",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_477bb7c89e0c4f2c2a671fcf",
+            "source_text": "## Norms and Weight Decay",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_optimization_convexity_b097",
+            "boundary_only": false,
+            "chapter_id": "d2l_optimization",
+            "content_sha256": "94c4859d5b34ef6f55ee436734b80000a038d50f146c2c07c24cdc34f5e9ddec",
+            "context_id": "ctx_8668691d65db41f7ae5d3e67",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "norm",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_4f0d47d44cad83cbe2c42ed4",
+            "source_text": "Denote by $\\mathcal{B}_p[r] \\stackrel{\\mathrm{def}}{=} \\{\\mathbf{x} | \\mathbf{x} \\in \\mathbb{R}^d \\text{ and } \\|\\mathbf{x}\\|_p \\leq r\\}$ the ball of radius $r$ using the $p$-norm.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_preliminaries_linear_algebra_b155",
+            "boundary_only": false,
+            "chapter_id": "d2l_preliminaries",
+            "content_sha256": "4b50cae7fdfde2faee80f580dcb2723e7d67d04a7743d626473c8c337e153541",
+            "context_id": "ctx_9ffc871958a632f807c9d3f7",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "norms",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_08e7f1d9d6579fdf2e12ffd3",
+            "source_text": "## Norms\n:label:`subsec_lin-algebra-norms`",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_neural_networks_rnn_scratch_b058",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_neural_networks",
+            "content_sha256": "cb66cbc5b9e9728b3419d9dd891019e4db3953870ed4e277bc625b96bea48e71",
+            "context_id": "ctx_a20bb02df73cb967f9453f6c",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "norm",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_6c7bdd7be5edcf6da13a4905",
+            "source_text": "By doing so we know that the gradient norm never exceeds $\\theta$ and that the\nupdated gradient is entirely aligned with the original direction of $\\mathbf{g}$.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_notation_index_b008",
+            "boundary_only": false,
+            "chapter_id": "d2l_notation",
+            "content_sha256": "9dd8f9b830ae81f33b9b41093676f578294ee1239e4c1287ce1613c5dd43738b",
+            "context_id": "ctx_d8032e46013fa0aad8a8e8f9",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "norm",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_ccd68dd16a68a1e6a6cf0b7b",
+            "source_text": "* $f(\\cdot)$: a function\n* $\\log(\\cdot)$: the natural logarithm (base $e$)\n* $\\log_2(\\cdot)$: logarithm with base $2$\n* $\\exp(\\cdot)$: the exponential function\n* $\\mathbf{1}(\\cdot)$: the indicator function, evaluates to $1$ if the boolean argument is true and $0$ otherwise\n* $\\mathbf{1}_{\\mathcal{X}}(z)$: the set-membership indicator function, evaluates to $1$ if the element $z$ belongs to the set $\\mathcal{X}$ and $0$ otherwise\n* $\\mathbf{(\\cdot)}^\\top$: transpose of a vector or a matrix\n* $\\mathbf{X}^{-1}$: inverse of matrix $\\mathbf{X}$\n* $\\odot$: Hadamard (elementwise) product\n* $[\\cdot, \\cdot]$: concatenation\n* $\\|\\cdot\\|_p$: $L_p$ norm\n* $\\|\\cdot\\|$: $L_2$ norm\n* $\\langle \\mathbf{x}, \\mathbf{y} \\rangle$: dot product of vectors $\\mathbf{x}$ and $\\mathbf{y}$\n* $\\sum$: summation over a collection of elements\n* $\\prod$: product over a collection of elements\n* $\\stackrel{\\mathrm{def}}{=}$: an equality asserted as a definition of the symbol on the left-hand side",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_deep_learning_computation_model_construction_b053",
+            "boundary_only": false,
+            "chapter_id": "d2l_deep_learning_computation",
+            "content_sha256": "207575e5b9bd9fea1295c992d3aef3ce9c6cc3ac204de19fc505221896191ef3",
+            "context_id": "ctx_f8a8c5c0211fed297689abc4",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_DEFINITION_PROPOSAL"
+            ],
+            "matched_surface": "norm",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_cb19533dd1c7717193825451",
+            "source_text": "We ran a while-loop, testing\non the condition its $L_1$ norm is larger than $1$,\nand dividing our output vector by $2$\nuntil it satisfied the condition.",
+            "synthetic": false
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_d193548c74aafa0a6e73e3f5",
+        "proposed_definition_en": "A mathematical function that measures the size or length of a vector, matrix, or related object.",
+        "proposed_part_of_speech": "noun",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_3e633e212e54590ca20bfc99",
+        "source_sense_pool_record_sha256": "fb593510ffdc4470fb3629fe176f59e33e9e697100c29ed24f81708d437388b8",
+        "source_term": "norm",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_3e633e212e54590ca20bfc99"
+      },
+      "source_payload_sha256": "e7fda5a8e0e7401401b68dde5aec2e77403c5d7e67fa742b72e373a4ef41a4be"
+    },
+    {
+      "review": {
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "The eligible contexts consistently describe a minibatch as a relatively small group of examples processed together, including an explicit matrix of n examples and minibatch SGD. This supports the proposed definition, noun POS, scope, and the Vietnamese singular, plural, and alternative technical forms. The synthetic boundary row was not used as positive evidence.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_da595c9a22208fdbd8aea71b",
+            "candidate_slot": "candidate_slot_63f336ef4b5d8e352c1ce2a5",
+            "candidate_target_vi": "lô nhỏ"
+          },
+          {
+            "candidate_id": "candidate_19a9b06dcd2cacdeb3252f10",
+            "candidate_slot": "candidate_slot_a239502c516c96a73972690a",
+            "candidate_target_vi": "các lô nhỏ"
+          },
+          {
+            "candidate_id": "candidate_cb98d1c7268b4b3c7445b42f",
+            "candidate_slot": "candidate_slot_a25c1f020a5a1cbda674c106",
+            "candidate_target_vi": "tiểu lô"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_convolutional_modern_batch_norm_b008",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_modern",
+            "content_sha256": "54a11cbc10b8474b340c0f3cfcb79da6099a6720aca2b244e98e1126b549c3d0",
+            "context_id": "ctx_0365fe98277f3f0623b7477b",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "minibatch",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_46902e8a5d68c09937044890",
+            "source_text": "Batch normalization is applied to individual layers\n(optionally, to all of them) and works as follows:\nIn each training iteration,\nwe first normalize the inputs (of batch normalization)\nby subtracting their mean and\ndividing by their standard deviation,\nwhere both are estimated based on the statistics of the current minibatch.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_lenet_b009",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "b77b5ca7d619e040ff55ab5a62e9eabb930ddceb4c038df1eca2ea270c904ada",
+            "context_id": "ctx_07f682f0725bb71453b6f6c0",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "minibatch",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_b394ff2cbfff9b2a07852ac0",
+            "source_text": "In order to pass output from the convolutional block\nto the dense block,\nwe must flatten each example in the minibatch.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_deep_learning_computation_use_gpu_b074",
+            "boundary_only": false,
+            "chapter_id": "d2l_deep_learning_computation",
+            "content_sha256": "41b34e8c9386314e138060c69eabfd55ccaf1366d05df49b02c4e1da32e284ff",
+            "context_id": "ctx_4323c72305899d396f01af5d",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "minibatch",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_dfe7e9f3b9a7fbd8e39d3462",
+            "source_text": "A typical mistake is as follows: computing the loss\n  for every minibatch on the GPU and reporting it back\n  to the user on the command line (or logging it in a NumPy `ndarray`)\n  will trigger a global interpreter lock which stalls all GPUs.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_neural_networks_language_models_and_dataset_b043",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_neural_networks",
+            "content_sha256": "0d0c957fd7982b76526c302b8763746724b70fc72c7605af789907fc27d122ce",
+            "context_id": "ctx_5ab34383333d1d2b61729c04",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "minibatches",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_8fdf151fce6576e00bebb5d1",
+            "source_text": "Now the question is how to [**read minibatches of features and labels at random.**]",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_introduction_index_b134",
+            "boundary_only": false,
+            "chapter_id": "d2l_introduction",
+            "content_sha256": "ab2ddf7cdc8b094db5736609b8a21bf1d6f72f108d6cfafb425359a78547b0a8",
+            "context_id": "ctx_9d859bd559e44bb8d2a5c8c9",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "minibatches",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_ef38d43fece9684cca7f6d3a",
+            "source_text": "One of the key challenges in designing scalable algorithms\n  is that the workhorse of deep learning optimization,\n  stochastic gradient descent, relies on relatively\n  small minibatches of data to be processed.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_preliminaries_linear_algebra_b057",
+            "boundary_only": false,
+            "chapter_id": "d2l_preliminaries",
+            "content_sha256": "9f839ed5cf0daed8291290eacaefa5c7634b77f08259c4fc9321bbc2c21bfb93",
+            "context_id": "ctx_a7783902acdf15b7a77e6d41",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "minibatches",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_4d82b6d795f372ac864e5dd3",
+            "source_text": "For example, along the outermost axis of a tensor,\nwe can access or enumerate minibatches of data examples,\nor just data examples if no minibatch exists.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_linear_networks_linear_regression_b036",
+            "boundary_only": false,
+            "chapter_id": "d2l_linear_networks",
+            "content_sha256": "f52725f68df2e1536f8454b28d74e7c777bfe5df220f86bca0a48197ab437f1c",
+            "context_id": "ctx_c84f58f5911e68e47bc8ede6",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "minibatch",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_e8bf90267115e77d2a1b5cf7",
+            "source_text": "### Minibatch Stochastic Gradient Descent",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_mlp_b015",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "0178c4fa75a4442f7dddb977ff3aa704f24553088aeb1c68a5e48f322a7c454d",
+            "context_id": "ctx_deac78418a7fa068946c9bc4",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "minibatch",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_476ca9b318e5e147d0d343d2",
+            "source_text": "As before, by the matrix $\\mathbf{X} \\in \\mathbb{R}^{n \\times d}$,\nwe denote a minibatch of $n$ examples where each example has $d$ inputs (features).",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "b323997758b4f726a543b83540301e6fc17b395622c006a68af6878e98cc05b4",
+            "context_id": "ctxx_f724d6b043cdd8671450f959",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "minibatch",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: In printing, a minibatch means a small production run rather than a group of training examples.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_7818a78f3ac786586fea9212",
+        "proposed_definition_en": "a small batch of training examples processed together in one step of learning or computation",
+        "proposed_part_of_speech": "noun",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+        "risk_class": "R3_AMBIGUOUS",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_04b7107b328dedc7c1f9af65",
+        "source_sense_pool_record_sha256": "031c44775ff74eea0d30f0ce92d2501ad7c96e613e6afdbfd24e6de9f8b8d44e",
+        "source_term": "minibatch",
+        "stratum": "ambiguous",
+        "term_id": "d2lce_04b7107b328dedc7c1f9af65"
+      },
+      "source_payload_sha256": "c806df10d5fb8e0806bf095994d40c3c1e702ad395dd9f5b4248cbe4fde34763"
+    },
+    {
+      "review": {
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "The eligible evidence states that pooling layers aggregate adjacent spatial information, reduce location sensitivity, downsample representations, and contain no learnable parameters or kernel. This directly supports the proposed definition, noun-phrase POS, scope, and the Vietnamese translated and borrowed forms. The synthetic boundary row was not used as positive evidence.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_f7acd79e9a0cccb16169b268",
+            "candidate_slot": "candidate_slot_ca6e8193ad8f2d476ad915ca",
+            "candidate_target_vi": "lớp gộp"
+          },
+          {
+            "candidate_id": "candidate_a17d27ba34e4fe72d21bc2c7",
+            "candidate_slot": "candidate_slot_d692d820151e1bbd458c57c6",
+            "candidate_target_vi": "lớp pooling"
+          },
+          {
+            "candidate_id": "candidate_aa91896dc83d1cbba4b6e434",
+            "candidate_slot": "candidate_slot_f392f2439203d22023356379",
+            "candidate_target_vi": "các lớp gộp"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_convolutional_neural_networks_index_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "797545d4829d49809c4ef85ee3d9c7449e00ed9ce8b949f0b99dbcb71e1abd60",
+            "context_id": "ctx_2caa9497e1430c49c9c6179e",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "pooling layers",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_27f3e0ec9d14cbd6108f4db0",
+            "source_text": "These include the convolutional layers themselves,\nnitty-gritty details including padding and stride,\nthe pooling layers used to aggregate information\nacross adjacent spatial regions,\nthe use of multiple channels  at each layer,\nand a careful discussion of the structure of modern architectures.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_pooling_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "1160598f4c397f2f1c9f0d88da51ab9591637e2435dbddf68d5b64bef299c58b",
+            "context_id": "ctx_5b2b6c454358b72cbc4ddf00",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "pooling layers",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_941aa096fd000cb48174287b",
+            "source_text": "This section introduces *pooling layers*,\nwhich serve the dual purposes of\nmitigating the sensitivity of convolutional layers to location\nand of spatially downsampling representations.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_modern_alexnet_b030",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_modern",
+            "content_sha256": "b8e246c6d8ac0309d5fcc50f263996b07c8a9ebab650e7ac4f6df7acefb32e08",
+            "context_id": "ctx_5e4de4eeef8a8e535e757172",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "pooling layers",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_c1c90ab7150e644dbb1ac3b5",
+            "source_text": "In addition, after the first, second, and fifth convolutional layers,\nthe network adds maximum pooling layers\nwith a window shape of $3\\times3$ and a stride of 2.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b014",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "0a66f436bd5b1c95f0d496e2940acceffb42d5a4ecfa5a9418e9a4edda8e0552",
+            "context_id": "ctx_8e23dd2d6763c4ee696bb066",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "pooling layers",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_b55a324b907b8b68eff4c103",
+            "source_text": "Therefore,\nwhat sets attention mechanisms\napart from those fully-connected layers\nor pooling layers\nis the inclusion of the volitional cues.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_multiple_gpus_concise_b006",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "1998a6454eaafc72a9b11c49ca215151a570b5d09ab94b81eb764af53635d7d4",
+            "context_id": "ctx_d73510d8bcc8b4db2d674358",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "pooling layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_b516e0a42690610a51f17a7a",
+            "source_text": "Moreover, we remove the maximum pooling layer.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_applications_sentiment_analysis_cnn_b032",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_applications",
+            "content_sha256": "12a8e34f321e4505893fc4f3c12a943cc69c986847402292a56f3d90538b3a33",
+            "context_id": "ctx_e3ef71ac342723539664fb0b",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "pooling layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_820abc6e937af3309b4ea931",
+            "source_text": "```{.python .input}\nclass TextCNN(nn.Block):\n    def __init__(self, vocab_size, embed_size, kernel_sizes, num_channels,\n                 **kwargs):\n        super(TextCNN, self).__init__(**kwargs)\n        self.embedding = nn.Embedding(vocab_size, embed_size)\n        # The embedding layer not to be trained\n        self.constant_embedding = nn.Embedding(vocab_size, embed_size)\n        self.dropout = nn.Dropout(0.5)\n        self.decoder = nn.Dense(2)\n        # The max-over-time pooling layer has no parameters, so this instance\n        # can be shared\n        self.pool = nn.GlobalMaxPool1D()\n        # Create multiple one-dimensional convolutional layers\n        self.convs = nn.Sequential()\n        for c, k in zip(num_channels, kernel_sizes):\n            self.convs.add(nn.Conv1D(c, k, activation='relu'))\n\n    def forward(self, inputs):\n        # Concatenate two embedding layer outputs with shape (batch size, no.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_pooling_b007",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "1380fb16c434d14438701f4f28f514b0598fdf246e760239eea91564e6735dd5",
+            "context_id": "ctx_f99c821572f5bad6256c826c",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "pooling layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_e481d0edda25cce783e740d2",
+            "source_text": "However, unlike the cross-correlation computation\nof the inputs and kernels in the convolutional layer,\nthe pooling layer contains no parameters (there is no *kernel*).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_image_augmentation_b020",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "2323f76c26e50c0e4c5b31551a3841ab4f5d45e071adec1869dcd0a633ae1610",
+            "context_id": "ctx_fc7040b8bb11e8f5908a5b2e",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "pooling layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_4653b3c6257b67742ac39817",
+            "source_text": "In :numref:`sec_pooling`, we explained that the pooling layer can reduce the sensitivity of a convolutional layer to the target position.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "375ab55dd1b963105accbcd83206cd52bf0cd25a12ef90abab82c94023ab524f",
+            "context_id": "ctxx_72700cb3a60e1d3db06d223e",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "pooling layer",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: The resort's pooling layer is the final tile coating applied inside the swimming pool.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_fc8d0e74dc4a319c3d5a4b01",
+        "proposed_definition_en": "a neural network layer that aggregates nearby values, typically reducing spatial sensitivity and downsampling without learnable kernel parameters",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_2b9f63478b6ef59511a4f930",
+        "source_sense_pool_record_sha256": "eff3042bbf5c66aca9d5df67a28cf47a02d73d9f3066cd19d1cb16bd06ce3689",
+        "source_term": "pooling layer",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_2b9f63478b6ef59511a4f930"
+      },
+      "source_payload_sha256": "37996ffa99d8fe427e0b8bdb60da3436e5b84aa4d6b6d495f47d0fe31ecbb8f3"
+    }
+  ],
+  "independence_requirement": "DO_NOT_VIEW_OTHER_REVIEWER_OUTPUTS",
+  "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_REVIEW_FIELDS_FILLED",
+  "reviewer_slot": "reviewer_2",
+  "schema_id": "D2LFastTrackStageAReviewerInputV1",
+  "schema_version": "1.0.0",
+  "source_input_sha256": "1fc55ff42c6f6f6b3a8bfdb1a23dbb6bf5d5930a1526d896f54c60c6ddf00d52"
+}

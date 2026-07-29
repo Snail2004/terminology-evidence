@@ -1,0 +1,944 @@
+{
+  "batch_id": "batch_005",
+  "cases": [
+    {
+      "review": {
+        "candidate_replacements": [
+          "cổng nhập",
+          "cổng đầu vào LSTM"
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Ngữ cảnh thực xác nhận input gate điều tiết lượng dữ liệu mới đi vào memory cell. “một cổng đầu vào” mang từ hạn định và “các cổng đầu vào” sai số nhiều đối với term-sense số ít; nên thay bằng hai phương án được đề xuất.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "REVISION_REQUIRED"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_617eda7ff1b327bb29e87721",
+            "candidate_slot": "candidate_slot_2158e1d655f0614f27b25976",
+            "candidate_target_vi": "một cổng đầu vào"
+          },
+          {
+            "candidate_id": "candidate_ef1b5a0693c5a2a06c8d894b",
+            "candidate_slot": "candidate_slot_ac3c06b33cdca07209d4ce66",
+            "candidate_target_vi": "các cổng đầu vào"
+          },
+          {
+            "candidate_id": "candidate_122cf2846721613042bbc36c",
+            "candidate_slot": "candidate_slot_c8696990af4a53bfafef386b",
+            "candidate_target_vi": "cổng đầu vào"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_recurrent_modern_lstm_b008",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "90b884665dd6ee49dfa5fee913f093b60d52f116cc3d78195ba9b97803f2cebb",
+            "context_id": "ctx_55d21390aec0ff7a7336858a",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_fcdc03178a1ddc209508d444",
+            "source_text": "Correspondingly, the gates at time step $t$\nare defined as follows: the input gate is $\\mathbf{I}_t \\in \\mathbb{R}^{n \\times h}$, the forget gate is $\\mathbf{F}_t \\in \\mathbb{R}^{n \\times h}$, and the output gate is $\\mathbf{O}_t \\in \\mathbb{R}^{n \\times h}$.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_lstm_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "b3c049aeabeabb53e9775b793ce86f1addf8e527937ad51b8a8c2d6dd3fdbcd1",
+            "context_id": "ctx_6a19e08d950ca7bef8fb4c89",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_677a13b6f66d36d6302a385a",
+            "source_text": "### Input Gate, Forget Gate, and Output Gate",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_lstm_b020",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "5dca5c30d09667c90ed8c7f0378328b9f18139891b58d13735d880f3e42c7028",
+            "context_id": "ctx_6c0d6d0d558005aaf9be6fc3",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_d9eab84c98c32b0f1e563a2d",
+            "source_text": "If the forget gate is always approximately 1 and the input gate is always approximately 0, the past memory cells $\\mathbf{C}_{t-1}$ will be saved over time and passed to the current time step.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_lstm_b007",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "8786cd0135697b270c7b754861ef2c97fb7f7333492b0c23b14c1d7b01335a01",
+            "context_id": "ctx_9ee60265b7c99b18fa9a46f2",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_233f5dae07761e1a4528c1bc",
+            "source_text": "![Computing the input gate, the forget gate, and the output gate in an LSTM model.](../img/lstm-0.svg)\n:label:`lstm_0`",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_lstm_b018",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "b6c117b8b37e9b704e6fbc4f4b730b800b7f0673a3041b285c24e89abc732c85",
+            "context_id": "ctx_a7c81a70b68bbf602ecfbeab",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_DEFINITION_PROPOSAL"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_5eee1983829a0a9512ac9b20",
+            "source_text": "Similarly,\nin LSTMs we have two dedicated gates for such purposes: the input gate $\\mathbf{I}_t$ governs how much we take new data into account via $\\tilde{\\mathbf{C}}_t$ and the forget gate $\\mathbf{F}_t$ addresses how much of the old memory cell content $\\mathbf{C}_{t-1} \\in \\mathbb{R}^{n \\times h}$ we retain.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_lstm_b037",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "f87dae16c4798192b496b3fc0c93b3e30bc95a6ff23a95a4bd14cff3c0fa96e4",
+            "context_id": "ctx_b2ecc4429423fc36a19369d3",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_82a449631f50a21335913618",
+            "source_text": "```{.python .input}\ndef get_lstm_params(vocab_size, num_hiddens, device):\n    num_inputs = num_outputs = vocab_size\n\n    def normal(shape):\n        return np.random.normal(scale=0.01, size=shape, ctx=device)\n\n    def three():\n        return (normal((num_inputs, num_hiddens)),\n                normal((num_hiddens, num_hiddens)),\n                np.zeros(num_hiddens, ctx=device))\n\n    W_xi, W_hi, b_i = three()  # Input gate parameters\n    W_xf, W_hf, b_f = three()  # Forget gate parameters\n    W_xo, W_ho, b_o = three()  # Output gate parameters\n    W_xc, W_hc, b_c = three()  # Candidate memory cell parameters\n    # Output layer parameters\n    W_hq = normal((num_hiddens, num_outputs))\n    b_q = np.zeros(num_outputs, ctx=device)\n    # Attach gradients\n    params = [W_xi, W_hi, b_i, W_xf, W_hf, b_f, W_xo, W_ho, b_o, W_xc, W_hc,\n              b_c, W_hq, b_q]\n    for param in params:\n        param.attach_grad()\n    return params\n```",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_lstm_b038",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "3a89755d01def81dfe93e85ab32c15756b167fd48c53ebe335576641d3674de9",
+            "context_id": "ctx_d97ae77a3b700998ac63cadd",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_95d3eecd0e190204ceeb33f8",
+            "source_text": "```{.python .input}\n#@tab pytorch\ndef get_lstm_params(vocab_size, num_hiddens, device):\n    num_inputs = num_outputs = vocab_size\n\n    def normal(shape):\n        return torch.randn(size=shape, device=device)*0.01\n\n    def three():\n        return (normal((num_inputs, num_hiddens)),\n                normal((num_hiddens, num_hiddens)),\n                d2l.zeros(num_hiddens, device=device))\n\n    W_xi, W_hi, b_i = three()  # Input gate parameters\n    W_xf, W_hf, b_f = three()  # Forget gate parameters\n    W_xo, W_ho, b_o = three()  # Output gate parameters\n    W_xc, W_hc, b_c = three()  # Candidate memory cell parameters\n    # Output layer parameters\n    W_hq = normal((num_hiddens, num_outputs))\n    b_q = d2l.zeros(num_outputs, device=device)\n    # Attach gradients\n    params = [W_xi, W_hi, b_i, W_xf, W_hf, b_f, W_xo, W_ho, b_o, W_xc, W_hc,\n              b_c, W_hq, b_q]\n    for param in params:\n        param.requires_grad_(True)\n    return params\n```",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_lstm_b004",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "5c1f9bb4f29285dd86b408780f367e05e57b35c26a2ffadd7a291b8878796160",
+            "context_id": "ctx_ef08148c1866b77ae7d4ed7f",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_5c55018b2481b5ab6faeb4f1",
+            "source_text": "We refer to this as the *input gate*.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "de4f8dc97cc99c89f1457fde4aa1c32909c7f16e2c6779ab704e9c4f41d08368",
+            "context_id": "ctxx_3e2772e947e6f76d5a66533c",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: Visitors should wait at the input gate before entering the stadium.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_563ab0ef6c35c134390ac75d",
+        "proposed_definition_en": "the LSTM gate that controls how much new input information enters the memory cell",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_c6c1c6e96c39b88a9f94e8d9",
+        "source_sense_pool_record_sha256": "b005ac56c1ab6ecaab48a9537f2e5bd38cf8bb2b416ce08ee38107d998503a4d",
+        "source_term": "input gate",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_c6c1c6e96c39b88a9f94e8d9"
+      },
+      "source_payload_sha256": "87f1fae742929290f148917c444114fcab27dc659b9a50c855301373de23d97c"
+    },
+    {
+      "review": {
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Các ngữ cảnh dương bao quát nhiều input, output và RGB channels trong convolutional networks; ngữ cảnh memory channels được giữ đúng vai trò boundary-only. Definition, POS và candidates đều phù hợp.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_bcbf4e5633f7514d6211dc38",
+            "candidate_slot": "candidate_slot_3411108e9575cf21e47b5955",
+            "candidate_target_vi": "nhiều kênh dữ liệu"
+          },
+          {
+            "candidate_id": "candidate_6bfa2e26fb96431b00a7246d",
+            "candidate_slot": "candidate_slot_8efe21c7e8253c5b8115cf83",
+            "candidate_target_vi": "đa kênh"
+          },
+          {
+            "candidate_id": "candidate_1bec686718d73a2e015d6fcf",
+            "candidate_slot": "candidate_slot_c2edddfa1365a365489ccf36",
+            "candidate_target_vi": "nhiều kênh"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_convolutional_neural_networks_why_conv_b039",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "dbb149e6e4b5dbe64ec5dfb58d42f29c13b9e73d9aeac770d59c29f47e9ba2b6",
+            "context_id": "ctx_017659fee16b4b1352f9f1b5",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "multiple channels",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_5cd498b77e4773058cec9c99",
+            "source_text": "To support multiple channels in both inputs ($\\mathsf{X}$) and hidden representations ($\\mathsf{H}$),\nwe can add a fourth coordinate to $\\mathsf{V}$: $[\\mathsf{V}]_{a, b, c, d}$.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_channels_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "97fec598084a82fd7a88d3787a0c5f096effd73ab989ac9efb3766e6b1f30c85",
+            "context_id": "ctx_3972c87ed9f0cc305dbef415",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "multiple channels",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_d0e3e7a4e3d16a4ce2e845e8",
+            "source_text": "When the input data contain multiple channels,\nwe need to construct a convolution kernel\nwith the same number of input channels as the input data,\nso that it can perform cross-correlation with the input data.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_applications_sentiment_analysis_cnn_b015",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_applications",
+            "content_sha256": "9f32e35824d0414f982c7e03dcc11ad820bb6f8a816106c8a3148bcf8f579304",
+            "context_id": "ctx_3ca9380a219c00402d68c678",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "multiple channels",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_3c394edc4ba7c1cb1494e805",
+            "source_text": "For any\none-dimensional input with multiple channels,\nthe convolution kernel\nneeds to have the same number of input channels.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_why_conv_b041",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "31d017163384910f6463c79b70e5ec004f074b0e514097b8723d65b7ef7f290f",
+            "context_id": "ctx_516a4df8d34c7a0c4415302b",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "multiple channels",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_57f2398d4946c29ecd8c3a58",
+            "source_text": "Being more general,\n:eqref:`eq_conv-layer-channels` is\nthe definition of a convolutional layer for multiple channels, where $\\mathsf{V}$ is a kernel or filter of the layer.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_index_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "797545d4829d49809c4ef85ee3d9c7449e00ed9ce8b949f0b99dbcb71e1abd60",
+            "context_id": "ctx_54f8c3cb816277ace430df97",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "multiple channels",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_27f3e0ec9d14cbd6108f4db0",
+            "source_text": "These include the convolutional layers themselves,\nnitty-gritty details including padding and stride,\nthe pooling layers used to aggregate information\nacross adjacent spatial regions,\nthe use of multiple channels  at each layer,\nand a careful discussion of the structure of modern architectures.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_channels_b002",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "9e9886f279a4497375374a55f1782f356011209da08ab22b43b25a0d1ec18c25",
+            "context_id": "ctx_7a827358f51118bb50e2b2a8",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "multiple channels",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_91b5f8bd289018160e44e66d",
+            "source_text": "While we have described the multiple channels\nthat comprise each image (e.g., color images have the standard RGB channels\nto indicate the amount of red, green and blue) and convolutional layers for multiple channels in :numref:`subsec_why-conv-channels`,\nuntil now, we simplified all of our numerical examples\nby working with just a single input and a single output channel.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_transposed_conv_b017",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "058459f5c07a7ddc15c0171926a5a55d1df61fd79c137e87874dd2592891fdfc",
+            "context_id": "ctx_7c6a965613332587c6fca111",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "multiple channels",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_a0998ace497a7cd7b9a2737e",
+            "source_text": "## [**Padding, Strides, and Multiple Channels**]",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_hardware_b012",
+            "boundary_only": true,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "019f668b09d2996e0bb94a30756658487232b4b44b5d5cb26b25e7f17bf1fb0a",
+            "context_id": "ctx_ba2a299168416499932ae161",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "multiple channels",
+            "positive_evidence_eligible": false,
+            "sentence_id": "sentence_f550204cc50dc417135582aa",
+            "source_text": "Typically pairs of memory modules are used to allow for multiple channels.",
+            "synthetic": false
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_3e663c53e4e70bec83ba2624",
+        "proposed_definition_en": "more than one channel in data or a model, such as multiple input, output, or color channels in convolutional networks.",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "SOURCE_GROUND_PLUS_BLIND_AUDIT",
+        "risk_class": "R0_CLEAR",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_ccf7d0a5109d86ee76a75b9c",
+        "source_sense_pool_record_sha256": "b0823cc4bf9dc49a8797f0c25b608e982dff4ec63ec8e552d89562390fb1e7aa",
+        "source_term": "multiple channels",
+        "stratum": "clear",
+        "term_id": "d2lce_ccf7d0a5109d86ee76a75b9c"
+      },
+      "source_payload_sha256": "a411f5de5cfef425c569e17a74f56ee4e30bce739b233219ff1e21e09e81fdcb"
+    },
+    {
+      "review": {
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Bằng chứng thực định nghĩa trực tiếp generalization error là kỳ vọng lỗi trên dòng dữ liệu mới cùng phân phối và phân biệt nó với training error; ba candidate tiếng Việt đều đúng nghĩa.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_585cf63d0ddbd71e09011fbf",
+            "candidate_slot": "candidate_slot_33540f6465d3abac64bcf8ca",
+            "candidate_target_vi": "lỗi khái quát hóa"
+          },
+          {
+            "candidate_id": "candidate_b2ee5342efda193e92d7b88f",
+            "candidate_slot": "candidate_slot_61a1529907b908ae6ad57361",
+            "candidate_target_vi": "lỗi tổng quát hóa"
+          },
+          {
+            "candidate_id": "candidate_fc827ef484680a842c35eaf3",
+            "candidate_slot": "candidate_slot_68a129b16625547874c71732",
+            "candidate_target_vi": "sai số khái quát hóa"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_optimization_optimization_intro_b004",
+            "boundary_only": false,
+            "chapter_id": "d2l_optimization",
+            "content_sha256": "fb1719f9e74e5bb37c881a970491a847405b036c25e1d135513023287d438ea6",
+            "context_id": "ctx_0737ea14d11a1ebada12a0eb",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "generalization error",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_2650f82549744e16d8d03767",
+            "source_text": "However, the goal of deep learning (or more broadly, statistical inference) is to\nreduce the generalization error.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_underfit_overfit_b012",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "1597b954656da68fa3dff9ca600092c9c3bc1bf7d4a96dd25ba113cfe11003a8",
+            "context_id": "ctx_54088257ccb95a4974f91f90",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "generalization error",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_c9db3344d8ec2f49dd7abe18",
+            "source_text": "As we increase the amount of data,\nthe probability that the fraction of heads\nwill deviate significantly from $\\frac{1}{2}$ diminishes,\nand our training error would come to match the generalization error.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_underfit_overfit_b008",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "86f59202abe22ffd36cd14d8b24bce9d3634dfaee794d959ea21c7f8b01e6ab4",
+            "context_id": "ctx_584bed2e44864afc9655baf9",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "generalization error",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_c168df259600cb7c5808e729",
+            "source_text": "The *training error* is the error of our model\nas calculated on the training dataset,\nwhile *generalization error* is the expectation of our model's error\nwere we to apply it to an infinite stream of additional data examples\ndrawn from the same underlying data distribution as our original sample.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_underfit_overfit_b009",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "42915dc0aba538a1dbc7e8b734780eb0b3399c937c29289e120c437cf43404b6",
+            "context_id": "ctx_7edf6686ee0adbdd3a986dfc",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "generalization error",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_051d24a8e92aeee7eaee8d2a",
+            "source_text": "In practice, we must *estimate* the generalization error\nby applying our model to an independent test set\nconstituted of a random selection of data examples\nthat were withheld from our training set.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_underfit_overfit_b012",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "2357fde3ae6e611084b7ca2e590261460b728e654988fe85fa855a19d374a23b",
+            "context_id": "ctx_8cd3de6c9b491391cc9a6104",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "generalization error",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_96ed8159a530167fdc27b845",
+            "source_text": "In this case, the model that always predicts class 1\nwill incur an error of $\\frac{1}{3}$,\nconsiderably better than our generalization error.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_underfit_overfit_b008",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "3396b5bf07f54f80e9a1c8ae8d6d34a1834f3b66de62fff1ad467c78292d6b86",
+            "context_id": "ctx_b89311738d29fd53e93c2b6b",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "generalization error",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_0348ff810a1939b66f208bd7",
+            "source_text": "In order to discuss this phenomenon more formally,\nwe need to differentiate between training error and generalization error.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_underfit_overfit_b009",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "df40905187c1fbe519a38cda30c7e58510e47861d4d85c0828bc12cbeba8cb38",
+            "context_id": "ctx_bfb4aa499a19b3c234af5b7e",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "generalization error",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_79bb0e474f6da51e792c960e",
+            "source_text": "Problematically, we can never calculate the generalization error exactly.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_underfit_overfit_b007",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "cd72bf413a864100f0e6269512eb0975c5a7c62cbd67e23fceff444fb4a55eb4",
+            "context_id": "ctx_dc0382ebdca048c1b0714c3e",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "generalization error",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_c41be658f7a6649ed121545a",
+            "source_text": "## Training Error and Generalization Error",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "b193f71a7a199be76fcff804b8caa3679198fbeb8bcaede307cc58ad2939d5d5",
+            "context_id": "ctxx_419574fe3c1e66af04e29fe0",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "generalization error",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: The child's generalization error in storytelling was not measured statistically.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_5b96198fc1b2eaad6fe4ac10",
+        "proposed_definition_en": "The expected error of a model on new data drawn from the same underlying distribution as the original sample.",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+        "risk_class": "R3_AMBIGUOUS",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_9199c3ba27076b186a42df23",
+        "source_sense_pool_record_sha256": "b39507c9948984c2d5d2c1a1d2862dd011652292628e18cf64b884a8e7a61762",
+        "source_term": "generalization error",
+        "stratum": "ambiguous",
+        "term_id": "d2lce_9199c3ba27076b186a42df23"
+      },
+      "source_payload_sha256": "210c7d6eee3176a713cb96cc1955570e8d571256ad39b34921ba21eea139af0c"
+    },
+    {
+      "review": {
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Các ngữ cảnh dương nhất quán về keys trong attention: tương tác với queries để tính trọng số cho values. Ngữ cảnh dictionary keys được đánh dấu boundary-only, và candidate set giữ đúng nghĩa attention.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_4d3e881d152ab02ad2326786",
+            "candidate_slot": "candidate_slot_55d842c51467634bebf594fa",
+            "candidate_target_vi": "khóa"
+          },
+          {
+            "candidate_id": "candidate_e28c28932bd181642fba4a51",
+            "candidate_slot": "candidate_slot_787989d9d18e438ee60b150e",
+            "candidate_target_vi": "khóa chú ý"
+          },
+          {
+            "candidate_id": "candidate_811f2542a90f4279c9f5f695",
+            "candidate_slot": "candidate_slot_ea36278f8af5d159e3d7bbd2",
+            "candidate_target_vi": "các khóa"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b025",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "e47a86bb2e219502c3dce1e20472d079845459046df95eb554c86dd043a62765",
+            "context_id": "ctx_01b68302bb447eeeccec65cb",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "keys",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_f9c47ae8915c09bfb16fad06",
+            "source_text": "```{.python .input}\n#@tab all\nattention_weights = d2l.reshape(d2l.eye(10), (1, 1, 10, 10))\nshow_heatmaps(attention_weights, xlabel='Keys', ylabel='Queries')\n```",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_subword_embedding_b014",
+            "boundary_only": true,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "210bb58ce8d7a8ccc636e16976c0721111e8313908cb2c2c13b18824c90f9ecc",
+            "context_id": "ctx_2d690f0922be1eb4be420c9d",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "keys",
+            "positive_evidence_eligible": false,
+            "sentence_id": "sentence_245949d0fcbb60aa8a647e00",
+            "source_text": "Since we start the merging process from a vocabulary of only single characters and special symbols, space is inserted between every pair of consecutive characters within each word (keys of the dictionary `token_freqs`).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b014",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "50bb6186751528e70bb467c5ec3ef6bbc62a8b3aa4f24d3afdf02ed8fcb78a1d",
+            "context_id": "ctx_3c14b0a0feee3453249740d4",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "keys",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_148cff5fea05df5b2c3e4f97",
+            "source_text": "As shown in :numref:`fig_qkv`,\nwe can design attention pooling\nso that the given query (volitional cue) can interact with keys (nonvolitional cues),\nwhich guides bias selection over values (sensory inputs).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b011",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "020dad4f71a716d7b21f8ce020ca83300b7e75fecd747e4ee3c41367888371ee",
+            "context_id": "ctx_8a0bb471a0a435399c5293f9",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "keys",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_8ad63badeb83373acafa6f6f",
+            "source_text": "## Queries, Keys, and Values",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b022",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "f8a6fa3d69cc8daaeaeeb567fc9c17ac5e8d2bdd7785fa63ed5b23ed5ecca1dc",
+            "context_id": "ctx_9dd2818707ebbd9b97accac9",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_DEFINITION_PROPOSAL"
+            ],
+            "matched_surface": "keys",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_bdf0d1b0c8c18c36c677dbf8",
+            "source_text": "Its input `matrices` has the shape (number of rows for display, number of columns for display, number of queries, number of keys).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b015",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "a271eab92195cab05498787c0ae5102830efc8c3e485b8c21ef7d36edbdeb983",
+            "context_id": "ctx_a91d32742b0c4bd9260a1334",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "keys",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_51f0ad7dd12913eb59a39972",
+            "source_text": "![Attention mechanisms bias selection over values (sensory inputs) via attention pooling, which incorporates queries (volitional cues) and keys (nonvolitional cues).](../img/qkv.svg)\n:label:`fig_qkv`",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b018",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "3f189fdcc8b00611891cda6d89e6e3795c5666bdb3da9e1f39db78887c04df51",
+            "context_id": "ctx_cac33728aec4217e211eb0da",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "keys",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_5171914ec0223429c8fc28f8",
+            "source_text": "In practice,\nattention pooling aggregates values using weighted average, where weights are computed between the given query and different keys.",
+            "synthetic": false
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_a4af6fc4cb351a84cd11a5d4",
+        "proposed_definition_en": "items in attention mechanisms that interact with queries to determine weights over values.",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_776fd3328d5e31aeebe484ec",
+        "source_sense_pool_record_sha256": "eb6c1c6b29f9881364a1071ab037cd7247090e83c6574f363c0cd23fcf282d66",
+        "source_term": "keys",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_776fd3328d5e31aeebe484ec"
+      },
+      "source_payload_sha256": "5acd538011db456199e0dc7436e288edca7609d6f877fbbc9f92ece4f4c2589a"
+    },
+    {
+      "review": {
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Các ngữ cảnh thực xác nhận PCIe là bus/interconnect tốc độ cao kết nối CPU với GPU, lưu trữ và các thành phần khác; định nghĩa, proper noun và ba candidate đều phù hợp.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_0822f2cfeb690cc0109f87b5",
+            "candidate_slot": "candidate_slot_07b69a61d7225e6e880fc675",
+            "candidate_target_vi": "PCI Express"
+          },
+          {
+            "candidate_id": "candidate_f83dd48b06ee05ad68ea2375",
+            "candidate_slot": "candidate_slot_e5dcb611bc271aaa04fb26cd",
+            "candidate_target_vi": "PCIe"
+          },
+          {
+            "candidate_id": "candidate_afd1db76bd336c7e5427c274",
+            "candidate_slot": "candidate_slot_f173c37c051ad76eec0504bb",
+            "candidate_target_vi": "chuẩn PCIe"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_appendix_tools_for_deep_learning_selecting_servers_gpus_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_tools_for_deep_learning",
+            "content_sha256": "f3042d1cb31ba56eb8a0daa0367fc6261db280ba9a7477e6e9eb67a42e883927",
+            "context_id": "ctx_1d8dbe9ec3f0a06ece3a6924",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "pcie",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_312386db1bf0c760a3b44d78",
+            "source_text": "If you mount multiple GPUs, be sure to carefully read the motherboard description to ensure that 16x bandwidth is still available when multiple GPUs are used at the same time and that you are getting PCIe 3.0 as opposed to PCIe 2.0 for the additional slots.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_hardware_b023",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "880f24060a96fe401e4c6bb6eecfdd2c7d61d958993067c131c375730d1ce01b",
+            "context_id": "ctx_62bef5528a5385c4c8a8ab6a",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "pcie",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_18e651df448b6b641eb88c7c",
+            "source_text": "* Lastly, the massive increase in bandwidth has forced computer designers to attach SSDs directly to the PCIe bus.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_hardware_b023",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "fc82868ced2f47fce3904d72aa3bddd3e2c98e21cfa8d79068f007508ca2aca1",
+            "context_id": "ctx_678990229efc17731a44c47b",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "pcie",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_9de793ea99c23d2daed4944a",
+            "source_text": "This amounts to up to 8GB/s on PCIe 4.0.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_hardware_b023",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "643916f84e79cd0f90377a53eced88bf0be893162fc691296f41b5afc4d8de00",
+            "context_id": "ctx_67e4805a6cc4da88af5a0fa4",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_DEFINITION_PROPOSAL"
+            ],
+            "matched_surface": "pcie",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_2b09bdd8ad1888181091be1a",
+            "source_text": "The drives capable of handling this, referred to as NVMe (Non Volatile Memory enhanced), can use up to 4 PCIe lanes.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_hardware_b009",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "05e9b198d043a88e4337ab02d15554a510afc1d05688b4cb5da553b3794fa57d",
+            "context_id": "ctx_7ae3e3659cd76b766f2747b3",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "pcie",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_f3170011190ba40a22c536f1",
+            "source_text": "For instance AMD's Threadripper 3 has 64 PCIe 4.0 lanes, each of which is capable 16 Gbit/s data transfer in both directions.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_hardware_b007",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "5d27d28a40d1f46a90828798bb5570f2fb66d6b3030eca43bb187e8c5787fc0f",
+            "context_id": "ctx_bc0b95f28a464a117086fd7d",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "pcie",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_d46c117b90663ba8e67c16af",
+            "source_text": "* A high speed expansion bus (PCIe) to connect the system to one or more GPUs.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_hardware_b007",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "bb4f3f2d083ade5e852303f809e3efc9fa264d5ddc4ec7c67b251ba96b864a66",
+            "context_id": "ctx_e7143839c5cd7a24ea737b53",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "pcie",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_9e834d90db4b1f4a89287905",
+            "source_text": "* Durable storage, such as a magnetic hard disk drive, a solid state drive, in many cases connected using the PCIe bus.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_hardware_b009",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "b8763752b6d4904d1170fd4993fd24dcf709a9220af4a6a43219832e7f7a2bc1",
+            "context_id": "ctx_eb05e20b7827c8e88746abb2",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "pcie",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_18eb86d3e0918935e84ad97d",
+            "source_text": "As :numref:`fig_mobo-symbol` indicates, most components (network, GPU, and storage) are connected to the CPU across the PCIe bus.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "93d4c0e0d9812d46a8e2623156a93091fa0f36db30dd86412164b80ebbd67d0e",
+            "context_id": "ctxx_4f964651e54483165da09758",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "PCIe",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: PCIe was printed on the slide as an example acronym, without referring to the hardware interconnect standard.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_f255257b92090ed963f6b4dc",
+        "proposed_definition_en": "the PCI Express hardware interconnect standard used to connect components such as GPUs and storage to a computer system",
+        "proposed_part_of_speech": "proper_noun",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "SOURCE_GROUND_PLUS_BLIND_AUDIT",
+        "risk_class": "R0_CLEAR",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_35df896f9860f8aac814ce37",
+        "source_sense_pool_record_sha256": "97efd8b562cbdc87b93787afa896e16e205df1b6160d1445290de5ef4cab80b1",
+        "source_term": "PCIe",
+        "stratum": "clear",
+        "term_id": "d2lce_35df896f9860f8aac814ce37"
+      },
+      "source_payload_sha256": "be849e3011fe891e2ab694b6336cf5c9a732a97b735b69d043e13c5c04b6eb01"
+    }
+  ],
+  "independence_requirement": "DO_NOT_VIEW_OTHER_REVIEWER_OUTPUTS",
+  "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_REVIEW_FIELDS_FILLED",
+  "reviewer_slot": "reviewer_1",
+  "schema_id": "D2LFastTrackStageAReviewerInputV1",
+  "schema_version": "1.0.0",
+  "source_input_sha256": "fb55af256c71b4a72251d6d386d33cf1a50d2adc7b9c1616cf8f92132a2982a2"
+}
