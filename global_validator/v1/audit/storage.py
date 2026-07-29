@@ -115,6 +115,9 @@ def _write_bundle(
         "gate_policy": input_dir / "gate_policy.json",
         "feature_registry": input_dir / "feature_registry.json",
         "gate_action_policy": input_dir / "gate_action_policy.json",
+        "gate_action_policy_authority": (
+            input_dir / "gate_action_policy_authority.json"
+        ),
         "gate_results": output_dir / "gate_result_set.json",
         "decision": output_dir / "global_decision_package.json",
     }
@@ -127,6 +130,9 @@ def _write_bundle(
     shutil.copyfile(config.gate_policy_path, paths["gate_policy"])
     shutil.copyfile(config.feature_registry_path, paths["feature_registry"])
     _write_json(paths["gate_action_policy"], action_policy.payload)
+    _write_json(
+        paths["gate_action_policy_authority"], action_policy.authority_payload
+    )
     _write_json(paths["gate_results"], gate_results)
     _write_json(paths["decision"], decision)
 
@@ -167,10 +173,15 @@ def _write_bundle(
 
 
 def _run_spec(config: RunConfig, action_policy: GateActionPolicy) -> dict[str, Any]:
+    contracts_authority = action_policy.authority_payload["contracts_authority"]
     return {
         "schema_id": "GlobalValidatorReplaySpecV1",
-        "schema_version": "1.0.0",
-        "repository_root": str(config.repository_root.resolve()),
+        "schema_version": "1.1.0",
+        "repository_root_hint": str(config.repository_root.resolve()),
+        "contracts_authority_tag": contracts_authority["tag"],
+        "contracts_authority_commit": contracts_authority["commit"],
+        "contracts_manifest_sha256": contracts_authority["manifest_sha256"],
+        "gate_action_policy_authority_sha256": action_policy.authority_sha256,
         "mode": config.mode.value,
         "global_run_id": config.global_run_id,
         "started_at": config.started_at,

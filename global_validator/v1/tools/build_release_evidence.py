@@ -198,6 +198,13 @@ def build_release_evidence(
             "action_policy_id": action_policy.policy_id,
             "action_policy_version": action_policy.policy_version,
             "action_policy_sha256": action_policy.self_sha256,
+            "action_policy_authority_sha256": action_policy.authority_sha256,
+            "action_policy_authority_id": action_policy.authority_payload[
+                "authority_id"
+            ],
+            "action_policy_review": action_policy.authority_payload[
+                "independent_review"
+            ],
             "gate_policy_artifact_sha256": action_policy.gate_policy_artifact_sha256,
             "actions": action_policy.actions,
         },
@@ -244,6 +251,39 @@ def build_release_evidence(
             "provider_call_count": network_attempts,
             "replay_pass_count": pilot_replays,
             "decisions": pilot_decisions,
+        },
+        "review_finding_disposition.json": {
+            "schema_id": "GlobalValidatorReviewFindingDispositionV1",
+            "status": "PASS_WITH_EXTERNAL_BLOCKERS",
+            "reviewed_artifact_commit": (
+                "056b520ede25c40aa3c72ca9785dccecab4691d3"
+            ),
+            "rework_parent_commit": (
+                "4cd7930b56fff334b9e790550cbb8e17c373613f"
+            ),
+            "review_report_sha256": (
+                "3ef049a4928bc97811d5b2dcc9b02f0743530398f8685aff0082b44e00d2fb64"
+            ),
+            "review_audit_sha256": (
+                "dee38537fdd8055f81862292c0044d7463a4446869b93da1bbf68d2ab53f0886"
+            ),
+            "action_policy_authority_sha256": action_policy.authority_sha256,
+            "findings": {
+                "P0-GV-1": "CLOSED_FIXED",
+                "P0-GV-2": "CLOSED_FIXED",
+                "P1-GV-1": "CLOSED_FIXED",
+                "P1-GV-2": "CLOSED_FIXED",
+                "P1-GV-3": "CLOSED_FIXED",
+                "P1-GV-4": "CLOSED_FIXED_IN_4CD7930B",
+                "P1-GV-5": "NOT_APPLICABLE_TO_GIT_INTEGRATION",
+                "P1-GV-6": "CLOSED_BY_INDEPENDENT_GIT_REGATE",
+            },
+            "external_blockers": {
+                "canonical_authority_receipt": "CLOSED",
+                "human_frozen_calibration": "OPEN",
+                "real_dataset_c_e_global_input_pilot": "OPEN",
+            },
+            "provider_call_count": network_attempts,
         },
     }
     output_dir.mkdir(parents=True, exist_ok=True)

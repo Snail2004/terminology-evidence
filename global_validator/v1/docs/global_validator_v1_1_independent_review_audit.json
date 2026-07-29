@@ -1,0 +1,103 @@
+{
+  "schema_id": "GlobalValidatorV1_1IndependentReviewAuditV1",
+  "artifact": "global_validator.zip",
+  "artifact_sha256": "6c900a9543486189f5538c88027fd98b61652e3d855869c97733b5d5a0e96017",
+  "claimed_commit": "056b520ede25c40aa3c72ca9785dccecab4691d3",
+  "claimed_parent": "f8f019910fe999a48e8e11d10602e164c8e38105",
+  "commit_independently_verified": false,
+  "scope": {
+    "clean_files": 63,
+    "physical_files": 110,
+    "pyc_cache_files": 43,
+    "pytest_cache_files": 4,
+    "all_archive_files_under_global_validator": true
+  },
+  "independent_execution": {
+    "global_tests": {
+      "passed": 34,
+      "failed": 0
+    },
+    "contracts_tests": {
+      "passed": 113,
+      "skipped": 2,
+      "failed": 0
+    },
+    "git_tag_lookup_bypassed_due_to_missing_git_object_database": true,
+    "receipt_manifest_policy_registry_verification": "PASS",
+    "release_report_semantic_regeneration": "PASS",
+    "synthetic_pilot": {
+      "senses": 5,
+      "candidates": 15,
+      "provisional": 15,
+      "auto_approved": 0,
+      "certificates": 0,
+      "network_calls": 0,
+      "replay_pass": 15
+    },
+    "frozen_fixture": {
+      "score": 0.880481737215655,
+      "decision": "AUTO_APPROVED",
+      "certificate_bundle": "PASS",
+      "production_authority": false
+    }
+  },
+  "approved_gate_action_policy": {
+    "sha256": "4220b15b7b5d5b740946b9b258a5e1f25469a8f8409ca6e1a0b399464285c9f5",
+    "mapping_review": "APPROVED_CONDITIONALLY_ON_AUTHORITY_PIN"
+  },
+  "adversarial_reproductions": {
+    "alternate_allowed_action_policy_changes_decision": {
+      "default": "SPLIT_REQUIRED",
+      "alternate": "HUMAN_REVIEW",
+      "alternate_policy_accepted": true
+    },
+    "verify_decision_accepts_action_not_selected_by_configured_policy": true,
+    "verify_decision_accepts_fake_execution_config_sha256": true,
+    "verify_decision_accepts_started_at_after_completed_at": true
+  },
+  "findings": [
+    {
+      "id": "P0-GV-1",
+      "title": "Global action-selection policy is not authority-pinned",
+      "status": "OPEN"
+    },
+    {
+      "id": "P0-GV-2",
+      "title": "verify-decision does not exact-recompute configured policy and decision",
+      "status": "OPEN"
+    },
+    {
+      "id": "P1-GV-1",
+      "title": "external decision verifier accepts reversed timestamps",
+      "status": "OPEN"
+    },
+    {
+      "id": "P1-GV-2",
+      "title": "C/E package fallback evidence is broader than reported constraint fallback",
+      "status": "OPEN"
+    },
+    {
+      "id": "P1-GV-3",
+      "title": "replay depends on absolute original repository root",
+      "status": "OPEN"
+    },
+    {
+      "id": "P1-GV-4",
+      "title": "replay does not verify CHECKSUMS before evaluation",
+      "status": "OPEN"
+    },
+    {
+      "id": "P1-GV-5",
+      "title": "review ZIP contains caches and lacks complete release receipts",
+      "status": "OPEN"
+    }
+  ],
+  "external_blockers": {
+    "canonical_authority_receipt": "OPEN",
+    "human_frozen_calibration": "OPEN",
+    "real_dataset_c_e_global_input_pilot": "OPEN"
+  },
+  "verdict": "CONDITIONAL_ACCEPT_AFTER_RC2",
+  "merge_ready": false,
+  "production_ready": false
+}

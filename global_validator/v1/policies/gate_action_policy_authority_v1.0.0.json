@@ -1,0 +1,27 @@
+{
+  "approved_action_policy": {
+    "policy_id": "global-gate-action-selection-v1",
+    "policy_version": "1.0.0",
+    "self_sha256": "4220b15b7b5d5b740946b9b258a5e1f25469a8f8409ca6e1a0b399464285c9f5",
+    "source_commit": "056b520ede25c40aa3c72ca9785dccecab4691d3"
+  },
+  "authority_id": "global-gate-action-policy-authority-v1.0.0",
+  "contracts_authority": {
+    "commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+    "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+    "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
+    "tag": "contracts-v1.1.0"
+  },
+  "independent_review": {
+    "approval_scope": "ACTION_MAPPING_ONLY",
+    "audit_sha256": "dee38537fdd8055f81862292c0044d7463a4446869b93da1bbf68d2ab53f0886",
+    "report_sha256": "3ef049a4928bc97811d5b2dcc9b02f0743530398f8685aff0082b44e00d2fb64",
+    "review_date": "2026-07-29"
+  },
+  "integrity": {
+    "self_sha256": "1fca452c0604b7f41e9ffab72de0c134b108c52cafed279153bd7e98a0e8994a"
+  },
+  "schema_id": "GlobalGateActionPolicyAuthorityV1",
+  "schema_version": "1.0.0",
+  "status": "REVIEWED"
+}

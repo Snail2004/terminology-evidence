@@ -33,6 +33,7 @@ _OPTIONAL_FILES = {
     "audit/certificate_bundle.json",
     "input/calibration_artifact.json",
     "input/collision_index.json",
+    "input/gate_action_policy_authority.json",
     "output/terminology_certificate.json",
 }
 

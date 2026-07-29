@@ -8,7 +8,12 @@ from terminology_contracts.integrity import verify_self_hash
 from terminology_contracts.validation import validate_instance
 
 from ..authority import verify_authority
-from ..config import ENGINE_VERSION, GLOBAL_RUN_SPEC_ID, RunConfig
+from ..config import (
+    ENGINE_VERSION,
+    GLOBAL_RUN_SPEC_ID,
+    RunConfig,
+    validate_run_config,
+)
 from ..errors import DecisionReplayError, IntegrityValidationError
 from ..gates import load_gate_action_policy, verify_gate_result_payload
 from ..input import load_and_validate_global_input, verify_collision_index_binding
@@ -21,8 +26,8 @@ def verify_decision_artifact(
     *,
     global_input_path: Path,
     config: RunConfig,
-    verify_run_config_binding: bool = False,
 ) -> dict[str, Any]:
+    validate_run_config(config)
     authority = verify_authority(
         config.authority_receipt_path,
         config.contracts_root,
@@ -56,8 +61,15 @@ def verify_decision_artifact(
         decision,
         global_input=global_input,
         config=config,
-        verify_run_config_binding=verify_run_config_binding,
     )
+    # Imported lazily to avoid the engine/decision package import cycle.
+    from ..engine import evaluate_global_input
+
+    recomputed = evaluate_global_input(global_input_path, config)
+    if recomputed.decision != decision:
+        raise DecisionReplayError(
+            "decision differs from exact configured-policy recomputation"
+        )
     return decision
 
 
@@ -66,7 +78,6 @@ def _verify_decision_bindings(
     *,
     global_input: dict[str, Any],
     config: RunConfig,
-    verify_run_config_binding: bool,
 ) -> None:
     if decision.get("schema_version") != "1.1.0":
         raise DecisionReplayError("unsupported GlobalDecisionPackageV1 schema_version")
@@ -95,24 +106,23 @@ def _verify_decision_bindings(
         gate_policy_path=config.gate_policy_path,
         schema_dir=config.schema_dir,
     )
-    if verify_run_config_binding:
-        expected_metadata = {
-            "global_run_id": config.global_run_id,
-            "global_run_spec_id": GLOBAL_RUN_SPEC_ID,
-            "started_at": config.started_at,
-            "completed_at": config.completed_at,
-            "engine_version": ENGINE_VERSION,
-        }
-        for field, expected in expected_metadata.items():
-            if metadata.get(field) != expected:
-                raise DecisionReplayError(f"decision run_metadata.{field} mismatch")
-        expected_execution = build_execution_config_sha256(
-            config, action_policy=action_policy
-        )
-        if metadata.get("execution_config_sha256") != expected_execution:
-            raise DecisionReplayError("decision execution_config_sha256 mismatch")
-        if decision.get("decision_policy", {}).get("mode") != config.mode.value:
-            raise DecisionReplayError("decision mode differs from replay spec")
+    expected_metadata = {
+        "global_run_id": config.global_run_id,
+        "global_run_spec_id": GLOBAL_RUN_SPEC_ID,
+        "started_at": config.started_at,
+        "completed_at": config.completed_at,
+        "engine_version": ENGINE_VERSION,
+    }
+    for field, expected in expected_metadata.items():
+        if metadata.get(field) != expected:
+            raise DecisionReplayError(f"decision run_metadata.{field} mismatch")
+    expected_execution = build_execution_config_sha256(
+        config, action_policy=action_policy
+    )
+    if metadata.get("execution_config_sha256") != expected_execution:
+        raise DecisionReplayError("decision execution_config_sha256 mismatch")
+    if decision.get("decision_policy", {}).get("mode") != config.mode.value:
+        raise DecisionReplayError("decision mode differs from replay spec")
     if calculate_replay_spec_sha256(decision) != metadata.get("replay_spec_sha256"):
         raise DecisionReplayError("decision replay_spec_sha256 mismatch")
 

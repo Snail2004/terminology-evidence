@@ -12,6 +12,7 @@ from terminology_contracts.validation import validate_instance
 
 from ..errors import GatePolicyError
 from ..jsonio import assert_strict_json_file, load_json_object
+from .action_policy_authority import verify_action_policy_authority
 
 
 @dataclass(frozen=True)
@@ -20,6 +21,8 @@ class GateActionPolicy:
     policy_version: str
     gate_policy_artifact_sha256: str
     self_sha256: str
+    authority_sha256: str
+    authority_payload: dict[str, Any]
     actions: dict[str, str]
     payload: dict[str, Any]
 
@@ -30,6 +33,7 @@ def load_gate_action_policy(
     gate_policy_path: Path,
     schema_dir: Path,
 ) -> GateActionPolicy:
+    authority = verify_action_policy_authority()
     try:
         assert_strict_json_file(path)
         assert_strict_json_file(gate_policy_path)
@@ -44,6 +48,10 @@ def load_gate_action_policy(
         raise GatePolicyError("unsupported gate action policy schema_version")
     if payload.get("gate_policy_artifact_sha256") != gate_policy.self_sha256:
         raise GatePolicyError("action policy is bound to another GatePolicyArtifact")
+    if artifact.self_sha256 != authority.approved_action_policy_sha256:
+        raise GatePolicyError(
+            "action policy differs from the reviewed Global authority pin"
+        )
     gate_errors = validate_instance(gate_policy.payload, schema_dir)
     if gate_errors:
         raise GatePolicyError("invalid GatePolicyArtifact: " + "; ".join(gate_errors))
@@ -63,6 +71,8 @@ def load_gate_action_policy(
         policy_version=str(payload.get("policy_version")),
         gate_policy_artifact_sha256=gate_policy.self_sha256,
         self_sha256=artifact.self_sha256,
+        authority_sha256=authority.self_sha256,
+        authority_payload=authority.payload,
         actions={gate_id: str(actions[gate_id]) for gate_id in GATE_IDS},
         payload=payload,
     )

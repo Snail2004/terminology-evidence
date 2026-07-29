@@ -187,6 +187,7 @@ def test_frozen_cap_provisional_still_emits_scope_limited_certificate(
 ) -> None:
     base = load_base_input(valid_input_path)
     context = copy.deepcopy(base["context_evidence"])
+    direct_ref = copy.deepcopy(context["support_set"]["positive_support_refs"][0])
     context["contrastive_status"] = "ABSENT"
     context["support_set"]["contrastive_refs"] = []
     context["flags"] = [
@@ -194,7 +195,7 @@ def test_frozen_cap_provisional_still_emits_scope_limited_certificate(
             "code": "missing_contrastive_context",
             "severity": "WARNING",
             "message": "Synthetic contract test.",
-            "evidence_refs": [],
+            "evidence_refs": [direct_ref],
         }
     ]
     signal = next(
@@ -206,7 +207,7 @@ def test_frozen_cap_provisional_still_emits_scope_limited_certificate(
         {
             "asserted": True,
             "reason_codes": ["MISSING_CONTRASTIVE_CONTEXT"],
-            "evidence_refs": [],
+            "evidence_refs": [direct_ref],
         }
     )
     context = seal_self_hash(context)
@@ -367,6 +368,103 @@ def test_replay_rejects_authority_byte_tamper_after_checksum_refresh(
         replay_run(result.run_dir)
 
 
+@pytest.mark.parametrize(
+    "mutation,error",
+    [
+        ("execution_config", "execution_config_sha256 mismatch"),
+        ("timestamps", "run_metadata.started_at mismatch"),
+    ],
+)
+def test_verify_decision_rejects_resealed_config_binding_drift(
+    mutation: str,
+    error: str,
+    valid_input_path: Path,
+    tmp_path: Path,
+    config_factory,
+) -> None:
+    config = config_factory(output_root=tmp_path / "runs", run_id="verify-binding")
+    result = run_global_validator(valid_input_path, config)
+    decision = copy.deepcopy(result.decision)
+    if mutation == "execution_config":
+        decision["run_metadata"]["execution_config_sha256"] = "f" * 64
+    else:
+        decision["run_metadata"]["started_at"] = "2026-07-30T00:00:00+00:00"
+        decision["run_metadata"]["completed_at"] = "2026-07-29T00:00:00+00:00"
+    decision["run_metadata"]["replay_spec_sha256"] = calculate_replay_spec_sha256(
+        decision
+    )
+    decision = seal_self_hash(decision)
+    decision_path = tmp_path / f"{mutation}.json"
+    _write_json(decision_path, decision)
+
+    with pytest.raises(DecisionReplayError, match=error):
+        verify_decision_artifact(
+            decision_path,
+            global_input_path=valid_input_path,
+            config=config,
+        )
+
+
+def test_replay_uses_explicit_portable_authority_root(
+    valid_input_path: Path, tmp_path: Path, config_factory
+) -> None:
+    config = config_factory(output_root=tmp_path, run_id="portable-authority")
+    result = run_global_validator(valid_input_path, config)
+    spec_path = result.run_dir / "audit" / "run_spec.json"
+    spec = json.loads(spec_path.read_text(encoding="utf-8"))
+    assert spec["schema_version"] == "1.1.0"
+    spec["repository_root_hint"] = str(tmp_path / "missing-original-root")
+    _write_json(spec_path, spec)
+    _refresh_checksums(result.run_dir, "audit/run_spec.json")
+
+    assert replay_run(
+        result.run_dir, authority_root=config.repository_root
+    ).matched is True
+
+
+def test_replay_rejects_resealed_action_policy_authority_drift(
+    valid_input_path: Path, tmp_path: Path, config_factory
+) -> None:
+    result = run_global_validator(
+        valid_input_path,
+        config_factory(output_root=tmp_path, run_id="action-authority-drift"),
+    )
+    authority_path = (
+        result.run_dir / "input" / "gate_action_policy_authority.json"
+    )
+    authority = json.loads(authority_path.read_text(encoding="utf-8"))
+    authority["status"] = "SUPERSEDED"
+    authority = seal_self_hash(authority)
+    _write_json(authority_path, authority)
+    _refresh_checksums(
+        result.run_dir, "input/gate_action_policy_authority.json"
+    )
+
+    with pytest.raises(
+        DecisionReplayError, match="persisted action-policy authority differs"
+    ):
+        replay_run(result.run_dir)
+
+
+def test_replay_rejects_rechecksummed_run_spec_authority_drift(
+    valid_input_path: Path, tmp_path: Path, config_factory
+) -> None:
+    result = run_global_validator(
+        valid_input_path,
+        config_factory(output_root=tmp_path, run_id="spec-authority-drift"),
+    )
+    spec_path = result.run_dir / "audit" / "run_spec.json"
+    spec = json.loads(spec_path.read_text(encoding="utf-8"))
+    spec["contracts_manifest_sha256"] = "f" * 64
+    _write_json(spec_path, spec)
+    _refresh_checksums(result.run_dir, "audit/run_spec.json")
+
+    with pytest.raises(
+        DecisionReplayError, match="contracts_manifest_sha256 authority mismatch"
+    ):
+        replay_run(result.run_dir)
+
+
 def test_replay_rejects_resealed_semantic_decision_drift(
     valid_input_path: Path, tmp_path: Path, config_factory
 ) -> None:
@@ -393,7 +491,7 @@ def test_replay_rejects_resealed_semantic_decision_drift(
     )
 
     with pytest.raises(
-        DecisionReplayError, match="replayed semantic decision differs"
+        DecisionReplayError, match="configured-policy recomputation"
     ):
         replay_run(result.run_dir)
 
@@ -440,7 +538,7 @@ def test_replay_rejects_resealed_gate_drift_against_recomputation(
         "output/global_decision_package.json",
     )
 
-    with pytest.raises(DecisionReplayError, match="replayed gate results differ"):
+    with pytest.raises(DecisionReplayError, match="configured-policy recomputation"):
         replay_run(result.run_dir)
 
 
