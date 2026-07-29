@@ -3,9 +3,10 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from evaluation.v1.jsonio import sha256_value, write_json
+from evaluation.v1.jsonio import sha256_bytes, sha256_value, write_json
 from evaluation.v1.release_tools.junit import (
     JUnitAuthorityError,
+    normalized_junit_bytes,
     load_expected_test_manifest,
     identity_set_sha256,
     verify_junit,
@@ -53,6 +54,17 @@ class ReleaseJUnitAuthorityTests(unittest.TestCase):
             self._junit(root / "junit.xml", identities)
             report = verify_junit(root / "junit.xml", expected_manifest_path=root / "manifest.json")
             self.assertEqual(report["tests"], 2)
+            second = root / "junit-with-timing.xml"
+            self._junit(second, identities)
+            tree = ET.parse(second)
+            tree.getroot().set("time", "9.999")
+            tree.write(second, encoding="utf-8")
+            timed = verify_junit(second, expected_manifest_path=root / "manifest.json")
+            self.assertNotEqual(report["physical_sha256"], timed["physical_sha256"])
+            self.assertEqual(
+                sha256_bytes(normalized_junit_bytes(report)),
+                sha256_bytes(normalized_junit_bytes(timed)),
+            )
 
     def test_red_skipped_empty_and_unrelated_junit_reject(self):
         with TemporaryDirectory() as temp:

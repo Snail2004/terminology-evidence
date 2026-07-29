@@ -15,7 +15,7 @@ from typing import Any, Mapping
 from ..artifacts.authority import AuthorityError, canonical_manifest_path, resolve_contained_file, verify_sha256
 from ..constants import MODE_SYNTHETIC, STATUS_CONFORMANCE_ONLY
 from ..fixtures.synthetic import write_synthetic_release
-from ..jsonio import read_json, sha256_file, sha256_value, write_json
+from ..jsonio import read_json, sha256_bytes, sha256_file, sha256_value, write_json
 from ..preregistration.receipt import build_receipt, write_receipt
 from ..registries.loader import registry_counts, load_registries
 from ..reports.builder import build_evaluation_report
@@ -186,7 +186,10 @@ def build_release(
             _run_materialized_worker(materialized, stage, commit, repo)
             expected_manifest = materialized / "evaluation" / "v1" / "authority" / MANIFEST_FILE
             shutil.copyfile(expected_manifest, stage / MANIFEST_FILE)
-            (stage / "junit.xml").write_bytes(normalized_junit_bytes(junit_report))
+            normalized_junit = normalized_junit_bytes(junit_report)
+            (stage / "junit.xml").write_bytes(normalized_junit)
+            release_junit_report = {key: value for key, value in junit_report.items() if key != "testcase_identities"}
+            release_junit_report["physical_sha256"] = sha256_bytes(normalized_junit)
             write_source_zip(entries, stage / "evaluation_preregistration_source.zip")
             source_hash = source_tree_sha256(entries)
             write_json(
@@ -214,7 +217,7 @@ def build_release(
                 "source_tree_sha256": source_hash,
                 "source_file_count": len(entries),
                 "release_mode": "DETACHED_OBJECT" if detached_object else "CLEAN_EXACT_HEAD",
-                "junit": {key: value for key, value in junit_report.items() if key != "testcase_identities"},
+                "junit": release_junit_report,
                 "external_junit": None if external_report is None else {key: value for key, value in external_report.items() if key != "testcase_identities"},
                 "expected_test_manifest_sha256": sha256_file(expected_manifest),
                 "registry_counts": registry_counts(load_registries(materialized / "evaluation" / "v1" / "registries")),
