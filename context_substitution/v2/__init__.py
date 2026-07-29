@@ -45,6 +45,14 @@ from context_substitution.v2.dataset.reviewed_selection import (
 from context_substitution.v2.providers.google import (
     GoogleRouteSettings,
 )
+from context_substitution.v2.providers.catalog import (
+    DEFAULT_PROVIDER_CATALOG_PATH,
+    ProviderCatalog,
+    load_provider_catalog,
+)
+from context_substitution.v2.providers.openai_compatible import (
+    OpenAICompatibleRouteSettings,
+)
 from context_substitution.v2.evaluation.gold import (
     evaluate_gold_cases,
     validate_gold_case,
@@ -97,7 +105,10 @@ __all__ = [
     "ReviewedSupportCandidatePolicy",
     "ReviewedSupportBundle",
     "FreezeValidationError",
+    "DEFAULT_PROVIDER_CATALOG_PATH",
     "GoogleRouteSettings",
+    "OpenAICompatibleRouteSettings",
+    "ProviderCatalog",
     "ProviderRawResponse",
     "ProviderResponseLedger",
     "LEDGER_POLICY",
@@ -112,6 +123,7 @@ __all__ = [
     "validate_reviewed_support_bundle",
     "validate_reviewed_support_receipt",
     "load_frozen_review_selection",
+    "load_provider_catalog",
     "build_calibration_artifact",
     "load_calibration_artifact",
     "seal_calibration_artifact",
@@ -126,4 +138,3 @@ __all__ = [
     "validate_context_substitution_input",
     "validate_d2l_context_substitution_run",
 ]
-

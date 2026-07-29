@@ -36,6 +36,10 @@ from context_substitution.v2.integration.projection import (
 from context_substitution.v2.integration.replay import replay_context_run
 from context_substitution.v2.integration.release import build_integration_release
 from context_substitution.v2.providers.base import FailoverStructuredModel
+from context_substitution.v2.providers.catalog import (
+    DEFAULT_PROVIDER_CATALOG_PATH,
+    load_provider_catalog,
+)
 from context_substitution.v2.providers.google import GoogleRouteSettings
 from context_substitution.v2.providers.ledger import ProviderResponseLedger
 from context_substitution.v2.runtime.calibration import (
@@ -62,7 +66,12 @@ def parser() -> argparse.ArgumentParser:
 
     run = commands.add_parser("context-run")
     run.add_argument("--input", type=Path, required=True)
-    run.add_argument("--routes", type=Path, required=True)
+    run.add_argument(
+        "--routes",
+        type=Path,
+        help="legacy environment-backed Google route file",
+    )
+    _add_provider_catalog_args(run)
     run.add_argument("--ledger-root", type=Path, required=True)
     run.add_argument("--output", type=Path, required=True)
     run.add_argument("--allow-api", action="store_true")
@@ -138,6 +147,9 @@ def parser() -> argparse.ArgumentParser:
     measurements = commands.add_parser("measurements-project")
     measurements.add_argument("--run", type=Path, required=True)
     measurements.add_argument("--output", type=Path, required=True)
+
+    preflight = commands.add_parser("provider-preflight")
+    _add_provider_catalog_args(preflight)
     return root
 
 
@@ -169,9 +181,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         if not args.allow_api:
             raise SystemExit("context-run requires explicit --allow-api")
         input_payload = load_json(args.input)
-        settings = _route_settings(load_json(args.routes))
         model = FailoverStructuredModel(
-            [item.build() for item in settings],
+            _provider_routes(args),
             response_ledger=ProviderResponseLedger(args.ledger_root),
             audit_run_id="api:" + input_payload["integrity"]["input_sha256"][:24],
         )
@@ -327,6 +338,15 @@ def main(argv: Sequence[str] | None = None) -> int:
         write_json(args.output, result)
         _print({"output": str(args.output.resolve())})
         return 0
+    if args.command == "provider-preflight":
+        catalog = load_provider_catalog(args.provider_catalog)
+        _print(
+            catalog.preflight_summary(
+                credentials_root=args.credentials_root,
+                provider_ids=args.provider,
+            )
+        )
+        return 0
     raise AssertionError("unreachable")
 
 
@@ -348,6 +368,36 @@ def _source_kwargs(args: argparse.Namespace) -> dict[str, Any]:
         "expected_zip_sha256": args.expected_zip_sha256,
         "expected_parent_zip_sha256": args.expected_parent_zip_sha256,
     }
+
+
+def _add_provider_catalog_args(value: argparse.ArgumentParser) -> None:
+    value.add_argument(
+        "--provider-catalog",
+        type=Path,
+        default=DEFAULT_PROVIDER_CATALOG_PATH,
+    )
+    value.add_argument("--credentials-root", type=Path)
+    value.add_argument(
+        "--provider",
+        action="append",
+        help="provider id in desired order; repeat to override catalog order",
+    )
+
+
+def _provider_routes(args: argparse.Namespace) -> list[Any]:
+    if args.routes is not None:
+        if args.credentials_root is not None or args.provider:
+            raise ValueError(
+                "legacy --routes cannot be combined with catalog provider options"
+            )
+        return [item.build() for item in _route_settings(load_json(args.routes))]
+    catalog = load_provider_catalog(args.provider_catalog)
+    return list(
+        catalog.build_routes(
+            credentials_root=args.credentials_root,
+            provider_ids=args.provider,
+        )
+    )
 
 
 def _route_settings(value: Any) -> list[GoogleRouteSettings]:

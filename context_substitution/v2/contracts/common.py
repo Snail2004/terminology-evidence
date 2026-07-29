@@ -31,6 +31,7 @@ PROVIDER_ROUTE_IDS = (
     "shopaikey_gemini",
     "ckey_gemini",
     "gemini_official",
+    "local_gpt_gateway",
 )
 
 HASH_PATH = ("integrity", "run_sha256")
@@ -347,4 +348,3 @@ def sha256_text(value: str) -> str:
 
 def stable_digest(*parts: str) -> str:
     return sha256_text("\0".join(parts))
-

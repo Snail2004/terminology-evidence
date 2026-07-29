@@ -20,6 +20,8 @@ class GoogleRouteSettings:
     timeout_seconds: int = 120
     model_family: str | None = None
     independence_group: str | None = None
+    max_attempts: int = 1
+    retry_backoff_seconds: tuple[float, ...] = ()
 
     def build(self) -> ContextProviderRoute:
         if not self.api_key.strip():
@@ -30,6 +32,8 @@ class GoogleRouteSettings:
             sender=GoogleGenAISender(self),
             model_family=self.model_family,
             independence_group=self.independence_group,
+            max_attempts=self.max_attempts,
+            retry_backoff_seconds=self.retry_backoff_seconds,
         )
 
 
@@ -157,5 +161,4 @@ def _nonnegative(value: Any) -> int:
     except (TypeError, ValueError):
         return 0
     return max(result, 0)
-
 
