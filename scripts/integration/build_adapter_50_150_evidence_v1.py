@@ -155,8 +155,9 @@ def main() -> int:
         "summary_self_sha256": summary["integrity"]["self_sha256"],
         "integrity": {},
     }
+    excluded_release_files = {output / "CHECKSUMS.sha256", output / "manifest.json"}
     for path in sorted(output.rglob("*")):
-        if path.is_file() and path.name not in {"CHECKSUMS.sha256", "manifest.json"}:
+        if path.is_file() and path not in excluded_release_files:
             release["files"][path.relative_to(output).as_posix()] = {
                 "sha256": sha256_file(path),
                 "size_bytes": path.stat().st_size,
@@ -181,7 +182,7 @@ def _portable_build_result(value: dict[str, object]) -> dict[str, object]:
 def _zip_tree(source: Path, target: Path) -> None:
     with zipfile.ZipFile(target, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
         for path in sorted(source.rglob("*")):
-            if not path.is_file() or path.name == "CHECKSUMS.sha256":
+            if not path.is_file():
                 continue
             info = zipfile.ZipInfo(path.relative_to(source).as_posix(), date_time=(1980, 1, 1, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
@@ -191,10 +192,11 @@ def _zip_tree(source: Path, target: Path) -> None:
 
 
 def _write_checksums(root: Path) -> None:
+    root_checksum = root / "CHECKSUMS.sha256"
     lines = [
         f"{sha256_file(path)}  {path.relative_to(root).as_posix()}"
         for path in sorted(root.rglob("*"))
-        if path.is_file() and path.name != "CHECKSUMS.sha256"
+        if path.is_file() and path != root_checksum
     ]
     (root / "CHECKSUMS.sha256").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 
