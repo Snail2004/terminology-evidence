@@ -42,3 +42,10 @@ python -m unittest discover -s tests -p test_remaining100_stage_a.py
 The package intentionally contains zero provider calls, zero Stage B labels,
 and zero final glossary decisions. A successful structural validation means
 `READY_FOR_STAGE_A_RISK_REVIEW`, not human-reviewed or official status.
+
+Reviewer result intake is fail-closed. If a reviewer selects `REVISE` for the
+candidate set, at least one replacement must be bound to an existing
+`candidate_id` and `candidate_slot`. A split-only decision may instead keep the
+existing candidates by selecting `ACCEPT` and partitioning them through the
+proposed split labels. Targeted repair packages preserve the original reviewer
+files and request only the inconsistent fields.
