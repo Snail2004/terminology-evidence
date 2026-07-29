@@ -20,6 +20,7 @@ from .release_io import (
     write_deterministic_zip,
 )
 from .release_reports import credential_scan, findings_report, seal, static_scan
+from .junit import verify_junit
 
 
 RELEASE_ID = "vietnamese-attestation-v1.1-post-zero-api-rc1"
@@ -36,9 +37,10 @@ def build_post_zero_api_release(
     controlled_registry: str | Path,
     output_root: str | Path,
     implementation_commit: str = "HEAD",
-    junit_path: str | Path | None = None,
+    junit_path: str | Path,
 ) -> dict[str, Any]:
     repository = Path(repository_root).resolve(strict=True)
+    junit_report = verify_junit(junit_path)
     output = Path(output_root).resolve()
     if output.exists() and any(output.iterdir()):
         raise ValueError("post-zero-API release output root must be absent or empty")
@@ -121,12 +123,18 @@ def build_post_zero_api_release(
         zero_api=zero_api,
         controlled=controlled,
         receipt=receipt,
+        junit_report=junit_report,
     )
     for name, value in reports.items():
         write_json(release_root / name, value)
 
     _write_execution_evidence(release_root, junit_path)
-    manifest = release_manifest(release_root, commit, release_id=RELEASE_ID)
+    manifest = release_manifest(
+        release_root,
+        commit,
+        release_id=RELEASE_ID,
+        test_gate=junit_report,
+    )
     write_json(release_root / "manifest.json", manifest)
     write_checksums(release_root)
     zip_path = output / RELEASE_ZIP_NAME
@@ -154,6 +162,14 @@ def build_post_zero_api_release(
         "release_zip": zip_path.as_posix(),
         "release_zip_sha256": zip_sha256,
         "manifest_sha256": manifest["integrity"]["self_sha256"],
+        "test_gate": {
+            "tests": junit_report["tests"],
+            "failures": junit_report["failures"],
+            "errors": junit_report["errors"],
+            "skipped": junit_report["skipped"],
+            "policy_id": junit_report["policy_id"],
+            "policy_version": junit_report["policy_version"],
+        },
         "zero_api_replay": "15/15 PASS",
         "provider_call_count": 0,
         "holds": [
@@ -173,11 +189,13 @@ def _readiness_reports(
     zero_api: dict[str, Any],
     controlled: dict[str, Any],
     receipt: dict[str, Any],
+    junit_report: dict[str, Any],
 ) -> dict[str, dict[str, Any]]:
     return {
         "git_commit_receipt.json": receipt,
         "authority_verification_report.json": seal(authority),
         "zero_api_verification_report.json": seal(zero_api),
+        "junit_verification_report.json": seal(junit_report),
         "dataset_input_conformance_report.json": seal(
             {
                 "schema_id": "VietnameseAttestationDatasetInputConformanceReportV1",
@@ -247,9 +265,7 @@ def _readiness_reports(
     }
 
 
-def _write_execution_evidence(
-    release_root: Path, junit_path: str | Path | None
-) -> None:
+def _write_execution_evidence(release_root: Path, junit_path: str | Path) -> None:
     commands = (
         "python -m pytest -q vietnamese_attestation/v1/tests "
         "--junitxml=<junit-path>\n"
@@ -261,18 +277,8 @@ def _write_execution_evidence(
     (release_root / "commands.txt").write_text(
         commands, encoding="utf-8", newline="\n"
     )
-    if junit_path is not None:
-        junit = Path(junit_path).resolve(strict=True)
-        (release_root / "junit.xml").write_bytes(junit.read_bytes())
-        return
-    write_json(
-        release_root / "junit.json",
-        {
-            "schema_id": "VietnameseAttestationJunitStatusV1",
-            "schema_version": "1.0.0",
-            "status": "NOT_EXECUTED",
-        },
-    )
+    junit = Path(junit_path).resolve(strict=True)
+    (release_root / "junit.xml").write_bytes(junit.read_bytes())
 
 
 __all__ = [

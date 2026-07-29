@@ -61,7 +61,11 @@ def tracked_source_paths(
 
 
 def release_manifest(
-    root: Path, commit: str, *, release_id: str
+    root: Path,
+    commit: str,
+    *,
+    release_id: str,
+    test_gate: dict[str, Any],
 ) -> dict[str, Any]:
     records = [
         {
@@ -86,6 +90,17 @@ def release_manifest(
             "files": records,
             "excluded_patterns": ["__pycache__", "*.pyc", ".pytest_cache"],
             "provider_call_count": 0,
+            "test_gate": {
+                "policy_id": test_gate["policy_id"],
+                "policy_version": test_gate["policy_version"],
+                "tests": test_gate["tests"],
+                "failures": test_gate["failures"],
+                "errors": test_gate["errors"],
+                "skipped": test_gate["skipped"],
+                "testcase_identity_sha256": test_gate[
+                    "testcase_identity_sha256"
+                ],
+            },
         }
     )
 

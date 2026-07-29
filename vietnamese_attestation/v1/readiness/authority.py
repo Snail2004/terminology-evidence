@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import json
 import subprocess
 from pathlib import Path
 from typing import Any
@@ -13,6 +12,7 @@ from terminology_contracts.integrity import (
     verify_self_hash,
 )
 from terminology_contracts.manifest import verify_manifest
+from .jsonio import load_strict_json_object
 
 
 AUTHORITY_TAG = "contracts-v1.1.0"
@@ -40,7 +40,7 @@ def verify_contract_authority(
 ) -> dict[str, Any]:
     repository = Path(repository_root).resolve(strict=True)
     receipt_file = Path(receipt_path).resolve(strict=True)
-    receipt = _load_strict_object(receipt_file)
+    receipt = load_strict_json_object(receipt_file)
     verify_self_hash(receipt, path=str(receipt_file))
 
     expected = {
@@ -75,7 +75,7 @@ def verify_contract_authority(
     if not schema_dir.is_dir():
         raise ValueError("contracts authority V1.1 schema directory is missing")
 
-    manifest = _load_strict_object(manifest_path)
+    manifest = load_strict_json_object(manifest_path)
     if manifest.get("integrity", {}).get("manifest_sha256") != (
         CONTRACT_MANIFEST_SHA256
     ):
@@ -135,31 +135,6 @@ def verify_contract_authority(
         "contracts_tree_drift_count": 0,
         "provider_call_count": 0,
     }
-
-
-def _load_strict_object(path: Path) -> dict[str, Any]:
-    def reject_constant(value: str) -> None:
-        raise ValueError(f"non-finite JSON value: {value}")
-
-    def unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
-        result: dict[str, Any] = {}
-        for key, value in pairs:
-            if key in result:
-                raise ValueError(f"duplicate JSON key: {key}")
-            result[key] = value
-        return result
-
-    try:
-        value = json.loads(
-            path.read_text(encoding="utf-8"),
-            parse_constant=reject_constant,
-            object_pairs_hook=unique_object,
-        )
-    except (OSError, UnicodeError, json.JSONDecodeError, ValueError) as exc:
-        raise ValueError(f"cannot load strict JSON artifact {path}") from exc
-    if not isinstance(value, dict):
-        raise ValueError(f"JSON artifact is not an object: {path}")
-    return value
 
 
 def _git(repository: Path, *args: str) -> str:

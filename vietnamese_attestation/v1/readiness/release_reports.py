@@ -75,7 +75,7 @@ def findings_report(canonical_main: str) -> dict[str, Any]:
         "schema_id": "VietnameseAttestationReadinessFindingsV1",
         "schema_version": "1.0.0",
         "status": "HOLD_EXTERNAL_INPUTS",
-        "report_version": "1.2.1",
+        "report_version": "1.2.2",
         "canonical_main_at_build": canonical_main,
         "findings": [
             {
@@ -127,6 +127,20 @@ def findings_report(canonical_main: str) -> dict[str, Any]:
                 "summary": "Two Contracts dataset-mapping tests require an external root",
                 "evidence": "113 passed, 2 skipped: TERMINOLOGY_DATASET_ROOT not supplied",
                 "required_to_close": "Rerun mapping fixtures with official Dataset authority",
+            },
+            {
+                "finding_id": "E-RDY-008",
+                "severity": "P1",
+                "status": "RESOLVED",
+                "summary": "Readiness artifact decoder was permissive and followed links",
+                "resolution": "Strict recursive JSON/JSONL decoder and root-confined link-safe refs",
+            },
+            {
+                "finding_id": "E-RDY-009",
+                "severity": "P1",
+                "status": "RESOLVED",
+                "summary": "Release could pass without a reviewed test gate",
+                "resolution": "Mandatory exact E-suite JUnit policy with parsed 74-test gate",
             },
         ],
         "provider_call_count": 0,

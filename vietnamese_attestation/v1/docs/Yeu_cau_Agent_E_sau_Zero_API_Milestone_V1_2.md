@@ -39,8 +39,9 @@ Kết quả đã hoàn thành:
 15/15 final_glossary_decision = null
 273 manifest files
 0 manifest/hash error
-66/66 full E tests PASS
-8/8 focused zero-API/registry tests PASS
+66/66 full E tests PASS before readiness rework
+74/74 full E tests PASS after readiness rework
+8/8 focused readiness tests PASS after readiness rework
 ```
 
 Không chạy lại hoặc viết lại zero-API pipeline trừ khi regression test mới phát hiện lỗi.

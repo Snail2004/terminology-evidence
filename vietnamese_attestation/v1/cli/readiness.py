@@ -19,7 +19,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--controlled-registry", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--implementation-commit", default="HEAD")
-    parser.add_argument("--junit", type=Path)
+    parser.add_argument("--junit", type=Path, required=True)
     args = parser.parse_args(argv)
     summary = build_post_zero_api_release(
         repository_root=args.repository_root,

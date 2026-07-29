@@ -1,6 +1,6 @@
 # Evidence E Post-Zero-API Readiness Findings V1
 
-Report version: 1.2.1
+Report version: 1.2.2
 
 Status: `HOLD_EXTERNAL_INPUTS`
 
@@ -71,6 +71,26 @@ counterpart `readiness_findings_report.json`.
   remain tied to the same official Dataset handoff blocked by E-RDY-002.
 - Close condition: rerun the mapping fixtures against the official immutable
   Dataset root when it is supplied.
+
+## E-RDY-008 - permissive artifact decoder and link traversal
+
+- Severity: P1
+- Status: RESOLVED
+- Finding: readiness verification previously used default JSON parsing and did
+  not reject symlink/path ambiguity before hashing.
+- Resolution: one readiness-owned strict recursive JSON/JSONL decoder now
+  rejects duplicate keys, non-finite/overflow values, invalid UTF-8 and
+  trailing data; manifest refs are canonical, case-conflict checked and
+  resolved beneath a symlink/junction-free artifact root.
+
+## E-RDY-009 - release without a valid test gate
+
+- Severity: P1
+- Status: RESOLVED
+- Finding: release JUnit was optional and unparsed.
+- Resolution: JUnit is mandatory, must identify the E suite, contain exactly 74
+  tests with zero failures/errors, and is recorded in the release manifest and
+  summary before any output directory is created.
 
 ## Semantic boundary clarification
 
