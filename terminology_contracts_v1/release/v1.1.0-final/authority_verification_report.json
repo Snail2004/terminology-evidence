@@ -1,0 +1,29 @@
+{
+  "authority_commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+  "authority_tag": "contracts-v1.1.0",
+  "feature_registry_canonical_sha256": "057f47d68097286f04f0870d2e78944e59c07b0cb4e9db7f9d8675c9f2c8b182",
+  "gate_policy_self_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+  "historical_receipts": [
+    {
+      "integrity_mode": "HISTORICAL_INVALID_SELF_HASH",
+      "path": "release/v1.1.0-final/history/contracts_v1_1_0_authority_receipt_r1_invalid.json",
+      "status": "SUPERSEDED_BY_RECEIPT_R2"
+    },
+    {
+      "integrity_mode": "CANONICAL_SELF_HASH",
+      "path": "release/v1.1.0-final/history/contracts_v1_1_0_authority_receipt_r1_resealed.json",
+      "status": "SUPERSEDED_BY_RECEIPT_R2"
+    }
+  ],
+  "integrity": {
+    "self_sha256": "8d11809faf9236f834e3238a3e38b02f2b1a6377b148648e7d0e53ee669218cc"
+  },
+  "integrity_mode": "CANONICAL_SELF_HASH_AND_PHYSICAL_DISTRIBUTION_PIN",
+  "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
+  "receipt_physical_sha256": "acb1d40b39110470f90d8b793aa162ca02252cb825e51ca94882e85c1f6a2f79",
+  "receipt_self_sha256": "a69b887ae650ba277c25c0d00e917dc834aa509320379a5cd17ff0241cf1b618",
+  "release_zip_sha256": "2f16fbd2614308be43619a6643f196d74d588ce12e9a4e30dcec3ab669a6f471",
+  "result": "PASS",
+  "schema_id": "TerminologyContractsAuthorityVerificationReportV1",
+  "warnings": []
+}

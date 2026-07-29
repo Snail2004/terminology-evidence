@@ -1,0 +1,13 @@
+{
+  "absolute_paths_are_authority_identity": false,
+  "dataset_roots_required_for_release_gate": true,
+  "external_api_calls": 0,
+  "implementation": "CPython",
+  "integrity": {
+    "self_sha256": "bba09a0a3e8ba0124cc638150a384d857bea06012204b6c01653d74a2f609432"
+  },
+  "platform_release": "11",
+  "platform_system": "Windows",
+  "python_version": "3.13.3",
+  "schema_id": "TerminologyContractsAuthorityEnvironmentV1"
+}
