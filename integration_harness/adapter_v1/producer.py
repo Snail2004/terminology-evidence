@@ -1,9 +1,7 @@
-"""Producer package-set and explicit HOLD verification for Harness intake."""
+"""Complete producer package-set verification for Harness availability intake."""
 
 from __future__ import annotations
 
-import shutil
-import uuid
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping, Sequence
@@ -22,17 +20,41 @@ from integration_harness.paths import ensure_no_symlink, ensure_plain_root, safe
 
 
 PACKAGE_SET_SCHEMA = "HarnessProducerPackageSetV1"
-HOLD_SCHEMA = "HarnessProducerEvidenceHoldV1"
 SCHEMA_VERSION = "1.0.0"
 
 COMPLETE_ACCEPTED = "COMPLETE_ACCEPTED"
 SYNTHETIC_COMPLETE = "SYNTHETIC_LOCAL_CONFORMANCE"
-EXPLICIT_HOLD = "EXPLICIT_HOLD"
 
 ROLE_SCHEMAS = {
     "context_evidence": "ContextEvidencePackageV1",
     "attestation_evidence": "AttestationEvidencePackageV1",
 }
+
+_MANIFEST_FIELDS = {
+    "schema_id",
+    "schema_version",
+    "producer_role",
+    "status",
+    "producer",
+    "entry_count",
+    "package_count",
+    "hold_count",
+    "entries",
+    "accepted_source_binding",
+    "final_glossary_decision",
+    "global_action",
+    "integrity",
+}
+_ENTRY_FIELDS = {
+    "candidate_id",
+    "kind",
+    "relative_path",
+    "physical_sha256",
+    "self_sha256",
+}
+_PRODUCER_FIELDS = {"component_id", "component_version", "run_id", "commit"}
+_SOURCE_BINDING_FIELDS = {"source_manifest", "acceptance_receipt"}
+_BOUND_FILE_FIELDS = {"relative_path", "physical_sha256", "self_sha256"}
 
 
 @dataclass(frozen=True)
@@ -59,11 +81,6 @@ class ProducerSet:
     source_manifest_path: Path | None
     acceptance_receipt_path: Path | None
 
-    @property
-    def has_holds(self) -> bool:
-        return any(item.kind == "HOLD" for item in self.items)
-
-
 def load_producer_set(
     manifest_path: Path,
     *,
@@ -71,13 +88,14 @@ def load_producer_set(
     candidates: Sequence[DatasetCandidate],
     schema_root: Path,
     adapter_mode: str,
-    allowed_hold_roles: frozenset[str] = frozenset(),
 ) -> ProducerSet:
     if role not in ROLE_SCHEMAS:
         raise ValidationError(f"unsupported producer role: {role}")
-    manifest_path = ensure_plain_root(manifest_path.parent) / manifest_path.name
+    root = ensure_plain_root(manifest_path.parent)
+    manifest_path = ensure_no_symlink(root, safe_relative_path(manifest_path.name))
     manifest_raw = manifest_path.read_bytes()
     manifest = load_json(manifest_path, require_object=True)
+    _require_exact_keys(manifest, _MANIFEST_FIELDS, "producer package-set manifest")
     if manifest.get("schema_id") != PACKAGE_SET_SCHEMA or manifest.get("schema_version") != SCHEMA_VERSION:
         raise ValidationError("unsupported Harness producer package-set manifest")
     _verify_self_hash(manifest, "producer package-set manifest")
@@ -99,6 +117,8 @@ def load_producer_set(
     entries = manifest.get("entries")
     if not isinstance(entries, list) or len(entries) != len(expected):
         raise ValidationError("producer package-set entry count mismatch")
+    if entries != sorted(entries, key=lambda item: str(item.get("candidate_id", "")) if isinstance(item, Mapping) else ""):
+        raise IntegrityError("producer package-set entries are not canonically sorted")
     if manifest.get("entry_count") != len(entries):
         raise ValidationError("producer package-set declared entry count mismatch")
     items: list[ProducerItem] = []
@@ -106,6 +126,7 @@ def load_producer_set(
     folded_paths: set[str] = set()
     for offset, entry_value in enumerate(entries):
         entry = _mapping(entry_value, f"producer entry {offset}")
+        _require_exact_keys(entry, _ENTRY_FIELDS, f"producer entry {offset}")
         candidate_id = _string(entry.get("candidate_id"), "producer candidate_id")
         if candidate_id in observed or candidate_id not in expected:
             raise ValidationError(f"duplicate or foreign producer candidate: {candidate_id}")
@@ -139,33 +160,14 @@ def load_producer_set(
                 producer=producer,
                 schema_root=schema_root,
             )
-        elif kind == "HOLD":
-            if role not in allowed_hold_roles:
-                raise PolicyError(f"explicit HOLD is not allowed for role: {role}")
-            item = _validate_hold(
-                value,
-                raw=raw,
-                path=path,
-                relative_path=relative_text,
-                physical=physical,
-                entry=entry,
-                role=role,
-                identity=expected[candidate_id],
-                producer=producer,
-            )
         else:
             raise ValidationError(f"unsupported producer entry kind: {kind}")
         items.append(item)
     if observed != set(expected):
         raise ValidationError("producer package-set is missing Dataset candidates")
     package_count = sum(item.kind == "PACKAGE" for item in items)
-    hold_count = sum(item.kind == "HOLD" for item in items)
-    if manifest.get("package_count") != package_count or manifest.get("hold_count") != hold_count:
-        raise ValidationError("producer package-set package/HOLD counts mismatch")
-    if status == EXPLICIT_HOLD and hold_count == 0:
-        raise ValidationError("EXPLICIT_HOLD set contains no HOLD entries")
-    if status in {COMPLETE_ACCEPTED, SYNTHETIC_COMPLETE} and hold_count:
-        raise ValidationError("complete producer package-set contains HOLD entries")
+    if manifest.get("package_count") != package_count or manifest.get("hold_count") != 0:
+        raise ValidationError("producer package-set package count mismatch")
     return ProducerSet(
         role=role,
         status=status,
@@ -178,95 +180,11 @@ def load_producer_set(
     )
 
 
-def write_explicit_hold_set(
-    output_root: Path,
-    *,
-    role: str,
-    candidates: Sequence[DatasetCandidate],
-    reason_code: str,
-    issuer_commit: str,
-    run_id: str,
-) -> Path:
-    """Create a Harness-owned, decision-neutral HOLD set without fabricating evidence."""
-
-    if role not in ROLE_SCHEMAS:
-        raise ValidationError(f"unsupported producer HOLD role: {role}")
-    if not reason_code or not run_id or not issuer_commit:
-        raise ValidationError("HOLD reason, issuer commit and run_id are required")
-    output_root = output_root.absolute()
-    if output_root.exists():
-        raise PolicyError(f"refusing to overwrite HOLD set: {output_root}")
-    parent = ensure_plain_root(output_root.parent)
-    temp = parent / f".{output_root.name}.tmp-{uuid.uuid4().hex}"
-    temp.mkdir()
-    try:
-        producer = {
-            "component_id": "system-integration-harness",
-            "component_version": "dataset-50-150-adapter-v1",
-            "run_id": run_id,
-            "commit": issuer_commit,
-        }
-        entries: list[dict[str, Any]] = []
-        for candidate in sorted(candidates, key=lambda item: item.identity.candidate_id):
-            value = {
-                "schema_id": HOLD_SCHEMA,
-                "schema_version": SCHEMA_VERSION,
-                "producer_role": role,
-                "status": EXPLICIT_HOLD,
-                "candidate_key": {
-                    key: item
-                    for key, item in candidate.identity.as_dict().items()
-                    if key != "input_contract_sha256"
-                },
-                "input_contract_sha256": candidate.identity.input_contract_sha256,
-                "producer": producer,
-                "reason_code": reason_code,
-                "final_glossary_decision": None,
-                "integrity": {},
-            }
-            value["integrity"]["self_sha256"] = self_sha256(value)
-            relative = f"holds/{candidate.identity.candidate_id}.json"
-            dump_json(temp / relative, value)
-            path = temp / relative
-            entries.append(
-                {
-                    "candidate_id": candidate.identity.candidate_id,
-                    "kind": "HOLD",
-                    "relative_path": relative,
-                    "physical_sha256": sha256_file(path),
-                    "self_sha256": value["integrity"]["self_sha256"],
-                }
-            )
-        manifest = {
-            "schema_id": PACKAGE_SET_SCHEMA,
-            "schema_version": SCHEMA_VERSION,
-            "producer_role": role,
-            "status": EXPLICIT_HOLD,
-            "producer": producer,
-            "entry_count": len(entries),
-            "package_count": 0,
-            "hold_count": len(entries),
-            "entries": entries,
-            "accepted_source_binding": None,
-            "final_glossary_decision": None,
-            "global_action": None,
-            "integrity": {},
-        }
-        manifest["integrity"]["self_sha256"] = self_sha256(manifest)
-        dump_json(temp / "manifest.json", manifest)
-        temp.replace(output_root)
-    except Exception:
-        if temp.parent == parent and temp.name.startswith(f".{output_root.name}.tmp-"):
-            shutil.rmtree(temp, ignore_errors=True)
-        raise
-    return output_root / "manifest.json"
-
-
 def _validate_status(status: str, *, adapter_mode: str) -> None:
     if adapter_mode == OFFICIAL_MODE:
-        allowed = {COMPLETE_ACCEPTED, EXPLICIT_HOLD}
+        allowed = {COMPLETE_ACCEPTED}
     elif adapter_mode == SYNTHETIC_MODE:
-        allowed = {SYNTHETIC_COMPLETE, EXPLICIT_HOLD}
+        allowed = {SYNTHETIC_COMPLETE}
     else:
         raise ValidationError(f"unsupported adapter mode: {adapter_mode}")
     if status not in allowed:
@@ -285,6 +203,11 @@ def _verify_source_binding(
             raise PolicyError("non-official package set cannot claim an accepted source binding")
         return None, None
     binding = _mapping(binding_value, "accepted producer source binding")
+    _require_exact_keys(
+        binding,
+        _SOURCE_BINDING_FIELDS,
+        "accepted producer source binding",
+    )
     source_path = _bound_file(
         manifest_path.parent,
         binding.get("source_manifest"),
@@ -300,6 +223,7 @@ def _verify_source_binding(
 
 def _bound_file(root: Path, value: Any, label: str) -> Path:
     binding = _mapping(value, label)
+    _require_exact_keys(binding, _BOUND_FILE_FIELDS, label)
     relative = safe_relative_path(_string(binding.get("relative_path"), f"{label} path"))
     path = ensure_no_symlink(root, relative)
     if not path.is_file() or binding.get("physical_sha256") != sha256_file(path):
@@ -355,59 +279,9 @@ def _validate_package(
     )
 
 
-def _validate_hold(
-    value: Mapping[str, Any],
-    *,
-    raw: bytes,
-    path: Path,
-    relative_path: str,
-    physical: str,
-    entry: Mapping[str, Any],
-    role: str,
-    identity: CandidateIdentity,
-    producer: Mapping[str, str],
-) -> ProducerItem:
-    if value.get("schema_id") != HOLD_SCHEMA or value.get("schema_version") != SCHEMA_VERSION:
-        raise ValidationError(f"producer HOLD schema mismatch: {relative_path}")
-    _verify_self_hash(value, relative_path)
-    if value.get("producer_role") != role or value.get("status") != EXPLICIT_HOLD:
-        raise ValidationError(f"producer HOLD role/status mismatch: {relative_path}")
-    hold_identity = _identity_from_envelope(value)
-    if hold_identity != identity:
-        raise ValidationError(f"producer HOLD identity mismatch: {relative_path}")
-    if value.get("producer") != dict(producer):
-        raise ValidationError(f"producer HOLD provenance mismatch: {relative_path}")
-    if value.get("final_glossary_decision") is not None:
-        raise PolicyError(f"producer HOLD contains a final decision: {relative_path}")
-    reason = value.get("reason_code")
-    if not isinstance(reason, str) or not reason:
-        raise ValidationError(f"producer HOLD reason is missing: {relative_path}")
-    declared = value["integrity"]["self_sha256"]
-    if entry.get("self_sha256") != declared:
-        raise IntegrityError(f"producer HOLD manifest self-hash mismatch: {relative_path}")
-    return ProducerItem(
-        role=role,
-        identity=identity,
-        kind="HOLD",
-        path=path,
-        relative_path=relative_path,
-        raw=raw,
-        value=dict(value),
-        physical_sha256=physical,
-        self_sha256=declared,
-    )
-
-
-def _identity_from_envelope(value: Mapping[str, Any]) -> CandidateIdentity:
-    synthetic = {
-        "candidate_key": value.get("candidate_key"),
-        "input_contract_sha256": value.get("input_contract_sha256"),
-    }
-    return CandidateIdentity.from_package(synthetic)
-
-
 def _producer(value: Any) -> dict[str, str]:
     producer = _mapping(value, "producer")
+    _require_exact_keys(producer, _PRODUCER_FIELDS, "producer")
     fields = ("component_id", "component_version", "run_id", "commit")
     result = {field: _string(producer.get(field), f"producer.{field}") for field in fields}
     return result
@@ -415,7 +289,10 @@ def _producer(value: Any) -> dict[str, str]:
 
 def _verify_self_hash(value: Mapping[str, Any], label: str) -> None:
     integrity = value.get("integrity")
-    if not isinstance(integrity, Mapping) or integrity.get("self_sha256") != self_sha256(value):
+    if not isinstance(integrity, Mapping):
+        raise IntegrityError(f"{label} integrity is invalid")
+    _require_exact_keys(integrity, {"self_sha256"}, f"{label} integrity")
+    if integrity.get("self_sha256") != self_sha256(value):
         raise IntegrityError(f"{label} self hash mismatch")
 
 
@@ -431,14 +308,23 @@ def _string(value: Any, label: str) -> str:
     return value
 
 
+def _require_exact_keys(
+    value: Mapping[str, Any],
+    expected: set[str],
+    label: str,
+) -> None:
+    observed = set(value)
+    if observed != expected:
+        missing = sorted(expected - observed)
+        extra = sorted(observed - expected)
+        raise ValidationError(f"{label} fields mismatch: missing={missing}, extra={extra}")
+
+
 __all__ = [
     "COMPLETE_ACCEPTED",
-    "EXPLICIT_HOLD",
-    "HOLD_SCHEMA",
     "PACKAGE_SET_SCHEMA",
     "ProducerItem",
     "ProducerSet",
     "SYNTHETIC_COMPLETE",
     "load_producer_set",
-    "write_explicit_hold_set",
 ]

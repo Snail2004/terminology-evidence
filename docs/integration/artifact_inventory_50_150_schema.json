@@ -11,8 +11,12 @@
     "status",
     "candidate_count",
     "sense_count",
+    "ready_candidate_count",
+    "not_submitted_count",
+    "availability_counts",
     "dataset_binding",
     "producer_sets",
+    "sidecar_bindings",
     "source_authority",
     "artifacts",
     "holds",
@@ -30,11 +34,15 @@
       "enum": [
         "READY_FOR_15_CANDIDATE_ZERO_PROVIDER_RUN",
         "READY_FOR_15_CANDIDATE_ZERO_PROVIDER_PREFLIGHT",
-        "SYNTHETIC_150_CANDIDATE_CONFORMANCE_PASS"
+        "SYNTHETIC_150_CANDIDATE_CONFORMANCE_PASS",
+        "SYNTHETIC_150_CANDIDATE_AVAILABILITY_HOLD"
       ]
     },
     "candidate_count": {"enum": [15, 150]},
     "sense_count": {"enum": [5, 50]},
+    "ready_candidate_count": {"type": "integer", "minimum": 0, "maximum": 150},
+    "not_submitted_count": {"type": "integer", "minimum": 0, "maximum": 150},
+    "availability_counts": {"$ref": "#/$defs/availabilityCounts"},
     "dataset_binding": {
       "type": "object",
       "additionalProperties": false,
@@ -59,9 +67,25 @@
     },
     "producer_sets": {
       "type": "array",
-      "minItems": 2,
+      "minItems": 0,
       "maxItems": 2,
       "items": {"$ref": "#/$defs/producerSet"}
+    },
+    "sidecar_bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "harness_cohort_inventory",
+        "global_batch_authority",
+        "evidence_availability_manifest",
+        "global_batch_readiness_report"
+      ],
+      "properties": {
+        "harness_cohort_inventory": {"$ref": "#/$defs/binding"},
+        "global_batch_authority": {"$ref": "#/$defs/binding"},
+        "evidence_availability_manifest": {"$ref": "#/$defs/binding"},
+        "global_batch_readiness_report": {"$ref": "#/$defs/binding"}
+      }
     },
     "source_authority": {
       "type": "array",
@@ -70,12 +94,12 @@
     },
     "artifacts": {
       "type": "array",
-      "minItems": 45,
+      "minItems": 0,
       "items": {"$ref": "#/$defs/artifact"}
     },
     "holds": {
       "type": "array",
-      "items": {"$ref": "#/$defs/hold"}
+      "maxItems": 0
     },
     "global_execution": {
       "type": "object",
@@ -90,7 +114,7 @@
       ],
       "properties": {
         "status": {
-          "enum": ["READY_FOR_PUBLIC_GLOBAL_CLI", "HOLD_EXPLICIT_PRODUCER_PACKAGE"]
+          "enum": ["READY_FOR_PUBLIC_GLOBAL_CLI", "HOLD_EVIDENCE_AVAILABILITY"]
         },
         "mode": {"const": "DEVELOPMENT_HEURISTIC"},
         "network_policy": {"const": "FORBIDDEN"},
@@ -110,6 +134,27 @@
   "$defs": {
     "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "gitCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relative_path", "physical_sha256", "self_sha256"],
+      "properties": {
+        "relative_path": {"type": "string", "minLength": 1},
+        "physical_sha256": {"$ref": "#/$defs/sha256"},
+        "self_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "availabilityCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["PRESENT", "EXTERNAL_HOLD", "MISSING", "INVALID"],
+      "properties": {
+        "PRESENT": {"type": "integer", "minimum": 0},
+        "EXTERNAL_HOLD": {"type": "integer", "minimum": 0},
+        "MISSING": {"type": "integer", "minimum": 0},
+        "INVALID": {"type": "integer", "minimum": 0}
+      }
+    },
     "candidateKey": {
       "type": "object",
       "additionalProperties": false,
@@ -164,12 +209,12 @@
       "properties": {
         "role": {"enum": ["context_evidence", "attestation_evidence"]},
         "status": {
-          "enum": ["COMPLETE_ACCEPTED", "SYNTHETIC_LOCAL_CONFORMANCE", "EXPLICIT_HOLD"]
+          "enum": ["COMPLETE_ACCEPTED", "SYNTHETIC_LOCAL_CONFORMANCE"]
         },
         "manifest_self_sha256": {"$ref": "#/$defs/sha256"},
         "manifest_physical_sha256": {"$ref": "#/$defs/sha256"},
         "package_count": {"type": "integer", "minimum": 0},
-        "hold_count": {"type": "integer", "minimum": 0},
+        "hold_count": {"const": 0},
         "producer": {"$ref": "#/$defs/producer"}
       }
     },

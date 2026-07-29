@@ -11,8 +11,6 @@ from typing import Any, Sequence
 
 from integration_harness.adapter_v1.dataset import DatasetCandidate
 from integration_harness.adapter_v1.producer import (
-    EXPLICIT_HOLD,
-    HOLD_SCHEMA,
     PACKAGE_SET_SCHEMA,
     SYNTHETIC_COMPLETE,
 )
@@ -200,7 +198,6 @@ def make_producer_set(
     *,
     candidates: Sequence[DatasetCandidate],
     role: str,
-    hold: bool,
 ) -> Path:
     output_root.mkdir(parents=True, exist_ok=True)
     producer = {
@@ -225,47 +222,27 @@ def make_producer_set(
     )
     for candidate in candidates:
         identity = candidate.identity.as_dict()
-        if hold:
-            value = {
-                "schema_id": HOLD_SCHEMA,
-                "schema_version": "1.0.0",
-                "producer_role": role,
-                "status": EXPLICIT_HOLD,
-                "candidate_key": {
-                    key: item for key, item in identity.items() if key != "input_contract_sha256"
-                },
-                "input_contract_sha256": identity["input_contract_sha256"],
-                "producer": producer,
-                "reason_code": "PRODUCER_PACKAGE_NOT_MAIN_ACCEPTED",
-                "final_glossary_decision": None,
-                "integrity": {},
-            }
-            value["integrity"]["self_sha256"] = self_sha256(value)
-            kind = "HOLD"
-            relative = f"holds/{candidate.identity.candidate_id}.json"
-        else:
-            value = _replace(
-                copy.deepcopy(template),
-                identity,
-                identity["input_contract_sha256"],
-                identity["effective_sense_contract_sha256"],
-            )
-            value["provenance"]["component_id"] = producer["component_id"]
-            value["provenance"]["component_version"] = producer["component_version"]
-            value["provenance"]["run_id"] = producer["run_id"]
-            value["provenance"]["source_artifact_hashes"]["dataset"] = identity[
-                "dataset_manifest_sha256"
-            ]
-            value["final_glossary_decision"] = None
-            value["integrity"]["self_sha256"] = self_sha256(value)
-            kind = "PACKAGE"
-            relative = f"packages/{candidate.identity.candidate_id}.json"
+        value = _replace(
+            copy.deepcopy(template),
+            identity,
+            identity["input_contract_sha256"],
+            identity["effective_sense_contract_sha256"],
+        )
+        value["provenance"]["component_id"] = producer["component_id"]
+        value["provenance"]["component_version"] = producer["component_version"]
+        value["provenance"]["run_id"] = producer["run_id"]
+        value["provenance"]["source_artifact_hashes"]["dataset"] = identity[
+            "dataset_manifest_sha256"
+        ]
+        value["final_glossary_decision"] = None
+        value["integrity"]["self_sha256"] = self_sha256(value)
+        relative = f"packages/{candidate.identity.candidate_id}.json"
         path = output_root / relative
         dump_json(path, value)
         entries.append(
             {
                 "candidate_id": candidate.identity.candidate_id,
-                "kind": kind,
+                "kind": "PACKAGE",
                 "relative_path": relative,
                 "physical_sha256": sha256_file(path),
                 "self_sha256": value["integrity"]["self_sha256"],
@@ -275,11 +252,11 @@ def make_producer_set(
         "schema_id": PACKAGE_SET_SCHEMA,
         "schema_version": "1.0.0",
         "producer_role": role,
-        "status": EXPLICIT_HOLD if hold else SYNTHETIC_COMPLETE,
+        "status": SYNTHETIC_COMPLETE,
         "producer": producer,
         "entry_count": len(entries),
-        "package_count": 0 if hold else len(entries),
-        "hold_count": len(entries) if hold else 0,
+        "package_count": len(entries),
+        "hold_count": 0,
         "entries": entries,
         "accepted_source_binding": None,
         "final_glossary_decision": None,

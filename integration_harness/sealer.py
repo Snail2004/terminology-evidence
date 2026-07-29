@@ -15,15 +15,18 @@ from .identity import CandidateIdentity
 from .inventory import ArtifactInventory
 from .join import JoinedCandidate
 from .jsonio import dump_json
-from .paths import relative_posix
+from .paths import relative_posix, safe_relative_path
 
 
 def _write_checksums(root: Path) -> None:
     lines: list[str] = []
     for path in sorted(root.rglob("*")):
-        if not path.is_file() or path.name == "CHECKSUMS.sha256":
+        if not path.is_file():
             continue
-        lines.append(f"{sha256_file(path)}  {relative_posix(path, root)}")
+        relative = relative_posix(path, root)
+        if relative == "CHECKSUMS.sha256":
+            continue
+        lines.append(f"{sha256_file(path)}  {relative}")
     (root / "CHECKSUMS.sha256").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 
 
@@ -127,8 +130,11 @@ def seal_run(
         inventory_root = input_root / "inventory"
         _copy_unique(inventory.manifest_path, inventory_root / "artifact_manifest.json")
         for source in inventory.source_authority:
-            suffix = source.path.suffix or ".bin"
-            destination = inventory_root / "source" / f"{source.role}{suffix}"
+            destination = (
+                inventory_root
+                / "source"
+                / safe_relative_path(source.relative_path)
+            )
             _copy_unique(source.path, destination)
             sealed_source_authority.append(
                 {
@@ -190,8 +196,12 @@ def seal_run(
         # The manifest itself is finalized after all other bytes exist.
         _write_checksums(temp_dir)
         for path in sorted(temp_dir.rglob("*")):
-            if path.is_file() and path.name not in {"manifest.json", "CHECKSUMS.sha256"}:
-                manifest["files"].append({"path": relative_posix(path, temp_dir), "sha256": sha256_file(path)})
+            if not path.is_file():
+                continue
+            relative = relative_posix(path, temp_dir)
+            if relative in {"manifest.json", "CHECKSUMS.sha256"}:
+                continue
+            manifest["files"].append({"path": relative, "sha256": sha256_file(path)})
         manifest["integrity"]["self_sha256"] = self_sha256(manifest)
         dump_json(temp_dir / "manifest.json", manifest)
         _write_checksums(temp_dir)

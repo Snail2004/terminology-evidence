@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:terminology-evidence:GlobalBatchAuthorityV1:1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_id", "schema_version", "adapter_mode", "run_id", "phase_id", "split_id", "expected_candidate_count", "expected_sense_count", "expected_roles", "expected_package_schemas", "dataset_binding", "cohort_inventory", "global_action_policy_binding", "network_policy", "final_glossary_decision", "integrity"],
+  "properties": {
+    "schema_id": {"const": "GlobalBatchAuthorityV1"}, "schema_version": {"const": "1.0.0"},
+    "adapter_mode": {"enum": ["OFFICIAL_5_15_PREFLIGHT", "SYNTHETIC_50_150_CONFORMANCE"]},
+    "run_id": {"type": "string", "minLength": 1}, "phase_id": {"type": "string", "minLength": 1}, "split_id": {"type": "string", "minLength": 1},
+    "expected_candidate_count": {"enum": [15, 150]}, "expected_sense_count": {"enum": [5, 50]},
+    "expected_roles": {"const": ["context_evidence", "attestation_evidence"]},
+    "expected_package_schemas": {"type": "object", "additionalProperties": false, "required": ["context_evidence", "attestation_evidence"], "properties": {"context_evidence": {"const": "ContextEvidencePackageV1@1.1.0"}, "attestation_evidence": {"const": "AttestationEvidencePackageV1@1.1.0"}}},
+    "dataset_binding": {"type": "object", "additionalProperties": false, "required": ["pin_self_sha256", "zip_physical_sha256", "manifest_self_sha256", "manifest_physical_sha256"], "properties": {"pin_self_sha256": {"$ref": "#/$defs/sha256"}, "zip_physical_sha256": {"$ref": "#/$defs/sha256"}, "manifest_self_sha256": {"$ref": "#/$defs/sha256"}, "manifest_physical_sha256": {"$ref": "#/$defs/sha256"}}},
+    "cohort_inventory": {"$ref": "#/$defs/binding"},
+    "global_action_policy_binding": {"type": "object", "additionalProperties": false, "required": ["status", "required_before_global"], "properties": {"status": {"const": "BOUND_BY_SYSTEM_INTEGRATION_RUN_AUTHORITY"}, "required_before_global": {"const": true}}},
+    "network_policy": {"const": "FORBIDDEN"}, "final_glossary_decision": {"type": "null"}, "integrity": {"$ref": "#/$defs/integrity"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "binding": {"type": "object", "additionalProperties": false, "required": ["self_sha256", "physical_sha256"], "properties": {"self_sha256": {"$ref": "#/$defs/sha256"}, "physical_sha256": {"$ref": "#/$defs/sha256"}}},
+    "integrity": {"type": "object", "additionalProperties": false, "required": ["self_sha256"], "properties": {"self_sha256": {"$ref": "#/$defs/sha256"}}}
+  }
+}

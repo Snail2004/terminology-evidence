@@ -11,8 +11,11 @@ from pathlib import Path
 from typing import Any, Sequence
 
 from .adapter_v1 import build_adapter_bundle, replay_adapter_bundle
+from .adapter_v1.availability import (
+    write_missing_availability_manifest,
+    write_present_availability_manifest,
+)
 from .adapter_v1.dataset import OFFICIAL_MODE, SYNTHETIC_MODE, load_dataset_release
-from .adapter_v1.producer import write_explicit_hold_set
 from .assembler import GlobalCliAdapter
 from .authority import CONTRACTS_R2_CURRENT, SYNTHETIC_LOCAL_CONFORMANCE, resolve_authority
 from .contracts_verifier import PublicContractR2Verifier
@@ -98,19 +101,12 @@ def build_parser() -> argparse.ArgumentParser:
     adapter_build.add_argument("--dataset-zip", type=Path, required=True)
     adapter_build.add_argument("--dataset-pin", type=Path, required=True)
     adapter_build.add_argument("--dataset-git-receipt", type=Path)
-    adapter_build.add_argument("--context-set-manifest", type=Path, required=True)
-    adapter_build.add_argument("--attestation-set-manifest", type=Path, required=True)
+    adapter_build.add_argument("--availability-manifest", type=Path, required=True)
     adapter_build.add_argument("--contracts-root", type=Path, required=True)
     adapter_build.add_argument("--repository-root", type=Path, default=Path.cwd())
     adapter_build.add_argument("--output", type=Path, required=True)
     adapter_build.add_argument(
         "--adapter-mode", choices=[OFFICIAL_MODE, SYNTHETIC_MODE], required=True
-    )
-    adapter_build.add_argument(
-        "--allow-hold-role",
-        action="append",
-        choices=["context_evidence", "attestation_evidence"],
-        default=[],
     )
     adapter_build.add_argument(
         "--inventory-schema",
@@ -125,19 +121,30 @@ def build_parser() -> argparse.ArgumentParser:
     adapter_replay.add_argument("--repository-root", type=Path)
     adapter_replay.set_defaults(handler=_adapter_replay)
 
-    hold = sub.add_parser("adapter-create-hold-set")
-    hold.add_argument("--dataset-zip", type=Path, required=True)
-    hold.add_argument("--dataset-pin", type=Path, required=True)
-    hold.add_argument("--dataset-git-receipt", type=Path)
-    hold.add_argument("--contracts-root", type=Path, required=True)
-    hold.add_argument("--repository-root", type=Path, default=Path.cwd())
-    hold.add_argument("--adapter-mode", choices=[OFFICIAL_MODE, SYNTHETIC_MODE], required=True)
-    hold.add_argument("--role", choices=["context_evidence", "attestation_evidence"], required=True)
-    hold.add_argument("--reason-code", required=True)
-    hold.add_argument("--issuer-commit", required=True)
-    hold.add_argument("--run-id", required=True)
-    hold.add_argument("--output", type=Path, required=True)
-    hold.set_defaults(handler=_adapter_create_hold_set)
+    for name, handler, present in (
+        ("adapter-create-missing-availability", _adapter_create_missing_availability, False),
+        ("adapter-create-present-availability", _adapter_create_present_availability, True),
+    ):
+        availability = sub.add_parser(name)
+        availability.add_argument("--dataset-zip", type=Path, required=True)
+        availability.add_argument("--dataset-pin", type=Path, required=True)
+        availability.add_argument("--dataset-git-receipt", type=Path)
+        availability.add_argument("--contracts-root", type=Path, required=True)
+        availability.add_argument("--repository-root", type=Path, default=Path.cwd())
+        availability.add_argument(
+            "--adapter-mode", choices=[OFFICIAL_MODE, SYNTHETIC_MODE], required=True
+        )
+        availability.add_argument("--run-id", required=True)
+        availability.add_argument("--phase-id", required=True)
+        availability.add_argument("--split-id", required=True)
+        availability.add_argument("--observed-at", required=True)
+        availability.add_argument("--output", type=Path, required=True)
+        if present:
+            availability.add_argument("--context-set-manifest", type=Path, required=True)
+            availability.add_argument("--attestation-set-manifest", type=Path, required=True)
+        else:
+            availability.add_argument("--reason-code", required=True)
+        availability.set_defaults(handler=handler)
     return parser
 
 
@@ -251,13 +258,11 @@ def _adapter_build(args: argparse.Namespace) -> dict[str, Any]:
         dataset_zip=args.dataset_zip,
         dataset_pin=args.dataset_pin,
         dataset_git_receipt=args.dataset_git_receipt,
-        context_set_manifest=args.context_set_manifest,
-        attestation_set_manifest=args.attestation_set_manifest,
+        availability_manifest=args.availability_manifest,
         contracts_root=args.contracts_root,
         repository_root=args.repository_root,
         output_root=args.output,
         adapter_mode=args.adapter_mode,
-        allowed_hold_roles=frozenset(args.allow_hold_role),
         inventory_schema_path=args.inventory_schema,
     )
 
@@ -270,7 +275,7 @@ def _adapter_replay(args: argparse.Namespace) -> dict[str, Any]:
     )
 
 
-def _adapter_create_hold_set(args: argparse.Namespace) -> dict[str, Any]:
+def _load_cli_dataset(args: argparse.Namespace):
     dataset = load_dataset_release(
         args.dataset_zip,
         args.dataset_pin,
@@ -279,20 +284,48 @@ def _adapter_create_hold_set(args: argparse.Namespace) -> dict[str, Any]:
         mode=args.adapter_mode,
         repository_root=args.repository_root if args.adapter_mode == OFFICIAL_MODE else None,
     )
-    manifest = write_explicit_hold_set(
+    return dataset
+
+
+def _adapter_create_missing_availability(args: argparse.Namespace) -> dict[str, Any]:
+    dataset = _load_cli_dataset(args)
+    manifest = write_missing_availability_manifest(
         args.output,
-        role=args.role,
         candidates=dataset.candidates,
-        reason_code=args.reason_code,
-        issuer_commit=args.issuer_commit,
+        adapter_mode=args.adapter_mode,
         run_id=args.run_id,
+        phase_id=args.phase_id,
+        split_id=args.split_id,
+        observed_at=args.observed_at,
+        reason_code=args.reason_code,
     )
     return {
         "status": "PASS",
         "manifest": str(manifest),
-        "role": args.role,
         "candidate_count": dataset.candidate_count,
-        "reason_code": args.reason_code,
+        "availability": "MISSING",
+    }
+
+
+def _adapter_create_present_availability(args: argparse.Namespace) -> dict[str, Any]:
+    dataset = _load_cli_dataset(args)
+    manifest = write_present_availability_manifest(
+        args.output,
+        candidates=dataset.candidates,
+        adapter_mode=args.adapter_mode,
+        context_set_manifest=args.context_set_manifest,
+        attestation_set_manifest=args.attestation_set_manifest,
+        schema_root=args.contracts_root,
+        run_id=args.run_id,
+        phase_id=args.phase_id,
+        split_id=args.split_id,
+        observed_at=args.observed_at,
+    )
+    return {
+        "status": "PASS",
+        "manifest": str(manifest),
+        "candidate_count": dataset.candidate_count,
+        "availability": "PRESENT",
     }
 
 

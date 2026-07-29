@@ -12,7 +12,7 @@ class CliReleaseTests(unittest.TestCase):
     def test_cli_help_exposes_v1_commands(self) -> None:
         completed = subprocess.run([sys.executable, "-B", "-m", "integration_harness", "--help"], capture_output=True, text=True, check=False)
         self.assertEqual(completed.returncode, 0)
-        for command in ("authority-verify", "inventory", "validate-packages", "join", "run", "replay", "verify-run", "inject-fault", "build-release", "adapter-build", "adapter-replay", "adapter-create-hold-set"):
+        for command in ("authority-verify", "inventory", "validate-packages", "join", "run", "replay", "verify-run", "inject-fault", "build-release", "adapter-build", "adapter-replay", "adapter-create-missing-availability", "adapter-create-present-availability"):
             self.assertIn(command, completed.stdout)
 
     def test_source_has_no_cache_or_pycs_in_release(self) -> None:

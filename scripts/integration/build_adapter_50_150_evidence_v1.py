@@ -10,12 +10,15 @@ import zipfile
 from pathlib import Path
 
 from integration_harness.adapter_v1.build import build_adapter_bundle
+from integration_harness.adapter_v1.availability import (
+    write_missing_availability_manifest,
+    write_present_availability_manifest,
+)
 from integration_harness.adapter_v1.dataset import (
     OFFICIAL_MODE,
     SYNTHETIC_MODE,
     load_dataset_release,
 )
-from integration_harness.adapter_v1.producer import write_explicit_hold_set
 from integration_harness.adapter_v1.replay import replay_adapter_bundle
 from integration_harness.hashing import self_sha256, sha256_file
 from integration_harness.jsonio import dump_json
@@ -51,34 +54,26 @@ def main() -> int:
             mode=OFFICIAL_MODE,
             repository_root=repo,
         )
-        official_context = write_explicit_hold_set(
-            temp / "official-context-hold",
-            role="context_evidence",
+        official_availability = write_missing_availability_manifest(
+            temp / "official-availability",
             candidates=official_dataset.candidates,
-            reason_code="C_PACKAGE_SET_NOT_MAIN_ACCEPTED",
-            issuer_commit=args.issuer_commit,
+            adapter_mode=OFFICIAL_MODE,
             run_id="official-5-15-adapter-preflight",
-        )
-        official_attestation = write_explicit_hold_set(
-            temp / "official-attestation-hold",
-            role="attestation_evidence",
-            candidates=official_dataset.candidates,
-            reason_code="E_PACKAGE_SET_NOT_MAIN_ACCEPTED",
-            issuer_commit=args.issuer_commit,
-            run_id="official-5-15-adapter-preflight",
+            phase_id="zero-provider-preflight",
+            split_id="official-five-sense-pilot",
+            observed_at="2026-07-30T00:00:00Z",
+            reason_code="PRODUCER_PACKAGE_SET_NOT_MAIN_ACCEPTED",
         )
         official_out = output / "official_5_sense_15_candidate_preflight"
         official_result = build_adapter_bundle(
             dataset_zip=official_dataset.zip_path,
             dataset_pin=official_dataset.pin_path,
             dataset_git_receipt=official_dataset.git_receipt_path,
-            context_set_manifest=official_context,
-            attestation_set_manifest=official_attestation,
+            availability_manifest=official_availability,
             contracts_root=contracts,
             repository_root=repo,
             output_root=official_out,
             adapter_mode=OFFICIAL_MODE,
-            allowed_hold_roles=frozenset({"context_evidence", "attestation_evidence"}),
             inventory_schema_path=schema,
         )
         official_replay = replay_adapter_bundle(official_out, contracts_root=contracts, repository_root=repo)
@@ -96,22 +91,31 @@ def main() -> int:
             temp / "synthetic-context",
             candidates=synthetic_dataset.candidates,
             role="context_evidence",
-            hold=False,
         )
         synthetic_attestation = make_producer_set(
             repo,
             temp / "synthetic-attestation",
             candidates=synthetic_dataset.candidates,
             role="attestation_evidence",
-            hold=False,
+        )
+        synthetic_availability = write_present_availability_manifest(
+            temp / "synthetic-availability",
+            candidates=synthetic_dataset.candidates,
+            adapter_mode=SYNTHETIC_MODE,
+            context_set_manifest=synthetic_context,
+            attestation_set_manifest=synthetic_attestation,
+            schema_root=contracts,
+            run_id="synthetic-50-150-conformance",
+            phase_id="zero-provider-conformance",
+            split_id="synthetic-fifty-sense",
+            observed_at="2026-07-30T00:00:00Z",
         )
         synthetic_out = output / "synthetic_50_sense_150_candidate_conformance"
         synthetic_result = build_adapter_bundle(
             dataset_zip=synthetic_source["zip"],
             dataset_pin=synthetic_source["pin"],
             dataset_git_receipt=None,
-            context_set_manifest=synthetic_context,
-            attestation_set_manifest=synthetic_attestation,
+            availability_manifest=synthetic_availability,
             contracts_root=contracts,
             repository_root=repo,
             output_root=synthetic_out,
@@ -138,7 +142,7 @@ def main() -> int:
             "auto_approved_count": 0,
             "certificate_count": 0,
             "final_glossary_decision": None,
-            "global_execution_for_official": "HOLD_EXPLICIT_PRODUCER_PACKAGE",
+            "global_execution_for_official": "HOLD_EVIDENCE_AVAILABILITY",
             "synthetic_is_not_official": True,
         },
         "integrity": {},
@@ -150,7 +154,7 @@ def main() -> int:
     release = {
         "schema_id": "HarnessDataset50150EvidenceReleaseManifestV1",
         "schema_version": "1.0.0",
-        "status": "PASS_WITH_OFFICIAL_C_E_HOLD",
+        "status": "PASS_WITH_OFFICIAL_C_E_MISSING",
         "files": {},
         "summary_self_sha256": summary["integrity"]["self_sha256"],
         "integrity": {},

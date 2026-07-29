@@ -7,6 +7,12 @@ import uuid
 from pathlib import Path
 from typing import Any, Iterable
 
+from integration_harness.adapter_v1.availability import (
+    EXTERNAL_HOLD,
+    PRESENT,
+    AvailabilityManifest,
+    load_availability_manifest,
+)
 from integration_harness.adapter_v1.dataset import (
     OFFICIAL_MODE,
     SYNTHETIC_MODE,
@@ -14,7 +20,8 @@ from integration_harness.adapter_v1.dataset import (
     DatasetRelease,
     load_dataset_release,
 )
-from integration_harness.adapter_v1.producer import ProducerItem, ProducerSet, load_producer_set
+from integration_harness.adapter_v1.producer import ProducerSet
+from integration_harness.adapter_v1.sidecars import build_sidecars
 from integration_harness.errors import IntegrityError, PolicyError, StorageError
 from integration_harness.hashing import self_sha256, sha256_bytes, sha256_file
 from integration_harness.inventory import ADAPTER_INVENTORY_SCHEMA, load_inventory
@@ -26,8 +33,9 @@ from integration_harness.paths import ensure_plain_root, relative_posix
 ADAPTER_STATUS_READY_15 = "READY_FOR_15_CANDIDATE_ZERO_PROVIDER_RUN"
 ADAPTER_STATUS_HOLD_15 = "READY_FOR_15_CANDIDATE_ZERO_PROVIDER_PREFLIGHT"
 ADAPTER_STATUS_SYNTHETIC_150 = "SYNTHETIC_150_CANDIDATE_CONFORMANCE_PASS"
+ADAPTER_STATUS_SYNTHETIC_HOLD_150 = "SYNTHETIC_150_CANDIDATE_AVAILABILITY_HOLD"
 GLOBAL_READY = "READY_FOR_PUBLIC_GLOBAL_CLI"
-GLOBAL_HOLD = "HOLD_EXPLICIT_PRODUCER_PACKAGE"
+GLOBAL_HOLD = "HOLD_EVIDENCE_AVAILABILITY"
 
 
 def build_adapter_bundle(
@@ -35,13 +43,11 @@ def build_adapter_bundle(
     dataset_zip: Path,
     dataset_pin: Path,
     dataset_git_receipt: Path | None,
-    context_set_manifest: Path,
-    attestation_set_manifest: Path,
+    availability_manifest: Path,
     contracts_root: Path,
     repository_root: Path,
     output_root: Path,
     adapter_mode: str,
-    allowed_hold_roles: frozenset[str] = frozenset(),
     inventory_schema_path: Path | None = None,
 ) -> dict[str, Any]:
     """Build a byte-preserving adapter bundle; never invokes Global or a provider."""
@@ -60,21 +66,11 @@ def build_adapter_bundle(
         mode=adapter_mode,
         repository_root=repository_root if adapter_mode == OFFICIAL_MODE else None,
     )
-    context = load_producer_set(
-        context_set_manifest,
-        role="context_evidence",
+    availability = load_availability_manifest(
+        availability_manifest,
         candidates=dataset.candidates,
         schema_root=contracts_root,
         adapter_mode=adapter_mode,
-        allowed_hold_roles=allowed_hold_roles,
-    )
-    attestation = load_producer_set(
-        attestation_set_manifest,
-        role="attestation_evidence",
-        candidates=dataset.candidates,
-        schema_root=contracts_root,
-        adapter_mode=adapter_mode,
-        allowed_hold_roles=allowed_hold_roles,
     )
     temp = parent / f".{output_root.name}.tmp-{uuid.uuid4().hex}"
     temp.mkdir()
@@ -82,20 +78,20 @@ def build_adapter_bundle(
         manifest = _materialize(
             temp,
             dataset=dataset,
-            context=context,
-            attestation=attestation,
+            availability=availability,
             inventory_schema_path=inventory_schema_path,
         )
         inventory_path = temp / "artifact_inventory.json"
         inventory = load_inventory(inventory_path)
-        holds = len(inventory.holds)
-        if holds:
+        ready_count = int(manifest["ready_candidate_count"])
+        not_submitted_count = int(manifest["not_submitted_count"])
+        if ready_count == 0:
             join_status = GLOBAL_HOLD
-            joined_count = dataset.candidate_count
+            joined_count = 0
         else:
             joined, report = validate_and_join(inventory, schema_root=contracts_root)
             joined_count = report["joined_count"]
-            if joined_count != dataset.candidate_count or len(joined) != dataset.candidate_count:
+            if joined_count != ready_count or len(joined) != ready_count:
                 raise IntegrityError("adapter runtime join count mismatch")
             join_status = GLOBAL_READY
         report = {
@@ -106,8 +102,16 @@ def build_adapter_bundle(
             "candidate_count": dataset.candidate_count,
             "sense_count": dataset.sense_count,
             "joined_count": joined_count,
-            "hold_count": holds,
-            "shared_effective_sense_file_count": dataset.sense_count,
+            "ready_candidate_count": ready_count,
+            "not_submitted_count": not_submitted_count,
+            "availability_counts": manifest["availability_counts"],
+            "shared_effective_sense_file_count": len(
+                {
+                    record.declared_self_sha256
+                    for record in inventory.records
+                    if record.role == "effective_sense"
+                }
+            ),
             "global_execution_status": join_status,
             "global_mode": "DEVELOPMENT_HEURISTIC",
             "network_calls": 0,
@@ -132,7 +136,9 @@ def build_adapter_bundle(
         "inventory_path": str(output_root / "artifact_inventory.json"),
         "candidate_count": dataset.candidate_count,
         "sense_count": dataset.sense_count,
-        "hold_count": holds,
+        "ready_candidate_count": ready_count,
+        "not_submitted_count": not_submitted_count,
+        "availability_counts": manifest["availability_counts"],
         "global_execution_status": join_status,
         "network_calls": 0,
         "provider_calls": 0,
@@ -145,8 +151,7 @@ def _materialize(
     root: Path,
     *,
     dataset: DatasetRelease,
-    context: ProducerSet,
-    attestation: ProducerSet,
+    availability: AvailabilityManifest,
     inventory_schema_path: Path | None,
 ) -> dict[str, Any]:
     source_records: list[dict[str, Any]] = []
@@ -190,30 +195,89 @@ def _materialize(
             raw=dataset.git_receipt_raw,
             declared_self=dataset.git_receipt["integrity"]["self_sha256"],
         )
-    _copy_producer_authority(root, source_records, context)
-    _copy_producer_authority(root, source_records, attestation)
+    _write_bound_source(
+        root,
+        source_records,
+        role="availability_intake_manifest",
+        relative="source_authority/harness/availability_intake_manifest.json",
+        raw=availability.manifest_raw,
+        declared_self=availability.manifest["integrity"]["self_sha256"],
+    )
+    for producer in availability.producer_sets:
+        _copy_producer_authority(root, source_records, producer)
     if inventory_schema_path is not None:
-        schema_raw = inventory_schema_path.read_bytes()
-        _write_bound_source(
-            root,
-            source_records,
-            role="adapter_inventory_schema",
-            relative="source_authority/harness/artifact_inventory_50_150_schema.json",
-            raw=schema_raw,
-        )
+        schema_paths = {
+            "adapter_inventory_schema": inventory_schema_path,
+            "harness_cohort_inventory_schema": inventory_schema_path.parent
+            / "harness_cohort_inventory_v1.schema.json",
+            "global_batch_authority_schema": inventory_schema_path.parent
+            / "global_batch_authority_v1.schema.json",
+            "evidence_availability_manifest_schema": inventory_schema_path.parent
+            / "evidence_availability_manifest_v1.schema.json",
+            "global_batch_readiness_report_schema": inventory_schema_path.parent
+            / "global_batch_readiness_report_v1.schema.json",
+        }
+        for schema_role, schema_path in schema_paths.items():
+            schema_raw = schema_path.read_bytes()
+            _write_bound_source(
+                root,
+                source_records,
+                role=schema_role,
+                relative=f"source_authority/harness/{schema_path.name}",
+                raw=schema_raw,
+            )
 
-    context_by_id = {item.identity.candidate_id: item for item in context.items}
-    attestation_by_id = {item.identity.candidate_id: item for item in attestation.items}
+    ready_ids = availability.ready_candidate_ids
+    availability_by_key = {
+        (item.identity.candidate_id, item.role): item for item in availability.items
+    }
+    producer_by_role = {producer.role: producer for producer in availability.producer_sets}
     artifacts: list[dict[str, Any]] = []
-    holds: list[dict[str, Any]] = []
     effective_materialized: dict[str, tuple[str, bytes]] = {}
+    package_refs: dict[tuple[str, str], dict[str, Any]] = {}
+    receipt_refs: dict[tuple[str, str], dict[str, Any]] = {}
     dataset_commit = (
         dataset.git_receipt["producer"]["commit"]
         if dataset.git_receipt is not None
         else "synthetic-local-conformance"
     )
     for candidate in dataset.candidates:
+        candidate_id = candidate.identity.candidate_id
         identity = candidate.identity.as_dict()
+        if candidate_id not in ready_ids:
+            for role in ("context_evidence", "attestation_evidence"):
+                item = availability_by_key[(candidate_id, role)]
+                if item.status == PRESENT and item.package is not None:
+                    relative = f"source_authority/availability_present/{role}/{candidate_id}.json"
+                    _write_bound_source(
+                        root,
+                        source_records,
+                        role=f"availability_present_{role}_{candidate_id}",
+                        relative=relative,
+                        raw=item.package.raw,
+                        declared_self=item.package.self_sha256,
+                    )
+                    package_refs[(candidate_id, role)] = _package_ref(
+                        relative, item.package
+                    )
+                elif item.status == EXTERNAL_HOLD:
+                    if item.receipt_raw is None or item.receipt is None:
+                        raise IntegrityError("EXTERNAL_HOLD has no verified receipt bytes")
+                    relative = f"source_authority/availability_receipts/{role}/{candidate_id}.json"
+                    _write_bound_source(
+                        root,
+                        source_records,
+                        role=f"external_hold_receipt_{role}_{candidate_id}",
+                        relative=relative,
+                        raw=item.receipt_raw,
+                        declared_self=item.receipt["integrity"]["self_sha256"],
+                    )
+                    receipt_refs[(candidate_id, role)] = {
+                        "relative_path": relative,
+                        "physical_sha256": sha256_bytes(item.receipt_raw),
+                        "self_sha256": item.receipt["integrity"]["self_sha256"],
+                    }
+            continue
         effective_sha = candidate.effective["integrity"]["self_sha256"]
         effective_relative = f"packages/shared/effective_sense/{effective_sha}.json"
         existing = effective_materialized.get(effective_sha)
@@ -254,38 +318,26 @@ def _materialize(
                     candidate_key=identity,
                 )
             )
-        for item in (context_by_id[candidate.identity.candidate_id], attestation_by_id[candidate.identity.candidate_id]):
-            if item.kind == "PACKAGE":
-                relative = f"{candidate_root}/{item.role}.json"
-                _write_bytes(root / relative, item.raw)
-                artifacts.append(
-                    _artifact_record(
-                        role=item.role,
-                        relative=relative,
-                        value=item.value,
-                        raw=item.raw,
-                        producer=item.value["provenance"]["component_id"],
-                        producer_commit=(
-                            context.manifest["producer"]["commit"]
-                            if item.role == "context_evidence"
-                            else attestation.manifest["producer"]["commit"]
-                        ),
-                        candidate_key=identity,
-                    )
+        for role in ("context_evidence", "attestation_evidence"):
+            availability_item = availability_by_key[(candidate_id, role)]
+            item = availability_item.package
+            if availability_item.status != PRESENT or item is None:
+                raise IntegrityError("ready candidate is missing a PRESENT producer package")
+            relative = f"{candidate_root}/{role}.json"
+            _write_bytes(root / relative, item.raw)
+            producer = producer_by_role[role]
+            artifacts.append(
+                _artifact_record(
+                    role=role,
+                    relative=relative,
+                    value=item.value,
+                    raw=item.raw,
+                    producer=item.value["provenance"]["component_id"],
+                    producer_commit=producer.manifest["producer"]["commit"],
+                    candidate_key=identity,
                 )
-            else:
-                relative = f"holds/{item.role}/{candidate.identity.candidate_id}.json"
-                _write_bytes(root / relative, item.raw)
-                holds.append(
-                    {
-                        "role": item.role,
-                        "candidate_key": identity,
-                        "relative_path": relative,
-                        "physical_sha256": sha256_bytes(item.raw),
-                        "declared_self_sha256": item.self_sha256,
-                    }
-                )
-    holds.sort(key=lambda item: (item["role"], item["candidate_key"]["candidate_id"]))
+            )
+            package_refs[(candidate_id, role)] = _package_ref(relative, item)
     artifacts.sort(
         key=lambda item: (
             item["candidate_key"]["candidate_id"],
@@ -293,11 +345,50 @@ def _materialize(
             item["relative_path"],
         )
     )
-    global_status = GLOBAL_HOLD if holds else GLOBAL_READY
+    sidecars = build_sidecars(
+        dataset,
+        availability,
+        package_refs=package_refs,
+        receipt_refs=receipt_refs,
+    )
+    sidecar_values = (
+        ("harness_cohort_inventory", "sidecars/harness_cohort_inventory_v1.json", sidecars.cohort),
+        ("global_batch_authority", "sidecars/global_batch_authority_v1.json", sidecars.authority),
+        ("evidence_availability_manifest", "sidecars/evidence_availability_manifest_v1.json", sidecars.availability),
+        ("global_batch_readiness_report", "sidecars/global_batch_readiness_report_v1.json", sidecars.readiness),
+    )
+    sidecar_bindings: dict[str, dict[str, str]] = {}
+    for role, relative, value in sidecar_values:
+        dump_json(root / relative, value)
+        raw = (root / relative).read_bytes()
+        _write_bound_source(
+            root,
+            source_records,
+            role=role,
+            relative=relative,
+            raw=raw,
+            declared_self=value["integrity"]["self_sha256"],
+        )
+        sidecar_bindings[role] = {
+            "relative_path": relative,
+            "physical_sha256": sha256_bytes(raw),
+            "self_sha256": value["integrity"]["self_sha256"],
+        }
+    ready_count = len(ready_ids)
+    not_submitted_count = dataset.candidate_count - ready_count
+    global_status = GLOBAL_READY if ready_count else GLOBAL_HOLD
     if dataset.mode == OFFICIAL_MODE:
-        status = ADAPTER_STATUS_HOLD_15 if holds else ADAPTER_STATUS_READY_15
+        status = (
+            ADAPTER_STATUS_HOLD_15
+            if not_submitted_count
+            else ADAPTER_STATUS_READY_15
+        )
     elif dataset.mode == SYNTHETIC_MODE:
-        status = ADAPTER_STATUS_SYNTHETIC_150
+        status = (
+            ADAPTER_STATUS_SYNTHETIC_HOLD_150
+            if not_submitted_count
+            else ADAPTER_STATUS_SYNTHETIC_150
+        )
     else:  # pragma: no cover - Dataset verifier already rejects it
         raise PolicyError("unsupported adapter mode")
     manifest = {
@@ -321,13 +412,16 @@ def _materialize(
                 else None
             ),
         },
+        "ready_candidate_count": ready_count,
+        "not_submitted_count": not_submitted_count,
+        "availability_counts": sidecars.availability["counts"],
         "producer_sets": [
-            _producer_summary(context),
-            _producer_summary(attestation),
+            _producer_summary(producer) for producer in availability.producer_sets
         ],
+        "sidecar_bindings": sidecar_bindings,
         "source_authority": sorted(source_records, key=lambda item: item["role"]),
         "artifacts": artifacts,
-        "holds": holds,
+        "holds": [],
         "global_execution": {
             "status": global_status,
             "mode": "DEVELOPMENT_HEURISTIC",
@@ -422,6 +516,20 @@ def _artifact_record(
         "candidate_key": candidate_key,
         "physical_sha256": sha256_bytes(raw),
         "declared_self_sha256": value["integrity"]["self_sha256"],
+    }
+
+
+def _package_ref(relative: str, item: Any) -> dict[str, Any]:
+    provenance = item.value["provenance"]
+    return {
+        "relative_path": relative,
+        "physical_sha256": sha256_bytes(item.raw),
+        "self_sha256": item.self_sha256,
+        "producer": {
+            "component_id": provenance["component_id"],
+            "component_version": provenance["component_version"],
+            "run_id": provenance["run_id"],
+        },
     }
 
 

@@ -7,13 +7,17 @@ from pathlib import Path
 from unittest import mock
 
 from integration_harness.adapter_v1.build import build_adapter_bundle
+from integration_harness.adapter_v1.availability import (
+    write_missing_availability_manifest,
+    write_present_availability_manifest,
+)
 from integration_harness.adapter_v1.dataset import (
     OFFICIAL_MODE,
     SYNTHETIC_MODE,
     load_dataset_release,
 )
 from integration_harness.adapter_v1.replay import replay_adapter_bundle
-from integration_harness.errors import IntegrityError, PolicyError, ReplayError
+from integration_harness.errors import IntegrityError, PolicyError, ReplayError, ValidationError
 from integration_harness.hashing import self_sha256, sha256_file
 from integration_harness.inventory import load_inventory
 from integration_harness.join import validate_and_join
@@ -48,52 +52,50 @@ class Adapter50150Tests(unittest.TestCase):
             repository_root=self.repo,
         )
 
-    def test_official_fifteen_candidate_hold_preflight_replays(self) -> None:
+    def test_official_fifteen_candidate_missing_preflight_replays(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             work = Path(directory)
             dataset = self._official_dataset()
-            context = make_producer_set(
-                self.repo,
-                work / "context",
+            availability = write_missing_availability_manifest(
+                work / "availability",
                 candidates=dataset.candidates,
-                role="context_evidence",
-                hold=True,
-            )
-            attestation = make_producer_set(
-                self.repo,
-                work / "attestation",
-                candidates=dataset.candidates,
-                role="attestation_evidence",
-                hold=True,
+                adapter_mode=OFFICIAL_MODE,
+                run_id="official-adapter-preflight",
+                phase_id="zero-provider-preflight",
+                split_id="official-five-sense",
+                observed_at="2026-07-30T00:00:00Z",
+                reason_code="PRODUCER_PACKAGE_SET_NOT_MAIN_ACCEPTED",
             )
             result = build_adapter_bundle(
                 dataset_zip=dataset.zip_path,
                 dataset_pin=dataset.pin_path,
                 dataset_git_receipt=dataset.git_receipt_path,
-                context_set_manifest=context,
-                attestation_set_manifest=attestation,
+                availability_manifest=availability,
                 contracts_root=self.contracts,
                 repository_root=self.repo,
                 output_root=work / "bundle",
                 adapter_mode=OFFICIAL_MODE,
-                allowed_hold_roles=frozenset(
-                    {"context_evidence", "attestation_evidence"}
-                ),
                 inventory_schema_path=self.schema,
             )
             self.assertEqual(result["candidate_count"], 15)
             self.assertEqual(result["sense_count"], 5)
-            self.assertEqual(result["hold_count"], 30)
+            self.assertEqual(result["ready_candidate_count"], 0)
+            self.assertEqual(result["not_submitted_count"], 15)
+            self.assertEqual(result["availability_counts"]["MISSING"], 30)
             self.assertEqual(
-                result["global_execution_status"], "HOLD_EXPLICIT_PRODUCER_PACKAGE"
+                result["global_execution_status"], "HOLD_EVIDENCE_AVAILABILITY"
             )
             replay = replay_adapter_bundle(
                 work / "bundle",
                 contracts_root=self.contracts,
                 repository_root=self.repo,
             )
-            self.assertEqual(replay["semantic_replay"], "SEALED_ADAPTER_HOLD_REPLAY_PASS")
-            self.assertEqual(replay["joined_count"], 15)
+            self.assertEqual(
+                replay["semantic_replay"],
+                "SEALED_ADAPTER_AVAILABILITY_HOLD_REPLAY_PASS",
+            )
+            self.assertEqual(replay["joined_count"], 0)
+            self.assertEqual(replay["not_submitted_count"], 15)
             inventory = load_inventory(work / "bundle" / "artifact_inventory.json")
             with self.assertRaises(PolicyError):
                 execute_run(
@@ -105,39 +107,119 @@ class Adapter50150Tests(unittest.TestCase):
                     mode="FIXTURE_CONFORMANCE",
                 )
 
-    def test_explicit_attestation_hold_requires_role_policy(self) -> None:
+    def test_external_hold_without_receipt_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             work = Path(directory)
             dataset = self._official_dataset()
-            context = make_producer_set(
-                self.repo,
-                work / "context",
+            availability = write_missing_availability_manifest(
+                work / "availability",
                 candidates=dataset.candidates,
-                role="context_evidence",
-                hold=True,
+                adapter_mode=OFFICIAL_MODE,
+                run_id="official-adapter-preflight",
+                phase_id="zero-provider-preflight",
+                split_id="official-five-sense",
+                observed_at="2026-07-30T00:00:00Z",
+                reason_code="PRODUCER_PACKAGE_SET_NOT_MAIN_ACCEPTED",
             )
-            attestation = make_producer_set(
-                self.repo,
-                work / "attestation",
-                candidates=dataset.candidates,
-                role="attestation_evidence",
-                hold=True,
-            )
-            with self.assertRaises(PolicyError):
+            manifest = load_json(availability, require_object=True)
+            manifest["rows"][0]["status"] = "EXTERNAL_HOLD"
+            manifest["counts"]["MISSING"] -= 1
+            manifest["counts"]["EXTERNAL_HOLD"] += 1
+            manifest["integrity"]["self_sha256"] = self_sha256(manifest)
+            availability.unlink()
+            dump_json(availability, manifest)
+            with self.assertRaises(ValidationError):
                 build_adapter_bundle(
                     dataset_zip=dataset.zip_path,
                     dataset_pin=dataset.pin_path,
                     dataset_git_receipt=dataset.git_receipt_path,
-                    context_set_manifest=context,
-                    attestation_set_manifest=attestation,
+                    availability_manifest=availability,
                     contracts_root=self.contracts,
                     repository_root=self.repo,
                     output_root=work / "blocked",
                     adapter_mode=OFFICIAL_MODE,
-                    allowed_hold_roles=frozenset({"context_evidence"}),
                     inventory_schema_path=self.schema,
                 )
             self.assertFalse((work / "blocked").exists())
+
+    def test_external_hold_and_invalid_are_sealed_but_never_joined(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            work = Path(directory)
+            dataset = self._official_dataset()
+            availability = write_missing_availability_manifest(
+                work / "availability",
+                candidates=dataset.candidates,
+                adapter_mode=OFFICIAL_MODE,
+                run_id="official-adapter-preflight",
+                phase_id="zero-provider-preflight",
+                split_id="official-five-sense",
+                observed_at="2026-07-30T00:00:00Z",
+                reason_code="PRODUCER_PACKAGE_SET_NOT_MAIN_ACCEPTED",
+            )
+            manifest = load_json(availability, require_object=True)
+            hold_row = manifest["rows"][0]
+            hold_row["status"] = "EXTERNAL_HOLD"
+            hold_row["reason_code"] = "EXTERNAL_ACQUISITION_STOP_RECEIPT"
+            receipt = {
+                "schema_id": "HarnessExternalAcquisitionHoldReceiptV1",
+                "schema_version": "1.0.0",
+                "candidate_key": hold_row["candidate_key"],
+                "role": hold_row["role"],
+                "status": "EXTERNAL_HOLD",
+                "reason_code": hold_row["reason_code"],
+                "final_glossary_decision": None,
+                "integrity": {},
+            }
+            receipt["integrity"]["self_sha256"] = self_sha256(receipt)
+            receipt_path = availability.parent / "receipts" / "hold.json"
+            dump_json(receipt_path, receipt)
+            hold_row["external_hold_receipt"] = {
+                "relative_path": "receipts/hold.json",
+                "physical_sha256": sha256_file(receipt_path),
+                "self_sha256": receipt["integrity"]["self_sha256"],
+            }
+            invalid_row = manifest["rows"][3]
+            invalid_row["status"] = "INVALID"
+            invalid_row["reason_code"] = "REJECTED_EXISTING_ARTIFACT"
+            invalid_row["validation_error_code"] = "IDENTITY_CANDIDATE_VERSION_MISMATCH"
+            manifest["counts"]["MISSING"] -= 2
+            manifest["counts"]["EXTERNAL_HOLD"] += 1
+            manifest["counts"]["INVALID"] += 1
+            manifest["integrity"]["self_sha256"] = self_sha256(manifest)
+            availability.unlink()
+            dump_json(availability, manifest)
+
+            result = build_adapter_bundle(
+                dataset_zip=dataset.zip_path,
+                dataset_pin=dataset.pin_path,
+                dataset_git_receipt=dataset.git_receipt_path,
+                availability_manifest=availability,
+                contracts_root=self.contracts,
+                repository_root=self.repo,
+                output_root=work / "bundle",
+                adapter_mode=OFFICIAL_MODE,
+                inventory_schema_path=self.schema,
+            )
+            self.assertEqual(result["ready_candidate_count"], 0)
+            self.assertEqual(result["availability_counts"]["EXTERNAL_HOLD"], 1)
+            self.assertEqual(result["availability_counts"]["INVALID"], 1)
+            readiness = load_json(
+                work / "bundle" / "sidecars" / "global_batch_readiness_report_v1.json",
+                require_object=True,
+            )
+            self.assertEqual(readiness["counts"]["identity_rejected"], 1)
+            self.assertEqual(readiness["counts"]["not_submitted"], 15)
+            self.assertFalse((work / "bundle" / "packages").exists())
+            replay = replay_adapter_bundle(
+                work / "bundle",
+                contracts_root=self.contracts,
+                repository_root=self.repo,
+            )
+            self.assertEqual(replay["joined_count"], 0)
+            self.assertEqual(
+                replay["semantic_replay"],
+                "SEALED_ADAPTER_AVAILABILITY_HOLD_REPLAY_PASS",
+            )
 
     def test_synthetic_fifty_sense_inventory_joins_150_and_is_deterministic(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -155,22 +237,41 @@ class Adapter50150Tests(unittest.TestCase):
                 work / "context",
                 candidates=dataset.candidates,
                 role="context_evidence",
-                hold=False,
             )
             attestation = make_producer_set(
                 self.repo,
                 work / "attestation",
                 candidates=dataset.candidates,
                 role="attestation_evidence",
-                hold=False,
+            )
+            status_ids = [
+                dataset.candidates[0].identity.candidate_id,
+                dataset.candidates[1].identity.candidate_id,
+            ]
+            self._set_attestation_status(attestation, status_ids[0], "NOT_ATTESTED")
+            self._set_attestation_status(
+                attestation,
+                status_ids[1],
+                "ATTESTATION_UNJUDGEABLE",
+            )
+            availability = write_present_availability_manifest(
+                work / "availability",
+                candidates=dataset.candidates,
+                adapter_mode=SYNTHETIC_MODE,
+                context_set_manifest=context,
+                attestation_set_manifest=attestation,
+                schema_root=self.contracts,
+                run_id="synthetic-50-150",
+                phase_id="conformance",
+                split_id="synthetic",
+                observed_at="2026-07-30T00:00:00Z",
             )
             for name in ("bundle-a", "bundle-b"):
                 build_adapter_bundle(
                     dataset_zip=source["zip"],
                     dataset_pin=source["pin"],
                     dataset_git_receipt=None,
-                    context_set_manifest=context,
-                    attestation_set_manifest=attestation,
+                    availability_manifest=availability,
                     contracts_root=self.contracts,
                     repository_root=self.repo,
                     output_root=work / name,
@@ -188,6 +289,24 @@ class Adapter50150Tests(unittest.TestCase):
             replay = replay_adapter_bundle(work / "bundle-a", contracts_root=self.contracts)
             self.assertEqual(replay["semantic_replay"], "SEALED_ADAPTER_COMPLETE_REPLAY_PASS")
             self.assertEqual(replay["joined_count"], 150)
+            availability_sidecar = load_json(
+                work / "bundle-a" / "sidecars" / "evidence_availability_manifest_v1.json",
+                require_object=True,
+            )
+            for candidate_id, expected_status in zip(
+                status_ids,
+                ("NOT_ATTESTED", "ATTESTATION_UNJUDGEABLE"),
+                strict=True,
+            ):
+                row = next(
+                    item
+                    for item in availability_sidecar["rows"]
+                    if item["candidate_key"]["candidate_id"] == candidate_id
+                    and item["role"] == "attestation_evidence"
+                )
+                self.assertEqual(row["status"], "PRESENT")
+                package = load_json(work / "bundle-a" / row["package"]["relative_path"], require_object=True)
+                self.assertEqual(package["local_status"], expected_status)
 
     def test_missing_extra_and_inventory_drift_fail_closed(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -199,11 +318,11 @@ class Adapter50150Tests(unittest.TestCase):
             )
             context = make_producer_set(
                 self.repo, work / "context", candidates=dataset.candidates,
-                role="context_evidence", hold=False,
+                role="context_evidence",
             )
             attestation = make_producer_set(
                 self.repo, work / "attestation", candidates=dataset.candidates,
-                role="attestation_evidence", hold=False,
+                role="attestation_evidence",
             )
             value = load_json(context, require_object=True)
             value["entries"] = value["entries"][:-1]
@@ -213,14 +332,46 @@ class Adapter50150Tests(unittest.TestCase):
             context.unlink()
             dump_json(context, value)
             with self.assertRaises(Exception):
-                build_adapter_bundle(
-                    dataset_zip=source["zip"], dataset_pin=source["pin"],
-                    dataset_git_receipt=None, context_set_manifest=context,
-                    attestation_set_manifest=attestation, contracts_root=self.contracts,
-                    repository_root=self.repo, output_root=work / "missing",
-                    adapter_mode=SYNTHETIC_MODE, inventory_schema_path=self.schema,
+                write_present_availability_manifest(
+                    work / "missing",
+                    candidates=dataset.candidates,
+                    adapter_mode=SYNTHETIC_MODE,
+                    context_set_manifest=context,
+                    attestation_set_manifest=attestation,
+                    schema_root=self.contracts,
+                    run_id="missing-package",
+                    phase_id="conformance",
+                    split_id="synthetic",
+                    observed_at="2026-07-30T00:00:00Z",
                 )
             self.assertFalse((work / "missing").exists())
+
+            hold = make_producer_set(
+                self.repo,
+                work / "fake-hold",
+                candidates=dataset.candidates,
+                role="context_evidence",
+            )
+            value = load_json(hold, require_object=True)
+            value["entries"][0]["kind"] = "HOLD"
+            value["package_count"] -= 1
+            value["hold_count"] = 1
+            value["integrity"]["self_sha256"] = self_sha256(value)
+            hold.unlink()
+            dump_json(hold, value)
+            with self.assertRaises(ValidationError):
+                write_present_availability_manifest(
+                    work / "fake-hold-availability",
+                    candidates=dataset.candidates,
+                    adapter_mode=SYNTHETIC_MODE,
+                    context_set_manifest=hold,
+                    attestation_set_manifest=attestation,
+                    schema_root=self.contracts,
+                    run_id="fake-hold",
+                    phase_id="conformance",
+                    split_id="synthetic",
+                    observed_at="2026-07-30T00:00:00Z",
+                )
 
     def test_shared_sense_path_drift_and_inventory_reorder_reject(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -251,6 +402,81 @@ class Adapter50150Tests(unittest.TestCase):
             with self.assertRaises(IntegrityError):
                 replay_adapter_bundle(bundle, contracts_root=self.contracts)
 
+    def test_partial_ready_batch_excludes_missing_candidate_from_global_join(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            work = Path(directory)
+            source = make_synthetic_dataset_release(self.repo, work / "dataset")
+            dataset = load_dataset_release(
+                source["zip"],
+                source["pin"],
+                git_receipt_path=None,
+                schema_root=self.contracts,
+                mode=SYNTHETIC_MODE,
+            )
+            context = make_producer_set(
+                self.repo,
+                work / "context",
+                candidates=dataset.candidates,
+                role="context_evidence",
+            )
+            attestation = make_producer_set(
+                self.repo,
+                work / "attestation",
+                candidates=dataset.candidates,
+                role="attestation_evidence",
+            )
+            availability = write_present_availability_manifest(
+                work / "availability",
+                candidates=dataset.candidates,
+                adapter_mode=SYNTHETIC_MODE,
+                context_set_manifest=context,
+                attestation_set_manifest=attestation,
+                schema_root=self.contracts,
+                run_id="synthetic-partial",
+                phase_id="conformance",
+                split_id="synthetic",
+                observed_at="2026-07-30T00:00:00Z",
+            )
+            excluded_id = dataset.candidates[0].identity.candidate_id
+            self._mark_candidate_missing(availability, excluded_id)
+            result = build_adapter_bundle(
+                dataset_zip=source["zip"],
+                dataset_pin=source["pin"],
+                dataset_git_receipt=None,
+                availability_manifest=availability,
+                contracts_root=self.contracts,
+                repository_root=self.repo,
+                output_root=work / "bundle",
+                adapter_mode=SYNTHETIC_MODE,
+                inventory_schema_path=self.schema,
+            )
+            self.assertEqual(result["ready_candidate_count"], 149)
+            self.assertEqual(result["not_submitted_count"], 1)
+            self.assertEqual(result["global_execution_status"], "READY_FOR_PUBLIC_GLOBAL_CLI")
+            inventory = load_inventory(work / "bundle" / "artifact_inventory.json")
+            self.assertNotIn(
+                excluded_id,
+                {
+                    record.candidate_key["candidate_id"]
+                    for record in inventory.records
+                    if record.candidate_key is not None
+                },
+            )
+            joined, report = validate_and_join(inventory, schema_root=self.contracts)
+            self.assertEqual(len(joined), 149)
+            self.assertEqual(report["joined_count"], 149)
+            readiness = load_json(
+                work / "bundle" / "sidecars" / "global_batch_readiness_report_v1.json",
+                require_object=True,
+            )
+            self.assertEqual(readiness["not_submitted"][0]["candidate_id"], excluded_id)
+            replay = replay_adapter_bundle(work / "bundle", contracts_root=self.contracts)
+            self.assertEqual(replay["joined_count"], 149)
+            self.assertEqual(
+                replay["semantic_replay"],
+                "SEALED_ADAPTER_AVAILABILITY_HOLD_REPLAY_PASS",
+            )
+
     def test_reparse_path_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             work = Path(directory)
@@ -263,6 +489,77 @@ class Adapter50150Tests(unittest.TestCase):
             with mock.patch("integration_harness.paths.os.path.isjunction", side_effect=fake_isjunction):
                 with self.assertRaises(IntegrityError):
                     load_inventory(bundle / "artifact_inventory.json")
+
+    def test_coherently_resealed_sidecar_semantic_drift_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            work = Path(directory)
+            dataset = self._official_dataset()
+            availability = write_missing_availability_manifest(
+                work / "availability",
+                candidates=dataset.candidates,
+                adapter_mode=OFFICIAL_MODE,
+                run_id="official-adapter-preflight",
+                phase_id="zero-provider-preflight",
+                split_id="official-five-sense",
+                observed_at="2026-07-30T00:00:00Z",
+                reason_code="PRODUCER_PACKAGE_SET_NOT_MAIN_ACCEPTED",
+            )
+            build_adapter_bundle(
+                dataset_zip=dataset.zip_path,
+                dataset_pin=dataset.pin_path,
+                dataset_git_receipt=dataset.git_receipt_path,
+                availability_manifest=availability,
+                contracts_root=self.contracts,
+                repository_root=self.repo,
+                output_root=work / "bundle",
+                adapter_mode=OFFICIAL_MODE,
+                inventory_schema_path=self.schema,
+            )
+            authority_path = work / "bundle" / "sidecars" / "global_batch_authority_v1.json"
+            authority = load_json(authority_path, require_object=True)
+            authority["expected_sense_count"] = 50
+            authority["integrity"]["self_sha256"] = self_sha256(authority)
+            authority_path.unlink()
+            dump_json(authority_path, authority)
+            readiness_path = work / "bundle" / "sidecars" / "global_batch_readiness_report_v1.json"
+            readiness = load_json(readiness_path, require_object=True)
+            readiness["batch_authority"] = {
+                "physical_sha256": sha256_file(authority_path),
+                "self_sha256": authority["integrity"]["self_sha256"],
+            }
+            readiness["integrity"]["self_sha256"] = self_sha256(readiness)
+            readiness_path.unlink()
+            dump_json(readiness_path, readiness)
+            inventory_path = work / "bundle" / "artifact_inventory.json"
+            inventory = load_json(inventory_path, require_object=True)
+            source = next(
+                item
+                for item in inventory["source_authority"]
+                if item["role"] == "global_batch_authority"
+            )
+            source["physical_sha256"] = sha256_file(authority_path)
+            source["declared_self_sha256"] = authority["integrity"]["self_sha256"]
+            inventory["sidecar_bindings"]["global_batch_authority"]["physical_sha256"] = sha256_file(authority_path)
+            inventory["sidecar_bindings"]["global_batch_authority"]["self_sha256"] = authority["integrity"]["self_sha256"]
+            readiness_source = next(
+                item
+                for item in inventory["source_authority"]
+                if item["role"] == "global_batch_readiness_report"
+            )
+            readiness_source["physical_sha256"] = sha256_file(readiness_path)
+            readiness_source["declared_self_sha256"] = readiness["integrity"]["self_sha256"]
+            inventory["sidecar_bindings"]["global_batch_readiness_report"]["physical_sha256"] = sha256_file(readiness_path)
+            inventory["sidecar_bindings"]["global_batch_readiness_report"]["self_sha256"] = readiness["integrity"]["self_sha256"]
+            inventory["integrity"]["self_sha256"] = self_sha256(inventory)
+            inventory_path.unlink()
+            dump_json(inventory_path, inventory)
+            self._reseal_checksums(work / "bundle")
+            with self.assertRaises(ReplayError):
+                replay_adapter_bundle(
+                    work / "bundle",
+                    contracts_root=self.contracts,
+                    repository_root=self.repo,
+                )
 
     def test_synthetic_150_core_seal_and_replay_preserve_adapter_authority(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -303,21 +600,87 @@ class Adapter50150Tests(unittest.TestCase):
         )
         context = make_producer_set(
             self.repo, work / f"context-{name}", candidates=dataset.candidates,
-            role="context_evidence", hold=False,
+            role="context_evidence",
         )
         attestation = make_producer_set(
             self.repo, work / f"attestation-{name}", candidates=dataset.candidates,
-            role="attestation_evidence", hold=False,
+            role="attestation_evidence",
+        )
+        availability = write_present_availability_manifest(
+            work / f"availability-{name}",
+            candidates=dataset.candidates,
+            adapter_mode=SYNTHETIC_MODE,
+            context_set_manifest=context,
+            attestation_set_manifest=attestation,
+            schema_root=self.contracts,
+            run_id=f"synthetic-{name}",
+            phase_id="conformance",
+            split_id="synthetic",
+            observed_at="2026-07-30T00:00:00Z",
         )
         bundle = work / name
         build_adapter_bundle(
             dataset_zip=source["zip"], dataset_pin=source["pin"],
-            dataset_git_receipt=None, context_set_manifest=context,
-            attestation_set_manifest=attestation, contracts_root=self.contracts,
+            dataset_git_receipt=None, availability_manifest=availability,
+            contracts_root=self.contracts,
             repository_root=self.repo, output_root=bundle,
             adapter_mode=SYNTHETIC_MODE, inventory_schema_path=self.schema,
         )
         return bundle
+
+    @staticmethod
+    def _set_attestation_status(
+        manifest_path: Path,
+        candidate_id: str,
+        status: str,
+    ) -> None:
+        manifest = load_json(manifest_path, require_object=True)
+        entry = next(item for item in manifest["entries"] if item["candidate_id"] == candidate_id)
+        package_path = manifest_path.parent / entry["relative_path"]
+        package = load_json(package_path, require_object=True)
+        package["local_status"] = status
+        package["integrity"]["self_sha256"] = self_sha256(package)
+        package_path.unlink()
+        dump_json(package_path, package)
+        entry["physical_sha256"] = sha256_file(package_path)
+        entry["self_sha256"] = package["integrity"]["self_sha256"]
+        manifest["integrity"]["self_sha256"] = self_sha256(manifest)
+        manifest_path.unlink()
+        dump_json(manifest_path, manifest)
+
+    @staticmethod
+    def _mark_candidate_missing(manifest_path: Path, candidate_id: str) -> None:
+        manifest = load_json(manifest_path, require_object=True)
+        for binding in manifest["producer_sets"]:
+            producer_path = manifest_path.parent / binding["relative_path"]
+            producer = load_json(producer_path, require_object=True)
+            entry = next(
+                item for item in producer["entries"] if item["candidate_id"] == candidate_id
+            )
+            package_path = producer_path.parent / entry["relative_path"]
+            package_path.unlink()
+            producer["entries"] = [
+                item for item in producer["entries"] if item["candidate_id"] != candidate_id
+            ]
+            producer["entry_count"] -= 1
+            producer["package_count"] -= 1
+            producer["integrity"]["self_sha256"] = self_sha256(producer)
+            producer_path.unlink()
+            dump_json(producer_path, producer)
+            binding["physical_sha256"] = sha256_file(producer_path)
+            binding["self_sha256"] = producer["integrity"]["self_sha256"]
+        for row in manifest["rows"]:
+            if row["candidate_key"]["candidate_id"] != candidate_id:
+                continue
+            row["status"] = "MISSING"
+            row["reason_code"] = "PRODUCER_PACKAGE_NOT_AVAILABLE"
+            row["validation_error_code"] = None
+            row["external_hold_receipt"] = None
+        manifest["counts"]["PRESENT"] -= 2
+        manifest["counts"]["MISSING"] += 2
+        manifest["integrity"]["self_sha256"] = self_sha256(manifest)
+        manifest_path.unlink()
+        dump_json(manifest_path, manifest)
 
     @staticmethod
     def _tree_hashes(root: Path) -> dict[str, str]:

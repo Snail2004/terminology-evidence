@@ -108,7 +108,9 @@ def load_inventory(manifest_path: Path) -> ArtifactInventory:
     if not isinstance(integrity, dict) or integrity.get("self_sha256") != self_sha256(manifest):
         raise IntegrityError("artifact manifest self hash mismatch")
     raw_records = manifest.get("artifacts")
-    if not isinstance(raw_records, list) or not raw_records:
+    if not isinstance(raw_records, list):
+        raise DiscoveryError("artifact manifest artifacts must be an array")
+    if not raw_records and schema_id != ADAPTER_INVENTORY_SCHEMA:
         raise DiscoveryError("artifact manifest must contain artifacts")
     records: list[ArtifactRecord] = []
     seen_paths: dict[str, ArtifactRecord] = {}
@@ -156,6 +158,16 @@ def load_inventory(manifest_path: Path) -> ArtifactInventory:
             raise DiscoveryError("adapter inventory candidate_count must be 15 or 150")
         if not isinstance(sense_count, int) or sense_count not in {5, 50}:
             raise DiscoveryError("adapter inventory sense_count must be 5 or 50")
+        ready_count = manifest.get("ready_candidate_count")
+        not_submitted = manifest.get("not_submitted_count")
+        if (
+            not isinstance(ready_count, int)
+            or not isinstance(not_submitted, int)
+            or ready_count < 0
+            or not_submitted < 0
+            or ready_count + not_submitted != candidate_count
+        ):
+            raise DiscoveryError("adapter ready/not-submitted counts mismatch")
     return ArtifactInventory(
         manifest_path=manifest_path,
         manifest=manifest,
@@ -262,8 +274,8 @@ def _load_holds(
     schema_id: Any,
 ) -> tuple[HoldRecord, ...]:
     raw_records = manifest.get("holds", [])
-    if schema_id != ADAPTER_INVENTORY_SCHEMA and raw_records:
-        raise DiscoveryError("legacy inventory cannot contain producer HOLDs")
+    if raw_records:
+        raise DiscoveryError("producer HOLD packages are forbidden; use availability sidecars")
     if not isinstance(raw_records, list):
         raise DiscoveryError("holds must be an array")
     result: list[HoldRecord] = []
