@@ -1,0 +1,262 @@
+{
+  "batch_id": "batch_001",
+  "case_count": 1,
+  "cases": [
+    {
+      "adjudication": {
+        "adjudication_rationale": "All eight positive-evidence-eligible D2L contexts use 'classification problems' for tasks that predict category or label membership, including binary, multiclass, and multi-label settings. The synthetic library sentence is boundary-only and is excluded from positive evidence. The proposed definition, noun-phrase POS, campaign scope, and all three Vietnamese candidate targets fit this single technical sense, so no correction or split is warranted.",
+        "adjudication_status": "COMPLETE",
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Independent adjudication confirms one coherent D2L sense: a classification problem predicts category or label membership. Eligible source contexts support the proposal; the synthetic contrast is retained only as a boundary example.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "adjudication_case_id": "adj_2073971632e8529aa469dcaa",
+      "adjudication_case_sha256": "1e0ef8a674995affd6dc6f68a5c7fad9822c93e3773e527b8b1093d90523c610",
+      "batch_id": "batch_001",
+      "disagreement_fields": [],
+      "final_glossary_decision": null,
+      "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+      "provider_call_count": 0,
+      "reviewer_1": {
+        "result_file_sha256": "c5f38e8512c4d9b89b2fb717632b41c0355193e88409421397ef074fe0e42cfd",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "Toàn bộ ngữ cảnh thực đều dùng nghĩa bài toán dự đoán nhãn hoặc hạng mục; ngữ cảnh synthetic chỉ đánh dấu ranh giới với nghĩa phân loại thư viện và không được dùng làm bằng chứng dương.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+        }
+      },
+      "reviewer_2": {
+        "result_file_sha256": "d606a27391fad850f25eb195ab03ee25fc7acfca5bf752a48078f2d8d0a6dc1e",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "The eligible contexts consistently describe classification problems as predicting membership in categories or labels, including binary, multiclass, and multi-label settings. The proposed definition and noun-phrase POS therefore match the supplied evidence, and the three Vietnamese candidates preserve the problem/task sense. The synthetic boundary row was not used as positive evidence.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+        }
+      },
+      "risk_class": "R4_SPLIT_OR_POS_RISK",
+      "routing_reason": "R4_MANDATORY_ADJUDICATION",
+      "schema_id": "D2LFastTrackStageAAdjudicationCaseV1",
+      "schema_version": "1.0.0",
+      "sense_id": "d2lce_7070b47672fcb2311c0527b6",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_02daee909137d80ef7d133d6",
+            "candidate_slot": "candidate_slot_adcbca1b84d0e8d64867602f",
+            "candidate_target_vi": "bài toán phân lớp"
+          },
+          {
+            "candidate_id": "candidate_b6ac70347dc7413898f7b997",
+            "candidate_slot": "candidate_slot_c326ec5b79f359f34652c0a8",
+            "candidate_target_vi": "vấn đề phân loại"
+          },
+          {
+            "candidate_id": "candidate_a5e2974d57b2986ff5702320",
+            "candidate_slot": "candidate_slot_ffc6aa72330678473090ce65",
+            "candidate_target_vi": "bài toán phân loại"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_introduction_index_b059",
+            "boundary_only": false,
+            "chapter_id": "d2l_introduction",
+            "content_sha256": "6780d8adf43ac7869dd1eccf226b718aaa1291c58d57828fc33e01a7bc6888b7",
+            "context_id": "ctx_026fffa1498f9353695d8938",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "classification problems",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_66391fd4e0f078f48ee10db7",
+            "source_text": "While we attacked regression problems by trying\nto minimize the squared error loss function,\nthe common loss function for classification problems is called *cross-entropy*,\nwhose name can be demystified \nvia an introduction to information theory in subsequent chapters.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_introduction_index_b069",
+            "boundary_only": false,
+            "chapter_id": "d2l_introduction",
+            "content_sha256": "f8f1ed7021eb82c8b2e28e17fbc4c33c16980d475d04712640785578bfde5c1b",
+            "context_id": "ctx_18f207162816691afd0ac11d",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "classification problems",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_a555018c61a684de6955366a",
+            "source_text": "Auto-tagging problems are typically best described\nas multi-label classification problems.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_introduction_index_b066",
+            "boundary_only": false,
+            "chapter_id": "d2l_introduction",
+            "content_sha256": "9fa7e10b0b1608471d553fd295d4f0df888b6a9f85a0597f8ab9f58f377a3549",
+            "context_id": "ctx_275c69012387f631509a7b14",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "classification problems",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_0c7bde51b2948c01df8665d8",
+            "source_text": "Some classification problems fit neatly\ninto the binary or multiclass classification setups.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_linear_networks_softmax_regression_b010",
+            "boundary_only": false,
+            "chapter_id": "d2l_linear_networks",
+            "content_sha256": "c404ea073b00e020404e09ac88265be1bdd3fb04e882442a85a211ff284d684e",
+            "context_id": "ctx_4f3feaf3fe5fc9145ebc21e9",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "classification problems",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_3e2dceee6e0300a05d1b6868",
+            "source_text": "But general classification problems do not come with natural orderings among the classes.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_mlp_b050",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "6dc8e4100e0c8c47c4ece4a7d48a926952d48ab214606290e28dd4e07398eb7e",
+            "context_id": "ctx_8ee021478cb4ccd5631a27d8",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "classification problems",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_6c28be2f1495a5a81e29e1f3",
+            "source_text": "Sigmoids are still widely used as\nactivation functions on the output units,\nwhen we want to interpret the outputs as probabilities\nfor binary classification problems\n(you can think of the sigmoid as a special case of the softmax).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_linear_networks_softmax_regression_b067",
+            "boundary_only": false,
+            "chapter_id": "d2l_linear_networks",
+            "content_sha256": "ddf928230de5b25b8b1d49c063972963fac6794d1ad2221c99f7fac845cbb231",
+            "context_id": "ctx_96aeca71763647a9e736af8b",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "classification problems",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_821a9094fd78e32dd5c7798a",
+            "source_text": "* Softmax regression applies to classification problems.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_linear_networks_softmax_regression_b051",
+            "boundary_only": false,
+            "chapter_id": "d2l_linear_networks",
+            "content_sha256": "a2738509890c9829faaf4928d07b26a01578aec53ba57a132e7dbd07f788f378",
+            "context_id": "ctx_f94fc680303cbcb3c27ab99b",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "classification problems",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_57c332d1cc85d89ebc27a2c9",
+            "source_text": "This loss is called the *cross-entropy loss* and it is\none of the most commonly used losses for classification problems.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_linear_networks_linear_regression_b003",
+            "boundary_only": false,
+            "chapter_id": "d2l_linear_networks",
+            "content_sha256": "bf5c1cef797a2500017c78d35b59b6a836ec6ae2ac79730fb025a3eb0d11456a",
+            "context_id": "ctx_ffdf1a13224ab9169c7fc415",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "classification problems",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_fa2fdf8e96a70f2837b6a7ff",
+            "source_text": "In subsequent sections, we will introduce classification problems,\nwhere the goal is to predict membership among a set of categories.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "47be18dde42e1afd49a251182e5e17984c7b26d9350e4c4386066f9151f4c843",
+            "context_id": "ctxx_84b6c6da320bc9d34290eccf",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "classification problems",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: The library faced classification problems when volunteers disagreed on where to shelve rare manuscripts.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_86c0fe38d3b3fe00c7aa356f",
+        "proposed_definition_en": "problems whose goal is to predict which category or label an example belongs to",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_7070b47672fcb2311c0527b6",
+        "source_sense_pool_record_sha256": "9fcaa61792e1f7d049bd87bcc44ed3490f71882ef075a5f8ba82e490c42af107",
+        "source_term": "classification problems",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_7070b47672fcb2311c0527b6"
+      },
+      "source_payload_sha256": "41d51abfe627bca59fcabaa1242c2876c2b21ed06898890291507f217378c16d",
+      "source_term": "classification problems",
+      "stage_b_gold_label": null
+    }
+  ],
+  "independence_mode": "ADJUDICATION_SEES_REVIEWER_1_AND_REVIEWER_2",
+  "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_ADJUDICATION_FIELDS_FILLED",
+  "reviewer_slot": "reviewer_3_adjudicator",
+  "schema_id": "D2LFastTrackStageAAdjudicatorInputV1",
+  "schema_version": "1.0.0",
+  "source_input_sha256": "5b81e347431dcaa45bd8fae1cd39a7b07e5707d274158ec0adea657262434f97"
+}

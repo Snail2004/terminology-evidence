@@ -1,0 +1,134 @@
+{
+  "case_count": 24,
+  "files": [
+    {
+      "batch_id": "batch_001",
+      "canonical_handoff_zip_sha256": "dbb81b8f91950191b5ecfa697687c83356a61497513daa7bdfe2baecce17156f",
+      "canonical_input_physical_sha256": "1786b83f293d3137f2a2a4b503bbcc1972d90d7aec03c503c64dcd053d798d9f",
+      "captured_relative_path": "raw_reviews/reviewer_3/batch_001_reviewer_3_completed.json",
+      "captured_sha256": "5cda522c1cb9a57c0bcd0f0b2172aee86b7b48cceb6d61d0e50e1ebd3730b2e9",
+      "case_count": 1,
+      "reviewer_slot": "reviewer_3_adjudicator",
+      "source_input_sha256": "5b81e347431dcaa45bd8fae1cd39a7b07e5707d274158ec0adea657262434f97",
+      "source_path": "C:\\work\\terminology_evidence-worktrees\\dataset-v1\\dataset\\d2l_dataset_50_senses_fast_track_stage_a_v1\\release\\d2l_fast_track_stage_a_review_intake_v1\\handoff\\result-reviewer3\\batch_001_reviewer_3_completed.json",
+      "source_sha256": "5cda522c1cb9a57c0bcd0f0b2172aee86b7b48cceb6d61d0e50e1ebd3730b2e9"
+    },
+    {
+      "batch_id": "batch_002",
+      "canonical_handoff_zip_sha256": "2be31aeb4e882626e86fe871e9ffef917e7adcf301ba198a4755ab327f945e43",
+      "canonical_input_physical_sha256": "561935773540f95d62cf5836a356e656a8ab0e670f31dbed6b3452aa3d4bf800",
+      "captured_relative_path": "raw_reviews/reviewer_3/batch_002_reviewer_3_completed.json",
+      "captured_sha256": "8dc1ebe03de046d00eb2567880c4f1a2089128c0f0c88ddd2a093a0b607024c7",
+      "case_count": 2,
+      "reviewer_slot": "reviewer_3_adjudicator",
+      "source_input_sha256": "4b86db61a07cb48f35b560529dc27b9bb91e4de093a931ba9fac334f116f2b8c",
+      "source_path": "C:\\work\\terminology_evidence-worktrees\\dataset-v1\\dataset\\d2l_dataset_50_senses_fast_track_stage_a_v1\\release\\d2l_fast_track_stage_a_review_intake_v1\\handoff\\result-reviewer3\\batch_002_reviewer_3_completed.json",
+      "source_sha256": "8dc1ebe03de046d00eb2567880c4f1a2089128c0f0c88ddd2a093a0b607024c7"
+    },
+    {
+      "batch_id": "batch_003",
+      "canonical_handoff_zip_sha256": "0555feab20e87a86732a8cd4f9474a8c1628a74857c79778a3fe8bcc1b8cbc94",
+      "canonical_input_physical_sha256": "9b3413509ce0f077cfd776aeda69922c3fad7bfbb2d3035325979b9f35cb9127",
+      "captured_relative_path": "raw_reviews/reviewer_3/batch_003_reviewer_3_completed.json",
+      "captured_sha256": "bc9bd593435c31fa6443e36c6ebb6db9ca4fc1a9170f52991ae20044490f07fb",
+      "case_count": 3,
+      "reviewer_slot": "reviewer_3_adjudicator",
+      "source_input_sha256": "0cb2b5631ebbcccae23741a6f8db9fa7b5dae12d72cc019935d19b231ea67411",
+      "source_path": "C:\\work\\terminology_evidence-worktrees\\dataset-v1\\dataset\\d2l_dataset_50_senses_fast_track_stage_a_v1\\release\\d2l_fast_track_stage_a_review_intake_v1\\handoff\\result-reviewer3\\batch_003_reviewer_3_completed.json",
+      "source_sha256": "bc9bd593435c31fa6443e36c6ebb6db9ca4fc1a9170f52991ae20044490f07fb"
+    },
+    {
+      "batch_id": "batch_004",
+      "canonical_handoff_zip_sha256": "c4281d2c5f370c0e773795ff832bae1b1c324968072ed075f675a0fca6b74fb4",
+      "canonical_input_physical_sha256": "ab422c101fb9e47c43187bcf56941494925ea39daea86018bd62ce978a306893",
+      "captured_relative_path": "raw_reviews/reviewer_3/batch_004_reviewer_3_completed.json",
+      "captured_sha256": "e5211d7084d2e3282dce4880abd0f3dd844193646ebb3cc60c54f01da254ebf6",
+      "case_count": 3,
+      "reviewer_slot": "reviewer_3_adjudicator",
+      "source_input_sha256": "9dbed4d10ceb6172d6a711d7da62f4c76d2dc37b00628e525fcba6ad04adef05",
+      "source_path": "C:\\work\\terminology_evidence-worktrees\\dataset-v1\\dataset\\d2l_dataset_50_senses_fast_track_stage_a_v1\\release\\d2l_fast_track_stage_a_review_intake_v1\\handoff\\result-reviewer3\\batch_004_reviewer_3_completed.json",
+      "source_sha256": "e5211d7084d2e3282dce4880abd0f3dd844193646ebb3cc60c54f01da254ebf6"
+    },
+    {
+      "batch_id": "batch_005",
+      "canonical_handoff_zip_sha256": "f2a3f322befc6373f259d4138ebe4deeff8fe5aa3ff184b01df3fb122e0582e7",
+      "canonical_input_physical_sha256": "727f54cf490dcd4f458cdbb71e68bb582a173b570dd9e90463648555aeb7895f",
+      "captured_relative_path": "raw_reviews/reviewer_3/batch_005_reviewer_3_completed.json",
+      "captured_sha256": "70c1adff6e48efcc2e5f87c915c16b99bb96418584cac9eaa0898155d7705831",
+      "case_count": 2,
+      "reviewer_slot": "reviewer_3_adjudicator",
+      "source_input_sha256": "4aa63cc7ad6baa88bbef823093494bf48f17c7ab49128ac2ad5593302fb64b3d",
+      "source_path": "C:\\work\\terminology_evidence-worktrees\\dataset-v1\\dataset\\d2l_dataset_50_senses_fast_track_stage_a_v1\\release\\d2l_fast_track_stage_a_review_intake_v1\\handoff\\result-reviewer3\\batch_005_reviewer_3_completed.json",
+      "source_sha256": "70c1adff6e48efcc2e5f87c915c16b99bb96418584cac9eaa0898155d7705831"
+    },
+    {
+      "batch_id": "batch_006",
+      "canonical_handoff_zip_sha256": "2a0870ac1e62cb530f8f123175240cf52ba87ccc66aa950bc91b77ae9a431551",
+      "canonical_input_physical_sha256": "fe9bbc108f6e57b78abcd1337575df3e28286fcdad2fec0ef93549a9c63b24e1",
+      "captured_relative_path": "raw_reviews/reviewer_3/batch_006_reviewer_3_completed.json",
+      "captured_sha256": "176f05cadce3072f62af65c31c1b03ee40971beb8423be4ae34e84654772c39b",
+      "case_count": 3,
+      "reviewer_slot": "reviewer_3_adjudicator",
+      "source_input_sha256": "5ef6b3686d9759af8131f8b86a91bd7c8d6d3819f0dc73829c6e82c7fb813d99",
+      "source_path": "C:\\work\\terminology_evidence-worktrees\\dataset-v1\\dataset\\d2l_dataset_50_senses_fast_track_stage_a_v1\\release\\d2l_fast_track_stage_a_review_intake_v1\\handoff\\result-reviewer3\\batch_006_reviewer_3_completed.json",
+      "source_sha256": "176f05cadce3072f62af65c31c1b03ee40971beb8423be4ae34e84654772c39b"
+    },
+    {
+      "batch_id": "batch_007",
+      "canonical_handoff_zip_sha256": "be07bb702e7f05527cca1206b8bbc038d98b2deedb5772194c63d25c8ff23e16",
+      "canonical_input_physical_sha256": "4646ee0d084013c2930176f2ae3e9ade541fcb4d055a47169548870449a9bb98",
+      "captured_relative_path": "raw_reviews/reviewer_3/batch_007_reviewer_3_completed.json",
+      "captured_sha256": "e1714daef395dccd2fea4f881a8505e89c83044f167bcc77f671cbeb249c1f1c",
+      "case_count": 2,
+      "reviewer_slot": "reviewer_3_adjudicator",
+      "source_input_sha256": "314f42820979ff300b985be930f4d9f25ae98c0139d9916c1ec71be7d75b61bc",
+      "source_path": "C:\\work\\terminology_evidence-worktrees\\dataset-v1\\dataset\\d2l_dataset_50_senses_fast_track_stage_a_v1\\release\\d2l_fast_track_stage_a_review_intake_v1\\handoff\\result-reviewer3\\batch_007_reviewer_3_completed.json",
+      "source_sha256": "e1714daef395dccd2fea4f881a8505e89c83044f167bcc77f671cbeb249c1f1c"
+    },
+    {
+      "batch_id": "batch_008",
+      "canonical_handoff_zip_sha256": "75cd266405a2c48065d4dfcaf4f19e202ba461f99882caf12596717f25fbaab0",
+      "canonical_input_physical_sha256": "91dba90a7cc94b42654bea081aaccfaef50fa6855abfed39ae7a556f79eb8ba2",
+      "captured_relative_path": "raw_reviews/reviewer_3/batch_008_reviewer_3_completed.json",
+      "captured_sha256": "31ea5550b16ddb12132d8a0a1e8ee7568cdc2317984507a97bd8ac0b2fc11a9b",
+      "case_count": 4,
+      "reviewer_slot": "reviewer_3_adjudicator",
+      "source_input_sha256": "1692e6eb5be9ef8a5fc9abe06905b26793709b3671ed649daeebf5586d7dd11c",
+      "source_path": "C:\\work\\terminology_evidence-worktrees\\dataset-v1\\dataset\\d2l_dataset_50_senses_fast_track_stage_a_v1\\release\\d2l_fast_track_stage_a_review_intake_v1\\handoff\\result-reviewer3\\batch_008_reviewer_3_completed.json",
+      "source_sha256": "31ea5550b16ddb12132d8a0a1e8ee7568cdc2317984507a97bd8ac0b2fc11a9b"
+    },
+    {
+      "batch_id": "batch_009",
+      "canonical_handoff_zip_sha256": "6943112c885aa5e2eb241b96ea72b47dc7ca8bd47db23957191e39cf5aed4305",
+      "canonical_input_physical_sha256": "e214c1bbc76333583a82f75e2f74165890cc352f66ce2d11198517a55330807e",
+      "captured_relative_path": "raw_reviews/reviewer_3/batch_009_reviewer_3_completed.json",
+      "captured_sha256": "f6b4d23cc79c86282a8e44227853fbbdebf9074bcc4fe2b3d99979dc6a336a78",
+      "case_count": 4,
+      "reviewer_slot": "reviewer_3_adjudicator",
+      "source_input_sha256": "c3e6b304d94724b89b6ff540ff9f7e929acd7f5ae00fea6ed712f4fb64220506",
+      "source_path": "C:\\work\\terminology_evidence-worktrees\\dataset-v1\\dataset\\d2l_dataset_50_senses_fast_track_stage_a_v1\\release\\d2l_fast_track_stage_a_review_intake_v1\\handoff\\result-reviewer3\\batch_009_reviewer_3_completed.json",
+      "source_sha256": "f6b4d23cc79c86282a8e44227853fbbdebf9074bcc4fe2b3d99979dc6a336a78"
+    }
+  ],
+  "ignored_unconsumed_entries": [],
+  "integrity": {
+    "self_sha256": "448a15d578ccdb813e3345004f8481449305475e9ed16e3a17cd50d5e96748ac"
+  },
+  "metrics": {
+    "candidate_replacement_count": 26,
+    "candidate_set_decision:ACCEPT": 6,
+    "candidate_set_decision:REVISE": 18,
+    "case_count": 24,
+    "definition_decision:ACCEPT": 23,
+    "definition_decision:REVISE": 1,
+    "evidence_decision:ACCEPT": 24,
+    "part_of_speech_decision:ACCEPT": 24,
+    "scope_decision:ACCEPT": 24,
+    "sense_status:READY_FOR_CONTRACT_CONSTRUCTION": 24
+  },
+  "policy_id": "d2l-fast-track-stage-a-adjudication-result-v1.0",
+  "result_file_count": 9,
+  "reviewer_slot": "reviewer_3_adjudicator",
+  "schema_id": "D2LFastTrackStageAAdjudicationInputInventoryV1",
+  "schema_version": "1.0.0"
+}

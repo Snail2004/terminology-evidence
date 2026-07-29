@@ -1,0 +1,781 @@
+{
+  "batch_id": "batch_003",
+  "case_count": 3,
+  "cases": [
+    {
+      "adjudication": {
+        "adjudication_rationale": "The eligible D2L contexts consistently define continuous bag of words (CBOW) as a word2vec model that predicts or generates a center word from surrounding context words; averaging context vectors is also directly attested. The proposed definition, noun-phrase POS, scope, and sense boundary are sound. Candidate 3, however, is pluralized as 'các mô hình...' while the term denotes one named model and candidate 1 already supplies the full Vietnamese noun phrase. I therefore replace only candidate 3 with the standard, unambiguous abbreviation gloss 'mô hình CBOW'.",
+        "adjudication_status": "COMPLETE",
+        "candidate_replacements": [
+          {
+            "candidate_id": "candidate_8be7dba3743106738f1353c0",
+            "candidate_slot": "candidate_slot_9b4cb3affc1c9063b940eab9",
+            "replacement_target_vi": "mô hình CBOW"
+          }
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Candidate 3 is the only replacement: its plural determiner makes it a poor gloss for the singular named model and is redundant with the full form. 'mô hình CBOW' preserves the model sense and is directly identifiable from the D2L usage.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "adjudication_case_id": "adj_56c933b823be1a6533bcf525",
+      "adjudication_case_sha256": "de2a5e11ae606a4e24a259a3e31c88d58843449ec614e96c1d15b2c5479996bf",
+      "batch_id": "batch_003",
+      "disagreement_fields": [
+        "candidate_set_decision",
+        "candidate_replacements",
+        "sense_status"
+      ],
+      "final_glossary_decision": null,
+      "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+      "provider_call_count": 0,
+      "reviewer_1": {
+        "result_file_sha256": "38f9134842220c7956f19514371bd5ef1455da7e32ef69f141c65fd9bb1f8b20",
+        "review": {
+          "candidate_replacements": [
+            "mô hình CBOW"
+          ],
+          "candidate_set_decision": "REVISE",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "Bằng chứng thực định nghĩa rõ mô hình CBOW dự đoán từ trung tâm từ các từ ngữ cảnh xung quanh. Candidate “các mô hình túi từ liên tục” sai số nhiều đối với tên một mô hình; nên thay bằng “mô hình CBOW”.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "REVISION_REQUIRED"
+        }
+      },
+      "reviewer_2": {
+        "result_file_sha256": "0d843cbfa778c71b3349fba8eeadbf805d36f58eafce8e7aafbc00abcc693e8e",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "The eligible contexts directly define CBOW as a word2vec model that generates or predicts a center word from surrounding context words, with context vectors averaged for the conditional probability. This supports the proposed definition, noun-phrase POS, scope, and the Vietnamese full, shortened, and pluralized forms. The synthetic boundary row was not used as positive evidence.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+        }
+      },
+      "risk_class": "R3_AMBIGUOUS",
+      "routing_reason": "R3_REVIEWER_DISAGREEMENT",
+      "schema_id": "D2LFastTrackStageAAdjudicationCaseV1",
+      "schema_version": "1.0.0",
+      "sense_id": "d2lce_dc193feb1eeef3a1349d9b74",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_4211a8d499b346ed01b54d27",
+            "candidate_slot": "candidate_slot_1f538166307961ec71918e08",
+            "candidate_target_vi": "mô hình túi từ liên tục"
+          },
+          {
+            "candidate_id": "candidate_8b4dcb337fd27f8ba1ded160",
+            "candidate_slot": "candidate_slot_63ab8a5e5459d1a2444f0f29",
+            "candidate_target_vi": "túi từ liên tục"
+          },
+          {
+            "candidate_id": "candidate_8be7dba3743106738f1353c0",
+            "candidate_slot": "candidate_slot_9b4cb3affc1c9063b940eab9",
+            "candidate_target_vi": "các mô hình túi từ liên tục"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word2vec_b009",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "883a811d1ffb43117ba3a3e6b7d98d0f63e8fd56c6a41488c79947c73309c315",
+            "context_id": "ctx_27620623f1cb8074d3971cbc",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "continuous bag of words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_aba5d702078aed2aa34748dd",
+            "source_text": "The word2vec tool contains two models, namely *skip-gram* :cite:`Mikolov.Sutskever.Chen.ea.2013`  and *continuous bag of words* (CBOW) :cite:`Mikolov.Chen.Corrado.ea.2013`.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word2vec_b032",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "663bbb2ae916c03cff8c654c5a63a15340ba7a1e62b0bba5d19bfa32de69f17b",
+            "context_id": "ctx_3e4d253c9ff11b6a3080d990",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "continuous bag of words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_33191bdfdb87b3833c84d23d",
+            "source_text": "For example,\nin the same text sequence \"the\", \"man\", \"loves\", \"his\", and \"son\", with \"loves\" as the center word and the context window size being 2,\nthe continuous bag of words model\nconsiders\nthe conditional probability of generating the center word \"loves\" based on the context words \"the\", \"man\", \"his\" and \"son\" (as shown in :numref:`fig_cbow`), which is",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word2vec_b035",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "f57c87a721200739f29210ce52ba09d4eba123c42b3522057642be23af46903d",
+            "context_id": "ctx_500e392a6212984ed97679b6",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "continuous bag of words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_18d32bd5e9e5e76b2e7a59e4",
+            "source_text": "Since there are multiple context words\nin the continuous bag of words model,\nthese context word vectors are averaged\nin the calculation of the conditional probability.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word2vec_b032",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "d520a84526c732a100d01121a20c9691e75b37a22fc9bc41ea4828d46b2e0aa3",
+            "context_id": "ctx_7592d6eb1986a0c2bd965c36",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "continuous bag of words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_d817077031ebd0ab4c570d0a",
+            "source_text": "The major difference\nfrom the skip-gram model is that\nthe continuous bag of words model\nassumes that a center word is generated\nbased on its surrounding context words in the text sequence.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word2vec_b009",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "02351ac6beccf6972aba3fd938662b5ac96f62c6051c924657781c068418345d",
+            "context_id": "ctx_8ae5ddde35de799cd4b51696",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "continuous bag of words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_120717dab0f18c821c479676",
+            "source_text": "Since supervision comes from the data without labels,\nboth skip-gram and continuous bag of words\nare self-supervised models.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word2vec_b032",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "905940cbe5460a9cce711ab6ee4775d282f5302fd6accd53afab4129ffb15ebe",
+            "context_id": "ctx_9539bbe8c2ac486d267b808a",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "continuous bag of words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_8cf77efb03581702fc05aa42",
+            "source_text": "The *continuous bag of words* (CBOW) model is similar to the skip-gram model.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word2vec_b034",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "60daca1fa6009d7c700e4337ae13c4d8035fdf0b0bdad8361b4599b3fc610a22",
+            "context_id": "ctx_ba4bc22bf919f20441dc05b2",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "continuous bag of words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_33f4778e37d3d9c131a2b938",
+            "source_text": "![The continuous bag of words model considers the conditional probability of generating the center word given its surrounding context words.](../img/cbow.svg)\n:eqlabel:`fig_cbow`",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word2vec_b031",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "becf83192bab1efe28f2abf9c0eda3341e71075556582fe00a98dd31948f5474",
+            "context_id": "ctx_c5722940f2ea3be48a188764",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "continuous bag of words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_04b44f341b9230a5d03290b7",
+            "source_text": "## The Continuous Bag of Words (CBOW) Model",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "cc13a8dfb2d91f369518cb5a636e69668154fc8143d2dc57c1bc0a8b8f8b5eac",
+            "context_id": "ctxx_48fcd5c971dd15c9961d3824",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "continuous bag of words",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: The phrase continuous bag of words here refers to a named prediction model, not just any continuously updated bag of vocabulary items.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_4a93a2968c22fc316a218f56",
+        "proposed_definition_en": "a word2vec model that predicts a center word from its surrounding context words",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+        "risk_class": "R3_AMBIGUOUS",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_dc193feb1eeef3a1349d9b74",
+        "source_sense_pool_record_sha256": "67fe5634a9f60801ef0affe14dde4059bcd1aca19515cabc2a7c49d1a73f937d",
+        "source_term": "continuous bag of words",
+        "stratum": "ambiguous",
+        "term_id": "d2lce_dc193feb1eeef3a1349d9b74"
+      },
+      "source_payload_sha256": "7cb188135f92043b298e3a7947247c119705077ea5e0fd9621f970179acf35a1",
+      "source_term": "continuous bag of words",
+      "stage_b_gold_label": null
+    },
+    {
+      "adjudication": {
+        "adjudication_rationale": "The eligible D2L contexts consistently use convolutional layer for a neural-network layer characterized by convolutional filters or kernels, including horizontal, vertical, and transposed variants. The proposed definition, noun-phrase POS, scope, and one-sense interpretation are supported. Candidate 1 is an unnecessary plural form ('các lớp...') for the singular term and overlaps the existing singular candidate; replace it with the distinct natural synonym 'tầng tích chập'.",
+        "adjudication_status": "COMPLETE",
+        "candidate_replacements": [
+          {
+            "candidate_id": "candidate_0a9e9996fb0dbf97ca4f06d8",
+            "candidate_slot": "candidate_slot_0423979062c0bbd395e5078f",
+            "replacement_target_vi": "tầng tích chập"
+          }
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Replace only the plural candidate 1. The replacement gives a singular, distinct Vietnamese term while preserving the convolutional neural-network layer sense; no evidence supports a split or definition/POS/scope change.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "adjudication_case_id": "adj_4bf70a56ca2dc94ddb3921f6",
+      "adjudication_case_sha256": "c4c4c690caf3193d5df7628972a5d288aa4f8c1c42f270197501abfeb7913895",
+      "batch_id": "batch_003",
+      "disagreement_fields": [
+        "candidate_set_decision",
+        "candidate_replacements",
+        "sense_status"
+      ],
+      "final_glossary_decision": null,
+      "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+      "provider_call_count": 0,
+      "reviewer_1": {
+        "result_file_sha256": "38f9134842220c7956f19514371bd5ef1455da7e32ef69f141c65fd9bb1f8b20",
+        "review": {
+          "candidate_replacements": [
+            "tầng tích chập"
+          ],
+          "candidate_set_decision": "REVISE",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "Bằng chứng thực thống nhất về một layer áp dụng convolution filters. Candidate “các lớp tích chập” lệch số nhiều so với term-sense số ít và trùng ý với candidate chuẩn “lớp tích chập”; nên thay bằng “tầng tích chập”.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "REVISION_REQUIRED"
+        }
+      },
+      "reviewer_2": {
+        "result_file_sha256": "0d843cbfa778c71b3349fba8eeadbf805d36f58eafce8e7aafbc00abcc693e8e",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "The eligible contexts consistently treat a convolutional layer as a neural-network layer characterized by convolutional filters or kernels, including horizontal, vertical, and transposed variants. The definition, noun-phrase POS, scope, and singular/plural Vietnamese candidates all fit this supplied usage. The synthetic boundary row was not used as positive evidence.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+        }
+      },
+      "risk_class": "R4_SPLIT_OR_POS_RISK",
+      "routing_reason": "R4_MANDATORY_ADJUDICATION",
+      "schema_id": "D2LFastTrackStageAAdjudicationCaseV1",
+      "schema_version": "1.0.0",
+      "sense_id": "d2lce_d2bfc7b3a0a02ddfd71b3526",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_0a9e9996fb0dbf97ca4f06d8",
+            "candidate_slot": "candidate_slot_0423979062c0bbd395e5078f",
+            "candidate_target_vi": "các lớp tích chập"
+          },
+          {
+            "candidate_id": "candidate_362164e231a5e76536f38828",
+            "candidate_slot": "candidate_slot_2da88c977153e24738101565",
+            "candidate_target_vi": "lớp chập"
+          },
+          {
+            "candidate_id": "candidate_f301079302ca4f4fe6c4719d",
+            "candidate_slot": "candidate_slot_e585989059b6cc38f7b115b0",
+            "candidate_target_vi": "lớp tích chập"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_recommender_systems_seqrec_b008",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "c6d92f5d0781b40ed5c0d6b4f3c0346fac01202edd074100997fd274d50d2ca5",
+            "context_id": "ctx_122d659e4bf66f4b335db6fb",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "convolutional layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_0f800d52d6106c2f94eb8cb8",
+            "source_text": "The horizontal convolutional layer has $d$ horizontal filters $\\mathbf{F}^j \\in \\mathbb{R}^{h \\times k}, 1 \\leq j \\leq d, h = \\{1, ..., L\\}$, and the vertical convolutional layer has $d'$ vertical filters $\\mathbf{G}^j \\in \\mathbb{R}^{ L \\times 1}, 1 \\leq j \\leq d'$.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_index_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "797545d4829d49809c4ef85ee3d9c7449e00ed9ce8b949f0b99dbcb71e1abd60",
+            "context_id": "ctx_1c4e159780d719c00ce3022e",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "convolutional layers",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_27f3e0ec9d14cbd6108f4db0",
+            "source_text": "These include the convolutional layers themselves,\nnitty-gritty details including padding and stride,\nthe pooling layers used to aggregate information\nacross adjacent spatial regions,\nthe use of multiple channels  at each layer,\nand a careful discussion of the structure of modern architectures.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_self_attention_and_positional_encoding_b018",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "6bf3a32fa94a0d1f32560fadef365e9b2a4e60739e004e848bd865405eacbab8",
+            "context_id": "ctx_3a787d4bd1c1d0430072fda6",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "convolutional layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_aec5f1a0b7ef3071c4be97a2",
+            "source_text": "Consider a convolutional layer whose kernel size is $k$.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_modern_alexnet_b020",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_modern",
+            "content_sha256": "d75f137807d57af1d66272ea7efa976ccd30e6d17c0f00274559b550760c64a4",
+            "context_id": "ctx_3a83fa91846a046a5913f179",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "convolutional layers",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_91f0f881de565f72844a6999",
+            "source_text": "Fortunately, this math is strikingly similar\nto that required to calculate convolutional layers.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_why_conv_b024",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "425091ac8da030e1e38c61fc33d5a4314cdebb173766bc7b99e31f8b64411170",
+            "context_id": "ctx_5e631862394a07c36c8b145d",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "convolutional layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_3ea7ec123b513408061e30d8",
+            "source_text": "Note that :eqref:`eq_conv-layer`, in a nutshell, is a *convolutional layer*.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_applications_sentiment_analysis_cnn_b031",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_applications",
+            "content_sha256": "e5ede9cf06b6a38f4365efed63d333b6769316f2d34b15c440c592669c56aa15",
+            "context_id": "ctx_63c1cf674ecc0c73541e5bad",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "convolutional layers",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_7b2062a18d06ab49c316b8bd",
+            "source_text": "Compared with the bidirectional RNN model in\n:numref:`sec_sentiment_rnn`,\nbesides\nreplacing recurrent layers with convolutional layers,\nwe also use two embedding layers:\none with trainable weights and the other \nwith fixed weights.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_generative_adversarial_networks_dcgan_b021",
+            "boundary_only": false,
+            "chapter_id": "d2l_generative_adversarial_networks",
+            "content_sha256": "2d9373d2d77aba3cf786ae5f8d30c89b4fa52f4567a37494834bdea7d577250d",
+            "context_id": "ctx_807d458f1292afa6921eb40d",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "convolution layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_7ae324ae77fc5723203d7a82",
+            "source_text": "The basic block of the generator contains a transposed convolution layer followed by the batch normalization and ReLU activation.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_image_augmentation_b020",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "2323f76c26e50c0e4c5b31551a3841ab4f5d45e071adec1869dcd0a633ae1610",
+            "context_id": "ctx_bf6f31236287c027cde6c33f",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "convolutional layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_4653b3c6257b67742ac39817",
+            "source_text": "In :numref:`sec_pooling`, we explained that the pooling layer can reduce the sensitivity of a convolutional layer to the target position.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "8f8062cee14e94096d334d3ae75a51a443a8de6ed817424469b4c8873ce8594a",
+            "context_id": "ctxx_d055f040c0bff77d97b93e9f",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "convolutional layer",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: This convolutional layer of rock was formed over millions of years.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_184942d54777ee4a53014a6e",
+        "proposed_definition_en": "a neural network layer that applies convolution filters to its input",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_d2bfc7b3a0a02ddfd71b3526",
+        "source_sense_pool_record_sha256": "21ef272a110d50176e512272b6e76390b942e12c7f03cb9070a90df22850ade3",
+        "source_term": "convolutional layer",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_d2bfc7b3a0a02ddfd71b3526"
+      },
+      "source_payload_sha256": "e9b0dd565f1be16ac221f59b8008764b83da6dd935c1b8bfb6432ad4d6dfb0ef",
+      "source_term": "convolutional layer",
+      "stage_b_gold_label": null
+    },
+    {
+      "adjudication": {
+        "adjudication_rationale": "The eligible D2L contexts identify convolutional neural networks as a class of neural networks built around convolutional operations/layers and used prominently for spatial information and computer vision, while also noting sequence use. The proposed class definition, noun-phrase POS, scope, and all three Vietnamese candidates fit this single sense. The synthetic comparison row is boundary-only and not positive evidence.",
+        "adjudication_status": "COMPLETE",
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Independent adjudication confirms the CNN class sense and accepts the expanded and abbreviated Vietnamese candidates. No split, correction, or invalid evidence is warranted.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "adjudication_case_id": "adj_42a0ee9104386c0b0ac305a7",
+      "adjudication_case_sha256": "72230e243e0a6af162211a66aada4b6b73f96e7b6c750f36cdefe9cbd25c7e98",
+      "batch_id": "batch_003",
+      "disagreement_fields": [],
+      "final_glossary_decision": null,
+      "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+      "provider_call_count": 0,
+      "reviewer_1": {
+        "result_file_sha256": "38f9134842220c7956f19514371bd5ef1455da7e32ef69f141c65fd9bb1f8b20",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "Các ngữ cảnh thực nhất quán dùng CNN cho mạng khai thác phép tích chập và xử lý thông tin không gian, đặc biệt trong thị giác máy tính; biến thể số ít/số nhiều của candidate không làm đổi sense.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+        }
+      },
+      "reviewer_2": {
+        "result_file_sha256": "0d843cbfa778c71b3349fba8eeadbf805d36f58eafce8e7aafbc00abcc693e8e",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "The eligible contexts identify CNNs as neural networks built with convolutional layers and describe their strong role in processing spatial information and computer vision, while also allowing sequence use. This supports the proposed class definition, noun-phrase POS, scope, and the Vietnamese expanded and abbreviated candidates. The synthetic boundary row was not used as positive evidence.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+        }
+      },
+      "risk_class": "R4_SPLIT_OR_POS_RISK",
+      "routing_reason": "R4_MANDATORY_ADJUDICATION",
+      "schema_id": "D2LFastTrackStageAAdjudicationCaseV1",
+      "schema_version": "1.0.0",
+      "sense_id": "d2lce_c4e87e5ee47d3e26ba618290",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_0ee512c785ee4d98c9c558dc",
+            "candidate_slot": "candidate_slot_0ce7878592fca33957ba4473",
+            "candidate_target_vi": "các mạng nơ-ron tích chập"
+          },
+          {
+            "candidate_id": "candidate_0b086e82c491048443425a46",
+            "candidate_slot": "candidate_slot_1ef7ddd803e6a53ed0030df2",
+            "candidate_target_vi": "các CNN"
+          },
+          {
+            "candidate_id": "candidate_1d87249fc333e16518d19db4",
+            "candidate_slot": "candidate_slot_72f505ff9ae3c39d21b09b31",
+            "candidate_target_vi": "mạng nơ-ron tích chập"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_deep_learning_computation_model_construction_b032",
+            "boundary_only": false,
+            "chapter_id": "d2l_deep_learning_computation",
+            "content_sha256": "6456cd8f5c97da27809f754d167701f53c2e3ec7a9a7e0ef5bd810128316bec6",
+            "context_id": "ctx_654cb542dec605b7a07f0d38",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "convolutional neural networks",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_7ab04d8f07da1c8d3c9f9710",
+            "source_text": "We exploit this versatility\nthroughout the following chapters,\nsuch as when addressing\nconvolutional neural networks.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_index_b001",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "02f6c169354f041c310b6e7363fa8dc59cac81af4477ba51d42f16a6b70d55fd",
+            "context_id": "ctx_7d255ebc2d354c8e85c00cb4",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "convolutional neural networks",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_de1a5ce03ba43dcf9380b546",
+            "source_text": "# Convolutional Neural Networks\n:label:`chap_cnn`",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_introduction_index_b132",
+            "boundary_only": false,
+            "chapter_id": "d2l_introduction",
+            "content_sha256": "7421665a2152817221e204576f333e86ba447b29e6792bace8fb376fc6f9ad58",
+            "context_id": "ctx_9ddb8f2418fda4eee49c9494",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "convolutional neural networks",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_6c97a4a20050b15946fd48a2",
+            "source_text": "This is also one of the reasons why many of the mainstays\nof deep learning, such as multilayer perceptrons\n:cite:`McCulloch.Pitts.1943`, convolutional neural networks\n:cite:`LeCun.Bottou.Bengio.ea.1998`, long short-term memory\n:cite:`Hochreiter.Schmidhuber.1997`,\nand Q-Learning :cite:`Watkins.Dayan.1992`,\nwere essentially \"rediscovered\" in the past decade,\nafter laying comparatively dormant for considerable time.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_preface_index_b022",
+            "boundary_only": false,
+            "chapter_id": "d2l_preface",
+            "content_sha256": "c858d06dde8d1b92cd97b8b5bee9e4abe0fa8d213b51bbc09d20b3e5b3c68873",
+            "context_id": "ctx_ae21d86ceba363f31d12fca3",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "convolutional neural networks",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_bf72dc8151fca388a6abaa77",
+            "source_text": "Next, :numref:`chap_cnn` and :numref:`chap_modern_cnn`,\nintroduce convolutional neural networks (CNNs), \npowerful tools that form the backbone \nof most modern computer vision systems.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_self_attention_and_positional_encoding_b002",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "87399d9dcbd6873e89e75f2933a522963be478102f3e7f5121173f6396b4794b",
+            "context_id": "ctx_cba7a66d443fedea8b0f37bf",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "cnns",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_e9773094eed8fd27302cd957",
+            "source_text": "In deep learning,\nwe often use CNNs or RNNs to encode a sequence.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_modern_index_b001",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_modern",
+            "content_sha256": "2b9a367ff58792d134748a5cd50df6ed08b28c94fa0b36dd80e0df80a8eb5165",
+            "context_id": "ctx_d32ca634c60e5bdb199798a6",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "convolutional neural networks",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_4b08f1470009e48006b44e05",
+            "source_text": "# Modern Convolutional Neural Networks\n:label:`chap_modern_cnn`",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_optimization_lr_scheduler_b007",
+            "boundary_only": false,
+            "chapter_id": "d2l_optimization",
+            "content_sha256": "b07bb86b33969fd39776a647de0d44169a466df14bef5926b05603c97bf4270e",
+            "context_id": "ctx_d72570c9e0d6a16eed3d4320",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "convolutional neural networks",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_f1351f02c1b8d1a32749acc0",
+            "source_text": "```{.python .input}\n%matplotlib inline\nfrom d2l import mxnet as d2l\nfrom mxnet import autograd, gluon, init, lr_scheduler, np, npx\nfrom mxnet.gluon import nn\nnpx.set_np()\n\nnet = nn.HybridSequential()\nnet.add(nn.Conv2D(channels=6, kernel_size=5, padding=2, activation='relu'),\n        nn.MaxPool2D(pool_size=2, strides=2),\n        nn.Conv2D(channels=16, kernel_size=5, activation='relu'),\n        nn.MaxPool2D(pool_size=2, strides=2),\n        nn.Dense(120, activation='relu'),\n        nn.Dense(84, activation='relu'),\n        nn.Dense(10))\nnet.hybridize()\nloss = gluon.loss.SoftmaxCrossEntropyLoss()\ndevice = d2l.try_gpu()\n\nbatch_size = 256\ntrain_iter, test_iter = d2l.load_data_fashion_mnist(batch_size=batch_size)\n\n# The code is almost identical to `d2l.train_ch6` defined in the \n# lenet section of chapter convolutional neural networks\ndef train(net, train_iter, test_iter, num_epochs, loss, trainer, device):\n    net.initialize(force_reinit=True, ctx=device, init=init.Xavier())\n    animator = d2l.Animator(xlabel='epoch', xlim=[0, num_epochs],\n                            legend=['train loss', 'train acc', 'test acc'])\n    for epoch in range(num_epochs):\n        metric = d2l.Accumulator(3)  # train_loss, train_acc, num_examples\n        for i, (X, y) in enumerate(train_iter):\n            X, y = X.as_in_ctx(device), y.as_in_ctx(device)\n            with autograd.record():\n                y_hat = net(X)\n                l = loss(y_hat, y)\n            l.backward()\n            trainer.step(X.shape[0])\n            metric.add(l.sum(), d2l.accuracy(y_hat, y), X.shape[0])\n            train_loss = metric[0] / metric[2]\n            train_acc = metric[1] / metric[2]\n            if (i + 1) % 50 == 0:\n                animator.add(epoch + i / len(train_iter),\n                             (train_loss, train_acc, None))\n        test_acc = d2l.evaluate_accuracy_gpu(net, test_iter)\n        animator.add(epoch + 1, (None, None, test_acc))\n    print(f'train loss {train_loss:.3f}, train acc {train_acc:.3f}, '\n          f'test acc {test_acc:.3f}')\n```",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_neural_networks_index_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_neural_networks",
+            "content_sha256": "8273046fad3d8d335c9d128e0320408240f4012e1811126b296738121fdab1c4",
+            "context_id": "ctx_ffd36cb1d841c0421cbd90cc",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "cnns",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_b3798d7240c67f79bb65225e",
+            "source_text": "In short, while CNNs can efficiently process spatial information, *recurrent neural networks* (RNNs) are designed to better handle sequential information.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "9c59f3f82367ff1c81d3785e04458d108c08d9663faef713e3bb87bb113be4d1",
+            "context_id": "ctxx_00f5dd007cb768664fadf619",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "convolutional neural networks",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: This paper trains one convolutional neural network, while related work compares several convolutional neural networks.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_70890723db87d10dbdefbed8",
+        "proposed_definition_en": "A class of neural networks that use convolution operations, especially for processing spatial data such as images.",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_c4e87e5ee47d3e26ba618290",
+        "source_sense_pool_record_sha256": "fec71590a74351237feb6dbef9c2cb6bb7aa4abc33fb3099c5b6863e657cb0b4",
+        "source_term": "convolutional neural networks",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_c4e87e5ee47d3e26ba618290"
+      },
+      "source_payload_sha256": "3487ce68016d6dc97a084babe2fe27814803b8731e4d39b4ebfc73a8cf6f266b",
+      "source_term": "convolutional neural networks",
+      "stage_b_gold_label": null
+    }
+  ],
+  "independence_mode": "ADJUDICATION_SEES_REVIEWER_1_AND_REVIEWER_2",
+  "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_ADJUDICATION_FIELDS_FILLED",
+  "reviewer_slot": "reviewer_3_adjudicator",
+  "schema_id": "D2LFastTrackStageAAdjudicatorInputV1",
+  "schema_version": "1.0.0",
+  "source_input_sha256": "0cb2b5631ebbcccae23741a6f8db9fa7b5dae12d72cc019935d19b231ea67411"
+}

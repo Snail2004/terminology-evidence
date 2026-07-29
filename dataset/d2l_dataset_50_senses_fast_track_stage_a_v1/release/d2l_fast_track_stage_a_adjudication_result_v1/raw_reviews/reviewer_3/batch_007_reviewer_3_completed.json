@@ -1,0 +1,542 @@
+{
+  "batch_id": "batch_007",
+  "case_count": 2,
+  "cases": [
+    {
+      "adjudication": {
+        "adjudication_rationale": "The eligible D2L contexts define noise words as words sampled from a predefined distribution for negative sampling and excluded from the true context window. The proposed definition, noun-phrase POS, scope, and single sense are supported; the synthetic contrast is boundary-only. Candidate 1 is unnatural and candidate 3 'từ âm' loses the sampling/noise meaning, so replace both with complete phrases that preserve both attributes.",
+        "adjudication_status": "COMPLETE",
+        "candidate_replacements": [
+          {
+            "candidate_id": "candidate_b186a25ba78b7670afdf213e",
+            "candidate_slot": "candidate_slot_39661ffe088fe2d7e980c434",
+            "replacement_target_vi": "từ được lấy mẫu làm nhiễu"
+          },
+          {
+            "candidate_id": "candidate_f5a9a36ee97259d11b50d005",
+            "candidate_slot": "candidate_slot_bb8fa337a392cb606dee35d7",
+            "replacement_target_vi": "từ nhiễu được lấy mẫu"
+          }
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Candidate 2 'từ nhiễu' is retained as the concise term. Candidate 1 and candidate 3 now explicitly indicate sampled noise words, avoiding the unrelated negative-polarity reading of 'từ âm'.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "adjudication_case_id": "adj_f0df068eca061fc17a1cd8e5",
+      "adjudication_case_sha256": "41850ab4eef52c1a1a9bb613f173684d260915576f858ec2f19ae14f4d9dcc8f",
+      "batch_id": "batch_007",
+      "disagreement_fields": [
+        "candidate_replacements"
+      ],
+      "final_glossary_decision": null,
+      "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+      "provider_call_count": 0,
+      "reviewer_1": {
+        "result_file_sha256": "b65ba2163b8fc548cbb11204271b564c175493f42c3226130abd12468bad995a",
+        "review": {
+          "candidate_replacements": [
+            "từ được lấy mẫu làm nhiễu",
+            "từ lấy mẫu âm"
+          ],
+          "candidate_set_decision": "REVISE",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "Bằng chứng thực định nghĩa noise words là negative examples lấy mẫu từ phân phối định trước và loại trừ context words. “từ mẫu nhiễu” không tự nhiên, còn “từ âm” quá mơ hồ; nên thay bằng các phương án nêu rõ thao tác lấy mẫu.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "REVISION_REQUIRED"
+        }
+      },
+      "reviewer_2": {
+        "result_file_sha256": "1a6e62aeebee391e22e25aef79148b189fa47bd07a6ba1ffe7639a4a3ea958ea",
+        "review": {
+          "candidate_replacements": [
+            {
+              "candidate_id": "candidate_f5a9a36ee97259d11b50d005",
+              "candidate_slot": "candidate_slot_bb8fa337a392cb606dee35d7",
+              "replacement_target_vi": "từ nhiễu được lấy mẫu"
+            }
+          ],
+          "candidate_set_decision": "REVISE",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "The eligible contexts consistently define noise words as words drawn from a predefined distribution for negative sampling and excluded from the true context words. The definition, noun-phrase POS, and scope are supported. However, 'từ âm' can denote a negative-polarity word and does not preserve the supplied sampling/noise distinction, so it should be replaced with 'từ nhiễu được lấy mẫu'. The synthetic boundary row was not used as positive evidence.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "REVISION_REQUIRED"
+        }
+      },
+      "risk_class": "R3_AMBIGUOUS",
+      "routing_reason": "R3_REVIEWER_DISAGREEMENT",
+      "schema_id": "D2LFastTrackStageAAdjudicationCaseV1",
+      "schema_version": "1.0.0",
+      "sense_id": "d2lce_5c270f3b3ebe4f0059649e18",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_b186a25ba78b7670afdf213e",
+            "candidate_slot": "candidate_slot_39661ffe088fe2d7e980c434",
+            "candidate_target_vi": "từ mẫu nhiễu"
+          },
+          {
+            "candidate_id": "candidate_bdaf76f878212a5e3696704c",
+            "candidate_slot": "candidate_slot_83d6febf16851a90c95ff432",
+            "candidate_target_vi": "từ nhiễu"
+          },
+          {
+            "candidate_id": "candidate_f5a9a36ee97259d11b50d005",
+            "candidate_slot": "candidate_slot_bb8fa337a392cb606dee35d7",
+            "candidate_target_vi": "từ âm"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_approx_training_b032",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "098a4ad12f854707d0587f2f06f5c4b88a35efa18d06cf94576b02c856951b34",
+            "context_id": "ctx_20ec226227eb3377a4675027",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_8c288e6fb42ede3a07ddc65b",
+            "source_text": "The computational cost for training is linearly dependent on the number of noise words at each step.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word_embedding_dataset_b031",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "f7233b4e06c1766173e9d73ce2cb690f996fe5ed45733693d5fb6ac8bc08129f",
+            "context_id": "ctx_6c68ff8f58bf4e101cf66d9f",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_35c6bbcba6cbab670d1fbbd7",
+            "source_text": "To sample noise words according to \na predefined distribution,\nwe define the following `RandomGenerator` class,\nwhere the (possibly unnormalized) sampling distribution is passed\nvia the argument `sampling_weights`.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_approx_training_b034",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "d41581fb961b7c2e00ecb8e08822c73bda5e4ceb7026d76688d30463c29c7ed3",
+            "context_id": "ctx_8a60b064bcb2036082395b15",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_a6136d42e3a5b589cd260c1f",
+            "source_text": "How can we sample noise words in negative sampling?",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word_embedding_dataset_b036",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "9b1223d4d83f7eb5c58e1f46a906e83bd9534b795817d3d8920c4efc9af1e2db",
+            "context_id": "ctx_8ee1967b4d544ce02f2d1be9",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_7f0fe73e5b161f316b5dc88c",
+            "source_text": "(index 0 is the\n    # excluded unknown token) in the vocabulary\n    sampling_weights = [counter[vocab.to_tokens(i)]**0.75\n                        for i in range(1, len(vocab))]\n    all_negatives, generator = [], RandomGenerator(sampling_weights)\n    for contexts in all_contexts:\n        negatives = []\n        while len(negatives) < len(contexts) * K:\n            neg = generator.draw()\n            # Noise words cannot be context words\n            if neg not in contexts:\n                negatives.append(neg)\n        all_negatives.append(negatives)\n    return all_negatives\n\nall_negatives = get_negatives(all_contexts, vocab, counter, 5)\n```",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word_embedding_dataset_b036",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "ccecf4e1ef8e5a044778408d4497927e8fe122e5afa4f03ff57203cc73c02cbd",
+            "context_id": "ctx_bd85a6abb1abf1675645f0ec",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_d54ca92179389b3eb24c4d67",
+            "source_text": "```{.python .input}\n#@tab all\n#@save\ndef get_negatives(all_contexts, vocab, counter, K):\n    \"\"\"Return noise words in negative sampling.\"\"\"\n    # Sampling weights for words with indices 1, 2, ...",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_approx_training_b013",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "65377e55611aaa5d3070a263faa23699b0b503541324cfa4156625a0dcf5732e",
+            "context_id": "ctx_c2cff6800a035ffeaff0c52d",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_b56db25533a2cfd630c86937",
+            "source_text": "For this event involving $w_o$,\nfrom a predefined distribution $P(w)$\nsample $K$ *noise words*\nthat are not from this context window.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word_embedding_dataset_b035",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "43749de9ff33d1aa48ed07500ca86d28d212c0bbfd47a0c5597cc0b71dec619c",
+            "context_id": "ctx_e871cab6ee40803901bb1ec7",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_85902cbc725264b2eed2ac4c",
+            "source_text": "For a pair of center word and context word, \nwe randomly sample `K` (5 in the experiment) noise words.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word_embedding_dataset_b038",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "0889e7380519840c3e0581f866cc29957eaf7ba3cf84e49ec4a13e4b6c8c5d1d",
+            "context_id": "ctx_fad78fb3a08530724c4b2aef",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_0409e07b40e56bc8456f99c0",
+            "source_text": "After\nall the center words\ntogether with their\ncontext words and sampled noise words are extracted,\nthey will be transformed into \nminibatches of examples\nthat can be iteratively loaded\nduring training.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "1055c1dc8e29098c676da66abe1a85b95244fb24e889dd53a0e6a41adc935d25",
+            "context_id": "ctxx_ffaf1f7294086734a7ca9f06",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: Here, noise words are sampled negative examples rather than merely messy or misspelled words in a corpus.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_d23079834c5c02d26b3642a6",
+        "proposed_definition_en": "words sampled from a predefined distribution as negative examples, excluding the true context words",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+        "risk_class": "R3_AMBIGUOUS",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_5c270f3b3ebe4f0059649e18",
+        "source_sense_pool_record_sha256": "98eedf3d2bb29fef01d86a0019544d2abd007bbaf44f1bbfb7f5b13c08afc696",
+        "source_term": "noise words",
+        "stratum": "ambiguous",
+        "term_id": "d2lce_5c270f3b3ebe4f0059649e18"
+      },
+      "source_payload_sha256": "fd7897ac6822e50e74306983b17c8824855d84626ffaa471bee7e2a7fbe37597",
+      "source_term": "noise words",
+      "stage_b_gold_label": null
+    },
+    {
+      "adjudication": {
+        "adjudication_rationale": "The eligible D2L contexts identify R-CNN as a region-based convolutional neural-network approach for object detection, including region proposals and the R-CNN improvement series. The proposed definition, proper-noun POS, scope, and one-sense interpretation are supported. Candidate 1 is pluralized as 'R-CNNs' while the term-sense is singular; replace it with the explicit singular gloss 'mô hình R-CNN'.",
+        "adjudication_status": "COMPLETE",
+        "candidate_replacements": [
+          {
+            "candidate_id": "candidate_c99f76ddbef2797f9cb0c038",
+            "candidate_slot": "candidate_slot_cd3147a4cc2a3997637071ff",
+            "replacement_target_vi": "mô hình R-CNN"
+          }
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Replace only the plural English candidate. The new phrase names the singular R-CNN method/model and remains distinct from the expanded region-based Vietnamese description and the bare acronym.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "adjudication_case_id": "adj_0b63d29a178d56d4f900d4fa",
+      "adjudication_case_sha256": "e30eac0c53f16067a31f1799d9c66b0e7d6f2da902c9b04c5cfc0ec311bc11f3",
+      "batch_id": "batch_007",
+      "disagreement_fields": [
+        "candidate_set_decision",
+        "candidate_replacements",
+        "sense_status"
+      ],
+      "final_glossary_decision": null,
+      "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+      "provider_call_count": 0,
+      "reviewer_1": {
+        "result_file_sha256": "b65ba2163b8fc548cbb11204271b564c175493f42c3226130abd12468bad995a",
+        "review": {
+          "candidate_replacements": [
+            "mô hình R-CNN"
+          ],
+          "candidate_set_decision": "REVISE",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "Các ngữ cảnh thực xác nhận R-CNN là phương pháp phát hiện vật thể dựa trên region proposals. Candidate “R-CNNs” lệch số nhiều so với term-sense số ít; nên thay bằng “mô hình R-CNN”.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "REVISION_REQUIRED"
+        }
+      },
+      "reviewer_2": {
+        "result_file_sha256": "1a6e62aeebee391e22e25aef79148b189fa47bd07a6ba1ffe7639a4a3ea958ea",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "The eligible evidence expands R-CNN as region-based CNNs, identifies it as an object-detection approach, and describes its use of region proposals before classification and box prediction. This supports the proposed definition, proper-name analysis, scope, and the singular, plural, and expanded Vietnamese candidates. The synthetic boundary row was not used as positive evidence.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+        }
+      },
+      "risk_class": "R4_SPLIT_OR_POS_RISK",
+      "routing_reason": "R4_MANDATORY_ADJUDICATION",
+      "schema_id": "D2LFastTrackStageAAdjudicationCaseV1",
+      "schema_version": "1.0.0",
+      "sense_id": "d2lce_ad0d7cbd5f90ad33075e89aa",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_c99f76ddbef2797f9cb0c038",
+            "candidate_slot": "candidate_slot_cd3147a4cc2a3997637071ff",
+            "candidate_target_vi": "R-CNNs"
+          },
+          {
+            "candidate_id": "candidate_4e3e4afa8f5bcaeceb07adf7",
+            "candidate_slot": "candidate_slot_eb72516b9f33bf7c70787dcd",
+            "candidate_target_vi": "mạng R-CNN dựa trên vùng"
+          },
+          {
+            "candidate_id": "candidate_bb742147b7734cbc775103a0",
+            "candidate_slot": "candidate_slot_fdb4d2af82bed77e4eac22d8",
+            "candidate_target_vi": "R-CNN"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_computer_vision_rcnn_b002",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "73eca4abe54788d843c48df24d4966309cba464762e52cbd659a10e40c28bd12",
+            "context_id": "ctx_04626b072f9bfbcc966fac5c",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "r-cnns",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_c36469aad4a112876eb71ef7",
+            "source_text": "Besides single shot multibox detection\ndescribed in :numref:`sec_ssd`,\nregion-based CNNs or regions with CNN features (R-CNNs)\nare also among many pioneering\napproaches of \napplying\ndeep learning to object detection\n:cite:`Girshick.Donahue.Darrell.ea.2014`.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_rcnn_b006",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "4e128212ebdd0efb3c51654a5f305d4eb2a7afd5fdf35dfd9ee3da223e394c24",
+            "context_id": "ctx_281feac9e302997ea88b1aea",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "r-cnn",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_7013fd3bf16d58c09002c0ca",
+            "source_text": "More concretely, the R-CNN consists of the following four steps:",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_rcnn_b003",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "226024ae07907279761fc3158d38cf84987af99390e8025ec84d2b12eac5ebee",
+            "context_id": "ctx_42a91e8bb6e0449e3926152e",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "r-cnns",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_291260738b376d794bb2f488",
+            "source_text": "## R-CNNs",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_rcnn_b002",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "c2aa4c2a33bdfd5799d02ba2e07590e65a3ad75598d825fc6ef52349f37fbef7",
+            "context_id": "ctx_7b2934db82a8f5e942551192",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "r-cnn",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_82836ce505968bf5abaf1dd8",
+            "source_text": "In this section, we will introduce\nthe R-CNN and its series of improvements: the fast R-CNN\n:cite:`Girshick.2015`, the faster R-CNN :cite:`Ren.He.Girshick.ea.2015`, and the mask R-CNN\n:cite:`He.Gkioxari.Dollar.ea.2017`.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_rcnn_b006",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "1f1e871b189f6c224df1a0ac77ea0824f374fae1bfa9e1bf5004da242d0cc679",
+            "context_id": "ctx_824f6a3ffdf2593aacbb41d4",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "r-cnn",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_1236ddb6cf93abf53b96792a",
+            "source_text": ":numref:`fig_r-cnn` shows the R-CNN model.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_rcnn_b004",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "e3feade9c0309b174069c960c4227bf7e2c357e745d2c41ffe1b1ecef59acb49",
+            "context_id": "ctx_82a716f88498c45284012fbc",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "r-cnn",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_05362f961844b86ab4f14c8f",
+            "source_text": "The *R-CNN* first extracts\nmany (e.g., 2000) *region proposals*\nfrom the input image\n(e.g., anchor boxes can also be considered\nas region proposals),\nlabeling their classes and bounding boxes (e.g., offsets).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_rcnn_b001",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "2f5d1f8eb6235a9c0cf8a003f57fefcb674e9b58499cdaf3e722dbb517250574",
+            "context_id": "ctx_b71e137a4385ced462547be2",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "r-cnns",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_527681c6f8f4925ef8d2e011",
+            "source_text": "# Region-based CNNs (R-CNNs)\n:label:`sec_rcnn`",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_rcnn_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "e295e197988d4c0f9b1fac968ea5f84774299e5eabde2e36983a65aaa5c67d90",
+            "context_id": "ctx_c3e2e6f9a837a104a2ffaacc",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "r-cnn",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_37392b030d72950f0b7cedb4",
+            "source_text": "![The R-CNN model.](../img/r-cnn.svg)\n:label:`fig_r-cnn`",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "d9ce8cfe7f930fc80745c2538ecfe46d67f826fe19bedf8c2db56b7f9824c013",
+            "context_id": "ctxx_1f21c52c8120c8f15dfa2c07",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "R-CNN",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: Unlike SSD, the R-CNN first generates region proposals before classification.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_3d06c6ec9118bbe0a6e4012e",
+        "proposed_definition_en": "a region-based convolutional neural network method for object detection.",
+        "proposed_part_of_speech": "proper_noun",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_ad0d7cbd5f90ad33075e89aa",
+        "source_sense_pool_record_sha256": "4595987a67d2706c8663e37e76f0dc92b86cefc7ef36f13df01d305731f8b604",
+        "source_term": "R-CNN",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_ad0d7cbd5f90ad33075e89aa"
+      },
+      "source_payload_sha256": "91b4ddc4062e0ceba8d5f81f4e12e42bbb26ca758b629a7b37cb0ea8056da474",
+      "source_term": "R-CNN",
+      "stage_b_gold_label": null
+    }
+  ],
+  "independence_mode": "ADJUDICATION_SEES_REVIEWER_1_AND_REVIEWER_2",
+  "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_ADJUDICATION_FIELDS_FILLED",
+  "reviewer_slot": "reviewer_3_adjudicator",
+  "schema_id": "D2LFastTrackStageAAdjudicatorInputV1",
+  "schema_version": "1.0.0",
+  "source_input_sha256": "314f42820979ff300b985be930f4d9f25ae98c0139d9916c1ec71be7d75b61bc"
+}

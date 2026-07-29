@@ -1,0 +1,114 @@
+{
+  "adjudicated_case_count": 24,
+  "artifact_name": "d2l_fast_track_stage_a_adjudication_result_v1",
+  "candidate_replacement_count": 26,
+  "candidate_set_accept_count": 6,
+  "candidate_set_revise_count": 18,
+  "canonical_intake_manifest_sha256": "bcb840616060473ea61b81ca7cf052eff2ac00caeb7bff75e7cbf064e6a7e178",
+  "created_at": "2026-07-29T14:00:00Z",
+  "files": {
+    "RELEASE_REPORT.md": {
+      "sha256": "991767f57b660ef34d8030f40da1d2ba945723556d37046e1368336df88399c5",
+      "size_bytes": 467
+    },
+    "adjudicated_stage_a_24.jsonl": {
+      "sha256": "8b8ab3e58e8c7f23608944c4bbe61ef8c799a13350542e0bae305ad3b0d1feb7",
+      "size_bytes": 260976
+    },
+    "adjudication_report.json": {
+      "sha256": "1d432acb028c04da4b5be422d5e8a7654c73962b715dada945782c0680eca334",
+      "size_bytes": 2104
+    },
+    "input_inventory.json": {
+      "sha256": "5896f3c2d3bd61631497d65a8ff86c145cb2ca661b3e1442f865a69320e88946",
+      "size_bytes": 9368
+    },
+    "pending/r0_repair_queue_4.jsonl": {
+      "sha256": "0934d456391813b52b0cef20a3ca827f50d2c57b5c9089e809c18639f3a5d33b",
+      "size_bytes": 36243
+    },
+    "raw_reviews/reviewer_3/batch_001_reviewer_3_completed.json": {
+      "sha256": "5cda522c1cb9a57c0bcd0f0b2172aee86b7b48cceb6d61d0e50e1ebd3730b2e9",
+      "size_bytes": 13524
+    },
+    "raw_reviews/reviewer_3/batch_002_reviewer_3_completed.json": {
+      "sha256": "8dc1ebe03de046d00eb2567880c4f1a2089128c0f0c88ddd2a093a0b607024c7",
+      "size_bytes": 27504
+    },
+    "raw_reviews/reviewer_3/batch_003_reviewer_3_completed.json": {
+      "sha256": "bc9bd593435c31fa6443e36c6ebb6db9ca4fc1a9170f52991ae20044490f07fb",
+      "size_bytes": 43391
+    },
+    "raw_reviews/reviewer_3/batch_004_reviewer_3_completed.json": {
+      "sha256": "e5211d7084d2e3282dce4880abd0f3dd844193646ebb3cc60c54f01da254ebf6",
+      "size_bytes": 41364
+    },
+    "raw_reviews/reviewer_3/batch_005_reviewer_3_completed.json": {
+      "sha256": "70c1adff6e48efcc2e5f87c915c16b99bb96418584cac9eaa0898155d7705831",
+      "size_bytes": 27282
+    },
+    "raw_reviews/reviewer_3/batch_006_reviewer_3_completed.json": {
+      "sha256": "176f05cadce3072f62af65c31c1b03ee40971beb8423be4ae34e84654772c39b",
+      "size_bytes": 41108
+    },
+    "raw_reviews/reviewer_3/batch_007_reviewer_3_completed.json": {
+      "sha256": "e1714daef395dccd2fea4f881a8505e89c83044f167bcc77f671cbeb249c1f1c",
+      "size_bytes": 27975
+    },
+    "raw_reviews/reviewer_3/batch_008_reviewer_3_completed.json": {
+      "sha256": "31ea5550b16ddb12132d8a0a1e8ee7568cdc2317984507a97bd8ac0b2fc11a9b",
+      "size_bytes": 54577
+    },
+    "raw_reviews/reviewer_3/batch_009_reviewer_3_completed.json": {
+      "sha256": "f6b4d23cc79c86282a8e44227853fbbdebf9074bcc4fe2b3d99979dc6a336a78",
+      "size_bytes": 56566
+    },
+    "source/.gitattributes": {
+      "sha256": "a51e4210b15c2bac0f4126425e7d418b0ec19314aecb604f8a9940229637c3c4",
+      "size_bytes": 75
+    },
+    "source/README.md": {
+      "sha256": "ea3311eac6b01364c9fdc938d310a77661fd2491d7aba8607df4fba72ba1aab2",
+      "size_bytes": 904
+    },
+    "source/tests/test_stage_a_adjudication_result.py": {
+      "sha256": "c90281cfaa875a8af14bb4de2417a4ced7ca266613c8adba0cf9bbec53df7fc0",
+      "size_bytes": 7573
+    },
+    "source/tools/__init__.py": {
+      "sha256": "8e54bb1d41f8db713f28e8fdc2c7eab7628ca5bde1d1abcda5656781964563a1",
+      "size_bytes": 69
+    },
+    "source/tools/adjudication_result.py": {
+      "sha256": "1a59a029235430ae3490042c0d11bb50b54428be1dbdf5caced2477c248eb046",
+      "size_bytes": 12395
+    },
+    "source/tools/build_stage_a_adjudication_result.py": {
+      "sha256": "91be6242af25a07da807a01a0934e47133d6e607f40c97b88477336bdb8a3972",
+      "size_bytes": 22208
+    },
+    "source/tools/common.py": {
+      "sha256": "465ea6fc3c941710b939de297cc22389f5e3afd9fd9c0c27ce10da2ff5044e79",
+      "size_bytes": 7501
+    },
+    "source/tools/spec.py": {
+      "sha256": "02e797b4afc252bcf9057deda11c6ab57dfe7823b27018af56fd9bca76e24c66",
+      "size_bytes": 3370
+    },
+    "source/tools/validate_stage_a_adjudication_result.py": {
+      "sha256": "f2b87bc41efcd61350e38161ccd1003771540303d4144a84e9ac9d132afa4f22",
+      "size_bytes": 17797
+    }
+  },
+  "final_glossary_decision": null,
+  "manifest_sha256": "95482cd1b495b9014a1f00ba4695324f99f0637c6fb96f17d5ffded44c5e2b5c",
+  "policy_id": "d2l-fast-track-stage-a-adjudication-result-v1.0",
+  "provider_call_count": 0,
+  "r0_repair_queue_count": 4,
+  "ready_for_contract_construction_count": 24,
+  "reviewer_3_result_file_count": 9,
+  "schema_id": "D2LFastTrackStageAAdjudicationResultManifestV1",
+  "schema_version": "1.0.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "ADJUDICATION_COMPLETE_R0_REPAIR_PENDING"
+}
