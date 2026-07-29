@@ -164,13 +164,14 @@ def _eligible_context(row: Mapping[str, Any]) -> bool:
 
 
 def _context_projection(row: Mapping[str, Any]) -> dict[str, Any]:
+    synthetic = bool(row.get("synthetic")) or row.get("binding_kind") == "SYNTHETIC_BOUNDARY_PROBE"
     return {
         "context_id": row["context_id"],
         "context_role": row.get("context_role"),
         "context_slot": row.get("context_slot"),
         "sense_relation": row.get("sense_relation"),
-        "synthetic": bool(row.get("synthetic")),
-        "boundary_only": bool(row.get("synthetic") or row.get("sense_relation") != "SAME_SENSE"),
+        "synthetic": synthetic,
+        "boundary_only": bool(synthetic or row.get("sense_relation") != "SAME_SENSE"),
         "source_text": row.get("source_text"),
         "matched_surface": row.get("matched_surface"),
         "content_sha256": row.get("content_sha256"),

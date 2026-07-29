@@ -357,7 +357,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In everyday design, symmetry can mean visual balance in a logo, not mathematical or parameter-exchange invariance.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -400,7 +400,7 @@
         "stratum": "clear",
         "term_id": "d2lce_00c0e4f7d0d5537d738af8a7"
       },
-      "source_payload_sha256": "7f0f5fb4233011c3dd7e350cb1c06a8c7b0f53410d9126370b9fb63706a4b027",
+      "source_payload_sha256": "a4daff300b92ed20a2adf65f9e2b05c96a69b2b808b90604b4a60256a516a52f",
       "stage_b_gold_label": null
     },
     {
@@ -746,7 +746,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The clerk asked for the weighted average grade, not the simple mean.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -789,7 +789,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_a3e7228aef125ec437a840fa"
       },
-      "source_payload_sha256": "4ed7f14c4ae553efee886d6889922cfc92dd583ded8819b71af69d68d5089131",
+      "source_payload_sha256": "44b7f5ea762dbc0e4dfb7a4b5be7fb33014988efd490c180627aa973c910d236",
       "stage_b_gold_label": null
     },
     {
@@ -1135,7 +1135,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The dancers tried to synchronize their steps before the performance.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1178,7 +1178,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_1edc567804c90f134219a8f0"
       },
-      "source_payload_sha256": "de4c142c0f6776500c2334aaa1e2796427f234c61b3bf3f2b43d1054df1b7a6a",
+      "source_payload_sha256": "d1a52a4422729065c002e8733a931ccb5cce0e68b3c46d69eaa72cbd79b764dd",
       "stage_b_gold_label": null
     },
     {
@@ -1524,7 +1524,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In music, transpose a melody up by two semitones.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1567,7 +1567,7 @@
         "stratum": "clear",
         "term_id": "d2lce_6b1b75f43b72ec9bace62065"
       },
-      "source_payload_sha256": "234ec7bb666a09a07202fdc755eb1f4d9ba748cd69198c8c17d758a4ec766d42",
+      "source_payload_sha256": "df932a2ecae449fb04297665d9dd3cb21e31b0f7e1da82a66329051f90dfb8e2",
       "stage_b_gold_label": null
     },
     {
@@ -1913,7 +1913,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In the castle simulation game, the update gate opens only when engineers install a new software patch.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1956,7 +1956,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_a47c0fa6efae6f5b3c950575"
       },
-      "source_payload_sha256": "92514359cd412f6f82ba28b86bcb37f6a6fa8a4890be8af3fce80c6174b49b8e",
+      "source_payload_sha256": "97f8ef06a9ea12d743a325f530a02175caa732d6f427563be95ef63eead8db58",
       "stage_b_gold_label": null
     },
     {
@@ -2302,7 +2302,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In everyday speech, uncertainty can mean personal hesitation rather than statistical or predictive uncertainty.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2345,7 +2345,7 @@
         "stratum": "clear",
         "term_id": "d2lce_73dbe839de3f1d00bf1226f0"
       },
-      "source_payload_sha256": "aaaaf6868e9732673d9a97d36b737eb0c9a60604bdd7d2fe3686ca7bb26d7096",
+      "source_payload_sha256": "ecfdc5121aa765c46ac6d867a0d4f95877796c91c53015055a13aeecb8db21fe",
       "stage_b_gold_label": null
     },
     {
@@ -2691,7 +2691,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: A sudden flash acts as a cue, but not a volitional cue, because it captures attention involuntarily.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2734,7 +2734,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_ad03ff147d19eb2ea47d5b0e"
       },
-      "source_payload_sha256": "a5e802f53a9efa487765a502b09796baa2f5f3cb649b48c00231aa11f1f25de2",
+      "source_payload_sha256": "4461e7868a9d1d451169a7807ffdb119855678ea95fbc468a61df9ffda96b5ac",
       "stage_b_gold_label": null
     },
     {
@@ -3046,7 +3046,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: A token can be any wordpiece, but the unknown token is the special placeholder for out-of-vocabulary items.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -3088,7 +3088,7 @@
         "stratum": "clear",
         "term_id": "d2lce_9e5c3dd254843c7ec95d4960"
       },
-      "source_payload_sha256": "58faa91f1870bbf1ec9c62a5b7f0d437bb1e855fa1ecbd2f354f9c15779c80f0",
+      "source_payload_sha256": "c9f194e5da2154797c1ff0d73ba0523edf82e233a300f746d391f2e3ac1cc5f3",
       "stage_b_gold_label": null
     },
     {
@@ -3400,7 +3400,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: As a warmup, compute a tiny matrix product before studying asynchronous execution.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -3442,7 +3442,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_6f3afd43e74e8d70778dc0c8"
       },
-      "source_payload_sha256": "3500d8a3bb5c57cebe0d6ceb787678966056f4ce11db926c739c2b279f8cfae6",
+      "source_payload_sha256": "cfef678c4eefb1a0bebd6e96da22dea354adae814c0dd360d46930a2b63adc2e",
       "stage_b_gold_label": null
     },
     {
@@ -3788,7 +3788,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: VGG network sponsored the event as a media company.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -3831,7 +3831,7 @@
         "stratum": "clear",
         "term_id": "d2lce_7be1455c48134d411f51fe7c"
       },
-      "source_payload_sha256": "891d4b62b7bf917d6038a0393d831e086b6aa54f7b9eef4793b0ed1746f2537b",
+      "source_payload_sha256": "f50c833e46209c260d4a97c0688a3e66165222179f5e704526c2ecc890a6f973",
       "stage_b_gold_label": null
     }
   ],
@@ -3845,6 +3845,6 @@
   "schema_id": "D2LRemaining100StageAReviewerInputV1",
   "schema_version": "1.0.0",
   "sense_count": 10,
-  "source_input_sha256": "9e0f55411030bacbfcbd74fe696f0272f4853d102975a562948bb175d1059b9c",
+  "source_input_sha256": "0ec6128e4fe606b215a8a3d2b251c1412863a1dcfd099c0f6237ff96a0fac9db",
   "stage_b_gold_autofill_count": 0
 }

@@ -357,7 +357,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "[Synthetic] Approximate training cuts computation, whereas exact training evaluates the full objective each step.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -400,7 +400,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_28ab2b419f6b871a62a06060"
       },
-      "source_payload_sha256": "bfd147518b55690cbdc1b8a89e6b9f77d510159065da1099e9bfa351f7230011",
+      "source_payload_sha256": "65adb2391a9836bb24f73a0f9b10c9191144165d9e10e3c94a0500cd9d90e365",
       "stage_b_gold_label": null
     },
     {
@@ -1007,7 +1007,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Here, attention refers to a focus-weighting idea in models, not to legal or medical emergency attention.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1047,7 +1047,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_4a5f20bb32b66b1f07d9f37a"
       },
-      "source_payload_sha256": "3ac87d938729cbbc6fe7296da85a12306ba4792bf00ec4993724fbda39517618",
+      "source_payload_sha256": "2610b7fbc4e3fc5c4ae551c8b7ea44ea6025ba3991244c3401a32d61181034c3",
       "stage_b_gold_label": null
     },
     {
@@ -1393,7 +1393,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The city planner divided the street into blocks for navigation.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1436,7 +1436,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_20c658fd4e221ee551790ec2"
       },
-      "source_payload_sha256": "3f09c9a14e08d904f30e80e9722f250fe1a1e6b821fa1b5bf0c8426620fa818b",
+      "source_payload_sha256": "0739ed1139c9787db9589bf25ddd816a04e6692c7987964e277b80613c6ea323",
       "stage_b_gold_label": null
     },
     {
@@ -1782,7 +1782,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: A bidirectional RNN reads the sequence in both directions, unlike a unidirectional RNN.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1825,7 +1825,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_80f4d6555a6ea1d2e5e881a1"
       },
-      "source_payload_sha256": "69a50fa470198ee20ce8586ab5e4a5a66180ca233026fc689e20f7975ba7016c",
+      "source_payload_sha256": "a7885b4b8a966b11d5060dd9e9a71e75d9abe674a5e42550eb0ff14135060784",
       "stage_b_gold_label": null
     },
     {
@@ -2137,7 +2137,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "The bus stopped in front of the station.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2179,7 +2179,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_0e100796a86968fbdb5730e8"
       },
-      "source_payload_sha256": "639a20b2e5594edee8a3ff47bb629f0346724db4849ab922cf05dcf292f0d55b",
+      "source_payload_sha256": "f327b426a4353c12dc46a8d783e58a7b562352d7dd6dc4e446fa65023426e9e7",
       "stage_b_gold_label": null
     }
   ],
@@ -2193,6 +2193,6 @@
   "schema_id": "D2LRemaining100StageAReviewerInputV1",
   "schema_version": "1.0.0",
   "sense_count": 6,
-  "source_input_sha256": "f9133a353cff7e677ef07dcbd93998004c0257e386cd06de3e06e1c527605e7c",
+  "source_input_sha256": "893bced7d5a40e7871e6b9d5176a70dfece7bab9e66eec3aaab2d0232922e373",
   "stage_b_gold_autofill_count": 0
 }

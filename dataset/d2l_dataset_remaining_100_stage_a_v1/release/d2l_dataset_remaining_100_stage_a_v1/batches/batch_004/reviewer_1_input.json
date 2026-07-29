@@ -357,7 +357,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The package was rejected because of label shift on the sticker, not because of a data distribution issue.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -400,7 +400,7 @@
         "stratum": "clear",
         "term_id": "d2lce_a5537c415bcbe54cdd82a669"
       },
-      "source_payload_sha256": "e83fcb8ecad49cbdf47dcf4a1b0db58253fc4746e609d9277af7d9a30a4b3c42",
+      "source_payload_sha256": "c21e8e2bc7af430587e5dadf354ec5e161a34d5f6a53041c2bf9b70f78d2e84c",
       "stage_b_gold_label": null
     },
     {
@@ -678,7 +678,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "A hyperplane is a generalization to higher dimensions of a line or a plane.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -719,7 +719,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_22496a6fabe26e046ad5d5ac"
       },
-      "source_payload_sha256": "736db03695502d9270c8e0f8f0f53a7f96f586744878516650240b7a8a909d64",
+      "source_payload_sha256": "5a0a7be044d1f70736296acc50ab481c5e8f9abd0cc9c21e106717ac7d2e900e",
       "stage_b_gold_label": null
     },
     {
@@ -1065,7 +1065,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In filmmaking, ground truth referred to footage shot on location rather than annotated targets.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1108,7 +1108,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_d0b3a65c5f21e6064395a475"
       },
-      "source_payload_sha256": "087902cc999b0b3cf58f43a8a93284b2ff54ab341bc7fc37405d7e34bc32d663",
+      "source_payload_sha256": "1e12798467ceb6840478841ab7dc5eeab2aa08b203406e2aeea69945ff2706d9",
       "stage_b_gold_label": null
     },
     {
@@ -1454,7 +1454,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "[Synthetic] The city added two new lanes to reduce rush-hour congestion downtown.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1497,7 +1497,7 @@
         "stratum": "clear",
         "term_id": "d2lce_54e0621e7c3812cb511231dc"
       },
-      "source_payload_sha256": "81850ce5527b8b3fbfa8d1e94460dd07f86d206978d28e6bd625672c2d6d0efd",
+      "source_payload_sha256": "fe493dbe2fd35fe16926f6b4e316522f29213f54c407eeb1ef7cddd56c8b188f",
       "stage_b_gold_label": null
     },
     {
@@ -2206,7 +2206,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The hidden layer transforms inputs into intermediate features before the output layer produces predictions.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2249,7 +2249,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_401e038a0835f7c5733a9857"
       },
-      "source_payload_sha256": "d30d5d900dcb61e7f6e7ca6c12417bef180dc7f7de819d018e49bc8e1c7768d2",
+      "source_payload_sha256": "78a675fe6389e15493cd700fc6fc9e9675de67d59e44107badbca04e533abefd",
       "stage_b_gold_label": null
     },
     {
@@ -2595,7 +2595,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Social pressure and fear were latent factors behind the decision.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2638,7 +2638,7 @@
         "stratum": "clear",
         "term_id": "d2lce_f7c1845f1d67dcb386e8fc22"
       },
-      "source_payload_sha256": "1871b9a0b083e8ed25a898e0a04f0f374719b103bd50412916c5c176241fc7b2",
+      "source_payload_sha256": "43f42946e35b49e662d339474d6275fcb48f498181613d46dace529f8f2d2a59",
       "stage_b_gold_label": null
     },
     {
@@ -2916,7 +2916,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "The team set up continuous integration, but no one computed an integration over a curve.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2957,7 +2957,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_9372cdb5752db6ba6fa38fbd"
       },
-      "source_payload_sha256": "acc67725ff9c19ea23e88fbe070a88c02446cd5e46c8c080d01da51f9c37bca3",
+      "source_payload_sha256": "5fc45aaff2e4fc535feaa414cff9864f9562a2f08a0fc3eb89df77db6e1fb9ba",
       "stage_b_gold_label": null
     },
     {
@@ -3303,7 +3303,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: During software setup, initialization only created a default configuration file and no model parameters.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -3346,7 +3346,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_8373decbb6e405f0386ec8a0"
       },
-      "source_payload_sha256": "a9f6c026c5404ccf1f4cc775c9f1843db73263fd19ef5e9066067d88c5a2d347",
+      "source_payload_sha256": "b3b70dfc8ccd53110c98964069eba5f07eb8747bfcdd1d82012c5ab2195a3c7e",
       "stage_b_gold_label": null
     },
     {
@@ -3692,7 +3692,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In maximum likelihood estimation, the likelihood is treated as a function of the model parameters.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -3735,7 +3735,7 @@
         "stratum": "clear",
         "term_id": "d2lce_a1d9f9c783c09cc52dedbe55"
       },
-      "source_payload_sha256": "643acf5ac706ea5cefa4182b57ec9a68dfabe42ac6a17c23dac60918d47a66bd",
+      "source_payload_sha256": "f03ad0b7de2587bf3cbfcba46623d57e45bea01b1286e66e6ab4e462472c7804",
       "stage_b_gold_label": null
     }
   ],
@@ -3749,6 +3749,6 @@
   "schema_id": "D2LRemaining100StageAReviewerInputV1",
   "schema_version": "1.0.0",
   "sense_count": 10,
-  "source_input_sha256": "64cba98196e73b5369d48f1ecfda622c02459eb902fc91f05e615e1932136251",
+  "source_input_sha256": "d44aeae96e50fac47b1c2e5a2ff82090e6083c220b5d3382c73eaff92d4dbdb8",
   "stage_b_gold_autofill_count": 0
 }

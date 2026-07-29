@@ -317,7 +317,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The CNN uses convolutional layers, unlike an RNN that processes sequences recurrently.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1013,7 +1013,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: Here BPR names the Bayesian personalized ranking objective, not a generic business process rule.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1374,7 +1374,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: A concept shift happens when the meaning of the target label changes, not merely when input features become more common or rare.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1735,7 +1735,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: She remained constant in her support throughout the project.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2096,7 +2096,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The bridge constructor finished the project ahead of schedule.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2457,7 +2457,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The phrase continuous bag of words here refers to a named prediction model, not just any continuously updated bag of vocabulary items.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2818,7 +2818,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The mirror had a convex function in the decorative engraving, but no mathematical meaning was intended.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -3179,7 +3179,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In a graphics editor, “convex sets” might be mentioned informally for shapes, not as the formal optimization concept defined here.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -3540,7 +3540,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: Police improved control flow at the intersection during rush hour.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {

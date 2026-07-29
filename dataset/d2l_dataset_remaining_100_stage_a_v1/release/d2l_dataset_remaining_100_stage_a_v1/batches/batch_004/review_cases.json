@@ -317,7 +317,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The package was rejected because of label shift on the sticker, not because of a data distribution issue.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -610,7 +610,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "A hyperplane is a generalization to higher dimensions of a line or a plane.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -969,7 +969,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In filmmaking, ground truth referred to footage shot on location rather than annotated targets.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1330,7 +1330,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "[Synthetic] The city added two new lanes to reduce rush-hour congestion downtown.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2026,7 +2026,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The hidden layer transforms inputs into intermediate features before the output layer produces predictions.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2387,7 +2387,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: Social pressure and fear were latent factors behind the decision.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2680,7 +2680,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "The team set up continuous integration, but no one computed an integration over a curve.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -3039,7 +3039,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: During software setup, initialization only created a default configuration file and no model parameters.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -3400,7 +3400,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In maximum likelihood estimation, the likelihood is treated as a function of the model parameters.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {

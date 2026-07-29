@@ -63,6 +63,15 @@ class Remaining100StageATest(unittest.TestCase):
         reviewer_2 = json.loads((root / "reviewer_2_full_input.json").read_text(encoding="utf-8"))
         self.assertEqual(reviewer_1["case_count"], 100)
         self.assertEqual(reviewer_2["case_count"], 65)
+        projected_contexts = [
+            context
+            for case in reviewer_1["cases"]
+            for context in case["source_payload"]["evidence_contexts"]
+        ]
+        synthetic = [context for context in projected_contexts if context["synthetic"]]
+        self.assertEqual(len(synthetic), 94)
+        self.assertTrue(all(context["boundary_only"] for context in synthetic))
+        self.assertTrue(all(context["sense_relation"] != "SAME_SENSE" for context in synthetic))
         self.assertTrue(all(case["review"] == {
             "definition_decision": "",
             "corrected_definition_en": "",

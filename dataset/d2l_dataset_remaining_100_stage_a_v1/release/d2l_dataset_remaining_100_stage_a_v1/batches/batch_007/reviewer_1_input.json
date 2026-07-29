@@ -323,7 +323,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In the sampler, population means the list of candidate indices rather than the full statistical population under study.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -365,7 +365,7 @@
         "stratum": "clear",
         "term_id": "d2lce_b0fd0234a2a3049734e8011c"
       },
-      "source_payload_sha256": "fa073d97446ea17343358e447a2b89be2facd3a491b2c876cbdf62fe828cc984",
+      "source_payload_sha256": "a371fb659f218906564d41c9ef66e28a90247d7d750b2fed8345f6072fa451da",
       "stage_b_gold_label": null
     },
     {
@@ -711,7 +711,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Although stored in a table, these customer records are not sequence data because the row order carries no meaning.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -754,7 +754,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_b85d9a7a642afee03175796f"
       },
-      "source_payload_sha256": "bc4ce804366797b3d84fb2829fb50159102d094e5dfe09444e355879850a77c5",
+      "source_payload_sha256": "d0e97e73ffd1ad24ba15e2b45d985fa28878e507c50fede434ac80d889ad918a",
       "stage_b_gold_label": null
     },
     {
@@ -1100,7 +1100,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The training objective is to minimize prediction error plus regularization.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1143,7 +1143,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_cf168d11faf5e675efa7e0a3"
       },
-      "source_payload_sha256": "a39469e1c654fe8846e9973a47b5f36abc386d873c6e01c6ee25a7bbc73d0a21",
+      "source_payload_sha256": "15cc64315849159994e8c576a841b546ba5c6935747141ba2f498ff950517453",
       "stage_b_gold_label": null
     },
     {
@@ -1489,7 +1489,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In image editing, “positional embeddings” could be misused to mean coordinates pasted into metadata, not neural sequence representations.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1532,7 +1532,7 @@
         "stratum": "clear",
         "term_id": "d2lce_d96258f97579b9b414c21815"
       },
-      "source_payload_sha256": "3c535d50e481a88091da0db7bb686c4d845caa69595173b516826d95ee7d427a",
+      "source_payload_sha256": "318044b17069b2e1d0362663069a577dccf76c30d8e5dc66d2cf7ccd8bd4deaf",
       "stage_b_gold_label": null
     },
     {
@@ -1776,7 +1776,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The frames are sequential, but the model is not built with Sequential.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1816,7 +1816,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_40a50503f2fdc79aa0a549fc"
       },
-      "source_payload_sha256": "aa59346f7f10bcfd5e4cab0a6efe7f041eebd878750df7ce8ea248ad2a115a3b",
+      "source_payload_sha256": "07726426785ebf49cd76d933b87cb2a6bdd43bee042894a02edaa629227538c9",
       "stage_b_gold_label": null
     },
     {
@@ -2128,7 +2128,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Her observation about the lecture was insightful.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2170,7 +2170,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_4f85955c4fd10e184dc97d32"
       },
-      "source_payload_sha256": "f8f8140df2cc20ed3074f75c3f52331a89fee2d590313a6a6c0b940e19847343",
+      "source_payload_sha256": "52bbee56edb951aaa484eef2bb62567d015f40575761df8fc56c4c00ffc0b0a8",
       "stage_b_gold_label": null
     },
     {
@@ -2516,7 +2516,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: A BERT model initialized randomly is not pretrained BERT.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2559,7 +2559,7 @@
         "stratum": "clear",
         "term_id": "d2lce_e27a9787bb13f8580103adc4"
       },
-      "source_payload_sha256": "36560a9e04ecf87d856af4c1c646772f25666199528e409afb6792fa6af55bbb",
+      "source_payload_sha256": "25e7a15ca41b8cd971395fa459ee1cbfd5a9755de03de1a57feb312b0956a2be",
       "stage_b_gold_label": null
     },
     {
@@ -2905,7 +2905,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: With sequential partitioning, neighboring minibatches keep neighboring subsequences from the original sequence, unlike random sampling.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2948,7 +2948,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_e8992d8478a28e673fe551dc"
       },
-      "source_payload_sha256": "4a78dc7464df8618b9a0759e1df4245bef942018ced9e2db3cf3a1f47a0529ac",
+      "source_payload_sha256": "cc2db4dd4bf58bf256c000eeb3b7f6fe274cbfb7e249bf23c47d1f1f2576e4fb",
       "stage_b_gold_label": null
     },
     {
@@ -3294,7 +3294,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In accounting, offsets are balancing entries that reduce a debt rather than position shifts.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -3337,7 +3337,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_e749bbd007351d6963f2bbd0"
       },
-      "source_payload_sha256": "ae92814b30a9d04886b4462f7c94f1a688be11f783ca4d07aa5da357777a0076",
+      "source_payload_sha256": "afa20d5fe80bdce7f2603e1185d8766e288bd7fb30773775222a0d2ff311a10a",
       "stage_b_gold_label": null
     },
     {
@@ -3683,7 +3683,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The chemistry lab discussed reduction, meaning gain of electrons, which is unrelated to tensor reduction here.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -3726,7 +3726,7 @@
         "stratum": "clear",
         "term_id": "d2lce_fa115d4c3a8140d91339df15"
       },
-      "source_payload_sha256": "1972b2fde61ca7c04c37da47f57f6647584774791c2ceab689d0d7540cfcaf78",
+      "source_payload_sha256": "859af21d279c984080ffa5655ad2dce81d50d5596214d24bc10dea87c0fb8a69",
       "stage_b_gold_label": null
     }
   ],
@@ -3740,6 +3740,6 @@
   "schema_id": "D2LRemaining100StageAReviewerInputV1",
   "schema_version": "1.0.0",
   "sense_count": 10,
-  "source_input_sha256": "ed5dc6572dbf1f738eb5bb2ee10c42910c9c31a3646f32ca8a2be03cf105d12b",
+  "source_input_sha256": "99fabf41fa5e4a71980a49a5947886377da4c97fda5be14b30f916bc5a210e48",
   "stage_b_gold_autofill_count": 0
 }

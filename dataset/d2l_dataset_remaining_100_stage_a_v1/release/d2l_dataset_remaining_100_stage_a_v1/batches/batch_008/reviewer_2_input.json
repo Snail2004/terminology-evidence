@@ -357,7 +357,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "[Synthetic] The shape of the tensor is (2, 3), whereas the shape of the curve is S-like.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -400,7 +400,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_7d91b65d1e0031ab994be237"
       },
-      "source_payload_sha256": "44893e4f9108eab8809ae13d86fd620893ce2bdcc2ef126ee9d48e6af00d4f84",
+      "source_payload_sha256": "6167b6951f3733f21882c839a8944124094a0f7d1654afdab3a9cbbdeb37da19",
       "stage_b_gold_label": null
     },
     {
@@ -712,7 +712,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The bounding box positions are given as four coordinates.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -754,7 +754,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_06b54fbb7406aced0daac405"
       },
-      "source_payload_sha256": "9fe00d692aa9043e441d8ae28c829d3d5547a96105e0823d8882f7bdadff0d70",
+      "source_payload_sha256": "ecf5a86051ed274bb9cd7a36d91b6c1a72bd1e571f5e408adeafed9a84498ebd",
       "stage_b_gold_label": null
     },
     {
@@ -1100,7 +1100,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In this chapter, SSD refers to Single Shot Multibox Detection, not a storage drive.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1143,7 +1143,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_c6d5679eb20ff0719dfc35b2"
       },
-      "source_payload_sha256": "ea93697493ac176f8dc36ba5ee5ed2a8bf60ca8f4e7e2583b0e9ce0cd82d9639",
+      "source_payload_sha256": "f6867739fa0468bd6d14993236be6f557829e77dc7e5e5f48fffbcbec997c063",
       "stage_b_gold_label": null
     },
     {
@@ -1489,7 +1489,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The representation from the hidden layer improved classification, but the elected representation changed after the vote.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1532,7 +1532,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_f33d434f8362f23d43285427"
       },
-      "source_payload_sha256": "28f9702ed60dc640681d0851cc4e8516bbb027f356b298b6f7edb4045644d569",
+      "source_payload_sha256": "eb4412143779b1cdeff1eb4651f12a6c467df1f7df5b3fe8ffcd61d7b8873297",
       "stage_b_gold_label": null
     },
     {
@@ -1878,7 +1878,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In these contexts, standardization means rescaling numeric data, not enforcing a social or industrial standard.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1921,7 +1921,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_d53294d467b28b07bf000b10"
       },
-      "source_payload_sha256": "f60dc0ed2221323ddd39932d8777833c2792cf9b8eb67eed98ebe65afff9cfb0",
+      "source_payload_sha256": "102a8d99d444e582f1224b43fbe23b73bfd5da0f631daa98f1b179acc4ab5c9c",
       "stage_b_gold_label": null
     },
     {
@@ -2267,7 +2267,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In finance, the risk of default was estimated before approving the loan.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2310,7 +2310,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_c9e2beab505998c5b3b560b5"
       },
-      "source_payload_sha256": "81d492781f72c99cc2912287155d0829868188adf83dba5ceda124e0bb509185",
+      "source_payload_sha256": "673b4e42c63e1d54fd5085f09e48c2d6419f900ab439cb60e0f41278778219d8",
       "stage_b_gold_label": null
     },
     {
@@ -2656,7 +2656,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The museum studied style transfer across generations of painters, without generating any images computationally.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2699,7 +2699,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_041add3a2f3aa452408a5384"
       },
-      "source_payload_sha256": "8b0d0d8c060d72ae5973ce2178140bef959f87fa76604360dca70498aa65bacb",
+      "source_payload_sha256": "56d11b6d23b6baa863f6e34003eb861ca012d3e86e1156c5ec951f2dd0d77518",
       "stage_b_gold_label": null
     }
   ],
@@ -2713,6 +2713,6 @@
   "schema_id": "D2LRemaining100StageAReviewerInputV1",
   "schema_version": "1.0.0",
   "sense_count": 7,
-  "source_input_sha256": "191303027d1573ba8cd1a3f91a2517ccaeb4983ec83dc4494692e98fc3cf9f97",
+  "source_input_sha256": "46d21ae077f0797216f3f1165a99b66fbf67e90f0fdcd3156ee444abb43594a8",
   "stage_b_gold_autofill_count": 0
 }

@@ -317,7 +317,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "[Synthetic] Her affine transformation after the vacation made her much more patient with students.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -678,7 +678,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "[Synthetic] Approximate training cuts computation, whereas exact training evaluates the full objective each step.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1374,7 +1374,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In software versioning, beta refers to a pre-release testing stage, not a mathematical parameter symbol.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1633,7 +1633,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: Here, attention refers to a focus-weighting idea in models, not to legal or medical emergency attention.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1991,7 +1991,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The city planner divided the street into blocks for navigation.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2352,7 +2352,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: This parser reads a binary classification header from the file format specification.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2713,7 +2713,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: A bidirectional RNN reads the sequence in both directions, unlike a unidirectional RNN.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -3040,7 +3040,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "The bus stopped in front of the station.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -3400,7 +3400,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In information theory, a bit is a unit of information rather than just a small amount.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {

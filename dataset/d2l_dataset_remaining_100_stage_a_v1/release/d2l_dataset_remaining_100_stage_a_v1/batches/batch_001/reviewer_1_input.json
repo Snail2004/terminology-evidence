@@ -357,7 +357,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "[Synthetic] Her affine transformation after the vacation made her much more patient with students.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -400,7 +400,7 @@
         "stratum": "clear",
         "term_id": "d2lce_539543a2360129e2a2fa1b6d"
       },
-      "source_payload_sha256": "4bb88553b7a5bb1a56102cf74be2b9322fc5093318813c1a5047cda54e2b6f0a",
+      "source_payload_sha256": "e1e426fd16d1ab85f11289f7e9f96face294ed5760eca2310da771d199cb6a6c",
       "stage_b_gold_label": null
     },
     {
@@ -746,7 +746,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "[Synthetic] Approximate training cuts computation, whereas exact training evaluates the full objective each step.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -789,7 +789,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_28ab2b419f6b871a62a06060"
       },
-      "source_payload_sha256": "bfd147518b55690cbdc1b8a89e6b9f77d510159065da1099e9bfa351f7230011",
+      "source_payload_sha256": "65adb2391a9836bb24f73a0f9b10c9191144165d9e10e3c94a0500cd9d90e365",
       "stage_b_gold_label": null
     },
     {
@@ -1498,7 +1498,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In software versioning, beta refers to a pre-release testing stage, not a mathematical parameter symbol.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1541,7 +1541,7 @@
         "stratum": "clear",
         "term_id": "d2lce_20a7e6887718c68fb6b88a05"
       },
-      "source_payload_sha256": "a08d047a45d0235d35f8816a6ef395fc281ac96ee065daa431a5aaec76fc61d4",
+      "source_payload_sha256": "070c9cba8bbf757509c38b4cd2b9f0c8b543181faf47ca78d8149acd9a0bbcf7",
       "stage_b_gold_label": null
     },
     {
@@ -1785,7 +1785,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Here, attention refers to a focus-weighting idea in models, not to legal or medical emergency attention.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1825,7 +1825,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_4a5f20bb32b66b1f07d9f37a"
       },
-      "source_payload_sha256": "3ac87d938729cbbc6fe7296da85a12306ba4792bf00ec4993724fbda39517618",
+      "source_payload_sha256": "2610b7fbc4e3fc5c4ae551c8b7ea44ea6025ba3991244c3401a32d61181034c3",
       "stage_b_gold_label": null
     },
     {
@@ -2171,7 +2171,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The city planner divided the street into blocks for navigation.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2214,7 +2214,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_20c658fd4e221ee551790ec2"
       },
-      "source_payload_sha256": "3f09c9a14e08d904f30e80e9722f250fe1a1e6b821fa1b5bf0c8426620fa818b",
+      "source_payload_sha256": "0739ed1139c9787db9589bf25ddd816a04e6692c7987964e277b80613c6ea323",
       "stage_b_gold_label": null
     },
     {
@@ -2560,7 +2560,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: This parser reads a binary classification header from the file format specification.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2603,7 +2603,7 @@
         "stratum": "clear",
         "term_id": "d2lce_bb2aa6e567ff5ce9563e209b"
       },
-      "source_payload_sha256": "e9f48c0df624ca8920bc2943866bdfaad0d318452f9ec859d3a9446d51c8debf",
+      "source_payload_sha256": "8f3324d857a8ced8e3633f70ce209799a13d3cd3e9f2d6f9bab7d3381ce40757",
       "stage_b_gold_label": null
     },
     {
@@ -2949,7 +2949,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: A bidirectional RNN reads the sequence in both directions, unlike a unidirectional RNN.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2992,7 +2992,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_80f4d6555a6ea1d2e5e881a1"
       },
-      "source_payload_sha256": "69a50fa470198ee20ce8586ab5e4a5a66180ca233026fc689e20f7975ba7016c",
+      "source_payload_sha256": "a7885b4b8a966b11d5060dd9e9a71e75d9abe674a5e42550eb0ff14135060784",
       "stage_b_gold_label": null
     },
     {
@@ -3304,7 +3304,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "The bus stopped in front of the station.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -3346,7 +3346,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_0e100796a86968fbdb5730e8"
       },
-      "source_payload_sha256": "639a20b2e5594edee8a3ff47bb629f0346724db4849ab922cf05dcf292f0d55b",
+      "source_payload_sha256": "f327b426a4353c12dc46a8d783e58a7b562352d7dd6dc4e446fa65023426e9e7",
       "stage_b_gold_label": null
     },
     {
@@ -3692,7 +3692,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In information theory, a bit is a unit of information rather than just a small amount.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -3735,7 +3735,7 @@
         "stratum": "clear",
         "term_id": "d2lce_53c32398310471fac3dacf35"
       },
-      "source_payload_sha256": "abda772285133f01b94d025c98bfc6d0b8732ae5d96b545f3c71fba49de1b7df",
+      "source_payload_sha256": "c6632c170e9f26d5325fbab634879b8e91e0217856bf939adfbdbc2cca493179",
       "stage_b_gold_label": null
     }
   ],
@@ -3749,6 +3749,6 @@
   "schema_id": "D2LRemaining100StageAReviewerInputV1",
   "schema_version": "1.0.0",
   "sense_count": 10,
-  "source_input_sha256": "d2f622d0ab2889ae369f49d8c3412d39e475da60a2ec1975364a7ea73d35a15c",
+  "source_input_sha256": "85c2480ce0c8f775cfce60d1b0fd3873cfa1e5a32321fd2f005a7fb956e03bfd",
   "stage_b_gold_autofill_count": 0
 }

@@ -357,7 +357,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The CNN uses convolutional layers, unlike an RNN that processes sequences recurrently.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -400,7 +400,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_eba859df6c63311dce4a5eb7"
       },
-      "source_payload_sha256": "b2a92c4f9b4af92aa3b31848a74416245018372fada1010145706e006efe8518",
+      "source_payload_sha256": "074c0e2ae7258cc58a3e42ada6887369ecc660d13c97352dffe69067a9cdc4cd",
       "stage_b_gold_label": null
     },
     {
@@ -1109,7 +1109,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Here BPR names the Bayesian personalized ranking objective, not a generic business process rule.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1152,7 +1152,7 @@
         "stratum": "clear",
         "term_id": "d2lce_0dbb5a3cc045f69a43d09a7a"
       },
-      "source_payload_sha256": "955b81b999b7d261e8f51295f55bae3a6a6e06d8c9446544db0bbdfcb855f15b",
+      "source_payload_sha256": "70821efe112c8fceffefd2f730393d7bbc25d4a379c594c853f95daaf3ae8206",
       "stage_b_gold_label": null
     },
     {
@@ -1498,7 +1498,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: A concept shift happens when the meaning of the target label changes, not merely when input features become more common or rare.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1541,7 +1541,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_6239b2ef1cec1800e3d6f13f"
       },
-      "source_payload_sha256": "8c80a91b4ac79170571ff8ecc1f683ef3eb79eb0b9370cc5ac9da1e6ea21967f",
+      "source_payload_sha256": "a42d8e3fc78266bb8b8d9320de212a029415f9abbe8d1f8a09d91c5f223321b0",
       "stage_b_gold_label": null
     },
     {
@@ -1887,7 +1887,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: She remained constant in her support throughout the project.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1930,7 +1930,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_46e81052dcb25b16e429062a"
       },
-      "source_payload_sha256": "90751bf76109422ca1c1a6290c3a4c55cbc19c330eeb731c8bccfa7c5839e194",
+      "source_payload_sha256": "a9256ea6f9a4e4ec86049c4c122c6c4b0b06ce2f720faca05a17a6af396cdd74",
       "stage_b_gold_label": null
     },
     {
@@ -2276,7 +2276,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The bridge constructor finished the project ahead of schedule.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2319,7 +2319,7 @@
         "stratum": "clear",
         "term_id": "d2lce_7d7b617aacd41c76538d06af"
       },
-      "source_payload_sha256": "73eed4ac6fc162dc4521f62410bd6d5537b430b9203e0237ffe473de419cd75e",
+      "source_payload_sha256": "c6e4bc9087341f8e897835275b4b5b97f4b8d1b0c3b4b5475d013fd72b31f674",
       "stage_b_gold_label": null
     },
     {
@@ -2665,7 +2665,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The phrase continuous bag of words here refers to a named prediction model, not just any continuously updated bag of vocabulary items.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2708,7 +2708,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_dc193feb1eeef3a1349d9b74"
       },
-      "source_payload_sha256": "f48a3764c4f9ce54e9495031bd9b723355c696d49b22da9ad4b50a0b0ab2afea",
+      "source_payload_sha256": "b4ebc54b799870fdd5e8063b96176c23a6d064274d904b0a2c7c1b5ff6945554",
       "stage_b_gold_label": null
     },
     {
@@ -3054,7 +3054,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The mirror had a convex function in the decorative engraving, but no mathematical meaning was intended.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -3097,7 +3097,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_0a19e86b29b5e64f79a45ddc"
       },
-      "source_payload_sha256": "56b1a3da1429e2bd4a26f20204ba1c6ca1a2d0c6e440374d9bac139f5d0d5ca5",
+      "source_payload_sha256": "dfb73e64985965fd1a77a967ce96f4c7a68c5ebc07f942afa402437602ff6eaa",
       "stage_b_gold_label": null
     },
     {
@@ -3443,7 +3443,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In a graphics editor, “convex sets” might be mentioned informally for shapes, not as the formal optimization concept defined here.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -3486,7 +3486,7 @@
         "stratum": "clear",
         "term_id": "d2lce_9c874642b8c028465cfbb71e"
       },
-      "source_payload_sha256": "3f7e69b2ef5c65bfc8fc5577baa3ee6083563f527cac9039476b1496a2c4a430",
+      "source_payload_sha256": "33ed406e6b88748ecb09645943a158940c32ea34100dbbeaa1a38e34bebdd1bc",
       "stage_b_gold_label": null
     },
     {
@@ -3832,7 +3832,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Police improved control flow at the intersection during rush hour.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -3875,7 +3875,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_6c7e95cd232fb7fcca6b3bdc"
       },
-      "source_payload_sha256": "4b8b52964db7b8f517ff60abe8f9e57989b220f24c21a25e8571fd5b0066ada2",
+      "source_payload_sha256": "f425af290df490a2285e067e70ffac376460d167921c1db80bcba04b729eb0be",
       "stage_b_gold_label": null
     }
   ],
@@ -3889,6 +3889,6 @@
   "schema_id": "D2LRemaining100StageAReviewerInputV1",
   "schema_version": "1.0.0",
   "sense_count": 10,
-  "source_input_sha256": "ea867b45c6efea0ff5e5aa39242cc1ddb54d7cada0e1f198a77a5b3ac178d8f7",
+  "source_input_sha256": "1057bd973eb285f291b21c845cfd20b64679877dc6018834a3a680c530087615",
   "stage_b_gold_autofill_count": 0
 }

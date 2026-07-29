@@ -283,7 +283,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In the sampler, population means the list of candidate indices rather than the full statistical population under study.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -643,7 +643,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: Although stored in a table, these customer records are not sequence data because the row order carries no meaning.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1004,7 +1004,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The training objective is to minimize prediction error plus regularization.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1365,7 +1365,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In image editing, “positional embeddings” could be misused to mean coordinates pasted into metadata, not neural sequence representations.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1624,7 +1624,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The frames are sequential, but the model is not built with Sequential.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1948,7 +1948,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: Her observation about the lecture was insightful.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2308,7 +2308,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: A BERT model initialized randomly is not pretrained BERT.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2669,7 +2669,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: With sequential partitioning, neighboring minibatches keep neighboring subsequences from the original sequence, unlike random sampling.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -3030,7 +3030,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In accounting, offsets are balancing entries that reduce a debt rather than position shifts.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -3391,7 +3391,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The chemistry lab discussed reduction, meaning gain of electrons, which is unrelated to tensor reduction here.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {

@@ -143,6 +143,10 @@ def _validate_review_payload(
             for context in contexts:
                 if not isinstance(context, Mapping) or not context.get("context_id"):
                     _error(errors, f"{expected_batch}/{expected_slot}: invalid context {case_id}")
+                elif context.get("synthetic") and (
+                    not context.get("boundary_only") or context.get("sense_relation") == "SAME_SENSE"
+                ):
+                    _error(errors, f"{expected_batch}/{expected_slot}: synthetic context is positive evidence {case_id}")
         source_index.append({"case_id": case_id, "source_payload_sha256": source_hash})
     expected_index = sha256_bytes(canonical_json_bytes(source_index))
     if payload.get("source_input_sha256") != expected_index:
@@ -277,7 +281,8 @@ def validate_artifact(
         if sense_id not in term_ids or not _eligible_context(row):
             _error(errors, f"invalid selected context: {row.get('context_id')}")
         context_ids_by_sense[sense_id].add(str(row.get("context_id")))
-        if row.get("synthetic") and row.get("sense_relation") == "SAME_SENSE":
+        synthetic = bool(row.get("synthetic")) or row.get("binding_kind") == "SYNTHETIC_BOUNDARY_PROBE"
+        if synthetic and row.get("sense_relation") == "SAME_SENSE":
             _error(errors, f"synthetic same-sense context: {row.get('context_id')}")
     if set(context_ids_by_sense) != term_ids:
         _error(errors, "some sense has no selected context")

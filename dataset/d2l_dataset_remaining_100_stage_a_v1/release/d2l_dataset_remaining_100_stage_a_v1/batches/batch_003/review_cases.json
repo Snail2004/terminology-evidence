@@ -283,7 +283,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The company changed the distribution of books across its retail stores last month.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -643,7 +643,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The project has a software dependency on a plotting library, which is a package requirement rather than the relation discussed here.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1004,7 +1004,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: This project runs on any GPU library, so 'CUDA' here would not refer to the specific NVIDIA platform.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1365,7 +1365,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The sound engineer discussed the decomposition of the audio signal, not its eigendecomposition.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1726,7 +1726,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The museum exhibit focused on feature interactions between carved surfaces and light, not data fields.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2087,7 +2087,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The lab used a dense net to catch fish, which is unrelated to DenseNet.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2380,7 +2380,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic boundary probe: \"forward propagation\" is quoted here only as a document label, not as an occurrence of the reviewed D2L sense.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -3039,7 +3039,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In logic class, entailment is discussed as a formal relation, while here entailment is a dataset label between premise and hypothesis.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -3400,7 +3400,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The frontend of the building was renovated last year.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {

@@ -357,7 +357,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "[Synthetic] Approximate training cuts computation, whereas exact training evaluates the full objective each step.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -400,7 +400,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_28ab2b419f6b871a62a06060"
       },
-      "source_payload_sha256": "bfd147518b55690cbdc1b8a89e6b9f77d510159065da1099e9bfa351f7230011",
+      "source_payload_sha256": "65adb2391a9836bb24f73a0f9b10c9191144165d9e10e3c94a0500cd9d90e365",
       "stage_b_gold_label": null
     },
     {
@@ -1007,7 +1007,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Here, attention refers to a focus-weighting idea in models, not to legal or medical emergency attention.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1047,7 +1047,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_4a5f20bb32b66b1f07d9f37a"
       },
-      "source_payload_sha256": "3ac87d938729cbbc6fe7296da85a12306ba4792bf00ec4993724fbda39517618",
+      "source_payload_sha256": "2610b7fbc4e3fc5c4ae551c8b7ea44ea6025ba3991244c3401a32d61181034c3",
       "stage_b_gold_label": null
     },
     {
@@ -1393,7 +1393,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The city planner divided the street into blocks for navigation.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1436,7 +1436,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_20c658fd4e221ee551790ec2"
       },
-      "source_payload_sha256": "3f09c9a14e08d904f30e80e9722f250fe1a1e6b821fa1b5bf0c8426620fa818b",
+      "source_payload_sha256": "0739ed1139c9787db9589bf25ddd816a04e6692c7987964e277b80613c6ea323",
       "stage_b_gold_label": null
     },
     {
@@ -1782,7 +1782,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: A bidirectional RNN reads the sequence in both directions, unlike a unidirectional RNN.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1825,7 +1825,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_80f4d6555a6ea1d2e5e881a1"
       },
-      "source_payload_sha256": "69a50fa470198ee20ce8586ab5e4a5a66180ca233026fc689e20f7975ba7016c",
+      "source_payload_sha256": "a7885b4b8a966b11d5060dd9e9a71e75d9abe674a5e42550eb0ff14135060784",
       "stage_b_gold_label": null
     },
     {
@@ -2137,7 +2137,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "The bus stopped in front of the station.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2179,7 +2179,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_0e100796a86968fbdb5730e8"
       },
-      "source_payload_sha256": "639a20b2e5594edee8a3ff47bb629f0346724db4849ab922cf05dcf292f0d55b",
+      "source_payload_sha256": "f327b426a4353c12dc46a8d783e58a7b562352d7dd6dc4e446fa65023426e9e7",
       "stage_b_gold_label": null
     },
     {
@@ -2525,7 +2525,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The CNN uses convolutional layers, unlike an RNN that processes sequences recurrently.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2568,7 +2568,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_eba859df6c63311dce4a5eb7"
       },
-      "source_payload_sha256": "b2a92c4f9b4af92aa3b31848a74416245018372fada1010145706e006efe8518",
+      "source_payload_sha256": "074c0e2ae7258cc58a3e42ada6887369ecc660d13c97352dffe69067a9cdc4cd",
       "stage_b_gold_label": null
     },
     {
@@ -3277,7 +3277,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: A concept shift happens when the meaning of the target label changes, not merely when input features become more common or rare.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -3320,7 +3320,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_6239b2ef1cec1800e3d6f13f"
       },
-      "source_payload_sha256": "8c80a91b4ac79170571ff8ecc1f683ef3eb79eb0b9370cc5ac9da1e6ea21967f",
+      "source_payload_sha256": "a42d8e3fc78266bb8b8d9320de212a029415f9abbe8d1f8a09d91c5f223321b0",
       "stage_b_gold_label": null
     },
     {
@@ -3666,7 +3666,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: She remained constant in her support throughout the project.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -3709,7 +3709,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_46e81052dcb25b16e429062a"
       },
-      "source_payload_sha256": "90751bf76109422ca1c1a6290c3a4c55cbc19c330eeb731c8bccfa7c5839e194",
+      "source_payload_sha256": "a9256ea6f9a4e4ec86049c4c122c6c4b0b06ce2f720faca05a17a6af396cdd74",
       "stage_b_gold_label": null
     },
     {
@@ -4055,7 +4055,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The phrase continuous bag of words here refers to a named prediction model, not just any continuously updated bag of vocabulary items.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -4098,7 +4098,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_dc193feb1eeef3a1349d9b74"
       },
-      "source_payload_sha256": "f48a3764c4f9ce54e9495031bd9b723355c696d49b22da9ad4b50a0b0ab2afea",
+      "source_payload_sha256": "b4ebc54b799870fdd5e8063b96176c23a6d064274d904b0a2c7c1b5ff6945554",
       "stage_b_gold_label": null
     },
     {
@@ -4444,7 +4444,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The mirror had a convex function in the decorative engraving, but no mathematical meaning was intended.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -4487,7 +4487,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_0a19e86b29b5e64f79a45ddc"
       },
-      "source_payload_sha256": "56b1a3da1429e2bd4a26f20204ba1c6ca1a2d0c6e440374d9bac139f5d0d5ca5",
+      "source_payload_sha256": "dfb73e64985965fd1a77a967ce96f4c7a68c5ebc07f942afa402437602ff6eaa",
       "stage_b_gold_label": null
     },
     {
@@ -4833,7 +4833,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Police improved control flow at the intersection during rush hour.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -4876,7 +4876,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_6c7e95cd232fb7fcca6b3bdc"
       },
-      "source_payload_sha256": "4b8b52964db7b8f517ff60abe8f9e57989b220f24c21a25e8571fd5b0066ada2",
+      "source_payload_sha256": "f425af290df490a2285e067e70ffac376460d167921c1db80bcba04b729eb0be",
       "stage_b_gold_label": null
     },
     {
@@ -5188,7 +5188,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The company changed the distribution of books across its retail stores last month.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -5230,7 +5230,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_c47822c187c02e12aa499ec6"
       },
-      "source_payload_sha256": "2931b99038529f1780d9fda65f3441eddc98b1e1c87fb6d271b7ce95e39bef05",
+      "source_payload_sha256": "86cfef0585b48cfd7022b344d4f37855007cd04aef49a9af117579092a56dd78",
       "stage_b_gold_label": null
     },
     {
@@ -5576,7 +5576,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: This project runs on any GPU library, so 'CUDA' here would not refer to the specific NVIDIA platform.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -5619,7 +5619,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_ebd36388b50538b928ebbb4a"
       },
-      "source_payload_sha256": "95855a94ebfd4e0377c82d7a0b045a4e4d4ce07f3197266167a81b98482b9817",
+      "source_payload_sha256": "d3db287c636c05e0ab3e75bc8f640cecae32441d4859b9f19a4cacc9a81b52b7",
       "stage_b_gold_label": null
     },
     {
@@ -5965,7 +5965,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The sound engineer discussed the decomposition of the audio signal, not its eigendecomposition.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -6008,7 +6008,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_10d4d01fa40b67d92527e5ed"
       },
-      "source_payload_sha256": "f1dc279ae67dae9d2ae4732731e858c7ba9cb04b44ac40ea45bffc24ba4ba1a3",
+      "source_payload_sha256": "33a96fda2755533ec4217488f861996d3589d03822fd2f60885e81c28f1aaf8c",
       "stage_b_gold_label": null
     },
     {
@@ -6354,7 +6354,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The lab used a dense net to catch fish, which is unrelated to DenseNet.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -6397,7 +6397,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_20dc13bc32661f00e7c68b89"
       },
-      "source_payload_sha256": "af604cff3981aa4e3f18347a40d179e7e1e8502a0dd4407bf050e5b9e9084a9a",
+      "source_payload_sha256": "d00f180f8db8272e9ec345d86b3d9e8569cd5af626508cd7175ad4cf2d9ba118",
       "stage_b_gold_label": null
     },
     {
@@ -6675,7 +6675,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic boundary probe: \"forward propagation\" is quoted here only as a document label, not as an occurrence of the reviewed D2L sense.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -6716,7 +6716,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_fbe9efe0d390976cb31e5af7"
       },
-      "source_payload_sha256": "200f4b13d6d509cf109859b1f0a4e3c8df9061aecaa20e7c55563672d14e9979",
+      "source_payload_sha256": "77d58d48d02b6d369ce60d46272631851debb484f9d7787b09b19fead659a981",
       "stage_b_gold_label": null
     },
     {
@@ -7062,7 +7062,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In logic class, entailment is discussed as a formal relation, while here entailment is a dataset label between premise and hypothesis.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -7105,7 +7105,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_ca2ca961829e131bbc0fd92b"
       },
-      "source_payload_sha256": "6a7165743a5d3785a1d346a7b56b11a4fc4484d03813dedcb8e3120e0fe0aa0d",
+      "source_payload_sha256": "a94cc63e90da333747f932ac7593d8518cab73d8d136df76e42aab19a9023d77",
       "stage_b_gold_label": null
     },
     {
@@ -7451,7 +7451,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The frontend of the building was renovated last year.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -7494,7 +7494,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_24988c975f984ef488776c0b"
       },
-      "source_payload_sha256": "86188f1d342d1f55c8827801c5cf15155003ab61c29f6a4b39d23fbe3aec116e",
+      "source_payload_sha256": "090b0f54d6c80a3fca1ed96f50dc9b05b2d0fd9cec814cffe8d32db1a0517401",
       "stage_b_gold_label": null
     },
     {
@@ -7772,7 +7772,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "A hyperplane is a generalization to higher dimensions of a line or a plane.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -7813,7 +7813,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_22496a6fabe26e046ad5d5ac"
       },
-      "source_payload_sha256": "736db03695502d9270c8e0f8f0f53a7f96f586744878516650240b7a8a909d64",
+      "source_payload_sha256": "5a0a7be044d1f70736296acc50ab481c5e8f9abd0cc9c21e106717ac7d2e900e",
       "stage_b_gold_label": null
     },
     {
@@ -8159,7 +8159,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In filmmaking, ground truth referred to footage shot on location rather than annotated targets.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -8202,7 +8202,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_d0b3a65c5f21e6064395a475"
       },
-      "source_payload_sha256": "087902cc999b0b3cf58f43a8a93284b2ff54ab341bc7fc37405d7e34bc32d663",
+      "source_payload_sha256": "1e12798467ceb6840478841ab7dc5eeab2aa08b203406e2aeea69945ff2706d9",
       "stage_b_gold_label": null
     },
     {
@@ -8911,7 +8911,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The hidden layer transforms inputs into intermediate features before the output layer produces predictions.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -8954,7 +8954,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_401e038a0835f7c5733a9857"
       },
-      "source_payload_sha256": "d30d5d900dcb61e7f6e7ca6c12417bef180dc7f7de819d018e49bc8e1c7768d2",
+      "source_payload_sha256": "78a675fe6389e15493cd700fc6fc9e9675de67d59e44107badbca04e533abefd",
       "stage_b_gold_label": null
     },
     {
@@ -9232,7 +9232,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "The team set up continuous integration, but no one computed an integration over a curve.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -9273,7 +9273,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_9372cdb5752db6ba6fa38fbd"
       },
-      "source_payload_sha256": "acc67725ff9c19ea23e88fbe070a88c02446cd5e46c8c080d01da51f9c37bca3",
+      "source_payload_sha256": "5fc45aaff2e4fc535feaa414cff9864f9562a2f08a0fc3eb89df77db6e1fb9ba",
       "stage_b_gold_label": null
     },
     {
@@ -9619,7 +9619,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: During software setup, initialization only created a default configuration file and no model parameters.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -9662,7 +9662,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_8373decbb6e405f0386ec8a0"
       },
-      "source_payload_sha256": "a9f6c026c5404ccf1f4cc775c9f1843db73263fd19ef5e9066067d88c5a2d347",
+      "source_payload_sha256": "b3b70dfc8ccd53110c98964069eba5f07eb8747bfcdd1d82012c5ab2195a3c7e",
       "stage_b_gold_label": null
     },
     {
@@ -10008,7 +10008,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Here, linear regression means predicting with a linear function of features, not logistic regression for classification.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -10051,7 +10051,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_d8d3db5e12791f4de99286be"
       },
-      "source_payload_sha256": "612e5e9fb946959412d6577072e2138e9604fe278fe526442f0302cb84e82cca",
+      "source_payload_sha256": "be1fb81371568277f53c061e2979b1cf37bb77359165567249217b9a90f9cec2",
       "stage_b_gold_label": null
     },
     {
@@ -10397,7 +10397,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In the sentence, the inverse word order sounds poetic.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -10440,7 +10440,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_98211ac6b2c27c6359ce6dae"
       },
-      "source_payload_sha256": "26da55ac8d0aa6616c6ca60f2f1076df8e6e179563975f09a5bc69e9d3977116",
+      "source_payload_sha256": "fa6e830fd5908e49720c599a2ad697b79740ce106d8f2a217c3a5f022a8057a6",
       "stage_b_gold_label": null
     },
     {
@@ -10786,7 +10786,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The workshop offered multi-GPU training for new lab technicians learning hardware maintenance.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -10829,7 +10829,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_6898a7f7f35ca368f75fda48"
       },
-      "source_payload_sha256": "9a5f68a20ed9da604bb4bafc8b1ec8a121650e21f64d39dc9379470771192a7c",
+      "source_payload_sha256": "99dd27706a59150e911d6499d9949dfdb1cc0d91fb90e08b131bf826bb0af2ba",
       "stage_b_gold_label": null
     },
     {
@@ -11175,7 +11175,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In literary editing, the second iteration of the poem changed its tone.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -11218,7 +11218,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_c3c46748b1a49e32c07ca9d7"
       },
-      "source_payload_sha256": "d4addf61276190c149ad2c729d4c077039cfb9a88ef7813dfc6c2d99d6fa9e2f",
+      "source_payload_sha256": "912b92ab087d37e926068c8178fc49124074f72358dee518fab1bed54f8f25bd",
       "stage_b_gold_label": null
     },
     {
@@ -11564,7 +11564,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The phrase natural language processing here refers to a computing field, not to a person informally polishing everyday speech.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -11607,7 +11607,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_609638f74bc5b32d32469bbc"
       },
-      "source_payload_sha256": "82bc8911c753e81ec96818cd1ad1a06fd66abf0ec564e3a2af510b6208730e98",
+      "source_payload_sha256": "a3dbf730a4cd75ba40a33da8decf61baad5ff2c1be299c08833dfeb7bd21efff",
       "stage_b_gold_label": null
     },
     {
@@ -12281,7 +12281,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Here, noise words are sampled negative examples rather than merely messy or misspelled words in a corpus.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -12324,7 +12324,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_5c270f3b3ebe4f0059649e18"
       },
-      "source_payload_sha256": "21b0127fd58e61e99c424e0617002f29932ce955932d1d80a92c424d8ea2dddd",
+      "source_payload_sha256": "1f44a99be331cd79d5ae0e9f88b6d3424af6911b94950bd0a94a366ba3c6fb7d",
       "stage_b_gold_label": null
     },
     {
@@ -12670,7 +12670,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In philosophy, a person's language model of the world may shape how they speak.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -12713,7 +12713,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_a7105fea7b2b3447548b6d7a"
       },
-      "source_payload_sha256": "ee5fe459749779ca77f4e611361be6d668138f05b2a863f627a71f9b89e0a137",
+      "source_payload_sha256": "30370199e55033a1ab91142a4df34019031801fdfb66245344fe689d1d61d95b",
       "stage_b_gold_label": null
     },
     {
@@ -13059,7 +13059,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In this chapter, question answering means an NLP task, not a classroom habit of students answering a teacher’s questions.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -13102,7 +13102,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_41109297e6bf8f44d9bb9178"
       },
-      "source_payload_sha256": "26a1249f0a5ef3e2bc874fe67cba288f0b41f9a24ce2552a648558de6b338ee8",
+      "source_payload_sha256": "749da73d3402336a295ce6395a946cb2211af58697bc6caa0ef6f30d11212ae3",
       "stage_b_gold_label": null
     },
     {
@@ -13448,7 +13448,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In this chapter, matrix factorization predicts user–item preferences by learning latent factors from an interaction matrix.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -13491,7 +13491,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_bbf89ef89c96205886255dcf"
       },
-      "source_payload_sha256": "d523224721ba0bc99daf47b2614df7bd0b72e855060c57e2518eb1e036b833fd",
+      "source_payload_sha256": "e83b31f125de1eca6a845668c6c114160831437f7591b866a035ac0c8cdfacbe",
       "stage_b_gold_label": null
     },
     {
@@ -13837,7 +13837,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Here, regression means the predictive method, not just the specific fitted formula written after training.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -13880,7 +13880,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_3b6a75bdbf023ea1f3ed2cc8"
       },
-      "source_payload_sha256": "df0d2c74c45735968d0807ca7eee77bf6ff93a8894e50f0b100b63584e29bdde",
+      "source_payload_sha256": "c00e2372a520620dd00ee5cee79603966b52ec1e4c62c96830c1c5de808c961b",
       "stage_b_gold_label": null
     },
     {
@@ -14226,7 +14226,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The file extension .mlp here does not refer to an MLP neural network.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -14269,7 +14269,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_0ac8f3308547fb001c31e869"
       },
-      "source_payload_sha256": "0ec49eaa1237c365a3a7c0cd7f0fd0f291bcafc676b868400106575ff6601875",
+      "source_payload_sha256": "4da2b33a5f8690e10bffca127f076837da94d3abf685a6dfd8403fbae09eba74",
       "stage_b_gold_label": null
     },
     {
@@ -14615,7 +14615,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Semantic segmentation labels every pixel, whereas object detection only draws boxes around objects.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -14658,7 +14658,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_2e41378b04489016bfe5707a"
       },
-      "source_payload_sha256": "2f513fd2b1d37e7668abd1a5605dff7079bdce3dd1cc030b84b83829f1f75fc3",
+      "source_payload_sha256": "8b37d7ff6183038e349c5a728d4318051ca76b692aaa342c6ea62a90bc134fcb",
       "stage_b_gold_label": null
     },
     {
@@ -15004,7 +15004,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In psychology, a nonvolitional cue can pull attention to a bright object even when the observer intends to look elsewhere.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -15047,7 +15047,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_abae8f75b732ffe9c8a965c0"
       },
-      "source_payload_sha256": "b6320c9039ff14b7774dd9c98bf60e5cad63a30df51d62f4fdd9375986634c9d",
+      "source_payload_sha256": "f4bdb342453ed9a20e25346dbe2d0b6572206915e473c516929f7432a3ffbd0a",
       "stage_b_gold_label": null
     },
     {
@@ -15393,7 +15393,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Although stored in a table, these customer records are not sequence data because the row order carries no meaning.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -15436,7 +15436,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_b85d9a7a642afee03175796f"
       },
-      "source_payload_sha256": "bc4ce804366797b3d84fb2829fb50159102d094e5dfe09444e355879850a77c5",
+      "source_payload_sha256": "d0e97e73ffd1ad24ba15e2b45d985fa28878e507c50fede434ac80d889ad918a",
       "stage_b_gold_label": null
     },
     {
@@ -15782,7 +15782,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The training objective is to minimize prediction error plus regularization.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -15825,7 +15825,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_cf168d11faf5e675efa7e0a3"
       },
-      "source_payload_sha256": "a39469e1c654fe8846e9973a47b5f36abc386d873c6e01c6ee25a7bbc73d0a21",
+      "source_payload_sha256": "15cc64315849159994e8c576a841b546ba5c6935747141ba2f498ff950517453",
       "stage_b_gold_label": null
     },
     {
@@ -16069,7 +16069,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The frames are sequential, but the model is not built with Sequential.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -16109,7 +16109,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_40a50503f2fdc79aa0a549fc"
       },
-      "source_payload_sha256": "aa59346f7f10bcfd5e4cab0a6efe7f041eebd878750df7ce8ea248ad2a115a3b",
+      "source_payload_sha256": "07726426785ebf49cd76d933b87cb2a6bdd43bee042894a02edaa629227538c9",
       "stage_b_gold_label": null
     },
     {
@@ -16421,7 +16421,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Her observation about the lecture was insightful.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -16463,7 +16463,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_4f85955c4fd10e184dc97d32"
       },
-      "source_payload_sha256": "f8f8140df2cc20ed3074f75c3f52331a89fee2d590313a6a6c0b940e19847343",
+      "source_payload_sha256": "52bbee56edb951aaa484eef2bb62567d015f40575761df8fc56c4c00ffc0b0a8",
       "stage_b_gold_label": null
     },
     {
@@ -16809,7 +16809,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: With sequential partitioning, neighboring minibatches keep neighboring subsequences from the original sequence, unlike random sampling.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -16852,7 +16852,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_e8992d8478a28e673fe551dc"
       },
-      "source_payload_sha256": "4a78dc7464df8618b9a0759e1df4245bef942018ced9e2db3cf3a1f47a0529ac",
+      "source_payload_sha256": "cc2db4dd4bf58bf256c000eeb3b7f6fe274cbfb7e249bf23c47d1f1f2576e4fb",
       "stage_b_gold_label": null
     },
     {
@@ -17198,7 +17198,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In accounting, offsets are balancing entries that reduce a debt rather than position shifts.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -17241,7 +17241,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_e749bbd007351d6963f2bbd0"
       },
-      "source_payload_sha256": "ae92814b30a9d04886b4462f7c94f1a688be11f783ca4d07aa5da357777a0076",
+      "source_payload_sha256": "afa20d5fe80bdce7f2603e1185d8766e288bd7fb30773775222a0d2ff311a10a",
       "stage_b_gold_label": null
     },
     {
@@ -17587,7 +17587,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "[Synthetic] The shape of the tensor is (2, 3), whereas the shape of the curve is S-like.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -17630,7 +17630,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_7d91b65d1e0031ab994be237"
       },
-      "source_payload_sha256": "44893e4f9108eab8809ae13d86fd620893ce2bdcc2ef126ee9d48e6af00d4f84",
+      "source_payload_sha256": "6167b6951f3733f21882c839a8944124094a0f7d1654afdab3a9cbbdeb37da19",
       "stage_b_gold_label": null
     },
     {
@@ -17942,7 +17942,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The bounding box positions are given as four coordinates.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -17984,7 +17984,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_06b54fbb7406aced0daac405"
       },
-      "source_payload_sha256": "9fe00d692aa9043e441d8ae28c829d3d5547a96105e0823d8882f7bdadff0d70",
+      "source_payload_sha256": "ecf5a86051ed274bb9cd7a36d91b6c1a72bd1e571f5e408adeafed9a84498ebd",
       "stage_b_gold_label": null
     },
     {
@@ -18330,7 +18330,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In this chapter, SSD refers to Single Shot Multibox Detection, not a storage drive.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -18373,7 +18373,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_c6d5679eb20ff0719dfc35b2"
       },
-      "source_payload_sha256": "ea93697493ac176f8dc36ba5ee5ed2a8bf60ca8f4e7e2583b0e9ce0cd82d9639",
+      "source_payload_sha256": "f6867739fa0468bd6d14993236be6f557829e77dc7e5e5f48fffbcbec997c063",
       "stage_b_gold_label": null
     },
     {
@@ -18719,7 +18719,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The representation from the hidden layer improved classification, but the elected representation changed after the vote.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -18762,7 +18762,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_f33d434f8362f23d43285427"
       },
-      "source_payload_sha256": "28f9702ed60dc640681d0851cc4e8516bbb027f356b298b6f7edb4045644d569",
+      "source_payload_sha256": "eb4412143779b1cdeff1eb4651f12a6c467df1f7df5b3fe8ffcd61d7b8873297",
       "stage_b_gold_label": null
     },
     {
@@ -19108,7 +19108,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In these contexts, standardization means rescaling numeric data, not enforcing a social or industrial standard.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -19151,7 +19151,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_d53294d467b28b07bf000b10"
       },
-      "source_payload_sha256": "f60dc0ed2221323ddd39932d8777833c2792cf9b8eb67eed98ebe65afff9cfb0",
+      "source_payload_sha256": "102a8d99d444e582f1224b43fbe23b73bfd5da0f631daa98f1b179acc4ab5c9c",
       "stage_b_gold_label": null
     },
     {
@@ -19497,7 +19497,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In finance, the risk of default was estimated before approving the loan.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -19540,7 +19540,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_c9e2beab505998c5b3b560b5"
       },
-      "source_payload_sha256": "81d492781f72c99cc2912287155d0829868188adf83dba5ceda124e0bb509185",
+      "source_payload_sha256": "673b4e42c63e1d54fd5085f09e48c2d6419f900ab439cb60e0f41278778219d8",
       "stage_b_gold_label": null
     },
     {
@@ -19886,7 +19886,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The museum studied style transfer across generations of painters, without generating any images computationally.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -19929,7 +19929,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_041add3a2f3aa452408a5384"
       },
-      "source_payload_sha256": "8b0d0d8c060d72ae5973ce2178140bef959f87fa76604360dca70498aa65bacb",
+      "source_payload_sha256": "56d11b6d23b6baa863f6e34003eb861ca012d3e86e1156c5ec951f2dd0d77518",
       "stage_b_gold_label": null
     },
     {
@@ -20275,7 +20275,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The robot lost sensory input from its temperature sensor after the cable broke.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -20318,7 +20318,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_bc240ce7b3e0abeb18f82a6b"
       },
-      "source_payload_sha256": "cdf6b5179dceeab5272249f7cfd8cf3b6f22ea993a6c2642e755548a4520a66e",
+      "source_payload_sha256": "f4fbbebaa10c7ddd388cc75fdc4bd92a69eb41b42cbc5fbc804861dfeffe574d",
       "stage_b_gold_label": null
     },
     {
@@ -20426,7 +20426,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The network switch connects devices, but to switch off the bias means to disable a model setting.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -20462,7 +20462,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_91002293cea2184b43995f47"
       },
-      "source_payload_sha256": "410f63c7013eafcc1a4b1b962be6880d3030eeda9d23e624bbe5fc51dfe0d88e",
+      "source_payload_sha256": "ba4ad2e393a7558cff45c2ac3179d824654ea81352f9b0421c9fc1bcbd42e77f",
       "stage_b_gold_label": null
     },
     {
@@ -20808,7 +20808,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In a different document, SSDs could name a software subsystem, not storage drives.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -20851,7 +20851,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_355f5686f2178281893eb6cb"
       },
-      "source_payload_sha256": "cf747de512689019056032aca91a6203509e9fdf9622c6e111f72cd7082209bb",
+      "source_payload_sha256": "c0091bd32240f85d301f3e0b6d928e02e1538c989c587e4e927226da4cf214e5",
       "stage_b_gold_label": null
     },
     {
@@ -21197,7 +21197,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Here, training data means examples used to fit a model, not data for training human staff.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -21240,7 +21240,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_d30763678be8999b747cf0ee"
       },
-      "source_payload_sha256": "77c38aa229dc090ea44c04757dbe034264762775df96f8de08421e2caf1e54a1",
+      "source_payload_sha256": "77b2e934d019f7538fa6bc429a2345a915613060bd27c5462162897a1560ea66",
       "stage_b_gold_label": null
     },
     {
@@ -21809,7 +21809,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic boundary probe: \"two-dimensional cross-correlation operation\" is quoted here only as a document label, not as an occurrence of the reviewed D2L sense.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -21852,7 +21852,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_963a14fc5042969e330bb020"
       },
-      "source_payload_sha256": "70d83677681636b31a84b4fc7a90ff86f09f645fe300245f769129faebe080c3",
+      "source_payload_sha256": "cd7614fc5e852782c550d04b661c49081a6f3038f621f97ecc9703cb64c60504",
       "stage_b_gold_label": null
     },
     {
@@ -22198,7 +22198,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The symbols in byte pair encoding differ from the stock symbols shown on the exchange screen.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -22241,7 +22241,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_6f20c5222ebea4830603817b"
       },
-      "source_payload_sha256": "d507aaf2470bd7dccaa913d95525909580c0ef8b591d15e8936e898bb6e32a7b",
+      "source_payload_sha256": "41e0557d2e1957fff4fca756faa000f44274329c7781ac19fb8e73a02ef8a91e",
       "stage_b_gold_label": null
     },
     {
@@ -22587,7 +22587,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The clerk asked for the weighted average grade, not the simple mean.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -22630,7 +22630,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_a3e7228aef125ec437a840fa"
       },
-      "source_payload_sha256": "4ed7f14c4ae553efee886d6889922cfc92dd583ded8819b71af69d68d5089131",
+      "source_payload_sha256": "44b7f5ea762dbc0e4dfb7a4b5be7fb33014988efd490c180627aa973c910d236",
       "stage_b_gold_label": null
     },
     {
@@ -22976,7 +22976,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The dancers tried to synchronize their steps before the performance.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -23019,7 +23019,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_1edc567804c90f134219a8f0"
       },
-      "source_payload_sha256": "de4c142c0f6776500c2334aaa1e2796427f234c61b3bf3f2b43d1054df1b7a6a",
+      "source_payload_sha256": "d1a52a4422729065c002e8733a931ccb5cce0e68b3c46d69eaa72cbd79b764dd",
       "stage_b_gold_label": null
     },
     {
@@ -23365,7 +23365,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In the castle simulation game, the update gate opens only when engineers install a new software patch.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -23408,7 +23408,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_a47c0fa6efae6f5b3c950575"
       },
-      "source_payload_sha256": "92514359cd412f6f82ba28b86bcb37f6a6fa8a4890be8af3fce80c6174b49b8e",
+      "source_payload_sha256": "97f8ef06a9ea12d743a325f530a02175caa732d6f427563be95ef63eead8db58",
       "stage_b_gold_label": null
     },
     {
@@ -23754,7 +23754,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: A sudden flash acts as a cue, but not a volitional cue, because it captures attention involuntarily.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -23797,7 +23797,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_ad03ff147d19eb2ea47d5b0e"
       },
-      "source_payload_sha256": "a5e802f53a9efa487765a502b09796baa2f5f3cb649b48c00231aa11f1f25de2",
+      "source_payload_sha256": "4461e7868a9d1d451169a7807ffdb119855678ea95fbc468a61df9ffda96b5ac",
       "stage_b_gold_label": null
     },
     {
@@ -24109,7 +24109,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: As a warmup, compute a tiny matrix product before studying asynchronous execution.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -24151,7 +24151,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_6f3afd43e74e8d70778dc0c8"
       },
-      "source_payload_sha256": "3500d8a3bb5c57cebe0d6ceb787678966056f4ce11db926c739c2b279f8cfae6",
+      "source_payload_sha256": "cfef678c4eefb1a0bebd6e96da22dea354adae814c0dd360d46930a2b63adc2e",
       "stage_b_gold_label": null
     }
   ],
@@ -24165,6 +24165,6 @@
   "schema_id": "D2LRemaining100StageAReviewerInputV1",
   "schema_version": "1.0.0",
   "sense_count": 65,
-  "source_input_sha256": "d7993123b9dc89cdc0d57ab54634b53287f7c2e63280e55d46f66018716f03e8",
+  "source_input_sha256": "083c62e645aba62e01b08f7640bcea1e1c9af5d695149cd73644c14e12fe9459",
   "stage_b_gold_autofill_count": 0
 }

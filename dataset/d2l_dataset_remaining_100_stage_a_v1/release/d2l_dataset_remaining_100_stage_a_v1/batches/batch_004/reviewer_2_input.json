@@ -289,7 +289,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "A hyperplane is a generalization to higher dimensions of a line or a plane.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -330,7 +330,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_22496a6fabe26e046ad5d5ac"
       },
-      "source_payload_sha256": "736db03695502d9270c8e0f8f0f53a7f96f586744878516650240b7a8a909d64",
+      "source_payload_sha256": "5a0a7be044d1f70736296acc50ab481c5e8f9abd0cc9c21e106717ac7d2e900e",
       "stage_b_gold_label": null
     },
     {
@@ -676,7 +676,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In filmmaking, ground truth referred to footage shot on location rather than annotated targets.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -719,7 +719,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_d0b3a65c5f21e6064395a475"
       },
-      "source_payload_sha256": "087902cc999b0b3cf58f43a8a93284b2ff54ab341bc7fc37405d7e34bc32d663",
+      "source_payload_sha256": "1e12798467ceb6840478841ab7dc5eeab2aa08b203406e2aeea69945ff2706d9",
       "stage_b_gold_label": null
     },
     {
@@ -1428,7 +1428,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The hidden layer transforms inputs into intermediate features before the output layer produces predictions.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1471,7 +1471,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_401e038a0835f7c5733a9857"
       },
-      "source_payload_sha256": "d30d5d900dcb61e7f6e7ca6c12417bef180dc7f7de819d018e49bc8e1c7768d2",
+      "source_payload_sha256": "78a675fe6389e15493cd700fc6fc9e9675de67d59e44107badbca04e533abefd",
       "stage_b_gold_label": null
     },
     {
@@ -1749,7 +1749,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "The team set up continuous integration, but no one computed an integration over a curve.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1790,7 +1790,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_9372cdb5752db6ba6fa38fbd"
       },
-      "source_payload_sha256": "acc67725ff9c19ea23e88fbe070a88c02446cd5e46c8c080d01da51f9c37bca3",
+      "source_payload_sha256": "5fc45aaff2e4fc535feaa414cff9864f9562a2f08a0fc3eb89df77db6e1fb9ba",
       "stage_b_gold_label": null
     },
     {
@@ -2136,7 +2136,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: During software setup, initialization only created a default configuration file and no model parameters.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2179,7 +2179,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_8373decbb6e405f0386ec8a0"
       },
-      "source_payload_sha256": "a9f6c026c5404ccf1f4cc775c9f1843db73263fd19ef5e9066067d88c5a2d347",
+      "source_payload_sha256": "b3b70dfc8ccd53110c98964069eba5f07eb8747bfcdd1d82012c5ab2195a3c7e",
       "stage_b_gold_label": null
     }
   ],
@@ -2193,6 +2193,6 @@
   "schema_id": "D2LRemaining100StageAReviewerInputV1",
   "schema_version": "1.0.0",
   "sense_count": 6,
-  "source_input_sha256": "8826d307d2dcb2671390ed85a12e1588e85dbed30346978d8818aef80bc7e9ee",
+  "source_input_sha256": "202715e56ad954b331c6c7e0111cff8d46f301410d7c9414be420e1d79baec5e",
   "stage_b_gold_autofill_count": 0
 }

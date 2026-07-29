@@ -357,7 +357,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The robot lost sensory input from its temperature sensor after the cable broke.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -400,7 +400,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_bc240ce7b3e0abeb18f82a6b"
       },
-      "source_payload_sha256": "cdf6b5179dceeab5272249f7cfd8cf3b6f22ea993a6c2642e755548a4520a66e",
+      "source_payload_sha256": "f4fbbebaa10c7ddd388cc75fdc4bd92a69eb41b42cbc5fbc804861dfeffe574d",
       "stage_b_gold_label": null
     },
     {
@@ -508,7 +508,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The network switch connects devices, but to switch off the bias means to disable a model setting.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -544,7 +544,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_91002293cea2184b43995f47"
       },
-      "source_payload_sha256": "410f63c7013eafcc1a4b1b962be6880d3030eeda9d23e624bbe5fc51dfe0d88e",
+      "source_payload_sha256": "ba4ad2e393a7558cff45c2ac3179d824654ea81352f9b0421c9fc1bcbd42e77f",
       "stage_b_gold_label": null
     },
     {
@@ -890,7 +890,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In a different document, SSDs could name a software subsystem, not storage drives.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -933,7 +933,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_355f5686f2178281893eb6cb"
       },
-      "source_payload_sha256": "cf747de512689019056032aca91a6203509e9fdf9622c6e111f72cd7082209bb",
+      "source_payload_sha256": "c0091bd32240f85d301f3e0b6d928e02e1538c989c587e4e927226da4cf214e5",
       "stage_b_gold_label": null
     },
     {
@@ -1279,7 +1279,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Here, training data means examples used to fit a model, not data for training human staff.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1322,7 +1322,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_d30763678be8999b747cf0ee"
       },
-      "source_payload_sha256": "77c38aa229dc090ea44c04757dbe034264762775df96f8de08421e2caf1e54a1",
+      "source_payload_sha256": "77b2e934d019f7538fa6bc429a2345a915613060bd27c5462162897a1560ea66",
       "stage_b_gold_label": null
     },
     {
@@ -1891,7 +1891,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic boundary probe: \"two-dimensional cross-correlation operation\" is quoted here only as a document label, not as an occurrence of the reviewed D2L sense.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1934,7 +1934,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_963a14fc5042969e330bb020"
       },
-      "source_payload_sha256": "70d83677681636b31a84b4fc7a90ff86f09f645fe300245f769129faebe080c3",
+      "source_payload_sha256": "cd7614fc5e852782c550d04b661c49081a6f3038f621f97ecc9703cb64c60504",
       "stage_b_gold_label": null
     },
     {
@@ -2280,7 +2280,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The symbols in byte pair encoding differ from the stock symbols shown on the exchange screen.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2323,7 +2323,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_6f20c5222ebea4830603817b"
       },
-      "source_payload_sha256": "d507aaf2470bd7dccaa913d95525909580c0ef8b591d15e8936e898bb6e32a7b",
+      "source_payload_sha256": "41e0557d2e1957fff4fca756faa000f44274329c7781ac19fb8e73a02ef8a91e",
       "stage_b_gold_label": null
     }
   ],
@@ -2337,6 +2337,6 @@
   "schema_id": "D2LRemaining100StageAReviewerInputV1",
   "schema_version": "1.0.0",
   "sense_count": 7,
-  "source_input_sha256": "18f5b4411acbb6adc65b783d48e2e8ee3ba40d90a69b0c351a84ad000b85a7af",
+  "source_input_sha256": "658b2e30d666a718be25ef9af0a0935542d574b8832e70ab816aed7a5f270615",
   "stage_b_gold_autofill_count": 0
 }

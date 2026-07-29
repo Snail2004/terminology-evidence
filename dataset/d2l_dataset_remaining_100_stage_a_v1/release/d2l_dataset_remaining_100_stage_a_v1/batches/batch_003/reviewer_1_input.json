@@ -323,7 +323,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The company changed the distribution of books across its retail stores last month.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -365,7 +365,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_c47822c187c02e12aa499ec6"
       },
-      "source_payload_sha256": "2931b99038529f1780d9fda65f3441eddc98b1e1c87fb6d271b7ce95e39bef05",
+      "source_payload_sha256": "86cfef0585b48cfd7022b344d4f37855007cd04aef49a9af117579092a56dd78",
       "stage_b_gold_label": null
     },
     {
@@ -711,7 +711,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The project has a software dependency on a plotting library, which is a package requirement rather than the relation discussed here.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -754,7 +754,7 @@
         "stratum": "clear",
         "term_id": "d2lce_144baca5ccb9be2154705e92"
       },
-      "source_payload_sha256": "4684d35850c9db0a7b229e3c43e2251a689d8964a4a4893442c5ee0122eeac13",
+      "source_payload_sha256": "6e37d88f06d973e2b6d02b92f547982e928bf3c20f3e68f3cec2b3ebc2414fbb",
       "stage_b_gold_label": null
     },
     {
@@ -1100,7 +1100,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: This project runs on any GPU library, so 'CUDA' here would not refer to the specific NVIDIA platform.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1143,7 +1143,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_ebd36388b50538b928ebbb4a"
       },
-      "source_payload_sha256": "95855a94ebfd4e0377c82d7a0b045a4e4d4ce07f3197266167a81b98482b9817",
+      "source_payload_sha256": "d3db287c636c05e0ab3e75bc8f640cecae32441d4859b9f19a4cacc9a81b52b7",
       "stage_b_gold_label": null
     },
     {
@@ -1489,7 +1489,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The sound engineer discussed the decomposition of the audio signal, not its eigendecomposition.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1532,7 +1532,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_10d4d01fa40b67d92527e5ed"
       },
-      "source_payload_sha256": "f1dc279ae67dae9d2ae4732731e858c7ba9cb04b44ac40ea45bffc24ba4ba1a3",
+      "source_payload_sha256": "33a96fda2755533ec4217488f861996d3589d03822fd2f60885e81c28f1aaf8c",
       "stage_b_gold_label": null
     },
     {
@@ -1878,7 +1878,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The museum exhibit focused on feature interactions between carved surfaces and light, not data fields.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1921,7 +1921,7 @@
         "stratum": "clear",
         "term_id": "d2lce_8de4d36bcb2f1ad2291dd52e"
       },
-      "source_payload_sha256": "82f6cb75fd180e6a18c6eb4e8e28e843722bb76aefb8c976afd166a58c7a8d40",
+      "source_payload_sha256": "d66195837437cd11005fe5563c3c65a5eb9a61c8c0d2c2507c6576f5008c654f",
       "stage_b_gold_label": null
     },
     {
@@ -2267,7 +2267,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The lab used a dense net to catch fish, which is unrelated to DenseNet.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2310,7 +2310,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_20dc13bc32661f00e7c68b89"
       },
-      "source_payload_sha256": "af604cff3981aa4e3f18347a40d179e7e1e8502a0dd4407bf050e5b9e9084a9a",
+      "source_payload_sha256": "d00f180f8db8272e9ec345d86b3d9e8569cd5af626508cd7175ad4cf2d9ba118",
       "stage_b_gold_label": null
     },
     {
@@ -2588,7 +2588,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic boundary probe: \"forward propagation\" is quoted here only as a document label, not as an occurrence of the reviewed D2L sense.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2629,7 +2629,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_fbe9efe0d390976cb31e5af7"
       },
-      "source_payload_sha256": "200f4b13d6d509cf109859b1f0a4e3c8df9061aecaa20e7c55563672d14e9979",
+      "source_payload_sha256": "77d58d48d02b6d369ce60d46272631851debb484f9d7787b09b19fead659a981",
       "stage_b_gold_label": null
     },
     {
@@ -3303,7 +3303,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In logic class, entailment is discussed as a formal relation, while here entailment is a dataset label between premise and hypothesis.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -3346,7 +3346,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_ca2ca961829e131bbc0fd92b"
       },
-      "source_payload_sha256": "6a7165743a5d3785a1d346a7b56b11a4fc4484d03813dedcb8e3120e0fe0aa0d",
+      "source_payload_sha256": "a94cc63e90da333747f932ac7593d8518cab73d8d136df76e42aab19a9023d77",
       "stage_b_gold_label": null
     },
     {
@@ -3692,7 +3692,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The frontend of the building was renovated last year.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -3735,7 +3735,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_24988c975f984ef488776c0b"
       },
-      "source_payload_sha256": "86188f1d342d1f55c8827801c5cf15155003ab61c29f6a4b39d23fbe3aec116e",
+      "source_payload_sha256": "090b0f54d6c80a3fca1ed96f50dc9b05b2d0fd9cec814cffe8d32db1a0517401",
       "stage_b_gold_label": null
     }
   ],
@@ -3749,6 +3749,6 @@
   "schema_id": "D2LRemaining100StageAReviewerInputV1",
   "schema_version": "1.0.0",
   "sense_count": 10,
-  "source_input_sha256": "cba1cb7f2b7aeb6e5fd4d5edba93a26b6d98ddbfeefba0c0c7c03954eba8f0d9",
+  "source_input_sha256": "8604c53c17fb7a007c00f1554cd8d0a64a876aceb279e0b7b30f865ca03ee5bd",
   "stage_b_gold_autofill_count": 0
 }

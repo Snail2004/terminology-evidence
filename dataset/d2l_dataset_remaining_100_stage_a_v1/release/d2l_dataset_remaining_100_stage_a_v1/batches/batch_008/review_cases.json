@@ -317,7 +317,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "[Synthetic] The shape of the tensor is (2, 3), whereas the shape of the curve is S-like.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -644,7 +644,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The bounding box positions are given as four coordinates.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1004,7 +1004,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The region of interest pooling layer pools each proposed box, whereas ordinary pooling layers pool over a regular feature map neighborhood.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1365,7 +1365,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In this chapter, SSD refers to Single Shot Multibox Detection, not a storage drive.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1726,7 +1726,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The representation from the hidden layer improved classification, but the elected representation changed after the vote.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2087,7 +2087,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The encoder-decoder for JPEG compression is not an RNN encoder-decoder.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2448,7 +2448,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In these contexts, standardization means rescaling numeric data, not enforcing a social or industrial standard.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2809,7 +2809,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In finance, the risk of default was estimated before approving the loan.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -3170,7 +3170,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The second derivative in a pricing spreadsheet was left blank because no calculus was being applied.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -3531,7 +3531,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The museum studied style transfer across generations of painters, without generating any images computationally.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {

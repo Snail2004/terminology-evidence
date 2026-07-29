@@ -357,7 +357,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Although stored in a table, these customer records are not sequence data because the row order carries no meaning.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -400,7 +400,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_b85d9a7a642afee03175796f"
       },
-      "source_payload_sha256": "bc4ce804366797b3d84fb2829fb50159102d094e5dfe09444e355879850a77c5",
+      "source_payload_sha256": "d0e97e73ffd1ad24ba15e2b45d985fa28878e507c50fede434ac80d889ad918a",
       "stage_b_gold_label": null
     },
     {
@@ -746,7 +746,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The training objective is to minimize prediction error plus regularization.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -789,7 +789,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_cf168d11faf5e675efa7e0a3"
       },
-      "source_payload_sha256": "a39469e1c654fe8846e9973a47b5f36abc386d873c6e01c6ee25a7bbc73d0a21",
+      "source_payload_sha256": "15cc64315849159994e8c576a841b546ba5c6935747141ba2f498ff950517453",
       "stage_b_gold_label": null
     },
     {
@@ -1033,7 +1033,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The frames are sequential, but the model is not built with Sequential.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1073,7 +1073,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_40a50503f2fdc79aa0a549fc"
       },
-      "source_payload_sha256": "aa59346f7f10bcfd5e4cab0a6efe7f041eebd878750df7ce8ea248ad2a115a3b",
+      "source_payload_sha256": "07726426785ebf49cd76d933b87cb2a6bdd43bee042894a02edaa629227538c9",
       "stage_b_gold_label": null
     },
     {
@@ -1385,7 +1385,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Her observation about the lecture was insightful.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1427,7 +1427,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_4f85955c4fd10e184dc97d32"
       },
-      "source_payload_sha256": "f8f8140df2cc20ed3074f75c3f52331a89fee2d590313a6a6c0b940e19847343",
+      "source_payload_sha256": "52bbee56edb951aaa484eef2bb62567d015f40575761df8fc56c4c00ffc0b0a8",
       "stage_b_gold_label": null
     },
     {
@@ -1773,7 +1773,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: With sequential partitioning, neighboring minibatches keep neighboring subsequences from the original sequence, unlike random sampling.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1816,7 +1816,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_e8992d8478a28e673fe551dc"
       },
-      "source_payload_sha256": "4a78dc7464df8618b9a0759e1df4245bef942018ced9e2db3cf3a1f47a0529ac",
+      "source_payload_sha256": "cc2db4dd4bf58bf256c000eeb3b7f6fe274cbfb7e249bf23c47d1f1f2576e4fb",
       "stage_b_gold_label": null
     },
     {
@@ -2162,7 +2162,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In accounting, offsets are balancing entries that reduce a debt rather than position shifts.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2205,7 +2205,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_e749bbd007351d6963f2bbd0"
       },
-      "source_payload_sha256": "ae92814b30a9d04886b4462f7c94f1a688be11f783ca4d07aa5da357777a0076",
+      "source_payload_sha256": "afa20d5fe80bdce7f2603e1185d8766e288bd7fb30773775222a0d2ff311a10a",
       "stage_b_gold_label": null
     }
   ],
@@ -2219,6 +2219,6 @@
   "schema_id": "D2LRemaining100StageAReviewerInputV1",
   "schema_version": "1.0.0",
   "sense_count": 6,
-  "source_input_sha256": "6be60a7d523f417025ebe38607d9390590daf91cab6505ba02fb0d1903c91aec",
+  "source_input_sha256": "766f0dee7634b8f4e02b668b7b7e92317ea5b9e2dd17051b42951fa5545fb3c6",
   "stage_b_gold_autofill_count": 0
 }

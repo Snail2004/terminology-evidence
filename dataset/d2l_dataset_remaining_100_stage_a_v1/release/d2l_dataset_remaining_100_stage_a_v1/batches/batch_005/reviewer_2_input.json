@@ -357,7 +357,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Here, linear regression means predicting with a linear function of features, not logistic regression for classification.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -400,7 +400,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_d8d3db5e12791f4de99286be"
       },
-      "source_payload_sha256": "612e5e9fb946959412d6577072e2138e9604fe278fe526442f0302cb84e82cca",
+      "source_payload_sha256": "be1fb81371568277f53c061e2979b1cf37bb77359165567249217b9a90f9cec2",
       "stage_b_gold_label": null
     },
     {
@@ -746,7 +746,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In the sentence, the inverse word order sounds poetic.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -789,7 +789,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_98211ac6b2c27c6359ce6dae"
       },
-      "source_payload_sha256": "26da55ac8d0aa6616c6ca60f2f1076df8e6e179563975f09a5bc69e9d3977116",
+      "source_payload_sha256": "fa6e830fd5908e49720c599a2ad697b79740ce106d8f2a217c3a5f022a8057a6",
       "stage_b_gold_label": null
     },
     {
@@ -1135,7 +1135,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The workshop offered multi-GPU training for new lab technicians learning hardware maintenance.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1178,7 +1178,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_6898a7f7f35ca368f75fda48"
       },
-      "source_payload_sha256": "9a5f68a20ed9da604bb4bafc8b1ec8a121650e21f64d39dc9379470771192a7c",
+      "source_payload_sha256": "99dd27706a59150e911d6499d9949dfdb1cc0d91fb90e08b131bf826bb0af2ba",
       "stage_b_gold_label": null
     },
     {
@@ -1524,7 +1524,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In literary editing, the second iteration of the poem changed its tone.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1567,7 +1567,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_c3c46748b1a49e32c07ca9d7"
       },
-      "source_payload_sha256": "d4addf61276190c149ad2c729d4c077039cfb9a88ef7813dfc6c2d99d6fa9e2f",
+      "source_payload_sha256": "912b92ab087d37e926068c8178fc49124074f72358dee518fab1bed54f8f25bd",
       "stage_b_gold_label": null
     },
     {
@@ -1913,7 +1913,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The phrase natural language processing here refers to a computing field, not to a person informally polishing everyday speech.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1956,7 +1956,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_609638f74bc5b32d32469bbc"
       },
-      "source_payload_sha256": "82bc8911c753e81ec96818cd1ad1a06fd66abf0ec564e3a2af510b6208730e98",
+      "source_payload_sha256": "a3dbf730a4cd75ba40a33da8decf61baad5ff2c1be299c08833dfeb7bd21efff",
       "stage_b_gold_label": null
     },
     {
@@ -2630,7 +2630,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Here, noise words are sampled negative examples rather than merely messy or misspelled words in a corpus.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2673,7 +2673,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_5c270f3b3ebe4f0059649e18"
       },
-      "source_payload_sha256": "21b0127fd58e61e99c424e0617002f29932ce955932d1d80a92c424d8ea2dddd",
+      "source_payload_sha256": "1f44a99be331cd79d5ae0e9f88b6d3424af6911b94950bd0a94a366ba3c6fb7d",
       "stage_b_gold_label": null
     }
   ],
@@ -2687,6 +2687,6 @@
   "schema_id": "D2LRemaining100StageAReviewerInputV1",
   "schema_version": "1.0.0",
   "sense_count": 7,
-  "source_input_sha256": "0e69edbcf035e9b8d2ff76af08f4807db7370845b0c03da72057c79d7237346a",
+  "source_input_sha256": "a8058e513d499fb8755c0fbf5c5159e4ccd359281e11786c443bc9cb49345998",
   "stage_b_gold_autofill_count": 0
 }

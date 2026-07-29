@@ -317,7 +317,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In philosophy, a person's language model of the world may shape how they speak.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -678,7 +678,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In the climate model, cloud cover was treated as a fixed model parameter chosen by the researchers.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1039,7 +1039,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In this chapter, question answering means an NLP task, not a classroom habit of students answering a teacher’s questions.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1400,7 +1400,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In this chapter, matrix factorization predicts user–item preferences by learning latent factors from an interaction matrix.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1727,7 +1727,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In a company dashboard, MSE could be an internal project code, not mean squared error.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2087,7 +2087,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: Here, regression means the predictive method, not just the specific fitted formula written after training.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2448,7 +2448,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The file extension .mlp here does not refer to an MLP neural network.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2809,7 +2809,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: Object detection is the task, while an object detection model is the trained network that performs it.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -3170,7 +3170,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: Semantic segmentation labels every pixel, whereas object detection only draws boxes around objects.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -3531,7 +3531,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In psychology, a nonvolitional cue can pull attention to a bright object even when the observer intends to look elsewhere.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {

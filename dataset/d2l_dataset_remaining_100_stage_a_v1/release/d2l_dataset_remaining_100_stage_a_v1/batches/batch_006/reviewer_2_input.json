@@ -357,7 +357,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In philosophy, a person's language model of the world may shape how they speak.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -400,7 +400,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_a7105fea7b2b3447548b6d7a"
       },
-      "source_payload_sha256": "ee5fe459749779ca77f4e611361be6d668138f05b2a863f627a71f9b89e0a137",
+      "source_payload_sha256": "30370199e55033a1ab91142a4df34019031801fdfb66245344fe689d1d61d95b",
       "stage_b_gold_label": null
     },
     {
@@ -746,7 +746,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In this chapter, question answering means an NLP task, not a classroom habit of students answering a teacher’s questions.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -789,7 +789,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_41109297e6bf8f44d9bb9178"
       },
-      "source_payload_sha256": "26a1249f0a5ef3e2bc874fe67cba288f0b41f9a24ce2552a648558de6b338ee8",
+      "source_payload_sha256": "749da73d3402336a295ce6395a946cb2211af58697bc6caa0ef6f30d11212ae3",
       "stage_b_gold_label": null
     },
     {
@@ -1135,7 +1135,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In this chapter, matrix factorization predicts user–item preferences by learning latent factors from an interaction matrix.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1178,7 +1178,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_bbf89ef89c96205886255dcf"
       },
-      "source_payload_sha256": "d523224721ba0bc99daf47b2614df7bd0b72e855060c57e2518eb1e036b833fd",
+      "source_payload_sha256": "e83b31f125de1eca6a845668c6c114160831437f7591b866a035ac0c8cdfacbe",
       "stage_b_gold_label": null
     },
     {
@@ -1524,7 +1524,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Here, regression means the predictive method, not just the specific fitted formula written after training.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1567,7 +1567,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_3b6a75bdbf023ea1f3ed2cc8"
       },
-      "source_payload_sha256": "df0d2c74c45735968d0807ca7eee77bf6ff93a8894e50f0b100b63584e29bdde",
+      "source_payload_sha256": "c00e2372a520620dd00ee5cee79603966b52ec1e4c62c96830c1c5de808c961b",
       "stage_b_gold_label": null
     },
     {
@@ -1913,7 +1913,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: The file extension .mlp here does not refer to an MLP neural network.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -1956,7 +1956,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_0ac8f3308547fb001c31e869"
       },
-      "source_payload_sha256": "0ec49eaa1237c365a3a7c0cd7f0fd0f291bcafc676b868400106575ff6601875",
+      "source_payload_sha256": "4da2b33a5f8690e10bffca127f076837da94d3abf685a6dfd8403fbae09eba74",
       "stage_b_gold_label": null
     },
     {
@@ -2302,7 +2302,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: Semantic segmentation labels every pixel, whereas object detection only draws boxes around objects.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2345,7 +2345,7 @@
         "stratum": "ambiguous",
         "term_id": "d2lce_2e41378b04489016bfe5707a"
       },
-      "source_payload_sha256": "2f513fd2b1d37e7668abd1a5605dff7079bdce3dd1cc030b84b83829f1f75fc3",
+      "source_payload_sha256": "8b37d7ff6183038e349c5a728d4318051ca76b692aaa342c6ea62a90bc134fcb",
       "stage_b_gold_label": null
     },
     {
@@ -2691,7 +2691,7 @@
             "source_match_end_absolute": null,
             "source_match_start_absolute": null,
             "source_text": "Synthetic: In psychology, a nonvolitional cue can pull attention to a bright object even when the observer intends to look elsewhere.",
-            "synthetic": false
+            "synthetic": true
           }
         ],
         "parent_binding": {
@@ -2734,7 +2734,7 @@
         "stratum": "collision_or_multi_target",
         "term_id": "d2lce_abae8f75b732ffe9c8a965c0"
       },
-      "source_payload_sha256": "b6320c9039ff14b7774dd9c98bf60e5cad63a30df51d62f4fdd9375986634c9d",
+      "source_payload_sha256": "f4bdb342453ed9a20e25346dbe2d0b6572206915e473c516929f7432a3ffbd0a",
       "stage_b_gold_label": null
     }
   ],
@@ -2748,6 +2748,6 @@
   "schema_id": "D2LRemaining100StageAReviewerInputV1",
   "schema_version": "1.0.0",
   "sense_count": 7,
-  "source_input_sha256": "a123b80c415833825ce7ea616ec771373384ae751aca84092395314fbfbae98a",
+  "source_input_sha256": "f63cca6d51622d2d70fb04c9d9d99a26ff2a81ccda7182e1f2c36e5430a1a8e2",
   "stage_b_gold_autofill_count": 0
 }

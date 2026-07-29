@@ -317,7 +317,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The robot lost sensory input from its temperature sensor after the cable broke.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -678,7 +678,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The sigmoid activation function should not be confused with a hard threshold step function.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -801,7 +801,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The network switch connects devices, but to switch off the bias means to disable a model setting.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1155,7 +1155,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In a different document, SSDs could name a software subsystem, not storage drives.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1516,7 +1516,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: In urban planning, spatial dimensions of the park included walking distance and visual openness.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -1877,7 +1877,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: Here, training data means examples used to fit a model, not data for training human staff.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2433,7 +2433,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The news article discussed political bias, not statistical bias.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -2794,7 +2794,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic boundary probe: \"two-dimensional cross-correlation operation\" is quoted here only as a document label, not as an occurrence of the reviewed D2L sense.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
@@ -3155,7 +3155,7 @@
         "source_match_end_absolute": null,
         "source_match_start_absolute": null,
         "source_text": "Synthetic: The symbols in byte pair encoding differ from the stock symbols shown on the exchange screen.",
-        "synthetic": false
+        "synthetic": true
       }
     ],
     "parent_binding": {
