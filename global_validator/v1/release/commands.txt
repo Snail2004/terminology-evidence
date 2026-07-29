@@ -1,8 +1,11 @@
 $env:PYTHONPATH = "$PWD;$PWD\terminology_contracts_v1\python"
-python -m pytest -q global_validator\v1\tests --junitxml=global_validator\v1\release\junit.xml
-python -m pytest -q terminology_contracts_v1\tests
+$env:PYTHONDONTWRITEBYTECODE = "1"
+$env:PYTEST_DISABLE_PLUGIN_AUTOLOAD = "1"
+$env:TERMINOLOGY_DATASET_ROOT = "E:\Data-KL"
+python -m pytest -q global_validator\v1\tests --junitxml=global_validator\v1\release\global_junit.xml
+python -m pytest -q terminology_contracts_v1\tests terminology_contracts_v1\release\authority_maintenance_v1\tests --junitxml=global_validator\v1\release\contracts_junit.xml
 python -m compileall -q global_validator
 python -m global_validator.v1.cli --help
 python -m pip wheel --no-deps --no-build-isolation .\global_validator --wheel-dir <temp-wheel-dir>
-python -m global_validator.v1.tools.build_release_evidence --repository-root . --authority-receipt terminology_contracts_v1\release\v1.1.0-final\contracts_v1_1_0_authority_receipt_r2.json --output-dir global_validator\v1\release
+python -m global_validator.v1.tools.build_release_evidence --repository-root . --authority-receipt terminology_contracts_v1\release\v1.1.0-final\contracts_v1_1_0_authority_receipt_r2.json --output-dir global_validator\v1\release --global-junit global_validator\v1\release\global_junit.xml --contracts-junit global_validator\v1\release\contracts_junit.xml
 git diff --check

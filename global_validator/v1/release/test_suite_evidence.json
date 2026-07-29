@@ -1,0 +1,29 @@
+{
+  "contracts": {
+    "errors": 0,
+    "failures": 0,
+    "identity_sha256": "a3ac806065590af4627daaca3b2cb542666320d8ed2c4dfed54261d1130fbde1",
+    "path": "contracts_junit.xml",
+    "physical_sha256": "95e5b36585d045504e24dd60a4830fb9f59f3183444661500c2eaac6a964ca64",
+    "skipped": 0,
+    "test_count": 145
+  },
+  "contracts_identity_source_sha256": "a3ac806065590af4627daaca3b2cb542666320d8ed2c4dfed54261d1130fbde1",
+  "global": {
+    "errors": 0,
+    "failures": 0,
+    "identity_sha256": "a82d5ad1cb815c90a271a8c7c6e4223957ed28cb372950dc6f89b226d07dc854",
+    "path": "global_junit.xml",
+    "physical_sha256": "54603c517bcd23c3720ad0dade3e9909d71e79aedd0a7008e51269a72a836009",
+    "skipped": 0,
+    "test_count": 80
+  },
+  "global_identity_source_sha256": "a82d5ad1cb815c90a271a8c7c6e4223957ed28cb372950dc6f89b226d07dc854",
+  "integrity": {
+    "self_sha256": "e568ab7cba1f5ed47739583cd49a60d778b500c9dc79ad314202b08e278cdfb0"
+  },
+  "provider_call_count": 0,
+  "schema_id": "GlobalValidatorTestSuiteEvidenceV1",
+  "schema_version": "1.0.0",
+  "source_commit": "b35825d1166da630aa9e8b7d551907bbee0b1864"
+}

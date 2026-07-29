@@ -1,7 +1,8 @@
 {
   "action_policy_authority_sha256": "1fca452c0604b7f41e9ffab72de0c134b108c52cafed279153bd7e98a0e8994a",
+  "current_global_commit": "b35825d1166da630aa9e8b7d551907bbee0b1864",
   "external_blockers": {
-    "canonical_authority_receipt": "CLOSED",
+    "canonical_authority_receipt": "PENDING_EXTERNAL_CONTRACT_REVIEW",
     "human_frozen_calibration": "OPEN",
     "real_dataset_c_e_global_input_pilot": "OPEN"
   },
@@ -16,7 +17,7 @@
     "P1-GV-6": "CLOSED_BY_INDEPENDENT_GIT_REGATE"
   },
   "integrity": {
-    "self_sha256": "2d83bd0af885fd689ee9faaca009e3f3b103bd809da2c1f789157df186e53ff2"
+    "self_sha256": "49d9da64dd2297df5c9725a0ddcde5fdac3c8567c2e6ed8fcdc6920964146819"
   },
   "provider_call_count": 0,
   "review_audit_sha256": "dee38537fdd8055f81862292c0044d7463a4446869b93da1bbf68d2ab53f0886",

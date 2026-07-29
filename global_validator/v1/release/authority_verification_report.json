@@ -4,12 +4,33 @@
   "contract_version": "1.1.0",
   "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
   "integrity": {
-    "self_sha256": "7101d8b301d15fe7d97863b5681abfc5b0f2b36c6cfa1904d403cb395f7191f2"
+    "self_sha256": "a3c17448b713f0b1a0b60cc30354f1ccd8c667a6651390122d918ca555c9524f"
   },
   "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
   "receipt_integrity_mode": "CANONICAL_SELF_HASH",
   "schema_id": "GlobalValidatorAuthorityVerificationReportV1",
   "schema_version": "1.0.0",
+  "source_commit": "b35825d1166da630aa9e8b7d551907bbee0b1864",
   "status": "PASS",
+  "test_evidence": {
+    "contracts": {
+      "errors": 0,
+      "failures": 0,
+      "identity_sha256": "a3ac806065590af4627daaca3b2cb542666320d8ed2c4dfed54261d1130fbde1",
+      "path": "contracts_junit.xml",
+      "physical_sha256": "95e5b36585d045504e24dd60a4830fb9f59f3183444661500c2eaac6a964ca64",
+      "skipped": 0,
+      "test_count": 145
+    },
+    "global": {
+      "errors": 0,
+      "failures": 0,
+      "identity_sha256": "a82d5ad1cb815c90a271a8c7c6e4223957ed28cb372950dc6f89b226d07dc854",
+      "path": "global_junit.xml",
+      "physical_sha256": "54603c517bcd23c3720ad0dade3e9909d71e79aedd0a7008e51269a72a836009",
+      "skipped": 0,
+      "test_count": 80
+    }
+  },
   "warnings": []
 }

@@ -1,10 +1,18 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import os
+import platform
 import socket
+import subprocess
+import sys
 import tempfile
+import xml.etree.ElementTree as ET
+from dataclasses import dataclass
 from pathlib import Path
+from shutil import copyfile
 from typing import Any
 
 from terminology_contracts.integrity import seal_self_hash
@@ -17,24 +25,96 @@ from ..engine import run_global_validator
 from ..gates import load_gate_action_policy
 from ..testing import load_base_input, make_candidate_input
 
+# 68 is the reviewed baseline.  The current source identity set is authoritative
+# after a focused regression adds tests; it must never shrink below this baseline.
+EXPECTED_GLOBAL_TEST_COUNT = 68
+EXPECTED_CONTRACTS_TEST_COUNT = 145
+
+
+@dataclass(frozen=True)
+class TestSuiteEvidence:
+    path: Path
+    physical_sha256: str
+    test_count: int
+    failures: int
+    errors: int
+    skipped: int
+    identity_sha256: str
+
+    def as_dict(self, *, artifact_name: str | None = None) -> dict[str, Any]:
+        return {
+            "path": artifact_name or self.path.name,
+            "physical_sha256": self.physical_sha256,
+            "test_count": self.test_count,
+            "failures": self.failures,
+            "errors": self.errors,
+            "skipped": self.skipped,
+            "identity_sha256": self.identity_sha256,
+        }
+
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repository-root", type=Path, required=True)
     parser.add_argument("--authority-receipt", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--global-junit", type=Path, required=True)
+    parser.add_argument("--contracts-junit", type=Path, required=True)
     args = parser.parse_args()
     build_release_evidence(
         args.repository_root.resolve(),
         args.authority_receipt.resolve(),
         args.output_dir.resolve(),
+        global_junit=args.global_junit.resolve(),
+        contracts_junit=args.contracts_junit.resolve(),
     )
     return 0
 
 
 def build_release_evidence(
-    repository_root: Path, authority_receipt: Path, output_dir: Path
+    repository_root: Path,
+    authority_receipt: Path,
+    output_dir: Path,
+    *,
+    global_junit: Path | None = None,
+    contracts_junit: Path | None = None,
 ) -> None:
+    if global_junit is None or contracts_junit is None:
+        raise ValueError(
+            "global_junit and contracts_junit are required for release evidence"
+        )
+    global_identities = _collect_test_identities(
+        repository_root, ["global_validator/v1/tests"]
+    )
+    contracts_identities = _collect_test_identities(
+        repository_root,
+        [
+            "terminology_contracts_v1/tests",
+            "terminology_contracts_v1/release/authority_maintenance_v1/tests",
+        ],
+    )
+    global_evidence = _verify_junit(
+        global_junit,
+        expected_count=_current_expected_count(
+            global_identities, minimum=EXPECTED_GLOBAL_TEST_COUNT
+        ),
+        expected_identities=global_identities,
+    )
+    contracts_evidence = _verify_junit(
+        contracts_junit,
+        expected_count=EXPECTED_CONTRACTS_TEST_COUNT,
+        expected_identities=contracts_identities,
+    )
+    global_evidence_payload = global_evidence.as_dict(
+        artifact_name="global_junit.xml"
+    )
+    contracts_evidence_payload = contracts_evidence.as_dict(
+        artifact_name="contracts_junit.xml"
+    )
+    source_commit = _git_head(repository_root)
+    commands_sha256 = _sha256_file(
+        repository_root / "global_validator" / "v1" / "release" / "commands.txt"
+    )
     authority = verify_authority(
         authority_receipt,
         repository_root / "terminology_contracts_v1",
@@ -178,6 +258,11 @@ def build_release_evidence(
             "gate_policy_artifact_sha256": action_policy.gate_policy_artifact_sha256,
             "receipt_integrity_mode": authority.receipt_integrity_mode,
             "warnings": list(authority.warnings),
+            "source_commit": source_commit,
+            "test_evidence": {
+                "global": global_evidence_payload,
+                "contracts": contracts_evidence_payload,
+            },
         },
         "gate_projection_report.json": {
             "schema_id": "GlobalValidatorGateProjectionReportV1",
@@ -258,6 +343,7 @@ def build_release_evidence(
             "reviewed_artifact_commit": (
                 "056b520ede25c40aa3c72ca9785dccecab4691d3"
             ),
+            "current_global_commit": source_commit,
             "rework_parent_commit": (
                 "4cd7930b56fff334b9e790550cbb8e17c373613f"
             ),
@@ -279,18 +365,237 @@ def build_release_evidence(
                 "P1-GV-6": "CLOSED_BY_INDEPENDENT_GIT_REGATE",
             },
             "external_blockers": {
-                "canonical_authority_receipt": "CLOSED",
+                "canonical_authority_receipt": "PENDING_EXTERNAL_CONTRACT_REVIEW",
                 "human_frozen_calibration": "OPEN",
                 "real_dataset_c_e_global_input_pilot": "OPEN",
             },
             "provider_call_count": network_attempts,
         },
+        "test_suite_evidence.json": {
+            "schema_id": "GlobalValidatorTestSuiteEvidenceV1",
+            "source_commit": source_commit,
+            "global": global_evidence_payload,
+            "contracts": contracts_evidence_payload,
+            "global_identity_source_sha256": _identity_sha256(global_identities),
+            "contracts_identity_source_sha256": _identity_sha256(
+                contracts_identities
+            ),
+            "provider_call_count": network_attempts,
+        },
+        "environment.json": {
+            "schema_id": "GlobalValidatorReleaseEnvironmentV1",
+            "source_commit": source_commit,
+            "python_version": platform.python_version(),
+            "platform": platform.platform(),
+            "python_dont_write_bytecode": os.environ.get(
+                "PYTHONDONTWRITEBYTECODE"
+            ),
+            "terminology_dataset_root": os.environ.get(
+                "TERMINOLOGY_DATASET_ROOT"
+            ),
+            "commands_physical_sha256": commands_sha256,
+            "provider_call_count": network_attempts,
+            "network_calls": 0,
+        },
     }
     output_dir.mkdir(parents=True, exist_ok=True)
+    _copy_junit(global_junit, output_dir / "global_junit.xml")
+    _copy_junit(contracts_junit, output_dir / "contracts_junit.xml")
+    _copy_junit(global_junit, output_dir / "junit.xml")
     for filename, report in reports.items():
         report["schema_version"] = "1.0.0"
         report["integrity"] = {"self_sha256": "0" * 64}
         _write_json(output_dir / filename, seal_self_hash(report))
+
+
+def _collect_test_identities(
+    repository_root: Path, paths: list[str]
+) -> tuple[str, ...]:
+    environment = os.environ.copy()
+    environment["PYTHONDONTWRITEBYTECODE"] = "1"
+    environment["PYTEST_DISABLE_PLUGIN_AUTOLOAD"] = "1"
+    try:
+        result = subprocess.run(
+            [sys.executable, "-m", "pytest", "--collect-only", "-q", *paths],
+            cwd=repository_root,
+            check=False,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            env=environment,
+        )
+    except (OSError, subprocess.SubprocessError) as exc:
+        raise RuntimeError(f"cannot collect current test identities: {exc}") from exc
+    if result.returncode != 0:
+        raise RuntimeError(
+            "current test identity collection failed:\n"
+            + result.stdout
+            + result.stderr
+        )
+    identities: list[str] = []
+    for line in result.stdout.splitlines():
+        line = line.strip()
+        if "::" not in line or line.startswith("="):
+            continue
+        node_path, test_name = line.split("::", 1)
+        normalized = node_path.replace("\\", "/")
+        if not normalized.endswith(".py"):
+            continue
+        module_name = ".".join(normalized[:-3].split("/"))
+        identities.append(f"{module_name}::{test_name}")
+    if not identities or len(set(identities)) != len(identities):
+        raise RuntimeError("current test identity collection is empty or duplicated")
+    return tuple(sorted(identities))
+
+
+def _verify_junit(
+    path: Path,
+    *,
+    expected_count: int,
+    expected_identities: tuple[str, ...],
+) -> TestSuiteEvidence:
+    if not path.is_file():
+        raise ValueError(f"JUnit evidence is missing: {path}")
+    try:
+        root = ET.parse(path).getroot()
+    except (OSError, ET.ParseError) as exc:
+        raise ValueError(f"JUnit evidence is invalid: {path}: {exc}") from exc
+    if root.tag not in {"testsuite", "testsuites"}:
+        raise ValueError(f"JUnit root element is unsupported: {root.tag}")
+    testcases = root.findall(".//testcase")
+    identities: list[str] = []
+    failures = errors = skipped = 0
+    for index, testcase in enumerate(testcases):
+        classname = testcase.get("classname")
+        name = testcase.get("name")
+        if not classname or not name:
+            raise ValueError(f"JUnit testcase {index} has no identity")
+        identities.append(f"{classname}::{name}")
+        failures += len(testcase.findall("./failure"))
+        errors += len(testcase.findall("./error"))
+        skipped += len(testcase.findall("./skipped"))
+    _verify_junit_counters(
+        root,
+        tests=len(testcases),
+        failures=failures,
+        errors=errors,
+        skipped=skipped,
+    )
+    if len(testcases) != expected_count:
+        raise ValueError(
+            f"JUnit test count mismatch for {path}: expected {expected_count}, "
+            f"got {len(testcases)}"
+        )
+    if failures or errors or skipped:
+        raise ValueError(
+            f"JUnit is not a clean gate for {path}: failures={failures}, "
+            f"errors={errors}, skipped={skipped}"
+        )
+    actual = tuple(sorted(identities))
+    expected = tuple(sorted(expected_identities))
+    if actual != expected:
+        missing = sorted(set(expected) - set(actual))
+        extra = sorted(set(actual) - set(expected))
+        raise ValueError(
+            f"JUnit identity set mismatch for {path}: "
+            f"missing={missing[:3]}, extra={extra[:3]}"
+        )
+    return TestSuiteEvidence(
+        path=path.resolve(),
+        physical_sha256=_sha256_file(path),
+        test_count=len(testcases),
+        failures=failures,
+        errors=errors,
+        skipped=skipped,
+        identity_sha256=_identity_sha256(actual),
+    )
+
+
+def _identity_sha256(identities: tuple[str, ...] | list[str]) -> str:
+    return hashlib.sha256(("\n".join(sorted(identities)) + "\n").encode()).hexdigest()
+
+
+def _current_expected_count(
+    identities: tuple[str, ...], *, minimum: int
+) -> int:
+    count = len(identities)
+    if count < minimum:
+        raise RuntimeError(
+            f"current test identity set is below the reviewed baseline: "
+            f"expected at least {minimum}, got {count}"
+        )
+    return count
+
+
+def _verify_junit_counters(
+    root: ET.Element,
+    *,
+    tests: int,
+    failures: int,
+    errors: int,
+    skipped: int,
+) -> None:
+    aggregate = {
+        "tests": tests,
+        "failures": failures,
+        "errors": errors,
+        "skipped": skipped,
+    }
+    _verify_declared_counters(root, aggregate)
+    for suite in root.findall(".//testsuite"):
+        cases = suite.findall("./testcase")
+        local = {
+            "tests": len(cases),
+            "failures": sum(len(case.findall("./failure")) for case in cases),
+            "errors": sum(len(case.findall("./error")) for case in cases),
+            "skipped": sum(len(case.findall("./skipped")) for case in cases),
+        }
+        _verify_declared_counters(suite, local)
+
+
+def _verify_declared_counters(
+    element: ET.Element, actual_counts: dict[str, int]
+) -> None:
+    for field, actual in actual_counts.items():
+        value = element.get(field)
+        if value is None:
+            continue
+        try:
+            parsed = int(value)
+        except ValueError as exc:
+            raise ValueError(
+                f"JUnit suite counter {field} is not an integer"
+            ) from exc
+        if parsed != actual:
+            raise ValueError(
+                f"JUnit suite counter mismatch for {field}: "
+                f"declared={parsed}, actual={actual}"
+            )
+
+
+def _sha256_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _git_head(repository_root: Path) -> str:
+    try:
+        return subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=repository_root,
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding="ascii",
+        ).stdout.strip()
+    except (OSError, subprocess.SubprocessError) as exc:
+        raise RuntimeError(f"cannot bind release evidence to Git HEAD: {exc}") from exc
+
+
+def _copy_junit(source: Path, destination: Path) -> None:
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    if source.resolve() == destination.resolve():
+        return
+    copyfile(source, destination)
 
 
 def _config(
