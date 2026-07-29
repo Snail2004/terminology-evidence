@@ -224,7 +224,7 @@ replay manifests, zero external calls, and the two external-input HOLD states.
 Offline shared packages remain projection-conformance artifacts only; real E
 evidence authority requires official Dataset inputs, an approved source plan,
 and provider compatibility canaries.
-The release gate also requires a parsed, exact 74-test E-suite JUnit report with
+The release gate also requires a parsed, exact 75-test E-suite JUnit report with
 zero failures and errors; missing or unrelated reports cannot produce a PASS
 release.
 

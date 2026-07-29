@@ -10,7 +10,7 @@ from typing import Any
 from .jsonio import reject_link
 
 
-EXPECTED_E_SUITE_TEST_COUNT = 74
+EXPECTED_E_SUITE_TEST_COUNT = 75
 E_TESTCASE_PREFIX = "vietnamese_attestation.v1.tests."
 
 

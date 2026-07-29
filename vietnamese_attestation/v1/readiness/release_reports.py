@@ -75,7 +75,7 @@ def findings_report(canonical_main: str) -> dict[str, Any]:
         "schema_id": "VietnameseAttestationReadinessFindingsV1",
         "schema_version": "1.0.0",
         "status": "HOLD_EXTERNAL_INPUTS",
-        "report_version": "1.2.2",
+        "report_version": "1.2.3",
         "canonical_main_at_build": canonical_main,
         "findings": [
             {
@@ -123,10 +123,9 @@ def findings_report(canonical_main: str) -> dict[str, Any]:
             {
                 "finding_id": "E-RDY-007",
                 "severity": "INFO",
-                "status": "OPEN_NON_BLOCKING",
-                "summary": "Two Contracts dataset-mapping tests require an external root",
-                "evidence": "113 passed, 2 skipped: TERMINOLOGY_DATASET_ROOT not supplied",
-                "required_to_close": "Rerun mapping fixtures with official Dataset authority",
+                "status": "RESOLVED",
+                "summary": "Initial Contracts gate omitted the real Dataset root",
+                "resolution": "TERMINOLOGY_DATASET_ROOT-bound suite passes 115/115",
             },
             {
                 "finding_id": "E-RDY-008",
@@ -140,7 +139,14 @@ def findings_report(canonical_main: str) -> dict[str, Any]:
                 "severity": "P1",
                 "status": "RESOLVED",
                 "summary": "Release could pass without a reviewed test gate",
-                "resolution": "Mandatory exact E-suite JUnit policy with parsed 74-test gate",
+                "resolution": "Mandatory exact E-suite JUnit policy with parsed 75-test gate",
+            },
+            {
+                "finding_id": "E-RDY-010",
+                "severity": "P1",
+                "status": "RESOLVED",
+                "summary": "Full tag diff rejected reviewed Contracts R2 release-only publication",
+                "resolution": "Canonical R2 receipt, Git trees, final audit, manifest and ZIP are pinned",
             },
         ],
         "provider_call_count": 0,
