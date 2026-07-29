@@ -14,10 +14,14 @@ def main(argv: list[str] | None = None) -> int:
         description="Verify and read a Vietnamese Attestation audit stage."
     )
     parser.add_argument("--manifest", type=Path, required=True)
+    parser.add_argument("--expected-manifest-sha256", required=True)
     parser.add_argument("--mode", required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args(argv)
-    reader = AuditReplayReader(args.manifest)
+    reader = AuditReplayReader(
+        args.manifest,
+        expected_manifest_sha256=args.expected_manifest_sha256,
+    )
     reader.verify_all_content()
     payload = reader.replay(args.mode)
     args.output.parent.mkdir(parents=True, exist_ok=True)

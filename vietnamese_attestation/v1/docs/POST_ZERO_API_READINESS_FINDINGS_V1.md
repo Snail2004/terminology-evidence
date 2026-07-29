@@ -86,9 +86,9 @@ counterpart `readiness_findings_report.json`.
 - Severity: P1
 - Status: RESOLVED
 - Finding: release JUnit was optional and unparsed.
-- Resolution: JUnit is mandatory, must identify the E suite, contain exactly 75
-  tests with zero failures/errors, and is recorded in the release manifest and
-  summary before any output directory is created.
+- Resolution: JUnit is mandatory, must contain the exact hash-pinned 80-test E
+  identity set with zero failures/errors/skips, and must match the sealed test
+  source-tree hash before any output directory is created.
 
 ## E-RDY-010 - R2 release-only authority rejected as tag drift
 
@@ -102,6 +102,33 @@ counterpart `readiness_findings_report.json`.
   receipt and pins its self/physical hashes, exact Contracts and release Git
   trees, final audit, final manifest and final ZIP. Legacy R1, R2 tamper,
   non-release drift and arbitrary release mutation fail closed.
+
+## E-RDY-011 - standalone Dataset input lacked producer authority
+
+- Severity: P1
+- Status: RESOLVED_CODE_PATH
+- Finding: a loose resealed COMPLETE candidate could be accepted without a
+  Dataset release manifest or receipt.
+- Resolution: official execution now requires an externally pinned receipt and
+  exact 15-member manifest. Strict decoding, producer identity, member bytes,
+  candidate self/input hashes and all join fields verify before engine setup.
+- External state: E-RDY-002 remains HOLD until Dataset publishes the real set.
+
+## E-RDY-012 - direct replay lacked an external manifest anchor
+
+- Severity: P1
+- Status: RESOLVED
+- Resolution: replay CLI requires `--expected-manifest-sha256`; manifest and
+  every JSONL stream use the shared strict decoder, and resealed local drift is
+  rejected before replay.
+
+## E-RDY-013 - JUnit prefix/count admitted fabricated execution evidence
+
+- Severity: P1
+- Status: RESOLVED
+- Resolution: policy V2 rejects skipped tests and requires the exact 80
+  testcase identities, identity SHA and E test-source tree SHA. Renamed,
+  missing and fabricated replacements fail closed.
 
 ## Semantic boundary clarification
 

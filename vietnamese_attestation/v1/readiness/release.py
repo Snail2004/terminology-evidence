@@ -2,11 +2,24 @@
 
 from __future__ import annotations
 
+import hashlib
 import platform
 import subprocess
-from pathlib import Path
+from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any
 
+from ..dataset import (
+    OFFICIAL_PILOT_MANIFEST_SHA256,
+    OFFICIAL_PILOT_MEMBER_COUNT,
+    OFFICIAL_PILOT_PIN_MAIN_COMMIT,
+    OFFICIAL_PILOT_PIN_REF,
+    OFFICIAL_PILOT_PIN_SHA256,
+    OFFICIAL_PILOT_SENSE_COUNT,
+    OFFICIAL_PILOT_ZIP_SHA256,
+    OFFICIAL_PILOT_ZIP_REF,
+    OfficialFrozenCandidateSet,
+    load_official_frozen_candidate_zip,
+)
 from ..zero_api.artifacts import file_sha256, write_json
 from ..zero_api.controlled_registry import inspect_controlled_registry
 from .artifact import verify_zero_api_artifact
@@ -38,6 +51,8 @@ def build_post_zero_api_release(
     output_root: str | Path,
     implementation_commit: str = "HEAD",
     junit_path: str | Path,
+    dataset_release_zip: str | Path | None = None,
+    dataset_input_pin: str | Path | None = None,
 ) -> dict[str, Any]:
     repository = Path(repository_root).resolve(strict=True)
     junit_report = verify_junit(junit_path)
@@ -79,6 +94,25 @@ def build_post_zero_api_release(
     controlled = inspect_controlled_registry(controlled_registry)
     if controlled["status"] != "BLOCKED_EXTERNAL_INPUT":
         raise ValueError("unexpected controlled registry readiness state")
+    if (dataset_release_zip is None) != (dataset_input_pin is None):
+        raise ValueError("Dataset ZIP and Main pin must be supplied together")
+    official_dataset = (
+        load_official_frozen_candidate_zip(
+            dataset_release_zip,
+            dataset_input_pin,
+            expected_release_zip_sha256=OFFICIAL_PILOT_ZIP_SHA256,
+            expected_manifest_sha256=OFFICIAL_PILOT_MANIFEST_SHA256,
+            expected_pin_sha256=OFFICIAL_PILOT_PIN_SHA256,
+        )
+        if dataset_release_zip is not None
+        else None
+    )
+    if official_dataset is not None:
+        _verify_main_dataset_bridge(
+            repository=repository,
+            canonical_main=canonical_main,
+            official_dataset=official_dataset,
+        )
 
     diff_check = subprocess.run(
         [
@@ -124,6 +158,7 @@ def build_post_zero_api_release(
         controlled=controlled,
         receipt=receipt,
         junit_report=junit_report,
+        official_dataset=official_dataset,
     )
     for name, value in reports.items():
         write_json(release_root / name, value)
@@ -152,6 +187,12 @@ def build_post_zero_api_release(
         encoding="ascii",
         newline="\n",
     )
+    holds = [
+        "BLOCKED_BY_CONTROLLED_REGISTRY",
+        "BLOCKED_BY_LIVE_CANARY_APPROVAL",
+    ]
+    if official_dataset is None:
+        holds.insert(0, "BLOCKED_BY_DATASET_BINDING_COMPATIBILITY")
     return {
         "schema_id": "VietnameseAttestationPostZeroApiReleaseSummaryV1",
         "schema_version": "1.0.0",
@@ -172,11 +213,7 @@ def build_post_zero_api_release(
         },
         "zero_api_replay": "15/15 PASS",
         "provider_call_count": 0,
-        "holds": [
-            "BLOCKED_BY_DATASET_AUTHORITY",
-            "BLOCKED_BY_CONTROLLED_REGISTRY",
-            "BLOCKED_BY_LIVE_CANARY_APPROVAL",
-        ],
+        "holds": holds,
     }
 
 
@@ -190,29 +227,34 @@ def _readiness_reports(
     controlled: dict[str, Any],
     receipt: dict[str, Any],
     junit_report: dict[str, Any],
+    official_dataset: OfficialFrozenCandidateSet | None,
 ) -> dict[str, dict[str, Any]]:
-    return {
+    dataset_report = _dataset_input_report(official_dataset)
+    has_official_dataset = official_dataset is not None
+    findings = findings_report(
+        canonical_main,
+        dataset_conformance=dataset_report,
+    )
+    _validate_dataset_finding_consistency(dataset_report, findings)
+    reports = {
         "git_commit_receipt.json": receipt,
         "authority_verification_report.json": seal(authority),
-        "zero_api_verification_report.json": seal(zero_api),
-        "junit_verification_report.json": seal(junit_report),
-        "dataset_input_conformance_report.json": seal(
-            {
-                "schema_id": "VietnameseAttestationDatasetInputConformanceReportV1",
-                "schema_version": "1.0.0",
-                "status": "BLOCKED_BY_DATASET_AUTHORITY",
-                "official_candidate_count": 0,
-                "required_candidate_count": 15,
-                "projection_conformance_package_count": 0,
-                "real_attestation_package_count": 0,
-                "blockers": [
-                    "OFFICIAL_FROZEN_CANDIDATE_CONTRACTS_NOT_SUPPLIED",
-                    "EFFECTIVE_SENSE_AUTHORITY_NOT_SUPPLIED",
-                ],
-                "final_glossary_decision": None,
-            }
+        "zero_api_verification_report.json": seal(
+            _publication_projection(
+                zero_api,
+                artifact_ref="inputs/zero_api_artifact",
+            )
         ),
-        "controlled_registry_adapter_report.json": seal(controlled),
+        "junit_verification_report.json": seal(
+            _publication_projection(junit_report, path="junit.xml")
+        ),
+        "dataset_input_conformance_report.json": seal(dataset_report),
+        "controlled_registry_adapter_report.json": seal(
+            _publication_projection(
+                controlled,
+                registry_ref="inputs/controlled_vietnamese_source_registry.jsonl",
+            )
+        ),
         "provider_canary_report.json": seal(
             {
                 "schema_id": "VietnameseAttestationProviderCanaryReadinessV1",
@@ -229,16 +271,26 @@ def _readiness_reports(
             {
                 "schema_id": "VietnameseAttestationSharedProjectionReadinessV1",
                 "schema_version": "1.0.0",
-                "status": "BLOCKED_DEVELOPMENT_IDENTITY",
-                "artifact_class": "OFFLINE_PROJECTION_CONFORMANCE_ONLY",
-                "official_input_count": 0,
+                "status": (
+                    "BLOCKED_PENDING_OFFICIAL_E_PACKAGES"
+                    if has_official_dataset
+                    else "BLOCKED_DEVELOPMENT_IDENTITY"
+                ),
+                "artifact_class": (
+                    "OFFICIAL_INPUT_CONFORMANCE_ONLY"
+                    if has_official_dataset
+                    else "OFFLINE_PROJECTION_CONFORMANCE_ONLY"
+                ),
+                "official_input_count": (
+                    OFFICIAL_PILOT_MEMBER_COUNT if has_official_dataset else 0
+                ),
                 "projected_package_count": 0,
                 "real_evidence_authority": False,
                 "global_handoff_allowed": False,
                 "final_glossary_decision": None,
             }
         ),
-        "readiness_findings_report.json": seal(findings_report(canonical_main)),
+        "readiness_findings_report.json": seal(findings),
         "environment.json": seal(
             {
                 "schema_id": "VietnameseAttestationReleaseEnvironmentV1",
@@ -263,6 +315,167 @@ def _readiness_reports(
             }
         ),
     }
+    _reject_absolute_publication_paths(reports)
+    return reports
+
+
+def _publication_projection(
+    report: dict[str, Any],
+    **replacements: Any,
+) -> dict[str, Any]:
+    projected = dict(report)
+    projected.update(replacements)
+    return projected
+
+
+def _validate_dataset_finding_consistency(
+    dataset_report: dict[str, Any],
+    findings: dict[str, Any],
+) -> None:
+    rows = [
+        row
+        for row in findings.get("findings", [])
+        if isinstance(row, dict) and row.get("finding_id") == "E-RDY-002"
+    ]
+    if len(rows) != 1:
+        raise ValueError("readiness findings must contain exactly one E-RDY-002")
+    dataset_pass = (
+        dataset_report.get("status") == "PASS_EXACT_OFFICIAL_DATASET_BINDING"
+    )
+    if dataset_pass and (
+        dataset_report.get("official_candidate_count") != OFFICIAL_PILOT_MEMBER_COUNT
+        or dataset_report.get("required_candidate_count")
+        != OFFICIAL_PILOT_MEMBER_COUNT
+        or dataset_report.get("official_sense_count") != OFFICIAL_PILOT_SENSE_COUNT
+        or dataset_report.get("required_sense_count") != OFFICIAL_PILOT_SENSE_COUNT
+        or dataset_report.get("blockers") != []
+    ):
+        raise ValueError("Dataset conformance PASS has incomplete official binding")
+    dataset_finding_resolved = rows[0].get("status") == "RESOLVED"
+    if dataset_pass != dataset_finding_resolved:
+        raise ValueError(
+            "Dataset conformance and readiness E-RDY-002 status conflict"
+        )
+
+
+def _reject_absolute_publication_paths(
+    reports: dict[str, dict[str, Any]],
+) -> None:
+    findings: list[str] = []
+
+    def visit(value: Any, location: str) -> None:
+        if isinstance(value, dict):
+            for key, child in value.items():
+                visit(child, f"{location}.{key}")
+        elif isinstance(value, list):
+            for index, child in enumerate(value):
+                visit(child, f"{location}[{index}]")
+        elif isinstance(value, str) and (
+            PurePosixPath(value).is_absolute()
+            or PureWindowsPath(value).is_absolute()
+            or value.startswith("\\\\")
+        ):
+            findings.append(location)
+
+    for name, report in reports.items():
+        visit(report, name)
+    if findings:
+        raise ValueError(
+            "release publication contains absolute paths: " + ", ".join(findings)
+        )
+
+
+def _dataset_input_report(
+    official_dataset: OfficialFrozenCandidateSet | None,
+) -> dict[str, Any]:
+    if official_dataset is None:
+        return {
+            "schema_id": "VietnameseAttestationDatasetInputConformanceReportV1",
+            "schema_version": "1.0.0",
+            "status": "BLOCKED_BY_DATASET_BINDING_COMPATIBILITY",
+            "official_candidate_count": 0,
+            "required_candidate_count": OFFICIAL_PILOT_MEMBER_COUNT,
+            "projection_conformance_package_count": 0,
+            "real_attestation_package_count": 0,
+            "blockers": ["EXACT_MAIN_PINNED_DATASET_PACKAGE_NOT_SUPPLIED"],
+            "final_glossary_decision": None,
+        }
+    return {
+        "schema_id": "VietnameseAttestationDatasetInputConformanceReportV1",
+        "schema_version": "1.0.0",
+        "status": "PASS_EXACT_OFFICIAL_DATASET_BINDING",
+        "canonical_main_pin_commit": OFFICIAL_PILOT_PIN_MAIN_COMMIT,
+        "dataset_release_zip_sha256": (
+            official_dataset.release_zip_physical_sha256
+        ),
+        "dataset_manifest_sha256": official_dataset.manifest[
+            "manifest_sha256"
+        ],
+        "dataset_manifest_physical_sha256": (
+            official_dataset.manifest_physical_sha256
+        ),
+        "dataset_input_pin_sha256": official_dataset.receipt["integrity"][
+            "self_sha256"
+        ],
+        "archive_member_count": official_dataset.archive_member_count,
+        "official_candidate_count": len(official_dataset.candidates),
+        "required_candidate_count": OFFICIAL_PILOT_MEMBER_COUNT,
+        "official_sense_count": len(
+            {
+                row["candidate_key"]["sense_id"]
+                for row in official_dataset.candidates
+            }
+        ),
+        "required_sense_count": OFFICIAL_PILOT_SENSE_COUNT,
+        "producer_component_id": (
+            official_dataset.candidates[0]["input_provenance"]["component_id"]
+        ),
+        "projection_conformance_package_count": 0,
+        "real_attestation_package_count": 0,
+        "production_generation_status": "HOLD_UNTIL_15_ACCEPTED_C_PACKAGES",
+        "blockers": [],
+        "provider_call_count": 0,
+        "final_glossary_decision": None,
+    }
+
+
+def _verify_main_dataset_bridge(
+    *,
+    repository: Path,
+    canonical_main: str,
+    official_dataset: OfficialFrozenCandidateSet,
+) -> None:
+    ancestor = subprocess.run(
+        [
+            "git",
+            "merge-base",
+            "--is-ancestor",
+            OFFICIAL_PILOT_PIN_MAIN_COMMIT,
+            canonical_main,
+        ],
+        cwd=repository,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if ancestor.returncode != 0:
+        raise ValueError("canonical main does not contain the accepted Dataset pin")
+    pin_bytes = git_bytes(
+        repository,
+        "show",
+        f"{OFFICIAL_PILOT_PIN_MAIN_COMMIT}:{OFFICIAL_PILOT_PIN_REF}",
+    )
+    zip_bytes = git_bytes(
+        repository,
+        "show",
+        f"{OFFICIAL_PILOT_PIN_MAIN_COMMIT}:{OFFICIAL_PILOT_ZIP_REF}",
+    )
+    if hashlib.sha256(pin_bytes).hexdigest() != (
+        official_dataset.receipt_physical_sha256
+    ):
+        raise ValueError("supplied Dataset pin bytes differ from canonical Main")
+    if hashlib.sha256(zip_bytes).hexdigest() != OFFICIAL_PILOT_ZIP_SHA256:
+        raise ValueError("canonical Main Dataset ZIP bytes differ from the accepted pin")
 
 
 def _write_execution_evidence(release_root: Path, junit_path: str | Path) -> None:
@@ -272,6 +485,7 @@ def _write_execution_evidence(release_root: Path, junit_path: str | Path) -> Non
         "python -m vietnamese_attestation.v1.cli.readiness "
         "--repository-root <repo> --authority-receipt <receipt> "
         "--zero-api-artifact-root <artifact> --controlled-registry <registry> "
+        "--dataset-release-zip <exact-zip> --dataset-input-pin <main-pin> "
         "--output-root <release-output> --implementation-commit <commit>\n"
     )
     (release_root / "commands.txt").write_text(

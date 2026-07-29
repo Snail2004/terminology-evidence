@@ -155,15 +155,22 @@ Offline fixture execution:
 ```powershell
 python -m vietnamese_attestation.v1.cli.run `
   --candidate candidate.json `
+  --development-input `
   --offline-fixture fixture.json `
   --run-store-root .artifacts/vietnamese-attestation `
   --output attestation.json
 ```
 
-When `candidate.json` uses `FrozenCandidateContractV1`, `attestation.json`
-uses `AttestationEvidencePackageV1`. The run store also contains the rich
-internal replay package. Running directly from the repository requires both
-package roots on `PYTHONPATH`:
+`--development-input` is fixture-only. The accepted five-sense official input
+uses `--dataset-release-zip`, `--dataset-input-pin`, both externally supplied
+expected hashes, and `--official-candidate-id`. The loader verifies the exact
+Main-pinned ZIP and pin, the `D2LOfficial5SensePilotManifestV1` self-hash,
+complete CHECKSUMS and package inventories, exact 15 candidates/five senses,
+the Dataset projector identity, candidate self-hashes and every
+candidate/sense/scope/dataset/effective-sense/input join before engine setup.
+The older detached manifest/receipt form remains fixture compatibility only.
+The run store also contains the rich internal replay package. Running directly
+from the repository requires both package roots on `PYTHONPATH`:
 
 ```powershell
 $env:PYTHONPATH="$PWD;$PWD\terminology_contracts_v1\python"
@@ -174,7 +181,11 @@ Judge credentials, and a cache root:
 
 ```powershell
 python -m vietnamese_attestation.v1.cli.run `
-  --candidate candidate.json `
+  --dataset-release-zip d2l_stage_a_pilot_5_senses_official_v1_reviewer_handoff.zip `
+  --dataset-input-pin official_dataset_input_pin_v1.json `
+  --expected-dataset-release-zip-sha256 9b6a9ee1272b6403054b61f5399d4391328d1d2d8a964b1102af0a2656bc2738 `
+  --expected-dataset-manifest-sha256 16bd2b9c7a974bdccfb977384fa1a35381e6e810c110f489f31d1606398ce2f5 `
+  --official-candidate-id <candidate-id> `
   --cache-root .cache/vietnamese-attestation `
   --run-store-root .artifacts/vietnamese-attestation `
   --output attestation.json
@@ -185,6 +196,7 @@ Verified replay:
 ```powershell
 python -m vietnamese_attestation.v1.cli.replay `
   --manifest .artifacts/vietnamese-attestation/runs/<execution_id>/run_manifest.json `
+  --expected-manifest-sha256 <externally-sealed-manifest-sha256> `
   --mode REPLAY_FROM_JUDGE `
   --output replay.json
 ```
@@ -224,9 +236,10 @@ replay manifests, zero external calls, and the two external-input HOLD states.
 Offline shared packages remain projection-conformance artifacts only; real E
 evidence authority requires official Dataset inputs, an approved source plan,
 and provider compatibility canaries.
-The release gate also requires a parsed, exact 75-test E-suite JUnit report with
-zero failures and errors; missing or unrelated reports cannot produce a PASS
-release.
+The release gate also requires a parsed, exact 80-test E-suite JUnit report with
+zero failures, errors or skips. Its exact testcase identity set and test-source
+tree are hash-pinned; missing, renamed, fabricated or unrelated reports cannot
+produce a PASS release.
 
 ## Remaining gates
 

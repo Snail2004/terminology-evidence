@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 from pathlib import Path
 
@@ -271,6 +272,7 @@ def test_cli_accepts_shared_input_and_preserves_internal_replay(
             [
                 "--candidate",
                 str(candidate_path),
+                "--development-input",
                 "--offline-fixture",
                 str(fixture_path),
                 "--output",
@@ -300,6 +302,10 @@ def test_cli_accepts_shared_input_and_preserves_internal_replay(
             [
                 "--manifest",
                 str(execution_root / "run_manifest.json"),
+                "--expected-manifest-sha256",
+                hashlib.sha256(
+                    (execution_root / "run_manifest.json").read_bytes()
+                ).hexdigest(),
                 "--mode",
                 "REPLAY_FROM_SEARCH",
                 "--output",

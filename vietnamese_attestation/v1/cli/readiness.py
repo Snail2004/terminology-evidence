@@ -17,6 +17,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--authority-receipt", type=Path, required=True)
     parser.add_argument("--zero-api-artifact-root", type=Path, required=True)
     parser.add_argument("--controlled-registry", type=Path, required=True)
+    parser.add_argument("--dataset-release-zip", type=Path)
+    parser.add_argument("--dataset-input-pin", type=Path)
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--implementation-commit", default="HEAD")
     parser.add_argument("--junit", type=Path, required=True)
@@ -29,6 +31,8 @@ def main(argv: list[str] | None = None) -> int:
         output_root=args.output_root,
         implementation_commit=args.implementation_commit,
         junit_path=args.junit,
+        dataset_release_zip=args.dataset_release_zip,
+        dataset_input_pin=args.dataset_input_pin,
     )
     print(json.dumps(summary, ensure_ascii=False, sort_keys=True))
     return 0

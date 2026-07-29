@@ -6,9 +6,10 @@ import ast
 import json
 import re
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Iterable, Mapping
 
 from ..zero_api.artifacts import self_sha256
+from .junit import EXPECTED_E_SUITE_TEST_COUNT
 
 
 def seal(value: dict[str, Any]) -> dict[str, Any]:
@@ -70,12 +71,34 @@ def credential_scan(root: Path, paths: Iterable[str]) -> dict[str, Any]:
     )
 
 
-def findings_report(canonical_main: str) -> dict[str, Any]:
+def findings_report(
+    canonical_main: str,
+    *,
+    dataset_conformance: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
+    dataset_bound = _official_dataset_is_bound(dataset_conformance)
+    dataset_finding = (
+        {
+            "finding_id": "E-RDY-002",
+            "severity": "INFO",
+            "status": "RESOLVED",
+            "summary": "Official Dataset-owned Frozen Candidates are bound exactly",
+            "resolution": "15/15 candidates and 5/5 senses passed exact Main-pinned conformance",
+        }
+        if dataset_bound
+        else {
+            "finding_id": "E-RDY-002",
+            "severity": "BLOCKER",
+            "status": "HOLD_EXTERNAL",
+            "summary": "Official Dataset-owned Frozen Candidates are unavailable",
+            "required_to_close": "15 COMPLETE FrozenCandidateContractV1@1.1.0 inputs",
+        }
+    )
     return {
         "schema_id": "VietnameseAttestationReadinessFindingsV1",
         "schema_version": "1.0.0",
         "status": "HOLD_EXTERNAL_INPUTS",
-        "report_version": "1.2.3",
+        "report_version": "1.2.4",
         "canonical_main_at_build": canonical_main,
         "findings": [
             {
@@ -85,13 +108,7 @@ def findings_report(canonical_main: str) -> dict[str, Any]:
                 "summary": "Zero-API milestone metadata was stale in V1.2 draft",
                 "resolution": "Use a1707a8 as integration commit and 66/66 plus 8/8 gates",
             },
-            {
-                "finding_id": "E-RDY-002",
-                "severity": "BLOCKER",
-                "status": "HOLD_EXTERNAL",
-                "summary": "Official Dataset-owned Frozen Candidates are unavailable",
-                "required_to_close": "15 COMPLETE FrozenCandidateContractV1@1.1.0 inputs",
-            },
+            dataset_finding,
             {
                 "finding_id": "E-RDY-003",
                 "severity": "BLOCKER",
@@ -139,7 +156,10 @@ def findings_report(canonical_main: str) -> dict[str, Any]:
                 "severity": "P1",
                 "status": "RESOLVED",
                 "summary": "Release could pass without a reviewed test gate",
-                "resolution": "Mandatory exact E-suite JUnit policy with parsed 75-test gate",
+                "resolution": (
+                    "Mandatory exact E-suite JUnit policy with parsed "
+                    f"{EXPECTED_E_SUITE_TEST_COUNT}-test gate"
+                ),
             },
             {
                 "finding_id": "E-RDY-010",
@@ -152,6 +172,21 @@ def findings_report(canonical_main: str) -> dict[str, Any]:
         "provider_call_count": 0,
         "final_glossary_decision": None,
     }
+
+
+def _official_dataset_is_bound(
+    report: Mapping[str, Any] | None,
+) -> bool:
+    if report is None:
+        return False
+    return (
+        report.get("status") == "PASS_EXACT_OFFICIAL_DATASET_BINDING"
+        and report.get("official_candidate_count") == 15
+        and report.get("required_candidate_count") == 15
+        and report.get("official_sense_count") == 5
+        and report.get("required_sense_count") == 5
+        and report.get("blockers") == []
+    )
 
 
 __all__ = ["credential_scan", "findings_report", "seal", "static_scan"]

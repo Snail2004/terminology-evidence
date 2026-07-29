@@ -2,12 +2,15 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import subprocess
 import zipfile
 from pathlib import Path
+from xml.sax.saxutils import quoteattr
 
 import pytest
+import vietnamese_attestation.v1.readiness.release as release_module
 
 from vietnamese_attestation.v1.readiness import (
     build_post_zero_api_release,
@@ -21,17 +24,25 @@ from vietnamese_attestation.v1.readiness.authority import (
 )
 from vietnamese_attestation.v1.readiness.junit import (
     EXPECTED_E_SUITE_TEST_COUNT,
+    EXPECTED_E_SUITE_TESTCASE_IDENTITIES,
 )
 from vietnamese_attestation.v1.cli.readiness import main as readiness_cli_main
+from vietnamese_attestation.v1.dataset import (
+    OFFICIAL_PILOT_MANIFEST_SHA256,
+    OFFICIAL_PILOT_MEMBER_COUNT,
+    OFFICIAL_PILOT_PIN_SHA256,
+    OFFICIAL_PILOT_ZIP_SHA256,
+)
 from vietnamese_attestation.v1.zero_api.artifacts import (
     file_sha256,
     self_sha256,
     verify_self_sha256,
 )
+from vietnamese_attestation.v1.zero_api.pilot import run_zero_api_pilot
 
 
-ZERO_API_ARTIFACT = Path(
-    r"C:\work\terminology-evidence-artifacts\vietnamese-attestation-v1.1-zero-api-20260729-v3"
+OFFICIAL_DATASET_RELATIVE = Path(
+    "review_evidence/dataset/d2l-stage-a-official-5-sense-pilot-v1"
 )
 
 
@@ -53,15 +64,42 @@ def r2_repository(tmp_path_factory: pytest.TempPathFactory) -> Path:
     return repository
 
 
+@pytest.fixture(scope="session")
+def zero_api_artifact(tmp_path_factory: pytest.TempPathFactory) -> Path:
+    repository = _repository_root()
+    output = tmp_path_factory.mktemp("zero-api-readiness") / "artifact"
+    summary = run_zero_api_pilot(
+        source_zip=repository / "dataset" / "pilot_dev_only_v1_1.zip",
+        parent_v3_zip=(
+            repository
+            / "dataset"
+            / "d2l_context_support_set_validation_ready_v3.zip"
+        ),
+        output_root=output,
+        controlled_registry=(
+            repository
+            / "dataset"
+            / "dataset_methodology_hardening_v1"
+            / "release"
+            / "controlled_vietnamese_source_registry.jsonl"
+        ),
+    )
+    assert summary["candidate_count"] == 15
+    assert summary["replay_pass_count"] == 15
+    assert summary["external_provider_call_count"] == 0
+    return output
+
+
 def test_r2_authority_and_zero_api_artifact_verify_without_provider_calls(
     r2_repository: Path,
+    zero_api_artifact: Path,
 ) -> None:
     repository = r2_repository
     authority = verify_contract_authority(
         repository_root=repository,
         receipt_path=_r2_receipt(repository),
     )
-    artifact = verify_zero_api_artifact(ZERO_API_ARTIFACT)
+    artifact = verify_zero_api_artifact(zero_api_artifact)
 
     assert authority["status"] == "PASS"
     assert authority["provider_call_count"] == 0
@@ -80,9 +118,12 @@ def test_r2_authority_and_zero_api_artifact_verify_without_provider_calls(
     assert artifact["final_glossary_decision"] is None
 
 
-def test_strict_persisted_decoder_rejects_ambiguous_json(tmp_path: Path) -> None:
+def test_strict_persisted_decoder_rejects_ambiguous_json(
+    tmp_path: Path,
+    zero_api_artifact: Path,
+) -> None:
     artifact = tmp_path / "artifact"
-    shutil.copytree(ZERO_API_ARTIFACT, artifact)
+    shutil.copytree(zero_api_artifact, artifact)
     summary_path = artifact / "pilot_zero_api_summary.json"
     original = summary_path.read_bytes()
     invalid_payloads = [
@@ -104,9 +145,10 @@ def test_strict_persisted_decoder_rejects_ambiguous_json(tmp_path: Path) -> None
 
 def test_manifest_refs_reject_unsafe_and_case_confusable_paths(
     tmp_path: Path,
+    zero_api_artifact: Path,
 ) -> None:
     artifact = tmp_path / "artifact"
-    shutil.copytree(ZERO_API_ARTIFACT, artifact)
+    shutil.copytree(zero_api_artifact, artifact)
     manifest_path = artifact / "zero_api_artifact_manifest.json"
     original = manifest_path.read_bytes()
     unsafe_refs = [
@@ -147,9 +189,12 @@ def test_manifest_refs_reject_unsafe_and_case_confusable_paths(
         manifest_path.write_bytes(original)
 
 
-def test_provider_ledger_duplicate_key_is_rejected(tmp_path: Path) -> None:
+def test_provider_ledger_duplicate_key_is_rejected(
+    tmp_path: Path,
+    zero_api_artifact: Path,
+) -> None:
     artifact = tmp_path / "artifact"
-    shutil.copytree(ZERO_API_ARTIFACT, artifact)
+    shutil.copytree(zero_api_artifact, artifact)
     ledger = artifact / "provider_attempts.jsonl"
     original = ledger.read_bytes()
     try:
@@ -160,9 +205,12 @@ def test_provider_ledger_duplicate_key_is_rejected(tmp_path: Path) -> None:
         ledger.write_bytes(original)
 
 
-def test_artifact_symlink_is_rejected_when_supported(tmp_path: Path) -> None:
+def test_artifact_symlink_is_rejected_when_supported(
+    tmp_path: Path,
+    zero_api_artifact: Path,
+) -> None:
     artifact = tmp_path / "artifact"
-    shutil.copytree(ZERO_API_ARTIFACT, artifact)
+    shutil.copytree(zero_api_artifact, artifact)
     victim = next((artifact / "packages").glob("*.json"))
     outside = tmp_path / "outside.json"
     outside.write_bytes(victim.read_bytes())
@@ -178,6 +226,7 @@ def test_artifact_symlink_is_rejected_when_supported(tmp_path: Path) -> None:
 def test_junit_gate_rejects_missing_empty_red_wrong_and_unrelated_reports(
     tmp_path: Path,
     r2_repository: Path,
+    zero_api_artifact: Path,
 ) -> None:
     missing = tmp_path / "missing.xml"
     with pytest.raises(ValueError):
@@ -201,6 +250,47 @@ def test_junit_gate_rejects_missing_empty_red_wrong_and_unrelated_reports(
                 classname="other.tests.Case",
             ),
         ),
+        (
+            "skipped-declared.xml",
+            _junit_xml(
+                EXPECTED_E_SUITE_TEST_COUNT,
+                skipped=EXPECTED_E_SUITE_TEST_COUNT,
+            ),
+        ),
+        (
+            "skipped-element.xml",
+            _junit_xml(
+                EXPECTED_E_SUITE_TEST_COUNT,
+                testcase_skipped=True,
+            ),
+        ),
+        (
+            "fabricated-prefix.xml",
+            _junit_xml(
+                EXPECTED_E_SUITE_TEST_COUNT,
+                classname="vietnamese_attestation.v1.tests.fabricated",
+            ),
+        ),
+        (
+            "renamed.xml",
+            _junit_xml(
+                EXPECTED_E_SUITE_TEST_COUNT,
+                identities=(
+                    "vietnamese_attestation.v1.tests.renamed::forged",
+                    *EXPECTED_E_SUITE_TESTCASE_IDENTITIES[1:],
+                ),
+            ),
+        ),
+        (
+            "missing-with-fake.xml",
+            _junit_xml(
+                EXPECTED_E_SUITE_TEST_COUNT,
+                identities=(
+                    *EXPECTED_E_SUITE_TESTCASE_IDENTITIES[:-1],
+                    "vietnamese_attestation.v1.tests.synthetic::replacement",
+                ),
+            ),
+        ),
     )
     for filename, content in cases:
         path = tmp_path / filename
@@ -217,7 +307,7 @@ def test_junit_gate_rejects_missing_empty_red_wrong_and_unrelated_reports(
         build_post_zero_api_release(
             repository_root=r2_repository,
             authority_receipt=_r2_receipt(r2_repository),
-            zero_api_artifact_root=ZERO_API_ARTIFACT,
+            zero_api_artifact_root=zero_api_artifact,
             controlled_registry=(
                 _repository_root()
                 / "dataset"
@@ -239,7 +329,7 @@ def test_junit_gate_rejects_missing_empty_red_wrong_and_unrelated_reports(
                 "--authority-receipt",
                 str(_r2_receipt(r2_repository)),
                 "--zero-api-artifact-root",
-                str(ZERO_API_ARTIFACT),
+                str(zero_api_artifact),
                 "--controlled-registry",
                 str(
                     _repository_root()
@@ -257,6 +347,7 @@ def test_junit_gate_rejects_missing_empty_red_wrong_and_unrelated_reports(
 def test_r2_authority_and_zero_api_tamper_fail_closed(
     tmp_path: Path,
     r2_repository: Path,
+    zero_api_artifact: Path,
 ) -> None:
     tampered_repository = _clone_repository(
         r2_repository, tmp_path / "tampered-repository"
@@ -284,7 +375,7 @@ def test_r2_authority_and_zero_api_tamper_fail_closed(
         )
 
     artifact = tmp_path / "artifact"
-    shutil.copytree(ZERO_API_ARTIFACT, artifact)
+    shutil.copytree(zero_api_artifact, artifact)
     summary_path = artifact / "pilot_zero_api_summary.json"
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
     summary["candidate_count"] = 14
@@ -343,14 +434,17 @@ def test_r2_authority_rejects_nonrelease_and_arbitrary_release_drift(
 def test_post_zero_api_release_is_commit_bound_cache_free_and_honest(
     tmp_path: Path,
     r2_repository: Path,
+    zero_api_artifact: Path,
+    monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     repository = r2_repository
     source = _repository_root()
     commit = _git(source, "rev-parse", "HEAD")
+    official_dataset = _official_dataset_paths()
     summary = build_post_zero_api_release(
         repository_root=repository,
         authority_receipt=_r2_receipt(repository),
-        zero_api_artifact_root=ZERO_API_ARTIFACT,
+        zero_api_artifact_root=zero_api_artifact,
         controlled_registry=(
             repository
             / "dataset"
@@ -363,6 +457,8 @@ def test_post_zero_api_release_is_commit_bound_cache_free_and_honest(
         junit_path=(
             _write_junit(tmp_path / "valid.xml")
         ),
+        dataset_release_zip=official_dataset["zip"],
+        dataset_input_pin=official_dataset["pin"],
     )
 
     assert summary["status"] == "PASS_WITH_EXTERNAL_HOLDS"
@@ -373,7 +469,6 @@ def test_post_zero_api_release_is_commit_bound_cache_free_and_honest(
     assert summary["test_gate"]["failures"] == 0
     assert summary["test_gate"]["errors"] == 0
     assert summary["holds"] == [
-        "BLOCKED_BY_DATASET_AUTHORITY",
         "BLOCKED_BY_CONTROLLED_REGISTRY",
         "BLOCKED_BY_LIVE_CANARY_APPROVAL",
     ]
@@ -386,18 +481,34 @@ def test_post_zero_api_release_is_commit_bound_cache_free_and_honest(
     projection = _load(release_root / "shared_projection_report.json")
     canary = _load(release_root / "provider_canary_report.json")
     junit = _load(release_root / "junit_verification_report.json")
+    zero_api_report = _load(release_root / "zero_api_verification_report.json")
+    controlled_report = _load(
+        release_root / "controlled_registry_adapter_report.json"
+    )
 
     assert verify_self_sha256(manifest)
     assert verify_self_sha256(receipt)
     assert receipt["implementation_commit"] == commit
     assert receipt["source_snapshot_mode"] == "GIT_OBJECT_DATABASE"
     assert findings["status"] == "HOLD_EXTERNAL_INPUTS"
-    assert dataset["status"] == "BLOCKED_BY_DATASET_AUTHORITY"
-    assert projection["artifact_class"] == "OFFLINE_PROJECTION_CONFORMANCE_ONLY"
+    findings_by_id = {row["finding_id"]: row for row in findings["findings"]}
+    assert findings_by_id["E-RDY-002"]["status"] == "RESOLVED"
+    assert dataset["status"] == "PASS_EXACT_OFFICIAL_DATASET_BINDING"
+    assert dataset["dataset_release_zip_sha256"] == OFFICIAL_PILOT_ZIP_SHA256
+    assert dataset["dataset_manifest_sha256"] == OFFICIAL_PILOT_MANIFEST_SHA256
+    assert dataset["dataset_input_pin_sha256"] == OFFICIAL_PILOT_PIN_SHA256
+    assert dataset["official_candidate_count"] == OFFICIAL_PILOT_MEMBER_COUNT
+    assert projection["artifact_class"] == "OFFICIAL_INPUT_CONFORMANCE_ONLY"
     assert projection["real_evidence_authority"] is False
     assert canary["status"] == "BLOCKED_BY_LIVE_CANARY_APPROVAL"
     assert canary["external_provider_call_count"] == 0
     assert junit["tests"] == EXPECTED_E_SUITE_TEST_COUNT
+    assert junit["path"] == "junit.xml"
+    assert zero_api_report["artifact_ref"] == "inputs/zero_api_artifact"
+    assert controlled_report["registry_ref"] == (
+        "inputs/controlled_vietnamese_source_registry.jsonl"
+    )
+    assert _absolute_json_path_findings(release_root) == []
 
     for record in manifest["files"]:
         path = release_root / record["path"]
@@ -424,7 +535,7 @@ def test_post_zero_api_release_is_commit_bound_cache_free_and_honest(
     second = build_post_zero_api_release(
         repository_root=repository,
         authority_receipt=_r2_receipt(repository),
-        zero_api_artifact_root=ZERO_API_ARTIFACT,
+        zero_api_artifact_root=zero_api_artifact,
         controlled_registry=(
             repository
             / "dataset"
@@ -435,14 +546,90 @@ def test_post_zero_api_release_is_commit_bound_cache_free_and_honest(
         output_root=tmp_path / "release-second",
         implementation_commit=commit,
         junit_path=tmp_path / "valid.xml",
+        dataset_release_zip=official_dataset["zip"],
+        dataset_input_pin=official_dataset["pin"],
     )
     assert second["release_zip_sha256"] == summary["release_zip_sha256"]
 
+    original_findings_report = release_module.findings_report
+
+    def stale_findings_report(
+        canonical_main: str,
+        *,
+        dataset_conformance: dict[str, object] | None = None,
+    ) -> dict[str, object]:
+        del dataset_conformance
+        return original_findings_report(canonical_main)
+
+    contradictory_output = tmp_path / "release-contradictory"
+    with monkeypatch.context() as patcher:
+        patcher.setattr(
+            release_module,
+            "findings_report",
+            stale_findings_report,
+        )
+        with pytest.raises(ValueError, match="E-RDY-002 status conflict"):
+            build_post_zero_api_release(
+                repository_root=repository,
+                authority_receipt=_r2_receipt(repository),
+                zero_api_artifact_root=zero_api_artifact,
+                controlled_registry=(
+                    repository
+                    / "dataset"
+                    / "dataset_methodology_hardening_v1"
+                    / "release"
+                    / "controlled_vietnamese_source_registry.jsonl"
+                ),
+                output_root=contradictory_output,
+                implementation_commit=commit,
+                junit_path=tmp_path / "valid.xml",
+                dataset_release_zip=official_dataset["zip"],
+                dataset_input_pin=official_dataset["pin"],
+            )
+    assert not (contradictory_output / "manifest.json").exists()
+
 
 def _repository_root() -> Path:
-    root = Path(__file__).resolve().parents[3]
-    assert ZERO_API_ARTIFACT.is_dir()
-    return root
+    return Path(__file__).resolve().parents[3]
+
+
+def _absolute_json_path_findings(root: Path) -> list[str]:
+    windows_absolute = re.compile(r"^[A-Za-z]:[/\\]")
+    findings: list[str] = []
+
+    def visit(value: object, location: str) -> None:
+        if isinstance(value, dict):
+            for key, child in value.items():
+                visit(child, f"{location}.{key}")
+        elif isinstance(value, list):
+            for index, child in enumerate(value):
+                visit(child, f"{location}[{index}]")
+        elif isinstance(value, str) and (
+            value.startswith("/")
+            or value.startswith("\\\\")
+            or windows_absolute.match(value)
+        ):
+            findings.append(location)
+
+    for path in sorted(root.glob("*.json")):
+        visit(_load(path), path.name)
+    return findings
+
+
+def _official_dataset_paths() -> dict[str, Path]:
+    supplied = os.environ.get("D2L_OFFICIAL_DATASET_AUTHORITY_ROOT")
+    root = (
+        Path(supplied)
+        if supplied
+        else _repository_root() / OFFICIAL_DATASET_RELATIVE
+    )
+    zip_path = (
+        root / "d2l_stage_a_pilot_5_senses_official_v1_reviewer_handoff.zip"
+    )
+    pin_path = root / "official_dataset_input_pin_v1.json"
+    assert zip_path.is_file()
+    assert pin_path.is_file()
+    return {"zip": zip_path, "pin": pin_path}
 
 
 def _git(repository: Path, *args: str) -> str:
@@ -507,16 +694,31 @@ def _junit_xml(
     *,
     failures: int = 0,
     errors: int = 0,
-    classname: str = "vietnamese_attestation.v1.tests.synthetic",
+    skipped: int = 0,
+    classname: str | None = None,
+    identities: tuple[str, ...] | None = None,
+    testcase_skipped: bool = False,
 ) -> str:
+    if identities is None:
+        if classname is None and count <= len(EXPECTED_E_SUITE_TESTCASE_IDENTITIES):
+            identities = EXPECTED_E_SUITE_TESTCASE_IDENTITIES[:count]
+        else:
+            testcase_class = classname or "vietnamese_attestation.v1.tests.synthetic"
+            identities = tuple(
+                f"{testcase_class}::case-{index}" for index in range(count)
+            )
+    if len(identities) != count:
+        raise ValueError("JUnit fixture identity count mismatch")
+    child = "<skipped />" if testcase_skipped else ""
     cases = "".join(
-        f'<testcase classname="{classname}" name="case-{index}" />'
-        for index in range(count)
+        f"<testcase classname={quoteattr(identity.split('::', 1)[0])} "
+        f"name={quoteattr(identity.split('::', 1)[1])}>{child}</testcase>"
+        for identity in identities
     )
     return (
         '<?xml version="1.0" encoding="utf-8"?>'
         '<testsuites name="pytest tests">'
         f'<testsuite name="pytest" tests="{count}" failures="{failures}" '
-        f'errors="{errors}" skipped="0">{cases}</testsuite>'
+        f'errors="{errors}" skipped="{skipped}">{cases}</testsuite>'
         '</testsuites>'
     )
