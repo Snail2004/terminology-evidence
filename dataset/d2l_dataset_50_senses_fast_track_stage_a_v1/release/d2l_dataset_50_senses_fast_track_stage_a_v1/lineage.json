@@ -1,0 +1,20 @@
+{
+  "canonical_main_dataset_authority": {
+    "accepted_zip_sha256": "9b6a9ee1272b6403054b61f5399d4391328d1d2d8a964b1102af0a2656bc2738",
+    "main_commit": "7fd046cc6a9b8f78fd122549feaefa4b2ab83821",
+    "relationship": "LANE_A_IMMUTABLE_SEED_ONLY"
+  },
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "f506b4b3034a5bb4caf2cbe09c6e780e3ae65b6ec2e02a7e22d66342508361a1"
+  },
+  "official_5_manifest_sha256": "16bd2b9c7a974bdccfb977384fa1a35381e6e810c110f489f31d1606398ce2f5",
+  "provider_call_count": 0,
+  "repaired_5_manifest_sha256": "2b731280ea715353461874f3387cb6aed4b5947e9f1b7aba320e1e803b7b36c2",
+  "reviewed_15_manifest_sha256": "e602af02edf1fb877a9541c5e37f939f4f35ded34ac878d773fc83b96ed3fb48",
+  "schema_id": "D2LFastTrackStageALineageV1",
+  "schema_version": "1.0.0",
+  "source_batch_manifest_sha256": "bccab90ee3c1c16a6e2075f8fca9fd459d437ac5ef99bb5e902095c4b59ebf00",
+  "source_document_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+  "v3_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce"
+}

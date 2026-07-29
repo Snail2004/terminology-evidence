@@ -1,0 +1,1 @@
+python -B source/tools/validate_fast_track_stage_a.py --artifact-root .
