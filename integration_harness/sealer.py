@@ -66,10 +66,23 @@ def seal_run(
     temp_dir.mkdir()
     try:
         input_root = temp_dir / "input"
+        shared_effective: dict[str, Path] = {}
         for candidate in candidates:
             candidate_root = input_root / source_package_root_name / candidate.identity.candidate_id
             for role, package in candidate.packages.items():
-                _copy_unique(package.record.path, candidate_root / f"{role}.json")
+                if role == "effective_sense":
+                    self_hash = package.value["integrity"]["self_sha256"]
+                    destination = (
+                        input_root / "shared" / "effective_sense" / f"{self_hash}.json"
+                    )
+                    previous = shared_effective.get(self_hash)
+                    if previous is None:
+                        _copy_unique(package.record.path, destination)
+                        shared_effective[self_hash] = destination
+                    elif sha256_file(previous) != package.record.physical_sha256:
+                        raise StorageError("shared Effective Sense bytes drift during seal")
+                else:
+                    _copy_unique(package.record.path, candidate_root / f"{role}.json")
         copied_support: set[tuple[str, str]] = set()
         for candidate in candidates:
             for role, record in candidate.support.items():
@@ -110,12 +123,29 @@ def seal_run(
             if destination.exists():
                 raise StorageError(f"duplicate execution output: {candidate_id}")
             shutil.copytree(execution_dir, destination, symlinks=False)
+        sealed_source_authority: list[dict[str, Any]] = []
+        inventory_root = input_root / "inventory"
+        _copy_unique(inventory.manifest_path, inventory_root / "artifact_manifest.json")
+        for source in inventory.source_authority:
+            suffix = source.path.suffix or ".bin"
+            destination = inventory_root / "source" / f"{source.role}{suffix}"
+            _copy_unique(source.path, destination)
+            sealed_source_authority.append(
+                {
+                    **source.as_dict(),
+                    "sealed_relative_path": relative_posix(destination, temp_dir),
+                }
+            )
         dump_json(temp_dir / "authority" / "authority_set.json", authority.as_dict())
         dump_json(temp_dir / "audit" / "artifact_inventory.json", {
             "schema_id": "ArtifactInventoryReportV1",
             "manifest_sha256": inventory.manifest_sha256,
+            "manifest_self_sha256": inventory.manifest.get("integrity", {}).get("self_sha256"),
+            "adapter_mode": inventory.manifest.get("adapter_mode"),
             "artifact_count": len(inventory.records),
             "artifacts": [record.as_dict() for record in inventory.records],
+            "source_authority": sealed_source_authority,
+            "holds": [record.as_dict() for record in inventory.holds],
         })
         dump_json(temp_dir / "audit" / "join_report.json", {
             "schema_id": "ExactJoinReportV1",
@@ -141,6 +171,12 @@ def seal_run(
             dump_json(temp_dir / "audit" / "integration_report.json", dict(integration_report))
         sanitized_spec = dict(run_spec)
         sanitized_spec["authority"] = authority.as_dict()
+        sanitized_spec["adapter_inventory_binding"] = {
+            "schema_id": inventory.manifest.get("schema_id"),
+            "manifest_self_sha256": inventory.manifest.get("integrity", {}).get("self_sha256"),
+            "manifest_physical_sha256": inventory.manifest_sha256,
+            "source_authority_count": len(inventory.source_authority),
+        }
         sanitized_spec.pop("repository_root", None)
         sanitized_spec.pop("artifact_root", None)
         dump_json(temp_dir / "run_spec.json", sanitized_spec)

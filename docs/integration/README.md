@@ -61,6 +61,27 @@ strict-loaded, schema-checked, self-hash checked, and joined by the complete
 candidate identity tuple. Missing, duplicate, foreign, or drifted packages
 fail closed.
 
+## Dataset 50/150 adapter
+
+`ArtifactInventory50_150V1` is a Harness-owned intake projection for the
+official Dataset 5-sense/15-candidate pin and future 50-sense/150-candidate
+development fixtures. It verifies the Dataset ZIP, pin, manifest, candidate
+index, producer Git receipt, and C/E package-set bindings without importing
+producer internals. Effective Sense files are materialized once and may be
+referenced by exactly three candidates only when their shared identity and
+physical bytes are identical.
+
+An explicit producer HOLD is a blocking intake result, never an evidence
+package. A bundle containing a HOLD can be replayed as a preflight audit but
+cannot be passed to Global. Complete synthetic bundles are always labeled
+`SYNTHETIC_LOCAL_CONFORMANCE`; they cannot establish official readiness.
+
+The accepted Main Dataset pin is kept read-only at
+`review_evidence/dataset/d2l-stage-a-official-5-sense-pilot-v1/`. The current
+official Dataset is therefore `OFFICIAL_5_15_PREFLIGHT` until Main accepts both
+producer package sets. The 50/150 release schema is not inferred from the
+dirty Dataset worktree; an official 50/150 pin must be published separately.
+
 ## Public CLI
 
 ```powershell
@@ -72,6 +93,9 @@ python -B -m integration_harness join --manifest <manifest.json> --contracts-roo
 python -B -m integration_harness authority-verify --contracts-root terminology_contracts_v1 --authority-receipt terminology_contracts_v1/release/v1.1.0-final/contracts_v1_1_0_authority_receipt_r2.json --approval-root review_evidence/contracts/contracts-v1.1.0/authority-r2 --authority-mode CONTRACTS_R2_CURRENT
 python -B -m integration_harness run --manifest <manifest.json> --contracts-root terminology_contracts_v1 --authority-receipt terminology_contracts_v1/release/v1.1.0-final/contracts_v1_1_0_authority_receipt_r2.json --approval-root review_evidence/contracts/contracts-v1.1.0/authority-r2 --authority-mode CONTRACTS_R2_CURRENT --mode REAL_DEVELOPMENT_ZERO_NETWORK --run-id integration-dev-001 --output runs/integration-dev-001
 python -B -m integration_harness replay --run-dir runs/integration-dev-001 --repository-root . --contracts-root terminology_contracts_v1
+python -B -m integration_harness adapter-build --dataset-zip <dataset.zip> --dataset-pin <dataset-pin.json> --dataset-git-receipt <git-receipt.json> --context-set-manifest <c-set/manifest.json> --attestation-set-manifest <e-set/manifest.json> --contracts-root terminology_contracts_v1 --adapter-mode OFFICIAL_5_15_PREFLIGHT --allow-hold-role context_evidence --allow-hold-role attestation_evidence --output <adapter-bundle>
+python -B -m integration_harness adapter-replay --bundle <adapter-bundle> --contracts-root terminology_contracts_v1
+python -B -m integration_harness adapter-create-hold-set --dataset-zip <dataset.zip> --dataset-pin <dataset-pin.json> --dataset-git-receipt <git-receipt.json> --contracts-root terminology_contracts_v1 --adapter-mode OFFICIAL_5_15_PREFLIGHT --role attestation_evidence --reason-code PRODUCER_PACKAGE_NOT_MAIN_ACCEPTED --issuer-commit <harness-commit> --run-id <hold-run-id> --output <hold-set>
 ```
 
 `run` calls the public `global_validator.v1.cli` subprocess. Authority,
@@ -80,8 +104,8 @@ configuration cannot override persisted pins.
 
 ## Current readiness
 
-M0-M5 are implemented. The test suite exercises a 15-candidate synthetic
-zero-network fixture, exact current-R2 authority admission, detached AR-1
-validation, current-R2 sealed replay, and explicit historical-R1 replay. The
+M0-M5 and the Dataset 50/150 adapter conformance layer are implemented. The
+adapter gate exercises the accepted official 5/15 Dataset pin as a HOLD
+preflight and a synthetic 50/150 bundle with deterministic seal/replay. The
 real M6 pilot remains on hold until complete official Dataset/C/E packages are
-supplied. No synthetic fixture is promoted as a producer release.
+supplied and accepted. No synthetic fixture is promoted as a producer release.

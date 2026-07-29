@@ -10,7 +10,7 @@ from .assembler import GlobalCliAdapter
 from .assembly import assemble_candidates
 from .authority import CONTRACTS_R2_CURRENT, SYNTHETIC_LOCAL_CONFORMANCE, resolve_authority
 from .contracts_verifier import PublicContractR2Verifier
-from .errors import ExecutionError
+from .errors import ExecutionError, PolicyError
 from .hashing import sha256_bytes
 from .jsonio import canonical_bytes
 from .inventory import load_inventory
@@ -48,6 +48,14 @@ def execute_run(
         else CONTRACTS_R2_CURRENT
     )
     inventory = load_inventory(manifest_path)
+    if inventory.holds:
+        raise PolicyError("producer HOLDs block Global execution")
+    if (
+        inventory.manifest.get("schema_id") == "ArtifactInventory50_150V1"
+        and inventory.manifest.get("global_execution", {}).get("status")
+        != "READY_FOR_PUBLIC_GLOBAL_CLI"
+    ):
+        raise PolicyError("adapter inventory is not ready for public Global CLI")
     authority = resolve_authority(
         authority_receipt,
         contracts_root,

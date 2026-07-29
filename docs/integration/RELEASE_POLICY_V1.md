@@ -35,6 +35,13 @@ is satisfied and every official producer receipt is verified. Missing
 dependencies are reported as `REAL_PILOT_NOT_EXECUTED` or
 `BLOCKED_BY_<DEPENDENCY>`; they are not fabricated or silently normalized.
 
+`ArtifactInventory50_150V1` does not relax this rule. Explicit C/E HOLD files
+are accepted only when the caller names the corresponding role in the intake
+policy, remain sealed as HOLD records, and block Global execution. The
+official 5/15 Dataset pin may be preflighted while C/E remain unavailable. A
+synthetic 50/150 inventory proves cardinality, identity, shared-sense and
+replay behavior only; it is not an official Dataset release.
+
 Every development run must preserve zero provider/network calls, zero
 `AUTO_APPROVED`, and zero certificates. Synthetic fixture evidence remains
 `SYNTHETIC_LOCAL_CONFORMANCE` regardless of whether its replay passes.

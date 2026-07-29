@@ -7,6 +7,12 @@ python -B -m pytest -q tests\system_integration --tb=short -p no:cacheprovider
 python -B -m py_compile (Get-ChildItem integration_harness -Filter '*.py' -File | % FullName)
 python -B -m integration_harness --help
 
+# Focused 50/150 adapter gate (zero provider/network).
+python -B -m pytest -q tests\system_integration\test_adapter_50_150.py --tb=short -p no:cacheprovider
+python -B -m integration_harness adapter-build --help
+python -B -m integration_harness adapter-replay --help
+python -B scripts\integration\build_adapter_50_150_evidence_v1.py --output-root <outside-repo-evidence-dir> --issuer-commit <harness-commit>
+
 # Public Contract R2 verifier against the exact current authority receipt.
 python -B terminology_contracts_v1\release\authority_maintenance_v1\tools\verify_authority_receipt.py --repo-root . --distribution-root . --receipt terminology_contracts_v1\release\v1.1.0-final\contracts_v1_1_0_authority_receipt_r2.json --report <outside-repo-report.json>
 
