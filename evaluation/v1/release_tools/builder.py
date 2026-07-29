@@ -162,7 +162,12 @@ def build_release(
         materialized = temp_root / "source"
         materialize_commit(repo, commit, materialized)
         raw_junit = temp_root / "pytest-junit.xml"
-        junit_report = run_evaluation_pytest(materialized, raw_junit)
+        junit_report = run_evaluation_pytest(
+            materialized,
+            raw_junit,
+            git_repo_root=repo,
+            source_commit=commit,
+        )
         external_report = None
         if external_junit is not None:
             external_report = verify_junit(

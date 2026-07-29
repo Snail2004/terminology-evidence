@@ -1,4 +1,3 @@
-import subprocess
 import threading
 import unittest
 from pathlib import Path
@@ -15,19 +14,15 @@ from evaluation.v1.preregistration.freeze import (
 from evaluation.v1.preregistration.ledger import LedgerError
 from evaluation.v1.preregistration.receipt import build_receipt
 from evaluation.v1.preregistration.recovery import RecoveryError, recover_projection, verify_recovery_receipt
+from tests.evaluation.git_context import resolve_test_git_context
 
 
 class DurableStateTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.repo = Path(__file__).resolve().parents[2]
+        cls.git_repo, cls.commit = resolve_test_git_context(cls.repo)
         cls.registries = cls.repo / "evaluation" / "v1" / "registries"
-        cls.commit = subprocess.run(
-            ["git", "-C", str(cls.repo), "rev-parse", "HEAD"],
-            check=True,
-            capture_output=True,
-            text=True,
-        ).stdout.strip()
         artifacts = {
             "contracts_receipt": cls.repo / "terminology_contracts_v1" / "release" / "v1.1.0-final" / "contracts_v1_1_0_authority_receipt_r2.json",
             "contracts_approval_binding": cls.repo / "review_evidence" / "contracts" / "contracts-v1.1.0" / "authority-r2" / "approval_binding_v1.json",
@@ -40,7 +35,7 @@ class DurableStateTests(unittest.TestCase):
         cls.real_receipt = build_receipt(
             mode=MODE_REAL_AUTHORITY,
             base_commit=cls.commit,
-            repo_root_path=cls.repo,
+            repo_root_path=cls.git_repo,
             registry_root_path=cls.registries,
             authority_artifact_paths=artifacts,
             artifact_hashes={"evaluation_plan": "a" * 64},
@@ -72,7 +67,7 @@ class DurableStateTests(unittest.TestCase):
         synthetic = build_receipt(
             mode=MODE_SYNTHETIC,
             base_commit=self.commit,
-            repo_root_path=self.repo,
+            repo_root_path=self.git_repo,
             registry_root_path=self.registries,
             synthetic_reason="fixture",
         )

@@ -1,5 +1,7 @@
+import os
 import subprocess
 import unittest
+from unittest import mock
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -11,6 +13,7 @@ from evaluation.v1.release_tools.git_source import (
     write_source_zip,
 )
 from evaluation.v1.release_tools.publication import PublicationError, external_atomic_stage
+from tests.evaluation.git_context import resolve_test_git_context
 
 
 class ReleaseGitAndPublicationTests(unittest.TestCase):
@@ -63,6 +66,18 @@ class ReleaseGitAndPublicationTests(unittest.TestCase):
             materialized = root / "materialized"
             materialize_commit(repo, commit, materialized)
             self.assertEqual((materialized / "evaluation" / "module.py").read_text(encoding="ascii"), "VALUE = 1\n")
+            with mock.patch.dict(
+                os.environ,
+                {
+                    "EVALUATION_AR2_GIT_REPO_ROOT": str(repo),
+                    "EVALUATION_AR2_SOURCE_COMMIT": commit,
+                },
+            ):
+                self.assertEqual(resolve_test_git_context(materialized), (repo.resolve(), commit))
+            with mock.patch.dict(os.environ, {"EVALUATION_AR2_SOURCE_COMMIT": commit}):
+                os.environ.pop("EVALUATION_AR2_GIT_REPO_ROOT", None)
+                with self.assertRaises(RuntimeError):
+                    resolve_test_git_context(materialized)
 
     def test_external_atomic_publication_has_no_dirty_exception(self):
         with TemporaryDirectory() as temp:

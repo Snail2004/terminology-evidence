@@ -141,10 +141,18 @@ def normalized_junit_bytes(report: Mapping[str, Any]) -> bytes:
     return b'<?xml version="1.0" encoding="UTF-8"?>\n' + ET.tostring(suite, encoding="utf-8") + b"\n"
 
 
-def run_evaluation_pytest(materialized_root: Path, junit_path: Path) -> dict[str, Any]:
+def run_evaluation_pytest(
+    materialized_root: Path,
+    junit_path: Path,
+    *,
+    git_repo_root: Path,
+    source_commit: str,
+) -> dict[str, Any]:
     env = dict(os.environ)
     env["PYTHONDONTWRITEBYTECODE"] = "1"
     env["PYTHONPATH"] = str(materialized_root)
+    env["EVALUATION_AR2_GIT_REPO_ROOT"] = str(git_repo_root)
+    env["EVALUATION_AR2_SOURCE_COMMIT"] = source_commit
     command = [
         sys.executable,
         "-B",

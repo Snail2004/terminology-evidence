@@ -1,4 +1,3 @@
-import subprocess
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -7,14 +6,15 @@ from evaluation.v1.constants import AMENDMENT_SCHEMA_ID, MODE_REAL_AUTHORITY, SC
 from evaluation.v1.preregistration.amendments import AmendmentError, append_amendment, validate_amendment
 from evaluation.v1.preregistration.freeze import DurablePreregistrationStore, FreezeError
 from evaluation.v1.preregistration.receipt import build_receipt
+from tests.evaluation.git_context import resolve_test_git_context
 
 
 class AmendmentTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.repo = Path(__file__).resolve().parents[2]
+        git_repo, commit = resolve_test_git_context(cls.repo)
         registries = cls.repo / "evaluation" / "v1" / "registries"
-        commit = subprocess.run(["git", "-C", str(cls.repo), "rev-parse", "HEAD"], check=True, capture_output=True, text=True).stdout.strip()
         artifacts = {
             "contracts_receipt": cls.repo / "terminology_contracts_v1" / "release" / "v1.1.0-final" / "contracts_v1_1_0_authority_receipt_r2.json",
             "contracts_approval_binding": cls.repo / "review_evidence" / "contracts" / "contracts-v1.1.0" / "authority-r2" / "approval_binding_v1.json",
@@ -27,7 +27,7 @@ class AmendmentTests(unittest.TestCase):
         cls.receipt = build_receipt(
             mode=MODE_REAL_AUTHORITY,
             base_commit=commit,
-            repo_root_path=cls.repo,
+            repo_root_path=git_repo,
             registry_root_path=registries,
             authority_artifact_paths=artifacts,
             artifact_hashes={"evaluation_plan": "a" * 64},

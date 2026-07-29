@@ -1,4 +1,3 @@
-import subprocess
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -8,19 +7,15 @@ from evaluation.v1.constants import MODE_LEGACY_READ_ONLY, MODE_REAL_AUTHORITY, 
 from evaluation.v1.jsonio import sha256_file, sha256_value, write_json
 from evaluation.v1.preregistration.legacy import verify_legacy_receipt
 from evaluation.v1.preregistration.receipt import ReceiptError, build_receipt, verify_receipt, verify_receipt_object, write_receipt
+from tests.evaluation.git_context import resolve_test_git_context
 
 
 class AuthorityAndReceiptTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.repo = Path(__file__).resolve().parents[2]
+        cls.git_repo, cls.commit = resolve_test_git_context(cls.repo)
         cls.registries = cls.repo / "evaluation" / "v1" / "registries"
-        cls.commit = subprocess.run(
-            ["git", "-C", str(cls.repo), "rev-parse", "HEAD"],
-            check=True,
-            capture_output=True,
-            text=True,
-        ).stdout.strip()
         cls.artifacts = {
             "contracts_receipt": cls.repo / "terminology_contracts_v1" / "release" / "v1.1.0-final" / "contracts_v1_1_0_authority_receipt_r2.json",
             "contracts_approval_binding": cls.repo / "review_evidence" / "contracts" / "contracts-v1.1.0" / "authority-r2" / "approval_binding_v1.json",
@@ -42,7 +37,7 @@ class AuthorityAndReceiptTests(unittest.TestCase):
         receipt = build_receipt(
             mode=MODE_REAL_AUTHORITY,
             base_commit=self.commit,
-            repo_root_path=self.repo,
+            repo_root_path=self.git_repo,
             registry_root_path=self.registries,
             authority_artifact_paths=self.artifacts,
             artifact_hashes={"evaluation_plan": "a" * 64},
@@ -56,7 +51,7 @@ class AuthorityAndReceiptTests(unittest.TestCase):
             verified = verify_receipt(
                 path,
                 registry_root_path=self.registries,
-                repo_root_path=self.repo,
+                repo_root_path=self.git_repo,
                 authority_artifact_paths=self.artifacts,
             )
             self.assertEqual(verified, receipt)
@@ -65,7 +60,7 @@ class AuthorityAndReceiptTests(unittest.TestCase):
         synthetic = build_receipt(
             mode=MODE_SYNTHETIC,
             base_commit=self.commit,
-            repo_root_path=self.repo,
+            repo_root_path=self.git_repo,
             registry_root_path=self.registries,
             artifact_hashes={"fixture": "b" * 64},
             synthetic_reason="schema plumbing only",
@@ -78,14 +73,14 @@ class AuthorityAndReceiptTests(unittest.TestCase):
             build_receipt(
                 mode=MODE_LEGACY_READ_ONLY,
                 base_commit=self.commit,
-                repo_root_path=self.repo,
+                repo_root_path=self.git_repo,
             )
 
     def test_unknown_or_tampered_receipt_rejects(self):
         receipt = build_receipt(
             mode=MODE_SYNTHETIC,
             base_commit=self.commit,
-            repo_root_path=self.repo,
+            repo_root_path=self.git_repo,
             registry_root_path=self.registries,
             synthetic_reason="fixture",
             created_at="2026-07-29T15:00:00+07:00",
@@ -108,7 +103,7 @@ class AuthorityAndReceiptTests(unittest.TestCase):
                 build_receipt(
                     mode=MODE_REAL_AUTHORITY,
                     base_commit=self.commit,
-                    repo_root_path=self.repo,
+                    repo_root_path=self.git_repo,
                     registry_root_path=self.registries,
                     authority_artifact_paths=copied,
                     artifact_hashes={"plan": "c" * 64},
