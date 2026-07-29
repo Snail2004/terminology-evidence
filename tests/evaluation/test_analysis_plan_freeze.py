@@ -1,0 +1,137 @@
+import shutil
+import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
+
+from evaluation.v1.analysis_plan.access import (
+    GENESIS_SHA256,
+    GOLD_ACCESS_SCHEMA_ID,
+    GOLD_ACCESS_SCHEMA_VERSION,
+    GoldAccessError,
+    seal_gold_access_event,
+    verify_gold_access_ledger,
+)
+from evaluation.v1.analysis_plan.builder import (
+    ACCESS_TEMPLATES_FILE,
+    CONTENT_DIRECTORY,
+    PLAN_FILE,
+    TABLES_FILE,
+    build_analysis_plan_content,
+)
+from evaluation.v1.analysis_plan.verifier import AnalysisPlanError, verify_analysis_plan_content
+from evaluation.v1.jsonio import read_json, write_json
+
+
+class AnalysisPlanFreezeTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.repo = Path(__file__).resolve().parents[2]
+        cls.content = cls.repo / CONTENT_DIRECTORY
+
+    def test_frozen_content_matches_registry_and_has_no_access(self):
+        report = verify_analysis_plan_content(self.repo)
+        self.assertEqual(report["status"], "PASS")
+        self.assertEqual(report["actual_gold_access_receipt_count"], 0)
+        self.assertEqual(report["gold_access_ledger_head"], GENESIS_SHA256)
+
+        plan = read_json(self.content / PLAN_FILE)
+        self.assertEqual(plan["label_mapping"]["primary_binary"]["positive"], ["ACCEPT"])
+        self.assertEqual(plan["label_mapping"]["primary_binary"]["negative"], ["REJECT", "SPLIT_REQUIRED"])
+        self.assertEqual(
+            plan["e_status_reporting_mapping"]["ATTESTED_LIMITED"],
+            ["WEAKLY_ATTESTED"],
+        )
+        self.assertEqual(plan["missing_data_policy"]["imputation"], "NONE")
+        self.assertEqual(plan["confidence_interval_policy"]["proportions"], "wilson")
+        self.assertEqual([row["stage"] for row in plan["access_order"]], ["D0", "D1", "V1", "T1"])
+
+    def test_planned_tables_and_builder_are_result_free_and_deterministic(self):
+        plan = read_json(self.content / PLAN_FILE)
+        tables = read_json(self.content / TABLES_FILE)
+        access = read_json(self.content / ACCESS_TEMPLATES_FILE)
+        self.assertEqual(plan["scope"]["sense_count"], 50)
+        self.assertEqual(plan["scope"]["candidate_count"], 150)
+        self.assertEqual(tables["result_cells_present"], 0)
+        self.assertEqual([table["id"] for table in tables["tables"]], [f"T{index:02d}" for index in range(1, 13)])
+        self.assertEqual(access["actual_access_receipts"], [])
+
+        with TemporaryDirectory() as temp:
+            output = Path(temp) / "content"
+            build_analysis_plan_content(
+                self.repo,
+                source_parent_commit=plan["source_parent_commit"],
+                output_directory=output,
+            )
+            for filename in (PLAN_FILE, TABLES_FILE, ACCESS_TEMPLATES_FILE):
+                self.assertEqual((output / filename).read_bytes(), (self.content / filename).read_bytes())
+
+    def test_content_tamper_rejects(self):
+        with TemporaryDirectory() as temp:
+            root = Path(temp) / "repo"
+            shutil.copytree(self.content, root / CONTENT_DIRECTORY)
+            shutil.copytree(
+                self.repo / "evaluation" / "v1" / "registries",
+                root / "evaluation" / "v1" / "registries",
+            )
+            expected = self.repo / "evaluation" / "v1" / "authority" / "expected_test_manifest_v1.json"
+            target = root / "evaluation" / "v1" / "authority" / "expected_test_manifest_v1.json"
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(expected, target)
+            docs = root / "docs" / "evaluation"
+            docs.mkdir(parents=True)
+            for name in (
+                "ANALYSIS_PLAN_50_150_V1.md",
+                "Yeu_cau_Agent_Evaluation_Freeze_Analysis_Plan_50_150_V1.md",
+            ):
+                shutil.copyfile(self.repo / "docs" / "evaluation" / name, docs / name)
+
+            plan_path = root / CONTENT_DIRECTORY / PLAN_FILE
+            plan = read_json(plan_path)
+            plan["scope"]["candidate_count"] = 149
+            write_json(plan_path, plan)
+            with self.assertRaises(AnalysisPlanError):
+                verify_analysis_plan_content(root)
+
+    def test_gold_access_receipts_enforce_order_hashes_and_time(self):
+        freeze_sha = "a" * 64
+
+        def event(stage, sequence, previous, issued_at):
+            return seal_gold_access_event(
+                {
+                    "schema_id": GOLD_ACCESS_SCHEMA_ID,
+                    "schema_version": GOLD_ACCESS_SCHEMA_VERSION,
+                    "sequence_number": sequence,
+                    "stage": stage,
+                    "issued_at": issued_at,
+                    "actor": "evaluation-maintainer",
+                    "purpose": f"authorized {stage} gold access",
+                    "previous_event_sha256": previous,
+                    "analysis_plan_freeze_receipt_sha256": freeze_sha,
+                    "dataset_split_manifest_sha256": "b" * 64,
+                    "producer_bundle_manifest_sha256": "c" * 64,
+                    "gold_bundle_manifest_sha256": "d" * 64,
+                    "authorized_scope_sha256": "e" * 64,
+                    "authorization": {
+                        "approved": True,
+                        "approved_by": "reviewer",
+                        "approved_at": issued_at,
+                        "approval_receipt_sha256": "f" * 64,
+                    },
+                    "event_sha256": "",
+                }
+            )
+
+        d0 = event("D0", 0, GENESIS_SHA256, "2026-07-30T01:00:00+07:00")
+        d1 = event("D1", 1, d0["event_sha256"], "2026-07-30T02:00:00+07:00")
+        self.assertEqual(verify_gold_access_ledger([d0, d1], analysis_plan_freeze_receipt_sha256=freeze_sha), d1["event_sha256"])
+
+        wrong_stage = event("V1", 1, d0["event_sha256"], "2026-07-30T02:00:00+07:00")
+        with self.assertRaises(GoldAccessError):
+            verify_gold_access_ledger([d0, wrong_stage], analysis_plan_freeze_receipt_sha256=freeze_sha)
+        backward = event("D1", 1, d0["event_sha256"], "2026-07-30T00:59:59+07:00")
+        with self.assertRaises(GoldAccessError):
+            verify_gold_access_ledger([d0, backward], analysis_plan_freeze_receipt_sha256=freeze_sha)
+        tampered = dict(d1)
+        tampered["purpose"] = "changed after sealing"
+        with self.assertRaises(GoldAccessError):
+            verify_gold_access_ledger([d0, tampered], analysis_plan_freeze_receipt_sha256=freeze_sha)
