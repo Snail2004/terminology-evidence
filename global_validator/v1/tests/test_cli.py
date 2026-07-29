@@ -146,6 +146,17 @@ def test_cli_frozen_bundle_and_decision_verification(
             str(run_dir / "input" / "calibration_artifact.json"),
             "--collision-index",
             str(run_dir / "input" / "collision_index.json"),
+            "--mode",
+            "FROZEN_CALIBRATED",
+            "--allow-example-calibration",
+            "--run-id",
+            run_id,
+            "--started-at",
+            "1970-01-01T00:00:00+00:00",
+            "--completed-at",
+            "1970-01-01T00:00:00+00:00",
+            "--certificate-issued-at",
+            "1970-01-01T00:00:00+00:00",
         ]
     ) == 0
     assert main(

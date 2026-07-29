@@ -10,7 +10,8 @@
 - Deterministic projection of all 12 registered hard gates from C, E and
   constraint evidence.
 - Self-hashed action-selection policy restricted to actions allowed by the
-  sealed GatePolicyArtifact.
+  sealed GatePolicyArtifact and pinned by the reviewed Global action-policy
+  authority sidecar.
 - Registry-based feature assembly; development and frozen calibrated decision
   modes; deterministic precedence and replay hash.
 - Exact certificate projection, official certificate-bundle verification,
@@ -19,6 +20,12 @@
 - Replay preflight verifies strict JSON, safe bundle paths, checksums,
   authority, copied input projections, gate/decision bindings, audit records
   and any certificate bundle before recomputation.
+- Standalone decision and certificate-bundle verification perform exact
+  configured-policy recomputation. Replay spec V1.1 supports a separately
+  verified portable authority root rather than trusting the original path.
+- Fatal semantic, disagreement and coverage signals require direct producer
+  evidence refs; sealed-package fallback remains limited to aggregate nonfatal
+  states and constraint evidence.
 - CLI commands: authority verify, input assembly/validation, run, replay,
   decision verification and certificate-bundle verification.
 - Synthetic zero-API pilot: five senses, 15 candidates, 15 provisional
@@ -53,6 +60,11 @@ The detailed append-only log is
 - `GV-F011`: persisted replay previously trusted an unverified decision hash.
   Bundle, gate, decision, certificate and recomputed semantic outputs are now
   independently verified and cross-bound.
+- `GV-F012`: independent review found an unpinned action policy, partial
+  standalone verifiers, broad C/E fallback and absolute-path replay. These are
+  closed by the authority sidecar, exact recomputation, direct-evidence rules
+  and portable replay authority override. See the preserved review and
+  disposition report.
 
 ## Known Gaps
 
@@ -64,7 +76,7 @@ The detailed append-only log is
 
 ## Verification
 
-- Global Validator focused/contract/adversarial/integration suite: `44 passed`.
+- Global Validator focused/contract/adversarial/integration suite: `59 passed`.
 - Shared Contracts V1.1 suite: `113 passed, 2 skipped` (115 collected).
 - Synthetic pilot: `5` senses, `15` candidates, `15/15` replay PASS,
   `0` network/provider calls, `0` AUTO_APPROVED and `0` certificates.
@@ -72,12 +84,12 @@ The detailed append-only log is
   verification PASS; fixture-only certificate is not production authority.
 - Python compileall, wheel package-content check, diff-check, ownership scan and
   credential-pattern scan: PASS.
-- JUnit: `global_validator/v1/release/junit.xml` (`44` tests, zero failures).
+- JUnit: `global_validator/v1/release/junit.xml` (`59` tests, zero failures).
 
 ## Reviewer Focus
 
-1. Validate the action selected for each gate in
-   `gate_action_selection_v1.0.0.json`.
+1. Validate the action-policy authority sidecar and rejection of any other
+   otherwise-allowed policy mapping.
 2. Confirm the sealed-package fallback evidence convention for incomplete
    constraint refs.
 3. Adversarially mutate joins, gate signals, calibration, timestamps,

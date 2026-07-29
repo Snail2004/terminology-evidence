@@ -100,6 +100,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     replay = subparsers.add_parser("replay")
     replay.add_argument("--run-dir", type=Path, required=True)
+    replay.add_argument("--authority-root", type=Path)
     replay.set_defaults(handler=_replay)
 
     decision = subparsers.add_parser("verify-decision")
@@ -108,6 +109,17 @@ def build_parser() -> argparse.ArgumentParser:
     decision.add_argument("--global-input", type=Path, required=True)
     decision.add_argument("--calibration", type=Path)
     decision.add_argument("--collision-index", type=Path)
+    decision.add_argument(
+        "--mode",
+        choices=[mode.value for mode in ExecutionMode],
+        required=True,
+    )
+    decision.add_argument("--expected-calibration-sha256")
+    decision.add_argument("--allow-example-calibration", action="store_true")
+    decision.add_argument("--run-id", required=True)
+    decision.add_argument("--started-at", required=True)
+    decision.add_argument("--completed-at", required=True)
+    decision.add_argument("--certificate-issued-at", required=True)
     decision.set_defaults(handler=_verify_decision)
 
     bundle = subparsers.add_parser("verify-certificate-bundle")
@@ -264,7 +276,7 @@ def _run(args: argparse.Namespace) -> dict[str, Any]:
 
 
 def _replay(args: argparse.Namespace) -> dict[str, Any]:
-    result = replay_run(args.run_dir)
+    result = replay_run(args.run_dir, authority_root=args.authority_root)
     return {
         "status": "PASS",
         "matched": result.matched,
@@ -276,8 +288,15 @@ def _replay(args: argparse.Namespace) -> dict[str, Any]:
 def _verify_decision(args: argparse.Namespace) -> dict[str, Any]:
     config = _base_config(
         args,
+        mode=ExecutionMode(args.mode),
         calibration_path=args.calibration,
         collision_index_path=args.collision_index,
+        expected_calibration_sha256=args.expected_calibration_sha256,
+        allow_example_calibration=args.allow_example_calibration,
+        global_run_id=args.run_id,
+        started_at=args.started_at,
+        completed_at=args.completed_at,
+        certificate_issued_at=args.certificate_issued_at,
     )
     decision = verify_decision_artifact(
         args.decision,
@@ -305,6 +324,7 @@ def _verify_bundle(args: argparse.Namespace) -> dict[str, Any]:
         args.bundle_dir,
         schema_dir=authority.schema_dir,
         feature_registry_path=authority.feature_registry_path,
+        authority_root=repository_root,
     )
 
 
