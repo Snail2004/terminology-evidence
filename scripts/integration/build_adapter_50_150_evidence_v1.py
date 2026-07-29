@@ -3,9 +3,7 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
-import shutil
 import stat
 import tempfile
 import zipfile
@@ -20,7 +18,7 @@ from integration_harness.adapter_v1.dataset import (
 from integration_harness.adapter_v1.producer import write_explicit_hold_set
 from integration_harness.adapter_v1.replay import replay_adapter_bundle
 from integration_harness.hashing import self_sha256, sha256_file
-from integration_harness.jsonio import canonical_bytes, dump_json
+from integration_harness.jsonio import dump_json
 from tests.system_integration.adapter_helpers import (
     make_producer_set,
     make_synthetic_dataset_release,
@@ -126,8 +124,14 @@ def main() -> int:
         "schema_id": "HarnessDataset50150EvidenceSummaryV1",
         "schema_version": "1.0.0",
         "source_commit": args.issuer_commit,
-        "official_5_15": {"build": official_result, "replay": official_replay},
-        "synthetic_50_150": {"build": synthetic_result, "replay": synthetic_replay},
+        "official_5_15": {
+            "build": _portable_build_result(official_result),
+            "replay": official_replay,
+        },
+        "synthetic_50_150": {
+            "build": _portable_build_result(synthetic_result),
+            "replay": synthetic_replay,
+        },
         "invariants": {
             "provider_calls": 0,
             "network_calls": 0,
@@ -162,6 +166,16 @@ def main() -> int:
     _write_checksums(output)
     print(json.dumps({"status": "PASS", "output": str(output), **summary["invariants"]}, ensure_ascii=False))
     return 0
+
+
+def _portable_build_result(value: dict[str, object]) -> dict[str, object]:
+    """Remove local staging paths from portable evidence."""
+
+    return {
+        key: item
+        for key, item in value.items()
+        if key not in {"output_root", "inventory_path"}
+    }
 
 
 def _zip_tree(source: Path, target: Path) -> None:
