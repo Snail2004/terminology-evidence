@@ -1,0 +1,67 @@
+{
+  "alternatives_vi": [
+    "số lượng chiều",
+    "số chiều"
+  ],
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_4d702eba933761fbfafda5a7",
+    "candidate_version": "11ecad9e4d9a71de729d9d4321b46e7e685176eba0e84b30896349f285382a36",
+    "candidate_vi": "số chiều biểu diễn",
+    "dataset_manifest_sha256": "7b256808dacf446b06bc4f6cdc0ab8f0aa7585a2a4e3a56364cdb3508d17fbdc",
+    "effective_sense_contract_sha256": "be547d945ada798d877fe30c052c82c529bb940a1e277685549da7fbaed8a344",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_f3dedf5fcd54a46940474022",
+    "sense_inventory_version": "d2l_dataset_50_senses_150_candidates_v1",
+    "source_term": "dimensionality"
+  },
+  "domain_profile": {
+    "anchors_en": [
+      "dimensionality"
+    ],
+    "anchors_vi": [
+      "số chiều",
+      "số chiều biểu diễn",
+      "số lượng chiều"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "The number of components, features, or axes used to represent data or an internal representation.",
+  "effective_part_of_speech": "noun",
+  "input_contract_sha256": "4b57eb294c50165a66e35db722806b669748daf01a96e5ee21ddbae5efda8272",
+  "input_provenance": {
+    "completed_at": "2026-07-29T17:00:00Z",
+    "component_id": "d2l-dataset-frozen-candidate-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "cf027ff8d20c1d2ecd0c667ab303fc31f25a9eda80257b61329c34e67efcd05d",
+    "model_routes": [],
+    "notes": "Candidate identity is frozen before Stage B; no candidate gold label or final glossary decision is assigned.",
+    "policy_version": "d2l-dataset-50-senses-150-candidates-stage-b-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-dataset-50-sense-contract-release",
+    "run_spec_id": "d2l-dataset-50-sense-contract-spec-v1",
+    "source_artifact_hashes": {
+      "adjudication_manifest": "95482cd1b495b9014a1f00ba4695324f99f0637c6fb96f17d5ffded44c5e2b5c",
+      "base_dataset_manifest": "92fab6032576a5c9c57fe38e23b6c622d5f73718a897197a2c10df35c7fe8b4d",
+      "base_dataset_manifest_physical": "438dffc84aaa735e4f734d4dc5cefcf63dc8360743b6e941380bca71eec1f13a",
+      "candidate_instance": "11ecad9e4d9a71de729d9d4321b46e7e685176eba0e84b30896349f285382a36",
+      "r0_result_manifest": "c17198864aeb47233fd658d7e6c333c5beb86c5531e5b240ca30e046d066a616",
+      "review_binding": "0d298b323080bb1f38d596cb3547b7d90eecc812d44afc24f43f9e01af13c853",
+      "review_intake_manifest": "bcb840616060473ea61b81ca7cf052eff2ac00caeb7bff75e7cbf064e6a7e178",
+      "term_sense": "86a877e73fafcbf15592d55e9255e44950390cea01b9c6b054c7ceb5336b8091"
+    },
+    "started_at": "2026-07-29T17:00:00Z"
+  },
+  "integrity": {
+    "self_sha256": "4b2ef5aed2602299f753c51d04ac0f88d8795a042637e36bdfe8c14666e1fac0"
+  },
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.1.0",
+  "scope_note": null,
+  "surfaces": {
+    "canonical_vi": "số chiều biểu diễn",
+    "rejected_variants_vi": [],
+    "validated_variants_vi": []
+  }
+}

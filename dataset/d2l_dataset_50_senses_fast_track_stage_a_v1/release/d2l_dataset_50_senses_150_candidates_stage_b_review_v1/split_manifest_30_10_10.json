@@ -1,0 +1,420 @@
+{
+  "assignments": {
+    "d2lce_00f50f89defd8652bb8c429e": "validation",
+    "d2lce_04b7107b328dedc7c1f9af65": "development",
+    "d2lce_11e1c294000ac67785408dcd": "development",
+    "d2lce_152a9bcc9b8b5f6cc5586c54": "development",
+    "d2lce_18c3da2d5bdd6d05a83982fa": "test",
+    "d2lce_1a91fdded89249a5cd89ec14": "test",
+    "d2lce_2b9f63478b6ef59511a4f930": "validation",
+    "d2lce_35df896f9860f8aac814ce37": "development",
+    "d2lce_382e4bbab285d56a08249753": "development",
+    "d2lce_3e633e212e54590ca20bfc99": "development",
+    "d2lce_42900db05a19228ce33eafe0": "validation",
+    "d2lce_49603071e9c21eb4bcbdf1e7": "development",
+    "d2lce_499fa9391d57e930a19f1b19": "development",
+    "d2lce_4abd762bcd34d370b4fe6498": "development",
+    "d2lce_4d2b37402e25d2f56746ea23": "development",
+    "d2lce_51ce8cc13680668af18c9d10": "validation",
+    "d2lce_52085fef12f840d2350b2049": "development",
+    "d2lce_658174b1687c73f5aa1957ab": "development",
+    "d2lce_7070b47672fcb2311c0527b6": "development",
+    "d2lce_7c27fa40b039d07e81508741": "validation",
+    "d2lce_7ef8ed3f93210606a27312a4": "development",
+    "d2lce_8d226b48ba7ec1493faa4ec8": "test",
+    "d2lce_9199c3ba27076b186a42df23": "development",
+    "d2lce_97f1f447efe7908ef1e8daf4": "development",
+    "d2lce_98b37a7bcb47cd2ef2e5f296": "test",
+    "d2lce_9bd5113780f8e8160a24e6ad": "development",
+    "d2lce_9cee0f2f668259a2568b89f4": "development",
+    "d2lce_ad0d7cbd5f90ad33075e89aa": "development",
+    "d2lce_ad13d119a140210b487eeb9c": "development",
+    "d2lce_addfcc9899bef06c500b6b0e": "development",
+    "d2lce_b63485c15ac13f80b0d98676": "development",
+    "d2lce_b967af36e17c22a478eaed6d": "development",
+    "d2lce_c01c503b792019c6e3827ac0": "test",
+    "d2lce_c4e87e5ee47d3e26ba618290": "development",
+    "d2lce_c6b4477a845e2e0e0e02f088": "test",
+    "d2lce_c6c1c6e96c39b88a9f94e8d9": "test",
+    "d2lce_cc4cb853eff638abcbdf7691": "development",
+    "d2lce_ccf7d0a5109d86ee76a75b9c": "validation",
+    "d2lce_ce222dd206341f61f2986f7a": "development",
+    "d2lce_d1ca2fd5568e11a79b1b3366": "test",
+    "d2lce_d2bfc7b3a0a02ddfd71b3526": "validation",
+    "d2lce_d7976d0b101e65c34c011871": "test",
+    "d2lce_d89e6e83e5f07d1fcb18c6aa": "development",
+    "d2lce_ddf8557de1cd5ff23b86e10e": "development",
+    "d2lce_e014da89e120449f8881dd5b": "development",
+    "d2lce_e0c693366d811581abbb9e74": "validation",
+    "d2lce_e1a7c8e04c91b48272b3b5ee": "development",
+    "d2lce_eae5d94b4d2b73165c5d8795": "validation",
+    "d2lce_f3dedf5fcd54a46940474022": "validation",
+    "d2lce_fb9ad6a6ac7e4ba9167913e1": "test"
+  },
+  "counts": {
+    "development": 30,
+    "test": 10,
+    "validation": 10
+  },
+  "dataset_version": "d2l_dataset_50_senses_150_candidates_v1",
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "7b256808dacf446b06bc4f6cdc0ab8f0aa7585a2a4e3a56364cdb3508d17fbdc"
+  },
+  "leakage_components": [
+    {
+      "component_id": "leakage_component_001",
+      "sense_ids": [
+        "d2lce_00f50f89defd8652bb8c429e",
+        "d2lce_2b9f63478b6ef59511a4f930",
+        "d2lce_42900db05a19228ce33eafe0",
+        "d2lce_51ce8cc13680668af18c9d10",
+        "d2lce_7c27fa40b039d07e81508741",
+        "d2lce_ccf7d0a5109d86ee76a75b9c",
+        "d2lce_d2bfc7b3a0a02ddfd71b3526",
+        "d2lce_e0c693366d811581abbb9e74",
+        "d2lce_eae5d94b4d2b73165c5d8795",
+        "d2lce_f3dedf5fcd54a46940474022"
+      ],
+      "size": 10,
+      "split": "validation"
+    },
+    {
+      "component_id": "leakage_component_002",
+      "sense_ids": [
+        "d2lce_04b7107b328dedc7c1f9af65",
+        "d2lce_152a9bcc9b8b5f6cc5586c54",
+        "d2lce_499fa9391d57e930a19f1b19",
+        "d2lce_ad13d119a140210b487eeb9c",
+        "d2lce_addfcc9899bef06c500b6b0e",
+        "d2lce_e014da89e120449f8881dd5b"
+      ],
+      "size": 6,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_003",
+      "sense_ids": [
+        "d2lce_8d226b48ba7ec1493faa4ec8",
+        "d2lce_d7976d0b101e65c34c011871"
+      ],
+      "size": 2,
+      "split": "test"
+    },
+    {
+      "component_id": "leakage_component_004",
+      "sense_ids": [
+        "d2lce_98b37a7bcb47cd2ef2e5f296",
+        "d2lce_d1ca2fd5568e11a79b1b3366"
+      ],
+      "size": 2,
+      "split": "test"
+    },
+    {
+      "component_id": "leakage_component_005",
+      "sense_ids": [
+        "d2lce_c01c503b792019c6e3827ac0",
+        "d2lce_fb9ad6a6ac7e4ba9167913e1"
+      ],
+      "size": 2,
+      "split": "test"
+    },
+    {
+      "component_id": "leakage_component_006",
+      "sense_ids": [
+        "d2lce_c6b4477a845e2e0e0e02f088",
+        "d2lce_c6c1c6e96c39b88a9f94e8d9"
+      ],
+      "size": 2,
+      "split": "test"
+    },
+    {
+      "component_id": "leakage_component_007",
+      "sense_ids": [
+        "d2lce_11e1c294000ac67785408dcd"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_008",
+      "sense_ids": [
+        "d2lce_18c3da2d5bdd6d05a83982fa"
+      ],
+      "size": 1,
+      "split": "test"
+    },
+    {
+      "component_id": "leakage_component_009",
+      "sense_ids": [
+        "d2lce_1a91fdded89249a5cd89ec14"
+      ],
+      "size": 1,
+      "split": "test"
+    },
+    {
+      "component_id": "leakage_component_010",
+      "sense_ids": [
+        "d2lce_35df896f9860f8aac814ce37"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_011",
+      "sense_ids": [
+        "d2lce_382e4bbab285d56a08249753"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_012",
+      "sense_ids": [
+        "d2lce_3e633e212e54590ca20bfc99"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_013",
+      "sense_ids": [
+        "d2lce_49603071e9c21eb4bcbdf1e7"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_014",
+      "sense_ids": [
+        "d2lce_4abd762bcd34d370b4fe6498"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_015",
+      "sense_ids": [
+        "d2lce_4d2b37402e25d2f56746ea23"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_016",
+      "sense_ids": [
+        "d2lce_52085fef12f840d2350b2049"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_017",
+      "sense_ids": [
+        "d2lce_658174b1687c73f5aa1957ab"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_018",
+      "sense_ids": [
+        "d2lce_7070b47672fcb2311c0527b6"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_019",
+      "sense_ids": [
+        "d2lce_7ef8ed3f93210606a27312a4"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_020",
+      "sense_ids": [
+        "d2lce_9199c3ba27076b186a42df23"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_021",
+      "sense_ids": [
+        "d2lce_97f1f447efe7908ef1e8daf4"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_022",
+      "sense_ids": [
+        "d2lce_9bd5113780f8e8160a24e6ad"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_023",
+      "sense_ids": [
+        "d2lce_9cee0f2f668259a2568b89f4"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_024",
+      "sense_ids": [
+        "d2lce_ad0d7cbd5f90ad33075e89aa"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_025",
+      "sense_ids": [
+        "d2lce_b63485c15ac13f80b0d98676"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_026",
+      "sense_ids": [
+        "d2lce_b967af36e17c22a478eaed6d"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_027",
+      "sense_ids": [
+        "d2lce_c4e87e5ee47d3e26ba618290"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_028",
+      "sense_ids": [
+        "d2lce_cc4cb853eff638abcbdf7691"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_029",
+      "sense_ids": [
+        "d2lce_ce222dd206341f61f2986f7a"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_030",
+      "sense_ids": [
+        "d2lce_d89e6e83e5f07d1fcb18c6aa"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_031",
+      "sense_ids": [
+        "d2lce_ddf8557de1cd5ff23b86e10e"
+      ],
+      "size": 1,
+      "split": "development"
+    },
+    {
+      "component_id": "leakage_component_032",
+      "sense_ids": [
+        "d2lce_e1a7c8e04c91b48272b3b5ee"
+      ],
+      "size": 1,
+      "split": "development"
+    }
+  ],
+  "policy_id": "d2l-dataset-50-senses-150-candidates-stage-b-v1.0",
+  "provider_call_count": 0,
+  "schema_id": "D2LFinal50SplitManifestV1",
+  "schema_version": "1.0.0",
+  "selected_sense_ids": [
+    "d2lce_00f50f89defd8652bb8c429e",
+    "d2lce_04b7107b328dedc7c1f9af65",
+    "d2lce_11e1c294000ac67785408dcd",
+    "d2lce_152a9bcc9b8b5f6cc5586c54",
+    "d2lce_18c3da2d5bdd6d05a83982fa",
+    "d2lce_1a91fdded89249a5cd89ec14",
+    "d2lce_2b9f63478b6ef59511a4f930",
+    "d2lce_35df896f9860f8aac814ce37",
+    "d2lce_382e4bbab285d56a08249753",
+    "d2lce_3e633e212e54590ca20bfc99",
+    "d2lce_42900db05a19228ce33eafe0",
+    "d2lce_49603071e9c21eb4bcbdf1e7",
+    "d2lce_499fa9391d57e930a19f1b19",
+    "d2lce_4abd762bcd34d370b4fe6498",
+    "d2lce_4d2b37402e25d2f56746ea23",
+    "d2lce_51ce8cc13680668af18c9d10",
+    "d2lce_52085fef12f840d2350b2049",
+    "d2lce_658174b1687c73f5aa1957ab",
+    "d2lce_7070b47672fcb2311c0527b6",
+    "d2lce_7c27fa40b039d07e81508741",
+    "d2lce_7ef8ed3f93210606a27312a4",
+    "d2lce_8d226b48ba7ec1493faa4ec8",
+    "d2lce_9199c3ba27076b186a42df23",
+    "d2lce_97f1f447efe7908ef1e8daf4",
+    "d2lce_98b37a7bcb47cd2ef2e5f296",
+    "d2lce_9bd5113780f8e8160a24e6ad",
+    "d2lce_9cee0f2f668259a2568b89f4",
+    "d2lce_ad0d7cbd5f90ad33075e89aa",
+    "d2lce_ad13d119a140210b487eeb9c",
+    "d2lce_addfcc9899bef06c500b6b0e",
+    "d2lce_b63485c15ac13f80b0d98676",
+    "d2lce_b967af36e17c22a478eaed6d",
+    "d2lce_c01c503b792019c6e3827ac0",
+    "d2lce_c4e87e5ee47d3e26ba618290",
+    "d2lce_c6b4477a845e2e0e0e02f088",
+    "d2lce_c6c1c6e96c39b88a9f94e8d9",
+    "d2lce_cc4cb853eff638abcbdf7691",
+    "d2lce_ccf7d0a5109d86ee76a75b9c",
+    "d2lce_ce222dd206341f61f2986f7a",
+    "d2lce_d1ca2fd5568e11a79b1b3366",
+    "d2lce_d2bfc7b3a0a02ddfd71b3526",
+    "d2lce_d7976d0b101e65c34c011871",
+    "d2lce_d89e6e83e5f07d1fcb18c6aa",
+    "d2lce_ddf8557de1cd5ff23b86e10e",
+    "d2lce_e014da89e120449f8881dd5b",
+    "d2lce_e0c693366d811581abbb9e74",
+    "d2lce_e1a7c8e04c91b48272b3b5ee",
+    "d2lce_eae5d94b4d2b73165c5d8795",
+    "d2lce_f3dedf5fcd54a46940474022",
+    "d2lce_fb9ad6a6ac7e4ba9167913e1"
+  ],
+  "split_policy": "SENSE_ID_LEAKAGE_COMPONENTS_SENTENCE_OR_BLOCK_V1",
+  "split_quotas": {
+    "development": 30,
+    "test": 10,
+    "validation": 10
+  },
+  "stage_b_gold_autofill_count": 0,
+  "stratum_counts": {
+    "development": {
+      "ambiguous": 13,
+      "clear": 9,
+      "collision_or_multi_target": 8
+    },
+    "test": {
+      "ambiguous": 4,
+      "clear": 3,
+      "collision_or_multi_target": 3
+    },
+    "validation": {
+      "ambiguous": 3,
+      "clear": 3,
+      "collision_or_multi_target": 4
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "artifact_name": "d2l_fast_track_stage_a_r0_reaudit_result_v1",
+  "case_count": 4,
+  "created_at": "2026-07-29T16:00:00Z",
+  "currently_ready_pool_count": 60,
+  "exact_50_gate_unlocked": true,
+  "exact_50_minimum_r0_acceptance": 1,
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "5f0ecfe97388d0ff1d707960280fd50276db4913b69854b040e24441a54daf09"
+  },
+  "policy_id": "d2l-fast-track-stage-a-r0-reaudit-result-v1.0",
+  "provider_call_count": 0,
+  "ready_count": 4,
+  "schema_id": "D2LFastTrackStageAR0ReauditResultReportV1",
+  "schema_version": "1.0.0",
+  "source_completed_review_path": "raw_review/r0_blind_reauditor_completed.json",
+  "source_completed_review_sha256": "30fdcec724a033a9ea00b3c3a0664ef206af747d029018c0b63bca86c0a41e56",
+  "source_repair_release_zip_sha256": "76ef7ba12bd7aec855ca20154e8bf4030b0723fc0cacb4a06bebd5dee23cbd36",
+  "stage_b_gold_autofill_count": 0,
+  "status": "R0_REAUDIT_COMPLETE_EXACT_50_UNLOCKED"
+}

@@ -1,0 +1,73 @@
+{
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_962d537d3891ff06e43c23a1",
+    "candidate_version": "9780610260d9a2365fd8fe81c09cd37a879b4fad678ca8995002844092bf9af5",
+    "candidate_vi": "một GPU",
+    "dataset_manifest_sha256": "7b256808dacf446b06bc4f6cdc0ab8f0aa7585a2a4e3a56364cdb3508d17fbdc",
+    "effective_sense_contract_sha256": "adc2c50708eb2d3363215dcfe2eb16fac7764e76de27110059adab3900e3603b",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_e014da89e120449f8881dd5b",
+    "sense_inventory_version": "d2l_dataset_50_senses_150_candidates_v1",
+    "source_term": "single GPU"
+  },
+  "input_contract_sha256": "16151da4f6e50b2de867364d777ad0e3fe5ce0d0164408cd944ed70bde1ba97b",
+  "integrity": {
+    "self_sha256": "6301606223e44050babe3ad0fa0b215dc1fc5a7986acdc72890dda6d3f64c1e4"
+  },
+  "polysemy_resolution": {
+    "authority_ref": {
+      "evidence_id": "review-binding-d2lce_e014da89e120449f8881dd5b",
+      "evidence_type": "REVIEW_ARTIFACT",
+      "sha256": "061d70f48cc72be689eb2e94e161ca1472532d87f9f9a1afdac8b15a5e9f4433",
+      "uri": "artifact://d2l-dataset-50/stage_a_review_bindings/d2lce_e014da89e120449f8881dd5b.json"
+    },
+    "related_sense_ids": [
+      "d2lce_e014da89e120449f8881dd5b"
+    ],
+    "status": "RESOLVED_SINGLE"
+  },
+  "provenance": {
+    "completed_at": "2026-07-29T17:00:00Z",
+    "component_id": "d2l-dataset-constraint-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "cf027ff8d20c1d2ecd0c667ab303fc31f25a9eda80257b61329c34e67efcd05d",
+    "model_routes": [],
+    "notes": "Stage A constraints are bound; candidate gold, C/E evidence, and final glossary decision remain unassigned.",
+    "policy_version": "d2l-dataset-50-senses-150-candidates-stage-b-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-dataset-50-sense-contract-release",
+    "run_spec_id": "d2l-dataset-50-sense-contract-spec-v1",
+    "source_artifact_hashes": {
+      "adjudication_manifest": "95482cd1b495b9014a1f00ba4695324f99f0637c6fb96f17d5ffded44c5e2b5c",
+      "base_dataset_manifest": "92fab6032576a5c9c57fe38e23b6c622d5f73718a897197a2c10df35c7fe8b4d",
+      "base_dataset_manifest_physical": "438dffc84aaa735e4f734d4dc5cefcf63dc8360743b6e941380bca71eec1f13a",
+      "candidate_instance": "9780610260d9a2365fd8fe81c09cd37a879b4fad678ca8995002844092bf9af5",
+      "r0_result_manifest": "c17198864aeb47233fd658d7e6c333c5beb86c5531e5b240ca30e046d066a616",
+      "review_binding": "061d70f48cc72be689eb2e94e161ca1472532d87f9f9a1afdac8b15a5e9f4433",
+      "review_intake_manifest": "bcb840616060473ea61b81ca7cf052eff2ac00caeb7bff75e7cbf064e6a7e178",
+      "term_sense": "ac32ca7d8a4fbb6077fed5679025fbd5de217c5749198a4cd1aeed611ca40d1e"
+    },
+    "started_at": "2026-07-29T17:00:00Z"
+  },
+  "schema_id": "ConstraintEvidencePackageV1",
+  "schema_version": "1.1.0",
+  "sense_review": {
+    "effective_sense_contract_sha256": "adc2c50708eb2d3363215dcfe2eb16fac7764e76de27110059adab3900e3603b",
+    "review_artifact_ref": {
+      "evidence_id": "review-binding-d2lce_e014da89e120449f8881dd5b",
+      "evidence_type": "REVIEW_ARTIFACT",
+      "sha256": "061d70f48cc72be689eb2e94e161ca1472532d87f9f9a1afdac8b15a5e9f4433",
+      "uri": "artifact://d2l-dataset-50/stage_a_review_bindings/d2lce_e014da89e120449f8881dd5b.json"
+    },
+    "status": "VERIFIED"
+  },
+  "target_collision": {
+    "collision_index_ref": null,
+    "collision_index_sha256": null,
+    "conflicting_candidate_keys": [],
+    "evidence_refs": [],
+    "status": "UNJUDGEABLE"
+  }
+}

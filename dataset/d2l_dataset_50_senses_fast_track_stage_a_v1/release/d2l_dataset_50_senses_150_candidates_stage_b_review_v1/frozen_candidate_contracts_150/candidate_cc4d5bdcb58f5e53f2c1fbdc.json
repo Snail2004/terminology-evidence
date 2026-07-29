@@ -1,0 +1,67 @@
+{
+  "alternatives_vi": [
+    "Caser",
+    "mô hình khuyến nghị nhúng chuỗi tích chập"
+  ],
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_cc4d5bdcb58f5e53f2c1fbdc",
+    "candidate_version": "6e9b24cb21c5d789a1f460563aa6a0983ec8820302cd2b6add1c5c2b3e3714ef",
+    "candidate_vi": "mô hình Caser",
+    "dataset_manifest_sha256": "7b256808dacf446b06bc4f6cdc0ab8f0aa7585a2a4e3a56364cdb3508d17fbdc",
+    "effective_sense_contract_sha256": "d85b2bd098bc71fb86aff79d2ab8d371dcde7b8f965c2f63257e7b9944403148",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_52085fef12f840d2350b2049",
+    "sense_inventory_version": "d2l_dataset_50_senses_150_candidates_v1",
+    "source_term": "Caser"
+  },
+  "domain_profile": {
+    "anchors_en": [
+      "Caser"
+    ],
+    "anchors_vi": [
+      "Caser",
+      "mô hình Caser",
+      "mô hình khuyến nghị nhúng chuỗi tích chập"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "A convolution-based sequential recommendation model that captures recent activity patterns and user preferences.",
+  "effective_part_of_speech": "proper_noun",
+  "input_contract_sha256": "8f20956a97097ceee8b70a4a6e069ed886eff2cdadde7112c0eb353754b97837",
+  "input_provenance": {
+    "completed_at": "2026-07-29T17:00:00Z",
+    "component_id": "d2l-dataset-frozen-candidate-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "cf027ff8d20c1d2ecd0c667ab303fc31f25a9eda80257b61329c34e67efcd05d",
+    "model_routes": [],
+    "notes": "Candidate identity is frozen before Stage B; no candidate gold label or final glossary decision is assigned.",
+    "policy_version": "d2l-dataset-50-senses-150-candidates-stage-b-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-dataset-50-sense-contract-release",
+    "run_spec_id": "d2l-dataset-50-sense-contract-spec-v1",
+    "source_artifact_hashes": {
+      "adjudication_manifest": "95482cd1b495b9014a1f00ba4695324f99f0637c6fb96f17d5ffded44c5e2b5c",
+      "base_dataset_manifest": "92fab6032576a5c9c57fe38e23b6c622d5f73718a897197a2c10df35c7fe8b4d",
+      "base_dataset_manifest_physical": "438dffc84aaa735e4f734d4dc5cefcf63dc8360743b6e941380bca71eec1f13a",
+      "candidate_instance": "6e9b24cb21c5d789a1f460563aa6a0983ec8820302cd2b6add1c5c2b3e3714ef",
+      "r0_result_manifest": "c17198864aeb47233fd658d7e6c333c5beb86c5531e5b240ca30e046d066a616",
+      "review_binding": "7166894a449c6d0a11362dd5ea7c3be630427886b36648b8f43d4aea58d76215",
+      "review_intake_manifest": "bcb840616060473ea61b81ca7cf052eff2ac00caeb7bff75e7cbf064e6a7e178",
+      "term_sense": "5d3e001cf4bc9f6670970fb162602e17292af245082b2ff937f46b732a173319"
+    },
+    "started_at": "2026-07-29T17:00:00Z"
+  },
+  "integrity": {
+    "self_sha256": "c03d11ad6959c9f54ac962a1334b70058be546f1b5a0d5c9a1d65847c39cdb84"
+  },
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.1.0",
+  "scope_note": null,
+  "surfaces": {
+    "canonical_vi": "mô hình Caser",
+    "rejected_variants_vi": [],
+    "validated_variants_vi": []
+  }
+}

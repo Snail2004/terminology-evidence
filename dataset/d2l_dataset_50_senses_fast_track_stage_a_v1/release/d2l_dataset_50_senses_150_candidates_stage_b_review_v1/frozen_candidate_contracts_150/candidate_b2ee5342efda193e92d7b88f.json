@@ -1,0 +1,67 @@
+{
+  "alternatives_vi": [
+    "lỗi khái quát hóa",
+    "sai số khái quát hóa"
+  ],
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_b2ee5342efda193e92d7b88f",
+    "candidate_version": "4557a772407c21d0b53a78bd54bca8a6a2fe0f19ba9340c6a38e1a84185d517d",
+    "candidate_vi": "lỗi tổng quát hóa",
+    "dataset_manifest_sha256": "7b256808dacf446b06bc4f6cdc0ab8f0aa7585a2a4e3a56364cdb3508d17fbdc",
+    "effective_sense_contract_sha256": "39766250ef067687a75d2822b1b897bcb67b3fa2dad293cbe1f77b9ce1a07c77",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_9199c3ba27076b186a42df23",
+    "sense_inventory_version": "d2l_dataset_50_senses_150_candidates_v1",
+    "source_term": "generalization error"
+  },
+  "domain_profile": {
+    "anchors_en": [
+      "generalization error"
+    ],
+    "anchors_vi": [
+      "lỗi khái quát hóa",
+      "lỗi tổng quát hóa",
+      "sai số khái quát hóa"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "The expected error of a model on new data drawn from the same underlying distribution as the original sample.",
+  "effective_part_of_speech": "noun_phrase",
+  "input_contract_sha256": "cbbcb431cc5b15531ab041242a6df6213a89b5c275f02e9506c7cb90e7036ec3",
+  "input_provenance": {
+    "completed_at": "2026-07-29T17:00:00Z",
+    "component_id": "d2l-dataset-frozen-candidate-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "cf027ff8d20c1d2ecd0c667ab303fc31f25a9eda80257b61329c34e67efcd05d",
+    "model_routes": [],
+    "notes": "Candidate identity is frozen before Stage B; no candidate gold label or final glossary decision is assigned.",
+    "policy_version": "d2l-dataset-50-senses-150-candidates-stage-b-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-dataset-50-sense-contract-release",
+    "run_spec_id": "d2l-dataset-50-sense-contract-spec-v1",
+    "source_artifact_hashes": {
+      "adjudication_manifest": "95482cd1b495b9014a1f00ba4695324f99f0637c6fb96f17d5ffded44c5e2b5c",
+      "base_dataset_manifest": "92fab6032576a5c9c57fe38e23b6c622d5f73718a897197a2c10df35c7fe8b4d",
+      "base_dataset_manifest_physical": "438dffc84aaa735e4f734d4dc5cefcf63dc8360743b6e941380bca71eec1f13a",
+      "candidate_instance": "4557a772407c21d0b53a78bd54bca8a6a2fe0f19ba9340c6a38e1a84185d517d",
+      "r0_result_manifest": "c17198864aeb47233fd658d7e6c333c5beb86c5531e5b240ca30e046d066a616",
+      "review_binding": "9bebfd9ebe1ee120e7764e0e3bd2dd0cdbb3ef62cdf3f04c6b6424ed3cb66dc8",
+      "review_intake_manifest": "bcb840616060473ea61b81ca7cf052eff2ac00caeb7bff75e7cbf064e6a7e178",
+      "term_sense": "2d6600edb73c5696f77593c5d17cf301cdd15b7640293935a13d919f52b8b642"
+    },
+    "started_at": "2026-07-29T17:00:00Z"
+  },
+  "integrity": {
+    "self_sha256": "583a2dd3cb21b8df0a8590620f54b7355b33f6f3612f63eab3cddb23f0cd45ae"
+  },
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.1.0",
+  "scope_note": null,
+  "surfaces": {
+    "canonical_vi": "lỗi tổng quát hóa",
+    "rejected_variants_vi": [],
+    "validated_variants_vi": []
+  }
+}

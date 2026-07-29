@@ -1,0 +1,67 @@
+{
+  "alternatives_vi": [
+    "hàm tan hyperbolic",
+    "hàm tanh"
+  ],
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_a8601465a6792091f4507d71",
+    "candidate_version": "cff3d96b532221b27538aa13c650322150acd4559976359d937d8bfde3c0372a",
+    "candidate_vi": "hàm tang hyperbolic",
+    "dataset_manifest_sha256": "7b256808dacf446b06bc4f6cdc0ab8f0aa7585a2a4e3a56364cdb3508d17fbdc",
+    "effective_sense_contract_sha256": "505c369ffc905c64f01916568ba9c33bf7b104bf79e5deae2310b218ad33dd74",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_658174b1687c73f5aa1957ab",
+    "sense_inventory_version": "d2l_dataset_50_senses_150_candidates_v1",
+    "source_term": "Tanh Function"
+  },
+  "domain_profile": {
+    "anchors_en": [
+      "Tanh Function"
+    ],
+    "anchors_vi": [
+      "hàm tan hyperbolic",
+      "hàm tang hyperbolic",
+      "hàm tanh"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "the hyperbolic tangent function, often used to map values to the range [-1, 1]",
+  "effective_part_of_speech": "noun_phrase",
+  "input_contract_sha256": "668334bac05d89c6710bd88b9e9f0ff0a6e6c1a51b4f251a0e92138f4e6e9b7d",
+  "input_provenance": {
+    "completed_at": "2026-07-29T17:00:00Z",
+    "component_id": "d2l-dataset-frozen-candidate-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "cf027ff8d20c1d2ecd0c667ab303fc31f25a9eda80257b61329c34e67efcd05d",
+    "model_routes": [],
+    "notes": "Candidate identity is frozen before Stage B; no candidate gold label or final glossary decision is assigned.",
+    "policy_version": "d2l-dataset-50-senses-150-candidates-stage-b-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-dataset-50-sense-contract-release",
+    "run_spec_id": "d2l-dataset-50-sense-contract-spec-v1",
+    "source_artifact_hashes": {
+      "adjudication_manifest": "95482cd1b495b9014a1f00ba4695324f99f0637c6fb96f17d5ffded44c5e2b5c",
+      "base_dataset_manifest": "92fab6032576a5c9c57fe38e23b6c622d5f73718a897197a2c10df35c7fe8b4d",
+      "base_dataset_manifest_physical": "438dffc84aaa735e4f734d4dc5cefcf63dc8360743b6e941380bca71eec1f13a",
+      "candidate_instance": "cff3d96b532221b27538aa13c650322150acd4559976359d937d8bfde3c0372a",
+      "r0_result_manifest": "c17198864aeb47233fd658d7e6c333c5beb86c5531e5b240ca30e046d066a616",
+      "review_binding": "63e838036dd03173f37758a910bd9eda6e66ea542090e3e809d027255ce62f50",
+      "review_intake_manifest": "bcb840616060473ea61b81ca7cf052eff2ac00caeb7bff75e7cbf064e6a7e178",
+      "term_sense": "94b93b09ac6e00d5a02a1bdae38e3370d01840f4125350931b9d13f6b8eeef70"
+    },
+    "started_at": "2026-07-29T17:00:00Z"
+  },
+  "integrity": {
+    "self_sha256": "ccd316f0eab978eee23fb6ccecadd087da03d874920864f4373d9fbee10021b6"
+  },
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.1.0",
+  "scope_note": null,
+  "surfaces": {
+    "canonical_vi": "hàm tang hyperbolic",
+    "rejected_variants_vi": [],
+    "validated_variants_vi": []
+  }
+}

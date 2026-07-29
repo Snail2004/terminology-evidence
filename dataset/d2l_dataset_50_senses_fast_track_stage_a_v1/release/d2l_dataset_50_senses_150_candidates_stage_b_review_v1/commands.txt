@@ -1,0 +1,3 @@
+python -B tools/build_final50_stage_b.py --output-root <OUTPUT_ROOT>
+python -B tools/validate_final50_stage_b.py --artifact-root <OUTPUT_ROOT> --contracts-root <REPO>/terminology_contracts_v1
+python -m unittest discover -s tests -p test_final50_stage_b.py

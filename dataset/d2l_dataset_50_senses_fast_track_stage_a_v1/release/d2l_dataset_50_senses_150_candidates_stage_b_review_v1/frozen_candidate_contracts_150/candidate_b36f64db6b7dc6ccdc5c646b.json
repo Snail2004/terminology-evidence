@@ -1,0 +1,67 @@
+{
+  "alternatives_vi": [
+    "hàm hoạt hóa",
+    "hàm kích hoạt phi tuyến"
+  ],
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_b36f64db6b7dc6ccdc5c646b",
+    "candidate_version": "b7514865d95f453775c87b394005c2643f385664f296cee8bac5c304f5545476",
+    "candidate_vi": "hàm kích hoạt",
+    "dataset_manifest_sha256": "7b256808dacf446b06bc4f6cdc0ab8f0aa7585a2a4e3a56364cdb3508d17fbdc",
+    "effective_sense_contract_sha256": "4f70bfa2cbb8f392df921fd62e47e490ee7773f455a170e99294217f50f3ccb4",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_e0c693366d811581abbb9e74",
+    "sense_inventory_version": "d2l_dataset_50_senses_150_candidates_v1",
+    "source_term": "activation function"
+  },
+  "domain_profile": {
+    "anchors_en": [
+      "activation function"
+    ],
+    "anchors_vi": [
+      "hàm hoạt hóa",
+      "hàm kích hoạt",
+      "hàm kích hoạt phi tuyến"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "A function applied in a neural network layer or unit to introduce nonlinear transformation of its output.",
+  "effective_part_of_speech": "noun_phrase",
+  "input_contract_sha256": "20919e9a937ddd2c1fd628933ff680c5377c80dd30c371195385675bab21f408",
+  "input_provenance": {
+    "completed_at": "2026-07-29T17:00:00Z",
+    "component_id": "d2l-dataset-frozen-candidate-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "cf027ff8d20c1d2ecd0c667ab303fc31f25a9eda80257b61329c34e67efcd05d",
+    "model_routes": [],
+    "notes": "Candidate identity is frozen before Stage B; no candidate gold label or final glossary decision is assigned.",
+    "policy_version": "d2l-dataset-50-senses-150-candidates-stage-b-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-dataset-50-sense-contract-release",
+    "run_spec_id": "d2l-dataset-50-sense-contract-spec-v1",
+    "source_artifact_hashes": {
+      "adjudication_manifest": "95482cd1b495b9014a1f00ba4695324f99f0637c6fb96f17d5ffded44c5e2b5c",
+      "base_dataset_manifest": "92fab6032576a5c9c57fe38e23b6c622d5f73718a897197a2c10df35c7fe8b4d",
+      "base_dataset_manifest_physical": "438dffc84aaa735e4f734d4dc5cefcf63dc8360743b6e941380bca71eec1f13a",
+      "candidate_instance": "b7514865d95f453775c87b394005c2643f385664f296cee8bac5c304f5545476",
+      "r0_result_manifest": "c17198864aeb47233fd658d7e6c333c5beb86c5531e5b240ca30e046d066a616",
+      "review_binding": "d04f9dd0352fbf582ede4dcb49ebf83bf255dd247b8c727e3d3d92de72efa5c7",
+      "review_intake_manifest": "bcb840616060473ea61b81ca7cf052eff2ac00caeb7bff75e7cbf064e6a7e178",
+      "term_sense": "c15c0da95841a25e0f6deea0d14c864983880d44523ea1b2aae885e39d78e03c"
+    },
+    "started_at": "2026-07-29T17:00:00Z"
+  },
+  "integrity": {
+    "self_sha256": "67a5f524bac385055f2f27fce1e8b0a3d25380fd97ea437f8356dafa8005ce58"
+  },
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.1.0",
+  "scope_note": null,
+  "surfaces": {
+    "canonical_vi": "hàm kích hoạt",
+    "rejected_variants_vi": [],
+    "validated_variants_vi": []
+  }
+}

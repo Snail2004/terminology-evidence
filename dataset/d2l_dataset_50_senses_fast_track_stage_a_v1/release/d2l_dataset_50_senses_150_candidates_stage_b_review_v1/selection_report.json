@@ -1,0 +1,60 @@
+{
+  "excluded_count": 10,
+  "excluded_sense_ids": [
+    "d2lce_2b76c0f26436945cdf880aed",
+    "d2lce_355f5686f2178281893eb6cb",
+    "d2lce_539543a2360129e2a2fa1b6d",
+    "d2lce_5c270f3b3ebe4f0059649e18",
+    "d2lce_6239b2ef1cec1800e3d6f13f",
+    "d2lce_73c8ce2915c4c64a52fab4a2",
+    "d2lce_776fd3328d5e31aeebe484ec",
+    "d2lce_ad03ff147d19eb2ea47d5b0e",
+    "d2lce_d96258f97579b9b414c21815",
+    "d2lce_dc193feb1eeef3a1349d9b74"
+  ],
+  "excluded_source_terms": [
+    "statistical power",
+    "SSDs",
+    "affine transformation",
+    "noise words",
+    "Concept Shift",
+    "Generator",
+    "keys",
+    "volitional cue",
+    "positional embeddings",
+    "continuous bag of words"
+  ],
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "b789c30797fc91c68c71aadb498026a3ec9b089616adac7310494f357c23a4cd"
+  },
+  "lane_counts": {
+    "A_OFFICIAL": 5,
+    "B_REVIEW_READY": 6,
+    "C_REPAIRED": 4,
+    "D_NEW": 35
+  },
+  "leakage_repair_swaps": [
+    {
+      "incoming_sense_id": "d2lce_52085fef12f840d2350b2049",
+      "incoming_source_term": "Caser",
+      "outgoing_sense_id": "d2lce_539543a2360129e2a2fa1b6d",
+      "outgoing_source_term": "affine transformation",
+      "reason": "LEAKAGE_COMPONENT_MAX_10",
+      "stratum": "clear"
+    }
+  ],
+  "policy_id": "d2l-dataset-50-senses-150-candidates-stage-b-v1.0",
+  "pool_count": 60,
+  "provider_call_count": 0,
+  "schema_id": "D2LFinal50SelectionReportV1",
+  "schema_version": "1.0.0",
+  "selected_count": 50,
+  "selection_method": "LOCKED_LANES_STRATA_EVIDENCE_SCORE_THEN_LEAKAGE_COMPONENT_CAP",
+  "stage_b_gold_used": false,
+  "stratum_counts": {
+    "ambiguous": 20,
+    "clear": 15,
+    "collision_or_multi_target": 15
+  }
+}

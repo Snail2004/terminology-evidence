@@ -1,0 +1,9 @@
+{
+  "authority_commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+  "authority_receipt_physical_sha256": "3497460f16ca478dada7b25425775882f10d1cb2b5d3638c36cba4ec5fb2791b",
+  "authority_receipt_self_sha256": "c2e291510f43f2fb82461c5aacd3085948346e98451e218f73192b0eb3c47ed4",
+  "authority_tag": "contracts-v1.1.0",
+  "contract_manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
+  "contract_version": "1.1.0",
+  "schema_id": "D2LTerminologyContractsAuthorityBindingV1"
+}
