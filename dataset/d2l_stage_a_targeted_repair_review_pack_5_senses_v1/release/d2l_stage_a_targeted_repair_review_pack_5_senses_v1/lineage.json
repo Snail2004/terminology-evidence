@@ -1,0 +1,43 @@
+{
+  "canonical_main_dataset_authority": {
+    "accepted_zip_sha256": "9b6a9ee1272b6403054b61f5399d4391328d1d2d8a964b1102af0a2656bc2738",
+    "main_commit": "7fd046cc6a9b8f78fd122549feaefa4b2ab83821",
+    "manifest_sha256": "16bd2b9c7a974bdccfb977384fa1a35381e6e810c110f489f31d1606398ce2f5",
+    "pin_physical_sha256": "d55d1919050b9cab7c2bd5e08f0200b20d1bdd2cabfd5dcbcc241733fe9771da0",
+    "pin_self_sha256": "7ae7c94176e32b419cfac4bb36704d633c550068e34d00b80389ebb20f035b05",
+    "relationship": "IMMUTABLE_AUTHORITY_NOT_REBUILT_OR_ALTERED"
+  },
+  "created_at": "2026-07-29T10:00:00Z",
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "44520e4f83ac8a83e545b632528a9925612dab56817ac116a4ae9b9a3b3bb644"
+  },
+  "parents": {
+    "d2l_source_document": {
+      "physical_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+      "reference_only": true,
+      "source_artifact_ref": "source://d2l_document_snapshot/document.json"
+    },
+    "dataset_v3": {
+      "manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+      "physical_manifest_sha256": "b5f2067427c6b88344109f2c62f8db02ac61b0cef76f193d5285f378ff5f96a8",
+      "reference_only": true
+    },
+    "excluded_local_11_candidate": {
+      "authority_status": "EXCLUDED_FROM_MAIN_DATASET_AUTHORITY",
+      "manifest_sha256": "5a3c3d9631361c2798e972c837d2af1cbf234e4264fdeb06fb8cd7bcab7ffd0a",
+      "physical_manifest_sha256": "797fa0f0646e385caf9760b3556376221f23f67cad39393c35dbcc5d248a4011",
+      "reference_only": true,
+      "use": "NON_OVERLAP_GUARD_ONLY"
+    },
+    "reviewed_stage_a_15": {
+      "manifest_sha256": "e602af02edf1fb877a9541c5e37f939f4f35ded34ac878d773fc83b96ed3fb48",
+      "physical_manifest_sha256": "fa0c2d2e5e1a1dae12c08e637150cbea0404480d492c35b0f51592dd792c5dcd",
+      "reference_only": true
+    }
+  },
+  "policy_id": "d2l-stage-a-targeted-repair-review-5-senses-v1.0",
+  "provider_call_count": 0,
+  "schema_id": "D2LTargetedRepairReviewLineageV1",
+  "schema_version": "1.0.0"
+}

@@ -1,0 +1,276 @@
+﻿context_id,output_sense_id,parent_sense_id,source_term,split_label,chapter_id,chapter_title,chapter_order_index,block_id,block_order_index,block_type,source_text,clean_text,source_text_sha256,clean_text_sha256,source_artifact_ref,source_artifact_sha256,source_json_path,evidence_record_sha256
+repair_ctx_84487db477b4c653d15e2af1,d2lce_2b76c0f26436945cdf880aed,d2lce_2b76c0f26436945cdf880aed,statistical power,NO_SPLIT,d2l_appendix_mathematics_for_deep_learning,Appendix: Mathematics for Deep Learning,20,d2l_appendix_mathematics_for_deep_learning_statistics_b064,8315,paragraph,"The *statistical power* (or *sensitivity*) measures the probability of reject the null hypothesis, $H_0$, when it should be rejected, i.e.,","The *statistical power* (or *sensitivity*) measures the probability of reject the null hypothesis, $H_0$, when it should be rejected, i.e.,",b3323cb1f5e074464fa62b061626fe4e76ca32f4c44565a287dffc553b770fc9,b3323cb1f5e074464fa62b061626fe4e76ca32f4c44565a287dffc553b770fc9,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[20].blocks[1163],0ff965d3d3195ff5f8e7db3f17c52c427c24800d32d75d4f854e5afc48552f6b
+repair_ctx_5f59b664278aea5b3dcd57c4,d2lce_2b76c0f26436945cdf880aed,d2lce_2b76c0f26436945cdf880aed,statistical power,NO_SPLIT,d2l_appendix_mathematics_for_deep_learning,Appendix: Mathematics for Deep Learning,20,d2l_appendix_mathematics_for_deep_learning_statistics_b065,8316,paragraph,$$ \text{statistical power }= 1 - \beta = 1 - P(\text{ fail to reject } H_0  \mid H_0 \text{ is false} ).$$,$$ \text{statistical power }= 1 - \beta = 1 - P(\text{ fail to reject } H_0  \mid H_0 \text{ is false} ).$$,da0f96c3f7f84c75172c9dd984ea5eef6c794561cfd04f78eb9d7cb0b1280f5d,da0f96c3f7f84c75172c9dd984ea5eef6c794561cfd04f78eb9d7cb0b1280f5d,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[20].blocks[1164],f1f8549fda66e813acc5192c03d3045d1acb0db3279255a6e082782ecd5fbecc
+repair_ctx_79a8fcd171d3f777b220fc9b,d2lce_2b76c0f26436945cdf880aed,d2lce_2b76c0f26436945cdf880aed,statistical power,NO_SPLIT,d2l_appendix_mathematics_for_deep_learning,Appendix: Mathematics for Deep Learning,20,d2l_appendix_mathematics_for_deep_learning_statistics_b066,8317,paragraph,"Recall that a *type I error* is error caused by rejecting the null hypothesis when it is true, whereas a *type II error* is resulted from failing to reject the null hypothesis when it is false. A type II error is usually denoted as $\beta$, and hence the corresponding statistical power is $1-\beta$.","Recall that a *type I error* is error caused by rejecting the null hypothesis when it is true, whereas a *type II error* is resulted from failing to reject the null hypothesis when it is false. A type II error is usually denoted as $\beta$, and hence the corresponding statistical power is $1-\beta$.",0964100b33a899b490d6cdd417288d5a0bebcc4cf8909ea816e4461e94a9cfd7,0964100b33a899b490d6cdd417288d5a0bebcc4cf8909ea816e4461e94a9cfd7,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[20].blocks[1165],19e91fd273eec6f64e1b62121988363f7e85fefa352315a1c3de56163934835a
+repair_ctx_77a41da999ed0fefe0aecda4,d2lce_2b76c0f26436945cdf880aed,d2lce_2b76c0f26436945cdf880aed,statistical power,NO_SPLIT,d2l_appendix_mathematics_for_deep_learning,Appendix: Mathematics for Deep Learning,20,d2l_appendix_mathematics_for_deep_learning_statistics_b067,8318,paragraph,"Intuitively, statistical power can be interpreted as how likely our test will detect a real discrepancy of some minimum magnitude at a desired statistical significance level. $80\%$ is a commonly used statistical power threshold. The higher the statistical power, the more likely we are to detect true differences.","Intuitively, statistical power can be interpreted as how likely our test will detect a real discrepancy of some minimum magnitude at a desired statistical significance level. $80\%$ is a commonly used statistical power threshold. The higher the statistical power, the more likely we are to detect true differences.",2630b5a0aff5472f031fa11c60f793de90eab9ec8d505f055eba3e326d4a0ae2,2630b5a0aff5472f031fa11c60f793de90eab9ec8d505f055eba3e326d4a0ae2,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[20].blocks[1166],1b96f7dbe0f175ee0bfacc2d0728af6a71ca49e33098834bc397d7929ebbf48a
+repair_ctx_3204cb88d04eb7906be1c8cb,d2lce_2b76c0f26436945cdf880aed,d2lce_2b76c0f26436945cdf880aed,statistical power,NO_SPLIT,d2l_appendix_mathematics_for_deep_learning,Appendix: Mathematics for Deep Learning,20,d2l_appendix_mathematics_for_deep_learning_statistics_b068,8319,paragraph,"One of the most common uses of statistical power is in determining the number of samples needed.  The probability you reject the null hypothesis when it is false depends on the degree to which it is false (known as the *effect size*) and the number of samples you have.  As you might expect, small effect sizes will require a very large number of samples to be detectable with high probability.  While beyond the scope of this brief appendix to derive in detail, as an example, want to be able to reject a null hypothesis that our sample came from a mean zero variance one Gaussian, and we believe that our sample's mean is actually close to one, we can do so with acceptable error rates with a sample size of only $8$.  However, if we think our sample population true mean is close to $0.01$, then we'd need a sample size of nearly $80000$ to detect the difference.","One of the most common uses of statistical power is in determining the number of samples needed.  The probability you reject the null hypothesis when it is false depends on the degree to which it is false (known as the *effect size*) and the number of samples you have.  As you might expect, small effect sizes will require a very large number of samples to be detectable with high probability.  While beyond the scope of this brief appendix to derive in detail, as an example, want to be able to reject a null hypothesis that our sample came from a mean zero variance one Gaussian, and we believe that our sample's mean is actually close to one, we can do so with acceptable error rates with a sample size of only $8$.  However, if we think our sample population true mean is close to $0.01$, then we'd need a sample size of nearly $80000$ to detect the difference.",db524b1478395edeeb6d4533c660279216efcd529c589e78f8b7532ae4effc50,db524b1478395edeeb6d4533c660279216efcd529c589e78f8b7532ae4effc50,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[20].blocks[1167],7640efa44d723665df81ec77cc074d2d9cbe4e23d74e3c3a7cb0474782a9a162
+repair_ctx_38d68cb897cda94289c2f10c,d2lce_51ce8cc13680668af18c9d10,d2lce_2684090fd4500122fec2a334,in place,ESTABLISHED_CONFIGURATION,d2l_introduction,Introduction,3,d2l_introduction_index_b079,187,paragraph,"Despite their tremendous economic value,
+recommendation systems
+naively built on top of predictive models
+suffer some serious conceptual flaws.
+To start, we only observe *censored feedback*:
+users preferentially rate movies that they feel strongly about.
+For example, 
+on a five-point scale,
+you might notice that items receive many five and one star ratings
+but that there are conspicuously few three-star ratings.
+Moreover, current purchase habits are often a result
+of the recommendation algorithm currently in place,
+but learning algorithms do not always take this detail into account.
+Thus it is possible for feedback loops to form
+where a recommender system preferentially pushes an item
+that is then taken to be better (due to greater purchases)
+and in turn is recommended even more frequently.
+Many of these problems about how to deal with censoring,
+incentives, and feedback loops, are important open research questions.","Despite their tremendous economic value,
+recommendation systems
+naively built on top of predictive models
+suffer some serious conceptual flaws.
+To start, we only observe *censored feedback*:
+users preferentially rate movies that they feel strongly about.
+For example, 
+on a five-point scale,
+you might notice that items receive many five and one star ratings
+but that there are conspicuously few three-star ratings.
+Moreover, current purchase habits are often a result
+of the recommendation algorithm currently in place,
+but learning algorithms do not always take this detail into account.
+Thus it is possible for feedback loops to form
+where a recommender system preferentially pushes an item
+that is then taken to be better (due to greater purchases)
+and in turn is recommended even more frequently.
+Many of these problems about how to deal with censoring,
+incentives, and feedback loops, are important open research questions.",085c3aae3ec7e68010534dfa971a574550a5cca602b18a60436754adb09fb786,085c3aae3ec7e68010534dfa971a574550a5cca602b18a60436754adb09fb786,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[3].blocks[78],8b3c62d50e4ed284cfdc3cdfe3d48bc697ea530a58ae09cb3b4474be033d4c68
+repair_ctx_39517584a7e442bf30652b8b,d2lce_51ce8cc13680668af18c9d10,d2lce_2684090fd4500122fec2a334,in place,ESTABLISHED_CONFIGURATION,d2l_linear_networks,Linear Neural Networks,5,d2l_linear_networks_linear_regression_concise_b057,1070,paragraph,"You might have noticed that expressing our model through
+high-level APIs of a deep learning framework
+requires comparatively few lines of code.
+We did not have to individually allocate parameters,
+define our loss function, or implement minibatch stochastic gradient descent.
+Once we start working with much more complex models,
+advantages of high-level APIs will grow considerably.
+However, once we have all the basic pieces in place,
+[**the training loop itself is strikingly similar
+to what we did when implementing everything from scratch.**]","You might have noticed that expressing our model through
+high-level APIs of a deep learning framework
+requires comparatively few lines of code.
+We did not have to individually allocate parameters,
+define our loss function, or implement minibatch stochastic gradient descent.
+Once we start working with much more complex models,
+advantages of high-level APIs will grow considerably.
+However, once we have all the basic pieces in place,
+[**the training loop itself is strikingly similar
+to what we did when implementing everything from scratch.**]",041d68bc75bdc9ece34008566627c162c3e8a2ebcdf81735980ead31226c91a3,041d68bc75bdc9ece34008566627c162c3e8a2ebcdf81735980ead31226c91a3,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[5].blocks[228],c397b270683d19bc8a2772a0db9bb82495854dba6636df058d7c8a7d38ade6da
+repair_ctx_17a0221b26ef66c958d7786f,d2lce_51ce8cc13680668af18c9d10,d2lce_2684090fd4500122fec2a334,in place,ESTABLISHED_CONFIGURATION,d2l_linear_networks,Linear Neural Networks,5,d2l_linear_networks_linear_regression_scratch_b047,995,paragraph,"Now that we have all of the parts in place,
+we are ready to [**implement the main training loop.**]
+It is crucial that you understand this code
+because you will see nearly identical training loops
+over and over again throughout your career in deep learning.","Now that we have all of the parts in place,
+we are ready to [**implement the main training loop.**]
+It is crucial that you understand this code
+because you will see nearly identical training loops
+over and over again throughout your career in deep learning.",121df3d873e6cf953fd18436d758cde9588763fad863c9fe7b2ff32212dc95f7,121df3d873e6cf953fd18436d758cde9588763fad863c9fe7b2ff32212dc95f7,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[5].blocks[153],e33b94a472d0b4528fd9ad07f5c528f17205c5d039cb94271073b3ba4a7cb7c3
+repair_ctx_191a3641d9b2931cf178e00d,d2lce_51ce8cc13680668af18c9d10,d2lce_2684090fd4500122fec2a334,in place,ESTABLISHED_CONFIGURATION,d2l_multilayer_perceptrons,Multilayer Perceptrons,6,d2l_multilayer_perceptrons_mlp_b020,1345,paragraph,"In order to realize the potential of multilayer architectures,
+we need one more key ingredient: a
+nonlinear *activation function* $\sigma$
+to be applied to each hidden unit
+following the affine transformation.
+The outputs of activation functions
+(e.g., $\sigma(\cdot)$)
+are called *activations*.
+In general, with activation functions in place,
+it is no longer possible to collapse our MLP into a linear model:","In order to realize the potential of multilayer architectures,
+we need one more key ingredient: a
+nonlinear *activation function* $\sigma$
+to be applied to each hidden unit
+following the affine transformation.
+The outputs of activation functions
+(e.g., $\sigma(\cdot)$)
+are called *activations*.
+In general, with activation functions in place,
+it is no longer possible to collapse our MLP into a linear model:",1f81e9d70dd3be6b984f3b172aed7ffb1989103d7cb90a5c4729c3d25998dc5c,1f81e9d70dd3be6b984f3b172aed7ffb1989103d7cb90a5c4729c3d25998dc5c,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[6].blocks[22],c7fb0c774d0c3524430bd0f43c80107e04e07bcad6a47fdec1fc679f84221623
+repair_ctx_63b9c8b7e987834612e96940,d2lce_51ce8cc13680668af18c9d10,d2lce_2684090fd4500122fec2a334,in place,ESTABLISHED_CONFIGURATION,d2l_optimization,Optimization Algorithms,13,d2l_optimization_adam_b013,4688,paragraph,Now we have all the pieces in place to compute updates. This is slightly anticlimactic and we have a simple update of the form,Now we have all the pieces in place to compute updates. This is slightly anticlimactic and we have a simple update of the form,b68a5d190ea262d087f0658e2d2597c2ff6ea0954dcedcc3e7f043391980755a,b68a5d190ea262d087f0658e2d2597c2ff6ea0954dcedcc3e7f043391980755a,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[13].blocks[517],1beb3aff510bf76008faf3c952dcdd8569b14a0f6558356a2789612e45c7faad
+repair_ctx_d14a7853f7c3d1b1d9bba45b,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,Adam,NO_SPLIT,d2l_computer_vision,Computer Vision,15,d2l_computer_vision_image_augmentation_b055,5206,paragraph,"Now we can [**define the `train_with_data_aug` function to train the model with image augmentation**].
+This function gets all available GPUs, 
+uses Adam as the optimization algorithm,
+applies image augmentation to the training dataset,
+and finally calls the `train_ch13` function just defined to train and evaluate the model.","Now we can [**define the `train_with_data_aug` function to train the model with image augmentation**].
+This function gets all available GPUs, 
+uses Adam as the optimization algorithm,
+applies image augmentation to the training dataset,
+and finally calls the `train_ch13` function just defined to train and evaluate the model.",701bac5d6b24396e7524a52125bf5bb5ac4f1c64156a832f0f7734ce73a4b64b,701bac5d6b24396e7524a52125bf5bb5ac4f1c64156a832f0f7734ce73a4b64b,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[15].blocks[58],173ebc83a754d6bb5effeaeb66fc81ec886cbdb24cdc0b7d96d29d0dc3420788
+repair_ctx_30c4b03e5171fc1980d6fd0c,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,Adam,NO_SPLIT,d2l_multilayer_perceptrons,Multilayer Perceptrons,6,d2l_multilayer_perceptrons_kaggle_house_price_b053,1936,paragraph,"Unlike in previous sections, [**our training functions
+will rely on the Adam optimizer
+(we will describe it in greater detail later)**].
+The main appeal of this optimizer is that,
+despite doing no better (and sometimes worse)
+given unlimited resources for hyperparameter optimization,
+people tend to find that it is significantly less sensitive
+to the initial learning rate.","Unlike in previous sections, [**our training functions
+will rely on the Adam optimizer
+(we will describe it in greater detail later)**].
+The main appeal of this optimizer is that,
+despite doing no better (and sometimes worse)
+given unlimited resources for hyperparameter optimization,
+people tend to find that it is significantly less sensitive
+to the initial learning rate.",6c216021be8b896b4faa129e198f1f4a319485c8466ddff8a47a5b7b5b0f9186,6c216021be8b896b4faa129e198f1f4a319485c8466ddff8a47a5b7b5b0f9186,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[6].blocks[613],f2b5961bc93a911d270f092fe754d32831fe867961145a0d118379d5fdb7a7dd
+repair_ctx_7baeb199074319cdb5cd948f,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,Adam,NO_SPLIT,d2l_optimization,Optimization Algorithms,13,d2l_optimization_adam_b004,4679,paragraph,"Adam :cite:`Kingma.Ba.2014` combines all these techniques into one efficient learning algorithm. As expected, this is an algorithm that has become rather popular as one of the more robust and effective optimization algorithms to use in deep learning. It is not without issues, though. In particular, :cite:`Reddi.Kale.Kumar.2019` show that there are situations where Adam can diverge due to poor variance control. In a follow-up work :cite:`Zaheer.Reddi.Sachan.ea.2018` proposed a hotfix to Adam, called Yogi which addresses these issues. More on this later. For now let us review the Adam algorithm.","Adam :cite:`Kingma.Ba.2014` combines all these techniques into one efficient learning algorithm. As expected, this is an algorithm that has become rather popular as one of the more robust and effective optimization algorithms to use in deep learning. It is not without issues, though. In particular, :cite:`Reddi.Kale.Kumar.2019` show that there are situations where Adam can diverge due to poor variance control. In a follow-up work :cite:`Zaheer.Reddi.Sachan.ea.2018` proposed a hotfix to Adam, called Yogi which addresses these issues. More on this later. For now let us review the Adam algorithm.",54b6102b004ab1b3f9a0641923ec06d321c800713adea10775477fdcd41c7c5a,54b6102b004ab1b3f9a0641923ec06d321c800713adea10775477fdcd41c7c5a,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[13].blocks[508],5c67fb65984735fc71578e5ece29b6745e069f8791dd8c22063aff60d23f5b8a
+repair_ctx_8cd9614c298850f01ea5ded8,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,Adam,NO_SPLIT,d2l_optimization,Optimization Algorithms,13,d2l_optimization_adam_b006,4681,paragraph,"One of the key components of Adam is that it uses exponential weighted moving averages (also known as leaky averaging) to obtain an estimate of both the momentum and also the second moment of the gradient. That is, it uses the state variables","One of the key components of Adam is that it uses exponential weighted moving averages (also known as leaky averaging) to obtain an estimate of both the momentum and also the second moment of the gradient. That is, it uses the state variables",0c8bb5aac785b21936a3abb08d954f49811fec73aee5ac3493981aa1c86848ca,0c8bb5aac785b21936a3abb08d954f49811fec73aee5ac3493981aa1c86848ca,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[13].blocks[510],77119b86ee866580082dbe5ac0a695676ec8003252c19362229291efd533e78a
+repair_ctx_38e4406d56837f2427f055d7,d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,Adam,NO_SPLIT,d2l_optimization,Optimization Algorithms,13,d2l_optimization_index_b002,4172,paragraph,"If you read the book in sequence up to this point you already used a number of optimization algorithms to train deep learning models.
+They were the tools that allowed us to continue updating model parameters and to minimize the value of the loss function, as evaluated on the training set. Indeed, anyone content with treating optimization as a black box device to minimize objective functions in a simple setting might well content oneself with the knowledge that there exists an array of incantations of such a procedure (with names such as ""SGD"" and ""Adam"").","If you read the book in sequence up to this point you already used a number of optimization algorithms to train deep learning models.
+They were the tools that allowed us to continue updating model parameters and to minimize the value of the loss function, as evaluated on the training set. Indeed, anyone content with treating optimization as a black box device to minimize objective functions in a simple setting might well content oneself with the knowledge that there exists an array of incantations of such a procedure (with names such as ""SGD"" and ""Adam"").",3e7a01729d628871286ccdba2ed822068fd283c3cf7711e28d57c4cddf567837,3e7a01729d628871286ccdba2ed822068fd283c3cf7711e28d57c4cddf567837,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[13].blocks[1],a27c05ef10a3367eaee0bf7f54a58378f28adc1588b0a63ff9541922d2f83122
+repair_ctx_93a2c133bcc1666337f9e44e,d2lce_97f1f447efe7908ef1e8daf4,d2lce_2684090fd4500122fec2a334,in place,IN_PLACE_MUTATION,d2l_computational_performance,Computational Performance,14,d2l_computational_performance_hybridize_b064,4853,paragraph,":begin_tab:`mxnet` 
+This is quite different from what we saw previously. All print statements, as defined in `hybrid_forward`, are omitted. Indeed, after hybridization the execution of `net(x)` does not involve the Python interpreter any longer. This means that any spurious Python code is omitted (such as print statements) in favor of a much more streamlined execution and better performance. Instead, MXNet directly calls the C++ backend. Also note that some functions are not supported in the `symbol` module (e.g.,  `asnumpy`) and operations in-place such as `a += b` and `a[:] = a + b` must be rewritten as `a = a + b`. Nonetheless, compilation of models is worth the effort whenever speed matters. The benefit can range from small percentage points to more than twice the speed, depending on the complexity of the model, the speed of the CPU, and the speed and number of GPUs.
+:end_tab:",":begin_tab:`mxnet` 
+This is quite different from what we saw previously. All print statements, as defined in `hybrid_forward`, are omitted. Indeed, after hybridization the execution of `net(x)` does not involve the Python interpreter any longer. This means that any spurious Python code is omitted (such as print statements) in favor of a much more streamlined execution and better performance. Instead, MXNet directly calls the C++ backend. Also note that some functions are not supported in the `symbol` module (e.g.,  `asnumpy`) and operations in-place such as `a += b` and `a[:] = a + b` must be rewritten as `a = a + b`. Nonetheless, compilation of models is worth the effort whenever speed matters. The benefit can range from small percentage points to more than twice the speed, depending on the complexity of the model, the speed of the CPU, and the speed and number of GPUs.
+:end_tab:",c41ef6d8eb21bd56987d89582f7a12e1526a4c86af8c2123d36cb0880c4cc4af,c41ef6d8eb21bd56987d89582f7a12e1526a4c86af8c2123d36cb0880c4cc4af,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[14].blocks[66],cbd49f4544299b3a5d84ae7479a07408040f84df4017c97e767c7b1e9cf4654f
+repair_ctx_62427ce4ec439f8f5927a352,d2lce_97f1f447efe7908ef1e8daf4,d2lce_2684090fd4500122fec2a334,in place,IN_PLACE_MUTATION,d2l_preliminaries,Preliminaries,4,d2l_preliminaries_ndarray_b091,363,paragraph,"This might be undesirable for two reasons.
+First, we do not want to run around
+allocating memory unnecessarily all the time.
+In machine learning, we might have
+hundreds of megabytes of parameters
+and update all of them multiple times per second.
+Typically, we will want to perform these updates *in place*.
+Second, we might point at the same parameters from multiple variables.
+If we do not update in place, other references will still point to
+the old memory location, making it possible for parts of our code
+to inadvertently reference stale parameters.","This might be undesirable for two reasons.
+First, we do not want to run around
+allocating memory unnecessarily all the time.
+In machine learning, we might have
+hundreds of megabytes of parameters
+and update all of them multiple times per second.
+Typically, we will want to perform these updates *in place*.
+Second, we might point at the same parameters from multiple variables.
+If we do not update in place, other references will still point to
+the old memory location, making it possible for parts of our code
+to inadvertently reference stale parameters.",50a77e1858c5daab0122c737d1b3d014bdfe7dd78b2c1a63298c4794f6fa98bb,50a77e1858c5daab0122c737d1b3d014bdfe7dd78b2c1a63298c4794f6fa98bb,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[4].blocks[98],1ee101af37a5f850b95bb3a377ddf780440f59ccdec648b7eaeefe4244629174
+repair_ctx_00596b91f8a116a62fb161f9,d2lce_97f1f447efe7908ef1e8daf4,d2lce_2684090fd4500122fec2a334,in place,IN_PLACE_MUTATION,d2l_preliminaries,Preliminaries,4,d2l_preliminaries_ndarray_b092,364,paragraph,":begin_tab:`mxnet, pytorch`
+Fortunately, (**performing in-place operations**) is easy.
+We can assign the result of an operation
+to a previously allocated array with slice notation,
+e.g., `Y[:] = <expression>`.
+To illustrate this concept, we first create a new matrix `Z`
+with the same shape as another `Y`,
+using `zeros_like` to allocate a block of $0$ entries.
+:end_tab:",":begin_tab:`mxnet, pytorch`
+Fortunately, (**performing in-place operations**) is easy.
+We can assign the result of an operation
+to a previously allocated array with slice notation,
+e.g., `Y[:] = <expression>`.
+To illustrate this concept, we first create a new matrix `Z`
+with the same shape as another `Y`,
+using `zeros_like` to allocate a block of $0$ entries.
+:end_tab:",5cd67d8071400e74747cf6a27427cdc0b47749d3eaa43492352189bbcd219b49,5cd67d8071400e74747cf6a27427cdc0b47749d3eaa43492352189bbcd219b49,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[4].blocks[99],8f4404f8385cc7a1d3dfcc0c4e92813cd0b8ec09259ac3d301e07622a46ed636
+repair_ctx_7734ce225ecef1b78826ce5f,d2lce_97f1f447efe7908ef1e8daf4,d2lce_2684090fd4500122fec2a334,in place,IN_PLACE_MUTATION,d2l_preliminaries,Preliminaries,4,d2l_preliminaries_ndarray_b099,371,paragraph,"Because TensorFlow `Tensors` are immutable and gradients do not flow through
+`Variable` assignments, TensorFlow does not provide an explicit way to run
+an individual operation in-place.","Because TensorFlow `Tensors` are immutable and gradients do not flow through
+`Variable` assignments, TensorFlow does not provide an explicit way to run
+an individual operation in-place.",8ef791036760382cab404a8960a5010c538ddc0979e38fde5f4702d26551b6c9,8ef791036760382cab404a8960a5010c538ddc0979e38fde5f4702d26551b6c9,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[4].blocks[106],76bb0c29e8f9f8a6ed43ec0e474b1ddeb25884b2dfa69d3b19574299f7e6302d
+repair_ctx_493d28be7601f5c88475891d,d2lce_97f1f447efe7908ef1e8daf4,d2lce_2684090fd4500122fec2a334,in place,IN_PLACE_MUTATION,d2l_preliminaries,Preliminaries,4,d2l_preliminaries_ndarray_b104,376,paragraph,":begin_tab:`pytorch`
+[**Converting to a NumPy tensor (`ndarray`)**], or vice versa, is easy.
+The torch Tensor and numpy array will share their underlying memory
+locations, and changing one through an in-place operation will also
+change the other.
+:end_tab:",":begin_tab:`pytorch`
+[**Converting to a NumPy tensor (`ndarray`)**], or vice versa, is easy.
+The torch Tensor and numpy array will share their underlying memory
+locations, and changing one through an in-place operation will also
+change the other.
+:end_tab:",6c055001c36637e668dcbcbdc51acd21e2013ecd1912e30ef08873d18a1ab452,6c055001c36637e668dcbcbdc51acd21e2013ecd1912e30ef08873d18a1ab452,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[4].blocks[111],ae520c1e5b138961efee7b60059eba0cfc2af43ff2ae1eceda5c0e72bdaa5d78
+repair_ctx_a5886854363e72ef48a5e1be,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,fully-connected layers,NO_SPLIT,d2l_linear_networks,Linear Neural Networks,5,d2l_linear_networks_linear_regression_b091,935,paragraph,"Since for linear regression, every input is connected
+to every output (in this case there is only one output),
+we can regard this transformation (the output layer in :numref:`fig_single_neuron`)
+as a *fully-connected layer* or *dense layer*.
+We will talk a lot more about networks composed of such layers
+in the next chapter.","Since for linear regression, every input is connected
+to every output (in this case there is only one output),
+we can regard this transformation (the output layer in :numref:`fig_single_neuron`)
+as a *fully-connected layer* or *dense layer*.
+We will talk a lot more about networks composed of such layers
+in the next chapter.",f3ade1e4ff1b1d6f70251f9886345d6eea4a28c1a8699b0868efcec6368c2c4e,f3ade1e4ff1b1d6f70251f9886345d6eea4a28c1a8699b0868efcec6368c2c4e,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[5].blocks[93],18eba1b497c95dff804fc3101c5af360dd47e391d0b17ea805d013f4d846b3c9
+repair_ctx_345ebf8395f41725236f0cf6,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,fully-connected layers,NO_SPLIT,d2l_linear_networks,Linear Neural Networks,5,d2l_linear_networks_linear_regression_concise_b021,1034,paragraph,"Recall the architecture of a single-layer network as shown in :numref:`fig_single_neuron`.
+The layer is said to be *fully-connected*
+because each of its inputs is connected to each of its outputs
+by means of a matrix-vector multiplication.","Recall the architecture of a single-layer network as shown in :numref:`fig_single_neuron`.
+The layer is said to be *fully-connected*
+because each of its inputs is connected to each of its outputs
+by means of a matrix-vector multiplication.",43ad3fd1b4e0adb65eeece1ec3052c93434f75fb1f32a2a5c33a79042c965375,43ad3fd1b4e0adb65eeece1ec3052c93434f75fb1f32a2a5c33a79042c965375,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[5].blocks[192],d17b57e71216c2a37138d7fb1a20e20f6346cca48007bce694c13c4870032cba
+repair_ctx_5095fbc1d98c4e73dda0d5eb,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,fully-connected layers,NO_SPLIT,d2l_linear_networks,Linear Neural Networks,5,d2l_linear_networks_softmax_regression_b015,1106,paragraph,"We can depict this calculation with the neural network diagram shown in :numref:`fig_softmaxreg`.
+Just as in linear regression, softmax regression is also a single-layer neural network.
+And since the calculation of each output, $o_1, o_2$, and $o_3$,
+depends on all inputs, $x_1$, $x_2$, $x_3$, and $x_4$,
+the output layer of softmax regression can also be described as fully-connected layer.","We can depict this calculation with the neural network diagram shown in :numref:`fig_softmaxreg`.
+Just as in linear regression, softmax regression is also a single-layer neural network.
+And since the calculation of each output, $o_1, o_2$, and $o_3$,
+depends on all inputs, $x_1$, $x_2$, $x_3$, and $x_4$,
+the output layer of softmax regression can also be described as fully-connected layer.",6980fbbefb5f16f987e506f37366517ef136a624d6e480c13821f45cfccb725b,6980fbbefb5f16f987e506f37366517ef136a624d6e480c13821f45cfccb725b,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[5].blocks[264],9f9077d104e527c34c71b3b03c32cc54699a42bda49f75ccbe45178ba4ef0b3d
+repair_ctx_c308050c6f12f486744e7620,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,fully-connected layers,NO_SPLIT,d2l_multilayer_perceptrons,Multilayer Perceptrons,6,d2l_multilayer_perceptrons_index_b002,1324,paragraph,"In this chapter, we will introduce your first truly *deep* network.
+The simplest deep networks are called multilayer perceptrons,
+and they consist of multiple layers of neurons
+each fully connected to those in the layer below
+(from which they receive input)
+and those above (which they, in turn, influence).
+When we train high-capacity models we run the risk of overfitting.
+Thus, we will need to provide your first rigorous introduction
+to the notions of overfitting, underfitting, and model selection.
+To help you combat these problems,
+we will introduce regularization techniques such as weight decay and dropout.
+We will also discuss issues relating to numerical stability and parameter initialization
+that are key to successfully training deep networks.
+Throughout, we aim to give you a firm grasp not just of the concepts
+but also of the practice of using deep networks.
+At the end of this chapter,
+we apply what we have introduced so far to a real case: house price prediction.
+We punt matters relating to the computational performance,
+scalability, and efficiency of our models to subsequent chapters.","In this chapter, we will introduce your first truly *deep* network.
+The simplest deep networks are called multilayer perceptrons,
+and they consist of multiple layers of neurons
+each fully connected to those in the layer below
+(from which they receive input)
+and those above (which they, in turn, influence).
+When we train high-capacity models we run the risk of overfitting.
+Thus, we will need to provide your first rigorous introduction
+to the notions of overfitting, underfitting, and model selection.
+To help you combat these problems,
+we will introduce regularization techniques such as weight decay and dropout.
+We will also discuss issues relating to numerical stability and parameter initialization
+that are key to successfully training deep networks.
+Throughout, we aim to give you a firm grasp not just of the concepts
+but also of the practice of using deep networks.
+At the end of this chapter,
+we apply what we have introduced so far to a real case: house price prediction.
+We punt matters relating to the computational performance,
+scalability, and efficiency of our models to subsequent chapters.",537e8a22b9d8a747265fed112adb6587d7242bd4ed4fa3f56adbdea9dc4da8c3,537e8a22b9d8a747265fed112adb6587d7242bd4ed4fa3f56adbdea9dc4da8c3,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[6].blocks[1],ee4b394e00ebfa4f6941eca9c18b8f6529a616c118ff74ee926ea7b8930c5813
+repair_ctx_78ac91ce605feb2824034a3f,d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,fully-connected layers,NO_SPLIT,d2l_multilayer_perceptrons,Multilayer Perceptrons,6,d2l_multilayer_perceptrons_mlp_b013,1338,paragraph,"This MLP has 4 inputs, 3 outputs,
+and its hidden layer contains 5 hidden units.
+Since the input layer does not involve any calculations,
+producing outputs with this network
+requires implementing the computations
+for both the hidden and output layers;
+thus, the number of layers in this MLP is 2.
+Note that these layers are both fully connected.
+Every input influences every neuron in the hidden layer,
+and each of these in turn influences
+every neuron in the output layer.
+However, as suggested by :numref:`subsec_parameterization-cost-fc-layers`,
+the parameterization cost of MLPs
+with fully-connected layers
+can be prohibitively high,
+which may motivate
+tradeoff between parameter saving and model effectiveness even without changing the input or output size :cite:`Zhang.Tay.Zhang.ea.2021`.","This MLP has 4 inputs, 3 outputs,
+and its hidden layer contains 5 hidden units.
+Since the input layer does not involve any calculations,
+producing outputs with this network
+requires implementing the computations
+for both the hidden and output layers;
+thus, the number of layers in this MLP is 2.
+Note that these layers are both fully connected.
+Every input influences every neuron in the hidden layer,
+and each of these in turn influences
+every neuron in the output layer.
+However, as suggested by :numref:`subsec_parameterization-cost-fc-layers`,
+the parameterization cost of MLPs
+with fully-connected layers
+can be prohibitively high,
+which may motivate
+tradeoff between parameter saving and model effectiveness even without changing the input or output size :cite:`Zhang.Tay.Zhang.ea.2021`.",3da31e348af1f45ae8e54bc30d9fc1853c7ecc9b98ae505d1fe29b2e8e38cd1e,3da31e348af1f45ae8e54bc30d9fc1853c7ecc9b98ae505d1fe29b2e8e38cd1e,source://d2l_document_snapshot/document.json,c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f,$.chapters[6].blocks[15],4eeb21a1626a5caf64e437bb5a19930dbe2005d07aedbd35e812474c70aae06a

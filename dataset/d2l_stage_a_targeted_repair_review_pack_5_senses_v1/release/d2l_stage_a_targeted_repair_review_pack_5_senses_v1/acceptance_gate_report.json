@@ -1,0 +1,36 @@
+{
+  "checks": {
+    "canonical_main_authority_untouched": true,
+    "exact_candidate_count_15": true,
+    "exact_evidence_context_count_25": true,
+    "exact_output_sense_count_5": true,
+    "exact_parent_count_4": true,
+    "excluded_local_11_used_for_non_overlap_only": true,
+    "final_glossary_decision_null": true,
+    "five_contexts_per_sense": true,
+    "provider_call_count_zero": true,
+    "review_evidence_is_corpus_only": true,
+    "review_templates_are_blank": true,
+    "stage_b_gold_autofill_zero": true,
+    "three_candidates_per_sense": true
+  },
+  "counts": {
+    "candidate": 15,
+    "output_sense": 5,
+    "parent": 4,
+    "rejected_parent_evidence": 2,
+    "review_context": 25,
+    "reviewer_template": 3
+  },
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "4dfe3578038839536624ca6c3daa5079e5a7fa0a3f0ad86bed4a88a7b5bfdbcf"
+  },
+  "official_contract_count": 0,
+  "policy_id": "d2l-stage-a-targeted-repair-review-5-senses-v1.0",
+  "provider_call_count": 0,
+  "schema_id": "D2LTargetedRepairReviewAcceptanceV1",
+  "schema_version": "1.0.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "READY_FOR_TARGETED_HUMAN_REVIEW"
+}
