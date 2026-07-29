@@ -15,17 +15,28 @@ from typing import Any, Mapping
 from ..artifacts.authority import AuthorityError, canonical_manifest_path, resolve_contained_file, verify_sha256
 from ..constants import MODE_SYNTHETIC, STATUS_CONFORMANCE_ONLY
 from ..fixtures.synthetic import write_synthetic_release
-from ..jsonio import read_json, sha256_bytes, sha256_file, sha256_value, write_json
+from ..jsonio import loads_strict, read_json, sha256_bytes, sha256_file, sha256_value, write_json
 from ..preregistration.receipt import build_receipt, write_receipt
-from ..registries.loader import registry_counts, load_registries
+from ..registries.loader import REGISTRY_FILES, registry_counts, load_registries, validate_registries
 from ..reports.builder import build_evaluation_report
-from .git_source import SOURCE_ROOTS, materialize_commit, require_clean_exact_head, resolve_commit, source_entries, source_tree_sha256, write_source_zip
+from .git_source import (
+    SOURCE_ROOTS,
+    GitSourceError,
+    materialize_commit,
+    read_source_zip,
+    require_clean_exact_head,
+    resolve_commit,
+    source_entries,
+    source_tree_sha256,
+    write_source_zip,
+)
 from .junit import MANIFEST_FILE, normalized_junit_bytes, run_evaluation_pytest, verify_junit
 from .publication import external_atomic_stage
 
 
 RELEASE_SCHEMA_ID = "EvaluationReleaseManifestV1"
 RELEASE_SCHEMA_VERSION = "1.0.0"
+RELEASE_CHECKSUM_FILE = "RELEASE_CHECKSUMS.sha256"
 
 
 class ReleaseBuildError(ValueError):
@@ -123,11 +134,27 @@ def _scan_source(entries: list[tuple[str, bytes]]) -> tuple[list[str], list[str]
     return sorted(forbidden_imports), sorted(credential_literals)
 
 
+def _released_registry_counts(entries: list[tuple[str, bytes]]) -> dict[str, int]:
+    by_path = dict(entries)
+    registries: dict[str, Any] = {}
+    try:
+        for name in REGISTRY_FILES:
+            relative = f"evaluation/v1/registries/{name}"
+            data = by_path.get(relative)
+            if data is None:
+                raise ReleaseBuildError(f"source ZIP is missing registry: {relative}")
+            registries[name.removesuffix("_v1.json")] = loads_strict(data.decode("utf-8"))
+        validate_registries(registries)
+    except (UnicodeDecodeError, ValueError) as exc:
+        raise ReleaseBuildError("source ZIP registry authority is invalid") from exc
+    return registry_counts(registries)
+
+
 def _file_inventory(root: Path) -> list[dict[str, Any]]:
     files: dict[str, Path] = {}
     for path in root.rglob("*"):
         relative = path.relative_to(root).as_posix()
-        if path.is_file() and relative not in {"release_manifest.json", "CHECKSUMS.sha256"}:
+        if path.is_file() and relative not in {"release_manifest.json", RELEASE_CHECKSUM_FILE}:
             canonical = canonical_manifest_path(relative)
             files[canonical] = path
     return [
@@ -140,10 +167,10 @@ def _write_checksums(root: Path) -> None:
     files: dict[str, Path] = {}
     for path in root.rglob("*"):
         relative = path.relative_to(root).as_posix()
-        if path.is_file() and relative != "CHECKSUMS.sha256":
+        if path.is_file() and relative != RELEASE_CHECKSUM_FILE:
             files[canonical_manifest_path(relative)] = path
     lines = [f"{sha256_file(files[relative])}  {relative}" for relative in sorted(files)]
-    (root / "CHECKSUMS.sha256").write_text("\n".join(lines) + "\n", encoding="ascii", newline="\n")
+    (root / RELEASE_CHECKSUM_FILE).write_text("\n".join(lines) + "\n", encoding="ascii", newline="\n")
 
 
 def build_release(
@@ -190,6 +217,12 @@ def build_release(
             (stage / "junit.xml").write_bytes(normalized_junit)
             release_junit_report = {key: value for key, value in junit_report.items() if key != "testcase_identities"}
             release_junit_report["physical_sha256"] = sha256_bytes(normalized_junit)
+            external_release_report = None
+            if external_report is not None:
+                normalized_external = normalized_junit_bytes(external_report)
+                (stage / "external_junit.xml").write_bytes(normalized_external)
+                external_release_report = {key: value for key, value in external_report.items() if key != "testcase_identities"}
+                external_release_report["physical_sha256"] = sha256_bytes(normalized_external)
             write_source_zip(entries, stage / "evaluation_preregistration_source.zip")
             source_hash = source_tree_sha256(entries)
             write_json(
@@ -218,7 +251,7 @@ def build_release(
                 "source_file_count": len(entries),
                 "release_mode": "DETACHED_OBJECT" if detached_object else "CLEAN_EXACT_HEAD",
                 "junit": release_junit_report,
-                "external_junit": None if external_report is None else {key: value for key, value in external_report.items() if key != "testcase_identities"},
+                "external_junit": external_release_report,
                 "expected_test_manifest_sha256": sha256_file(expected_manifest),
                 "registry_counts": registry_counts(load_registries(materialized / "evaluation" / "v1" / "registries")),
                 "network_calls": 0,
@@ -238,7 +271,7 @@ def build_release(
         "source_tree_git_oid": tree,
         "release_manifest_physical_sha256": sha256_file(output / "release_manifest.json"),
         "release_manifest_self_sha256": verified["integrity"]["self_sha256"],
-        "checksums_physical_sha256": sha256_file(output / "CHECKSUMS.sha256"),
+        "checksums_physical_sha256": sha256_file(output / RELEASE_CHECKSUM_FILE),
         "source_zip_physical_sha256": sha256_file(output / "evaluation_preregistration_source.zip"),
     }
 
@@ -269,6 +302,10 @@ def verify_release(root: Path) -> dict[str, Any]:
     }
     if set(manifest) != expected_keys or manifest.get("schema_id") != RELEASE_SCHEMA_ID or manifest.get("schema_version") != RELEASE_SCHEMA_VERSION or manifest.get("status") != STATUS_CONFORMANCE_ONLY:
         raise ReleaseBuildError("release manifest shape/status is invalid")
+    if manifest.get("release_mode") not in {"CLEAN_EXACT_HEAD", "DETACHED_OBJECT"}:
+        raise ReleaseBuildError("release mode is not allowed")
+    if manifest.get("network_calls") != 0 or isinstance(manifest.get("network_calls"), bool) or manifest.get("provider_calls") != 0 or isinstance(manifest.get("provider_calls"), bool):
+        raise ReleaseBuildError("release reports network/provider activity")
     declared = manifest.get("integrity", {}).get("self_sha256") if isinstance(manifest.get("integrity"), Mapping) else None
     if declared != sha256_value(_without_self_hash(manifest)):
         raise ReleaseBuildError("release manifest self hash mismatch")
@@ -314,7 +351,7 @@ def verify_release(root: Path) -> dict[str, Any]:
             raise ReleaseBuildError(f"release tree contains a case-confusable path: {relative}")
         actual_paths.add(relative)
         actual_folded.add(folded)
-    expected_paths = paths | {"release_manifest.json", "CHECKSUMS.sha256"}
+    expected_paths = paths | {"release_manifest.json", RELEASE_CHECKSUM_FILE}
     if actual_paths != expected_paths:
         raise ReleaseBuildError(
             f"release physical file set differs from inventory: missing={sorted(expected_paths - actual_paths)} extra={sorted(actual_paths - expected_paths)}"
@@ -323,12 +360,98 @@ def verify_release(root: Path) -> dict[str, Any]:
     try:
         junit_path = resolve_contained_file(root, "junit.xml")
         expected_manifest_path = resolve_contained_file(root, MANIFEST_FILE)
-        checksum_path = resolve_contained_file(root, "CHECKSUMS.sha256")
+        checksum_path = resolve_contained_file(root, RELEASE_CHECKSUM_FILE)
+        git_receipt_path = resolve_contained_file(root, "git_source_receipt.json")
+        source_zip_path = resolve_contained_file(root, "evaluation_preregistration_source.zip")
+        ownership_path = resolve_contained_file(root, "ownership_scan.json")
+        static_scan_path = resolve_contained_file(root, "static_scan.json")
+        credential_scan_path = resolve_contained_file(root, "credential_scan.json")
+        commands_path = resolve_contained_file(root, "commands.json")
+        environment_path = resolve_contained_file(root, "environment.json")
     except AuthorityError as exc:
         raise ReleaseBuildError("release authority/JUnit/checksum path is unsafe") from exc
-    verify_junit(junit_path, expected_manifest_path=expected_manifest_path)
+    junit_report = verify_junit(junit_path, expected_manifest_path=expected_manifest_path)
+    expected_junit = {key: value for key, value in junit_report.items() if key != "testcase_identities"}
+    if manifest.get("junit") != expected_junit:
+        raise ReleaseBuildError("release manifest JUnit claims differ from parsed junit.xml")
+    if manifest.get("expected_test_manifest_sha256") != sha256_file(expected_manifest_path):
+        raise ReleaseBuildError("release expected-test manifest hash mismatch")
+
+    git_receipt = read_json(git_receipt_path)
+    git_receipt_keys = {
+        "schema_id",
+        "schema_version",
+        "source_commit",
+        "source_tree_git_oid",
+        "source_tree_sha256",
+        "source_file_count",
+        "release_mode",
+    }
+    if set(git_receipt) != git_receipt_keys or git_receipt.get("schema_id") != "EvaluationGitSourceReceiptV1" or git_receipt.get("schema_version") != "1.0.0":
+        raise ReleaseBuildError("Git source receipt shape/schema is invalid")
+    source_claims = (
+        "source_commit",
+        "source_tree_git_oid",
+        "source_tree_sha256",
+        "source_file_count",
+        "release_mode",
+    )
+    if any(manifest.get(field) != git_receipt.get(field) for field in source_claims):
+        raise ReleaseBuildError("release manifest source claims differ from Git source receipt")
+    if not isinstance(manifest.get("source_commit"), str) or not re.fullmatch(r"[0-9a-f]{40}", manifest["source_commit"]):
+        raise ReleaseBuildError("release source commit is invalid")
+    if not isinstance(manifest.get("source_tree_git_oid"), str) or not re.fullmatch(r"[0-9a-f]{40}", manifest["source_tree_git_oid"]):
+        raise ReleaseBuildError("release Git tree OID is invalid")
+    if not isinstance(manifest.get("source_tree_sha256"), str) or not re.fullmatch(r"[0-9a-f]{64}", manifest["source_tree_sha256"]):
+        raise ReleaseBuildError("release source tree SHA256 is invalid")
+    if isinstance(manifest.get("source_file_count"), bool) or not isinstance(manifest.get("source_file_count"), int) or manifest["source_file_count"] <= 0:
+        raise ReleaseBuildError("release source file count is invalid")
+    try:
+        released_entries = read_source_zip(source_zip_path)
+    except GitSourceError as exc:
+        raise ReleaseBuildError(str(exc)) from exc
+    if len(released_entries) != manifest["source_file_count"] or source_tree_sha256(released_entries) != manifest["source_tree_sha256"]:
+        raise ReleaseBuildError("source ZIP count/tree SHA differs from release claims")
+    released_by_path = dict(released_entries)
+    committed_test_authority = released_by_path.get(f"evaluation/v1/authority/{MANIFEST_FILE}")
+    if committed_test_authority != expected_manifest_path.read_bytes():
+        raise ReleaseBuildError("expected-test manifest differs from committed source ZIP authority")
+    ownership = read_json(ownership_path)
+    if ownership != {"status": "PASS", "allowed_roots": list(SOURCE_ROOTS), "source_files": len(released_entries)}:
+        raise ReleaseBuildError("source ownership evidence differs from inspected ZIP")
+    forbidden_imports, credential_literals = _scan_source(released_entries)
+    if read_json(static_scan_path) != {"status": "PASS", "forbidden_imports": forbidden_imports}:
+        raise ReleaseBuildError("static scan evidence differs from inspected ZIP")
+    if read_json(credential_scan_path) != {"status": "PASS", "credential_literals": credential_literals}:
+        raise ReleaseBuildError("credential scan evidence differs from inspected ZIP")
+    if manifest.get("registry_counts") != _released_registry_counts(released_entries):
+        raise ReleaseBuildError("release registry counts differ from inspected ZIP")
+
+    commands = read_json(commands_path)
+    if set(commands) != {"test", "release", "network_calls"} or not all(isinstance(commands.get(key), str) and commands[key] for key in ("test", "release")) or commands.get("network_calls") != 0 or isinstance(commands.get("network_calls"), bool):
+        raise ReleaseBuildError("release command evidence is invalid")
+    environment = read_json(environment_path)
+    if set(environment) != {"python", "platform", "source_commit", "network_calls", "provider_calls"}:
+        raise ReleaseBuildError("release environment evidence shape is invalid")
+    if not all(isinstance(environment.get(key), str) and environment[key] for key in ("python", "platform")) or environment.get("source_commit") != manifest["source_commit"]:
+        raise ReleaseBuildError("release environment source identity is invalid")
+    if environment.get("network_calls") != 0 or isinstance(environment.get("network_calls"), bool) or environment.get("provider_calls") != 0 or isinstance(environment.get("provider_calls"), bool):
+        raise ReleaseBuildError("release environment reports network/provider activity")
+
+    external_junit = manifest.get("external_junit")
+    if external_junit is not None:
+        try:
+            external_path = resolve_contained_file(root, "external_junit.xml")
+        except AuthorityError as exc:
+            raise ReleaseBuildError("external JUnit evidence is missing or unsafe") from exc
+        verified_external = verify_junit(external_path, expected_manifest_path=expected_manifest_path)
+        expected_external = {key: value for key, value in verified_external.items() if key != "testcase_identities"}
+        if external_junit != expected_external:
+            raise ReleaseBuildError("external JUnit claims differ from its physical exact-test evidence")
+    elif "external_junit.xml" in actual_paths:
+        raise ReleaseBuildError("external JUnit file exists without a manifest claim")
     expected_lines = []
-    for relative in sorted(actual_paths - {"CHECKSUMS.sha256"}):
+    for relative in sorted(actual_paths - {RELEASE_CHECKSUM_FILE}):
         path = resolve_contained_file(root, relative)
         expected_lines.append(f"{sha256_file(path)}  {relative}")
     if checksum_path.read_text(encoding="ascii").splitlines() != expected_lines:

@@ -6,6 +6,7 @@ import re
 from pathlib import Path
 from typing import Any, Mapping
 
+from ..artifacts.authority import AuthorityError, secure_existing_directory, secure_existing_file
 from ..constants import AUTHORITY_PROFILE_SCHEMA_ID, AUTHORITY_PROFILE_SCHEMA_VERSION
 from ..jsonio import read_json, sha256_file, sha256_value
 
@@ -153,6 +154,7 @@ def verify_external_authorities(
     artifact_paths: Mapping[str, Path],
     *,
     registry_root: Path,
+    trusted_root: Path,
     allowed_profile_path: Path | None = None,
 ) -> dict[str, Any]:
     """Verify exact external authority bytes without opening validation/test rows."""
@@ -165,24 +167,44 @@ def verify_external_authorities(
     global_profile = profile["global"]
     dataset_profile = profile["dataset"]
 
-    _verify_physical(artifact_paths["contracts_receipt"], receipt_profile["physical_sha256"], "contracts_receipt")
-    receipt = read_json(artifact_paths["contracts_receipt"])
+    try:
+        authority_root = secure_existing_directory(trusted_root, field="authority_trusted_root")
+        registry_directory = secure_existing_directory(
+            registry_root,
+            trusted_root=authority_root,
+            field="evaluation_registry_root",
+        )
+    except AuthorityError as exc:
+        raise AuthorityProfileError(str(exc)) from exc
+
+    def authority_file(name: str) -> Path:
+        try:
+            return secure_existing_file(
+                artifact_paths[name],
+                trusted_root=authority_root,
+                field=f"authority.{name}",
+            )
+        except AuthorityError as exc:
+            raise AuthorityProfileError(str(exc)) from exc
+
+    _verify_physical(authority_file("contracts_receipt"), receipt_profile["physical_sha256"], "contracts_receipt")
+    receipt = read_json(authority_file("contracts_receipt"))
     _verify_self_hash(receipt, "contracts_receipt")
     _match_fields(receipt, {"schema_id": receipt_profile["schema_id"], "receipt_revision": receipt_profile["receipt_revision"], "authority_tag": contracts["authority_tag"], "contract_tree_git_oid": contracts["contract_tree_git_oid"]}, ("schema_id", "receipt_revision", "authority_tag", "contract_tree_git_oid"), "contracts_receipt")
     if receipt["integrity"]["self_sha256"] != receipt_profile["canonical_self_sha256"]:
         raise AuthorityProfileError("contracts receipt canonical hash mismatch")
 
-    _verify_physical(artifact_paths["contracts_approval_binding"], approval_profile["physical_sha256"], "contracts_approval_binding")
-    approval = read_json(artifact_paths["contracts_approval_binding"])
+    _verify_physical(authority_file("contracts_approval_binding"), approval_profile["physical_sha256"], "contracts_approval_binding")
+    approval = read_json(authority_file("contracts_approval_binding"))
     _verify_self_hash(approval, "contracts_approval_binding")
     _match_fields(approval, {"schema_id": approval_profile["schema_id"], "binding_version": approval_profile["binding_version"], "approval_status": approval_profile["approval_status"], "authority_tag": contracts["authority_tag"], "authority_commit": contracts["authority_publication_commit"], "authority_module_tree_git_oid": contracts["authority_module_tree_git_oid"], "receipt_revision": receipt_profile["receipt_revision"], "receipt_canonical_self_sha256": receipt_profile["canonical_self_sha256"], "receipt_physical_sha256": receipt_profile["physical_sha256"]}, ("schema_id", "binding_version", "approval_status", "authority_tag", "authority_commit", "authority_module_tree_git_oid", "receipt_revision", "receipt_canonical_self_sha256", "receipt_physical_sha256"), "contracts_approval_binding")
     if approval["integrity"]["self_sha256"] != approval_profile["canonical_self_sha256"]:
         raise AuthorityProfileError("detached approval canonical hash mismatch")
-    _verify_physical(artifact_paths["contracts_checksums"], approval_profile["checksums_physical_sha256"], "contracts_checksums")
+    _verify_physical(authority_file("contracts_checksums"), approval_profile["checksums_physical_sha256"], "contracts_checksums")
 
     report_profile = global_profile["authority_report"]
-    _verify_physical(artifact_paths["global_authority_report"], report_profile["physical_sha256"], "global_authority_report")
-    global_report = read_json(artifact_paths["global_authority_report"])
+    _verify_physical(authority_file("global_authority_report"), report_profile["physical_sha256"], "global_authority_report")
+    global_report = read_json(authority_file("global_authority_report"))
     _verify_self_hash(global_report, "global_authority_report")
     _match_fields(global_report, report_profile, ("schema_id", "schema_version", "status", "source_commit"), "global_authority_report")
     if global_report["integrity"]["self_sha256"] != report_profile["canonical_self_sha256"] or global_report.get("warnings") != []:
@@ -192,24 +214,31 @@ def verify_external_authorities(
         raise AuthorityProfileError("Global release test identity mismatch")
 
     policy_profile = global_profile["action_policy"]
-    _verify_physical(artifact_paths["global_action_policy"], policy_profile["physical_sha256"], "global_action_policy")
-    action_policy = read_json(artifact_paths["global_action_policy"])
+    _verify_physical(authority_file("global_action_policy"), policy_profile["physical_sha256"], "global_action_policy")
+    action_policy = read_json(authority_file("global_action_policy"))
     _verify_self_hash(action_policy, "global_action_policy")
     _match_fields(action_policy, policy_profile, ("schema_id", "schema_version", "status", "action_policy_authority_id", "action_policy_authority_sha256", "action_policy_id", "action_policy_version", "action_policy_sha256", "gate_policy_artifact_sha256"), "global_action_policy")
     if action_policy["integrity"]["self_sha256"] != policy_profile["canonical_self_sha256"]:
         raise AuthorityProfileError("Global action policy canonical hash mismatch")
 
-    _verify_physical(artifact_paths["dataset_manifest"], dataset_profile["manifest_physical_sha256"], "dataset_manifest")
-    dataset_manifest = read_json(artifact_paths["dataset_manifest"])
+    _verify_physical(authority_file("dataset_manifest"), dataset_profile["manifest_physical_sha256"], "dataset_manifest")
+    dataset_manifest = read_json(authority_file("dataset_manifest"))
     _match_fields(dataset_manifest, {"schema_id": dataset_profile["manifest_schema_id"], "schema_version": dataset_profile["manifest_schema_version"], "status": dataset_profile["manifest_status"], "manifest_sha256": dataset_profile["manifest_declared_sha256"]}, ("schema_id", "schema_version", "status", "manifest_sha256"), "dataset_manifest")
     split_file = dataset_manifest.get("files", {}).get("split_assignments.jsonl", {})
     if split_file.get("sha256") != dataset_profile["split_assignments_physical_sha256"] or dataset_manifest.get("split_policy", {}).get("policy_id") != dataset_profile["split_policy_id"] or dataset_manifest.get("split_policy", {}).get("target_counts") != dataset_profile["target_counts"]:
         raise AuthorityProfileError("Dataset split-manifest binding mismatch")
-    _verify_physical(artifact_paths["dataset_split_assignments"], dataset_profile["split_assignments_physical_sha256"], "dataset_split_assignments")
+    _verify_physical(authority_file("dataset_split_assignments"), dataset_profile["split_assignments_physical_sha256"], "dataset_split_assignments")
 
     registry_hashes: dict[str, str] = {}
     for name, expected in profile["evaluation_registries"].items():
-        path = registry_root / name
+        try:
+            path = secure_existing_file(
+                registry_directory / name,
+                trusted_root=registry_directory,
+                field=f"evaluation_registry.{name}",
+            )
+        except AuthorityError as exc:
+            raise AuthorityProfileError(str(exc)) from exc
         _verify_physical(path, expected, f"evaluation_registry.{name}")
         registry_hashes[name] = expected
 

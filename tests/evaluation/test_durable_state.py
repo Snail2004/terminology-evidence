@@ -4,7 +4,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from evaluation.v1.constants import MODE_REAL_AUTHORITY, MODE_SYNTHETIC
-from evaluation.v1.jsonio import read_json, write_json
+from evaluation.v1.jsonio import read_json, sha256_file, write_json
 from evaluation.v1.preregistration.freeze import (
     AccessLog,
     DurablePreregistrationStore,
@@ -12,8 +12,8 @@ from evaluation.v1.preregistration.freeze import (
     FreezeState,
 )
 from evaluation.v1.preregistration.ledger import LedgerError
-from evaluation.v1.preregistration.receipt import build_receipt
-from evaluation.v1.preregistration.recovery import RecoveryError, recover_projection, verify_recovery_receipt
+from evaluation.v1.preregistration.receipt import build_receipt, verify_real_receipt, write_receipt
+from evaluation.v1.preregistration.recovery import RecoveryError, recover_projection, verify_recovery_plan, verify_recovery_receipt
 from tests.evaluation.git_context import resolve_test_git_context
 
 
@@ -23,7 +23,7 @@ class DurableStateTests(unittest.TestCase):
         cls.repo = Path(__file__).resolve().parents[2]
         cls.git_repo, cls.commit = resolve_test_git_context(cls.repo)
         cls.registries = cls.repo / "evaluation" / "v1" / "registries"
-        artifacts = {
+        cls.artifacts = {
             "contracts_receipt": cls.repo / "terminology_contracts_v1" / "release" / "v1.1.0-final" / "contracts_v1_1_0_authority_receipt_r2.json",
             "contracts_approval_binding": cls.repo / "review_evidence" / "contracts" / "contracts-v1.1.0" / "authority-r2" / "approval_binding_v1.json",
             "contracts_checksums": cls.repo / "review_evidence" / "contracts" / "contracts-v1.1.0" / "authority-r2" / "CHECKSUMS.sha256",
@@ -32,14 +32,28 @@ class DurableStateTests(unittest.TestCase):
             "dataset_manifest": cls.repo / "dataset" / "d2l_context_support_set_validation_ready_v3" / "manifest.json",
             "dataset_split_assignments": cls.repo / "dataset" / "d2l_context_support_set_validation_ready_v3" / "split_assignments.jsonl",
         }
-        cls.real_receipt = build_receipt(
+        raw_receipt = build_receipt(
             mode=MODE_REAL_AUTHORITY,
             base_commit=cls.commit,
             repo_root_path=cls.git_repo,
             registry_root_path=cls.registries,
-            authority_artifact_paths=artifacts,
+            authority_artifact_paths=cls.artifacts,
+            authority_root_path=cls.repo,
             artifact_hashes={"evaluation_plan": "a" * 64},
             created_at="2026-07-29T15:00:00+07:00",
+        )
+        cls.receipt_directory = TemporaryDirectory()
+        cls.addClassCleanup(cls.receipt_directory.cleanup)
+        receipt_root = Path(cls.receipt_directory.name)
+        receipt_path = receipt_root / "real-receipt.json"
+        write_receipt(receipt_path, raw_receipt)
+        cls.real_receipt = verify_real_receipt(
+            receipt_path,
+            receipt_root_path=receipt_root,
+            repo_root_path=cls.git_repo,
+            registry_root_path=cls.registries,
+            authority_artifact_paths=cls.artifacts,
+            authority_root_path=cls.repo,
         )
 
     @staticmethod
@@ -50,9 +64,26 @@ class DurableStateTests(unittest.TestCase):
         with TemporaryDirectory() as temp:
             root = Path(temp)
             store = self._store(root)
+            with self.assertRaises(FreezeError):
+                store.freeze(self.real_receipt, actor="maintainer", issued_at="2026-07-29T15:01:00")
+            with self.assertRaises(FreezeError):
+                store.freeze(self.real_receipt, actor="maintainer", issued_at="2026-07-29T14:59:59+07:00")
+            self.assertFalse((root / "events.jsonl").exists())
+            self.assertFalse((root / "state.json").exists())
             store.freeze(self.real_receipt, actor="maintainer", issued_at="2026-07-29T15:01:00+07:00")
+            with self.assertRaises((FreezeError, LedgerError)):
+                store.open_validation(actor="maintainer", purpose="validation", issued_at="2026-07-29T15:01:30")
+            with self.assertRaises((FreezeError, LedgerError)):
+                store.open_validation(actor="maintainer", purpose="validation", issued_at="2026-07-29T15:00:59+07:00")
+            self.assertEqual(store.load()["event_count"], 1)
             store.open_validation(actor="maintainer", purpose="validation", issued_at="2026-07-29T15:02:00+07:00")
+            with self.assertRaises((FreezeError, LedgerError)):
+                store.freeze_calibration(actor="maintainer", calibration_artifact_sha256="c" * 64, issued_at="2026-07-29T15:01:59+07:00")
+            self.assertEqual(store.load()["event_count"], 2)
             store.freeze_calibration(actor="maintainer", calibration_artifact_sha256="c" * 64, issued_at="2026-07-29T15:03:00+07:00")
+            with self.assertRaises((FreezeError, LedgerError)):
+                store.open_hidden_test(actor="maintainer", purpose="hidden evaluation", issued_at="2026-07-29T15:02:59+07:00")
+            self.assertEqual(store.load()["event_count"], 3)
             store.open_hidden_test(actor="maintainer", purpose="hidden evaluation", issued_at="2026-07-29T15:04:00+07:00")
             reloaded = self._store(root)
             state = reloaded.load()
@@ -74,13 +105,15 @@ class DurableStateTests(unittest.TestCase):
         with TemporaryDirectory() as temp:
             with self.assertRaises(FreezeError):
                 self._store(Path(temp)).freeze(synthetic, actor="test")
+            with self.assertRaises(FreezeError):
+                self._store(Path(temp)).freeze(dict(self.real_receipt.receipt), actor="test")
 
     def test_concurrent_hidden_test_open_is_exactly_once(self):
         with TemporaryDirectory() as temp:
             root = Path(temp)
             store = self._store(root)
-            store.freeze(self.real_receipt, actor="maintainer")
-            store.open_validation(actor="maintainer", purpose="validation")
+            store.freeze(self.real_receipt, actor="maintainer", issued_at="2026-07-29T15:01:00+07:00")
+            store.open_validation(actor="maintainer", purpose="validation", issued_at="2026-07-29T15:02:00+07:00")
             store.freeze_calibration(actor="maintainer", calibration_artifact_sha256="d" * 64)
             outcomes = []
             guard = threading.Lock()
@@ -106,8 +139,8 @@ class DurableStateTests(unittest.TestCase):
         with TemporaryDirectory() as temp:
             root = Path(temp)
             store = self._store(root)
-            store.freeze(self.real_receipt, actor="maintainer")
-            store.open_validation(actor="maintainer", purpose="validation")
+            store.freeze(self.real_receipt, actor="maintainer", issued_at="2026-07-29T15:01:00+07:00")
+            store.open_validation(actor="maintainer", purpose="validation", issued_at="2026-07-29T15:02:00+07:00")
             projection = read_json(root / "state.json")
             projection["status"] = "TAMPERED"
             write_json(root / "state.json", projection)
@@ -124,9 +157,12 @@ class DurableStateTests(unittest.TestCase):
             )
             self.assertEqual(result["projection"]["status"], "VALIDATION_ACCESSED")
             self.assertEqual(result["projection"]["recovery_count"], 1)
-            verify_recovery_receipt(result["receipt"])
-            tampered_receipt = dict(result["receipt"])
-            tampered_receipt["reason"] = "rewritten"
+            verify_recovery_plan(result["plan_receipt"])
+            verify_recovery_receipt(result["completion_receipt"])
+            self.assertEqual(result["completion_receipt"]["final_projection_self_sha256"], result["projection"]["integrity"]["self_sha256"])
+            self.assertEqual(result["completion_receipt"]["final_projection_physical_sha256"], sha256_file(root / "state.json"))
+            tampered_receipt = dict(result["completion_receipt"])
+            tampered_receipt["final_projection_physical_sha256"] = "f" * 64
             with self.assertRaises(RecoveryError):
                 verify_recovery_receipt(tampered_receipt)
             self.assertEqual(store.load(), result["projection"])

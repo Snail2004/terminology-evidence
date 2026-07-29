@@ -5,7 +5,7 @@ from tempfile import TemporaryDirectory
 from evaluation.v1.constants import AMENDMENT_SCHEMA_ID, MODE_REAL_AUTHORITY, SCHEMA_VERSION
 from evaluation.v1.preregistration.amendments import AmendmentError, append_amendment, validate_amendment
 from evaluation.v1.preregistration.freeze import DurablePreregistrationStore, FreezeError
-from evaluation.v1.preregistration.receipt import build_receipt
+from evaluation.v1.preregistration.receipt import build_receipt, verify_real_receipt, write_receipt
 from tests.evaluation.git_context import resolve_test_git_context
 
 
@@ -13,9 +13,9 @@ class AmendmentTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.repo = Path(__file__).resolve().parents[2]
-        git_repo, commit = resolve_test_git_context(cls.repo)
-        registries = cls.repo / "evaluation" / "v1" / "registries"
-        artifacts = {
+        cls.git_repo, cls.commit = resolve_test_git_context(cls.repo)
+        cls.registries = cls.repo / "evaluation" / "v1" / "registries"
+        cls.artifacts = {
             "contracts_receipt": cls.repo / "terminology_contracts_v1" / "release" / "v1.1.0-final" / "contracts_v1_1_0_authority_receipt_r2.json",
             "contracts_approval_binding": cls.repo / "review_evidence" / "contracts" / "contracts-v1.1.0" / "authority-r2" / "approval_binding_v1.json",
             "contracts_checksums": cls.repo / "review_evidence" / "contracts" / "contracts-v1.1.0" / "authority-r2" / "CHECKSUMS.sha256",
@@ -24,13 +24,28 @@ class AmendmentTests(unittest.TestCase):
             "dataset_manifest": cls.repo / "dataset" / "d2l_context_support_set_validation_ready_v3" / "manifest.json",
             "dataset_split_assignments": cls.repo / "dataset" / "d2l_context_support_set_validation_ready_v3" / "split_assignments.jsonl",
         }
-        cls.receipt = build_receipt(
+        raw_receipt = build_receipt(
             mode=MODE_REAL_AUTHORITY,
-            base_commit=commit,
-            repo_root_path=git_repo,
-            registry_root_path=registries,
-            authority_artifact_paths=artifacts,
+            base_commit=cls.commit,
+            repo_root_path=cls.git_repo,
+            registry_root_path=cls.registries,
+            authority_artifact_paths=cls.artifacts,
+            authority_root_path=cls.repo,
             artifact_hashes={"evaluation_plan": "a" * 64},
+            created_at="2026-07-29T15:00:00+07:00",
+        )
+        cls.receipt_directory = TemporaryDirectory()
+        cls.addClassCleanup(cls.receipt_directory.cleanup)
+        receipt_root = Path(cls.receipt_directory.name)
+        receipt_path = receipt_root / "real-receipt.json"
+        write_receipt(receipt_path, raw_receipt)
+        cls.receipt = verify_real_receipt(
+            receipt_path,
+            receipt_root_path=receipt_root,
+            repo_root_path=cls.git_repo,
+            registry_root_path=cls.registries,
+            authority_artifact_paths=cls.artifacts,
+            authority_root_path=cls.repo,
         )
 
     @staticmethod
@@ -53,24 +68,63 @@ class AmendmentTests(unittest.TestCase):
     def _store(root):
         return DurablePreregistrationStore(root / "events.jsonl", root / "state.json")
 
+    def _replacement_receipt(self, root: Path, *, created_at: str):
+        raw = build_receipt(
+            mode=MODE_REAL_AUTHORITY,
+            base_commit=self.commit,
+            repo_root_path=self.git_repo,
+            registry_root_path=self.registries,
+            authority_artifact_paths=self.artifacts,
+            authority_root_path=self.repo,
+            artifact_hashes={"evaluation_plan": "e" * 64},
+            created_at=created_at,
+        )
+        path = root / "replacement-receipt.json"
+        write_receipt(path, raw)
+        return verify_real_receipt(
+            path,
+            receipt_root_path=root,
+            repo_root_path=self.git_repo,
+            registry_root_path=self.registries,
+            authority_artifact_paths=self.artifacts,
+            authority_root_path=self.repo,
+        )
+
     def test_prevalidation_amendment_requires_new_freeze(self):
         with TemporaryDirectory() as temp:
             store = self._store(Path(temp))
-            store.freeze(self.receipt, actor="maintainer")
-            state = append_amendment(store, self._amendment(), actor="maintainer")
+            store.freeze(self.receipt, actor="maintainer", issued_at="2026-07-29T15:01:00+07:00")
+            state = append_amendment(store, self._amendment(), actor="maintainer", issued_at="2026-07-29T15:02:00+07:00")
             self.assertEqual(state["status"], "REFREEZE_REQUIRED")
             with self.assertRaises(FreezeError):
                 store.open_validation(actor="maintainer", purpose="validation")
+            replacement = self._replacement_receipt(Path(temp), created_at="2026-07-29T15:02:00+07:00")
+            with self.assertRaises((FreezeError, ValueError)):
+                store.refreeze(replacement, actor="maintainer", issued_at="2026-07-29T15:03:00")
+            with self.assertRaises((FreezeError, ValueError)):
+                store.refreeze(replacement, actor="maintainer", issued_at="2026-07-29T15:01:59+07:00")
             self.assertEqual(store.load()["event_count"], 2)
+            refrozen = store.refreeze(replacement, actor="maintainer", issued_at="2026-07-29T15:03:00+07:00")
+            self.assertEqual(refrozen["status"], "FROZEN_BEFORE_VALIDATION")
+            self.assertEqual(refrozen["refreeze_count"], 1)
+            self.assertIsNone(refrozen["validation_opened_at"])
+            store.open_validation(actor="maintainer", purpose="validation", issued_at="2026-07-29T15:04:00+07:00")
+            self.assertEqual(store.load()["event_count"], 4)
 
     def test_postvalidation_amendment_invalidates_primary_path(self):
         with TemporaryDirectory() as temp:
             store = self._store(Path(temp))
-            store.freeze(self.receipt, actor="maintainer")
-            store.open_validation(actor="maintainer", purpose="validation")
-            state = append_amendment(store, self._amendment(), actor="maintainer")
+            store.freeze(self.receipt, actor="maintainer", issued_at="2026-07-29T15:01:00+07:00")
+            store.open_validation(actor="maintainer", purpose="validation", issued_at="2026-07-29T15:02:00+07:00")
+            store.freeze_calibration(actor="maintainer", calibration_artifact_sha256="d" * 64, issued_at="2026-07-29T15:03:00+07:00")
+            state = append_amendment(store, self._amendment(), actor="maintainer", issued_at="2026-07-29T15:04:00+07:00")
             self.assertEqual(state["status"], "REFREEZE_REQUIRED")
             self.assertEqual(state["amendment_count"], 1)
+            replacement = self._replacement_receipt(Path(temp), created_at="2026-07-29T15:04:00+07:00")
+            refrozen = store.refreeze(replacement, actor="maintainer", issued_at="2026-07-29T15:05:00+07:00")
+            self.assertEqual(refrozen["status"], "VALIDATION_ACCESSED")
+            self.assertEqual(refrozen["validation_opened_at"], "2026-07-29T15:02:00+07:00")
+            self.assertIsNone(refrozen["calibration_artifact_sha256"])
 
     def test_post_hidden_primary_rejects_but_exploratory_isolated(self):
         with TemporaryDirectory() as temp:

@@ -9,8 +9,9 @@ from typing import Any, Mapping
 
 from ..constants import MODE_REAL_AUTHORITY, STATUS_FROZEN
 from ..jsonio import canonical_bytes, read_json, sha256_value
+from ..time_policy import TimestampError, parse_rfc3339
 from .ledger import EventLedger, LedgerError, atomic_publish
-from .receipt import verify_receipt_object
+from .receipt import VerifiedRealReceipt, verify_real_receipt_capability
 
 
 PROJECTION_SCHEMA_ID = "EvaluationPreregistrationStateProjectionV1"
@@ -20,6 +21,7 @@ EVENT_VALIDATION = "VALIDATION_ACCESS_OPENED"
 EVENT_CALIBRATION = "CALIBRATION_ARTIFACT_FROZEN"
 EVENT_HIDDEN_TEST = "HIDDEN_TEST_ACCESS_OPENED"
 EVENT_AMENDMENT = "AMENDMENT_ACCEPTED"
+EVENT_REFROZEN = "PREREGISTRATION_REFROZEN"
 EVENT_EXPLORATORY = "EXPLORATORY_POST_TEST_DECLARED"
 EVENT_RECOVERY = "RECOVERY_RECORDED"
 STATE_VALIDATION = "VALIDATION_ACCESSED"
@@ -62,17 +64,38 @@ def derive_projection(events: list[dict[str, Any]]) -> dict[str, Any]:
     if first.get("sequence_number") != 0:
         raise FreezeError("freeze genesis is not sequence zero")
     refs = first.get("authority_refs")
-    required_refs = {"preregistration_receipt_sha256", "split_manifest_sha256", "authority_profile_sha256"}
+    required_refs = {
+        "preregistration_receipt_sha256",
+        "preregistration_receipt_physical_sha256",
+        "receipt_verification_report_sha256",
+        "split_manifest_sha256",
+        "authority_profile_sha256",
+    }
     if not isinstance(refs, Mapping) or set(refs) != required_refs:
         raise FreezeError("freeze authority refs are incomplete")
     payload = _require_payload_keys(
         first.get("payload"),
-        {"receipt_mode", "receipt_sha256", "split_manifest_sha256", "authority_profile_sha256"},
+        {
+            "receipt_mode",
+            "receipt_sha256",
+            "receipt_physical_sha256",
+            "verification_report_sha256",
+            "split_manifest_sha256",
+            "authority_profile_sha256",
+        },
         EVENT_FROZEN,
     )
-    if payload["receipt_mode"] != MODE_REAL_AUTHORITY or payload["receipt_sha256"] != refs["preregistration_receipt_sha256"] or payload["split_manifest_sha256"] != refs["split_manifest_sha256"] or payload["authority_profile_sha256"] != refs["authority_profile_sha256"]:
+    if (
+        payload["receipt_mode"] != MODE_REAL_AUTHORITY
+        or payload["receipt_sha256"] != refs["preregistration_receipt_sha256"]
+        or payload["receipt_physical_sha256"] != refs["preregistration_receipt_physical_sha256"]
+        or payload["verification_report_sha256"] != refs["receipt_verification_report_sha256"]
+        or payload["split_manifest_sha256"] != refs["split_manifest_sha256"]
+        or payload["authority_profile_sha256"] != refs["authority_profile_sha256"]
+    ):
         raise FreezeError("freeze payload does not match authority refs")
 
+    current_refs = dict(refs)
     status = STATUS_FROZEN
     validation_opened_at: str | None = None
     calibration_artifact_sha256: str | None = None
@@ -80,11 +103,14 @@ def derive_projection(events: list[dict[str, Any]]) -> dict[str, Any]:
     amendment_count = 0
     exploratory_count = 0
     recovery_count = 0
+    refreeze_count = 0
+    pending_refreeze: Mapping[str, Any] | None = None
     for event in events[1:]:
-        if event.get("authority_refs") != refs:
-            raise FreezeError("event authority refs drifted")
         event_type = event.get("event_type")
         payload = event.get("payload")
+        event_refs = event.get("authority_refs")
+        if event_type != EVENT_REFROZEN and event_refs != current_refs:
+            raise FreezeError("event authority refs drifted")
         if event_type == EVENT_VALIDATION:
             checked = _require_payload_keys(payload, {"purpose", "previous_ledger_head"}, EVENT_VALIDATION)
             if status != STATUS_FROZEN or validation_opened_at is not None or checked["previous_ledger_head"] != event["previous_event_sha256"]:
@@ -109,14 +135,68 @@ def derive_projection(events: list[dict[str, Any]]) -> dict[str, Any]:
             if status not in {STATUS_FROZEN, STATE_VALIDATION, STATE_CALIBRATION} or checked["phase"] != expected_phase or checked["new_freeze_required"] is not True or checked["previous_ledger_head"] != event["previous_event_sha256"]:
                 raise FreezeError("primary amendment transition is invalid")
             amendment_count += 1
+            pending_refreeze = {
+                "phase": checked["phase"],
+                "amendment_id": checked["amendment"]["amendment_id"],
+                "new_preregistration_version": checked["amendment"]["new_preregistration_version"],
+            }
             status = STATE_REFREEZE_REQUIRED
+        elif event_type == EVENT_REFROZEN:
+            checked = _require_payload_keys(
+                payload,
+                {
+                    "amendment_id",
+                    "new_preregistration_version",
+                    "old_receipt_sha256",
+                    "new_receipt_sha256",
+                    "new_receipt_physical_sha256",
+                    "new_verification_report_sha256",
+                    "resume_status",
+                    "previous_ledger_head",
+                },
+                EVENT_REFROZEN,
+            )
+            expected_resume = STATUS_FROZEN if pending_refreeze and pending_refreeze["phase"] == "PRE_VALIDATION" else STATE_VALIDATION
+            if (
+                status != STATE_REFREEZE_REQUIRED
+                or pending_refreeze is None
+                or not isinstance(event_refs, Mapping)
+                or set(event_refs) != required_refs
+                or event_refs["split_manifest_sha256"] != current_refs["split_manifest_sha256"]
+                or event_refs["authority_profile_sha256"] != current_refs["authority_profile_sha256"]
+                or checked["previous_ledger_head"] != event["previous_event_sha256"]
+                or checked["amendment_id"] != pending_refreeze["amendment_id"]
+                or checked["new_preregistration_version"] != pending_refreeze["new_preregistration_version"]
+                or checked["old_receipt_sha256"] != current_refs["preregistration_receipt_sha256"]
+                or checked["new_receipt_sha256"] != event_refs["preregistration_receipt_sha256"]
+                or checked["new_receipt_physical_sha256"] != event_refs["preregistration_receipt_physical_sha256"]
+                or checked["new_verification_report_sha256"] != event_refs["receipt_verification_report_sha256"]
+                or checked["new_receipt_sha256"] == checked["old_receipt_sha256"]
+                or checked["resume_status"] != expected_resume
+            ):
+                raise FreezeError("refreeze transition is invalid")
+            current_refs = dict(event_refs)
+            status = expected_resume
+            calibration_artifact_sha256 = None
+            pending_refreeze = None
+            refreeze_count += 1
         elif event_type == EVENT_EXPLORATORY:
             checked = _require_payload_keys(payload, {"amendment", "analysis_namespace", "previous_ledger_head"}, EVENT_EXPLORATORY)
             if status != STATE_HIDDEN_TEST or checked["previous_ledger_head"] != event["previous_event_sha256"]:
                 raise FreezeError("post-test exploratory declaration is invalid")
             exploratory_count += 1
         elif event_type == EVENT_RECOVERY:
-            checked = _require_payload_keys(payload, {"recovery_receipt_self_sha256", "recovery_receipt_physical_sha256", "ledger_head_before_recovery", "old_projection_sha256", "rebuilt_projection_sha256"}, EVENT_RECOVERY)
+            checked = _require_payload_keys(
+                payload,
+                {
+                    "recovery_plan_self_sha256",
+                    "recovery_plan_physical_sha256",
+                    "ledger_head_before_recovery",
+                    "old_projection_sha256",
+                    "pre_event_projection_sha256",
+                },
+                EVENT_RECOVERY,
+            )
             if checked["ledger_head_before_recovery"] != event["previous_event_sha256"]:
                 raise FreezeError("recovery event does not bind its previous ledger head")
             recovery_count += 1
@@ -129,15 +209,18 @@ def derive_projection(events: list[dict[str, Any]]) -> dict[str, Any]:
         "status": status,
         "event_count": len(events),
         "ledger_head_sha256": events[-1]["event_sha256"],
-        "preregistration_receipt_sha256": refs["preregistration_receipt_sha256"],
-        "split_manifest_sha256": refs["split_manifest_sha256"],
-        "authority_profile_sha256": refs["authority_profile_sha256"],
+        "preregistration_receipt_sha256": current_refs["preregistration_receipt_sha256"],
+        "preregistration_receipt_physical_sha256": current_refs["preregistration_receipt_physical_sha256"],
+        "receipt_verification_report_sha256": current_refs["receipt_verification_report_sha256"],
+        "split_manifest_sha256": current_refs["split_manifest_sha256"],
+        "authority_profile_sha256": current_refs["authority_profile_sha256"],
         "validation_opened_at": validation_opened_at,
         "calibration_artifact_sha256": calibration_artifact_sha256,
         "hidden_test_opened_at": hidden_test_opened_at,
         "amendment_count": amendment_count,
         "exploratory_count": exploratory_count,
         "recovery_count": recovery_count,
+        "refreeze_count": refreeze_count,
         "integrity": {"self_sha256": ""},
     }
     projection["integrity"]["self_sha256"] = _projection_hash(projection)
@@ -152,6 +235,8 @@ def verify_projection_object(value: Mapping[str, Any]) -> str:
         "event_count",
         "ledger_head_sha256",
         "preregistration_receipt_sha256",
+        "preregistration_receipt_physical_sha256",
+        "receipt_verification_report_sha256",
         "split_manifest_sha256",
         "authority_profile_sha256",
         "validation_opened_at",
@@ -160,6 +245,7 @@ def verify_projection_object(value: Mapping[str, Any]) -> str:
         "amendment_count",
         "exploratory_count",
         "recovery_count",
+        "refreeze_count",
         "integrity",
     }
     if set(value) != expected_keys or value.get("schema_id") != PROJECTION_SCHEMA_ID or value.get("schema_version") != PROJECTION_SCHEMA_VERSION:
@@ -178,12 +264,22 @@ class DurablePreregistrationStore:
         self.ledger = EventLedger(ledger_path, lock_timeout_seconds=lock_timeout_seconds)
         self.projection_path = projection_path
 
-    def freeze(self, receipt: Mapping[str, Any], *, actor: str, issued_at: str | None = None) -> dict[str, Any]:
-        verify_receipt_object(receipt)
-        if receipt.get("mode") != MODE_REAL_AUTHORITY or receipt.get("status") != STATUS_FROZEN:
-            raise FreezeError("only a verified REAL_AUTHORITY receipt may freeze state")
+    def freeze(self, verified_receipt: VerifiedRealReceipt, *, actor: str, issued_at: str | None = None) -> dict[str, Any]:
+        try:
+            verification_report_sha256 = verify_real_receipt_capability(verified_receipt)
+        except ValueError as exc:
+            raise FreezeError(str(exc)) from exc
+        receipt = verified_receipt.receipt
+        event_time = issued_at or now_utc()
+        try:
+            if parse_rfc3339(event_time, "freeze.issued_at") < parse_rfc3339(receipt["created_at"], "receipt.created_at"):
+                raise FreezeError("freeze timestamp precedes receipt creation")
+        except TimestampError as exc:
+            raise FreezeError(str(exc)) from exc
         refs = {
             "preregistration_receipt_sha256": receipt["integrity"]["self_sha256"],
+            "preregistration_receipt_physical_sha256": verified_receipt.receipt_physical_sha256,
+            "receipt_verification_report_sha256": verification_report_sha256,
             "split_manifest_sha256": receipt["dataset_manifest_sha256"],
             "authority_profile_sha256": receipt["authority_evidence"]["profile_self_sha256"],
         }
@@ -193,12 +289,14 @@ class DurablePreregistrationStore:
                 raise FreezeError("preregistration state already exists")
             candidate = self.ledger.prepare_locked(
                 event_type=EVENT_FROZEN,
-                issued_at=issued_at or now_utc(),
+                issued_at=event_time,
                 actor=actor,
                 authority_refs=refs,
                 payload={
                     "receipt_mode": MODE_REAL_AUTHORITY,
                     "receipt_sha256": refs["preregistration_receipt_sha256"],
+                    "receipt_physical_sha256": refs["preregistration_receipt_physical_sha256"],
+                    "verification_report_sha256": refs["receipt_verification_report_sha256"],
                     "split_manifest_sha256": refs["split_manifest_sha256"],
                     "authority_profile_sha256": refs["authority_profile_sha256"],
                 },
@@ -216,6 +314,60 @@ class DurablePreregistrationStore:
             if actual != expected:
                 raise FreezeError("ledger/projection divergence")
             return actual
+
+    def refreeze(self, verified_receipt: VerifiedRealReceipt, *, actor: str, issued_at: str | None = None) -> dict[str, Any]:
+        """Accept a reviewed replacement receipt only after one primary amendment."""
+        try:
+            report_sha = verify_real_receipt_capability(verified_receipt)
+        except ValueError as exc:
+            raise FreezeError(str(exc)) from exc
+        receipt = verified_receipt.receipt
+        event_time = issued_at or now_utc()
+        try:
+            if parse_rfc3339(event_time, "refreeze.issued_at") < parse_rfc3339(receipt["created_at"], "receipt.created_at"):
+                raise FreezeError("refreeze timestamp precedes replacement receipt creation")
+        except TimestampError as exc:
+            raise FreezeError(str(exc)) from exc
+        with self.ledger.writer():
+            events, head = self.ledger.verify()
+            expected = derive_projection(events)
+            if self._read_projection() != expected or expected["status"] != STATE_REFREEZE_REQUIRED:
+                raise FreezeError("refreeze requires an exact REFREEZE_REQUIRED projection")
+            amendment_event = events[-1]
+            if amendment_event["event_type"] != EVENT_AMENDMENT:
+                raise FreezeError("refreeze must immediately follow the amendment event")
+            amendment_payload = amendment_event["payload"]
+            amendment = amendment_payload["amendment"]
+            resume_status = STATUS_FROZEN if amendment_payload["phase"] == "PRE_VALIDATION" else STATE_VALIDATION
+            refs = {
+                "preregistration_receipt_sha256": receipt["integrity"]["self_sha256"],
+                "preregistration_receipt_physical_sha256": verified_receipt.receipt_physical_sha256,
+                "receipt_verification_report_sha256": report_sha,
+                "split_manifest_sha256": receipt["dataset_manifest_sha256"],
+                "authority_profile_sha256": receipt["authority_evidence"]["profile_self_sha256"],
+            }
+            if refs["split_manifest_sha256"] != expected["split_manifest_sha256"] or refs["authority_profile_sha256"] != expected["authority_profile_sha256"]:
+                raise FreezeError("refreeze cannot change Dataset split or authority profile")
+            candidate = self.ledger.prepare_locked(
+                event_type=EVENT_REFROZEN,
+                issued_at=event_time,
+                actor=actor,
+                authority_refs=refs,
+                payload={
+                    "amendment_id": amendment["amendment_id"],
+                    "new_preregistration_version": amendment["new_preregistration_version"],
+                    "old_receipt_sha256": expected["preregistration_receipt_sha256"],
+                    "new_receipt_sha256": refs["preregistration_receipt_sha256"],
+                    "new_receipt_physical_sha256": refs["preregistration_receipt_physical_sha256"],
+                    "new_verification_report_sha256": refs["receipt_verification_report_sha256"],
+                    "resume_status": resume_status,
+                    "previous_ledger_head": head,
+                },
+            )
+            projection = derive_projection(events + [candidate])
+            self.ledger.append_prepared_locked(candidate)
+            self._publish_projection(projection)
+            return projection
 
     def open_validation(self, *, actor: str, purpose: str, issued_at: str | None = None) -> dict[str, Any]:
         if not isinstance(purpose, str) or not purpose.strip():
@@ -241,6 +393,8 @@ class DurablePreregistrationStore:
                 raise FreezeError("ledger/projection divergence")
             refs = {
                 "preregistration_receipt_sha256": expected["preregistration_receipt_sha256"],
+                "preregistration_receipt_physical_sha256": expected["preregistration_receipt_physical_sha256"],
+                "receipt_verification_report_sha256": expected["receipt_verification_report_sha256"],
                 "split_manifest_sha256": expected["split_manifest_sha256"],
                 "authority_profile_sha256": expected["authority_profile_sha256"],
             }

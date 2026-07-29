@@ -29,7 +29,7 @@ AUTHORITY_ARGUMENTS = {
 
 
 def _path(value: str) -> Path:
-    return Path(value).expanduser().resolve()
+    return Path(value).expanduser()
 
 
 def _artifact_hashes(values: list[str]) -> dict[str, str]:
@@ -78,6 +78,7 @@ def build_parser() -> argparse.ArgumentParser:
     receipt.add_argument("--base-commit", required=True)
     receipt.add_argument("--repo-root", type=_path, required=True)
     receipt.add_argument("--registry-root", type=_path, default=registry_root())
+    receipt.add_argument("--authority-root", type=_path)
     receipt.add_argument("--artifact-hash", action="append", default=[])
     receipt.add_argument("--synthetic-reason")
     receipt.add_argument("--created-at")
@@ -86,6 +87,7 @@ def build_parser() -> argparse.ArgumentParser:
     verify.add_argument("receipt", type=_path)
     verify.add_argument("--repo-root", type=_path)
     verify.add_argument("--registry-root", type=_path, default=registry_root())
+    verify.add_argument("--authority-root", type=_path)
     _add_authority_arguments(verify)
     legacy = sub.add_parser("verify-legacy-receipt")
     legacy.add_argument("receipt", type=_path)
@@ -119,6 +121,7 @@ def main(argv: list[str] | None = None) -> int:
                 registry_root_path=args.registry_root,
                 artifact_hashes=_artifact_hashes(args.artifact_hash),
                 authority_artifact_paths=_authority_paths(args),
+                authority_root_path=args.authority_root,
                 created_at=args.created_at,
                 synthetic_reason=args.synthetic_reason,
             )
@@ -130,6 +133,7 @@ def main(argv: list[str] | None = None) -> int:
                 registry_root_path=args.registry_root,
                 repo_root_path=args.repo_root,
                 authority_artifact_paths=_authority_paths(args),
+                authority_root_path=args.authority_root,
             )
             result = {"status": "PASS", "self_sha256": receipt["integrity"]["self_sha256"]}
         elif args.command == "verify-legacy-receipt":

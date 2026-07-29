@@ -1,9 +1,15 @@
 import os
+import subprocess
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from evaluation.v1.artifacts.authority import AuthorityError, canonical_manifest_path, verify_manifest
+from evaluation.v1.artifacts.authority import (
+    AuthorityError,
+    canonical_manifest_path,
+    secure_existing_file,
+    verify_manifest,
+)
 from evaluation.v1.jsonio import sha256_file, write_json
 
 
@@ -59,3 +65,20 @@ class PathContainmentTests(unittest.TestCase):
             write_json(manifest, {"files": [{"path": "linked/value.json", "sha256": sha256_file(target)}]})
             with self.assertRaises(AuthorityError):
                 verify_manifest(root, manifest)
+            with self.assertRaises(AuthorityError):
+                secure_existing_file(link / "value.json", trusted_root=root, field="linked authority")
+
+            if os.name == "nt":
+                junction = root / "junction"
+                created = subprocess.run(
+                    ["cmd", "/c", "mklink", "/J", str(junction), str(outside)],
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
+                if created.returncode == 0:
+                    try:
+                        with self.assertRaises(AuthorityError):
+                            secure_existing_file(junction / "value.json", trusted_root=root, field="junction authority")
+                    finally:
+                        os.rmdir(junction)

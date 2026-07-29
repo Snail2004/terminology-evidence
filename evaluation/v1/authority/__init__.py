@@ -7,11 +7,14 @@ from .verifier import (
     verify_authority_evidence_object,
     verify_external_authorities,
 )
+from ..artifacts.authority import secure_existing_directory, secure_existing_file
 
 __all__ = [
     "AuthorityProfileError",
     "load_allowed_authority_profile",
     "profile_path",
+    "secure_existing_directory",
+    "secure_existing_file",
     "verify_authority_evidence_object",
     "verify_external_authorities",
 ]

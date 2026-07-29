@@ -24,15 +24,19 @@ production. Khong co provider/network call.
 3. **Authority va receipt**: ba mode tach biet `REAL_AUTHORITY`,
    `SYNTHETIC_LOCAL_CONFORMANCE`, `LEGACY_READ_ONLY`; real mode bind exact
    Contract R2, detached AR-1 approval, Global action policy, Dataset manifest,
-   split assignments va Evaluation registries.
+   split assignments va Evaluation registries. State freeze chi nhan
+   `VerifiedRealReceipt` tao tu receipt vat ly va current authority bytes.
 4. **Durable preregistration state**: append-only hash-chain ledger, single
    exclusive writer, atomic state projection, one-time validation/test access,
-   amendment policy va explicit self-hashed projection recovery.
+   amendment/refreeze policy va projection recovery gom immutable plan,
+   `RECOVERY_RECORDED`, final publish, completion receipt.
 5. **Exact test authority**: committed manifest bind exact JUnit testcase set;
    release chi pass khi tests > 0 va failures/errors/skipped deu bang 0.
 6. **Git-object release**: source lay tu exact Git commit/tree, normal mode yeu
    cau clean exact HEAD, artifact duoc verify ngay trong external staging va chi
-   publish mot lan bang atomic rename.
+   publish mot lan bang atomic rename. Verifier bind manifest voi Git source
+   receipt, source ZIP, expected-test authority, parsed JUnit, registry/source
+   scan, commands/environment va `RELEASE_CHECKSUMS.sha256`.
 
 ## Authority dang pin
 
@@ -51,10 +55,13 @@ production. Khong co provider/network call.
 
 - Path phai la POSIX relative, NFC canonical, khong backslash, drive/UNC,
   traversal, symlink, junction/reparse point hay case-confusable duplicate.
-- Receipt, ledger event, projection, recovery receipt, manifest va registry bi
+- Receipt, verified capability, ledger event, projection, recovery plan/
+  completion, manifest va registry bi
   thay doi mot byte se bi reject.
 - Dirty/untracked worktree, sai HEAD, sai Git object, JUnit rong/do/skip, testcase
-  thua/thieu, release co file thua hoac CHECKSUMS drift deu dung truoc PASS.
+  thua/thieu, release co file thua hoac RELEASE_CHECKSUMS drift deu dung truoc
+  PASS.
+- Tat ca receipt/event timestamp phai la RFC3339 co timezone va khong duoc lui.
 - Synthetic receipt khong the freeze; legacy receipt khong the build moi.
 - Sau hidden-test access, primary analysis khong the sua. Exploratory work phai
   o namespace rieng va khong duoc refreeze primary claims.

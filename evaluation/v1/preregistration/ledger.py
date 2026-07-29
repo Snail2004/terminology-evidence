@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any, Iterator, Mapping
 
 from ..jsonio import StrictJSONError, canonical_bytes, read_jsonl, sha256_value
+from ..time_policy import TimestampError, parse_rfc3339
 
 
 EVENT_SCHEMA_ID = "EvaluationPreregistrationEventV1"
@@ -157,6 +158,7 @@ class EventLedger:
         except (OSError, StrictJSONError) as exc:
             raise LedgerError("ledger bytes are invalid") from exc
         previous = GENESIS_SHA256
+        previous_time = None
         verified: list[dict[str, Any]] = []
         expected_keys = {
             "schema_id",
@@ -177,6 +179,12 @@ class EventLedger:
                 raise LedgerError("ledger sequence/hash predecessor mismatch")
             if not isinstance(row.get("event_type"), str) or not row["event_type"] or not isinstance(row.get("issued_at"), str) or not row["issued_at"] or not isinstance(row.get("actor"), str) or not row["actor"]:
                 raise LedgerError("ledger event identity is invalid")
+            try:
+                event_time = parse_rfc3339(row["issued_at"], "ledger.issued_at")
+            except TimestampError as exc:
+                raise LedgerError(str(exc)) from exc
+            if previous_time is not None and event_time < previous_time:
+                raise LedgerError("ledger event time moved backwards")
             _validate_hash_mapping(row.get("authority_refs"), "authority_refs")
             if not isinstance(row.get("payload"), Mapping):
                 raise LedgerError("ledger payload must be an object")
@@ -185,6 +193,7 @@ class EventLedger:
                 raise LedgerError("ledger event self hash mismatch")
             verified.append(dict(row))
             previous = actual
+            previous_time = event_time
         return verified, previous
 
     def append_locked(
@@ -217,6 +226,12 @@ class EventLedger:
     ) -> dict[str, Any]:
         """Build the next event without mutating the ledger."""
         rows, previous = self.verify()
+        try:
+            event_time = parse_rfc3339(issued_at, "ledger.issued_at")
+            if rows and event_time < parse_rfc3339(rows[-1]["issued_at"], "ledger.previous_issued_at"):
+                raise LedgerError("ledger event time moved backwards")
+        except TimestampError as exc:
+            raise LedgerError(str(exc)) from exc
         event: dict[str, Any] = {
             "schema_id": EVENT_SCHEMA_ID,
             "schema_version": EVENT_SCHEMA_VERSION,

@@ -14,10 +14,12 @@
 1. Xac minh worktree clean va exact full Git commit.
 2. Validate tat ca registry.
 3. Build `REAL_AUTHORITY` receipt voi du bay authority path va artifact hash.
-4. Verify lai receipt cung current registry, Git repo va external authority.
+4. Goi `verify_real_receipt()` tren receipt vat ly cung current registry, Git
+   repo va external authority de nhan `VerifiedRealReceipt` capability.
 5. Tao `DurablePreregistrationStore` tren mot state root moi.
-6. Goi `freeze()` mot lan. Ledger event `PREREGISTRATION_FROZEN` la authority;
-   `state.json` chi la projection.
+6. Goi `freeze(capability)` mot lan. Raw mapping, ke ca mapping tu reseal hop le,
+   khong co quyen freeze. Ledger event `PREREGISTRATION_FROZEN` luu receipt self
+   SHA, physical SHA va verification-report SHA; `state.json` chi la projection.
 
 Khong mo validation neu receipt khong phai `REAL_AUTHORITY` hoac projection khong
 khop replay ledger.
@@ -49,6 +51,11 @@ fail closed.
 Mau pre-validation nam tai
 `docs/evaluation/examples/amendment_prevalidation_v1.json`.
 
+Refreeze phai dung replacement `VerifiedRealReceipt` va append
+`PREREGISTRATION_REFROZEN`. Pre-validation quay ve
+`FROZEN_BEFORE_VALIDATION`; post-validation quay ve `VALIDATION_ACCESSED`, giu
+nguyen validation access history va xoa calibration artifact da bi supersede.
+
 ## 5. Projection recovery
 
 Chi recovery khi ledger hash-chain con hop le nhung `state.json` bi mat/hong/lech.
@@ -56,10 +63,11 @@ Recovery phai:
 
 1. lock exclusive writer;
 2. replay toan bo ledger;
-3. tao receipt moi bang immutable create;
-4. bind old/new projection hash va ledger head;
-5. append `RECOVERY_RECORDED`;
-6. atomic publish projection moi.
+3. immutable-create recovery plan bind pre-event state;
+4. append `RECOVERY_RECORDED` bind exact plan;
+5. atomic publish final projection;
+6. immutable-create completion receipt bind event, final ledger head va final
+   projection physical/self SHA.
 
 Khong recovery neu ledger bi tamper; phai dung va dieu tra authority.
 
@@ -76,4 +84,7 @@ python -B -m evaluation.v1.cli verify-release `
 ```
 
 Output phai la mot path moi nam ngoai repository. Release builder khong overwrite
-artifact cu va khong co dirty-worktree exception.
+artifact cu va khong co dirty-worktree exception. Evidence bat buoc gom
+`expected_test_manifest_v1.json`, `git_source_receipt.json`, `junit.xml`,
+`RELEASE_CHECKSUMS.sha256`, `release_manifest.json`, source ZIP,
+`commands.json` va `environment.json`.

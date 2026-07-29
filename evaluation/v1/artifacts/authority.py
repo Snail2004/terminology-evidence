@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import re
 import unicodedata
 from pathlib import Path, PurePosixPath
@@ -25,6 +26,63 @@ def _is_link_or_reparse(path: Path) -> bool:
         return bool(getattr(path.stat(follow_symlinks=False), "st_file_attributes", 0) & _REPARSE_POINT)
     except OSError:
         return False
+
+
+def _lexical_absolute(path: Path, field: str) -> Path:
+    raw = os.fspath(path)
+    if not isinstance(raw, str) or not raw or "\x00" in raw:
+        raise AuthorityError(f"{field} is empty or invalid")
+    normalized = raw.replace("\\", "/")
+    if normalized.startswith("//"):
+        raise AuthorityError(f"{field} cannot use a UNC/network path")
+    if any(part in {".", ".."} for part in normalized.split("/")):
+        raise AuthorityError(f"{field} contains a dot/traversal segment")
+    candidate = Path(raw).expanduser()
+    if not candidate.is_absolute():
+        candidate = Path.cwd() / candidate
+    return candidate
+
+
+def _require_unlinked_existing(path: Path, *, directory: bool, field: str) -> Path:
+    current = Path(path.anchor)
+    for part in path.parts[1:]:
+        current = current / part
+        if not current.exists() or _is_link_or_reparse(current):
+            raise AuthorityError(f"{field} is missing or traverses a link/reparse point")
+    if directory and not current.is_dir():
+        raise AuthorityError(f"{field} is not a directory")
+    if not directory and not current.is_file():
+        raise AuthorityError(f"{field} is not a regular file")
+    return current
+
+
+def secure_existing_directory(path: Path, *, trusted_root: Path | None = None, field: str = "directory") -> Path:
+    """Resolve an existing directory only after lexical and component checks."""
+    lexical = _lexical_absolute(path, field)
+    checked = _require_unlinked_existing(lexical, directory=True, field=field)
+    resolved = checked.resolve(strict=True)
+    if trusted_root is not None:
+        trusted_lexical = _lexical_absolute(trusted_root, f"{field}.trusted_root")
+        trusted = _require_unlinked_existing(trusted_lexical, directory=True, field=f"{field}.trusted_root").resolve(strict=True)
+        try:
+            resolved.relative_to(trusted)
+        except ValueError as exc:
+            raise AuthorityError(f"{field} escapes its trusted root") from exc
+    return resolved
+
+
+def secure_existing_file(path: Path, *, trusted_root: Path | None = None, field: str = "file") -> Path:
+    """Resolve an existing file only after lexical, containment and link checks."""
+    lexical = _lexical_absolute(path, field)
+    checked = _require_unlinked_existing(lexical, directory=False, field=field)
+    resolved = checked.resolve(strict=True)
+    if trusted_root is not None:
+        trusted = secure_existing_directory(trusted_root, field=f"{field}.trusted_root")
+        try:
+            resolved.relative_to(trusted)
+        except ValueError as exc:
+            raise AuthorityError(f"{field} escapes its trusted root") from exc
+    return resolved
 
 
 def canonical_manifest_path(value: str) -> str:

@@ -103,6 +103,34 @@ def write_source_zip(entries: Iterable[tuple[str, bytes]], output: Path) -> None
             archive.writestr(info, data)
 
 
+def read_source_zip(path: Path, roots: Iterable[str] = SOURCE_ROOTS) -> list[tuple[str, bytes]]:
+    """Read a released source ZIP while enforcing exact Evaluation ownership."""
+    roots = tuple(roots)
+    entries: list[tuple[str, bytes]] = []
+    folded: set[str] = set()
+    try:
+        with zipfile.ZipFile(path, "r") as archive:
+            for info in archive.infolist():
+                if info.is_dir() or info.flag_bits & 0x1:
+                    raise GitSourceError("source ZIP contains a directory/encrypted member")
+                relative = canonical_manifest_path(info.filename)
+                mode = (info.external_attr >> 16) & 0o170000
+                if mode not in {0, 0o100000}:
+                    raise GitSourceError(f"source ZIP contains a nonregular member: {relative}")
+                if not any(relative == root or relative.startswith(root + "/") for root in roots):
+                    raise GitSourceError(f"source ZIP escapes Evaluation ownership: {relative}")
+                key = relative.casefold()
+                if key in folded:
+                    raise GitSourceError(f"source ZIP contains a duplicate/case-confusable member: {relative}")
+                folded.add(key)
+                entries.append((relative, archive.read(info)))
+    except (OSError, zipfile.BadZipFile, ValueError) as exc:
+        raise GitSourceError("source ZIP is malformed or unsafe") from exc
+    if not entries:
+        raise GitSourceError("source ZIP is empty")
+    return sorted(entries)
+
+
 def materialize_commit(repo: Path, commit: str, destination: Path) -> None:
     """Materialize the full Git object without trusting live checkout bytes."""
     resolve_commit(repo, commit)

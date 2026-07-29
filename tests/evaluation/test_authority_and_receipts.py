@@ -1,3 +1,4 @@
+import shutil
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -6,7 +7,15 @@ from evaluation.v1.authority import AuthorityProfileError, load_allowed_authorit
 from evaluation.v1.constants import MODE_LEGACY_READ_ONLY, MODE_REAL_AUTHORITY, MODE_SYNTHETIC
 from evaluation.v1.jsonio import sha256_file, sha256_value, write_json
 from evaluation.v1.preregistration.legacy import verify_legacy_receipt
-from evaluation.v1.preregistration.receipt import ReceiptError, build_receipt, verify_receipt, verify_receipt_object, write_receipt
+from evaluation.v1.preregistration.receipt import (
+    ReceiptError,
+    build_receipt,
+    verify_real_receipt,
+    verify_real_receipt_capability,
+    verify_receipt,
+    verify_receipt_object,
+    write_receipt,
+)
 from tests.evaluation.git_context import resolve_test_git_context
 
 
@@ -29,7 +38,11 @@ class AuthorityAndReceiptTests(unittest.TestCase):
     def test_profile_and_external_authorities_are_exact(self):
         profile = load_allowed_authority_profile()
         self.assertEqual(profile["integrity"]["self_sha256"], "415d0a32291221f8bbd2c36c8b4a44301f471781d4598d8db647eeb3e74fb33f")
-        evidence = verify_external_authorities(self.artifacts, registry_root=self.registries)
+        evidence = verify_external_authorities(
+            self.artifacts,
+            registry_root=self.registries,
+            trusted_root=self.repo,
+        )
         self.assertEqual(evidence["status"], "PASS")
         self.assertEqual(evidence["contracts"]["receipt_revision"], 2)
 
@@ -40,6 +53,7 @@ class AuthorityAndReceiptTests(unittest.TestCase):
             repo_root_path=self.git_repo,
             registry_root_path=self.registries,
             authority_artifact_paths=self.artifacts,
+            authority_root_path=self.repo,
             artifact_hashes={"evaluation_plan": "a" * 64},
             created_at="2026-07-29T15:00:00+07:00",
         )
@@ -53,8 +67,26 @@ class AuthorityAndReceiptTests(unittest.TestCase):
                 registry_root_path=self.registries,
                 repo_root_path=self.git_repo,
                 authority_artifact_paths=self.artifacts,
+                authority_root_path=self.repo,
             )
             self.assertEqual(verified, receipt)
+            capability = verify_real_receipt(
+                path,
+                receipt_root_path=Path(temp),
+                repo_root_path=self.git_repo,
+                registry_root_path=self.registries,
+                authority_artifact_paths=self.artifacts,
+                authority_root_path=self.repo,
+            )
+            self.assertEqual(verify_real_receipt_capability(capability), capability.verification_report["integrity"]["self_sha256"])
+            path.write_bytes(path.read_bytes() + b"\n")
+            with self.assertRaises(ReceiptError):
+                verify_real_receipt_capability(capability)
+        with TemporaryDirectory() as temp:
+            path = Path(temp) / "receipt.json"
+            write_receipt(path, receipt)
+            with self.assertRaises(ReceiptError):
+                verify_receipt(path, registry_root_path=self.registries)
 
     def test_synthetic_mode_is_conformance_only_and_legacy_cannot_build(self):
         synthetic = build_receipt(
@@ -92,20 +124,45 @@ class AuthorityAndReceiptTests(unittest.TestCase):
         receipt["status"] = "FROZEN_BEFORE_VALIDATION"
         with self.assertRaises(ReceiptError):
             verify_receipt_object(receipt)
+        with self.assertRaises(ReceiptError):
+            build_receipt(
+                mode=MODE_SYNTHETIC,
+                base_commit="f" * 40,
+                repo_root_path=self.git_repo,
+                registry_root_path=self.registries,
+                synthetic_reason="nonexistent commit",
+            )
+        with self.assertRaises(ReceiptError):
+            build_receipt(
+                mode=MODE_SYNTHETIC,
+                base_commit=self.commit,
+                repo_root_path=self.git_repo,
+                registry_root_path=self.registries,
+                synthetic_reason="timezone required",
+                created_at="2026-07-29T15:00:00",
+            )
 
     def test_authority_tamper_fails_before_receipt(self):
         with TemporaryDirectory() as temp:
-            copied = dict(self.artifacts)
-            tampered = Path(temp) / "binding.json"
-            tampered.write_bytes(self.artifacts["contracts_approval_binding"].read_bytes() + b"\n")
-            copied["contracts_approval_binding"] = tampered
+            authority_root = Path(temp)
+            registry_root = authority_root / "registries"
+            shutil.copytree(self.registries, registry_root)
+            copied = {}
+            for name, source in self.artifacts.items():
+                destination = authority_root / f"{name}{source.suffix}"
+                shutil.copyfile(source, destination)
+                copied[name] = destination
+            copied["contracts_approval_binding"].write_bytes(
+                copied["contracts_approval_binding"].read_bytes() + b"\n"
+            )
             with self.assertRaises(AuthorityProfileError):
                 build_receipt(
                     mode=MODE_REAL_AUTHORITY,
                     base_commit=self.commit,
                     repo_root_path=self.git_repo,
-                    registry_root_path=self.registries,
+                    registry_root_path=registry_root,
                     authority_artifact_paths=copied,
+                    authority_root_path=authority_root,
                     artifact_hashes={"plan": "c" * 64},
                 )
 
