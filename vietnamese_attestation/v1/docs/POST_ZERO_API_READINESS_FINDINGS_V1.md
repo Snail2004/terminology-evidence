@@ -61,6 +61,17 @@ counterpart `readiness_findings_report.json`.
 - Resolution: release files are sorted by canonical POSIX relative path before
   manifest, checksum and ZIP generation.
 
+## E-RDY-007 - external Contracts mapping fixtures unavailable
+
+- Severity: INFO
+- Status: OPEN_NON_BLOCKING
+- Evidence: Contracts suite reports 113 passed and 2 skipped because
+  `TERMINOLOGY_DATASET_ROOT` is not supplied.
+- Impact: no authority or zero-API verification failure; the two mapping tests
+  remain tied to the same official Dataset handoff blocked by E-RDY-002.
+- Close condition: rerun the mapping fixtures against the official immutable
+  Dataset root when it is supplied.
+
 ## Semantic boundary clarification
 
 Offline fixture runs may produce schema-valid shared packages only for
