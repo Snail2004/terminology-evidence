@@ -1,0 +1,203 @@
+{
+  "candidate_replicate_cap": 1,
+  "final_decision_owner": "GLOBAL_TERMINOLOGY_VALIDATOR",
+  "integrity": {
+    "self_sha256": "cff7bbfb59eb05a53b6db2b1548d1cf13d8eb573a95c65ca13e295cd2d3085d9"
+  },
+  "plan_id": "cst_live_role_routing_v1",
+  "provider_catalog_physical_sha256": "424e613c65402c3da6a97cf8af2e385a64f922acd2cc4098951717bc42f6b7d8",
+  "profile_order": [
+    "ckey_gemini_3_5_flash_low",
+    "shopapi_gemini_3_5_flash_low",
+    "gateway_gpt_5_6_luna_none",
+    "gateway_gpt_5_6_terra_low",
+    "gateway_gpt_5_6_terra_medium"
+  ],
+  "provider_request_cap_per_run": 5000,
+  "role_order": [
+    "context_selector",
+    "trial_translator",
+    "trial_translation_quality_gate",
+    "context_judge",
+    "contrastive_sense_judge",
+    "secondary_context_judge",
+    "pairwise_tiebreaker"
+  ],
+  "roles": {
+    "context_judge": {
+      "escalation_kind": null,
+      "max_output_tokens": 1536,
+      "prompt_version": "d2l_context_judge_v2_1",
+      "provider_request_cap_per_semantic_call": 4,
+      "response_contract_id": "ContextJudgeResponseV2",
+      "route_profile_order": [
+        "ckey_gemini_3_5_flash_low",
+        "shopapi_gemini_3_5_flash_low"
+      ],
+      "semantic_role_call_cap_per_run": 750
+    },
+    "context_selector": {
+      "escalation_kind": null,
+      "max_output_tokens": 2048,
+      "prompt_version": "d2l_context_selector_v2_1",
+      "provider_request_cap_per_semantic_call": 4,
+      "response_contract_id": "ContextSelectorResponseV2",
+      "route_profile_order": [
+        "ckey_gemini_3_5_flash_low",
+        "shopapi_gemini_3_5_flash_low"
+      ],
+      "semantic_role_call_cap_per_run": 150
+    },
+    "contrastive_sense_judge": {
+      "escalation_kind": null,
+      "max_output_tokens": 1024,
+      "prompt_version": "d2l_contrastive_sense_judge_v2",
+      "provider_request_cap_per_semantic_call": 4,
+      "response_contract_id": "ContrastiveSenseJudgeResponseV2",
+      "route_profile_order": [
+        "ckey_gemini_3_5_flash_low",
+        "shopapi_gemini_3_5_flash_low"
+      ],
+      "semantic_role_call_cap_per_run": 300
+    },
+    "pairwise_tiebreaker": {
+      "escalation_kind": "HARD_CASE_ESCALATION",
+      "max_output_tokens": 1024,
+      "prompt_version": "d2l_context_pairwise_tiebreaker_v2_1",
+      "provider_request_cap_per_semantic_call": 2,
+      "response_contract_id": "PairwiseTiebreakerResponseV2",
+      "route_profile_order": [
+        "gateway_gpt_5_6_terra_medium"
+      ],
+      "semantic_role_call_cap_per_run": 300
+    },
+    "secondary_context_judge": {
+      "escalation_kind": "SECONDARY_JUDGE_ESCALATION",
+      "max_output_tokens": 1536,
+      "prompt_version": "d2l_context_judge_v2_1",
+      "provider_request_cap_per_semantic_call": 2,
+      "response_contract_id": "ContextJudgeResponseV2",
+      "route_profile_order": [
+        "gateway_gpt_5_6_terra_low"
+      ],
+      "semantic_role_call_cap_per_run": 750
+    },
+    "trial_translation_quality_gate": {
+      "escalation_kind": null,
+      "max_output_tokens": 1024,
+      "prompt_version": "d2l_trial_translation_quality_gate_v2_1",
+      "provider_request_cap_per_semantic_call": 4,
+      "response_contract_id": "TrialTranslationQualityGateResponseV2",
+      "route_profile_order": [
+        "ckey_gemini_3_5_flash_low",
+        "shopapi_gemini_3_5_flash_low"
+      ],
+      "semantic_role_call_cap_per_run": 1500
+    },
+    "trial_translator": {
+      "escalation_kind": null,
+      "max_output_tokens": 2048,
+      "prompt_version": "d2l_context_trial_translator_v2_1",
+      "provider_request_cap_per_semantic_call": 2,
+      "response_contract_id": "TrialTranslationResponseV2",
+      "route_profile_order": [
+        "gateway_gpt_5_6_luna_none"
+      ],
+      "semantic_role_call_cap_per_run": 1500
+    }
+  },
+  "route_profiles": {
+    "ckey_gemini_3_5_flash_low": {
+      "adapter": "openai_compatible",
+      "independence_group": "gemini-3.5-flash",
+      "model_family": "gemini-3.5-flash",
+      "model_id": "vuduythanh2023/gemini-3.5-flash",
+      "model_profile": "GEMINI_FLASH_LOW",
+      "provider_id": "ckey",
+      "reasoning_effort": null,
+      "retry_backoff_seconds": [
+        1.0
+      ],
+      "role_equivalence_group": "gemini-3.5-flash-low-v1",
+      "route_id": "ckey_gemini",
+      "temperature": 0.0,
+      "thinking_level": "LOW",
+      "timeout_seconds": 180,
+      "transport_retry_cap": 1
+    },
+    "gateway_gpt_5_6_luna_none": {
+      "adapter": "openai_compatible",
+      "independence_group": "gpt-5.6-luna",
+      "model_family": "gpt-5.6",
+      "model_id": "gpt-5.6-luna",
+      "model_profile": "LUNA",
+      "provider_id": "gateway",
+      "reasoning_effort": "none",
+      "retry_backoff_seconds": [
+        0.5
+      ],
+      "role_equivalence_group": "gpt-5.6-luna-none-v1",
+      "route_id": "local_gpt_gateway",
+      "temperature": 0.0,
+      "thinking_level": null,
+      "timeout_seconds": 300,
+      "transport_retry_cap": 1
+    },
+    "gateway_gpt_5_6_terra_low": {
+      "adapter": "openai_compatible",
+      "independence_group": "gpt-5.6-terra",
+      "model_family": "gpt-5.6",
+      "model_id": "gpt-5.6-terra",
+      "model_profile": "TERRA",
+      "provider_id": "gateway",
+      "reasoning_effort": "low",
+      "retry_backoff_seconds": [
+        0.5
+      ],
+      "role_equivalence_group": "gpt-5.6-terra-low-v1",
+      "route_id": "local_gpt_gateway",
+      "temperature": 0.0,
+      "thinking_level": null,
+      "timeout_seconds": 300,
+      "transport_retry_cap": 1
+    },
+    "gateway_gpt_5_6_terra_medium": {
+      "adapter": "openai_compatible",
+      "independence_group": "gpt-5.6-terra",
+      "model_family": "gpt-5.6",
+      "model_id": "gpt-5.6-terra",
+      "model_profile": "TERRA",
+      "provider_id": "gateway",
+      "reasoning_effort": "medium",
+      "retry_backoff_seconds": [
+        0.5
+      ],
+      "role_equivalence_group": "gpt-5.6-terra-medium-v1",
+      "route_id": "local_gpt_gateway",
+      "temperature": 0.0,
+      "thinking_level": null,
+      "timeout_seconds": 300,
+      "transport_retry_cap": 1
+    },
+    "shopapi_gemini_3_5_flash_low": {
+      "adapter": "openai_compatible",
+      "independence_group": "gemini-3.5-flash",
+      "model_family": "gemini-3.5-flash",
+      "model_id": "gemini-3.5-flash",
+      "model_profile": "GEMINI_FLASH_LOW",
+      "provider_id": "shopapi",
+      "reasoning_effort": null,
+      "retry_backoff_seconds": [
+        1.0
+      ],
+      "role_equivalence_group": "gemini-3.5-flash-low-v1",
+      "route_id": "shopaikey_gemini",
+      "temperature": 0.0,
+      "thinking_level": "LOW",
+      "timeout_seconds": 480,
+      "transport_retry_cap": 1
+    }
+  },
+  "schema_id": "ContextSubstitutionProviderRolePlanV1",
+  "schema_version": "1.0.0"
+}

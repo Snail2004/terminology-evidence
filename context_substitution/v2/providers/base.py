@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import math
 import time
 from contextlib import contextmanager
 from contextvars import ContextVar
@@ -58,7 +59,16 @@ class ContextProviderRoute:
     model_id: str
     sender: ContextProviderSender
     model_family: str | None = None
+    model_profile: str | None = None
     independence_group: str | None = None
+    role_equivalence_group: str | None = None
+    thinking_level: str | None = None
+    reasoning_effort: str | None = None
+    temperature: float = 0.0
+    max_output_tokens: int | None = None
+    timeout_seconds: int | None = None
+    role_plan_sha256: str | None = None
+    escalation_kind: str | None = None
     max_attempts: int = 1
     retry_backoff_seconds: tuple[float, ...] = ()
 
@@ -72,8 +82,34 @@ class ContextProviderRoute:
             or self.model_id.rsplit("/", 1)[-1]
         ).strip().casefold()
         group = (self.independence_group or family).strip().casefold()
-        if not family or not group:
+        profile = (self.model_profile or self.model_id).strip()
+        equivalence = (self.role_equivalence_group or group).strip().casefold()
+        if not family or not group or not profile or not equivalence:
             raise ValueError("model family and independence group must not be empty")
+        if (
+            isinstance(self.temperature, bool)
+            or not isinstance(self.temperature, (int, float))
+            or not math.isfinite(float(self.temperature))
+            or not 0 <= float(self.temperature) <= 2
+        ):
+            raise ValueError("temperature must be a finite number between 0 and 2")
+        if self.max_output_tokens is not None and (
+            isinstance(self.max_output_tokens, bool)
+            or not isinstance(self.max_output_tokens, int)
+            or not 1 <= self.max_output_tokens <= 65_536
+        ):
+            raise ValueError("max_output_tokens must be an integer between 1 and 65536")
+        if self.timeout_seconds is not None and (
+            isinstance(self.timeout_seconds, bool)
+            or not isinstance(self.timeout_seconds, int)
+            or not 1 <= self.timeout_seconds <= 3_600
+        ):
+            raise ValueError("timeout_seconds must be an integer between 1 and 3600")
+        if self.role_plan_sha256 is not None and (
+            len(self.role_plan_sha256) != 64
+            or any(character not in "0123456789abcdef" for character in self.role_plan_sha256)
+        ):
+            raise ValueError("role_plan_sha256 must be a lowercase SHA-256")
         if (
             isinstance(self.max_attempts, bool)
             or not isinstance(self.max_attempts, int)
@@ -88,8 +124,21 @@ class ContextProviderRoute:
         if any(value < 0 or value > 60 for value in backoff):
             raise ValueError("retry backoff must be between 0 and 60 seconds")
         object.__setattr__(self, "model_family", family)
+        object.__setattr__(self, "model_profile", profile)
         object.__setattr__(self, "independence_group", group)
+        object.__setattr__(self, "role_equivalence_group", equivalence)
+        object.__setattr__(self, "temperature", float(self.temperature))
         object.__setattr__(self, "retry_backoff_seconds", backoff)
+
+    @property
+    def effective_generation_config(self) -> dict[str, Any]:
+        return {
+            "thinking_level": self.thinking_level,
+            "reasoning_effort": self.reasoning_effort,
+            "temperature": self.temperature,
+            "max_output_tokens": self.max_output_tokens,
+            "timeout_seconds": self.timeout_seconds,
+        }
 
 
 @dataclass
@@ -395,6 +444,18 @@ class FailoverStructuredModel:
 
 def provider_failure_is_retryable(exc: Exception) -> bool:
     return provider_failure_disposition(exc) != "RAISE"
+
+
+def role_output_token_budget(
+    model: Any,
+    *,
+    role: str,
+    legacy_default: int,
+) -> int:
+    plan = getattr(model, "plan", None)
+    if plan is None:
+        return legacy_default
+    return int(plan.role(role).max_output_tokens)
 
 
 def provider_failure_disposition(exc: Exception) -> str:

@@ -2,18 +2,18 @@
   "schema_id": "ContextSubstitutionProviderCatalogV1",
   "schema_version": "1.0.0",
   "default_route_order": [
-    "shopapi",
     "ckey",
+    "shopapi",
     "gateway"
   ],
   "profiles": [
     {
       "provider_id": "shopapi",
       "route_id": "shopaikey_gemini",
-      "adapter": "google_genai",
+      "adapter": "openai_compatible",
       "model_id": "gemini-3.5-flash",
       "model_env": "CST_PROVIDER_SHOPAPI_MODEL",
-      "base_url": "https://api.shopaikey.com",
+      "base_url": "https://api.shopaikey.com/v1",
       "base_url_env": "CST_PROVIDER_SHOPAPI_BASE_URL",
       "credential_file": "GEMINI-KEY.txt",
       "timeout_seconds": 480,
@@ -26,16 +26,16 @@
       "model_family_env": "CST_PROVIDER_SHOPAPI_MODEL_FAMILY",
       "independence_group": "shopapi-gemini",
       "independence_group_env": "CST_PROVIDER_SHOPAPI_INDEPENDENCE_GROUP",
-      "response_format_mode": null,
-      "max_output_parameter": null
+      "response_format_mode": "prompt_only",
+      "max_output_parameter": "max_completion_tokens"
     },
     {
       "provider_id": "ckey",
       "route_id": "ckey_gemini",
-      "adapter": "google_genai",
-      "model_id": "gemini-3.5-flash",
+      "adapter": "openai_compatible",
+      "model_id": "vuduythanh2023/gemini-3.5-flash",
       "model_env": "CST_PROVIDER_CKEY_MODEL",
-      "base_url": "https://api.xah.io",
+      "base_url": "https://api.xah.io/v1",
       "base_url_env": "CST_PROVIDER_CKEY_BASE_URL",
       "credential_file": "CKEY.txt",
       "timeout_seconds": 120,
@@ -48,14 +48,14 @@
       "model_family_env": "CST_PROVIDER_CKEY_MODEL_FAMILY",
       "independence_group": "ckey-gemini",
       "independence_group_env": "CST_PROVIDER_CKEY_INDEPENDENCE_GROUP",
-      "response_format_mode": null,
-      "max_output_parameter": null
+      "response_format_mode": "prompt_only",
+      "max_output_parameter": "max_completion_tokens"
     },
     {
       "provider_id": "gateway",
       "route_id": "local_gpt_gateway",
       "adapter": "openai_compatible",
-      "model_id": "gpt-5.5",
+      "model_id": "gpt-5.6-luna",
       "model_env": "CST_PROVIDER_GATEWAY_MODEL",
       "base_url": "http://localhost:8317/v1",
       "base_url_env": "CST_PROVIDER_GATEWAY_BASE_URL",
@@ -66,7 +66,7 @@
       "retry_backoff_seconds": [
         0.5
       ],
-      "model_family": "gpt-5.5",
+      "model_family": "gpt-5.6",
       "model_family_env": "CST_PROVIDER_GATEWAY_MODEL_FAMILY",
       "independence_group": "local-gpt-gateway",
       "independence_group_env": "CST_PROVIDER_GATEWAY_INDEPENDENCE_GROUP",

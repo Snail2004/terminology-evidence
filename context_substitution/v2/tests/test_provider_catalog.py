@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 from pathlib import Path
 from typing import Any, Callable
 
@@ -22,6 +23,9 @@ from context_substitution.v2.providers.openai_compatible import (
     OpenAICompatibleRouteSettings,
     OpenAICompatibleSender,
 )
+from context_substitution.v2.providers.role_plan import (
+    DEFAULT_PROVIDER_ROLE_PLAN_PATH,
+)
 
 
 SECRETS = {
@@ -38,13 +42,14 @@ def test_default_catalog_builds_three_routes_without_exposing_keys(
     catalog = load_provider_catalog(environment={})
     routes = catalog.build_routes(credentials_root=credentials)
     assert [route.route_id for route in routes] == [
-        "shopaikey_gemini",
         "ckey_gemini",
+        "shopaikey_gemini",
         "local_gpt_gateway",
     ]
-    assert isinstance(routes[0].sender, GoogleGenAISender)
-    assert isinstance(routes[1].sender, GoogleGenAISender)
+    assert isinstance(routes[0].sender, OpenAICompatibleSender)
+    assert isinstance(routes[1].sender, OpenAICompatibleSender)
     assert isinstance(routes[2].sender, OpenAICompatibleSender)
+    assert routes[0].model_id == "vuduythanh2023/gemini-3.5-flash"
     assert [route.max_attempts for route in routes] == [2, 2, 2]
 
     summary = catalog.preflight_summary(credentials_root=credentials)
@@ -87,16 +92,15 @@ def test_provider_preflight_cli_is_zero_api_and_secret_free(
             "provider-preflight",
             "--credentials-root",
             str(credentials),
-            "--provider",
-            "shopapi",
-            "--provider",
-            "gateway",
+            "--provider-role-plan-sha256",
+            hashlib.sha256(DEFAULT_PROVIDER_ROLE_PLAN_PATH.read_bytes()).hexdigest(),
         ]
     ) == 0
     output = capsys.readouterr().out
     assert '"provider_calls": 0' in output
     assert '"provider_id": "shopapi"' in output
     assert '"provider_id": "gateway"' in output
+    assert str(credentials) not in output
     assert all(secret not in output for secret in SECRETS.values())
 
 
@@ -235,6 +239,8 @@ def test_gateway_request_uses_configurable_structured_output_contract() -> None:
             api_key="hidden",
             response_format_mode="json_schema",
             max_output_parameter="max_completion_tokens",
+            reasoning_effort="low",
+            temperature=0.2,
         )
     )
     request = sender._request(
@@ -246,6 +252,36 @@ def test_gateway_request_uses_configurable_structured_output_contract() -> None:
     assert request["model"] == "gpt-5.5"
     assert request["max_completion_tokens"] == 1234
     assert request["response_format"]["type"] == "json_schema"
+    assert request["reasoning_effort"] == "low"
+    assert request["temperature"] == 0.2
+
+
+def test_shop_request_uses_prompt_json_with_gemini_generation_binding() -> None:
+    settings = OpenAICompatibleRouteSettings(
+        route_id="shopaikey_gemini",
+        model_id="gemini-3.5-flash",
+        api_key="hidden",
+        base_url="https://api.shopaikey.com/v1",
+        response_format_mode="prompt_only",
+        max_output_parameter="max_completion_tokens",
+        thinking_level="LOW",
+    )
+    route = settings.build()
+    request = route.sender._request(  # type: ignore[attr-defined]
+        system_prompt=(
+            "judge\n\nSealed generation configuration: "
+            "thinking_level=LOW; reasoning_effort=null; temperature=0."
+        ),
+        user_payload_json='{"candidate":"x"}',
+        response_schema={"type": "object", "additionalProperties": False},
+        max_output_tokens=1536,
+    )
+    assert route.thinking_level == "LOW"
+    assert route.reasoning_effort is None
+    assert request["model"] == "gemini-3.5-flash"
+    assert request["max_completion_tokens"] == 1536
+    assert "response_format" not in request
+    assert "Return exactly one JSON object" in request["messages"][0]["content"]
 
 
 class _HTTPFailure(RuntimeError):

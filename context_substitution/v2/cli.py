@@ -42,6 +42,14 @@ from context_substitution.v2.providers.catalog import (
 )
 from context_substitution.v2.providers.google import GoogleRouteSettings
 from context_substitution.v2.providers.ledger import ProviderResponseLedger
+from context_substitution.v2.providers.role_plan import (
+    DEFAULT_PROVIDER_ROLE_PLAN_PATH,
+    load_provider_role_plan,
+    reject_protected_provider_overrides,
+)
+from context_substitution.v2.providers.role_routing import (
+    RoleRoutedStructuredModel,
+)
 from context_substitution.v2.runtime.calibration import (
     DEVELOPMENT_HEURISTIC_POLICY,
     frozen_validation_policy,
@@ -51,7 +59,7 @@ from context_substitution.v2.runtime.engine import run_d2l_context_substitution
 
 def parser() -> argparse.ArgumentParser:
     root = argparse.ArgumentParser(
-        description="Context Substitution V2.2 standalone integration CLI"
+        description="Context Substitution V2.3 role-bound integration CLI"
     )
     commands = root.add_subparsers(dest="command", required=True)
 
@@ -69,9 +77,10 @@ def parser() -> argparse.ArgumentParser:
     run.add_argument(
         "--routes",
         type=Path,
-        help="legacy environment-backed Google route file",
+        help=argparse.SUPPRESS,
     )
     _add_provider_catalog_args(run)
+    _add_provider_role_plan_args(run)
     run.add_argument("--ledger-root", type=Path, required=True)
     run.add_argument("--output", type=Path, required=True)
     run.add_argument("--allow-api", action="store_true")
@@ -150,6 +159,7 @@ def parser() -> argparse.ArgumentParser:
 
     preflight = commands.add_parser("provider-preflight")
     _add_provider_catalog_args(preflight)
+    _add_provider_role_plan_args(preflight)
     return root
 
 
@@ -181,8 +191,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         if not args.allow_api:
             raise SystemExit("context-run requires explicit --allow-api")
         input_payload = load_json(args.input)
-        model = FailoverStructuredModel(
-            _provider_routes(args),
+        model = _provider_role_model(
+            args,
             response_ledger=ProviderResponseLedger(args.ledger_root),
             audit_run_id="api:" + input_payload["integrity"]["input_sha256"][:24],
         )
@@ -339,12 +349,25 @@ def main(argv: Sequence[str] | None = None) -> int:
         _print({"output": str(args.output.resolve())})
         return 0
     if args.command == "provider-preflight":
-        catalog = load_provider_catalog(args.provider_catalog)
+        role_plan, catalog = _load_live_provider_authority(args)
+        role_plan.build_role_routes(
+            catalog=catalog,
+            credentials_root=args.credentials_root,
+        )
+        summary = catalog.preflight_summary(
+            credentials_root=args.credentials_root,
+            provider_ids=["ckey", "shopapi", "gateway"],
+        )
         _print(
-            catalog.preflight_summary(
-                credentials_root=args.credentials_root,
-                provider_ids=args.provider,
-            )
+            {
+                "status": "PASS",
+                "read_only": True,
+                "provider_calls": 0,
+                "provider_role_plan": role_plan.public_summary(),
+                "transports": summary["providers"],
+                "credentials_root": "<redacted-credentials-root>",
+                "catalog": Path(args.provider_catalog).name,
+            }
         )
         return 0
     raise AssertionError("unreachable")
@@ -380,7 +403,50 @@ def _add_provider_catalog_args(value: argparse.ArgumentParser) -> None:
     value.add_argument(
         "--provider",
         action="append",
-        help="provider id in desired order; repeat to override catalog order",
+        help=argparse.SUPPRESS,
+    )
+
+
+def _add_provider_role_plan_args(value: argparse.ArgumentParser) -> None:
+    value.add_argument(
+        "--provider-role-plan",
+        type=Path,
+        default=DEFAULT_PROVIDER_ROLE_PLAN_PATH,
+    )
+    value.add_argument("--provider-role-plan-sha256", required=True)
+
+
+def _load_live_provider_authority(
+    args: argparse.Namespace,
+) -> tuple[Any, Any]:
+    if getattr(args, "routes", None) is not None:
+        raise ValueError("legacy --routes is not permitted for an authorized live run")
+    if args.provider:
+        raise ValueError("provider order is sealed by --provider-role-plan")
+    reject_protected_provider_overrides()
+    plan = load_provider_role_plan(
+        args.provider_role_plan,
+        expected_physical_sha256=args.provider_role_plan_sha256,
+    )
+    catalog = load_provider_catalog(args.provider_catalog, environment={})
+    return plan, catalog
+
+
+def _provider_role_model(
+    args: argparse.Namespace,
+    *,
+    response_ledger: ProviderResponseLedger,
+    audit_run_id: str,
+) -> RoleRoutedStructuredModel:
+    plan, catalog = _load_live_provider_authority(args)
+    return RoleRoutedStructuredModel(
+        plan=plan,
+        role_routes=plan.build_role_routes(
+            catalog=catalog,
+            credentials_root=args.credentials_root,
+        ),
+        response_ledger=response_ledger,
+        audit_run_id=audit_run_id,
     )
 
 

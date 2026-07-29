@@ -70,23 +70,56 @@ class ProviderProfile:
     response_format_mode: str | None
     max_output_parameter: str | None
 
-    def build_route(self, *, api_key: str) -> ContextProviderRoute:
+    def build_route(
+        self,
+        *,
+        api_key: str,
+        model_id: str | None = None,
+        model_family: str | None = None,
+        model_profile: str | None = None,
+        independence_group: str | None = None,
+        role_equivalence_group: str | None = None,
+        thinking_level: str | None = None,
+        reasoning_effort: str | None = None,
+        temperature: float = 0.0,
+        timeout_seconds: int | None = None,
+        max_attempts: int | None = None,
+        retry_backoff_seconds: tuple[float, ...] | None = None,
+        max_output_tokens: int | None = None,
+        role_plan_sha256: str | None = None,
+        escalation_kind: str | None = None,
+    ) -> ContextProviderRoute:
         common = {
             "route_id": self.route_id,
-            "model_id": self.model_id,
+            "model_id": model_id or self.model_id,
             "api_key": api_key,
             "base_url": self.base_url,
-            "timeout_seconds": self.timeout_seconds,
-            "model_family": self.model_family,
-            "independence_group": self.independence_group,
-            "max_attempts": self.max_attempts,
-            "retry_backoff_seconds": self.retry_backoff_seconds,
+            "timeout_seconds": timeout_seconds or self.timeout_seconds,
+            "model_family": model_family or self.model_family,
+            "model_profile": model_profile,
+            "independence_group": independence_group or self.independence_group,
+            "role_equivalence_group": role_equivalence_group,
+            "temperature": temperature,
+            "max_attempts": max_attempts or self.max_attempts,
+            "retry_backoff_seconds": (
+                self.retry_backoff_seconds
+                if retry_backoff_seconds is None
+                else retry_backoff_seconds
+            ),
+            "max_output_tokens": max_output_tokens,
+            "role_plan_sha256": role_plan_sha256,
+            "escalation_kind": escalation_kind,
         }
         if self.adapter == "google_genai":
-            return GoogleRouteSettings(**common).build()
+            return GoogleRouteSettings(
+                **common,
+                thinking_level=thinking_level,
+            ).build()
         if self.adapter == "openai_compatible":
             return OpenAICompatibleRouteSettings(
                 **common,
+                thinking_level=thinking_level,
+                reasoning_effort=reasoning_effort,
                 response_format_mode=str(self.response_format_mode),
                 max_output_parameter=str(self.max_output_parameter),
             ).build()
@@ -168,8 +201,8 @@ class ProviderCatalog:
             "provider_calls": 0,
             "schema_id": CATALOG_SCHEMA_ID,
             "schema_version": CATALOG_SCHEMA_VERSION,
-            "catalog": self.source_path.resolve().as_posix(),
-            "credentials_root": root.as_posix(),
+            "catalog": self.source_path.name,
+            "credentials_root": "<redacted-credentials-root>",
             "providers": rows,
         }
 

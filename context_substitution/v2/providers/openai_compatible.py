@@ -13,6 +13,10 @@ from context_substitution.v2.providers.base import (
 
 _RESPONSE_FORMAT_MODES = frozenset({"json_schema", "json_object", "prompt_only"})
 _MAX_OUTPUT_PARAMETERS = frozenset({"max_completion_tokens", "max_tokens"})
+_REASONING_EFFORTS = frozenset(
+    {"none", "minimal", "low", "medium", "high", "xhigh"}
+)
+_THINKING_LEVELS = frozenset({"LOW", "MEDIUM", "HIGH", "MINIMAL"})
 
 
 @dataclass(frozen=True)
@@ -25,7 +29,15 @@ class OpenAICompatibleRouteSettings:
     response_format_mode: str = "json_schema"
     max_output_parameter: str = "max_completion_tokens"
     model_family: str | None = None
+    model_profile: str | None = None
     independence_group: str | None = None
+    role_equivalence_group: str | None = None
+    thinking_level: str | None = None
+    reasoning_effort: str | None = None
+    temperature: float = 0.0
+    max_output_tokens: int | None = None
+    role_plan_sha256: str | None = None
+    escalation_kind: str | None = None
     max_attempts: int = 1
     retry_backoff_seconds: tuple[float, ...] = ()
 
@@ -36,19 +48,36 @@ class OpenAICompatibleRouteSettings:
             raise ValueError("unsupported OpenAI-compatible response format mode")
         if self.max_output_parameter not in _MAX_OUTPUT_PARAMETERS:
             raise ValueError("unsupported OpenAI-compatible output-token parameter")
+        if self.reasoning_effort not in {None, *_REASONING_EFFORTS}:
+            raise ValueError("unsupported OpenAI-compatible reasoning effort")
+        if self.thinking_level not in {None, *_THINKING_LEVELS}:
+            raise ValueError("unsupported OpenAI-compatible thinking level")
+        if self.thinking_level is not None and self.reasoning_effort is not None:
+            raise ValueError(
+                "OpenAI-compatible route must not mix thinking and reasoning controls"
+            )
         return ContextProviderRoute(
             route_id=self.route_id,
             model_id=self.model_id,
             sender=OpenAICompatibleSender(self),
             model_family=self.model_family,
+            model_profile=self.model_profile,
             independence_group=self.independence_group,
+            role_equivalence_group=self.role_equivalence_group,
+            thinking_level=self.thinking_level,
+            reasoning_effort=self.reasoning_effort,
+            temperature=self.temperature,
+            max_output_tokens=self.max_output_tokens,
+            timeout_seconds=self.timeout_seconds,
+            role_plan_sha256=self.role_plan_sha256,
+            escalation_kind=self.escalation_kind,
             max_attempts=self.max_attempts,
             retry_backoff_seconds=self.retry_backoff_seconds,
         )
 
 
 class OpenAICompatibleSender:
-    """OpenAI Chat Completions adapter for the local GPT gateway."""
+    """OpenAI Chat Completions adapter for compatible provider transports."""
 
     def __init__(self, settings: OpenAICompatibleRouteSettings) -> None:
         self._settings = settings
@@ -97,11 +126,14 @@ class OpenAICompatibleSender:
         rendered_system = system_prompt
         request: dict[str, Any] = {
             "model": self._settings.model_id,
+            "temperature": self._settings.temperature,
             "messages": [
                 {"role": "system", "content": rendered_system},
                 {"role": "user", "content": user_payload_json},
             ],
         }
+        if self._settings.reasoning_effort is not None:
+            request["reasoning_effort"] = self._settings.reasoning_effort
         if mode == "json_schema":
             request["response_format"] = {
                 "type": "json_schema",

@@ -17,6 +17,7 @@ from context_substitution.v2.contracts.validation import (
 from context_substitution.v2.providers.base import (
     ContextExecutionError,
     FailoverStructuredModel,
+    role_output_token_budget,
 )
 from context_substitution.v2.contracts.common import (
     PAIRWISE_PREFERENCES,
@@ -212,7 +213,11 @@ def run_pairwise_tiebreakers(
                     f"{candidate_a['candidate_id']}:"
                     f"{candidate_b['candidate_id']}"
                 ),
-                max_output_tokens=2_048,
+                max_output_tokens=role_output_token_budget(
+                    model,
+                    role="pairwise_tiebreaker",
+                    legacy_default=2_048,
+                ),
             )
             results.append(
                 _with_observation_id({
@@ -386,8 +391,5 @@ def _pairwise_candidate(candidate: Mapping[str, Any]) -> dict[str, Any]:
             "scope_id",
             "sense_contract",
             "part_of_speech",
-            "candidate_generation",
         )
     }
-
-

@@ -19,19 +19,36 @@ class GoogleRouteSettings:
     base_url: str | None = None
     timeout_seconds: int = 120
     model_family: str | None = None
+    model_profile: str | None = None
     independence_group: str | None = None
+    role_equivalence_group: str | None = None
+    thinking_level: str | None = None
+    temperature: float = 0.0
+    max_output_tokens: int | None = None
+    role_plan_sha256: str | None = None
+    escalation_kind: str | None = None
     max_attempts: int = 1
     retry_backoff_seconds: tuple[float, ...] = ()
 
     def build(self) -> ContextProviderRoute:
         if not self.api_key.strip():
             raise ValueError(f"{self.route_id}: API key must not be empty")
+        if self.thinking_level not in {None, "LOW", "MEDIUM", "HIGH", "MINIMAL"}:
+            raise ValueError("unsupported Google thinking level")
         return ContextProviderRoute(
             route_id=self.route_id,
             model_id=self.model_id,
             sender=GoogleGenAISender(self),
             model_family=self.model_family,
+            model_profile=self.model_profile,
             independence_group=self.independence_group,
+            role_equivalence_group=self.role_equivalence_group,
+            thinking_level=self.thinking_level,
+            temperature=self.temperature,
+            max_output_tokens=self.max_output_tokens,
+            timeout_seconds=self.timeout_seconds,
+            role_plan_sha256=self.role_plan_sha256,
+            escalation_kind=self.escalation_kind,
             max_attempts=self.max_attempts,
             retry_backoff_seconds=self.retry_backoff_seconds,
         )
@@ -61,7 +78,14 @@ class GoogleGenAISender:
             contents=user_payload_json,
             config=types.GenerateContentConfig(
                 system_instruction=system_prompt,
-                temperature=0,
+                temperature=self._settings.temperature,
+                thinking_config=(
+                    None
+                    if self._settings.thinking_level is None
+                    else types.ThinkingConfig(
+                        thinking_level=self._settings.thinking_level
+                    )
+                ),
                 response_mime_type="application/json",
                 response_json_schema=dict(response_schema),
                 max_output_tokens=max_output_tokens,
@@ -161,4 +185,3 @@ def _nonnegative(value: Any) -> int:
     except (TypeError, ValueError):
         return 0
     return max(result, 0)
-

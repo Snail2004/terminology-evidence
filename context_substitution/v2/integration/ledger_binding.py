@@ -6,6 +6,7 @@ from pathlib import Path, PurePosixPath
 from typing import Any, Mapping, Sequence
 
 from context_substitution.v2.contracts.run import validate_context_substitution_run
+from context_substitution.v2.contracts.common import SCHEMA_VERSION
 from context_substitution.v2.integration.common import (
     file_sha256,
     object_sha256,
@@ -63,6 +64,25 @@ _ATTEMPT_FIELDS = frozenset(
         "raw_response_storage_status",
     }
 )
+_ROLE_ATTEMPT_FIELDS = frozenset(
+    {
+        "model_profile",
+        "role_equivalence_group",
+        "role_plan_sha256",
+        "effective_generation_config",
+        "escalation_kind",
+        "candidate_replicate_index",
+        "semantic_role_call_index",
+        "provider_request_index",
+        "route_attempt_index",
+        "transport_retry_index",
+        "equivalent_failover_from",
+        "provider_status_code",
+        "failure_disposition",
+        "safe_error_code",
+        "budget_units_consumed",
+    }
+)
 _TOKEN_USAGE_FIELDS = frozenset(
     {"input_tokens", "output_tokens", "reasoning_tokens", "total_tokens"}
 )
@@ -75,7 +95,7 @@ def build_provider_ledger_manifest(
     path = Path(ledger_path).resolve()
     if path.name != "provider_attempts.jsonl" or not path.is_file():
         raise ValueError("provider ledger path must name provider_attempts.jsonl")
-    rows = _load_rows(path)
+    rows = _load_rows(path, role_bound=run["schema_version"] == SCHEMA_VERSION)
     attempts = [row for row in rows if row["record_kind"] == "PROVIDER_ATTEMPT"]
     captures = [row for row in rows if row["record_kind"] == "RAW_RESPONSE_CAPTURED"]
     expected_attempts = list(run["provider_attempts"])
@@ -194,13 +214,18 @@ def validate_provider_ledger_manifest(
     return dict(value)
 
 
-def _load_rows(path: Path) -> list[dict[str, Any]]:
+def _load_rows(path: Path, *, role_bound: bool) -> list[dict[str, Any]]:
     rows = load_jsonl_objects(path)
     for line_number, row in enumerate(rows, 1):
         kind = row.get("record_kind")
         if kind not in {"RAW_RESPONSE_CAPTURED", "PROVIDER_ATTEMPT"}:
             raise ValueError(f"provider ledger line {line_number} has unknown record_kind")
-        expected_fields = _CAPTURE_FIELDS if kind == "RAW_RESPONSE_CAPTURED" else _ATTEMPT_FIELDS
+        expected_fields = (
+            _CAPTURE_FIELDS
+            if kind == "RAW_RESPONSE_CAPTURED"
+            else _ATTEMPT_FIELDS
+            | (_ROLE_ATTEMPT_FIELDS if role_bound else frozenset())
+        )
         if set(row) != expected_fields:
             missing = sorted(expected_fields - set(row))
             extra = sorted(set(row) - expected_fields)

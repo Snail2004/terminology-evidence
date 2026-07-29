@@ -82,6 +82,14 @@ from context_substitution.v2.providers.ledger import (
     LEDGER_POLICY,
     ProviderResponseLedger,
 )
+from context_substitution.v2.providers.role_plan import (
+    DEFAULT_PROVIDER_ROLE_PLAN_PATH,
+    ProviderRolePlan,
+    load_provider_role_plan,
+)
+from context_substitution.v2.providers.role_routing import (
+    RoleRoutedStructuredModel,
+)
 
 
 __all__ = [
@@ -106,11 +114,14 @@ __all__ = [
     "ReviewedSupportBundle",
     "FreezeValidationError",
     "DEFAULT_PROVIDER_CATALOG_PATH",
+    "DEFAULT_PROVIDER_ROLE_PLAN_PATH",
     "GoogleRouteSettings",
     "OpenAICompatibleRouteSettings",
     "ProviderCatalog",
     "ProviderRawResponse",
     "ProviderResponseLedger",
+    "ProviderRolePlan",
+    "RoleRoutedStructuredModel",
     "LEDGER_POLICY",
     "CALIBRATION_POLICY_ID",
     "CALIBRATION_SCHEMA_ID",
@@ -124,6 +135,7 @@ __all__ = [
     "validate_reviewed_support_receipt",
     "load_frozen_review_selection",
     "load_provider_catalog",
+    "load_provider_role_plan",
     "build_calibration_artifact",
     "load_calibration_artifact",
     "seal_calibration_artifact",
