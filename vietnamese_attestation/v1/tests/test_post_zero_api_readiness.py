@@ -15,6 +15,13 @@ from vietnamese_attestation.v1.readiness import (
     verify_junit,
     verify_zero_api_artifact,
 )
+from vietnamese_attestation.v1.readiness.authority import (
+    R2_PUBLICATION_COMMIT,
+    R2_RECEIPT_RELATIVE_PATH,
+)
+from vietnamese_attestation.v1.readiness.junit import (
+    EXPECTED_E_SUITE_TEST_COUNT,
+)
 from vietnamese_attestation.v1.cli.readiness import main as readiness_cli_main
 from vietnamese_attestation.v1.zero_api.artifacts import (
     file_sha256,
@@ -23,24 +30,44 @@ from vietnamese_attestation.v1.zero_api.artifacts import (
 )
 
 
-AUTHORITY_RECEIPT = Path(
-    r"C:\work\terminology-evidence-authority\contracts-v1.1.0\authority_receipt.json"
-)
 ZERO_API_ARTIFACT = Path(
     r"C:\work\terminology-evidence-artifacts\vietnamese-attestation-v1.1-zero-api-20260729-v3"
 )
 
 
-def test_authority_and_zero_api_artifact_verify_without_provider_calls() -> None:
-    repository = _repository_root()
+@pytest.fixture(scope="session")
+def r2_repository(tmp_path_factory: pytest.TempPathFactory) -> Path:
+    source = _repository_root()
+    if (source / R2_RECEIPT_RELATIVE_PATH).is_file():
+        return source
+
+    repository = tmp_path_factory.mktemp("contracts-r2") / "repository"
+    _run_git(None, "clone", "--quiet", "--shared", "--no-checkout", str(source), str(repository))
+    _run_git(repository, "checkout", "--quiet", "--detach", R2_PUBLICATION_COMMIT)
+    _run_git(
+        repository,
+        "update-ref",
+        "refs/heads/main",
+        _git(source, "rev-parse", "main^{commit}"),
+    )
+    return repository
+
+
+def test_r2_authority_and_zero_api_artifact_verify_without_provider_calls(
+    r2_repository: Path,
+) -> None:
+    repository = r2_repository
     authority = verify_contract_authority(
         repository_root=repository,
-        receipt_path=AUTHORITY_RECEIPT,
+        receipt_path=_r2_receipt(repository),
     )
     artifact = verify_zero_api_artifact(ZERO_API_ARTIFACT)
 
     assert authority["status"] == "PASS"
     assert authority["provider_call_count"] == 0
+    assert authority["authority_receipt_revision"] == 2
+    assert authority["release_delta_mode"] == "PINNED_R2_RELEASE_ONLY"
+    assert authority["r2_publication_commit"] == R2_PUBLICATION_COMMIT
     assert artifact["status"] == "PASS"
     assert artifact["candidate_count"] == 15
     assert artifact["replay_pass_count"] == 15
@@ -150,6 +177,7 @@ def test_artifact_symlink_is_rejected_when_supported(tmp_path: Path) -> None:
 
 def test_junit_gate_rejects_missing_empty_red_wrong_and_unrelated_reports(
     tmp_path: Path,
+    r2_repository: Path,
 ) -> None:
     missing = tmp_path / "missing.xml"
     with pytest.raises(ValueError):
@@ -158,9 +186,21 @@ def test_junit_gate_rejects_missing_empty_red_wrong_and_unrelated_reports(
     cases = (
         ("malformed.xml", "<testsuites>"),
         ("empty.xml", _junit_xml(0)),
-        ("red.xml", _junit_xml(74, failures=1)),
-        ("wrong-count.xml", _junit_xml(73)),
-        ("unrelated.xml", _junit_xml(74, classname="other.tests.Case")),
+        (
+            "red.xml",
+            _junit_xml(EXPECTED_E_SUITE_TEST_COUNT, failures=1),
+        ),
+        (
+            "wrong-count.xml",
+            _junit_xml(EXPECTED_E_SUITE_TEST_COUNT - 1),
+        ),
+        (
+            "unrelated.xml",
+            _junit_xml(
+                EXPECTED_E_SUITE_TEST_COUNT,
+                classname="other.tests.Case",
+            ),
+        ),
     )
     for filename, content in cases:
         path = tmp_path / filename
@@ -169,12 +209,14 @@ def test_junit_gate_rejects_missing_empty_red_wrong_and_unrelated_reports(
             verify_junit(path)
 
     wrong_count = tmp_path / "wrong-count-release.xml"
-    wrong_count.write_text(_junit_xml(73), encoding="utf-8")
+    wrong_count.write_text(
+        _junit_xml(EXPECTED_E_SUITE_TEST_COUNT - 1), encoding="utf-8"
+    )
     output = tmp_path / "wrong-count-release"
     with pytest.raises(ValueError, match="count mismatch"):
         build_post_zero_api_release(
-            repository_root=_repository_root(),
-            authority_receipt=AUTHORITY_RECEIPT,
+            repository_root=r2_repository,
+            authority_receipt=_r2_receipt(r2_repository),
             zero_api_artifact_root=ZERO_API_ARTIFACT,
             controlled_registry=(
                 _repository_root()
@@ -193,9 +235,9 @@ def test_junit_gate_rejects_missing_empty_red_wrong_and_unrelated_reports(
         readiness_cli_main(
             [
                 "--repository-root",
-                str(_repository_root()),
+                str(r2_repository),
                 "--authority-receipt",
-                str(AUTHORITY_RECEIPT),
+                str(_r2_receipt(r2_repository)),
                 "--zero-api-artifact-root",
                 str(ZERO_API_ARTIFACT),
                 "--controlled-registry",
@@ -212,13 +254,33 @@ def test_junit_gate_rejects_missing_empty_red_wrong_and_unrelated_reports(
         )
 
 
-def test_authority_and_zero_api_tamper_fail_closed(tmp_path: Path) -> None:
-    receipt = tmp_path / "authority_receipt.json"
-    receipt.write_bytes(AUTHORITY_RECEIPT.read_bytes() + b" ")
+def test_r2_authority_and_zero_api_tamper_fail_closed(
+    tmp_path: Path,
+    r2_repository: Path,
+) -> None:
+    tampered_repository = _clone_repository(
+        r2_repository, tmp_path / "tampered-repository"
+    )
+    receipt = _r2_receipt(tampered_repository)
+    receipt.write_bytes(receipt.read_bytes() + b" ")
     with pytest.raises(ValueError, match="receipt physical hash mismatch"):
         verify_contract_authority(
-            repository_root=_repository_root(),
+            repository_root=tampered_repository,
             receipt_path=receipt,
+        )
+
+    legacy_receipt = (
+        r2_repository
+        / "terminology_contracts_v1"
+        / "release"
+        / "v1.1.0-final"
+        / "history"
+        / "contracts_v1_1_0_authority_receipt_r1_resealed.json"
+    )
+    with pytest.raises(ValueError, match="canonical in-repo.*R2"):
+        verify_contract_authority(
+            repository_root=r2_repository,
+            receipt_path=legacy_receipt,
         )
 
     artifact = tmp_path / "artifact"
@@ -234,14 +296,60 @@ def test_authority_and_zero_api_tamper_fail_closed(tmp_path: Path) -> None:
         verify_zero_api_artifact(artifact)
 
 
+def test_r2_authority_rejects_nonrelease_and_arbitrary_release_drift(
+    tmp_path: Path,
+    r2_repository: Path,
+) -> None:
+    mutations = (
+        ("nonrelease", "terminology_contracts_v1/README.md", "\nR2 drift\n"),
+        (
+            "release",
+            "terminology_contracts_v1/release/unreviewed.txt",
+            "unreviewed release mutation\n",
+        ),
+    )
+    for name, relative, payload in mutations:
+        repository = _clone_repository(
+            r2_repository, tmp_path / f"{name}-repository"
+        )
+        path = repository / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        if path.exists():
+            path.write_text(
+                path.read_text(encoding="utf-8") + payload,
+                encoding="utf-8",
+            )
+        else:
+            path.write_text(payload, encoding="utf-8")
+        _run_git(repository, "add", "--", relative)
+        _run_git(
+            repository,
+            "-c",
+            "user.name=E readiness test",
+            "-c",
+            "user.email=e-readiness@example.invalid",
+            "commit",
+            "--quiet",
+            "-m",
+            f"test {name} drift",
+        )
+        with pytest.raises(ValueError, match="contracts tree differs"):
+            verify_contract_authority(
+                repository_root=repository,
+                receipt_path=_r2_receipt(repository),
+            )
+
+
 def test_post_zero_api_release_is_commit_bound_cache_free_and_honest(
     tmp_path: Path,
+    r2_repository: Path,
 ) -> None:
-    repository = _repository_root()
-    commit = _git(repository, "rev-parse", "HEAD")
+    repository = r2_repository
+    source = _repository_root()
+    commit = _git(source, "rev-parse", "HEAD")
     summary = build_post_zero_api_release(
         repository_root=repository,
-        authority_receipt=AUTHORITY_RECEIPT,
+        authority_receipt=_r2_receipt(repository),
         zero_api_artifact_root=ZERO_API_ARTIFACT,
         controlled_registry=(
             repository
@@ -261,7 +369,7 @@ def test_post_zero_api_release_is_commit_bound_cache_free_and_honest(
     assert summary["implementation_commit"] == commit
     assert summary["zero_api_replay"] == "15/15 PASS"
     assert summary["provider_call_count"] == 0
-    assert summary["test_gate"]["tests"] == 74
+    assert summary["test_gate"]["tests"] == EXPECTED_E_SUITE_TEST_COUNT
     assert summary["test_gate"]["failures"] == 0
     assert summary["test_gate"]["errors"] == 0
     assert summary["holds"] == [
@@ -289,7 +397,7 @@ def test_post_zero_api_release_is_commit_bound_cache_free_and_honest(
     assert projection["real_evidence_authority"] is False
     assert canary["status"] == "BLOCKED_BY_LIVE_CANARY_APPROVAL"
     assert canary["external_provider_call_count"] == 0
-    assert junit["tests"] == 74
+    assert junit["tests"] == EXPECTED_E_SUITE_TEST_COUNT
 
     for record in manifest["files"]:
         path = release_root / record["path"]
@@ -315,7 +423,7 @@ def test_post_zero_api_release_is_commit_bound_cache_free_and_honest(
 
     second = build_post_zero_api_release(
         repository_root=repository,
-        authority_receipt=AUTHORITY_RECEIPT,
+        authority_receipt=_r2_receipt(repository),
         zero_api_artifact_root=ZERO_API_ARTIFACT,
         controlled_registry=(
             repository
@@ -333,7 +441,6 @@ def test_post_zero_api_release_is_commit_bound_cache_free_and_honest(
 
 def _repository_root() -> Path:
     root = Path(__file__).resolve().parents[3]
-    assert AUTHORITY_RECEIPT.is_file()
     assert ZERO_API_ARTIFACT.is_dir()
     return root
 
@@ -348,6 +455,40 @@ def _git(repository: Path, *args: str) -> str:
     ).stdout.strip()
 
 
+def _run_git(repository: Path | None, *args: str) -> None:
+    subprocess.run(
+        ["git", *args],
+        cwd=repository,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+
+def _r2_receipt(repository: Path) -> Path:
+    return repository / R2_RECEIPT_RELATIVE_PATH
+
+
+def _clone_repository(source: Path, target: Path) -> Path:
+    _run_git(
+        None,
+        "clone",
+        "--quiet",
+        "--shared",
+        "--no-checkout",
+        str(source),
+        str(target),
+    )
+    _run_git(
+        target,
+        "checkout",
+        "--quiet",
+        "--detach",
+        _git(source, "rev-parse", "HEAD^{commit}"),
+    )
+    return target
+
+
 def _load(path: Path) -> dict[str, object]:
     value = json.loads(path.read_text(encoding="utf-8"))
     assert isinstance(value, dict)
@@ -355,7 +496,9 @@ def _load(path: Path) -> dict[str, object]:
 
 
 def _write_junit(path: Path) -> Path:
-    path.write_text(_junit_xml(74), encoding="utf-8")
+    path.write_text(
+        _junit_xml(EXPECTED_E_SUITE_TEST_COUNT), encoding="utf-8"
+    )
     return path
 
 

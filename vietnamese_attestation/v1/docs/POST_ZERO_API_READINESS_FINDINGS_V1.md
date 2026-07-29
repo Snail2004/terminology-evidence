@@ -1,6 +1,6 @@
 # Evidence E Post-Zero-API Readiness Findings V1
 
-Report version: 1.2.2
+Report version: 1.2.3
 
 Status: `HOLD_EXTERNAL_INPUTS`
 
@@ -64,13 +64,11 @@ counterpart `readiness_findings_report.json`.
 ## E-RDY-007 - external Contracts mapping fixtures unavailable
 
 - Severity: INFO
-- Status: OPEN_NON_BLOCKING
-- Evidence: Contracts suite reports 113 passed and 2 skipped because
-  `TERMINOLOGY_DATASET_ROOT` is not supplied.
-- Impact: no authority or zero-API verification failure; the two mapping tests
-  remain tied to the same official Dataset handoff blocked by E-RDY-002.
-- Close condition: rerun the mapping fixtures against the official immutable
-  Dataset root when it is supplied.
+- Status: RESOLVED
+- Finding: the first readiness gate omitted `TERMINOLOGY_DATASET_ROOT`, leaving
+  two real dataset-mapping tests skipped.
+- Resolution: the final R2 gate binds the in-repository Dataset root and passes
+  all 115 Contracts tests, including both V3 and pilot V1.1 mapping fixtures.
 
 ## E-RDY-008 - permissive artifact decoder and link traversal
 
@@ -88,9 +86,22 @@ counterpart `readiness_findings_report.json`.
 - Severity: P1
 - Status: RESOLVED
 - Finding: release JUnit was optional and unparsed.
-- Resolution: JUnit is mandatory, must identify the E suite, contain exactly 74
+- Resolution: JUnit is mandatory, must identify the E suite, contain exactly 75
   tests with zero failures/errors, and is recorded in the release manifest and
   summary before any output directory is created.
+
+## E-RDY-010 - R2 release-only authority rejected as tag drift
+
+- Severity: P1
+- Status: RESOLVED
+- Finding: the E readiness verifier compared the entire Contracts tree against
+  the frozen V1.1 tag, so it rejected the independently reviewed R2 authority
+  maintenance publication even though source, schema, policy and registry bytes
+  remained unchanged.
+- Resolution: active authority now requires the canonical in-repository R2
+  receipt and pins its self/physical hashes, exact Contracts and release Git
+  trees, final audit, final manifest and final ZIP. Legacy R1, R2 tamper,
+  non-release drift and arbitrary release mutation fail closed.
 
 ## Semantic boundary clarification
 

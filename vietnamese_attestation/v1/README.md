@@ -24,7 +24,7 @@ Post-zero-API readiness is available through:
 ```powershell
 python -m vietnamese_attestation.v1.cli.readiness `
   --repository-root C:\work\terminology_evidence-worktrees\vietnamese-attestation-v1 `
-  --authority-receipt C:\work\terminology-evidence-authority\contracts-v1.1.0\authority_receipt.json `
+  --authority-receipt terminology_contracts_v1\release\v1.1.0-final\contracts_v1_1_0_authority_receipt_r2.json `
   --zero-api-artifact-root C:\work\terminology-evidence-artifacts\vietnamese-attestation-v1.1-zero-api-20260729-v3 `
   --controlled-registry dataset\dataset_methodology_hardening_v1\release\controlled_vietnamese_source_registry.jsonl `
   --junit D:\temp\vietnamese-attestation-v1.2.2-junit.xml `
@@ -36,5 +36,5 @@ cache files without deleting the worktree, verifies Contracts V1.1 and the
 accepted 15/15 zero-API replay, and reports the remaining Dataset, controlled
 registry, and live-canary HOLD states. It does not call a provider and never
 promotes fixture packages to real attestation evidence authority.
-The JUnit input is mandatory and must be the exact 74-test E-suite with zero
+The JUnit input is mandatory and must be the exact 75-test E-suite with zero
 failures and errors.
