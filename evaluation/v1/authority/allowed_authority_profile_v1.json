@@ -1,0 +1,82 @@
+{
+  "schema_id": "EvaluationAllowedAuthorityProfileV1",
+  "schema_version": "1.0.0",
+  "profile_id": "evaluation-ar2-authority-profile-v1",
+  "status": "ACTIVE",
+  "contracts": {
+    "authority_tag": "contracts-v1.1.0",
+    "authority_publication_commit": "282409c470049760904fa16de4c67d711b5fcd00",
+    "authority_module_tree_git_oid": "938bca1f9c60596ef9403a43f0355476ad42afef",
+    "contract_tree_git_oid": "d6386c4c4d19ba2aad982a519b9b59ecfd2213c9",
+    "receipt": {
+      "schema_id": "TerminologyContractsAuthorityReceiptV1",
+      "receipt_revision": 2,
+      "canonical_self_sha256": "a69b887ae650ba277c25c0d00e917dc834aa509320379a5cd17ff0241cf1b618",
+      "physical_sha256": "acb1d40b39110470f90d8b793aa162ca02252cb825e51ca94882e85c1f6a2f79"
+    },
+    "detached_approval": {
+      "schema_id": "TerminologyContractsApprovalBindingV1",
+      "binding_version": "1.0.0",
+      "approval_status": "ACCEPTED_FOR_AUTHORITY_PROMOTION",
+      "canonical_self_sha256": "ab7acbccfbdf64b74071133d4e049a06cbafc66c989f9b9f7ce52a08caa720b2",
+      "physical_sha256": "3ad39870e4e95c51ac88ee6a3d451504d41ba26d3bf5dc6569d25a585a7147a5",
+      "checksums_physical_sha256": "fe0268bc6be8209a2cc90b81833443e4c4f081a4c4e465edf2652e1a228bed43"
+    }
+  },
+  "global": {
+    "authority_report": {
+      "schema_id": "GlobalValidatorAuthorityVerificationReportV1",
+      "schema_version": "1.0.0",
+      "status": "PASS",
+      "source_commit": "b35825d1166da630aa9e8b7d551907bbee0b1864",
+      "canonical_self_sha256": "a3c17448b713f0b1a0b60cc30354f1ccd8c667a6651390122d918ca555c9524f",
+      "physical_sha256": "6532a3398bdd95d9196db80f240d994a1d50818ac21423a5a9275079235875af",
+      "global_test_identity_sha256": "a82d5ad1cb815c90a271a8c7c6e4223957ed28cb372950dc6f89b226d07dc854",
+      "contracts_test_identity_sha256": "a3ac806065590af4627daaca3b2cb542666320d8ed2c4dfed54261d1130fbde1"
+    },
+    "action_policy": {
+      "schema_id": "GlobalValidatorGatePolicyReportV1",
+      "schema_version": "1.0.0",
+      "status": "PASS",
+      "action_policy_authority_id": "global-gate-action-policy-authority-v1.0.0",
+      "action_policy_authority_sha256": "1fca452c0604b7f41e9ffab72de0c134b108c52cafed279153bd7e98a0e8994a",
+      "action_policy_id": "global-gate-action-selection-v1",
+      "action_policy_version": "1.0.0",
+      "action_policy_sha256": "4220b15b7b5d5b740946b9b258a5e1f25469a8f8409ca6e1a0b399464285c9f5",
+      "gate_policy_artifact_sha256": "9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2",
+      "canonical_self_sha256": "509de21e81b71300494d85c8515627da291c5346d319184f7a1fff78cd83134d",
+      "physical_sha256": "73ee6339f517a9b2302e007d8f3c2ae2f91dd54dc48f66f4013138ef46be1ed0"
+    }
+  },
+  "dataset": {
+    "manifest_schema_id": "D2LContextSupportSetValidationReadyV3",
+    "manifest_schema_version": "3.0.0",
+    "manifest_status": "VALIDATION_READY_HUMAN_REVIEW_REQUIRED",
+    "manifest_declared_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+    "manifest_physical_sha256": "b5f2067427c6b88344109f2c62f8db02ac61b0cef76f193d5285f378ff5f96a8",
+    "split_assignment_schema_id": "D2LContextSupportSplitAssignmentV3",
+    "split_assignment_schema_version": "3.0.0",
+    "split_policy_id": "d2l_sentence_disjoint_stratified_100_25_25_v1",
+    "split_assignments_physical_sha256": "7ef12764428153b84940a9cf494bf2bbb091f8caee40e8b5218282bb32e7912c",
+    "target_counts": {
+      "development": 100,
+      "validation": 25,
+      "test": 25
+    }
+  },
+  "evaluation_registries": {
+    "ablation_registry_v1.json": "685a2c3080d16b364d7ed8732b7a785d58e5b0cf7ad809f218a203c363a1dd3c",
+    "calibration_protocol_v1.json": "c6efc7fd337c952b2ce6985a2007843eb530400207c447152b0bb625d2b02be0",
+    "exclusion_policy_v1.json": "1e0c7ef489d113de29b7205dc941031f2398171ae6227ba7cc05de6261e190a4",
+    "experiment_registry_v1.json": "3c768223634caa09865348bef69851ccf11c2ef34d097ecd46c6ed6d98564388",
+    "label_mapping_v1.json": "4ca0e747c2b0713ea4c518a202fe3f1124f96f4751f9d48b82dbdfea5799e063",
+    "metric_registry_v1.json": "76d84515918df773d3e8a209245ba66c8b7467989681ca30795e43ded8adc732",
+    "report_schema_v1.json": "583276190864722b496e33391b1558d4272f1573defc4483e8832780dd83da80",
+    "research_questions_v1.json": "e996cea6add81b851fc1901649a3c87f5a0f64d27435033e6e2c54fe1cab130f",
+    "split_policy_v1.json": "970ae9238002792db9a6117695952734166567fd9eff484c2f2e83615f85456d",
+    "statistical_analysis_plan_v1.json": "6a6ef1d4f7e2af3e2866b05ffa8a9e1f304591a7a6dd31a56cdd5b789de181ce"
+  },
+  "integrity": {
+    "self_sha256": "415d0a32291221f8bbd2c36c8b4a44301f471781d4598d8db647eeb3e74fb33f"
+  }
+}
