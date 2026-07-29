@@ -1,0 +1,1 @@
+python -B source/tools/validate_review_result.py --artifact-root .

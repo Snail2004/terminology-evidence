@@ -1,0 +1,24 @@
+{
+  "counts": {
+    "adjudication_required": 2,
+    "consensus_3_of_3": 3,
+    "review_case": 5,
+    "review_input": 3
+  },
+  "created_at": "2026-07-29T12:00:00Z",
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "a35a73ab1062e64eb959c7c92e043fb368e3c1f0a1e6b4e916d3d584979d1a89"
+  },
+  "official_contract_count": 0,
+  "policy_id": "d2l-stage-a-targeted-repair-review-result-5-senses-v1.0",
+  "provider_call_count": 0,
+  "review_input_sha256": {
+    "reviewer_1": "b305abac44eb4ae9c03ecd9dfbd0280c4f4e19964725e4c9a59fddc051514628",
+    "reviewer_2": "e621d34e124b6299e8c9091599615095c17706029c5cd9485bc74419b528990f",
+    "reviewer_3": "689501d471bd0569e50d8fdd7d7e106f7f8a3a20891f634975bd19455a98d61c"
+  },
+  "schema_id": "D2LTargetedRepairReviewSummaryV1",
+  "schema_version": "1.0.0",
+  "status": "ADJUDICATION_REQUIRED"
+}

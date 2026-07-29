@@ -1,0 +1,2 @@
+inputs/*.csv binary
+release/**/*.csv binary

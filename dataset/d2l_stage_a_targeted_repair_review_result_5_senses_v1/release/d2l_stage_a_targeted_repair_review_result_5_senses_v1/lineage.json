@@ -1,0 +1,19 @@
+{
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "8c967737b09e424595c1bee15cdb957159070499f4b7e1a75b8c849a4640080b"
+  },
+  "provider_call_count": 0,
+  "review_input_sha256": {
+    "reviewer_1": "b305abac44eb4ae9c03ecd9dfbd0280c4f4e19964725e4c9a59fddc051514628",
+    "reviewer_2": "e621d34e124b6299e8c9091599615095c17706029c5cd9485bc74419b528990f",
+    "reviewer_3": "689501d471bd0569e50d8fdd7d7e106f7f8a3a20891f634975bd19455a98d61c"
+  },
+  "schema_id": "D2LTargetedRepairReviewResultLineageV1",
+  "schema_version": "1.0.0",
+  "source_review_artifact": "d2l_stage_a_targeted_repair_review_pack_5_senses_v1",
+  "source_review_commit": "d5fb0b4b3039cff6608e2c449997c4f85a71db39",
+  "source_review_manifest_physical_sha256": "419f6af277ede673e097e9e640bdafa9f6b046721ffdf4a8406c5a52f93c6b37",
+  "source_review_manifest_sha256": "0648e699af2a6d1e0ccb77c35707f688574ed1714a67e3806db65436d73ec015",
+  "source_review_zip_sha256": "36031531b2d0f52d37e06e4860d3e85cd26acda8af0a1997563e0cf78639679c"
+}
