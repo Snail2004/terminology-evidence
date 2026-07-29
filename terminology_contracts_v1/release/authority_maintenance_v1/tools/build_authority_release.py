@@ -1,13 +1,10 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
-import os
 import platform
 import re
 import shutil
-import sys
 import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
@@ -96,6 +93,17 @@ def _read_junit(path: Path) -> dict[str, int | str]:
 
 
 def _compile_scan(repo_root: Path, manifest_rows: tuple[dict[str, Any], ...]) -> dict[str, Any]:
+    cache_files = sorted(
+        path.relative_to(MAINTENANCE_ROOT).as_posix()
+        for path in MAINTENANCE_ROOT.rglob("*")
+        if path.is_file()
+        and (
+            path.suffix == ".pyc"
+            or "__pycache__" in path.relative_to(MAINTENANCE_ROOT).parts
+        )
+    )
+    if cache_files:
+        raise AuthorityError(f"maintenance cache files must be removed: {cache_files}")
     files: list[tuple[str, bytes]] = []
     for row in manifest_rows:
         path = row["path"]
@@ -115,7 +123,7 @@ def _compile_scan(repo_root: Path, manifest_rows: tuple[dict[str, Any], ...]) ->
             "schema_id": "TerminologyContractsAuthorityStaticScanV1",
             "result": "PASS",
             "module_count": len(files),
-            "cache_files": [],
+            "cache_files": cache_files,
             "integrity": {"self_sha256": ""},
         }
     )
