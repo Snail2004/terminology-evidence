@@ -7,8 +7,11 @@
 | Contracts authority tag | `contracts-v1.1.0` |
 | Contracts authority commit | `38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed` |
 | Contracts manifest self SHA-256 | `e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b` |
-| Authority receipt canonical self SHA-256 | `c2e291510f43f2fb82461c5aacd3085948346e98451e218f73192b0eb3c47ed4` |
-| Authority receipt physical SHA-256 | `3497460f16ca478dada7b25425775882f10d1cb2b5d3638c36cba4ec5fb2791b` |
+| Active authority receipt | `release/v1.1.0-final/contracts_v1_1_0_authority_receipt_r2.json` / revision `2` |
+| Authority receipt canonical self SHA-256 | `a69b887ae650ba277c25c0d00e917dc834aa509320379a5cd17ff0241cf1b618` |
+| Authority receipt physical SHA-256 | `acb1d40b39110470f90d8b793aa162ca02252cb825e51ca94882e85c1f6a2f79` |
+| Reviewed R2 publication commit | `282409c470049760904fa16de4c67d711b5fcd00` |
+| Reviewed R2 contracts tree | `938bca1f9c60596ef9403a43f0355476ad42afef` |
 | Gate registry | `1.1.0` |
 | Sealed GatePolicyArtifact | `1.0.0` / `9f31e4579350e2f74dc1ec01632d8cd49802b5e7ee6f00931b71d430e5d9f4f2` |
 | Global gate-action selection policy | `1.0.0` / `4220b15b7b5d5b740946b9b258a5e1f25469a8f8409ca6e1a0b399464285c9f5` |
