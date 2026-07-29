@@ -1,0 +1,56 @@
+{
+  "schema_id": "TerminologyContractsAuthorityReceiptR2IndependentApprovalV1",
+  "review_type": "INDEPENDENT_TECHNICAL_ARTIFACT_REVIEW",
+  "issued_at": "2026-07-29T13:00:00+07:00",
+  "approval_status": "ACCEPTED_FOR_AUTHORITY_PROMOTION",
+  "conditions": [
+    "Main verifies final publication commit parent and release-only path scope",
+    "Main verifies contracts-v1.1.0 annotated tag, tag commit and tagged contract tree are unchanged",
+    "The accepted R2 receipt and final ZIP remain byte-identical",
+    "This approval artifact is stored separately; the R2 receipt is not edited"
+  ],
+  "authority": {
+    "tag": "contracts-v1.1.0",
+    "tag_object_oid": "1a8c00d12f100145a276cd8304440ff0a7e8d2a1",
+    "commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+    "contract_tree_git_oid": "d6386c4c4d19ba2aad982a519b9b59ecfd2213c9"
+  },
+  "accepted_artifacts": {
+    "receipt_r2": {
+      "path": "release/v1.1.0-final/contracts_v1_1_0_authority_receipt_r2.json",
+      "canonical_self_sha256": "a69b887ae650ba277c25c0d00e917dc834aa509320379a5cd17ff0241cf1b618",
+      "physical_sha256": "acb1d40b39110470f90d8b793aa162ca02252cb825e51ca94882e85c1f6a2f79"
+    },
+    "final_contracts_zip": {
+      "path": "release/v1.1.0-final/terminology_contracts_v1_1_0_final.zip",
+      "physical_sha256": "2f16fbd2614308be43619a6643f196d74d588ce12e9a4e30dcec3ab669a6f471"
+    },
+    "release_audit": {
+      "canonical_self_sha256": "e8cec2de12224f816ca7eb6c8b38d75f2b07f6d99f44c019caae44f45c961202",
+      "physical_sha256": "21a36752d0e244449c650221a0a89c73376526efd88a3b56f62d0e0c68eedfd3"
+    },
+    "release_manifest": {
+      "canonical_self_sha256": "d64b82abb2b74bf7477a1c9f740c8d6a3bc0155dae8d3476b484fee239ad7522",
+      "physical_sha256": "bd9d4c10908bdb951eaebb8c139afe7a09b198bd6422ef7626dc728c6ea9ccb7"
+    },
+    "source_archive": {
+      "claimed_commit": "282409c470049760904fa16de4c67d711b5fcd00",
+      "physical_sha256": "0bb2963090ec64312cb80c6f19089e736fc634e3897819eb58a090698b562237"
+    },
+    "review_bundle": {
+      "physical_sha256": "02d01c486105291c419bdf1096328f10e255cd5590e2713a1134f7604bf09b38"
+    }
+  },
+  "nonblocking_findings": [
+    "P2-CON-JSON-1",
+    "P2-CON-REL-2",
+    "P2-CON-REP-3"
+  ],
+  "external_follow_up": [
+    "Global reruns its exact suite against these accepted R2 bytes",
+    "Global closes its own outstanding narrow findings before official integration"
+  ],
+  "integrity": {
+    "self_sha256": "8ccb232602d73c13b20e6954f7a4982371e5c57f1e25f7caec3898c2ce4bcb78"
+  }
+}
