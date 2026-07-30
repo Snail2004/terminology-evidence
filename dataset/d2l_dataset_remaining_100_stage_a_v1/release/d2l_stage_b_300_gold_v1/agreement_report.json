@@ -1,0 +1,40 @@
+{
+  "agreement_count": 245,
+  "case_count": 300,
+  "cohen_kappa": 0.594276,
+  "disagreement_count": 55,
+  "final_glossary_decision": null,
+  "final_gold_label_count": 0,
+  "label_pair_counts": {
+    "ACCEPT__ACCEPT": 195,
+    "ACCEPT__CONDITIONAL": 12,
+    "CONDITIONAL__ACCEPT": 20,
+    "CONDITIONAL__CONDITIONAL": 39,
+    "CONDITIONAL__REJECT": 2,
+    "CONDITIONAL__SPLIT_REQUIRED": 4,
+    "REJECT__ACCEPT": 1,
+    "REJECT__CONDITIONAL": 15,
+    "REJECT__REJECT": 10,
+    "REJECT__SPLIT_REQUIRED": 1,
+    "SPLIT_REQUIRED__SPLIT_REQUIRED": 1
+  },
+  "policy_id": "d2l-remaining-300-stage-b-reviewer1-repair-intake-v1.0",
+  "provider_call_count": 0,
+  "raw_agreement": 0.816667,
+  "reviewer_1_label_counts": {
+    "ACCEPT": 207,
+    "CONDITIONAL": 65,
+    "REJECT": 27,
+    "SPLIT_REQUIRED": 1
+  },
+  "reviewer_1_repair_case_count": 0,
+  "reviewer_2_label_counts": {
+    "ACCEPT": 216,
+    "CONDITIONAL": 66,
+    "REJECT": 12,
+    "SPLIT_REQUIRED": 6
+  },
+  "schema_id": "D2LRemainingStageBAgreementReportV1",
+  "schema_version": "1.1.0",
+  "status": "REVIEWER_1_REPAIR_APPLIED_REVIEWER_3_ADJUDICATION_PENDING"
+}

@@ -1,0 +1,80 @@
+{
+  "adjudication_count": 55,
+  "artifact_name": "d2l_stage_b_300_gold_v1",
+  "candidate_count": 300,
+  "dataset_manifest_sha256": "db0a46fb4d38861ffd9f2bb048dbc614ad7148b8fc1a31eed427b6f7cec85021",
+  "effective_sense_count": 105,
+  "files": {
+    "CHECKSUMS.sha256": {
+      "sha256": "f09ed4763fc1beb318409e8e608fd53a2d284763f74efac2af5f77ae117c1635",
+      "size_bytes": 1349
+    },
+    "RELEASE_REPORT.md": {
+      "sha256": "9473b2b96957ae7ed126ad55804a98ff007014629e25f841b1ae3aa6bc598e40",
+      "size_bytes": 436
+    },
+    "agreement_report.json": {
+      "sha256": "56ec3bf19b3cddf311c5a74c835fdbf86504a8bc1a9cea5b26e130b34b887e1d",
+      "size_bytes": 1112
+    },
+    "lineage.json": {
+      "sha256": "b9f0a5929d359279587bd4ddd0fae3677e79989a7a7ec5c101c6616674909c24",
+      "size_bytes": 1031
+    },
+    "raw_reviews/reviewer_1.json": {
+      "sha256": "990283e635511bb4d10d32166814bb20e52ca0cc7b478256eac365aed3099358",
+      "size_bytes": 3212459
+    },
+    "raw_reviews/reviewer_2.json": {
+      "sha256": "f1310ddf9662ae595c51b0dee9292dfb7958e31124d0926e60c5ddcd76d321ea",
+      "size_bytes": 3168323
+    },
+    "raw_reviews/reviewer_3.json": {
+      "sha256": "629be622072a27ae3717d64361e51e59804e86f56e5de4791bad95f0d1d78b72",
+      "size_bytes": 723351
+    },
+    "review_pairs_300.jsonl": {
+      "sha256": "39acf674f14d6691e70364901f4037c3afea8f3570256bd38c3a64d82b21f0b9",
+      "size_bytes": 2932240
+    },
+    "source/tests/test_remaining_stage_b_gold.py": {
+      "sha256": "cf8b6546a73d8a31dd644f87ceec82978fc768e268a4962ab5e3624ff094ccec",
+      "size_bytes": 6895
+    },
+    "source/tools/__init__.py": {
+      "sha256": "05f9b315bc1d32ccfffe6f1447fd2dc92658bcd6fc6ac5ec09f2aa7f1bd5d09c",
+      "size_bytes": 76
+    },
+    "source/tools/build_remaining_stage_b_gold.py": {
+      "sha256": "0b3cf1fabc3a9986ca19db00ac9e6c2895e5b246348ee7cab9f56487180ec26c",
+      "size_bytes": 18145
+    },
+    "source/tools/remaining_stage_b_adjudication_result.py": {
+      "sha256": "1a482994d0f3aee7a1c0e1212bfeafee120549bc3c8b3d4498d170a8dd4265c5",
+      "size_bytes": 6151
+    },
+    "source/tools/validate_remaining_stage_b_gold.py": {
+      "sha256": "94502b749d7558f8586483b54f4dd58bf69d0e580e9f969c38c598aa5b0d3d9b",
+      "size_bytes": 11011
+    },
+    "stage_b_gold_300.jsonl": {
+      "sha256": "1fa404d0c9d7aa5e00aaa18226fbb03bcdae63ece398cbd9bed66d6d29e679b5",
+      "size_bytes": 490297
+    },
+    "stage_b_gold_summary.json": {
+      "sha256": "2f55c00066a30f1f4ce571e54b6aa87750a48b020e3678bdb3278f895a934cf4",
+      "size_bytes": 2536
+    }
+  },
+  "final_glossary_decision_count": 0,
+  "final_gold_label_count": 300,
+  "manifest_sha256": "f02d6067b643693f17e94ee0e342c601dff9709f292fc89290616a4415e4ff9c",
+  "policy_id": "d2l-remaining-300-candidates-stage-b-gold-v1.0",
+  "provider_call_count": 0,
+  "release_status": "STAGE_B_300_GOLD_COMPLETE_READY_FOR_C_E_EVALUATION",
+  "review_intake_manifest_sha256": "f0cc263c761d98730cb6257fd6e2b455470f87c391c302bfdaad14ec463dd807",
+  "reviewer_3_result_sha256": "629be622072a27ae3717d64361e51e59804e86f56e5de4791bad95f0d1d78b72",
+  "schema_id": "D2LRemainingStageBGoldManifestV1",
+  "schema_version": "1.0.0",
+  "source_slot_count": 100
+}
