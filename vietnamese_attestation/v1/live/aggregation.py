@@ -74,11 +74,17 @@ def aggregate_candidate(
     same = [row for row in enriched if positive_evidence_eligible(row["judge"])]
     related = [row for row in enriched if supporting_evidence_eligible(row["judge"])]
     different = [row for row in enriched if contradictory_evidence_eligible(row["judge"])]
+    unresolved = [
+        row
+        for row in enriched
+        if row["judge"]["judgeability"] != "JUDGEABLE"
+        or row["judge"]["concept_relation"] == "UNCERTAIN"
+    ]
     same_clusters = _clusters(same)
     related_clusters = _clusters(related)
     different_clusters = _clusters(different)
     organizations = {str(row.get("organization", row.get("source_id", ""))) for row in same}
-    if not coverage_record["measured"] or not coverage_record["sufficient"]:
+    if not coverage_record["measured"] or not coverage_record["sufficient"] or unresolved:
         status = "ATTESTATION_UNJUDGEABLE"
     elif same_clusters and different_clusters:
         status = "CONFLICTING_ATTESTATION"

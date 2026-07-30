@@ -75,11 +75,13 @@ class EventLedger:
         request_sha256: str,
         response_sha256: str,
         raw_response_locator: str,
+        generation_config: Mapping[str, Any],
+        provider_role_plan_sha256: str,
         retry_index: int = 0,
         failure_disposition: str = "NONE",
         usage: Mapping[str, Any] | None = None,
     ) -> dict[str, Any]:
-        for name, value in (("prompt_sha256", prompt_sha256), ("request_sha256", request_sha256), ("response_sha256", response_sha256)):
+        for name, value in (("prompt_sha256", prompt_sha256), ("request_sha256", request_sha256), ("response_sha256", response_sha256), ("provider_role_plan_sha256", provider_role_plan_sha256)):
             require_sha256(value, path=f"$.payload.{name}")
         return self.append(
             "E_MODEL_REQUEST",
@@ -103,6 +105,8 @@ class EventLedger:
                 "request_sha256": request_sha256,
                 "response_sha256": response_sha256,
                 "raw_response_locator": raw_response_locator,
+                "generation_config": dict(generation_config),
+                "provider_role_plan_sha256": provider_role_plan_sha256,
             },
         )
 

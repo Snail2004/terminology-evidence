@@ -261,6 +261,12 @@ def validate_provider_role_plan(value: Mapping[str, Any]) -> dict[str, Any]:
         if not isinstance(generation, Mapping):
             raise LiveSchemaError("provider generation_config must be an object")
         require_exact_keys(generation, {"temperature", "reasoning"}, path=f"$.roles[{index}].generation_config")
+        temperature = generation["temperature"]
+        if isinstance(temperature, bool) or not isinstance(temperature, (int, float)):
+            raise LiveSchemaError("provider generation_config.temperature must be numeric")
+        if not 0 <= float(temperature) <= 2:
+            raise LiveSchemaError("provider generation_config.temperature must be in [0,2]")
+        require_string(generation["reasoning"], path=f"$.roles[{index}].generation_config.reasoning")
     result = dict(value)
     result["roles"] = sorted(normalized, key=lambda row: row["semantic_role"])
     if value["external_provider_call_count"] != 0:
@@ -498,7 +504,15 @@ def validate_event(value: Mapping[str, Any]) -> dict[str, Any]:
         raise LiveSchemaError("$.usage.cost must be nonnegative")
     require_string(value["usage"]["currency"], path="$.usage.currency")
     if value["event_kind"] == "E_MODEL_REQUEST":
-        require_exact_keys(value["payload"], {"candidate_id", "sense_id", "semantic_role", "semantic_call_id", "provider_request_id", "retry_index", "provider_id", "model_id", "route", "prompt_sha256", "request_sha256", "response_sha256", "raw_response_locator"}, path="$.payload")
+        require_exact_keys(value["payload"], {"candidate_id", "sense_id", "semantic_role", "semantic_call_id", "provider_request_id", "retry_index", "provider_id", "model_id", "route", "prompt_sha256", "request_sha256", "response_sha256", "raw_response_locator", "generation_config", "provider_role_plan_sha256"}, path="$.payload")
+        require_sha256(value["payload"]["provider_role_plan_sha256"], path="$.payload.provider_role_plan_sha256")
+        generation = value["payload"]["generation_config"]
+        if not isinstance(generation, Mapping):
+            raise LiveSchemaError("$.payload.generation_config must be an object")
+        require_exact_keys(generation, {"temperature", "reasoning"}, path="$.payload.generation_config")
+        if isinstance(generation["temperature"], bool) or not isinstance(generation["temperature"], (int, float)):
+            raise LiveSchemaError("$.payload.generation_config.temperature must be numeric")
+        require_string(generation["reasoning"], path="$.payload.generation_config.reasoning")
     elif value["event_kind"] == "E_DISCOVERY_QUERY":
         require_exact_keys(value["payload"], {"template_id", "query_class", "template_sha256", "rendered_query", "rendered_query_sha256", "result_count", "lead_urls", "is_evidence"}, path="$.payload")
         if value["payload"].get("is_evidence") is not False:

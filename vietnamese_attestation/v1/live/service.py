@@ -47,6 +47,8 @@ from .retrieval import (
     extract_fetched_evidence,
     extract_snapshot_evidence,
 )
+from .judge import ProviderAdapter
+from .authority_adapter.adapter import validate_protocol_instance
 from .schemas import (
     PREFLIGHT_RESPONSE_SCHEMA_ID,
     compute_run_spec_id,
@@ -207,6 +209,8 @@ class ELiveService:
         judge: FixtureJudge | None = None,
         execution_mode: str = "LOCAL_FIXTURE_ONLY",
         authority_bundle: Mapping[str, Any] | None = None,
+        production_authorization_schema: str | Path | None = None,
+        provider_adapter: ProviderAdapter | None = None,
         clock=utc_now,
     ) -> None:
         self.root = Path(root).absolute()
@@ -223,11 +227,22 @@ class ELiveService:
         self.authority_bundle = dict(authority_bundle) if authority_bundle is not None else None
         if self.authority_bundle is not None:
             self.authority_bundle = validate_loaded_authority_bundle(self.authority_bundle)
-        self.authorization_receipt = validate_authorization_receipt(authorization_receipt)
         if self.execution_mode == "PRODUCTION_AUTHORITY":
-            raise LiveSchemaError(
-                "local canary authorization receipt is forbidden in production mode"
+            if production_authorization_schema is None:
+                raise LiveSchemaError("production authorization schema is required")
+            self.authorization_receipt = validate_protocol_instance(
+                authorization_receipt,
+                role="LIVE_AUTHORIZATION_RECEIPT",
+                schema_path=production_authorization_schema,
             )
+            if self.authorization_receipt.get("authorization_status") != "RUN_AUTHORIZED" or self.authorization_receipt.get("test_only") is not False:
+                raise LiveSchemaError("production execution requires reviewed RUN_AUTHORIZED bytes")
+            if self.authority_bundle is None or self.authority_bundle.get("execution_mode") != "PRODUCTION_AUTHORITY":
+                raise LiveSchemaError("production execution requires pinned authority bundle")
+            if provider_adapter is None:
+                raise LiveSchemaError("production execution requires provider adapter")
+        else:
+            self.authorization_receipt = validate_authorization_receipt(authorization_receipt)
         if self.authority_bundle is not None and self.authority_bundle.get("execution_mode") != self.execution_mode:
             raise LiveSchemaError("authority bundle execution mode mismatch")
         self.authorized_cohort_id = authorized_cohort_id
@@ -236,6 +251,7 @@ class ELiveService:
         self.discovery = discovery
         self.fetcher = fetcher
         self.judge = judge
+        self.provider_adapter = provider_adapter
         self.clock = clock
         self.runs: dict[str, dict[str, Any]] = {}
 
@@ -271,7 +287,10 @@ class ELiveService:
             blockers.append("INPUT_CONTRACT_BINDING_INVALID")
         checks["authorized_cohort"] = "PASS" if not any(item.startswith("COHORT") for item in blockers) else "FAIL"
         receipt = self.authorization_receipt
-        if not verify_seal(receipt) or receipt.get("cohort_id") != self.authorized_cohort_id or set(receipt.get("candidate_ids", ())) != set(self.authorized_candidate_ids):
+        if self.execution_mode == "LOCAL_FIXTURE_ONLY":
+            if not verify_seal(receipt) or receipt.get("cohort_id") != self.authorized_cohort_id or set(receipt.get("candidate_ids", ())) != set(self.authorized_candidate_ids):
+                blockers.append("AUTHORIZATION_RECEIPT_MISMATCH")
+        elif receipt.get("authorization_status") != "RUN_AUTHORIZED" or receipt.get("test_only") is not False:
             blockers.append("AUTHORIZATION_RECEIPT_MISMATCH")
         try:
             current_registry = validate_registry(self.registry)
@@ -289,14 +308,22 @@ class ELiveService:
             current_policy_hashes = self.policy_hashes
             blockers.append("POLICY_BUNDLE_INVALID")
             checks["policy_bundle"] = f"FAIL:{type(exc).__name__}"
-        if receipt.get("registry_self_sha256") != current_registry["integrity"]["self_sha256"] or receipt.get("snapshot_manifest_sha256") != current_snapshot["integrity"]["self_sha256"]:
-            blockers.append("AUTHORITY_BINDING_MISMATCH")
-        if dict(receipt.get("policy_hashes", {})) != current_policy_hashes:
-            blockers.append("AUTHORITY_POLICY_BINDING_MISMATCH")
+        expected_input_contract = canonical_sha256(candidate_key) if isinstance(candidate_key, Mapping) else None
+        exact_request_authority = {
+            "registry_self_sha256": current_registry["integrity"]["self_sha256"],
+            "snapshot_manifest_sha256": current_snapshot["integrity"]["self_sha256"],
+            "input_contract_sha256": expected_input_contract,
+        }
+        for field, expected_value in exact_request_authority.items():
+            if authority_refs.get(field) != expected_value:
+                blockers.append(f"REQUEST_{field.upper()}_MISMATCH")
+        if self.execution_mode == "LOCAL_FIXTURE_ONLY":
+            if receipt.get("registry_self_sha256") != current_registry["integrity"]["self_sha256"] or receipt.get("snapshot_manifest_sha256") != current_snapshot["integrity"]["self_sha256"]:
+                blockers.append("AUTHORITY_BINDING_MISMATCH")
+            if dict(receipt.get("policy_hashes", {})) != current_policy_hashes:
+                blockers.append("AUTHORITY_POLICY_BINDING_MISMATCH")
         checks["authorization_receipt"] = "PASS" if "AUTHORIZATION_RECEIPT_MISMATCH" not in blockers else "FAIL"
-        if self.execution_mode != "LOCAL_FIXTURE_ONLY":
-            blockers.append("PRODUCTION_AUTHORITY_NOT_ACTIVE")
-        checks["authority_adapter"] = "PASS_LOCAL_FIXTURE_ONLY" if self.execution_mode == "LOCAL_FIXTURE_ONLY" else "FAIL"
+        checks["authority_adapter"] = "PASS_LOCAL_FIXTURE_ONLY" if self.execution_mode == "LOCAL_FIXTURE_ONLY" else "PASS_RUN_AUTHORIZED"
         expected = {
             "retrieval_policy_sha256": self.policy_hashes.get("retrieval_policy"),
             "query_template_set_sha256": self.policy_hashes.get("query_template_set"),
@@ -535,8 +562,15 @@ class ELiveService:
                         return
                 if fetched is None:
                     continue
-                coverage_counts["fetch_success"] += 1
                 metadata = self.fetcher.metadata(lead["url"])
+                retrieval_policy = self.policy_bundle["retrieval_policy"]
+                if len(fetched.redirect_chain) > int(retrieval_policy["max_redirect_hops"]):
+                    self._stop_budget(record, ledger, request, "MAX_REDIRECT_HOPS_EXCEEDED", lead["url"])
+                    return
+                if len(fetched.body) > int(retrieval_policy["max_download_bytes"]):
+                    self._stop_budget(record, ledger, request, "MAX_DOWNLOAD_BYTES_EXCEEDED", lead["url"])
+                    return
+                coverage_counts["fetch_success"] += 1
                 source_id = str(metadata.get("source_id", ""))
                 admission = admit_source(
                     self.registry,
@@ -580,6 +614,10 @@ class ELiveService:
                     fetched_row["document_ref"] = raw_document_ref
                 evidence.extend(fetched_rows)
         all_evidence, evidence = cluster_global_evidence(evidence)
+        accepted_document_count = len({str(row["document_id"]) for row in all_evidence})
+        if accepted_document_count > int(self.policy_bundle["retrieval_policy"]["max_accepted_documents"]):
+            self._stop_budget(record, ledger, request, "MAX_ACCEPTED_DOCUMENTS_EXCEEDED", "accepted_documents")
+            return
         judge_rows: dict[str, dict[str, Any]] = {}
         judge_attempts: list[dict[str, Any]] = []
         role_counts: dict[str, dict[str, int]] = {}
@@ -598,7 +636,7 @@ class ELiveService:
         for row in all_evidence:
             ledger.append("E_SOURCE_DOCUMENT_ACCEPTED", candidate_replicate_id=request["candidate_id"], semantic_role="CORPUS", semantic_call_id=row["evidence_id"], transport_attempt_id=row["document_id"], payload={"document_id": row["document_id"], "source_id": row["source_id"], "content_sha256": row["content_sha256"], "document_ref": row["document_ref"], "snapshot_manifest_sha256": row["snapshot_manifest_sha256"]})
         for row in evidence:
-            if self.judge is None:
+            if self.execution_mode == "LOCAL_FIXTURE_ONLY" and self.judge is None:
                 raise LiveSchemaError("fixture Judge is required for a local run")
             try:
                 response = self._invoke_judge(
@@ -693,10 +731,12 @@ class ELiveService:
         judge_attempts: list[dict[str, Any]],
         ledger: EventLedger,
     ) -> dict[str, Any]:
-        if self.judge is None:
-            raise LiveSchemaError("fixture Judge is required")
-        if role_config["semantic_role"] != role or role_config["mode"] != "ZERO_PROVIDER_FIXTURE":
+        if role_config["semantic_role"] != role:
+            raise LiveSchemaError("provider role identity mismatch")
+        if self.execution_mode == "LOCAL_FIXTURE_ONLY" and role_config["mode"] != "ZERO_PROVIDER_FIXTURE":
             raise LiveSchemaError("zero-provider execution refuses the selected provider role")
+        if self.execution_mode == "PRODUCTION_AUTHORITY" and role_config["mode"] != "LIVE_PROVIDER":
+            raise LiveSchemaError("production execution requires LIVE_PROVIDER role")
         counts = role_counts.setdefault(role, {"semantic": 0, "physical": 0})
         if counts["semantic"] >= int(role_config["max_semantic_calls"]) or counts["physical"] >= int(role_config["max_physical_requests"]):
             raise LiveSchemaError(f"provider role cap exceeded: {role}")
@@ -718,7 +758,14 @@ class ELiveService:
         )
         counts["semantic"] += 1
         counts["physical"] += 1
-        response = self.judge.judge(judge_request, role=role)
+        if self.execution_mode == "PRODUCTION_AUTHORITY":
+            if self.provider_adapter is None:
+                raise LiveSchemaError("provider adapter is unavailable")
+            response = dict(self.provider_adapter.invoke(judge_request, role_config=role_config))
+        else:
+            if self.judge is None:
+                raise LiveSchemaError("fixture Judge is required")
+            response = self.judge.judge(judge_request, role=role)
         response_sha = canonical_sha256(response)
         raw_ref = f"raw_responses/{response_sha}.json"
         raw_path = Path(self.runs[request["run_id"]]["run_root"]).joinpath(*raw_ref.split("/"))
@@ -737,6 +784,8 @@ class ELiveService:
             request_sha256=judge_request_sha256(judge_request),
             response_sha256=response_sha,
             raw_response_locator=raw_ref,
+            generation_config=role_config["generation_config"],
+            provider_role_plan_sha256=request["provider_role_plan_sha256"],
             usage={"input_tokens": 0, "output_tokens": 0, "reasoning_tokens": 0, "total_tokens": 0, "cost": 0.0, "currency": "USD"},
         )
         judge_attempts.append(
@@ -752,6 +801,26 @@ class ELiveService:
             }
         )
         return response
+
+    def _stop_budget(
+        self,
+        record: dict[str, Any],
+        ledger: EventLedger,
+        request: Mapping[str, Any],
+        code: str,
+        transport_attempt_id: str,
+    ) -> None:
+        ledger.append(
+            "STOP_EVENT",
+            candidate_replicate_id=request["candidate_id"],
+            semantic_role="CONTROL",
+            semantic_call_id="retrieval_budget",
+            transport_attempt_id=transport_attempt_id,
+            failure_disposition="BUDGET_EXCEEDED",
+            payload={"code": code, "message": code, "details": {}},
+        )
+        record["status"] = "STOPPED"
+        self._persist_run(record, ledger, package=None)
 
     def _persist_run(self, record: dict[str, Any], ledger: EventLedger, package: Mapping[str, Any] | None) -> None:
         root = Path(record["run_root"])

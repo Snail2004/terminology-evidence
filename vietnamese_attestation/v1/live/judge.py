@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Mapping
+from typing import Any, Mapping, Protocol
 
 from .common import LIVE_TOOL_SCHEMA_VERSION, LiveSchemaError, canonical_sha256, require_string
 from .schemas import (
@@ -108,9 +108,30 @@ class FixtureJudge:
         return self.secondary_role, secondary
 
 
+class ProviderAdapter(Protocol):
+    def invoke(self, request: Mapping[str, Any], *, role_config: Mapping[str, Any]) -> Mapping[str, Any]: ...
+
+
+class MockProviderAdapter:
+    """Production-shaped deterministic adapter used only by zero-network tests."""
+
+    def __init__(self, responses: Mapping[str, Mapping[str, Any]]) -> None:
+        self.responses = {str(key): dict(value) for key, value in responses.items()}
+        self.call_count = 0
+
+    def invoke(self, request: Mapping[str, Any], *, role_config: Mapping[str, Any]) -> Mapping[str, Any]:
+        if role_config.get("mode") != "LIVE_PROVIDER":
+            raise LiveSchemaError("production provider adapter requires LIVE_PROVIDER role")
+        evidence_id = str(request.get("evidence_id", ""))
+        if evidence_id not in self.responses:
+            raise LiveSchemaError("mock provider response is missing")
+        self.call_count += 1
+        return validate_judge_response(self.responses[evidence_id], snippet=str(request["snippet_original"]))
+
+
 def judge_request_sha256(request: Mapping[str, Any]) -> str:
     validate_judge_request(request)
     return canonical_sha256(request)
 
 
-__all__ = ["FixtureJudge", "judge_request_sha256", "make_judge_request", "make_judge_response"]
+__all__ = ["FixtureJudge", "MockProviderAdapter", "ProviderAdapter", "judge_request_sha256", "make_judge_request", "make_judge_response"]
