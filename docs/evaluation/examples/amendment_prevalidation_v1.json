@@ -1,0 +1,19 @@
+{
+  "schema_id": "EvaluationPreregistrationAmendmentV1",
+  "schema_version": "1.0.0",
+  "amendment_id": "example-prevalidation-001",
+  "reason": "Clarify a preregistered metric implementation before validation access.",
+  "affected_artifacts": [
+    "evaluation/v1/registries/metric_registry_v1.json"
+  ],
+  "before_hashes": {
+    "evaluation/v1/registries/metric_registry_v1.json": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "after_hashes": {
+    "evaluation/v1/registries/metric_registry_v1.json": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  },
+  "changes_primary_analysis": true,
+  "impact_on_claims": "The prior freeze is invalidated and a new preregistration version is required.",
+  "new_preregistration_version": "v2",
+  "analysis_namespace": null
+}

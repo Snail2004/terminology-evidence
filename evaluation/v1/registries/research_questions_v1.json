@@ -1,0 +1,14 @@
+{
+  "schema_id": "EvaluationResearchQuestionsV1",
+  "schema_version": "1.0.0",
+  "questions": [
+    {"id": "RQ1", "title": "Global reliability", "primary": true},
+    {"id": "RQ2", "title": "Context Substitution value", "primary": true},
+    {"id": "RQ3", "title": "Vietnamese Attestation incremental value", "primary": true},
+    {"id": "RQ4", "title": "Hard gate value", "primary": true},
+    {"id": "RQ5", "title": "C plus E value", "primary": true},
+    {"id": "RQ6", "title": "Downstream translation value", "primary": true},
+    {"id": "RQ7", "title": "TAC value", "primary": false},
+    {"id": "RQ8", "title": "Calibration stability", "primary": false}
+  ]
+}

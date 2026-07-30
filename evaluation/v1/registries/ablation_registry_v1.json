@@ -1,0 +1,12 @@
+{
+  "schema_id": "EvaluationAblationRegistryV1",
+  "schema_version": "1.0.0",
+  "ablations": [
+    {"id": "A0", "c": false, "e": false, "gates": false, "calibration": false, "tac": false},
+    {"id": "A1", "c": true, "e": false, "gates": false, "calibration": true, "tac": false},
+    {"id": "A2", "c": false, "e": true, "gates": false, "calibration": true, "tac": false},
+    {"id": "A3", "c": true, "e": true, "gates": false, "calibration": true, "tac": false},
+    {"id": "A4", "c": true, "e": true, "gates": true, "calibration": true, "tac": false},
+    {"id": "A5", "c": true, "e": true, "gates": true, "calibration": true, "tac": true}
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schema_id": "EvaluationStatisticalAnalysisPlanV1",
+  "schema_version": "1.0.0",
+  "primary_interval": "wilson",
+  "grouped_interval": "sense_bootstrap",
+  "paired_binary_test": "mcnemar_exact_two_sided",
+  "continuous_paired_test": "paired_bootstrap",
+  "multiple_comparison_correction": "holm_for_formal_secondary_tests",
+  "effect_size_required": true,
+  "p_value_alone_prohibited": true
+}
