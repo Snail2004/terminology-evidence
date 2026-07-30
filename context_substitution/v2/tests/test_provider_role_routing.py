@@ -8,6 +8,7 @@ from typing import Any, Mapping
 
 import pytest
 
+from context_substitution.v2.jsonio import StrictJSONError, loads_strict
 from context_substitution.v2.providers.base import (
     ContextExecutionError,
     ContextProviderRoute,
@@ -22,6 +23,8 @@ from context_substitution.v2.providers.role_plan import (
 )
 from context_substitution.v2.providers.role_routing import (
     RoleRoutedStructuredModel,
+    _normalize_known_top_level_response_key,
+    _unwrap_complete_outer_json_fence,
 )
 from context_substitution.v2.providers.ledger import ProviderResponseLedger
 from context_substitution.v2.dataset.reviewed_support import (
@@ -146,6 +149,83 @@ def test_unknown_provider_outcome_is_recorded_then_hard_stops() -> None:
     assert row["safe_error_code"] == "RUNTIMEERROR"
     assert senders["shop"].calls == 0
     assert senders["local"].calls == 0
+
+
+def test_single_complete_json_fence_is_unwrapped_after_raw_capture(
+    tmp_path: Path,
+) -> None:
+    response_text = (
+        " \r\n```json\r\n"
+        "{\"additionalProperties\":false,\"ok\":true}\r\n```\t\r\n"
+    )
+    senders = _senders(
+        ckey=[ProviderRawResponse(text=response_text, payload=None)]
+    )
+    ledger_root = tmp_path / "ledger"
+    model = _model(
+        senders,
+        response_ledger=ProviderResponseLedger(ledger_root),
+    )
+
+    result, _ = _call(model, "context_judge")
+
+    assert result == {"ok": True}
+    attempt = model.attempted_calls[0]
+    assert attempt["raw_response_sha256"] == hashlib.sha256(
+        response_text.encode("utf-8")
+    ).hexdigest()
+    assert (ledger_root / attempt["raw_response_ref"]).read_bytes() == (
+        response_text.encode("utf-8")
+    )
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        {"additionalProperties": True, "ok": True},
+        {"additionalProperties": 0, "ok": True},
+        {"additionalProperties": "false", "ok": True},
+        {"additionalProperties": None, "ok": True},
+        {"ok": {"additionalProperties": False}},
+        {"additionalProperties": False, "ok": {"additionalProperties": False}},
+        [{"additionalProperties": False}],
+    ],
+)
+def test_known_response_key_normalization_rejects_nonexact_or_nested_forms(
+    value: Any,
+) -> None:
+    with pytest.raises(StrictJSONError):
+        _normalize_known_top_level_response_key(value)
+
+
+def test_known_response_key_normalization_preserves_every_other_extra_key() -> None:
+    normalized = _normalize_known_top_level_response_key(
+        {"additionalProperties": False, "ok": True, "other": "still-visible"}
+    )
+    assert normalized == {"ok": True, "other": "still-visible"}
+
+
+@pytest.mark.parametrize(
+    "response_text",
+    [
+        "prose\n```json\n{\"ok\":true}\n```",
+        "```json\n{\"ok\":true}\n```\ntrailing",
+        "```json\n{\"ok\":true}\n```\n```json\n{\"ok\":true}\n```",
+        "```json\n{\"ok\":true}",
+        "```json\n{\"nested\":{\"value\":1,\"value\":2}}\n```",
+        "```json\n{\"value\":NaN}\n```",
+        "```json\n{\"value\":Infinity}\n```",
+    ],
+)
+def test_fenced_json_normalization_remains_fail_closed(
+    response_text: str,
+) -> None:
+    with pytest.raises(StrictJSONError):
+        loads_strict(
+            _unwrap_complete_outer_json_fence(response_text),
+            source="provider:test",
+            require_object=True,
+        )
 
 
 def test_cross_family_roles_are_explicit_and_generation_bound() -> None:
@@ -363,7 +443,11 @@ def _reseal_plan(value: dict[str, Any]) -> None:
     value["integrity"] = {"self_sha256": hashlib.sha256(encoded).hexdigest()}
 
 
-def _model(senders: Mapping[str, _SequenceSender]) -> RoleRoutedStructuredModel:
+def _model(
+    senders: Mapping[str, _SequenceSender],
+    *,
+    response_ledger: ProviderResponseLedger | None = None,
+) -> RoleRoutedStructuredModel:
     plan = _plan()
     sender_by_provider = {
         "ckey": senders["ckey"],
@@ -383,6 +467,7 @@ def _model(senders: Mapping[str, _SequenceSender]) -> RoleRoutedStructuredModel:
     return RoleRoutedStructuredModel(
         plan=plan,
         role_routes=role_routes,
+        response_ledger=response_ledger,
         audit_run_id="zero-provider-role-routing",
         sleep=lambda _: None,
     )

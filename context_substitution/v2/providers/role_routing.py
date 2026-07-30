@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import time
 from contextlib import contextmanager
 from contextvars import ContextVar
@@ -8,7 +9,7 @@ from typing import Any, Callable, Iterable, Mapping, Sequence
 
 from context_substitution.v2.contracts.common import sha256_text
 from context_substitution.v2.contracts.validation import ContractValidationError
-from context_substitution.v2.jsonio import loads_strict
+from context_substitution.v2.jsonio import StrictJSONError, loads_strict
 from context_substitution.v2.providers.base import (
     ContextExecutionError,
     ContextProviderRoute,
@@ -24,6 +25,57 @@ from context_substitution.v2.providers.ledger import (
     ProviderResponseLedger,
 )
 from context_substitution.v2.providers.role_plan import ProviderRolePlan
+
+
+_COMPLETE_OUTER_JSON_FENCE = re.compile(
+    r"\A[ \t\r\n]*```json[ \t]*\r?\n(?P<body>[\s\S]*?)\r?\n```[ \t\r\n]*\Z"
+)
+
+
+def _unwrap_complete_outer_json_fence(response_text: str) -> str:
+    match = _COMPLETE_OUTER_JSON_FENCE.fullmatch(response_text)
+    if match is None:
+        return response_text
+    body = match.group("body")
+    if "```" in body:
+        raise StrictJSONError(
+            "provider response: nested Markdown fence is forbidden"
+        )
+    return body
+
+
+def _normalize_known_top_level_response_key(value: Any) -> Any:
+    if not isinstance(value, Mapping):
+        if _contains_additional_properties_key(value):
+            raise StrictJSONError(
+                "provider response: nested additionalProperties is forbidden"
+            )
+        return value
+    has_known_key = "additionalProperties" in value
+    if has_known_key and value["additionalProperties"] is not False:
+        raise StrictJSONError(
+            "provider response: top-level additionalProperties must be false"
+        )
+    normalized = dict(value)
+    if has_known_key:
+        normalized.pop("additionalProperties")
+    if _contains_additional_properties_key(normalized):
+        raise StrictJSONError(
+            "provider response: nested additionalProperties is forbidden"
+        )
+    return normalized if has_known_key else value
+
+
+def _contains_additional_properties_key(value: Any) -> bool:
+    if isinstance(value, Mapping):
+        return any(
+            key == "additionalProperties"
+            or _contains_additional_properties_key(child)
+            for key, child in value.items()
+        )
+    if isinstance(value, list):
+        return any(_contains_additional_properties_key(child) for child in value)
+    return False
 
 
 class RoleRoutedStructuredModel:
@@ -193,8 +245,12 @@ class RoleRoutedStructuredModel:
                     parsed: Any = (
                         dict(raw.payload)
                         if raw.payload is not None
-                        else loads_strict(response_text, source=f"provider:{role}:{tag}")
+                        else loads_strict(
+                            _unwrap_complete_outer_json_fence(response_text),
+                            source=f"provider:{role}:{tag}",
+                        )
                     )
+                    parsed = _normalize_known_top_level_response_key(parsed)
                     validated = validator(parsed)
                     provenance = provider_provenance(
                         route=route,
