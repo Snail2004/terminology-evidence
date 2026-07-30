@@ -1,0 +1,840 @@
+{
+  "canonical_intake_manifest_sha256": "d22875f5f700fe6212e32cbdbb8295a8c74d0eb2fe446a5ca03311a43251d65e",
+  "case_count": 8,
+  "cases": [
+    {
+      "adjudication_case_id": "adj100_edb81779989cda2adf2513c6",
+      "available_evidence_contexts": [
+        {
+          "boundary_only": false,
+          "content_sha256": "9c9e109f12a44e3536407a269d537f7c4a57fa9d1873050ab475ad5c013f5ea2",
+          "context_id": "ctx_0226e0426283375d7ada52a5",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "To accomplish the latter we need to pay\nattention to overfitting in addition to using the optimization algorithm to\nreduce the training error.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "3d618b298efcc5d44dc2967be6754b85f8e9af83aca7287f3cc8d9b7ac0daa7b",
+          "context_id": "ctx_05ff6c3d6948601de78e83f7",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "* Attention mechanisms solved a second problem\n  that had plagued statistics for over a century:\n  how to increase the memory and complexity of a system without\n  increasing the number of learnable parameters.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "d18591ae587c7cef81a77943a45912c0ecb0933f2159ac758279e5ac5db1da0d",
+          "context_id": "ctx_31a4a8b87d7c576fc191dfeb",
+          "context_role": "PRIMARY",
+          "context_type": "C2",
+          "source_text": "# Attention Mechanisms\n:label:`chap_attention`",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "431dfae4ad0f7c807c8e39aa7de31b6fcff0c0a6a33f92cfe7b7ad45a2f6ffdc",
+          "context_id": "ctx_9b75794de1b3d229a80c72a0",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "Pay special attention to the training and inference cost.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "dbd1de5e38478e2e9b1c01c3c8e5b63336e5fbab559b44fede33fe1e1092c6a4",
+          "context_id": "ctx_dcce5005701acc61787285d0",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "In :numref:`chap_attention`, \nwe introduce a relatively new class of models\nbased on so-called attention mechanisms\nthat has displaced RNNs as the dominant architecture\nfor most natural language processing tasks.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": true,
+          "content_sha256": "2b0a277bc2beb13a25d76c573246cf137fe43a3c7f039a774d098d2753702802",
+          "context_id": "ctxx_38fbfb8ab20bbaae0ce535cb",
+          "context_role": "CONTRASTIVE",
+          "context_type": "CONTRASTIVE",
+          "source_text": "Synthetic: Here, attention refers to a focus-weighting idea in models, not to legal or medical emergency attention.",
+          "synthetic": true
+        }
+      ],
+      "batch_id": "batch_001",
+      "case_index": 2,
+      "completed_file_sha256": "4f548a53a803569a22e3a2d882b5c2cb567b2ac6a30c99601d6737ad8e26f68e",
+      "current_adjudication_rationale": "The evidence contains two distinct uses: ctx_0226e0426283375d7ada52a5 and ctx_9b75794de1b3d229a80c72a0 use the ordinary 'pay attention' concentration sense, while ctx_05ff6c3d6948601de78e83f7, ctx_31a4a8b87d7c576fc191dfeb, and ctx_dcce5005701acc61787285d0 use the named neural-network attention concept. Both groups are valid evidence but require separate definitions and candidate ownership; neither group should be discarded as invalid. Candidate 3 should be replaced with the technical phrase 'cơ chế chú ý', while the first two candidates remain available to the ordinary branch.",
+      "current_evidence_decision": "REVISE",
+      "current_invalid_evidence_context_ids": [],
+      "current_proposed_split_labels": [
+        "ordinary focused notice or concentration",
+        "neural-network attention modeling concept"
+      ],
+      "current_review_notes": "Partition the real contexts between the two branches rather than invalidating the ordinary examples. The synthetic legal/medical contrast remains boundary-only. No Stage B or final glossary label is created here.",
+      "current_sense_status": "SPLIT_REQUIRED",
+      "original_adjudication_sha256": "7e5d8a7724d7256ced93e19eb9c3e2c65d0ab8d33e052ba90df85eb5cc8ca752",
+      "repair": {
+        "evidence_decision": "",
+        "invalid_evidence_context_ids": []
+      },
+      "sense_id": "d2lce_4a5f20bb32b66b1f07d9f37a",
+      "source_payload_sha256": "2610b7fbc4e3fc5c4ae551c8b7ea44ea6025ba3991244c3401a32d61181034c3",
+      "source_term": "attention"
+    },
+    {
+      "adjudication_case_id": "adj100_8a82ddaf655de324bd1d1330",
+      "available_evidence_contexts": [
+        {
+          "boundary_only": false,
+          "content_sha256": "c8eb1694fb53f9b935fa5e92a7b5bfb22023f1aec1adcd59a468cba416f7e682",
+          "context_id": "ctx_0c72a2d7feb8a2a7f2b17bfd",
+          "context_role": "BACKUP",
+          "context_type": "C1",
+          "source_text": "We will illustrate the benefits below, focusing on sequential models and blocks.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "5b1c5c4228b19693820ceddc77624b84a9a795621528c6a77bd8afc407cb86bd",
+          "context_id": "ctx_20b4a3b3e9da0f80ed6d5279",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "The base model ($\\text{BERT}_{\\text{BASE}}$) uses 12 layers (transformer encoder blocks)\nwith 768 hidden units (hidden size) and 12 self-attention heads.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "68a7d333ca53cdddfc627f719e3495e07fee44c374e44635e483a833d1e8547b",
+          "context_id": "ctx_26916f0b3985aa996c0cee2c",
+          "context_role": "BACKUP",
+          "context_type": "C1",
+          "source_text": "These models include AlexNet, the first large-scale network deployed \nto beat conventional computer vision methods on a large-scale vision challenge;\nthe VGG network, which makes use of a number of repeating blocks of elements; the network in network (NiN) which convolves \nwhole neural networks patch-wise over inputs; \nGoogLeNet, which uses networks with parallel concatenations;\nresidual networks (ResNet), which remain the most popular \noff-the-shelf architecture in computer vision;\nand densely connected networks (DenseNet), \nwhich are expensive to compute but have set some recent benchmarks.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "bc5f766b04a736d12184757f979c55f8be8d9706e355a4b978bdcb7766251046",
+          "context_id": "ctx_46d4831aad13e3c413d4aaef",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "The generator consists of four basic blocks that increase input's both width and height from 1 to 32.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "497692e1c0cdab1a0984cfe8b3ba55cb791017b5ee77fe1658cfe211c86ddd31",
+          "context_id": "ctx_6481a5fd90279243349a9cd9",
+          "context_role": "BACKUP",
+          "context_type": "C1",
+          "source_text": "This model mainly consists of\na base network\nfollowed by\nseveral multiscale feature map blocks.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "cc3ce8f8457b48a13d0ac7bdd7395e47a29a1789f355fc7f98959c5a8703b834",
+          "context_id": "ctx_8e452eff442f6f0cb419316b",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "* In traditional CNNs, the representations encoded by the convolutional blocks are processed by one or more fully-connected layers prior to emitting output.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "1431de6a65467787b06c07821d6740f88fef30e130cabebfa50d6d7b52f913fb",
+          "context_id": "ctx_b9ce0a059491eaaa6fbf542f",
+          "context_role": "PRIMARY",
+          "context_type": "C2",
+          "source_text": "However, option 4 offers a practically useful alternative: we can move blocks of the matrix into cache and multiply them locally.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "26806242c4565d7ed2f6ae4bd9cc92bf611e1c5f4d45681da0672285f1871abe",
+          "context_id": "ctx_f7e9706f82de50c8f6380d6c",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "Just as semiconductor designers went from specifying transistors\nto logical circuits to writing code,\nneural networks researchers have moved from thinking about\nthe behavior of individual artificial neurons\nto conceiving of networks in terms of whole layers,\nand now often design architectures with far coarser *blocks* in mind.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": true,
+          "content_sha256": "9fb61fce3e5cbb2d3ddff69129bdbbfb1d6eadfbfa361df139e27f818043c13b",
+          "context_id": "ctxx_09ae76f62d4c4c6032674315",
+          "context_role": "CONTRASTIVE",
+          "context_type": "CONTRASTIVE",
+          "source_text": "Synthetic: The city planner divided the street into blocks for navigation.",
+          "synthetic": true
+        }
+      ],
+      "batch_id": "batch_001",
+      "case_index": 3,
+      "completed_file_sha256": "4f548a53a803569a22e3a2d882b5c2cb567b2ac6a30c99601d6737ad8e26f68e",
+      "current_adjudication_rationale": "The evidence separates into architectural blocks (transformer encoder, generator, feature-map, convolutional, and coarse network-design units) and the matrix/data chunk moved into cache in ctx_b9ce0a059491eaaa6fbf542f. These require distinct definitions and translation ownership even though both share the general English word 'blocks'. The matrix context is valid evidence for the second branch, not an invalid context. Candidate 1 and candidate 2 should be sharpened to branch-specific Vietnamese phrases, while the generic 'khối' can remain as a context-dependent variant.",
+      "current_evidence_decision": "REVISE",
+      "current_invalid_evidence_context_ids": [],
+      "current_proposed_split_labels": [
+        "neural-network architectural block",
+        "matrix or data processing block"
+      ],
+      "current_review_notes": "Partition ctx_b9ce0a059491eaaa6fbf542f into the matrix/data branch and the remaining real contexts into the architectural branch. The city-street example stays boundary-only; no positive source context is discarded.",
+      "current_sense_status": "SPLIT_REQUIRED",
+      "original_adjudication_sha256": "348238aca767ee984b74c3926c1e9f16509e41c8724cbc3bae7ab10c31f61302",
+      "repair": {
+        "evidence_decision": "",
+        "invalid_evidence_context_ids": []
+      },
+      "sense_id": "d2lce_20c658fd4e221ee551790ec2",
+      "source_payload_sha256": "0739ed1139c9787db9589bf25ddd816a04e6692c7987964e277b80613c6ea323",
+      "source_term": "blocks"
+    },
+    {
+      "adjudication_case_id": "adj100_aa89301a1e6dabf9470a8286",
+      "available_evidence_contexts": [
+        {
+          "boundary_only": false,
+          "content_sha256": "cac8fd15fa786c053ed794a24a026695dbdc4b429819be98866bf5708d6645dc",
+          "context_id": "ctx_1468868079bb9b62650af1ce",
+          "context_role": "BACKUP",
+          "context_type": "C1",
+          "source_text": "Determine the best value of this hyperparameter, keeping all others constant.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "bb82c2d8642496d6d2d15b8b2978f26a44268bdda171634dc7e5ec61fcd67991",
+          "context_id": "ctx_1f1572c94613de76cd12614d",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "Typically, we will want our matrices initialized\neither with zeros, ones, some other constants,\nor numbers randomly sampled from a specific distribution.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "c16b6fea782ec56693d125c428577f498264936ff4f5a93c611a05a408c72336",
+          "context_id": "ctx_3596d41647ddaacf0aed8755",
+          "context_role": "BACKUP",
+          "context_type": "C1",
+          "source_text": "We call these *constant parameters*.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "abd7ef7e2c796e3676e2992eb702826eaa0e91c9ea07e5c19ad626d454daa957",
+          "context_id": "ctx_426bd774623f1d7d45637e8c",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "Note that we add a small constant $\\epsilon > 0$\nto the variance estimate\nto ensure that we never attempt division by zero,\neven in cases where the empirical variance estimate might vanish.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "9cc691eceb276aac6f77f18e9df7fad28855940a5451115d6110ea1101c54dd3",
+          "context_id": "ctx_6680b855ff6f781511dd10c7",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "The constant $\\frac{1}{2}$ makes no real difference\nbut will prove notationally convenient,\ncanceling out when we take the derivative of the loss.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "2d91931d9de0be3cf5c92d58af36fbf27394c86a3dd706ec0e4c5b66753c01f7",
+          "context_id": "ctx_a81307e03098966ed96b74bf",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "This is only possible if $\\mathsf{V}$ and $\\mathbf{U}$ do not actually depend on $(i, j)$,\ni.e., we have $[\\mathsf{V}]_{i, j, a, b} = [\\mathbf{V}]_{a, b}$ and $\\mathbf{U}$ is a constant, say $u$.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "c1954773f59b7946b486a645bf57b22c8c8c8a8282feaa25b4b5ef36afd61934",
+          "context_id": "ctx_e3a4772ecd482355d1d71feb",
+          "context_role": "BACKUP",
+          "context_type": "C1",
+          "source_text": "When every example is characterized by the same number of numerical values,\nwe say that the data consist of fixed-length vectors\nand we describe the constant length of the vectors\nas the *dimensionality* of the data.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "3d5eff9a8ff796679e48a947c61be2ea9a1b526942fcdf59af667deddfb5a2b8",
+          "context_id": "ctx_ea695244ac38f31f89ef729b",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "Now the *input* for step 2 is perturbed by $\\epsilon_1$, hence we suffer some error in the order of $\\epsilon_2 = \\bar\\epsilon + c \\epsilon_1$ for some constant $c$, and so on.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": true,
+          "content_sha256": "153239d416406c60ecb27e8fd8ab19be3a6eac95e1c363509c18a8ab9532102f",
+          "context_id": "ctxx_4b9123a043f392cf6798ebdd",
+          "context_role": "CONTRASTIVE",
+          "context_type": "CONTRASTIVE",
+          "source_text": "Synthetic: She remained constant in her support throughout the project.",
+          "synthetic": true
+        }
+      ],
+      "batch_id": "batch_002",
+      "case_index": 2,
+      "completed_file_sha256": "a14ad5462411af275725f4fe3d98adab9644e861ec67e4cf19e00482b2764803",
+      "current_adjudication_rationale": "The evidence contains two grammatically and terminologically distinct uses. 'Some other constants', 'a small constant', 'the constant 1/2', 'U is a constant', and 'a constant c' use a noun meaning a fixed numerical value; 'keeping all others constant', 'constant parameters', and 'constant length' use an adjective meaning unchanging. Both groups are valid evidence and must be partitioned rather than discarding the adjective contexts. The existing candidates can be assigned across the two branches without replacement.",
+      "current_evidence_decision": "REVISE",
+      "current_invalid_evidence_context_ids": [],
+      "current_proposed_split_labels": [
+        "fixed numerical value or quantity (noun)",
+        "unchanging property (adjective)"
+      ],
+      "current_review_notes": "Partition the real contexts by noun versus adjective use. 'hằng số' and 'giá trị không đổi' can serve the noun branch, while 'bất biến' and contextually 'không đổi' serve the adjective branch. The synthetic personal-support example remains boundary-only.",
+      "current_sense_status": "SPLIT_REQUIRED",
+      "original_adjudication_sha256": "810432a9063bf04905a664cbc0070398e8811d86c537b0d0147f54078e66e1ce",
+      "repair": {
+        "evidence_decision": "",
+        "invalid_evidence_context_ids": []
+      },
+      "sense_id": "d2lce_46e81052dcb25b16e429062a",
+      "source_payload_sha256": "a9256ea6f9a4e4ec86049c4c122c6c4b0b06ce2f720faca05a17a6af396cdd74",
+      "source_term": "constant"
+    },
+    {
+      "adjudication_case_id": "adj100_f504743679dc16fe206fc2b3",
+      "available_evidence_contexts": [
+        {
+          "boundary_only": false,
+          "content_sha256": "bdcf7fcdfc8ae5e776e1131d0f93a429fd014a543e794299eded66684c4b5899",
+          "context_id": "ctx_47dd346896be4b4baac91c16",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "We call such a matrix $\\mathbf{A}^{-1}$ the *inverse* matrix.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "c1a28d65c48d91dc322ecabab05c5629c0305ed2da84ad892b7eb6d22f80bb92",
+          "context_id": "ctx_5c43b025af57aef403bb8489",
+          "context_role": "PRIMARY",
+          "context_type": "C2",
+          "source_text": "then we can see that the inverse is",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "16e9cce99dade683984255f4915ee466f7840727f72389daeb4516ecea5d50ba",
+          "context_id": "ctx_75eb945ba12ad0637aee80b1",
+          "context_role": "BACKUP",
+          "context_type": "C2",
+          "source_text": "This is the inverse of automatic speech recognition.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "51a1ecbd1c81fb24a5ec17e4d05e436396625b883b64f2ab399ee4eca6851187",
+          "context_id": "ctx_8cf7fef52d9596f550b824ee",
+          "context_role": "PRIMARY",
+          "context_type": "C2",
+          "source_text": "Below we implement the `offset_inverse` function\nthat takes in anchors and\noffset predictions as inputs and [**applies inverse offset transformations to\nreturn the predicted bounding box coordinates**].",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "8329ddc91baa31ab18d1127a71522dd2d148268defa807c7f85b0b297ada4a87",
+          "context_id": "ctx_9860b0e4dbe6809813dc296b",
+          "context_role": "BACKUP",
+          "context_type": "C2",
+          "source_text": "On the other hand, if we use a polynomial decay where the learning rate decays with the inverse square root of the number of steps, convergence gets better after only 50 steps.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "6b9c496cb2d390538e4a4cc08ae5b230842b98a83986ef9ae35c1b1aa654a2e1",
+          "context_id": "ctx_a3264cf3bd2a35a74a627146",
+          "context_role": "BACKUP",
+          "context_type": "C2",
+          "source_text": "Additionally, as we saw when discussing weight decay\n($L_2$ regularization) in :numref:`sec_weight_decay`,\nthe (inverse) norm of the parameters also\nrepresents a useful measure of simplicity.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "9dd8f9b830ae81f33b9b41093676f578294ee1239e4c1287ce1613c5dd43738b",
+          "context_id": "ctx_b25612872c99360702920048",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "* $f(\\cdot)$: a function\n* $\\log(\\cdot)$: the natural logarithm (base $e$)\n* $\\log_2(\\cdot)$: logarithm with base $2$\n* $\\exp(\\cdot)$: the exponential function\n* $\\mathbf{1}(\\cdot)$: the indicator function, evaluates to $1$ if the boolean argument is true and $0$ otherwise\n* $\\mathbf{1}_{\\mathcal{X}}(z)$: the set-membership indicator function, evaluates to $1$ if the element $z$ belongs to the set $\\mathcal{X}$ and $0$ otherwise\n* $\\mathbf{(\\cdot)}^\\top$: transpose of a vector or a matrix\n* $\\mathbf{X}^{-1}$: inverse of matrix $\\mathbf{X}$\n* $\\odot$: Hadamard (elementwise) product\n* $[\\cdot, \\cdot]$: concatenation\n* $\\|\\cdot\\|_p$: $L_p$ norm\n* $\\|\\cdot\\|$: $L_2$ norm\n* $\\langle \\mathbf{x}, \\mathbf{y} \\rangle$: dot product of vectors $\\mathbf{x}$ and $\\mathbf{y}$\n* $\\sum$: summation over a collection of elements\n* $\\prod$: product over a collection of elements\n* $\\stackrel{\\mathrm{def}}{=}$: an equality asserted as a definition of the symbol on the left-hand side",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "7e38f1ec77cfcc7f501a406b484811444451cfb27837765c897f77debc293bd1",
+          "context_id": "ctx_f3b8e197930d717e638aae95",
+          "context_role": "PRIMARY",
+          "context_type": "C2",
+          "source_text": "We have seen above that multiplication by a matrix with linearly dependent columns\ncannot be undone, i.e., there is no inverse operation that can always recover the input.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": true,
+          "content_sha256": "d9465800268ee84526ee022fc512aec7f6245353d625e058626c082125a5f4e8",
+          "context_id": "ctxx_bed233cf120704e15cfd064e",
+          "context_role": "CONTRASTIVE",
+          "context_type": "CONTRASTIVE",
+          "source_text": "Synthetic: In the sentence, the inverse word order sounds poetic.",
+          "synthetic": true
+        }
+      ],
+      "batch_id": "batch_005",
+      "case_index": 1,
+      "completed_file_sha256": "c7b1aa7cfb21a28ae6534c574339e396e71e6ecc6ff341dacfc25023095f64a6",
+      "current_adjudication_rationale": "The real D2L evidence combines three distinctions that should not be collapsed. ctx_5c43b025af57aef403bb8489 and ctx_b25612872c99360702920048 use inverse as a mathematical noun; ctx_47dd346896be4b4baac91c16, ctx_8cf7fef52d9596f550b824ee, ctx_9860b0e4dbe6809813dc296b, ctx_a3264cf3bd2a35a74a627146, and ctx_f3b8e197930d717e638aae95 use it adjectivally for reversing or reciprocal mathematical objects, transformations, quantities, or operations; ctx_75eb945ba12ad0637aee80b1 uses the noun for the converse speech-generation task, whose appropriate Vietnamese rendering is 'bài toán ngược'. All three groups are valid evidence and must be partitioned, not discarded. The candidate inventory should preserve a matrix-specific and a generic mathematical rendering while replacing the redundant operation-specific slot with the missing converse-task rendering.",
+      "current_evidence_decision": "REVISE",
+      "current_invalid_evidence_context_ids": [],
+      "current_proposed_split_labels": [
+        "mathematical inverse operation, quantity, or object (noun)",
+        "reversing or reciprocal mathematical modifier (adjective)",
+        "converse task or process (noun)"
+      ],
+      "current_review_notes": "Partition every real context among the three branches. Retain 'ma trận nghịch đảo' and generic 'nghịch đảo' for the mathematical branches; replace 'phép nghịch đảo' with 'bài toán ngược' so the converse-task branch has a semantically adequate candidate. The poetic word-order probe is boundary-only.",
+      "current_sense_status": "SPLIT_REQUIRED",
+      "original_adjudication_sha256": "a2b3280f4bdea9e384f43b628b1e1c71e51c9e252936a5bf2ff37fb394df781a",
+      "repair": {
+        "evidence_decision": "",
+        "invalid_evidence_context_ids": []
+      },
+      "sense_id": "d2lce_98211ac6b2c27c6359ce6dae",
+      "source_payload_sha256": "fa6e830fd5908e49720c599a2ad697b79740ce106d8f2a217c3a5f022a8057a6",
+      "source_term": "inverse"
+    },
+    {
+      "adjudication_case_id": "adj100_70f0ec5aedd7806f2a1ac9d8",
+      "available_evidence_contexts": [
+        {
+          "boundary_only": false,
+          "content_sha256": "3cb5b6c6d5b8e5339b045ea1484b4f3e3d7b710c97423a57000845ebfbb0d923",
+          "context_id": "ctx_36554f5312ed2da8c360daae",
+          "context_role": "BACKUP",
+          "context_type": "C4",
+          "source_text": "## The Matrix Factorization Model",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "073097dd8c5352e766dc90b7c6fd8db8467adacf4da545a775e11a51ffd7adcd",
+          "context_id": "ctx_76456008737e2fa2778ac72c",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "Matrix Factorization :cite:`Koren.Bell.Volinsky.2009` is a well-established algorithm in the recommender systems literature.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "49fda713e0ba4e69c8a4fa4bfe08db6a4fbad48fda932846ac0cb53ac6914171",
+          "context_id": "ctx_85322039ea0d616c001b09d4",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "Latent factor models such as matrix factorization are examples of model-based CF.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "0c840b314749fea275d792a3aeb9ea84c3fa181810e01fe7a41503d5cbec2d06",
+          "context_id": "ctx_9a721a5919d4be82909eca25",
+          "context_role": "BACKUP",
+          "context_type": "C2",
+          "source_text": "Although the final score was the result of an ensemble solution (i.e., a combination of many algorithms), the matrix factorization algorithm played a critical role in the final blend.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "84fdbf3b063a7730bb10a5ea17d9830e3fe1b35707d6020f0445362de2188f9f",
+          "context_id": "ctx_a65e2f61252cb7f76af3a6db",
+          "context_role": "PRIMARY",
+          "context_type": "C3",
+          "source_text": "The first version of matrix factorization model is proposed by Simon Funk in a famous [blog\npost](https://sifter.org/~simon/journal/20061211.html) in which he described the idea of factorizing the interaction matrix.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "9145f046bf987729e1180b38c1534c05cab6b0cf97fd93b2d21293026ddeaa07",
+          "context_id": "ctx_a9b72a28dee34e2910a4ca47",
+          "context_role": "PRIMARY",
+          "context_type": "C2",
+          "source_text": "In this section, we will dive into the details of the matrix factorization model and its implementation.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "08121f55f088b14a284427b3b1c871d0a988c2ef17a43ae52660cb786f839ff5",
+          "context_id": "ctx_aa3b7268d2031526ca7948bd",
+          "context_role": "BACKUP",
+          "context_type": "C2",
+          "source_text": "This computation is important in an area called matrix factorization.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "950283c6af2ce1c32a9ccf73dbe939cc0a060e738496de0907100b258e3678b8",
+          "context_id": "ctx_cfcea364b99854c40c41a050",
+          "context_role": "PRIMARY",
+          "context_type": "C4",
+          "source_text": "# Matrix Factorization",
+          "synthetic": false
+        },
+        {
+          "boundary_only": true,
+          "content_sha256": "5d6b2701c296579a33aaad0a42816005e6ec9eedf09913fbcf22bde17d4b93da",
+          "context_id": "ctxx_72c3492a653c7eb9641454ed",
+          "context_role": "CONTRASTIVE",
+          "context_type": "CONTRASTIVE",
+          "source_text": "Synthetic: In this chapter, matrix factorization predicts user–item preferences by learning latent factors from an interaction matrix.",
+          "synthetic": true
+        }
+      ],
+      "batch_id": "batch_006",
+      "case_index": 2,
+      "completed_file_sha256": "ee008cbb74000579fa1b17b07b056f169659f911bc5998d51e85e813fd36775e",
+      "current_adjudication_rationale": "The evidence supports two related but distinct uses. The recommender-system contexts (ctx_36554f5312ed2da8c360daae, ctx_76456008737e2fa2778ac72c, ctx_85322039ea0d616c001b09d4, ctx_9a721a5919d4be82909eca25, ctx_a65e2f61252cb7f76af3a6db, ctx_a9b72a28dee34e2910a4ca47, and ctx_cfcea364b99854c40c41a050) refer to a latent-factor model that factorizes a user-item interaction matrix. ctx_aa3b7268d2031526ca7948bd comes from the mathematics appendix and uses matrix factorization as a general computation, so it is valid evidence for a separate general-decomposition branch rather than invalid evidence. Split the definition and retain 'phân rã ma trận' for the general computation; replace the two malformed model candidates with precise model-specific renderings.",
+      "current_evidence_decision": "REVISE",
+      "current_invalid_evidence_context_ids": [],
+      "current_proposed_split_labels": [
+        "matrix factorization: general matrix decomposition",
+        "matrix factorization: recommender latent-factor model"
+      ],
+      "current_review_notes": "Partition ctx_aa3b7268d2031526ca7948bd to the general-decomposition branch and the seven recommender-system contexts to the latent-factor branch. Keep the synthetic interaction-matrix example boundary-only. Candidate 1 supplies the general mathematical rendering; candidates 2 and 3 are replaced with model-specific phrases.",
+      "current_sense_status": "SPLIT_REQUIRED",
+      "original_adjudication_sha256": "28936e46a7f1977e30554fca60f8221a3106ee6a3e8bee0141f0da9bf8aef62d",
+      "repair": {
+        "evidence_decision": "",
+        "invalid_evidence_context_ids": []
+      },
+      "sense_id": "d2lce_bbf89ef89c96205886255dcf",
+      "source_payload_sha256": "e83b31f125de1eca6a845668c6c114160831437f7591b866a035ac0c8cdfacbe",
+      "source_term": "matrix factorization"
+    },
+    {
+      "adjudication_case_id": "adj100_ab5e0c87c2e1931d787518d9",
+      "available_evidence_contexts": [
+        {
+          "boundary_only": false,
+          "content_sha256": "cb5e8f197c22b20a817c665354c687e5015277e440abda841ff2affa4f551bcf",
+          "context_id": "ctx_09d73755e2ce9336c387813d",
+          "context_role": "PRIMARY",
+          "context_type": "C2",
+          "source_text": "Thus, we need to compute the expected risk that we incur as the loss function,\ni.e., we need to multiply the probability of the outcome\nwith the benefit (or harm) associated with it.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "9ee70e72da7afa01ae1e8004adc67eb31b763d0c938c1d2cb00e567e8c08909d",
+          "context_id": "ctx_2c2639ba429795d2935fc5d5",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "When we train high-capacity models we run the risk of overfitting.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "ea6eb5bc2850d6716fca80e18e38dece3f58baf37c0bc8b4099d9bc685aa1009",
+          "context_id": "ctx_2fc169f6489bcc78299b417f",
+          "context_role": "BACKUP",
+          "context_type": "C1",
+          "source_text": "In other words, the effect of the uncertain risk\noutweighs the benefit by far.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "a1e4ef3b3ff97f847b9bb5d0d06485cd05e372ea23fb0d76c8b0c3cc4d778098",
+          "context_id": "ctx_399193474e26307c198edb25",
+          "context_role": "BACKUP",
+          "context_type": "C1",
+          "source_text": "We risk losing information in the cropped out portions.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "1d218ea4b906139f116a043e4b1b3070958bd0136771e234f58a636861e422cf",
+          "context_id": "ctx_7cbe29eaa7c1116fd7a5e733",
+          "context_role": "PRIMARY",
+          "context_type": "C2",
+          "source_text": "As described\nin :numref:`subsec_empirical-risk-and-risk`,\nthe empirical risk\nis an average loss\non the training dataset\nwhile the risk is the expected loss \non the entire population of data.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "c5eac7333e72ffb123cec881cd379782c7271d923e74f7988a824f093a9b3941",
+          "context_id": "ctx_a548badbf36a46c4f9452839",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "For example, if we were training a model to predict\nthe risk that a loan defaults,\nwe might associate each applicant with a vector\nwhose components correspond to their income,\nlength of employment, number of previous defaults, and other factors.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "7fb15e971e9e87436985999e095c6d66f028bea58afb2044c3f520603f18c670",
+          "context_id": "ctx_a99932a01269042b25d04a4b",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "The second one has a much larger degree of fluctuation, and thus represents a much larger risk.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "0d9897634abce5b0950c094006f543e42b97465166d883253527703ea6fbddbd",
+          "context_id": "ctx_f4a2c74c968df044ff098382",
+          "context_role": "BACKUP",
+          "context_type": "C1",
+          "source_text": "In sensitive applications of machine learning,\nlike predictive policing, resume screening, and risk models used for lending,\nwe must be especially alert to the consequences of garbage data.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": true,
+          "content_sha256": "7c7dd9faeade01e8500e500ada8b20374585930ed7282f79a50c48f6b840e4c5",
+          "context_id": "ctxx_97deae5f12df8dd84a8318fa",
+          "context_role": "CONTRASTIVE",
+          "context_type": "CONTRASTIVE",
+          "source_text": "Synthetic: In finance, the risk of default was estimated before approving the loan.",
+          "synthetic": true
+        }
+      ],
+      "batch_id": "batch_008",
+      "case_index": 3,
+      "completed_file_sha256": "05f520ed0ca6ac96e07fe5263b5d47f20b0669b7797423d8567dd4e5822bf63a",
+      "current_adjudication_rationale": "The evidence contains three valid contracts for risk. ctx_09d73755e2ce9336c387813d and ctx_7cbe29eaa7c1116fd7a5e733 define statistical risk as expected population loss; ctx_2c2639ba429795d2935fc5d5, ctx_2fc169f6489bcc78299b417f, ctx_a548badbf36a46c4f9452839, ctx_a99932a01269042b25d04a4b, and ctx_f4a2c74c968df044ff098382 use the noun for the chance or degree of an adverse uncertain outcome; ctx_399193474e26307c198edb25 uses the verb 'risk losing'. None of these real contexts should be discarded: they must be partitioned by sense and POS. Keep 'rủi ro' for the general noun branch and 'tổn thất kỳ vọng' for expected-loss risk; replace 'sai số khái quát hóa', which is not equivalent to risk, with the verb-compatible 'có nguy cơ'. The loan-default contrast is synthetic and boundary-only.",
+      "current_evidence_decision": "REVISE",
+      "current_invalid_evidence_context_ids": [],
+      "current_proposed_split_labels": [
+        "statistical expected risk or population loss (noun)",
+        "adverse uncertain outcome or exposure (noun)",
+        "expose to possible loss or harm (verb)"
+      ],
+      "current_review_notes": "Partition all eight real contexts: expected-loss contexts to branch 1, overfitting/default/fluctuation/lending contexts to branch 2, and ctx_399193474e26307c198edb25 to the verb branch. Candidate 2 is replaced because 'sai số khái quát hóa' names a different error concept; the synthetic example is boundary-only.",
+      "current_sense_status": "SPLIT_REQUIRED",
+      "original_adjudication_sha256": "435bc3a204ecbba47572e603819ce650dc4c266ddfd034da7c893e78199914f1",
+      "repair": {
+        "evidence_decision": "",
+        "invalid_evidence_context_ids": []
+      },
+      "sense_id": "d2lce_c9e2beab505998c5b3b560b5",
+      "source_payload_sha256": "673b4e42c63e1d54fd5085f09e48c2d6419f900ab439cb60e0f41278778219d8",
+      "source_term": "risk"
+    },
+    {
+      "adjudication_case_id": "adj100_d5bc822d54b95d6fdc66f409",
+      "available_evidence_contexts": [
+        {
+          "boundary_only": false,
+          "content_sha256": "1e8d946f9a61be7b965677d39e335b9cafba211590f161fa29e0bfbd60d09120",
+          "context_id": "ctx_0485eb5efda3441a68d374c6",
+          "context_role": "BACKUP",
+          "context_type": "C3",
+          "source_text": "Although the shape of the function is similar to that of the sigmoid function, the tanh function exhibits point symmetry about the origin of the coordinate system.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "f9a90f8cb14c33a5c5eee61e3482038abc92e452835b8f869909a3859eacd640",
+          "context_id": "ctx_0ca0c7867a08cb23a7e74953",
+          "context_role": "BACKUP",
+          "context_type": "C3",
+          "source_text": "While we might expect microscope images to come from standard equipment,\nwe cannot expect images mined from the Internet\nto all show up with the same resolution or shape.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "25fd03ae4de64e4f7fa856b5915085e536d101ff4b0442e07bf3a32d819c4525",
+          "context_id": "ctx_0f178aa4816b9e54f151c714",
+          "context_role": "PRIMARY",
+          "context_type": "C3",
+          "source_text": "To start off, we can consider an MLP\nwith two-dimensional images $\\mathbf{X}$ as inputs\nand their immediate hidden representations\n$\\mathbf{H}$ similarly represented as matrices in mathematics and as two-dimensional tensors in code, where both $\\mathbf{X}$ and $\\mathbf{H}$ have the same shape.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "a5b33cafeadbe3e6c932a0b395489b1005b338f8be55593d7b877c2c5dd7b10a",
+          "context_id": "ctx_178ff737d193d16c637c5384",
+          "context_role": "PRIMARY",
+          "context_type": "C3",
+          "source_text": "```{.python .input}\n#@tab mxnet, pytorch\ndef synthetic_data(w, b, num_examples):  #@save\n    \"\"\"Generate y = Xw + b + noise.\"\"\"\n    X = d2l.normal(0, 1, (num_examples, len(w)))\n    y = d2l.matmul(X, w) + b\n    y += d2l.normal(0, 0.01, y.shape)\n    return X, d2l.reshape(y, (-1, 1))\n```",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "6caa36ef36c630f70ea412a1bf3df762ca087299ba4b4b2d5836c656a6a2c621",
+          "context_id": "ctx_5a8d5f2e80e768f19b56cf52",
+          "context_role": "PRIMARY",
+          "context_type": "C3",
+          "source_text": "```{.python .input}\n#@tab mxnet, pytorch\ndef seq_data_iter_sequential(corpus, batch_size, num_steps):  #@save\n    \"\"\"Generate a minibatch of subsequences using sequential partitioning.\"\"\"\n    # Start with a random offset to partition a sequence\n    offset = random.randint(0, num_steps)\n    num_tokens = ((len(corpus) - offset - 1) // batch_size) * batch_size\n    Xs = d2l.tensor(corpus[offset: offset + num_tokens])\n    Ys = d2l.tensor(corpus[offset + 1: offset + 1 + num_tokens])\n    Xs, Ys = Xs.reshape(batch_size, -1), Ys.reshape(batch_size, -1)\n    num_batches = Xs.shape[1] // num_steps\n    for i in range(0, num_steps * num_batches, num_steps):\n        X = Xs[:, i: i + num_steps]\n        Y = Ys[:, i: i + num_steps]\n        yield X, Y\n```",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "f773b59e575a27cdad67af56ce5d70262d6ee6eeb4912f3c4dac5963fee75e46",
+          "context_id": "ctx_662c35c799f161b9c9cc657e",
+          "context_role": "BACKUP",
+          "context_type": "C3",
+          "source_text": "The convolution window shape in the second layer\nis reduced to $5\\times5$, followed by $3\\times3$.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "1c6114818a58416a4d235eed361057f2e649031b3c7540d90424a3f4b55fe685",
+          "context_id": "ctx_eaaf8f351dd451d99604be0e",
+          "context_role": "PRIMARY",
+          "context_type": "C1",
+          "source_text": "(**We can access a tensor's *shape***) (~~and the total number of elements~~) (the length along each axis)\nby inspecting its `shape` property.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "1cc1bc8b6b51abe9986e3236ac8a2342402ea7b050e1b5c8888bf53e07dde226",
+          "context_id": "ctx_f57f479949897e554691786b",
+          "context_role": "PRIMARY",
+          "context_type": "C3",
+          "source_text": "Note that the output may have a different shape from the input.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": true,
+          "content_sha256": "4bac7fc5608604cbd04b04dcc9edf2b08685969673c948f39173f2f9e21886bb",
+          "context_id": "ctxx_f6ff268edebdf6e4c03c0f91",
+          "context_role": "CONTRASTIVE",
+          "context_type": "CONTRASTIVE",
+          "source_text": "[Synthetic] The shape of the tensor is (2, 3), whereas the shape of the curve is S-like.",
+          "synthetic": true
+        }
+      ],
+      "batch_id": "batch_008",
+      "case_index": 4,
+      "completed_file_sha256": "05f520ed0ca6ac96e07fe5263b5d47f20b0669b7797423d8567dd4e5822bf63a",
+      "current_adjudication_rationale": "The evidence mixes two legitimate uses of shape. The tensor, array, image-grid, sequence-batch, convolution-window, and output/input contexts use shape for the tuple of axis lengths or array dimensions; ctx_0485eb5efda3441a68d374c6 uses shape for the geometric or functional form of a function. These are both real D2L uses and should be partitioned rather than dropping the function context. The candidates already cover the branches: 'kích thước' for dimensions and 'dạng'/'hình dạng' for geometric or functional form. The synthetic tensor/curve contrast is boundary-only.",
+      "current_evidence_decision": "REVISE",
+      "current_invalid_evidence_context_ids": [],
+      "current_proposed_split_labels": [
+        "shape: tensor or array axis dimensions",
+        "shape: geometric or functional form"
+      ],
+      "current_review_notes": "Partition the real contexts by dimensional shape versus geometric/functional form; do not mark ctx_0485eb5efda3441a68d374c6 invalid because it is positive evidence for the second branch. The candidate set can be assigned without replacement.",
+      "current_sense_status": "SPLIT_REQUIRED",
+      "original_adjudication_sha256": "54b9f0066120d9d4dc8b3f815409a1ef4ec51d0166939cef449dbac11a9ca17e",
+      "repair": {
+        "evidence_decision": "",
+        "invalid_evidence_context_ids": []
+      },
+      "sense_id": "d2lce_7d91b65d1e0031ab994be237",
+      "source_payload_sha256": "6167b6951f3733f21882c839a8944124094a0f7d1654afdab3a9cbbdeb37da19",
+      "source_term": "shape"
+    },
+    {
+      "adjudication_case_id": "adj100_d29bd28c26567d50b0e58608",
+      "available_evidence_contexts": [
+        {
+          "boundary_only": false,
+          "content_sha256": "8277cf99d45e98ee0c7867fcf556fd32aac25e5560424e4536ae6e5065f99554",
+          "context_id": "ctx_0b0937e42c26b6b23b5692f4",
+          "context_role": "PRIMARY",
+          "context_type": "C2",
+          "source_text": "Aim for 64 GB DRAM and invest into an SSD.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "8b83a3a7b1fb4a132810f29e81ab714f3cf27767817cdaba330cba8f99fd6807",
+          "context_id": "ctx_12113aa551b0b7a0b905e6bf",
+          "context_role": "PRIMARY",
+          "context_type": "C2",
+          "source_text": "![As a multiscale object detection model, single-shot multibox detection mainly consists of a base network followed by several multiscale feature map blocks.](../img/ssd.svg)\n:label:`fig_ssd`",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "ba72f94a7d2501ff99de88d53f98dbcc71a0971f56afb59b49cbcc738394efed",
+          "context_id": "ctx_47a2796ead7d2454fdc45f64",
+          "context_role": "PRIMARY",
+          "context_type": "C2",
+          "source_text": "Peripherals, such as Ethernet, WiFi, Bluetooth, SSD controller, and USB, are either part of the chipset or directly attached (PCIe) to the CPU.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "4b0a90d7cf678b4f6b0d7c98a2bf60dc3d687f0623172af36a43ebb0109a4ce0",
+          "context_id": "ctx_607c4610b2fb0f15081b64d0",
+          "context_role": "PRIMARY",
+          "context_type": "C2",
+          "source_text": "```toc\n:maxdepth: 2\n\nimage-augmentation\nfine-tuning\nbounding-box\nanchor\nmultiscale-object-detection\nobject-detection-dataset\nssd\nrcnn\nsemantic-segmentation-and-dataset\ntransposed-conv\nfcn\nneural-style\nkaggle-cifar10\nkaggle-dog\n```",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "12c09edfb84cd414f29987d45fca57324710368dabb864d9b6d6b6d45c95e037",
+          "context_id": "ctx_96fce7b6560a010f307443f6",
+          "context_role": "BACKUP",
+          "context_type": "C2",
+          "source_text": "By now SSD controllers and firmware have developed algorithms to mitigate this.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "1ceb288240af21e5871adfa851bd2b636b914006b59316bfb4991d88b181c35e",
+          "context_id": "ctx_9d639b375fad74fc47d1c470",
+          "context_role": "BACKUP",
+          "context_type": "C2",
+          "source_text": "(remote CPU)        | 120 ns | TinyMemBench on Broadwell E5-2690v4             |\n| Intel Optane random read                   | 305 ns | UCSD Non-Volatile Systems Lab                   |\n| Send 4KB over 100 Gbps HPC fabric          |   1 μs | MVAPICH2 over Intel Omni-Path                   |\n| Compress 1KB with Google Snappy            |   3 μs |                                                 |\n| Send 4KB over 10 Gbps ethernet             |  10 μs |                                                 |\n| Write 4KB randomly to NVMe SSD             |  30 μs | DC P3608 NVMe SSD (QOS 99% is 500μs)            |\n| Transfer 1MB to/from NVLink GPU            |  30 μs | ~33GB/s on NVIDIA 40GB NVLink                 |\n| Transfer 1MB to/from PCI-E GPU             |  80 μs | ~12GB/s on PCIe 3.0 x16 link                  |\n| Read 4KB randomly from NVMe SSD            | 120 μs | DC P3608 NVMe SSD (QOS 99%)                     |\n| Read 1MB sequentially from NVMe SSD        | 208 μs | ~4.8GB/s DC P3608 NVMe SSD                    |\n| Write 4KB randomly to SATA SSD             | 500 μs | DC S3510 SATA SSD (QOS 99.9%)                   |\n| Read 4KB randomly from SATA SSD            | 500 μs | DC S3510 SATA SSD (QOS 99.9%)                   |\n| Round trip within same datacenter          | 500 μs | One-way ping is ~250μs                          |\n| Read 1MB sequentially from SATA SSD        |   2 ms | ~550MB/s DC S3510 SATA SSD                    |\n| Read 1MB sequentially from disk            |   5 ms | ~200MB/s server HDD                           |\n| Random Disk Access (seek+rotation)         |  10 ms |                                                 |\n| Send packet CA->Netherlands->CA            | 150 ms |                                                 |\n:label:`table_latency_numbers`",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "2757fe81e6b6b3eb28a3ce4796e9bf52be7e5aa26faf6b36bbc53de97680552b",
+          "context_id": "ctx_aa0eae6611908af9c05e40d3",
+          "context_role": "BACKUP",
+          "context_type": "C2",
+          "source_text": "Consequently bit-wise random writes on SSD have very poor performance.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": false,
+          "content_sha256": "02fda0706c201971a672d966ef39a18f06f581dedc718261ce36e04460c58bb8",
+          "context_id": "ctx_f4c012def8b4623e96d4ac12",
+          "context_role": "PRIMARY",
+          "context_type": "C2",
+          "source_text": "Now we are ready to use such background\nknowledge to design an object detection model:\nsingle shot multibox detection\n(SSD) :cite:`Liu.Anguelov.Erhan.ea.2016`.",
+          "synthetic": false
+        },
+        {
+          "boundary_only": true,
+          "content_sha256": "61286eaeb88a1c2f2a4930cf9804f0f50fbdd94253eeb334c429af041a44ada8",
+          "context_id": "ctxx_17beba5acdb3e6a8aa8878b6",
+          "context_role": "CONTRASTIVE",
+          "context_type": "CONTRASTIVE",
+          "source_text": "Synthetic: In this chapter, SSD refers to Single Shot Multibox Detection, not a storage drive.",
+          "synthetic": true
+        }
+      ],
+      "batch_id": "batch_008",
+      "case_index": 5,
+      "completed_file_sha256": "05f520ed0ca6ac96e07fe5263b5d47f20b0669b7797423d8567dd4e5822bf63a",
+      "current_adjudication_rationale": "The real evidence contains two unrelated expansions of SSD. ctx_0b0937e42c26b6b23b5692f4, ctx_47a2796ead7d2454fdc45f64, ctx_96fce7b6560a010f307443f6, ctx_9d639b375fad74fc47d1c470, and ctx_aa0eae6611908af9c05e40d3 refer to solid-state storage hardware, controllers, firmware, and I/O. ctx_12113aa551b0b7a0b905e6bf, ctx_607c4610b2fb0f15081b64d0, and ctx_f4c012def8b4623e96d4ac12 refer to the Single Shot Multibox Detection object-detection model. Both groups are valid and must be split, not discarded. The first two candidates cover storage; replace the bare ambiguous 'SSD' slot with the model-specific 'mô hình phát hiện đa hộp một lần (SSD)'. The storage/model contrast is synthetic and boundary-only.",
+      "current_evidence_decision": "REVISE",
+      "current_invalid_evidence_context_ids": [],
+      "current_proposed_split_labels": [
+        "SSD: solid-state drive",
+        "SSD: Single Shot Multibox Detection model"
+      ],
+      "current_review_notes": "Assign the five hardware contexts to the storage branch and the three object-detection contexts to the model branch. Candidate 1 and candidate 2 remain storage renderings; candidate 3 is replaced to make the detection sense explicit.",
+      "current_sense_status": "SPLIT_REQUIRED",
+      "original_adjudication_sha256": "c8efa4fccc857ea2303950d542c7622798e44e23060ac7909ee73eaae00433c4",
+      "repair": {
+        "evidence_decision": "",
+        "invalid_evidence_context_ids": []
+      },
+      "sense_id": "d2lce_c6d5679eb20ff0719dfc35b2",
+      "source_payload_sha256": "f6867739fa0468bd6d14993236be6f557829e77dc7e5e5f48fffbcbec997c063",
+      "source_term": "SSD"
+    }
+  ],
+  "final_glossary_decision": null,
+  "policy_id": "d2l-remaining-100-stage-a-reviewer3-targeted-repair-v1.0",
+  "provider_call_count": 0,
+  "repair_scope": "EVIDENCE_DECISION_CONSISTENCY_ONLY",
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_CASES_REPAIR_FIELDS_FILLED",
+  "reviewer_slot": "reviewer_3_adjudicator",
+  "schema_id": "D2LRemaining100StageAReviewer3RepairV1",
+  "schema_version": "1.0",
+  "source_result_inventory_sha256": "5f49c4874bd21d113d380ffff1288cce38f41ef70cebed46fc15de695aa7f043",
+  "stage_b_gold_autofill_count": 0,
+  "status": "AWAITING_REVIEWER_3_REPAIR"
+}
