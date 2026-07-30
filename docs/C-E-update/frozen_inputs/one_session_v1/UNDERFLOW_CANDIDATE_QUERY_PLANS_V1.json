@@ -1,0 +1,88 @@
+{
+  "schema_id": "CandidateSpecificQueryPlanSetV1",
+  "schema_version": "1.0.0",
+  "status": "FROZEN_FOR_E_BGE_M3_NARROW_REWORK",
+  "e_base_commit": "48c701862671c73a5227aa34eaf8d029583986cc",
+  "e_base_tree": "ba8f0b60d268edeaa8b66d1247d8a15f1d105946",
+  "embedding_model_authority_self_sha256": "ea4e66184afd137075d287433ee9a9ad4da86d9afe93b1bfb70183f8d64b0399",
+  "approved_variants_self_sha256": "c35c085d2dd15a3214c2c7c55bd28943df7e86ca80a74f556867deb5ceff03dc",
+  "sense_id": "d2lce_9bd5113780f8e8160a24e6ad",
+  "source_term": "underflow",
+  "sense_definition_en": "a numerical computing condition where a value becomes too small to represent and is rounded to zero",
+  "domain_anchor_vi": "số học dấu phẩy động",
+  "concept_anchors_vi": [
+    "giá trị quá nhỏ",
+    "làm tròn về 0"
+  ],
+  "runtime_registry_binding": {
+    "package_sha256": "fc6a64e59690c61e5184b2aacc03900929c9ddbbca7a95ff11de87c060074db6",
+    "registry_self_sha256": "75ed11c83f458b2330051d1eedf935e532afa3eec4a77aeeae28a43e06e3a03a",
+    "authoritative_site_hosts": [
+      "jst-ud.vn",
+      "journalofscience.ou.edu.vn",
+      "users.soict.hust.edu.vn",
+      "learn.microsoft.com",
+      "tcvn.gov.vn",
+      "vjol.info.vn",
+      "tieuchuan.vsqi.gov.vn"
+    ]
+  },
+  "execution_caps": {
+    "external_retrieval_queries_per_candidate": 2,
+    "unique_urls_per_candidate": 20,
+    "minimum_successful_extractions_before_no_evidence": 6,
+    "occurrence_windows_per_document": 3,
+    "judge_snippets_per_candidate": 12
+  },
+  "query_class_order": [
+    "Q1_EXACT_CANDIDATE",
+    "Q2_CANDIDATE_SOURCE_TERM",
+    "Q3_CANDIDATE_DOMAIN_ANCHOR",
+    "Q4_CANDIDATE_CONCEPT_ANCHOR",
+    "Q5_AUTHORITATIVE_SITE_RESTRICTION",
+    "Q6_APPROVED_VARIANTS"
+  ],
+  "candidates": [
+    {
+      "candidate_id": "candidate_479fdd8ff6d15304debec117",
+      "canonical_vi": "tràn dưới",
+      "query_classes": {
+        "Q1_EXACT_CANDIDATE": ["\"tràn dưới\""],
+        "Q2_CANDIDATE_SOURCE_TERM": ["\"tràn dưới\" underflow"],
+        "Q3_CANDIDATE_DOMAIN_ANCHOR": ["\"tràn dưới\" \"số học dấu phẩy động\""],
+        "Q4_CANDIDATE_CONCEPT_ANCHOR": ["\"tràn dưới\" \"giá trị quá nhỏ\" \"làm tròn về 0\""],
+        "Q5_AUTHORITATIVE_SITE_RESTRICTION": {"template": "\"tràn dưới\" site:{host}"},
+        "Q6_APPROVED_VARIANTS": []
+      }
+    },
+    {
+      "candidate_id": "candidate_963dd869c9d587f30076cc5d",
+      "canonical_vi": "tụt dưới ngưỡng số học",
+      "query_classes": {
+        "Q1_EXACT_CANDIDATE": ["\"tụt dưới ngưỡng số học\""],
+        "Q2_CANDIDATE_SOURCE_TERM": ["\"tụt dưới ngưỡng số học\" underflow"],
+        "Q3_CANDIDATE_DOMAIN_ANCHOR": ["\"tụt dưới ngưỡng số học\" \"số học dấu phẩy động\""],
+        "Q4_CANDIDATE_CONCEPT_ANCHOR": ["\"tụt dưới ngưỡng số học\" \"giá trị quá nhỏ\" \"làm tròn về 0\""],
+        "Q5_AUTHORITATIVE_SITE_RESTRICTION": {"template": "\"tụt dưới ngưỡng số học\" site:{host}"},
+        "Q6_APPROVED_VARIANTS": []
+      }
+    },
+    {
+      "candidate_id": "candidate_d9f03e66a65a60d095aa8e7f",
+      "canonical_vi": "mất chính xác do quá nhỏ",
+      "query_classes": {
+        "Q1_EXACT_CANDIDATE": ["\"mất chính xác do quá nhỏ\""],
+        "Q2_CANDIDATE_SOURCE_TERM": ["\"mất chính xác do quá nhỏ\" underflow"],
+        "Q3_CANDIDATE_DOMAIN_ANCHOR": ["\"mất chính xác do quá nhỏ\" \"số học dấu phẩy động\""],
+        "Q4_CANDIDATE_CONCEPT_ANCHOR": ["\"mất chính xác do quá nhỏ\" \"giá trị quá nhỏ\" \"làm tròn về 0\""],
+        "Q5_AUTHORITATIVE_SITE_RESTRICTION": {"template": "\"mất chính xác do quá nhỏ\" site:{host}"},
+        "Q6_APPROVED_VARIANTS": []
+      }
+    }
+  ],
+  "variant_policy": "ONLY_EXACT_VALIDATED_VARIANTS_FROM_APPROVED_CANDIDATE_VARIANTS_V1",
+  "embedding_policy": "RANKING_ONLY_NO_ATTESTATION_DECISION",
+  "integrity": {
+    "self_sha256": "44e37d94b89fa0cc4d72b06508ffde679d6917a00077ff2e0cab525bdd48019c"
+  }
+}

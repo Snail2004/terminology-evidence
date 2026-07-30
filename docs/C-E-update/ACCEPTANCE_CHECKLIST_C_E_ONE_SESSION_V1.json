@@ -1,0 +1,39 @@
+{
+  "schema_id": "AcceptanceChecklistCEOneSessionV1",
+  "schema_version": "1.0.0",
+  "scope": "C_AND_E_NARROW_REWORK_PLUS_UNDERFLOW_REGRESSION",
+  "c": {
+    "frozen_context_role_map": false,
+    "role_invariant_tests": false,
+    "critical_disagreement_arbitration": false,
+    "single_judge_fatal_suppressed": false,
+    "unanimous_fatal_preserved": false,
+    "deterministic_fatal_preserved": false,
+    "full_suite_pass": false
+  },
+  "e": {
+    "bge_m3_exact_authority_pin": false,
+    "candidate_specific_query_plan": false,
+    "lead_embedding_ranking": false,
+    "exact_span_gate_preserved": false,
+    "occurrence_embedding_ranking": false,
+    "excluded_sense_margin_recorded": false,
+    "reason_codes_added": false,
+    "telemetry_separated": false,
+    "positive_evidence_predicate_unchanged": false,
+    "full_suite_pass": false
+  },
+  "integration": {
+    "underflow_three_candidate_regression_complete": false,
+    "global_replay_pass": false,
+    "primary_and_supporting_causes_separated": false,
+    "final_glossary_decision_null": false,
+    "gold_access_zero": false,
+    "review_package_deterministic": false
+  },
+  "boundaries": {
+    "full_d0_remainder": "HOLD",
+    "gold_access": "NO",
+    "production_auto_approval": "NO"
+  }
+}

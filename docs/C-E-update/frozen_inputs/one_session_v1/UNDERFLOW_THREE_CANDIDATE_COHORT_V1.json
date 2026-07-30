@@ -1,0 +1,45 @@
+{
+  "schema_id": "UnderflowThreeCandidateRegressionCohortV1",
+  "schema_version": "1.0.0",
+  "status": "FROZEN_FOR_ONE_SESSION_REGRESSION",
+  "sense_id": "d2lce_9bd5113780f8e8160a24e6ad",
+  "source_term": "underflow",
+  "effective_sense_contract_sha256": "6ffd620ed354174f8841cb109e48ba55220920c101a1066886e2faa5031f523a",
+  "candidates": [
+    {
+      "candidate_id": "candidate_479fdd8ff6d15304debec117",
+      "candidate_version": "58f825aa61c43eda71e8bd298b66cd74dbcc73b6a48d64e367c56b57c36bd016",
+      "candidate_vi": "tràn dưới",
+      "input_contract_sha256": "ab99879882c934340ab629e35586432fd47123ff612a62961873933be45ef9fa",
+      "c_runtime_input_physical_sha256": "b65f3d2b982ed43ea56c0a140ebb05cf99fa2b0808d7402d7eb3ef1d40f7bdce",
+      "frozen_candidate_physical_sha256": "37ed7cffeb0627dd87318ccf70d5d5767d54cfa18e0f3739befe5a8539542326"
+    },
+    {
+      "candidate_id": "candidate_963dd869c9d587f30076cc5d",
+      "candidate_version": "e455ec6e4d310ed1c9ef67d5b9b54806613abba531cac1e79198ed279f86505a",
+      "candidate_vi": "tụt dưới ngưỡng số học",
+      "input_contract_sha256": "422c737cedfbfae124f0a4f91896c659dc38889d7c05fe2adeaee7f33f3b4a95",
+      "c_runtime_input_physical_sha256": "e75cea580af8aa77fb72372b3dd0f54fcd52d2aa41241deed646f0eee1a54e2e",
+      "frozen_candidate_physical_sha256": "1f3cab51be9d861cda373783b76dd6e3908c46f4de3176f098a2e96bf494a154"
+    },
+    {
+      "candidate_id": "candidate_d9f03e66a65a60d095aa8e7f",
+      "candidate_version": "d2ed859f8b70a21739b09481d6ecf8f1d2e1b734c1639d43619b7558d128c50e",
+      "candidate_vi": "mất chính xác do quá nhỏ",
+      "input_contract_sha256": "d0fd01fc2c58b5b1a42806d1192a86279b45ecfd46d47b8aa0382761d8bde74a",
+      "c_runtime_input_physical_sha256": "b8a2da92741009b8151afad750a95ccc1a6e3c08311c65b4560463b0d27b31e5",
+      "frozen_candidate_physical_sha256": "77b3b16b77f92a92342cb2f08d82f1018dd8f55aaeb8fcdcf62db16231433625"
+    }
+  ],
+  "context_ids": [
+    "ctx_5d3d4728c7288bca4bf4f624",
+    "ctx_927dfa6b607b0cdb7925b702",
+    "ctx_f6a47145f376202745ec79b1",
+    "ctxx_84628ffb91c733b908fe79fe"
+  ],
+  "candidate_count": 3,
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "455e05b5ac7fccf44552d9be1fb01d3696dbb8a30db9a71127d487c8820b2b22"
+  }
+}

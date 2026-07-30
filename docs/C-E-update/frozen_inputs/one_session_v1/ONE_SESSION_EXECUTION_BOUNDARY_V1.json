@@ -1,0 +1,35 @@
+{
+  "schema_id": "CEOneSessionExecutionBoundaryV1",
+  "schema_version": "1.0.0",
+  "status": "IMPLEMENTATION_AND_LOCAL_CONFORMANCE_AUTHORIZED",
+  "c": {
+    "provider_calls_during_implementation": 0,
+    "rubric_change_allowed": false,
+    "aggregation_change_allowed": false
+  },
+  "e": {
+    "local_loopback_embedding_allowed": true,
+    "lm_studio_server_expected_always_on": true,
+    "lm_studio_auto_load_allowed": true,
+    "external_network_calls_during_implementation": 0,
+    "provider_calls_during_implementation": 0,
+    "embedding_attestation_decision_allowed": false
+  },
+  "integration": {
+    "underflow_three_candidate_regression": "AFTER_BOTH_CHILDREN_PASS",
+    "global_mode": "REPLAY_ONLY",
+    "full_d0_remainder": "HOLD",
+    "second_sense_canary": "HOLD"
+  },
+  "gold_access": "NO",
+  "production_auto_approval": "NO",
+  "final_glossary_decision": null,
+  "test_policy": {
+    "during_implementation": "FOCUSED_CHANGED_BEHAVIOR_ONLY",
+    "before_child_handoff": "ONE_OWNED_FULL_SUITE_RUN",
+    "cross_module_full_suites": "DO_NOT_RUN"
+  },
+  "integrity": {
+    "self_sha256": "5dd4d8b286a809e4fbcd8d793b7baed0a5081193e52053a84361ce09bdf53c46"
+  }
+}

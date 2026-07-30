@@ -1,0 +1,47 @@
+{
+  "schema_id": "EmbeddingModelAuthorityV1",
+  "schema_version": "1.0.0",
+  "status": "MAIN_PINNED_LOCAL_RETRIEVAL_COMPONENT",
+  "issued_at_utc": "2026-07-30T18:09:47Z",
+  "model_family": "BGE-M3",
+  "model_id": "text-embedding-bge-m3",
+  "publisher": "gpustack",
+  "indexed_model_identifier": "gpustack/bge-m3-GGUF/bge-m3-Q8_0.gguf",
+  "model_file": "bge-m3-Q8_0.gguf",
+  "model_file_size_bytes": 634553760,
+  "model_file_sha256": "950f4a8e5e19477a6d3c26d2f162233c20002c601f75e4b002e3239997821167",
+  "quantization": "Q8_0",
+  "embedding_dimension": 1024,
+  "model_max_context_length": 8192,
+  "mode": "DENSE_EMBEDDING_ONLY",
+  "normalization": "L2",
+  "similarity": "COSINE",
+  "runtime": {
+    "name": "LM Studio",
+    "version": "0.4.18+1",
+    "cli_commit": "6041ae0",
+    "endpoint": "http://127.0.0.1:1234/v1/embeddings",
+    "server_lifecycle": "USER_MANAGED_ALWAYS_ON",
+    "model_loading": "AUTO_JIT_BY_EXACT_MODEL_ID",
+    "request_model_id": "text-embedding-bge-m3",
+    "network_classification": "LOCAL_LOOPBACK_NOT_EXTERNAL_NETWORK"
+  },
+  "dimension_probe": {
+    "measured_dimension": 1024,
+    "model_returned": "text-embedding-bge-m3",
+    "local_loopback_calls": 1,
+    "external_network_calls": 0,
+    "provider_calls": 0,
+    "usage_tokens_reported": 0
+  },
+  "decision_boundary": {
+    "embedding_may_rank_leads": true,
+    "embedding_may_rank_occurrence_windows": true,
+    "embedding_may_create_attestation": false,
+    "fixed_similarity_correctness_threshold": null
+  },
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "ea4e66184afd137075d287433ee9a9ad4da86d9afe93b1bfb70183f8d64b0399"
+  }
+}

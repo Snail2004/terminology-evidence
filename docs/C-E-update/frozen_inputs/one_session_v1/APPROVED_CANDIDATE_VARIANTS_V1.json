@@ -1,0 +1,30 @@
+{
+  "schema_id": "ApprovedCandidateVariantsV1",
+  "schema_version": "1.0.0",
+  "status": "FROZEN_FROM_EXACT_FROZEN_CANDIDATE_CONTRACTS",
+  "sense_id": "d2lce_9bd5113780f8e8160a24e6ad",
+  "implicit_variant_generation_allowed": false,
+  "candidates": [
+    {
+      "candidate_id": "candidate_479fdd8ff6d15304debec117",
+      "canonical_vi": "tràn dưới",
+      "validated_variants_vi": [],
+      "rejected_variants_vi": []
+    },
+    {
+      "candidate_id": "candidate_963dd869c9d587f30076cc5d",
+      "canonical_vi": "tụt dưới ngưỡng số học",
+      "validated_variants_vi": [],
+      "rejected_variants_vi": []
+    },
+    {
+      "candidate_id": "candidate_d9f03e66a65a60d095aa8e7f",
+      "canonical_vi": "mất chính xác do quá nhỏ",
+      "validated_variants_vi": [],
+      "rejected_variants_vi": []
+    }
+  ],
+  "integrity": {
+    "self_sha256": "c35c085d2dd15a3214c2c7c55bd28943df7e86ca80a74f556867deb5ceff03dc"
+  }
+}

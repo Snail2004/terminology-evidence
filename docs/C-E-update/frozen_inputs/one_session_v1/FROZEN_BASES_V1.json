@@ -1,0 +1,31 @@
+{
+  "schema_id": "CEOneSessionFrozenBasesV1",
+  "schema_version": "1.0.0",
+  "status": "FROZEN_FOR_ONE_SESSION_NARROW_REWORK",
+  "issued_at_utc": "2026-07-30T18:09:47Z",
+  "main": {
+    "commit": "7aaf1118dcc4a9a67bc9639d30b29062cffd28ef",
+    "tree": "1a4f1bba047655fbba5bb65924e3e9ee19ee5c87"
+  },
+  "c": {
+    "branch": "feature/context-substitution-v2",
+    "commit": "1bda670825034e715933c8f329aa958a994c8dcc",
+    "tree": "4a7f34c7c78b916df8ce5584b2e719628ffb34c0"
+  },
+  "e": {
+    "branch": "feature/vietnamese-attestation-v1",
+    "commit": "48c701862671c73a5227aa34eaf8d029583986cc",
+    "tree": "ba8f0b60d268edeaa8b66d1247d8a15f1d105946"
+  },
+  "dataset_binding": {
+    "dataset_manifest_sha256": "194dd421ad7aef9272e90d1dff2ef96c5a8c8bf1ded7faba74283777e279ddc2",
+    "dataset_zip_sha256": "8a39dce822dcb6aa228da25a5a10b7df07b6ac60ef68bca3e5466aba49449d73",
+    "effective_sense_contract_sha256": "6ffd620ed354174f8841cb109e48ba55220920c101a1066886e2faa5031f523a",
+    "sense_id": "d2lce_9bd5113780f8e8160a24e6ad",
+    "source_term": "underflow"
+  },
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "d97133c836db4c82adece29120cab57d942dd50bf3fa1453970010e23997ab05"
+  }
+}

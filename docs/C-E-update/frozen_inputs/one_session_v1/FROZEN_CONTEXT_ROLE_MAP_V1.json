@@ -1,0 +1,42 @@
+{
+  "schema_id": "FrozenContextRoleMapV1",
+  "schema_version": "1.0.0",
+  "status": "FROZEN_FOR_UNDERFLOW_THREE_CANDIDATE_REGRESSION",
+  "sense_id": "d2lce_9bd5113780f8e8160a24e6ad",
+  "source_term": "underflow",
+  "c_base_commit": "1bda670825034e715933c8f329aa958a994c8dcc",
+  "c_base_tree": "4a7f34c7c78b916df8ce5584b2e719628ffb34c0",
+  "candidate_ids": [
+    "candidate_479fdd8ff6d15304debec117",
+    "candidate_963dd869c9d587f30076cc5d",
+    "candidate_d9f03e66a65a60d095aa8e7f"
+  ],
+  "contexts": [
+    {
+      "context_id": "ctx_5d3d4728c7288bca4bf4f624",
+      "context_type": "definition",
+      "source_text_sha256": "085b618592ba3d91603b6428a27ef5eee884a6f66c0115f6958705a88bae20a3"
+    },
+    {
+      "context_id": "ctx_927dfa6b607b0cdb7925b702",
+      "context_type": "domain_collocation",
+      "source_text_sha256": "3095a625c76c1afd68ac971ed457897cbbd9e0bc0228250a476c7a1829c1130e"
+    },
+    {
+      "context_id": "ctx_f6a47145f376202745ec79b1",
+      "context_type": "typical_usage",
+      "source_text_sha256": "a2aaa8548f2929e3a97a329d82990715d5b6d2b3c2ca07423303368484169ddc"
+    },
+    {
+      "context_id": "ctxx_84628ffb91c733b908fe79fe",
+      "context_type": "contrastive",
+      "source_text_sha256": "8907b604512d27e086090e82bd757fe834b634107bed35041c50fce8cb9b23aa"
+    }
+  ],
+  "override_policy": "REJECT_CANDIDATE_OR_PROVIDER_OVERRIDE",
+  "binding_policy": "EXACT_SELF_SHA256_IN_EVERY_C_RUN",
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "7f460624c35ce0af2e3e687289e5a1acf06a069fb07aed5dd464faea0bb7c6f1"
+  }
+}

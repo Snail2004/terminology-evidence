@@ -1,0 +1,58 @@
+{
+  "schema_id": "CEOneSessionMainFreezeManifestV1",
+  "schema_version": "1.0.0",
+  "status": "FROZEN_INPUTS_READY_FOR_PARALLEL_C_E_IMPLEMENTATION",
+  "issued_at_utc": "2026-07-30T18:09:47Z",
+  "source_requirements": {
+    "docs/C-E-update/ACCEPTANCE_CHECKLIST_C_E_ONE_SESSION_V1.json": "0e894107b6a2078fb0ecc01ca6bba6287bb8d90149832aadb317a0fe4823da1b",
+    "docs/C-E-update/Ke_hoach_Kien_truc_One_Session_C_E_BGE_M3_V1.md": "6296f521d9dd745b1ad2561e02bbc6f3400c552c967d73476814889b594215e0",
+    "docs/C-E-update/Ke_hoach_One_Session_C_E_BGE_M3_V1.zip": "a3ce6d42789d1b5f2b7080b9784854c216f123f858df39fa167dd4f258a94da9",
+    "docs/C-E-update/Yeu_cau_Agent_C_One_Session_Narrow_Rework_V1.md": "cde7a027c6e203a2e50b3ea69de9e1f53d2ce8b54bdd7085622628820cf5cf9e",
+    "docs/C-E-update/Yeu_cau_Agent_E_One_Session_BGE_M3_Retrieval_Rework_V1.md": "512220cb66c9076ce45a3289c2ba636736838770b74364ca81d8b5bcc7b3bb70",
+    "docs/C-E-update/Yeu_cau_Main_Dieu_phoi_One_Session_C_E_V1.md": "0839d5b934fc41e389f7dc8325e9edf516c506d264996a5d19fefeb9d9ba3d73"
+  },
+  "frozen_files": {
+    "APPROVED_CANDIDATE_VARIANTS_V1.json": {
+      "physical_sha256": "29977be78e4847e7f674eb8a0eed32f857807b13d87af8e0c7940d8061b2256d",
+      "self_sha256": "c35c085d2dd15a3214c2c7c55bd28943df7e86ca80a74f556867deb5ceff03dc"
+    },
+    "EMBEDDING_MODEL_AUTHORITY_V1.json": {
+      "physical_sha256": "970bdab43a1c2d3a89d4636db5cb17474074903d9e0bd2e3ace12d693e895754",
+      "self_sha256": "ea4e66184afd137075d287433ee9a9ad4da86d9afe93b1bfb70183f8d64b0399"
+    },
+    "FROZEN_BASES_V1.json": {
+      "physical_sha256": "50df9be8962ebc2558d6de5648137d9fdd4809d0801ed27ebd3ffb7b146a2544",
+      "self_sha256": "d97133c836db4c82adece29120cab57d942dd50bf3fa1453970010e23997ab05"
+    },
+    "FROZEN_CONTEXT_ROLE_MAP_V1.json": {
+      "physical_sha256": "376a67a8192fc372820c72a00c5bfff33ac9c2de2650f4f2c890fb38ffcf29d6",
+      "self_sha256": "7f460624c35ce0af2e3e687289e5a1acf06a069fb07aed5dd464faea0bb7c6f1"
+    },
+    "MAIN_COORDINATION_HANDOFF.md": {
+      "physical_sha256": "981d2c6cafa382ccb252f20960206ed1c9b3e9bdaa6c70af60e2b3e74148deec"
+    },
+    "ONE_SESSION_EXECUTION_BOUNDARY_V1.json": {
+      "physical_sha256": "6a6c3de9a273a6bc12d4bebe3dcb088441b938d993d854c4c8708d3241450b4a",
+      "self_sha256": "5dd4d8b286a809e4fbcd8d793b7baed0a5081193e52053a84361ce09bdf53c46"
+    },
+    "UNDERFLOW_CANDIDATE_QUERY_PLANS_V1.json": {
+      "physical_sha256": "cd1ac9edbab95247d61c1b36352453e0fb4586920a7f5f22cbd7af8f64e12dbf",
+      "self_sha256": "44e37d94b89fa0cc4d72b06508ffde679d6917a00077ff2e0cab525bdd48019c"
+    },
+    "UNDERFLOW_THREE_CANDIDATE_COHORT_V1.json": {
+      "physical_sha256": "312fa46f5502d83adc2349f269f31df585b1795393670c581fe0cbca11e06ce1",
+      "self_sha256": "455e05b5ac7fccf44552d9be1fb01d3696dbb8a30db9a71127d487c8820b2b22"
+    }
+  },
+  "authority_boundaries": {
+    "external_network_calls": 0,
+    "full_d0_remainder": "HOLD",
+    "gold_access": "NO",
+    "local_loopback_embedding": "AUTHORIZED",
+    "production_auto_approval": "NO",
+    "provider_calls": 0
+  },
+  "integrity": {
+    "self_sha256": "46f4ebc901f4448d6a01c5438ada87ecba237c6cad14ccd150254221dfe485fc"
+  }
+}
