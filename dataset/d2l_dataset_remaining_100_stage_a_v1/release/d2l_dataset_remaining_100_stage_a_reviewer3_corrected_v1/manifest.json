@@ -1,0 +1,97 @@
+{
+  "artifact_name": "d2l_dataset_remaining_100_stage_a_reviewer3_corrected_v1",
+  "corrected_case_count": 8,
+  "files": {
+    "RELEASE_REPORT.md": {
+      "sha256": "ce260cd72f646f1bcbdfeabbe72e40d5380052102ccf8d4da9166d05c51eae27",
+      "size_bytes": 336
+    },
+    "audit/preflight_report.json": {
+      "sha256": "dfe925a33b5c3c6afede6150c9da5992c7e5bc5f5ab456e870682fea446c74bb",
+      "size_bytes": 5164
+    },
+    "audit/reviewer_3_repair_input.json": {
+      "sha256": "c83baeccade4a2933805b437683bd7daee978afb7db6ba1771571013db6ba0d3",
+      "size_bytes": 52789
+    },
+    "audit/reviewer_3_repair_response.json": {
+      "sha256": "8284a00e77bde453cbb757f192465e1cb88256189475d6f05935565e64cb152f",
+      "size_bytes": 52837
+    },
+    "corrected_reviews/reviewer_3/batch_001/reviewer_3_input.json": {
+      "sha256": "327c0d09e4cd583c7fd6826e3d47c6d60853e1b09a8d1f3d1ddac42bee942323",
+      "size_bytes": 90171
+    },
+    "corrected_reviews/reviewer_3/batch_002/reviewer_3_input.json": {
+      "sha256": "eb259f2fcfbb45ea97cc96e3d5dbbb9d47a6af848a741e1b4cba69e681ada6f5",
+      "size_bytes": 122745
+    },
+    "corrected_reviews/reviewer_3/batch_003/reviewer_3_input.json": {
+      "sha256": "39466ce029b5f4dd1f16bf2d7f575195b0c8b3e819ec04e40608bbff1e4b8b38",
+      "size_bytes": 140544
+    },
+    "corrected_reviews/reviewer_3/batch_004/reviewer_3_input.json": {
+      "sha256": "e67764b89f12ead3d85048331c5d2430ffc59dba9f635d0d6be4163704437a00",
+      "size_bytes": 73864
+    },
+    "corrected_reviews/reviewer_3/batch_005/reviewer_3_input.json": {
+      "sha256": "ca5b2c81e6a3ebb34efa9ddd8ee7c81ca9887c2fc7fd2bf7b210b063eeece440",
+      "size_bytes": 124949
+    },
+    "corrected_reviews/reviewer_3/batch_006/reviewer_3_input.json": {
+      "sha256": "9c294af720492c888bf9e912f20103d3f8bcc0bf597b4894519f3ffe96f70ba3",
+      "size_bytes": 100944
+    },
+    "corrected_reviews/reviewer_3/batch_007/reviewer_3_input.json": {
+      "sha256": "a92b8e0589eb3fced453d245e2d9b9dcb5d711c8df2cab13e19cb8427a4f50a1",
+      "size_bytes": 73810
+    },
+    "corrected_reviews/reviewer_3/batch_008/reviewer_3_input.json": {
+      "sha256": "bd3e066d4522db9296256d128b0dda19b97866bb9948cebc7fc8b6e1eb01705d",
+      "size_bytes": 150847
+    },
+    "corrected_reviews/reviewer_3/batch_009/reviewer_3_input.json": {
+      "sha256": "9a7b36d1bda2e580e12ab7d1b3ec0efda4731bc8c73d7258352d419193da07b0",
+      "size_bytes": 101066
+    },
+    "corrected_reviews/reviewer_3/batch_010/reviewer_3_input.json": {
+      "sha256": "01555bc7ece9fd4156eaf419fe0dde71a5b1cf27bde7865af04f5e24ffbb49c6",
+      "size_bytes": 95419
+    },
+    "corrected_reviews/reviewer_3/correction_receipt.json": {
+      "sha256": "427fec265efef64ff7cec1ea127ad3d8b4571a98b7c5e5b771566b5c514cbca5",
+      "size_bytes": 594
+    },
+    "source/tests/test_reviewer3_adjudication_finalize.py": {
+      "sha256": "4d82881f559b3364acb06ccbdcb998afdeefc1d583388138879811093c24f1b5",
+      "size_bytes": 6674
+    },
+    "source/tests/test_reviewer3_adjudication_repair.py": {
+      "sha256": "5419346b9347d0d2d9efacd974f1498bd181d2f44126b03b5d7f5663e36bf932",
+      "size_bytes": 8024
+    },
+    "source/tools/reviewer3_adjudication_finalize.py": {
+      "sha256": "91570341dfa37c21062cbb99ab6510378c018f951be6a88d1825d93f442a56c0",
+      "size_bytes": 17294
+    },
+    "source/tools/reviewer3_adjudication_repair.py": {
+      "sha256": "0408c6856eb9a06fef3e6925d12e9f9907c7e6dcc9704f02980c676871832c62",
+      "size_bytes": 25794
+    },
+    "validation_report.json": {
+      "sha256": "eea2ea2c1139e30cb33005e55175f5153add879f9e50a3078775b952213ca464",
+      "size_bytes": 5159
+    }
+  },
+  "final_glossary_decision": null,
+  "manifest_sha256": "a2242c5d1c3f6fa23a7782bd8b442cc0d485dd6a94caf27f7766f07a4d86411d",
+  "policy_id": "d2l-remaining-100-stage-a-reviewer3-corrected-v1.0",
+  "provider_call_count": 0,
+  "schema_id": "D2LRemaining100StageAReviewer3CorrectedManifestV1",
+  "schema_version": "1.0",
+  "source_result_files_unchanged": true,
+  "stage_b_gold_autofill_count": 0,
+  "status": "REVIEWER_3_ADJUDICATION_CORRECTED_ZERO_PROVIDER",
+  "validated_batch_count": 10,
+  "validated_case_count": 45
+}
