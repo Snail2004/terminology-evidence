@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import time
 from contextlib import contextmanager
 from contextvars import ContextVar
@@ -8,7 +9,7 @@ from typing import Any, Callable, Iterable, Mapping, Sequence
 
 from context_substitution.v2.contracts.common import sha256_text
 from context_substitution.v2.contracts.validation import ContractValidationError
-from context_substitution.v2.jsonio import loads_strict
+from context_substitution.v2.jsonio import StrictJSONError, loads_strict
 from context_substitution.v2.providers.base import (
     ContextExecutionError,
     ContextProviderRoute,
@@ -24,6 +25,23 @@ from context_substitution.v2.providers.ledger import (
     ProviderResponseLedger,
 )
 from context_substitution.v2.providers.role_plan import ProviderRolePlan
+
+
+_COMPLETE_OUTER_JSON_FENCE = re.compile(
+    r"\A[ \t\r\n]*```json[ \t]*\r?\n(?P<body>[\s\S]*?)\r?\n```[ \t\r\n]*\Z"
+)
+
+
+def _unwrap_complete_outer_json_fence(response_text: str) -> str:
+    match = _COMPLETE_OUTER_JSON_FENCE.fullmatch(response_text)
+    if match is None:
+        return response_text
+    body = match.group("body")
+    if "```" in body:
+        raise StrictJSONError(
+            "provider response: nested Markdown fence is forbidden"
+        )
+    return body
 
 
 class RoleRoutedStructuredModel:
@@ -193,7 +211,10 @@ class RoleRoutedStructuredModel:
                     parsed: Any = (
                         dict(raw.payload)
                         if raw.payload is not None
-                        else loads_strict(response_text, source=f"provider:{role}:{tag}")
+                        else loads_strict(
+                            _unwrap_complete_outer_json_fence(response_text),
+                            source=f"provider:{role}:{tag}",
+                        )
                     )
                     validated = validator(parsed)
                     provenance = provider_provenance(
