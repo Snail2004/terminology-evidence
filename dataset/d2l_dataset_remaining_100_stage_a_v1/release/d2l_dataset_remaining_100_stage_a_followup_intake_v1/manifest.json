@@ -1,0 +1,190 @@
+{
+  "artifact_name": "d2l_dataset_remaining_100_stage_a_followup_intake_v1",
+  "base_authority_commit": "67296e5a85a4ab4507fba137b2cdd3f270a1388d",
+  "created_at": "2026-07-30T00:00:00Z",
+  "file_count": 44,
+  "files": {
+    "RELEASE_REPORT.md": {
+      "sha256": "ddff1c1b01cb22df1c4ceefb268995123dc393fdc64bbe9704db8ff037f76e2a",
+      "size_bytes": 420
+    },
+    "authority.json": {
+      "sha256": "075c8da9a5ee9602b40d41e5b717a3b830b0f7e038155a7edb34086c369b9d66",
+      "size_bytes": 543
+    },
+    "captures/high_risk/reviewer_2/highrisk_batch_001_reviewer_2.json": {
+      "sha256": "e21e7c540f635fbf64be9fae3f577e90b27f495beda9f002f719b3dda7501de7",
+      "size_bytes": 170064
+    },
+    "captures/high_risk/reviewer_2/highrisk_batch_002_reviewer_2.json": {
+      "sha256": "9df5d0296ae58c5143d8aa4acdfc108af630e4b4edb9ab8cbd711824fc70a420",
+      "size_bytes": 205238
+    },
+    "captures/high_risk/reviewer_3/highrisk_batch_003_reviewer_3.json": {
+      "sha256": "009693193a90f6de706601d328476ec2c92a5910370c8bcaeb2444a822548eb7",
+      "size_bytes": 124119
+    },
+    "captures/r0_blind/reviewer_4/blind_batch_001_reviewer_4.json": {
+      "sha256": "a48cb66f60f74f3d77c930222e86e34cb8bc6cb67e9a7ace668b69144dae29a9",
+      "size_bytes": 106898
+    },
+    "captures/r0_blind/reviewer_4/blind_batch_003_reviewer_4.json": {
+      "sha256": "d2c2ede245b804ee30c0328f9fd87aaa836cf8806b59bbb1ca6515ca4420ce96",
+      "size_bytes": 103982
+    },
+    "captures/r0_blind/reviewer_4/blind_batch_005_reviewer_4.json": {
+      "sha256": "cb63140246ad6417cf9918022f01fcb246867ca7d1b5be2a68249f032e35bf1c",
+      "size_bytes": 104603
+    },
+    "captures/r0_blind/reviewer_5/blind_batch_002_reviewer_5.json": {
+      "sha256": "5e63e50905870c9e89c98537b6f7a2e1dc90d9c135a69df750129a19cc437a60",
+      "size_bytes": 103497
+    },
+    "captures/r0_blind/reviewer_5/blind_batch_004_reviewer_5.json": {
+      "sha256": "7c295dd1bd1044c2954f62176b935c64cc4a0b6e7116c7c7d11470cf1bd72fb0",
+      "size_bytes": 107744
+    },
+    "captures/r0_repair/reviewer_1/repair_batch_001_reviewer_1.json": {
+      "sha256": "c3fb6f8c2990056e7b3ae5fb32bfea305f4a8d58a33671e194ff2e498168aad9",
+      "size_bytes": 109486
+    },
+    "captures/r0_repair/reviewer_1/repair_batch_002_reviewer_1.json": {
+      "sha256": "de95aaaae76c809e61f0766e6274c7a7e010c29488655019f1edd37d98197364",
+      "size_bytes": 117040
+    },
+    "handoff/ASSIGNMENT.md": {
+      "sha256": "bfc35cea7300fed6ee0b13da16132ea8d17487610b1d11e9cc771ac4720f02a2",
+      "size_bytes": 777
+    },
+    "handoff/REVIEWER_4_MESSAGE.md": {
+      "sha256": "58b6f0ee8c3bafb7055dd767a09ff5579c30ab6dc1873cbce85a77ba1ce8aa7d",
+      "size_bytes": 412
+    },
+    "handoff/REVIEWER_5_MESSAGE.md": {
+      "sha256": "0ef72e263b5053a08da1e62bf11c88527ac60335410045d0497de5f90b174ee0",
+      "size_bytes": 412
+    },
+    "handoff/followup_reaudit_batch_001.zip": {
+      "sha256": "db9cb80cf84b804597cd3c2de04bc62869161fbfc7d23736c7eee2cf41cedf63",
+      "size_bytes": 18487
+    },
+    "handoff/followup_reaudit_batch_002.zip": {
+      "sha256": "ce0c1975adc6a9eaf2da7a3bdbd1bcae470718697725cc598b17a4774d535c83",
+      "size_bytes": 16591
+    },
+    "handoff/followup_reaudit_batch_003.zip": {
+      "sha256": "43cb5a292c4537438370b38165f0e6a53a5ddc5efb36117283cfeeb2cb0be502",
+      "size_bytes": 8607
+    },
+    "handoff/high_risk_audit_batch_001.zip": {
+      "sha256": "fce7bdf5ac323c7252aadb6393de56d0f105c860c5daa10e7a80c9f6eb3131dd",
+      "size_bytes": 17565
+    },
+    "handoff/high_risk_audit_batch_002.zip": {
+      "sha256": "06627f954030e389d782f495aac688edc9f885e065974bb0b727a500c3169420",
+      "size_bytes": 15191
+    },
+    "handoff/high_risk_audit_batch_003.zip": {
+      "sha256": "6947a2c98208c5cef604c3550943287eab92a9c9dbb82f1bb119a10b390935f9",
+      "size_bytes": 9586
+    },
+    "input_inventory.json": {
+      "sha256": "b3d4043b68bd882bf8a7220657b205d73b03aac8be35fa2a8dd6bdcec8fae99f",
+      "size_bytes": 5031
+    },
+    "review_batches/followup_reaudit_batch_001/REVIEW_INSTRUCTIONS.md": {
+      "sha256": "1fcbd6e8ddfaf8e5d16b73404fe2e384e21759afe12706e76926cb2675d7d97e",
+      "size_bytes": 411
+    },
+    "review_batches/followup_reaudit_batch_001/reviewer_input.json": {
+      "sha256": "9704aaf470d5bd463602a7aa55c7fcfa837a1e9495ab9084a8d1a9a8c75c6b85",
+      "size_bytes": 104626
+    },
+    "review_batches/followup_reaudit_batch_002/REVIEW_INSTRUCTIONS.md": {
+      "sha256": "1fcbd6e8ddfaf8e5d16b73404fe2e384e21759afe12706e76926cb2675d7d97e",
+      "size_bytes": 411
+    },
+    "review_batches/followup_reaudit_batch_002/reviewer_input.json": {
+      "sha256": "72c0e2daf9fe4a77facca87330659f6358baa76988952ec1c422d9cc9d123c9c",
+      "size_bytes": 102123
+    },
+    "review_batches/followup_reaudit_batch_003/REVIEW_INSTRUCTIONS.md": {
+      "sha256": "1fcbd6e8ddfaf8e5d16b73404fe2e384e21759afe12706e76926cb2675d7d97e",
+      "size_bytes": 411
+    },
+    "review_batches/followup_reaudit_batch_003/reviewer_input.json": {
+      "sha256": "d9be146c535f2fdd89dce0b54e9144a7a28fd6c237260ba2c0f58dea0f8c72d5",
+      "size_bytes": 41310
+    },
+    "review_batches/high_risk_audit_batch_001/REVIEW_INSTRUCTIONS.md": {
+      "sha256": "17423818bdf61aa4c6ebf3485c1603c96e456973ee869abe7deea9128379eb37",
+      "size_bytes": 588
+    },
+    "review_batches/high_risk_audit_batch_001/auditor_input.json": {
+      "sha256": "21fc34546e785e7de066fa5b7daf00508ef078921eec73712fc061c501988e29",
+      "size_bytes": 110795
+    },
+    "review_batches/high_risk_audit_batch_002/REVIEW_INSTRUCTIONS.md": {
+      "sha256": "17423818bdf61aa4c6ebf3485c1603c96e456973ee869abe7deea9128379eb37",
+      "size_bytes": 588
+    },
+    "review_batches/high_risk_audit_batch_002/auditor_input.json": {
+      "sha256": "4ee75f79a7cf818ca7ec78c22e3412a4ddc68a6d1390ab32b36bd130855bcf91",
+      "size_bytes": 84635
+    },
+    "review_batches/high_risk_audit_batch_003/REVIEW_INSTRUCTIONS.md": {
+      "sha256": "17423818bdf61aa4c6ebf3485c1603c96e456973ee869abe7deea9128379eb37",
+      "size_bytes": 588
+    },
+    "review_batches/high_risk_audit_batch_003/auditor_input.json": {
+      "sha256": "e1a799c0546d363b77376545e3fb8bf92108347bdf7a8855fc31093492c3d014",
+      "size_bytes": 46454
+    },
+    "routing/accepted_blind_23.jsonl": {
+      "sha256": "c739c8cf5cff7e739860d1027f85e31997bf7067d1d1a33c1738905b71938ad0",
+      "size_bytes": 366906
+    },
+    "routing/blocked_1.jsonl": {
+      "sha256": "8c9b8b38c1e52042a664e0a1a8a98b47b48a5e07a92f51f062854e1d756f6269",
+      "size_bytes": 1067
+    },
+    "routing/high_risk_audit_pending_10.jsonl": {
+      "sha256": "1486d1d749463ba306000ba4b1234ebd3b4797a81bdcf5ae7684dc1164352438",
+      "size_bytes": 179634
+    },
+    "routing/r0_reaudit_pending_12.jsonl": {
+      "sha256": "71269cc5dcf3e39f201a77a39f0f5dd60784ab953665c07f3c16bd6951d472d5",
+      "size_bytes": 365113
+    },
+    "source/tests/test_followup_intake.py": {
+      "sha256": "c7bca3dc103b63ba06b20f050bcc594327a853aa0cecb6e8c474bca009f2b607",
+      "size_bytes": 14881
+    },
+    "source/tools/build_followup_intake.py": {
+      "sha256": "2c5a5352944252a1aa837f711097399fb0fb6437a3e739418ba4dee24aaca487",
+      "size_bytes": 23003
+    },
+    "source/tools/followup_handoffs.py": {
+      "sha256": "8101bec5cbebb6997971d628d8b957e0c18a3ead37bb8cac22692e57d387c5e4",
+      "size_bytes": 7614
+    },
+    "source/tools/followup_validation.py": {
+      "sha256": "1dfd2a917cb7423ebd54fc1136d86c84405188c89de28479b329725b1da79900",
+      "size_bytes": 20043
+    },
+    "source/tools/validate_followup_intake.py": {
+      "sha256": "5f26c6a470c3daf6cf465097662c81087604c62c5380b2d18b18abab2425ed52",
+      "size_bytes": 7975
+    },
+    "validation_report.json": {
+      "sha256": "6507463513647e0c16ee6c69777081ca21660e4107af634c034c5b7c58167b7f",
+      "size_bytes": 2090
+    }
+  },
+  "manifest_sha256": "71db84bee3c9b6f97f9587416c5088189e636fb77d64b4963389e39ffd17cd98",
+  "policy_id": "d2l-remaining-100-stage-a-followup-intake-v1.0",
+  "provider_call_count": 0,
+  "schema_id": "D2LRemaining100FollowupIntakeManifestV1",
+  "schema_version": "1.0",
+  "status": "FOLLOWUP_REVIEW_PACKS_READY_ZERO_PROVIDER"
+}

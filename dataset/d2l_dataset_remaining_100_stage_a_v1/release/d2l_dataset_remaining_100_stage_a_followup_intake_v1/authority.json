@@ -1,0 +1,14 @@
+{
+  "base_authority_commit": "67296e5a85a4ab4507fba137b2cdd3f270a1388d",
+  "integrity": {
+    "self_sha256": "cfc780fd4c4edc66813d565b0397324df268484746aca8fdecd1a1ada35d25d8"
+  },
+  "pack_authority_commits": {
+    "high_risk": "a9a3f308cbb2be5e5f6f444a274f55b362e3264c",
+    "r0_blind": "b5467010fd2e6b453464ab590dbc827ee06a8410",
+    "r0_repair": "74282e544c752ed31d295ffc3f088cd582ef1a8e"
+  },
+  "policy_id": "d2l-remaining-100-stage-a-followup-intake-v1.0",
+  "schema_id": "D2LRemaining100FollowupAuthorityV1",
+  "schema_version": "1.0"
+}
