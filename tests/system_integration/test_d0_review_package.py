@@ -26,7 +26,7 @@ class D0ReviewPackageTests(unittest.TestCase):
         return {
             "schema_id": "SystemIntegrationD0ReviewReceiptV1",
             "schema_version": "1.0.0",
-            "status": "EV02_BOUND_D0_COHORT_READY_FOR_INDEPENDENT_REVIEW",
+            "status": "SI_EV02_PRODUCER_SAFE_BOUNDARY_READY_FOR_INDEPENDENT_REVIEW",
             "live_status": "REVIEW_ONLY_DRAFT_INPUT",
             "base_commit": "1" * 40,
             "child_commit": "2" * 40,
@@ -44,10 +44,12 @@ class D0ReviewPackageTests(unittest.TestCase):
                 "sense_count": 50,
                 "context_count": 386,
             },
-            "evaluation_authority": {
+            "evaluation_producer_handoff": {
                 "child_commit": "7de0ecab74bc8439724e419743c18fee46cb885c",
                 "child_tree": "7d2ebf8f65051e8e0326350eb32301954fb62dfc",
-                "authority_zip_sha256": "86ca4e4453c6efc9c0fa11af1d37351c4e8640070c3ab7aa156006525c3bb63c",
+                "producer_handoff_zip_sha256": "f44df544383b240f3d5d3b8a2ae93d4ce7665b94d0ce92f79400e56bd379e3f0",
+                "acceptance_receipt_physical_sha256": "668e65fbe34ce410e699a90ba53e64724c054ab4cc81e307753549bb84d7dab7",
+                "acceptance_receipt_self_sha256": "dd768c8382ca521735df3110055fc58fd13727f058748ab1ba54b634d9413e0c",
                 "cohort_physical_sha256": "df19e7e605f50190e389b374d5a08589858e1ce043b935c69646a3223daa8705",
                 "cohort_self_sha256": "206f5770c7ea32d5a232f986240cfdf5655700b6a15b614a2251d6caba218fad",
                 "candidate_set_sha256": "e72286e06201297864d3163311336515092d841181e484c01276faa9b989fa0b",
@@ -72,6 +74,7 @@ class D0ReviewPackageTests(unittest.TestCase):
                 "auto_approved": 0,
                 "certificates": 0,
                 "official_live_authority": "HOLD",
+                "run_authorized": False,
             },
         }
 
@@ -106,7 +109,7 @@ class D0ReviewPackageTests(unittest.TestCase):
             root = self._sealed(directory)
             receipt_path = root / RECEIPT_NAME
             receipt = load_json(receipt_path, require_object=True)
-            receipt["evaluation_authority"]["canary_candidate_id"] = "candidate_wrong"
+            receipt["evaluation_producer_handoff"]["canary_candidate_id"] = "candidate_wrong"
             receipt["integrity"]["self_sha256"] = self_sha256(receipt)
             receipt_path.unlink()
             dump_json(receipt_path, receipt)

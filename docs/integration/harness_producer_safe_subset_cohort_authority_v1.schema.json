@@ -7,7 +7,7 @@
   "required": [
     "schema_id", "schema_version", "status", "issuer_id", "authority_id",
     "run_id", "phase_id", "split_id", "selection_policy",
-    "parent_payload_authority", "evaluation_authority",
+    "parent_payload_authority", "evaluation_producer_handoff",
     "evaluation_phase_membership", "evaluation_phase_membership_sha256",
     "evaluation_candidate_set_sha256", "parent_candidate_count",
     "parent_candidate_identity_sha256", "candidate_count", "candidate_ids",
@@ -29,7 +29,7 @@
     "split_id": {"type": "string", "minLength": 1},
     "selection_policy": {"const": "EVALUATION_EV02_EXACT_PHASE_PROJECTION_V1"},
     "parent_payload_authority": {"$ref": "#/$defs/binding"},
-    "evaluation_authority": {"$ref": "#/$defs/evaluationBinding"},
+    "evaluation_producer_handoff": {"$ref": "#/$defs/producerHandoffBinding"},
     "evaluation_phase_membership": {"$ref": "#/$defs/phaseMembership"},
     "evaluation_phase_membership_sha256": {"$ref": "#/$defs/sha"},
     "evaluation_candidate_set_sha256": {"$ref": "#/$defs/sha"},
@@ -61,14 +61,16 @@
     "gitOid": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
     "integrity": {"type": "object", "additionalProperties": false, "required": ["self_sha256"], "properties": {"self_sha256": {"$ref": "#/$defs/sha"}}},
     "binding": {"type": "object", "additionalProperties": false, "required": ["relative_path", "physical_sha256", "self_sha256"], "properties": {"relative_path": {"type": "string", "minLength": 1}, "physical_sha256": {"$ref": "#/$defs/sha"}, "self_sha256": {"$ref": "#/$defs/sha"}}},
-    "evaluationBinding": {
+    "producerHandoffBinding": {
       "type": "object", "additionalProperties": false,
-      "required": ["child_commit", "parent_commit", "child_tree", "relative_path", "physical_sha256", "cohort_member_path", "cohort_physical_sha256", "cohort_self_sha256", "candidate_set_sha256", "selection_authority_sha256", "selection_policy_id", "canary_candidate_id"],
+      "required": ["child_commit", "parent_commit", "child_tree", "relative_path", "physical_sha256", "cohort_member_path", "cohort_physical_sha256", "cohort_self_sha256", "acceptance_receipt_member_path", "acceptance_receipt_physical_sha256", "acceptance_receipt_self_sha256", "candidate_set_sha256", "selection_authority_sha256", "selection_policy_id", "canary_candidate_id"],
       "properties": {
         "child_commit": {"$ref": "#/$defs/gitOid"}, "parent_commit": {"$ref": "#/$defs/gitOid"}, "child_tree": {"$ref": "#/$defs/gitOid"},
         "relative_path": {"type": "string", "minLength": 1}, "physical_sha256": {"$ref": "#/$defs/sha"},
         "cohort_member_path": {"type": "string", "minLength": 1}, "cohort_physical_sha256": {"$ref": "#/$defs/sha"},
-        "cohort_self_sha256": {"$ref": "#/$defs/sha"}, "candidate_set_sha256": {"$ref": "#/$defs/sha"},
+        "cohort_self_sha256": {"$ref": "#/$defs/sha"}, "acceptance_receipt_member_path": {"type": "string", "minLength": 1},
+        "acceptance_receipt_physical_sha256": {"$ref": "#/$defs/sha"}, "acceptance_receipt_self_sha256": {"$ref": "#/$defs/sha"},
+        "candidate_set_sha256": {"$ref": "#/$defs/sha"},
         "selection_authority_sha256": {"$ref": "#/$defs/sha"}, "selection_policy_id": {"type": "string", "minLength": 1},
         "canary_candidate_id": {"type": "string", "minLength": 1}
       }

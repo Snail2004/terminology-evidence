@@ -4,11 +4,11 @@
   "title": "SystemIntegrationD0ReviewReceiptV1",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_id", "schema_version", "status", "live_status", "base_commit", "child_commit", "child_tree", "changed_paths", "gates", "dataset_authority", "evaluation_authority", "main01_dependency", "invariants", "integrity"],
+  "required": ["schema_id", "schema_version", "status", "live_status", "base_commit", "child_commit", "child_tree", "changed_paths", "gates", "dataset_authority", "evaluation_producer_handoff", "main01_dependency", "invariants", "integrity"],
   "properties": {
     "schema_id": {"const": "SystemIntegrationD0ReviewReceiptV1"},
     "schema_version": {"const": "1.0.0"},
-    "status": {"const": "EV02_BOUND_D0_COHORT_READY_FOR_INDEPENDENT_REVIEW"},
+    "status": {"const": "SI_EV02_PRODUCER_SAFE_BOUNDARY_READY_FOR_INDEPENDENT_REVIEW"},
     "live_status": {"const": "REVIEW_ONLY_DRAFT_INPUT"},
     "base_commit": {"$ref": "#/$defs/gitOid"},
     "child_commit": {"$ref": "#/$defs/gitOid"},
@@ -28,13 +28,15 @@
         "candidate_count": {"const": 150}, "sense_count": {"const": 50}, "context_count": {"const": 386}
       }
     },
-    "evaluation_authority": {
+    "evaluation_producer_handoff": {
       "type": "object", "additionalProperties": false,
-      "required": ["child_commit", "child_tree", "authority_zip_sha256", "cohort_physical_sha256", "cohort_self_sha256", "candidate_set_sha256", "selection_authority_sha256", "canary_candidate_id", "candidate_count", "sense_count"],
+      "required": ["child_commit", "child_tree", "producer_handoff_zip_sha256", "acceptance_receipt_physical_sha256", "acceptance_receipt_self_sha256", "cohort_physical_sha256", "cohort_self_sha256", "candidate_set_sha256", "selection_authority_sha256", "canary_candidate_id", "candidate_count", "sense_count"],
       "properties": {
         "child_commit": {"const": "7de0ecab74bc8439724e419743c18fee46cb885c"},
         "child_tree": {"const": "7d2ebf8f65051e8e0326350eb32301954fb62dfc"},
-        "authority_zip_sha256": {"const": "86ca4e4453c6efc9c0fa11af1d37351c4e8640070c3ab7aa156006525c3bb63c"},
+        "producer_handoff_zip_sha256": {"const": "f44df544383b240f3d5d3b8a2ae93d4ce7665b94d0ce92f79400e56bd379e3f0"},
+        "acceptance_receipt_physical_sha256": {"const": "668e65fbe34ce410e699a90ba53e64724c054ab4cc81e307753549bb84d7dab7"},
+        "acceptance_receipt_self_sha256": {"const": "dd768c8382ca521735df3110055fc58fd13727f058748ab1ba54b634d9413e0c"},
         "cohort_physical_sha256": {"const": "df19e7e605f50190e389b374d5a08589858e1ce043b935c69646a3223daa8705"},
         "cohort_self_sha256": {"const": "206f5770c7ea32d5a232f986240cfdf5655700b6a15b614a2251d6caba218fad"},
         "candidate_set_sha256": {"const": "e72286e06201297864d3163311336515092d841181e484c01276faa9b989fa0b"},
@@ -58,8 +60,8 @@
     },
     "invariants": {
       "type": "object", "additionalProperties": false,
-      "required": ["provider_calls", "network_calls", "gold_access", "auto_approved", "certificates", "official_live_authority"],
-      "properties": {"provider_calls": {"const": 0}, "network_calls": {"const": 0}, "gold_access": {"const": 0}, "auto_approved": {"const": 0}, "certificates": {"const": 0}, "official_live_authority": {"const": "HOLD"}}
+      "required": ["provider_calls", "network_calls", "gold_access", "auto_approved", "certificates", "official_live_authority", "run_authorized"],
+      "properties": {"provider_calls": {"const": 0}, "network_calls": {"const": 0}, "gold_access": {"const": 0}, "auto_approved": {"const": 0}, "certificates": {"const": 0}, "official_live_authority": {"const": "HOLD"}, "run_authorized": {"const": false}}
     },
     "integrity": {"type": "object", "additionalProperties": false, "required": ["self_sha256"], "properties": {"self_sha256": {"$ref": "#/$defs/sha"}}}
   },

@@ -34,23 +34,16 @@ PRODUCER_SAFE_PUBLICATION_RECEIPT_PHYSICAL_SHA256 = "1709b97c37319b2f4af9cbc3f4c
 EVALUATION_EV02_CHILD = "7de0ecab74bc8439724e419743c18fee46cb885c"
 EVALUATION_EV02_PARENT = "fafcfbcc29aa7a9d5375095942b8eb6e736690d8"
 EVALUATION_EV02_TREE = "7d2ebf8f65051e8e0326350eb32301954fb62dfc"
-EVALUATION_EV02_AUTHORITY_ZIP_SHA256 = "86ca4e4453c6efc9c0fa11af1d37351c4e8640070c3ab7aa156006525c3bb63c"
+EVALUATION_EV02_PRODUCER_HANDOFF_ZIP_SHA256 = "f44df544383b240f3d5d3b8a2ae93d4ce7665b94d0ce92f79400e56bd379e3f0"
+PROHIBITED_FULL_EVALUATION_AUTHORITY_ZIP_SHA256 = "86ca4e4453c6efc9c0fa11af1d37351c4e8640070c3ab7aa156006525c3bb63c"
+EVALUATION_EV02_HANDOFF_CHECKSUMS_SHA256 = "16a75f3fe8d5e079c0aa8dd796cdc6880a955a9df9d030f399632d543d7831ca"
 EVALUATION_EV02_COHORT_PHYSICAL_SHA256 = "df19e7e605f50190e389b374d5a08589858e1ce043b935c69646a3223daa8705"
 EVALUATION_EV02_COHORT_SELF_SHA256 = "206f5770c7ea32d5a232f986240cfdf5655700b6a15b614a2251d6caba218fad"
 EVALUATION_EV02_CANDIDATE_SET_SHA256 = "e72286e06201297864d3163311336515092d841181e484c01276faa9b989fa0b"
 EVALUATION_EV02_CANARY_CANDIDATE_ID = "candidate_479fdd8ff6d15304debec117"
 EVALUATION_EV02_SELECTION_AUTHORITY_SHA256 = "0d52dd27e2657b9e9b0d353a5c66cc984b24dfbd6c8f6e79c98a99f69303745f"
-EVALUATION_EV02_CONTENT_MANIFEST_PHYSICAL_SHA256 = "a7714ae414d93f13cffa2a8d2da63d513cc4dd430427657c323a40ff6a538759"
-EVALUATION_EV02_CONTENT_MANIFEST_SELF_SHA256 = "a0225e626538da5dce4f1d92dd7aaf8f919606d70a76ed31a64c364386386e65"
-EVALUATION_EV02_REFREEZE_CONTENT_PHYSICAL_SHA256 = "5f84ed339d85d88a3768f37f0cf96d4a26084b5699175a2f7044c08968476369"
-EVALUATION_EV02_REFREEZE_CONTENT_SELF_SHA256 = "fb37728eb53f699490535bca38223790bb3eed5b98a84d0973ef53209f365f36"
-EVALUATION_EV02_REFREEZE_RECEIPT_PHYSICAL_SHA256 = "3021da6c5ef4a46c430014e30451a6d419ce90b275eeec75c14746876e3581f4"
-EVALUATION_EV02_REFREEZE_RECEIPT_SELF_SHA256 = "70d97607a91c82b1635d4675adb9be3d4dd0c06553f36b015ce613fdfb6ed0d0"
-EVALUATION_EV02_PUBLICATION_MANIFEST_PHYSICAL_SHA256 = "4ae0706744d2507f1747d75131bbeb807d6342bd525e9ff9a8005c900294bf14"
-EVALUATION_EV02_PUBLICATION_MANIFEST_SELF_SHA256 = "9c918035af40a6be27b624143fba4e51d048b2cd31c46f6dab1e44afbfdd64cd"
-EVALUATION_EV02_CHECKSUMS_PHYSICAL_SHA256 = "ebfea2dac13fb9171b144a4d6f6b97eb0630580d4009accbee72ef221703e681"
-EVALUATION_EV02_CONTENT_COMMIT = "fafcfbcc29aa7a9d5375095942b8eb6e736690d8"
-EVALUATION_EV02_CONTENT_TREE = "6b36fd908b08bdc3c8b345120f9a0f70f401689c"
+EVALUATION_EV02_ACCEPTANCE_RECEIPT_PHYSICAL_SHA256 = "668e65fbe34ce410e699a90ba53e64724c054ab4cc81e307753549bb84d7dab7"
+EVALUATION_EV02_ACCEPTANCE_RECEIPT_SELF_SHA256 = "dd768c8382ca521735df3110055fc58fd13727f058748ab1ba54b634d9413e0c"
 
 PARENT_AUTHORITY_SCHEMA = "HarnessProducerSafeParentPayloadAuthorityV1"
 SUBSET_AUTHORITY_SCHEMA = "HarnessProducerSafeSubsetCohortAuthorityV1"
@@ -71,32 +64,15 @@ _MEMBERS = {
     "pipeline_input_50_150_manifest.json",
     "pipeline_input_50_150_release_receipt.json",
 }
-_EVALUATION_PREFIX = "evaluation/v1/authority/d0_preparation_v1/"
-_EVALUATION_COHORT_MEMBER = _EVALUATION_PREFIX + "d0_blind_cohort_authority_v1.json"
-_EVALUATION_CONTENT_MANIFEST_MEMBER = _EVALUATION_PREFIX + "content_manifest_v1.json"
-_EVALUATION_REFREEZE_CONTENT_MEMBER = _EVALUATION_PREFIX + "pre_d0_refreeze_content_v1.json"
-_EVALUATION_REFREEZE_RECEIPT_MEMBER = _EVALUATION_PREFIX + "pre_d0_refreeze_receipt_v1.json"
-_EVALUATION_PUBLICATION_MANIFEST_MEMBER = _EVALUATION_PREFIX + "manifest.json"
-_EVALUATION_CHECKSUMS_MEMBER = _EVALUATION_PREFIX + "CHECKSUMS.sha256"
+_EVALUATION_COHORT_MEMBER = "d0_blind_cohort_authority_v1.json"
+_EVALUATION_ACCEPTANCE_RECEIPT_MEMBER = "EV02_D0_Blind_Cohort_Independent_Acceptance_Receipt_V1.json"
+_EVALUATION_README_MEMBER = "README.md"
+_EVALUATION_CHECKSUMS_MEMBER = "CHECKSUMS.sha256"
 _EVALUATION_MEMBERS = {
-    _EVALUATION_PREFIX + "adversarial_companion_protocol_v1.json",
     _EVALUATION_CHECKSUMS_MEMBER,
-    _EVALUATION_CONTENT_MANIFEST_MEMBER,
     _EVALUATION_COHORT_MEMBER,
-    _EVALUATION_PREFIX + "d0_result_table_shells_v1.json",
-    _EVALUATION_PUBLICATION_MANIFEST_MEMBER,
-    _EVALUATION_PREFIX + "pre_d0_amendment_ledger_v1.jsonl",
-    _EVALUATION_PREFIX + "pre_d0_analysis_plan_addendum_v1.json",
-    _EVALUATION_REFREEZE_CONTENT_MEMBER,
-    _EVALUATION_REFREEZE_RECEIPT_MEMBER,
-}
-_EVALUATION_CONTENT_FILES = {
-    "pre_d0_analysis_plan_addendum_v1.json",
-    "pre_d0_amendment_ledger_v1.jsonl",
-    "adversarial_companion_protocol_v1.json",
-    "d0_blind_cohort_authority_v1.json",
-    "d0_result_table_shells_v1.json",
-    "pre_d0_refreeze_content_v1.json",
+    _EVALUATION_ACCEPTANCE_RECEIPT_MEMBER,
+    _EVALUATION_README_MEMBER,
 }
 _HEX = set("0123456789abcdef")
 
@@ -136,7 +112,7 @@ class ProducerSafeParentPayload:
 
 
 @dataclass(frozen=True)
-class EvaluationD0Authority:
+class EvaluationD0ProducerHandoff:
     zip_path: Path
     zip_raw: bytes
     members: Mapping[str, bytes]
@@ -275,23 +251,30 @@ def load_producer_safe_parent(
     )
 
 
-def load_evaluation_d0_authority(
+def validate_evaluation_producer_input_sha256(package_sha256: str) -> None:
+    """Reject the known full authority before opening any Evaluation member."""
+
+    if package_sha256 == PROHIBITED_FULL_EVALUATION_AUTHORITY_ZIP_SHA256:
+        raise PolicyError("full Evaluation authority ZIP is prohibited producer input")
+    if package_sha256 != EVALUATION_EV02_PRODUCER_HANDOFF_ZIP_SHA256:
+        raise IntegrityError("Evaluation EV-02 producer handoff ZIP hash mismatch")
+
+
+def load_evaluation_d0_producer_handoff(
     zip_path: Path,
     *,
     parent: ProducerSafeParentPayload,
-) -> EvaluationD0Authority:
-    """Verify the exact accepted EV-02 authority and its Dataset projection."""
+) -> EvaluationD0ProducerHandoff:
+    """Verify the least-privilege EV-02 producer handoff and Dataset projection."""
 
     zip_path = ensure_plain_root(zip_path.parent) / zip_path.name
     if not zip_path.is_file():
-        raise ValidationError("Evaluation EV-02 authority ZIP is missing")
+        raise ValidationError("Evaluation EV-02 producer handoff ZIP is missing")
     zip_raw = zip_path.read_bytes()
-    if sha256_bytes(zip_raw) != EVALUATION_EV02_AUTHORITY_ZIP_SHA256:
-        raise IntegrityError("Evaluation EV-02 authority ZIP hash mismatch")
-    members = _load_safe_zip(zip_path, allow_directories=True)
-    if set(members) != _EVALUATION_MEMBERS:
-        raise IntegrityError("Evaluation EV-02 authority member set mismatch")
-    _verify_evaluation_publication(members)
+    package_sha256 = sha256_bytes(zip_raw)
+    validate_evaluation_producer_input_sha256(package_sha256)
+    members = _load_exact_safe_zip(zip_path, expected=_EVALUATION_MEMBERS)
+    _verify_evaluation_handoff(members)
 
     cohort_raw = members[_EVALUATION_COHORT_MEMBER]
     if sha256_bytes(cohort_raw) != EVALUATION_EV02_COHORT_PHYSICAL_SHA256:
@@ -399,7 +382,7 @@ def load_evaluation_d0_authority(
         )
     if cohort.get("context_sets") != expected_context_sets:
         raise IntegrityError("Evaluation EV-02 context-set authority mismatch")
-    return EvaluationD0Authority(
+    return EvaluationD0ProducerHandoff(
         zip_path=zip_path,
         zip_raw=zip_raw,
         members=members,
@@ -439,8 +422,8 @@ def build_parent_authority(parent: ProducerSafeParentPayload) -> dict[str, Any]:
     return value
 
 
-def build_evaluation_authority_binding(
-    evaluation: EvaluationD0Authority,
+def build_evaluation_producer_handoff_binding(
+    evaluation: EvaluationD0ProducerHandoff,
     *,
     relative_path: str,
 ) -> dict[str, Any]:
@@ -453,6 +436,9 @@ def build_evaluation_authority_binding(
         "cohort_member_path": _EVALUATION_COHORT_MEMBER,
         "cohort_physical_sha256": sha256_bytes(evaluation.cohort_raw),
         "cohort_self_sha256": evaluation.cohort["integrity"]["self_sha256"],
+        "acceptance_receipt_member_path": _EVALUATION_ACCEPTANCE_RECEIPT_MEMBER,
+        "acceptance_receipt_physical_sha256": EVALUATION_EV02_ACCEPTANCE_RECEIPT_PHYSICAL_SHA256,
+        "acceptance_receipt_self_sha256": EVALUATION_EV02_ACCEPTANCE_RECEIPT_SELF_SHA256,
         "candidate_set_sha256": evaluation.cohort["candidate_set_sha256"],
         "selection_authority_sha256": evaluation.cohort[
             "selection_authority_sha256"
@@ -464,11 +450,11 @@ def build_evaluation_authority_binding(
 
 def build_subset_authority(
     parent: ProducerSafeParentPayload,
-    evaluation_authority: EvaluationD0Authority,
+    evaluation_handoff: EvaluationD0ProducerHandoff,
     *,
     candidate_count: int,
     parent_authority_binding: Mapping[str, str],
-    evaluation_authority_binding: Mapping[str, Any],
+    evaluation_handoff_binding: Mapping[str, Any],
     issuer_id: str,
     authority_id: str,
     run_id: str,
@@ -488,24 +474,26 @@ def build_subset_authority(
         "parent payload authority binding",
     )
     _require_exact_keys(
-        evaluation_authority_binding,
+        evaluation_handoff_binding,
         {
             "child_commit", "parent_commit", "child_tree", "relative_path",
             "physical_sha256", "cohort_member_path", "cohort_physical_sha256",
-            "cohort_self_sha256", "candidate_set_sha256",
+            "cohort_self_sha256", "acceptance_receipt_member_path",
+            "acceptance_receipt_physical_sha256", "acceptance_receipt_self_sha256",
+            "candidate_set_sha256",
             "selection_authority_sha256", "selection_policy_id",
             "canary_candidate_id",
         },
         "Evaluation EV-02 authority binding",
     )
-    canary = evaluation_authority.canary_candidate_id
+    canary = evaluation_handoff.canary_candidate_id
     if candidate_count == 1:
         selected_ids = frozenset({canary})
         phase_membership = {"CANARY": [canary], "REMAINDER": []}
     else:
-        selected_ids = frozenset(evaluation_authority.candidate_ids)
+        selected_ids = frozenset(evaluation_handoff.candidate_ids)
         phase_membership = copy.deepcopy(
-            evaluation_authority.cohort["phase_membership"]
+            evaluation_handoff.cohort["phase_membership"]
         )
     selected = sorted(
         (item for item in parent.candidates if item.candidate_id in selected_ids),
@@ -546,7 +534,7 @@ def build_subset_authority(
         "split_id": split_id,
         "selection_policy": "EVALUATION_EV02_EXACT_PHASE_PROJECTION_V1",
         "parent_payload_authority": dict(parent_authority_binding),
-        "evaluation_authority": dict(evaluation_authority_binding),
+        "evaluation_producer_handoff": dict(evaluation_handoff_binding),
         "evaluation_phase_membership": phase_membership,
         "evaluation_phase_membership_sha256": sha256_bytes(
             canonical_bytes(phase_membership)
@@ -581,7 +569,7 @@ def build_subset_authority(
 
 def write_producer_safe_cohort_release(
     zip_path: Path,
-    evaluation_authority_zip_path: Path,
+    evaluation_producer_handoff_zip_path: Path,
     output_root: Path,
     *,
     issuer_id: str,
@@ -597,8 +585,8 @@ def write_producer_safe_cohort_release(
     parent = load_producer_safe_parent(
         zip_path, publication_receipt_path=publication_receipt_path
     )
-    evaluation = load_evaluation_d0_authority(
-        evaluation_authority_zip_path, parent=parent
+    evaluation = load_evaluation_d0_producer_handoff(
+        evaluation_producer_handoff_zip_path, parent=parent
     )
     output_root = output_root.absolute()
     if output_root.exists():
@@ -614,7 +602,7 @@ def write_producer_safe_cohort_release(
         publication_path = temp / publication_relative
         publication_path.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(parent.publication_receipt_path, publication_path)
-        evaluation_relative = "source/evaluation_ev02_authority.zip"
+        evaluation_relative = "source/EV02_D0_BLIND_COHORT_PRODUCER_HANDOFF_7de0eca_V1.zip"
         evaluation_path = temp / evaluation_relative
         shutil.copyfile(evaluation.zip_path, evaluation_path)
         parent_binding = {
@@ -622,7 +610,7 @@ def write_producer_safe_cohort_release(
             "physical_sha256": sha256_file(parent_path),
             "self_sha256": parent_authority["integrity"]["self_sha256"],
         }
-        evaluation_binding = build_evaluation_authority_binding(
+        evaluation_binding = build_evaluation_producer_handoff_binding(
             evaluation, relative_path=evaluation_relative
         )
         cohort_bindings: list[dict[str, Any]] = []
@@ -632,7 +620,7 @@ def write_producer_safe_cohort_release(
                 evaluation,
                 candidate_count=count,
                 parent_authority_binding=parent_binding,
-                evaluation_authority_binding=evaluation_binding,
+                evaluation_handoff_binding=evaluation_binding,
                 issuer_id=issuer_id,
                 authority_id=authority_id,
                 run_id=run_id,
@@ -656,7 +644,7 @@ def write_producer_safe_cohort_release(
             "schema_version": SCHEMA_VERSION,
             "status": "PRODUCER_SAFE_EXACT_COHORTS_READY_FOR_REVIEW",
             "parent_payload_authority": parent_binding,
-            "evaluation_authority": evaluation_binding,
+            "evaluation_producer_handoff": evaluation_binding,
             "publication_receipt": {
                 "relative_path": publication_relative,
                 "physical_sha256": sha256_file(publication_path),
@@ -682,7 +670,7 @@ def write_producer_safe_cohort_release(
     return verify_producer_safe_cohort_release(
         output_root,
         zip_path=zip_path,
-        evaluation_authority_zip_path=evaluation_authority_zip_path,
+        evaluation_producer_handoff_zip_path=evaluation_producer_handoff_zip_path,
         publication_receipt_path=publication_receipt_path,
         schema_root=schema_root,
     )
@@ -692,7 +680,7 @@ def verify_producer_safe_cohort_release(
     root: Path,
     *,
     zip_path: Path,
-    evaluation_authority_zip_path: Path,
+    evaluation_producer_handoff_zip_path: Path,
     publication_receipt_path: Path | None = None,
     schema_root: Path | None = None,
 ) -> dict[str, Any]:
@@ -700,8 +688,8 @@ def verify_producer_safe_cohort_release(
     parent = load_producer_safe_parent(
         zip_path, publication_receipt_path=publication_receipt_path
     )
-    evaluation = load_evaluation_d0_authority(
-        evaluation_authority_zip_path, parent=parent
+    evaluation = load_evaluation_d0_producer_handoff(
+        evaluation_producer_handoff_zip_path, parent=parent
     )
     manifest = loads_strict((root / "manifest.json").read_bytes(), require_object=True)
     _verify_self_hash(manifest, "producer-safe cohort release manifest")
@@ -724,10 +712,11 @@ def verify_producer_safe_cohort_release(
         )
     if parent_authority != build_parent_authority(parent):
         raise IntegrityError("producer-safe parent authority replay mismatch")
-    expected_evaluation_binding = build_evaluation_authority_binding(
-        evaluation, relative_path="source/evaluation_ev02_authority.zip"
+    expected_evaluation_binding = build_evaluation_producer_handoff_binding(
+        evaluation,
+        relative_path="source/EV02_D0_BLIND_COHORT_PRODUCER_HANDOFF_7de0eca_V1.zip",
     )
-    if manifest.get("evaluation_authority") != expected_evaluation_binding:
+    if manifest.get("evaluation_producer_handoff") != expected_evaluation_binding:
         raise IntegrityError("Evaluation EV-02 release authority binding drift")
     copied_evaluation_path = root / expected_evaluation_binding["relative_path"]
     if (
@@ -772,7 +761,7 @@ def verify_producer_safe_cohort_release(
             evaluation,
             candidate_count=count,
             parent_authority_binding=manifest["parent_payload_authority"],
-            evaluation_authority_binding=manifest["evaluation_authority"],
+            evaluation_handoff_binding=manifest["evaluation_producer_handoff"],
             issuer_id=value["issuer_id"],
             authority_id=value["authority_id"],
             run_id=value["run_id"],
@@ -866,22 +855,26 @@ def _verify_manifest_and_receipt(
             raise IntegrityError(f"producer-safe file inventory mismatch: {name}")
 
 
-def _verify_evaluation_publication(members: Mapping[str, bytes]) -> None:
+def _verify_evaluation_handoff(members: Mapping[str, bytes]) -> None:
     checksums_raw = members[_EVALUATION_CHECKSUMS_MEMBER]
-    if sha256_bytes(checksums_raw) != EVALUATION_EV02_CHECKSUMS_PHYSICAL_SHA256:
-        raise IntegrityError("Evaluation EV-02 publication checksums hash mismatch")
+    if sha256_bytes(checksums_raw) != EVALUATION_EV02_HANDOFF_CHECKSUMS_SHA256:
+        raise IntegrityError("Evaluation EV-02 handoff checksums hash mismatch")
     try:
         checksum_text = checksums_raw.decode("ascii")
     except UnicodeDecodeError as exc:
         raise IntegrityError("Evaluation EV-02 checksums are not ASCII") from exc
     expected_checksums = [
         (
-            EVALUATION_EV02_PUBLICATION_MANIFEST_PHYSICAL_SHA256,
-            "manifest.json",
+            EVALUATION_EV02_ACCEPTANCE_RECEIPT_PHYSICAL_SHA256,
+            _EVALUATION_ACCEPTANCE_RECEIPT_MEMBER,
         ),
         (
-            EVALUATION_EV02_REFREEZE_RECEIPT_PHYSICAL_SHA256,
-            "pre_d0_refreeze_receipt_v1.json",
+            "35026005047f3db802610b1b26bc7636e43c3b2d0a326aac27099cb8beaa3c36",
+            _EVALUATION_README_MEMBER,
+        ),
+        (
+            EVALUATION_EV02_COHORT_PHYSICAL_SHA256,
+            _EVALUATION_COHORT_MEMBER,
         ),
     ]
     observed_checksums: list[tuple[str, str]] = []
@@ -893,99 +886,83 @@ def _verify_evaluation_publication(members: Mapping[str, bytes]) -> None:
     if observed_checksums != expected_checksums:
         raise IntegrityError("Evaluation EV-02 checksum inventory drift")
 
-    publication_raw = members[_EVALUATION_PUBLICATION_MANIFEST_MEMBER]
-    publication = loads_strict(publication_raw, require_object=True)
-    if sha256_bytes(publication_raw) != EVALUATION_EV02_PUBLICATION_MANIFEST_PHYSICAL_SHA256:
-        raise IntegrityError("Evaluation EV-02 publication manifest physical drift")
-    _verify_self_hash(publication, "Evaluation EV-02 publication manifest")
-    if publication["integrity"]["self_sha256"] != EVALUATION_EV02_PUBLICATION_MANIFEST_SELF_SHA256:
-        raise IntegrityError("Evaluation EV-02 publication manifest self drift")
-    if (
-        publication.get("content_commit") != EVALUATION_EV02_CONTENT_COMMIT
-        or publication.get("content_tree_git_oid") != EVALUATION_EV02_CONTENT_TREE
-        or publication.get("provider_calls") != 0
-        or publication.get("network_calls") != 0
-        or publication.get("gold_access") is not False
-    ):
-        raise PolicyError("Evaluation EV-02 publication authority drift")
-
-    receipt_raw = members[_EVALUATION_REFREEZE_RECEIPT_MEMBER]
+    receipt_raw = members[_EVALUATION_ACCEPTANCE_RECEIPT_MEMBER]
     receipt = loads_strict(receipt_raw, require_object=True)
-    if sha256_bytes(receipt_raw) != EVALUATION_EV02_REFREEZE_RECEIPT_PHYSICAL_SHA256:
-        raise IntegrityError("Evaluation EV-02 refreeze receipt physical drift")
-    _verify_self_hash(receipt, "Evaluation EV-02 refreeze receipt")
-    if receipt["integrity"]["self_sha256"] != EVALUATION_EV02_REFREEZE_RECEIPT_SELF_SHA256:
-        raise IntegrityError("Evaluation EV-02 refreeze receipt self drift")
+    if sha256_bytes(receipt_raw) != EVALUATION_EV02_ACCEPTANCE_RECEIPT_PHYSICAL_SHA256:
+        raise IntegrityError("Evaluation EV-02 acceptance receipt physical drift")
+    _verify_self_hash(receipt, "Evaluation EV-02 acceptance receipt")
+    if receipt["integrity"]["self_sha256"] != EVALUATION_EV02_ACCEPTANCE_RECEIPT_SELF_SHA256:
+        raise IntegrityError("Evaluation EV-02 acceptance receipt self drift")
+    _require_exact_keys(
+        receipt,
+        {
+            "access_boundary", "cohort", "dataset_parent", "independent_checks",
+            "integrity", "reviewed_review_package", "reviewer_authority_id",
+            "schema_id", "schema_version", "status",
+        },
+        "Evaluation EV-02 acceptance receipt",
+    )
     if (
-        receipt.get("content_manifest_physical_sha256")
-        != EVALUATION_EV02_CONTENT_MANIFEST_PHYSICAL_SHA256
-        or receipt.get("content_manifest_self_sha256")
-        != EVALUATION_EV02_CONTENT_MANIFEST_SELF_SHA256
-        or receipt.get("content_commit") != EVALUATION_EV02_CONTENT_COMMIT
-        or receipt.get("content_tree_git_oid") != EVALUATION_EV02_CONTENT_TREE
-        or receipt.get("provider_calls") != 0
-        or receipt.get("network_calls") != 0
-        or receipt.get("gold_access") is not False
+        receipt.get("schema_id")
+        != "IndependentEvaluationD0BlindCohortAcceptanceReceiptV1"
+        or receipt.get("schema_version") != "1.0.0"
+        or receipt.get("status")
+        != "ACCEPTED_FOR_OWNER_BINDING_NOT_EXECUTION_AUTHORIZATION"
+        or receipt.get("reviewer_authority_id")
+        != "independent-review-terminology-evidence-v1"
     ):
-        raise IntegrityError("Evaluation EV-02 refreeze receipt binding drift")
-    if publication.get("receipt_sha256") != receipt["integrity"]["self_sha256"]:
-        raise IntegrityError("Evaluation EV-02 publication/receipt binding drift")
+        raise ValidationError("Evaluation EV-02 acceptance receipt identity drift")
 
-    content_raw = members[_EVALUATION_CONTENT_MANIFEST_MEMBER]
-    content = loads_strict(content_raw, require_object=True)
-    if sha256_bytes(content_raw) != EVALUATION_EV02_CONTENT_MANIFEST_PHYSICAL_SHA256:
-        raise IntegrityError("Evaluation EV-02 content manifest physical drift")
-    _verify_self_hash(content, "Evaluation EV-02 content manifest")
-    if content["integrity"]["self_sha256"] != EVALUATION_EV02_CONTENT_MANIFEST_SELF_SHA256:
-        raise IntegrityError("Evaluation EV-02 content manifest self drift")
-    entries = content.get("files")
-    if not isinstance(entries, list) or {
-        str(entry.get("path")) for entry in entries if isinstance(entry, Mapping)
-    } != _EVALUATION_CONTENT_FILES:
-        raise IntegrityError("Evaluation EV-02 content inventory drift")
-    for entry in entries:
-        descriptor = _mapping(entry, "Evaluation EV-02 content entry")
-        _require_exact_keys(descriptor, {"path", "bytes", "sha256"}, "Evaluation EV-02 content entry")
-        member_name = _EVALUATION_PREFIX + _string(descriptor.get("path"), "Evaluation content path")
-        raw = members.get(member_name)
-        if (
-            raw is None
-            or descriptor.get("bytes") != len(raw)
-            or descriptor.get("sha256") != sha256_bytes(raw)
-        ):
-            raise IntegrityError("Evaluation EV-02 content entry binding drift")
-    source = _mapping(content.get("source_authority"), "Evaluation Dataset source authority")
-    expected_source = {
-        "candidate_count": 150,
-        "candidate_identity_sha256": PRODUCER_SAFE_CANDIDATE_IDENTITY_SHA256,
-        "context_count": 386,
-        "context_identity_sha256": PRODUCER_SAFE_CONTEXT_IDENTITY_SHA256,
-        "producer_manifest_physical_sha256": PRODUCER_SAFE_MANIFEST_PHYSICAL_SHA256,
-        "producer_manifest_self_sha256": PRODUCER_SAFE_MANIFEST_SELF_SHA256,
-        "producer_zip_sha256": PRODUCER_SAFE_ZIP_SHA256,
-        "sense_count": 50,
+    access = _mapping(receipt.get("access_boundary"), "Evaluation EV-02 access boundary")
+    expected_access = {
+        "corpus_acquisition_authorized": False,
+        "gold_access_authorized": False,
+        "network_calls": 0,
+        "provider_calls": 0,
+        "run_authorized": False,
     }
-    if any(source.get(field) != value for field, value in expected_source.items()):
-        raise IntegrityError("Evaluation EV-02 Dataset source authority drift")
-    if any(content.get(field) != 0 for field in ("provider_calls", "network_calls", "gold_label_fields_read")):
-        raise PolicyError("Evaluation EV-02 content manifest opens restricted data")
+    if dict(access) != expected_access:
+        raise PolicyError("Evaluation EV-02 producer access boundary drift")
 
-    refreeze_raw = members[_EVALUATION_REFREEZE_CONTENT_MEMBER]
-    refreeze = loads_strict(refreeze_raw, require_object=True)
-    if sha256_bytes(refreeze_raw) != EVALUATION_EV02_REFREEZE_CONTENT_PHYSICAL_SHA256:
-        raise IntegrityError("Evaluation EV-02 refreeze content physical drift")
-    _verify_self_hash(refreeze, "Evaluation EV-02 refreeze content")
+    reviewed = _mapping(receipt.get("reviewed_review_package"), "Evaluation reviewed package")
     if (
-        refreeze["integrity"]["self_sha256"]
-        != EVALUATION_EV02_REFREEZE_CONTENT_SELF_SHA256
-        or refreeze.get("cohort_sha256") != EVALUATION_EV02_COHORT_SELF_SHA256
-        or refreeze.get("selection_authority_sha256")
-        != EVALUATION_EV02_SELECTION_AUTHORITY_SHA256
-        or refreeze.get("provider_calls") != 0
-        or refreeze.get("network_calls") != 0
-        or refreeze.get("gold_access_authorized") is not False
+        reviewed.get("child") != EVALUATION_EV02_CHILD
+        or reviewed.get("parent") != EVALUATION_EV02_PARENT
+        or reviewed.get("tree") != EVALUATION_EV02_TREE
     ):
-        raise IntegrityError("Evaluation EV-02 refreeze content authority drift")
+        raise IntegrityError("Evaluation EV-02 reviewed Git authority drift")
+    dataset = _mapping(receipt.get("dataset_parent"), "Evaluation Dataset parent")
+    if (
+        dataset.get("producer_zip_sha256") != PRODUCER_SAFE_ZIP_SHA256
+        or dataset.get("producer_manifest_self_sha256")
+        != PRODUCER_SAFE_MANIFEST_SELF_SHA256
+        or dataset.get("candidate_identity_sha256")
+        != PRODUCER_SAFE_CANDIDATE_IDENTITY_SHA256
+        or dataset.get("context_identity_sha256")
+        != PRODUCER_SAFE_CONTEXT_IDENTITY_SHA256
+    ):
+        raise IntegrityError("Evaluation EV-02 Dataset parent authority drift")
+    accepted_cohort = _mapping(receipt.get("cohort"), "Evaluation accepted cohort")
+    if (
+        accepted_cohort.get("physical_sha256")
+        != EVALUATION_EV02_COHORT_PHYSICAL_SHA256
+        or accepted_cohort.get("self_sha256") != EVALUATION_EV02_COHORT_SELF_SHA256
+        or accepted_cohort.get("candidate_set_sha256")
+        != EVALUATION_EV02_CANDIDATE_SET_SHA256
+        or accepted_cohort.get("selection_authority_sha256")
+        != EVALUATION_EV02_SELECTION_AUTHORITY_SHA256
+        or accepted_cohort.get("canary_candidate_id")
+        != EVALUATION_EV02_CANARY_CANDIDATE_ID
+        or accepted_cohort.get("candidate_count") != 15
+        or accepted_cohort.get("sense_count") != 5
+        or accepted_cohort.get("candidates_per_sense") != 3
+        or accepted_cohort.get("remainder_count") != 14
+    ):
+        raise IntegrityError("Evaluation EV-02 accepted cohort binding drift")
+    if accepted_cohort.get("context_sets") != loads_strict(
+        members[_EVALUATION_COHORT_MEMBER], require_object=True
+    ).get("context_sets"):
+        raise IntegrityError("Evaluation EV-02 accepted context-set binding drift")
 
 
 def _validate_rows(
@@ -1041,6 +1018,32 @@ def _verify_joins(
         raise ValidationError("producer-safe 50/150 sense cardinality mismatch")
     if referenced != set(context_by_id):
         raise ValidationError("producer-safe payload contains unreferenced contexts")
+
+
+def _load_exact_safe_zip(path: Path, *, expected: set[str]) -> dict[str, bytes]:
+    """Validate names before reading bytes so prohibited extras are never consumed."""
+
+    try:
+        with zipfile.ZipFile(path) as archive:
+            infos: dict[str, zipfile.ZipInfo] = {}
+            folded: set[str] = set()
+            for info in archive.infolist():
+                name = _safe_member_path(info.filename)
+                mode = (info.external_attr >> 16) & 0xFFFF
+                if (
+                    name in infos or name.casefold() in folded or info.is_dir()
+                    or info.flag_bits & 0x1 or stat.S_ISLNK(mode)
+                ):
+                    raise IntegrityError(f"unsupported producer-safe ZIP member: {name}")
+                infos[name] = info
+                folded.add(name.casefold())
+            if set(infos) != expected:
+                raise PolicyError("Evaluation EV-02 producer handoff inventory drift")
+            if archive.testzip() is not None:
+                raise IntegrityError("producer-safe ZIP CRC verification failed")
+            return {name: archive.read(infos[name]) for name in sorted(expected)}
+    except (OSError, zipfile.BadZipFile) as exc:
+        raise IntegrityError(f"cannot read producer-safe ZIP: {exc}") from exc
 
 
 def _load_safe_zip(path: Path, *, allow_directories: bool = False) -> dict[str, bytes]:

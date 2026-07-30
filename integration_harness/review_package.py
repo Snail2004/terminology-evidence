@@ -22,7 +22,7 @@ _CHECKSUM_RE = re.compile(r"([0-9a-f]{64})  (.+)")
 _TOP_LEVEL_KEYS = {
     "schema_id", "schema_version", "status", "live_status", "base_commit",
     "child_commit", "child_tree", "changed_paths", "gates", "dataset_authority",
-    "evaluation_authority", "main01_dependency", "invariants", "integrity",
+    "evaluation_producer_handoff", "main01_dependency", "invariants", "integrity",
 }
 
 
@@ -91,7 +91,8 @@ def _validate_receipt(
     if (
         receipt.get("schema_id") != RECEIPT_SCHEMA_ID
         or receipt.get("schema_version") != RECEIPT_SCHEMA_VERSION
-        or receipt.get("status") != "EV02_BOUND_D0_COHORT_READY_FOR_INDEPENDENT_REVIEW"
+        or receipt.get("status")
+        != "SI_EV02_PRODUCER_SAFE_BOUNDARY_READY_FOR_INDEPENDENT_REVIEW"
         or receipt.get("live_status") != "REVIEW_ONLY_DRAFT_INPUT"
     ):
         raise ValidationError("review receipt identity/status drift")
@@ -108,7 +109,7 @@ def _validate_receipt(
     for path in paths:
         _safe_relative(path)
     for field in (
-        "gates", "dataset_authority", "evaluation_authority",
+        "gates", "dataset_authority", "evaluation_producer_handoff",
         "main01_dependency", "invariants", "integrity",
     ):
         if not isinstance(receipt.get(field), Mapping):

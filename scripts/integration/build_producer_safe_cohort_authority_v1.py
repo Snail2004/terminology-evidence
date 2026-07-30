@@ -14,7 +14,7 @@ from integration_harness.adapter_v1.producer_safe import (
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset-zip", type=Path, required=True)
-    parser.add_argument("--evaluation-authority-zip", type=Path, required=True)
+    parser.add_argument("--evaluation-producer-handoff-zip", type=Path, required=True)
     parser.add_argument("--publication-receipt", type=Path, required=True)
     parser.add_argument("--schema-root", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
@@ -26,7 +26,7 @@ def main() -> int:
     args = parser.parse_args()
     result = write_producer_safe_cohort_release(
         args.dataset_zip.resolve(),
-        args.evaluation_authority_zip.resolve(),
+        args.evaluation_producer_handoff_zip.resolve(),
         args.output_root.resolve(),
         publication_receipt_path=args.publication_receipt.resolve(),
         schema_root=args.schema_root.resolve(),

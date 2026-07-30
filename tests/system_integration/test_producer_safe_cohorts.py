@@ -4,15 +4,18 @@ import copy
 import os
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 
 from integration_harness.adapter_v1.producer_safe import (
-    EVALUATION_EV02_AUTHORITY_ZIP_SHA256,
+    EVALUATION_EV02_ACCEPTANCE_RECEIPT_SELF_SHA256,
     EVALUATION_EV02_CANDIDATE_SET_SHA256,
     EVALUATION_EV02_CANARY_CANDIDATE_ID,
     EVALUATION_EV02_CHILD,
     EVALUATION_EV02_COHORT_SELF_SHA256,
+    EVALUATION_EV02_PRODUCER_HANDOFF_ZIP_SHA256,
     EVALUATION_EV02_TREE,
+    PROHIBITED_FULL_EVALUATION_AUTHORITY_ZIP_SHA256,
     PRODUCER_SAFE_CANDIDATE_IDENTITY_SHA256,
     PRODUCER_SAFE_CONTEXT_IDENTITY_SHA256,
     PRODUCER_SAFE_MANIFEST_PHYSICAL_SHA256,
@@ -22,12 +25,13 @@ from integration_harness.adapter_v1.producer_safe import (
     PRODUCER_SAFE_SENSE_IDENTITY_SHA256,
     PRODUCER_SAFE_ZIP_SHA256,
     SUPPORTED_COHORT_SIZES,
-    load_evaluation_d0_authority,
+    load_evaluation_d0_producer_handoff,
+    validate_evaluation_producer_input_sha256,
     load_producer_safe_parent,
     verify_producer_safe_cohort_release,
     write_producer_safe_cohort_release,
 )
-from integration_harness.errors import IntegrityError
+from integration_harness.errors import IntegrityError, PolicyError
 from integration_harness.hashing import self_sha256, sha256_file
 from integration_harness.jsonio import dump_json, load_json
 
@@ -44,8 +48,11 @@ class ProducerSafeCohortAuthorityTests(unittest.TestCase):
         self.publication_path = release / "pipeline_input_50_150_producer_safe_v1_publication_receipt.json"
         self.evaluation_zip = Path(
             os.environ.get(
-                "HARNESS_EVALUATION_EV02_AUTHORITY_ZIP",
-                r"C:\work\terminology-evidence-artifacts\D0_API_Execution_Plan_Package_V1\review\EVALUATION_EV01_EV02_7de0eca_V1\authority\d0_preparation_authority_7de0eca.zip",
+                "HARNESS_EVALUATION_EV02_PRODUCER_HANDOFF_ZIP",
+                str(
+                    Path.cwd()
+                    / "docs/integration/EV02_D0_BLIND_COHORT_PRODUCER_HANDOFF_7de0eca_V1.zip"
+                ),
             )
         )
         if (
@@ -154,32 +161,57 @@ class ProducerSafeCohortAuthorityTests(unittest.TestCase):
                 verify_producer_safe_cohort_release(
                     root / "release",
                     zip_path=self.zip_path,
-                    evaluation_authority_zip_path=self.evaluation_zip,
+                    evaluation_producer_handoff_zip_path=self.evaluation_zip,
                     publication_receipt_path=self.publication_path,
                     schema_root=self.schema_root,
                 )
 
-    def test_exact_evaluation_authority_and_phase_projection(self) -> None:
+    def test_exact_evaluation_handoff_and_phase_projection(self) -> None:
         parent = load_producer_safe_parent(
             self.zip_path, publication_receipt_path=self.publication_path
         )
-        evaluation = load_evaluation_d0_authority(
+        evaluation = load_evaluation_d0_producer_handoff(
             self.evaluation_zip, parent=parent
         )
-        self.assertEqual(sha256_file(self.evaluation_zip), EVALUATION_EV02_AUTHORITY_ZIP_SHA256)
+        self.assertEqual(
+            sha256_file(self.evaluation_zip),
+            EVALUATION_EV02_PRODUCER_HANDOFF_ZIP_SHA256,
+        )
         self.assertEqual(evaluation.cohort["integrity"]["self_sha256"], EVALUATION_EV02_COHORT_SELF_SHA256)
         with tempfile.TemporaryDirectory() as directory:
             release = Path(directory) / "release"
             self._build(release)
             manifest = load_json(release / "manifest.json", require_object=True)
-            self.assertEqual(manifest["evaluation_authority"]["child_commit"], EVALUATION_EV02_CHILD)
-            self.assertEqual(manifest["evaluation_authority"]["child_tree"], EVALUATION_EV02_TREE)
+            self.assertEqual(manifest["evaluation_producer_handoff"]["child_commit"], EVALUATION_EV02_CHILD)
+            self.assertEqual(manifest["evaluation_producer_handoff"]["child_tree"], EVALUATION_EV02_TREE)
+            self.assertEqual(
+                manifest["evaluation_producer_handoff"]["acceptance_receipt_self_sha256"],
+                EVALUATION_EV02_ACCEPTANCE_RECEIPT_SELF_SHA256,
+            )
             one = load_json(release / "cohorts/cohort_001.json", require_object=True)
             fifteen = load_json(release / "cohorts/cohort_015.json", require_object=True)
             self.assertEqual(one["candidate_ids"], [EVALUATION_EV02_CANARY_CANDIDATE_ID])
             self.assertEqual(one["evaluation_phase_membership"], {"CANARY": [EVALUATION_EV02_CANARY_CANDIDATE_ID], "REMAINDER": []})
             self.assertEqual(fifteen["candidate_ids"], list(evaluation.candidate_ids))
             self.assertEqual(fifteen["evaluation_phase_membership"], evaluation.cohort["phase_membership"])
+
+        with self.assertRaises(PolicyError):
+            validate_evaluation_producer_input_sha256(
+                PROHIBITED_FULL_EVALUATION_AUTHORITY_ZIP_SHA256
+            )
+        for prohibited_name in (
+            "aggregate_label_distribution.json",
+            "split_statistics.json",
+            "evaluation_only_member.json",
+        ):
+            with self.subTest(prohibited_name=prohibited_name), tempfile.TemporaryDirectory() as directory:
+                altered = Path(directory) / "altered.zip"
+                with zipfile.ZipFile(self.evaluation_zip) as source, zipfile.ZipFile(altered, "w") as target:
+                    for info in source.infolist():
+                        target.writestr(info, source.read(info))
+                    target.writestr(prohibited_name, b'{"forbidden":true}\n')
+                with self.assertRaises(IntegrityError):
+                    load_evaluation_d0_producer_handoff(altered, parent=parent)
 
     def test_resealed_ev_authority_and_phase_drifts_fail_closed(self) -> None:
         mutations = (
@@ -198,7 +230,7 @@ class ProducerSafeCohortAuthorityTests(unittest.TestCase):
                     verify_producer_safe_cohort_release(
                         release,
                         zip_path=self.zip_path,
-                        evaluation_authority_zip_path=self.evaluation_zip,
+                        evaluation_producer_handoff_zip_path=self.evaluation_zip,
                         publication_receipt_path=self.publication_path,
                         schema_root=self.schema_root,
                     )
@@ -257,7 +289,7 @@ class ProducerSafeCohortAuthorityTests(unittest.TestCase):
     def _cross_authority(root: Path) -> None:
         manifest_path = root / "manifest.json"
         manifest = load_json(manifest_path, require_object=True)
-        manifest["evaluation_authority"]["child_commit"] = "2" * 40
+        manifest["evaluation_producer_handoff"]["child_commit"] = "2" * 40
         ProducerSafeCohortAuthorityTests._seal_json(manifest_path, manifest)
 
     @staticmethod
