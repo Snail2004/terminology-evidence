@@ -1,0 +1,15 @@
+{
+  "final_glossary_decision": null,
+  "policy_id": "d2l-remaining-300-candidates-stage-b-review-preflight-v1.0",
+  "provider_call_count": 0,
+  "review_result_paths_distinct": true,
+  "review_result_sha256": {
+    "reviewer_1": "403faa57fc84be4ccbfedd881e3d35d596872b6b66953c74c8c2966d66601812",
+    "reviewer_2": "f1310ddf9662ae595c51b0dee9292dfb7958e31124d0926e60c5ddcd76d321ea"
+  },
+  "reviewer_slots_distinct": true,
+  "schema_id": "D2LRemainingStageBReviewPreflightLineageV1",
+  "schema_version": "1.0.0",
+  "source_artifact_manifest_sha256": "db0a46fb4d38861ffd9f2bb048dbc614ad7148b8fc1a31eed427b6f7cec85021",
+  "source_artifact_name": "d2l_dataset_remaining_300_candidates_stage_b_review_v1"
+}
