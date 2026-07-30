@@ -4,6 +4,7 @@ import copy
 import tempfile
 import unittest
 from pathlib import Path
+from typing import Any
 
 from integration_harness.adapter_v1.availability import (
     write_missing_availability_manifest,
@@ -17,6 +18,7 @@ from integration_harness.hashing import self_sha256, sha256_file
 from integration_harness.jsonio import dump_json, load_json
 
 from .adapter_helpers import make_accepted_producer_set, make_external_hold_authority
+from .trust_helpers import make_trusted_profile
 
 
 class BatchAuthorityHardeningTests(unittest.TestCase):
@@ -39,8 +41,8 @@ class BatchAuthorityHardeningTests(unittest.TestCase):
             work / "context",
             candidates=self.dataset.candidates,
             role="context_evidence",
-            run_id="official-run",
-            phase_id="official-phase",
+            run_id="RUN-D0",
+            phase_id="D0_ONE_CANDIDATE",
             split_id="official-split",
         )
         attestation = make_accepted_producer_set(
@@ -48,8 +50,20 @@ class BatchAuthorityHardeningTests(unittest.TestCase):
             work / "attestation",
             candidates=self.dataset.candidates,
             role="attestation_evidence",
-            run_id="official-run",
-            phase_id="official-phase",
+            run_id="RUN-D0",
+            phase_id="D0_ONE_CANDIDATE",
+            split_id="official-split",
+        )
+        profile = make_trusted_profile(
+            self.repo,
+            work / "trusted-profile",
+            candidates=self.dataset.candidates,
+            producers={
+                "context_evidence": context["authority"],
+                "attestation_evidence": attestation["authority"],
+            },
+            run_id="RUN-D0",
+            phase_id="D0_ONE_CANDIDATE",
             split_id="official-split",
         )
         availability = write_present_availability_manifest(
@@ -61,17 +75,28 @@ class BatchAuthorityHardeningTests(unittest.TestCase):
             context_acceptance_receipt=context["receipt"],
             attestation_acceptance_receipt=attestation["receipt"],
             schema_root=self.contracts,
-            run_id="official-run",
-            phase_id="official-phase",
+            run_id="RUN-D0",
+            phase_id="D0_ONE_CANDIDATE",
             split_id="official-split",
             observed_at="2026-07-30T00:00:00Z",
+            trust_profile=profile["profile"],
         )
-        return context, attestation, availability
+        return context, attestation, availability, profile
+
+    @staticmethod
+    def _profile_kwargs(profile: dict[str, Any]) -> dict[str, object]:
+        return {
+            "authority_profile_path": profile["path"],
+            "authority_profile_expected_physical_sha256": profile["physical_sha256"],
+            "authority_profile_expected_self_sha256": profile["self_sha256"],
+            "authority_profile_expected_issuer_id": profile["issuer_id"],
+            "authority_profile_expected_authority_id": profile["authority_id"],
+        }
 
     def test_typed_official_acceptance_reaches_present_and_replays(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             work = Path(directory)
-            _, _, availability = self._accepted_input(work)
+            _, _, availability, profile = self._accepted_input(work)
             result = build_adapter_bundle(
                 dataset_zip=self.dataset.zip_path,
                 dataset_pin=self.dataset.pin_path,
@@ -82,9 +107,15 @@ class BatchAuthorityHardeningTests(unittest.TestCase):
                 output_root=work / "bundle",
                 adapter_mode=OFFICIAL_MODE,
                 inventory_schema_path=self.repo / "docs/integration/artifact_inventory_exact_cohort_v2.schema.json",
+                **self._profile_kwargs(profile),
             )
             self.assertEqual(result["ready_candidate_count"], 15)
             self.assertEqual(result["availability_counts"]["PRESENT"], 30)
+            self.assertEqual(result["global_execution_status"], "HOLD_EVIDENCE_AVAILABILITY")
+            self.assertEqual(
+                result["trusted_authority_status"],
+                "ZERO_PROVIDER_TRUST_PROFILE_ACCEPTED",
+            )
             replay = replay_adapter_bundle(work / "bundle", contracts_root=self.contracts, repository_root=self.repo)
             self.assertEqual(replay["joined_count"], 15)
             self.assertEqual(replay["semantic_replay"], "SEALED_ADAPTER_COMPLETE_REPLAY_PASS")
@@ -92,7 +123,7 @@ class BatchAuthorityHardeningTests(unittest.TestCase):
     def test_arbitrary_self_hashed_acceptance_receipt_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             work = Path(directory)
-            context, attestation, _ = self._accepted_input(work)
+            context, attestation, _, profile = self._accepted_input(work)
             fake = {"schema_id": "AnythingSelfHashedV1", "status": "NOT_ACCEPTED", "integrity": {}}
             fake["integrity"]["self_sha256"] = self_sha256(fake)
             context["receipt"].unlink()
@@ -107,17 +138,18 @@ class BatchAuthorityHardeningTests(unittest.TestCase):
                     context_acceptance_receipt=context["receipt"],
                     attestation_acceptance_receipt=attestation["receipt"],
                     schema_root=self.contracts,
-                    run_id="official-run",
-                    phase_id="official-phase",
+                    run_id="RUN-D0",
+                    phase_id="D0_ONE_CANDIDATE",
                     split_id="official-split",
                     observed_at="2026-07-30T00:00:00Z",
+                    trust_profile=profile["profile"],
                 )
             self.assertFalse((work / "rejected").exists())
 
     def test_acceptance_manifest_drift_is_rejected_before_present(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             work = Path(directory)
-            context, attestation, _ = self._accepted_input(work)
+            context, attestation, _, profile = self._accepted_input(work)
             manifest = load_json(context["manifest"], require_object=True)
             manifest["producer"]["tree"] = "9" * 40
             manifest["integrity"]["self_sha256"] = self_sha256(manifest)
@@ -133,10 +165,11 @@ class BatchAuthorityHardeningTests(unittest.TestCase):
                     context_acceptance_receipt=context["receipt"],
                     attestation_acceptance_receipt=attestation["receipt"],
                     schema_root=self.contracts,
-                    run_id="official-run",
-                    phase_id="official-phase",
+                    run_id="RUN-D0",
+                    phase_id="D0_ONE_CANDIDATE",
                     split_id="official-split",
                     observed_at="2026-07-30T00:00:00Z",
+                    trust_profile=profile["profile"],
                 )
 
     def test_acceptance_status_role_run_and_cohort_drift_fail_closed(self) -> None:
@@ -152,7 +185,7 @@ class BatchAuthorityHardeningTests(unittest.TestCase):
         }
         with tempfile.TemporaryDirectory() as directory:
             work = Path(directory)
-            context, attestation, _ = self._accepted_input(work)
+            context, attestation, _, profile = self._accepted_input(work)
             original = load_json(context["receipt"], require_object=True)
             for name, mutate in mutations.items():
                 with self.subTest(name=name):
@@ -171,10 +204,11 @@ class BatchAuthorityHardeningTests(unittest.TestCase):
                             context_acceptance_receipt=context["receipt"],
                             attestation_acceptance_receipt=attestation["receipt"],
                             schema_root=self.contracts,
-                            run_id="official-run",
-                            phase_id="official-phase",
+                            run_id="RUN-D0",
+                            phase_id="D0_ONE_CANDIDATE",
                             split_id="official-split",
                             observed_at="2026-07-30T00:00:00Z",
+                            trust_profile=profile["profile"],
                         )
                     context["receipt"].unlink()
                     dump_json(context["receipt"], original)
@@ -182,13 +216,14 @@ class BatchAuthorityHardeningTests(unittest.TestCase):
     def test_external_hold_requires_authoritative_stop_event(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             work = Path(directory)
+            _, _, _, profile = self._accepted_input(work / "seed")
             availability = write_missing_availability_manifest(
                 work / "availability",
                 candidates=self.dataset.candidates,
                 adapter_mode=OFFICIAL_MODE,
-                run_id="hold-run",
-                phase_id="hold-phase",
-                split_id="hold-split",
+                run_id="RUN-D0",
+                phase_id="D0_ONE_CANDIDATE",
+                split_id="official-split",
                 observed_at="2026-07-30T00:00:00Z",
                 reason_code="EXTERNAL_ACQUISITION_STOP_RECEIPT",
             )
@@ -207,6 +242,7 @@ class BatchAuthorityHardeningTests(unittest.TestCase):
                 split_id=manifest["split_id"],
                 reason_code=row["reason_code"],
                 observed_at=row["observed_at"],
+                trust_profile=profile["profile"],
             )
             manifest["counts"]["MISSING"] -= 1
             manifest["counts"]["EXTERNAL_HOLD"] += 1
@@ -223,6 +259,7 @@ class BatchAuthorityHardeningTests(unittest.TestCase):
                 output_root=work / "bundle",
                 adapter_mode=OFFICIAL_MODE,
                 inventory_schema_path=self.repo / "docs/integration/artifact_inventory_exact_cohort_v2.schema.json",
+                **self._profile_kwargs(profile),
             )
             self.assertEqual(result["availability_counts"]["EXTERNAL_HOLD"], 1)
             self.assertEqual(replay_adapter_bundle(work / "bundle", contracts_root=self.contracts, repository_root=self.repo)["joined_count"], 0)
@@ -240,13 +277,14 @@ class BatchAuthorityHardeningTests(unittest.TestCase):
         for drift in ("stop_status", "authorization_status"):
             with self.subTest(drift=drift), tempfile.TemporaryDirectory() as directory:
                 work = Path(directory)
+                _, _, _, profile = self._accepted_input(work / "seed")
                 availability = write_missing_availability_manifest(
                     work / "availability",
                     candidates=self.dataset.candidates,
                     adapter_mode=OFFICIAL_MODE,
-                    run_id="hold-run",
-                    phase_id="hold-phase",
-                    split_id="hold-split",
+                    run_id="RUN-D0",
+                    phase_id="D0_ONE_CANDIDATE",
+                    split_id="official-split",
                     observed_at="2026-07-30T00:00:00Z",
                     reason_code="EXTERNAL_ACQUISITION_STOP_RECEIPT",
                 )
@@ -263,6 +301,7 @@ class BatchAuthorityHardeningTests(unittest.TestCase):
                     split_id=manifest["split_id"],
                     reason_code=row["reason_code"],
                     observed_at=row["observed_at"],
+                    trust_profile=profile["profile"],
                 )
                 root = availability.parent / "external_stop"
                 authorization_path = root / "authorization.json"
@@ -317,4 +356,5 @@ class BatchAuthorityHardeningTests(unittest.TestCase):
                         output_root=work / "rejected",
                         adapter_mode=OFFICIAL_MODE,
                         inventory_schema_path=self.repo / "docs/integration/artifact_inventory_exact_cohort_v2.schema.json",
+                        **self._profile_kwargs(profile),
                     )

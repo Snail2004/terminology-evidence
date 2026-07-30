@@ -17,6 +17,7 @@ from integration_harness.adapter_v1.producer import (
     PACKAGE_SET_SCHEMA,
     verify_producer_acceptance_receipt,
 )
+from integration_harness.adapter_v1.trust import TrustedAuthorityProfile, load_trusted_authority_profile
 from integration_harness.adapter_v1.sidecars import SidecarSet, verify_sidecars
 from integration_harness.errors import IntegrityError, ReplayError
 from integration_harness.hashing import self_sha256, sha256_bytes, sha256_file
@@ -45,6 +46,7 @@ def replay_adapter_bundle(
         raise ReplayError("adapter bundle has the wrong inventory schema")
     sources = {record.role: record for record in inventory.source_authority}
     source_paths = {role: record.path for role, record in sources.items()}
+    trust_profile = _load_sealed_trust_profile(inventory, source_paths)
     dataset = verify_adapter_inventory_source_binding(
         inventory,
         source_paths=source_paths,
@@ -55,6 +57,7 @@ def replay_adapter_bundle(
         inventory,
         source_paths=source_paths,
         dataset=dataset,
+        trust_profile=trust_profile,
     )
     ready_count = sidecar_stats["ready_count"]
     not_submitted_count = sidecar_stats["not_submitted_count"]
@@ -65,6 +68,7 @@ def replay_adapter_bundle(
         availability=sidecar_stats["availability"],
         source_paths=source_paths,
         dataset=dataset,
+        trust_profile=trust_profile,
     )
     if ready_count:
         joined, report = validate_and_join(inventory, schema_root=contracts_root)
@@ -148,6 +152,11 @@ def verify_adapter_inventory_source_binding(
     }
     if manifest.get("adapter_mode") == OFFICIAL_MODE:
         required.add("dataset_git_receipt")
+        if (
+            manifest.get("schema_id") == ADAPTER_INVENTORY_SCHEMA
+            and isinstance(manifest.get("trusted_authority"), Mapping)
+        ):
+            required.add("trusted_authority_profile")
     if manifest.get("schema_id") == ADAPTER_INVENTORY_SCHEMA:
         required.update(
             {
@@ -155,6 +164,15 @@ def verify_adapter_inventory_source_binding(
                 "producer_acceptance_receipt_schema",
                 "external_hold_receipt_schema",
                 "availability_intake_schema",
+                "trusted_authority_profile_schema",
+                "producer_source_manifest_schema",
+                "candidate_cohort_authority_schema",
+                "producer_set_approval_artifact_schema",
+                "producer_run_authorization_receipt_schema",
+                "producer_run_stop_event_schema",
+                "producer_safe_parent_payload_authority_schema",
+                "producer_safe_subset_cohort_authority_schema",
+                "producer_safe_cohort_authority_release_schema",
             }
         )
     if not required.issubset(source_paths):
@@ -180,6 +198,49 @@ def verify_adapter_inventory_source_binding(
     if dataset.sense_count != manifest.get("sense_count"):
         raise ReplayError("replayed Dataset sense count mismatch")
     return dataset
+
+
+def _load_sealed_trust_profile(
+    inventory: ArtifactInventory,
+    source_paths: Mapping[str, Path],
+) -> TrustedAuthorityProfile | None:
+    manifest = inventory.manifest
+    if manifest.get("adapter_mode") != OFFICIAL_MODE:
+        return None
+    binding = manifest.get("trusted_authority")
+    source_record = next(
+        (record for record in inventory.source_authority if record.role == "trusted_authority_profile"),
+        None,
+    )
+    if binding is None:
+        counts = manifest.get("availability_counts")
+        if isinstance(counts, Mapping) and not any(
+            counts.get(status, 0) for status in ("PRESENT", "EXTERNAL_HOLD")
+        ):
+            return None
+    if not isinstance(binding, Mapping) or source_record is None:
+        raise ReplayError("official adapter bundle has no sealed trusted authority profile")
+    if source_paths.get("trusted_authority_profile") != source_record.path:
+        raise ReplayError("trusted authority profile source binding is missing")
+    if any(
+        binding.get(field) != observed
+        for field, observed in (
+            ("relative_path", source_record.relative_path),
+            ("physical_sha256", source_record.physical_sha256),
+            ("self_sha256", source_record.declared_self_sha256),
+        )
+    ):
+        raise ReplayError("trusted authority profile inventory binding drift")
+    value = load_json(source_record.path, require_object=True)
+    if value.get("integrity", {}).get("self_sha256") != source_record.declared_self_sha256:
+        raise ReplayError("trusted authority profile self binding drift")
+    return load_trusted_authority_profile(
+        source_record.path,
+        expected_physical_sha256=source_record.physical_sha256,
+        expected_self_sha256=str(source_record.declared_self_sha256),
+        expected_issuer_id=str(binding.get("issuer_id")),
+        expected_authority_id=str(binding.get("authority_id")),
+    )
 
 
 def _validate_inventory_schema(inventory: ArtifactInventory) -> None:
@@ -209,6 +270,7 @@ def _verify_sidecar_sources(
     *,
     source_paths: Mapping[str, Path],
     dataset: Any,
+    trust_profile: TrustedAuthorityProfile | None = None,
 ) -> dict[str, Any]:
     source_records = {record.role: record for record in inventory.source_authority}
     expected_sidecar_roles = {
@@ -328,6 +390,7 @@ def _verify_availability_artifact_projection(
     availability: Mapping[str, Any],
     source_paths: Mapping[str, Path],
     dataset: Any,
+    trust_profile: TrustedAuthorityProfile | None,
 ) -> None:
     records = {
         (record.candidate_key["candidate_id"], record.role): record
@@ -403,6 +466,7 @@ def _verify_availability_artifact_projection(
                 split_id=str(availability["split_id"]),
                 observed_at=str(row["observed_at"]),
                 reason_code=str(row["reason_code"]),
+                trust_profile=trust_profile,
             )
         elif receipt is not None:
             raise ReplayError("non-EXTERNAL_HOLD row contains a hold receipt")
@@ -495,6 +559,7 @@ def _verify_availability_artifact_projection(
                     run_id=str(availability["run_id"]),
                     phase_id=str(availability["phase_id"]),
                     split_id=str(availability["split_id"]),
+                    trust_profile=trust_profile,
                 )
         elif source_path is not None:
             raise ReplayError(f"unused producer set manifest is sealed: {role}")

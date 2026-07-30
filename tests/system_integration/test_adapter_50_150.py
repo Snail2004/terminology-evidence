@@ -26,10 +26,12 @@ from integration_harness.pipeline import execute_run
 from integration_harness.replay import replay_run
 
 from .adapter_helpers import (
+    make_accepted_producer_set,
     make_external_hold_authority,
     make_producer_set,
     make_synthetic_dataset_release,
 )
+from .trust_helpers import make_trusted_profile
 from .helpers import FakePublicGlobalAdapter, make_fixture_repo
 
 
@@ -64,8 +66,8 @@ class Adapter50150Tests(unittest.TestCase):
                 work / "availability",
                 candidates=dataset.candidates,
                 adapter_mode=OFFICIAL_MODE,
-                run_id="official-adapter-preflight",
-                phase_id="zero-provider-preflight",
+                run_id="RUN-D0",
+                phase_id="D0_ONE_CANDIDATE",
                 split_id="official-five-sense",
                 observed_at="2026-07-30T00:00:00Z",
                 reason_code="PRODUCER_PACKAGE_SET_NOT_MAIN_ACCEPTED",
@@ -150,12 +152,31 @@ class Adapter50150Tests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             work = Path(directory)
             dataset = self._official_dataset()
+            context = make_accepted_producer_set(
+                self.repo, work / "hold-context", candidates=dataset.candidates,
+                role="context_evidence", run_id="RUN-D0",
+                phase_id="D0_ONE_CANDIDATE", split_id="official-five-sense",
+            )
+            attestation = make_accepted_producer_set(
+                self.repo, work / "hold-attestation", candidates=dataset.candidates,
+                role="attestation_evidence", run_id="RUN-D0",
+                phase_id="D0_ONE_CANDIDATE", split_id="official-five-sense",
+            )
+            profile = make_trusted_profile(
+                self.repo, work / "hold-profile", candidates=dataset.candidates,
+                producers={
+                    "context_evidence": context["authority"],
+                    "attestation_evidence": attestation["authority"],
+                },
+                run_id="RUN-D0", phase_id="D0_ONE_CANDIDATE",
+                split_id="official-five-sense",
+            )
             availability = write_missing_availability_manifest(
                 work / "availability",
                 candidates=dataset.candidates,
                 adapter_mode=OFFICIAL_MODE,
-                run_id="official-adapter-preflight",
-                phase_id="zero-provider-preflight",
+                run_id="RUN-D0",
+                phase_id="D0_ONE_CANDIDATE",
                 split_id="official-five-sense",
                 observed_at="2026-07-30T00:00:00Z",
                 reason_code="PRODUCER_PACKAGE_SET_NOT_MAIN_ACCEPTED",
@@ -173,6 +194,7 @@ class Adapter50150Tests(unittest.TestCase):
                 split_id=manifest["split_id"],
                 reason_code=hold_row["reason_code"],
                 observed_at=hold_row["observed_at"],
+                trust_profile=profile["profile"],
             )
             invalid_row = manifest["rows"][3]
             invalid_row["status"] = "INVALID"
@@ -195,6 +217,11 @@ class Adapter50150Tests(unittest.TestCase):
                 output_root=work / "bundle",
                 adapter_mode=OFFICIAL_MODE,
                 inventory_schema_path=self.schema,
+                authority_profile_path=profile["path"],
+                authority_profile_expected_physical_sha256=profile["physical_sha256"],
+                authority_profile_expected_self_sha256=profile["self_sha256"],
+                authority_profile_expected_issuer_id=profile["issuer_id"],
+                authority_profile_expected_authority_id=profile["authority_id"],
             )
             self.assertEqual(result["ready_candidate_count"], 0)
             self.assertEqual(result["availability_counts"]["EXTERNAL_HOLD"], 1)

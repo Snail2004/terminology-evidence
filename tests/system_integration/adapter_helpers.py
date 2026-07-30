@@ -333,11 +333,29 @@ def make_accepted_producer_set(
         "producer": producer,
         "candidate_count": len(candidates),
         "candidate_set_sha256": exact_hash,
+        "producer_release_receipt": None,
         "final_glossary_decision": None,
         "integrity": {},
     }
-    source["integrity"]["self_sha256"] = self_sha256(source)
     source_path = output_root / "source" / "source_manifest.json"
+    release = {
+        "schema_id": "HarnessProducerReleaseReceiptV1",
+        "schema_version": "1.0.0",
+        "status": "RELEASED",
+        "producer_role": role,
+        "producer": producer,
+        "final_glossary_decision": None,
+        "integrity": {},
+    }
+    release["integrity"]["self_sha256"] = self_sha256(release)
+    release_path = output_root / "source" / "release_receipt.json"
+    dump_json(release_path, release)
+    source["producer_release_receipt"] = {
+        "relative_path": "source/release_receipt.json",
+        "physical_sha256": sha256_file(release_path),
+        "self_sha256": release["integrity"]["self_sha256"],
+    }
+    source["integrity"]["self_sha256"] = self_sha256(source)
     dump_json(source_path, source)
     manifest["status"] = COMPLETE_ACCEPTED
     manifest["producer"] = producer
@@ -418,7 +436,27 @@ def make_accepted_producer_set(
     receipt["integrity"]["self_sha256"] = self_sha256(receipt)
     receipt_path = authority_root / "acceptance_receipt.json"
     dump_json(receipt_path, receipt)
-    return {"manifest": manifest_path, "receipt": receipt_path}
+    authority = {
+        "role": role,
+        **producer,
+        "source_manifest_self_sha256": source["integrity"]["self_sha256"],
+        "source_manifest_physical_sha256": sha256_file(source_path),
+        "release_receipt_self_sha256": release["integrity"]["self_sha256"],
+        "release_receipt_physical_sha256": sha256_file(release_path),
+        "approval_artifact_self_sha256": approval["integrity"]["self_sha256"],
+        "approval_artifact_physical_sha256": sha256_file(approval_path),
+        "acceptance_receipt_self_sha256": receipt["integrity"]["self_sha256"],
+        "acceptance_receipt_physical_sha256": sha256_file(receipt_path),
+    }
+    return {
+        "manifest": manifest_path,
+        "receipt": receipt_path,
+        "producer": producer,
+        "authority": authority,
+        "source_manifest": source_path,
+        "release_receipt": release_path,
+        "approval": approval_path,
+    }
 
 
 def make_external_hold_authority(
@@ -431,6 +469,7 @@ def make_external_hold_authority(
     split_id: str,
     reason_code: str,
     observed_at: str,
+    trust_profile: Any | None = None,
 ) -> dict[str, Any]:
     authority_root = availability_path.parent / "external_stop"
     producer = {
@@ -440,9 +479,19 @@ def make_external_hold_authority(
         "commit": "5" * 40,
         "tree": "6" * 40,
     }
+    if trust_profile is not None:
+        trusted = trust_profile.producer(role)
+        producer = {
+            field: trusted[field]
+            for field in ("component_id", "component_version", "run_id", "commit", "tree")
+        }
     common = {
         "issuer_id": "system-integration-maintainer",
-        "authority_id": "main-run-stop-authority-v1",
+        "authority_id": (
+            trust_profile.value["authority_id"]
+            if trust_profile is not None
+            else "main-run-stop-authority-v1"
+        ),
         "run_id": run_id,
         "phase_id": phase_id,
         "split_id": split_id,
@@ -456,6 +505,15 @@ def make_external_hold_authority(
         "schema_version": "1.0.0",
         "status": "AUTHORIZED",
         **common,
+        "main_live_authorization_receipt": (
+            trust_profile.value["main_run_authority"]["live_authorization_receipt"]
+            if trust_profile is not None
+            else {
+                "relative_path": "main_live_authorization.json",
+                "physical_sha256": "0" * 64,
+                "self_sha256": "0" * 64,
+            }
+        ),
         "integrity": {},
     }
     authorization["integrity"]["self_sha256"] = self_sha256(authorization)
@@ -480,6 +538,16 @@ def make_external_hold_authority(
         "reason_code": reason_code,
         "observed_at": observed_at,
         "authorization_receipt": authorization_binding,
+        "main_run_stop_receipt": (
+            trust_profile.value["main_run_authority"]["run_stop_receipt"]
+            if trust_profile is not None
+            else {"relative_path": "main_run_stop.json", "physical_sha256": "0" * 64, "self_sha256": "0" * 64}
+        ),
+        "main_stop_event": (
+            trust_profile.value["main_run_authority"]["stop_event"]
+            if trust_profile is not None
+            else {"relative_path": "main_stop_event.json", "physical_sha256": "0" * 64, "event_sha256": "0" * 64}
+        ),
         "final_glossary_decision": None,
         "integrity": {},
     }

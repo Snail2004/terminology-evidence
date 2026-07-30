@@ -18,6 +18,7 @@ from integration_harness.identity import CandidateIdentity
 from integration_harness.jsonio import canonical_bytes, load_json
 from integration_harness.packages import validate_contract_schema
 from integration_harness.paths import ensure_no_symlink, ensure_plain_root, safe_relative_path
+from integration_harness.adapter_v1.trust import TrustedAuthorityProfile
 
 
 LEGACY_PACKAGE_SET_SCHEMA = "HarnessProducerPackageSetV1"
@@ -30,6 +31,8 @@ APPROVAL_ARTIFACT_SCHEMA = "HarnessProducerSetApprovalArtifactV1"
 COHORT_AUTHORITY_SCHEMA = "HarnessCandidateCohortAuthorityV1"
 SOURCE_MANIFEST_SCHEMA = "HarnessProducerSourceManifestV1"
 AUTHORITY_SCHEMA_VERSION = "1.0.0"
+NEW_INPUT_MODE = "NEW_INPUT"
+HISTORICAL_REPLAY_MODE = "HISTORICAL_REPLAY_ONLY"
 
 COMPLETE_ACCEPTED = "COMPLETE_ACCEPTED"
 SYNTHETIC_COMPLETE = "SYNTHETIC_LOCAL_CONFORMANCE"
@@ -70,8 +73,8 @@ _APPROVAL_FIELDS = {
 _RECEIPT_FIELDS = _APPROVAL_FIELDS | {"approval_artifact"}
 _SOURCE_MANIFEST_FIELDS = {
     "schema_id", "schema_version", "status", "producer_role", "producer",
-    "candidate_count", "candidate_set_sha256", "final_glossary_decision",
-    "integrity",
+    "candidate_count", "candidate_set_sha256", "producer_release_receipt",
+    "final_glossary_decision", "integrity",
 }
 _HEX_40 = re.compile(r"^[0-9a-f]{40}$")
 
@@ -98,6 +101,7 @@ class ProducerSet:
     manifest: dict[str, Any]
     items: tuple[ProducerItem, ...]
     source_manifest_path: Path | None
+    source_authority_files: tuple[tuple[Path, str], ...]
     acceptance_receipt_path: Path | None
     acceptance_receipt_raw: bytes | None
     acceptance_receipt: dict[str, Any] | None
@@ -125,6 +129,8 @@ def load_producer_set(
     run_id: str | None = None,
     phase_id: str | None = None,
     split_id: str | None = None,
+    trust_profile: TrustedAuthorityProfile | None = None,
+    intake_mode: str = NEW_INPUT_MODE,
 ) -> ProducerSet:
     if role not in ROLE_SCHEMAS:
         raise ValidationError(f"unsupported producer role: {role}")
@@ -134,11 +140,15 @@ def load_producer_set(
     manifest = load_json(manifest_path, require_object=True)
     schema_id = manifest.get("schema_id")
     if schema_id == PACKAGE_SET_SCHEMA:
+        if intake_mode == HISTORICAL_REPLAY_MODE:
+            raise PolicyError("historical replay mode admits only legacy producer package sets")
         _require_exact_keys(manifest, _MANIFEST_FIELDS, "producer package-set manifest")
         if manifest.get("schema_version") != SCHEMA_VERSION:
             raise ValidationError("unsupported Harness producer package-set V2 manifest")
         producer = _producer(manifest.get("producer"), legacy=False)
     elif schema_id == LEGACY_PACKAGE_SET_SCHEMA:
+        if intake_mode != HISTORICAL_REPLAY_MODE:
+            raise PolicyError("legacy producer package set is historical-replay only")
         _require_exact_keys(
             manifest, _LEGACY_MANIFEST_FIELDS, "legacy producer package-set manifest"
         )
@@ -221,19 +231,23 @@ def load_producer_set(
         raise ValidationError("producer package-set package count mismatch")
 
     source_manifest_path: Path | None = None
+    source_authority_files: tuple[tuple[Path, str], ...] = ()
     receipt_raw: bytes | None = None
     receipt: dict[str, Any] | None = None
     authority_files: tuple[tuple[Path, str], ...] = ()
     if schema_id == PACKAGE_SET_SCHEMA:
-        source_manifest_path = _verify_source_manifest(
+        source_manifest_path, source_authority_files = _verify_source_manifest(
             manifest_path,
             manifest.get("source_manifest"),
             role=role,
             producer=producer,
             candidates=candidates,
             required=status == COMPLETE_ACCEPTED,
+            trust_profile=trust_profile,
         )
         if status == COMPLETE_ACCEPTED:
+            if trust_profile is None:
+                raise PolicyError("official PRESENT admission requires a trusted authority profile")
             if acceptance_receipt_path is None:
                 raise PolicyError("official PRESENT admission requires an acceptance receipt")
             if None in (run_id, phase_id, split_id):
@@ -248,6 +262,7 @@ def load_producer_set(
                 run_id=str(run_id),
                 phase_id=str(phase_id),
                 split_id=str(split_id),
+                trust_profile=trust_profile,
             )
         elif acceptance_receipt_path is not None:
             raise PolicyError("synthetic producer set cannot claim an acceptance receipt")
@@ -266,6 +281,7 @@ def load_producer_set(
         manifest=manifest,
         items=tuple(sorted(items, key=lambda item: item.identity.candidate_id)),
         source_manifest_path=source_manifest_path,
+        source_authority_files=source_authority_files,
         acceptance_receipt_path=acceptance_receipt_path,
         acceptance_receipt_raw=receipt_raw,
         acceptance_receipt=receipt,
@@ -295,11 +311,12 @@ def _verify_source_manifest(
     producer: Mapping[str, str],
     candidates: Sequence[DatasetCandidate],
     required: bool,
-) -> Path | None:
+    trust_profile: TrustedAuthorityProfile | None,
+) -> tuple[Path | None, tuple[tuple[Path, str], ...]]:
     if descriptor_value is None:
         if required:
             raise PolicyError("official producer set requires a typed source manifest")
-        return None
+        return None, ()
     path, value = _bound_json(manifest_path.parent, descriptor_value, "producer source manifest")
     _require_exact_keys(value, _SOURCE_MANIFEST_FIELDS, "producer source manifest")
     if (
@@ -312,7 +329,34 @@ def _verify_source_manifest(
         raise ValidationError("producer source manifest authority mismatch")
     _verify_candidate_counts(value, candidates, "producer source manifest")
     _require_null_decision(value, "producer source manifest")
-    return path
+    if required:
+        if trust_profile is None:
+            raise PolicyError("official producer source manifest requires trusted authority")
+        expected = trust_profile.producer(role)
+        if value["integrity"]["self_sha256"] != expected["source_manifest_self_sha256"]:
+            raise IntegrityError("producer source manifest trusted self hash mismatch")
+        if sha256_file(path) != expected["source_manifest_physical_sha256"]:
+            raise IntegrityError("producer source manifest trusted physical hash mismatch")
+        release_path, release = _bound_json(
+            manifest_path.parent,
+            value.get("producer_release_receipt"),
+            "producer release receipt",
+        )
+        if release["integrity"]["self_sha256"] != expected["release_receipt_self_sha256"]:
+            raise IntegrityError("producer release receipt trusted self hash mismatch")
+        if sha256_file(release_path) != expected["release_receipt_physical_sha256"]:
+            raise IntegrityError("producer release receipt trusted physical hash mismatch")
+        source_relative = _descriptor_relative(descriptor_value)
+        return path, (
+            (path, source_relative),
+            (
+                release_path,
+                _descriptor_relative(value["producer_release_receipt"]),
+            ),
+        )
+    if value.get("producer_release_receipt") is not None:
+        raise PolicyError("synthetic source manifest cannot claim a producer release receipt")
+    return path, ((path, _descriptor_relative(descriptor_value)),)
 
 
 def _verify_acceptance_receipt(
@@ -326,6 +370,7 @@ def _verify_acceptance_receipt(
     run_id: str,
     phase_id: str,
     split_id: str,
+    trust_profile: TrustedAuthorityProfile,
 ) -> tuple[bytes, dict[str, Any], tuple[tuple[Path, str], ...]]:
     root = ensure_plain_root(receipt_path.parent)
     receipt_path = ensure_no_symlink(root, safe_relative_path(receipt_path.name))
@@ -339,6 +384,18 @@ def _verify_acceptance_receipt(
     ):
         raise ValidationError("unsupported or non-accepted producer acceptance receipt")
     _verify_self_hash(receipt, "producer acceptance receipt")
+    trusted = trust_profile.producer(role)
+    _verify_trusted_profile_run(
+        trust_profile, run_id=run_id, phase_id=phase_id, split_id=split_id
+    )
+    if receipt.get("issuer_id") != trust_profile.value["issuer_id"]:
+        raise ValidationError("producer acceptance receipt issuer is not trusted")
+    if receipt.get("authority_id") != trust_profile.value["authority_id"]:
+        raise ValidationError("producer acceptance receipt authority is not trusted")
+    if receipt["integrity"]["self_sha256"] != trusted["acceptance_receipt_self_sha256"]:
+        raise IntegrityError("producer acceptance receipt trusted self hash mismatch")
+    if sha256_bytes(raw) != trusted["acceptance_receipt_physical_sha256"]:
+        raise IntegrityError("producer acceptance receipt trusted physical hash mismatch")
     _verify_common_authority_fields(
         receipt,
         producer=producer,
@@ -353,6 +410,8 @@ def _verify_acceptance_receipt(
         "producer acceptance receipt",
     )
     _verify_candidate_counts(receipt, candidates, "producer acceptance receipt")
+    if receipt["candidate_set_sha256"] != trust_profile.value["parent_dataset"]["authorized_candidate_set_sha256"]:
+        raise IntegrityError("producer acceptance cohort differs from trusted candidate set")
     _require_null_decision(receipt, "producer acceptance receipt")
 
     cohort_path, cohort = _bound_json(
@@ -405,6 +464,16 @@ def _verify_acceptance_receipt(
         raise ValidationError("approval/receipt issuer mismatch")
     if approval.get("authority_id") != receipt.get("authority_id"):
         raise ValidationError("approval/receipt authority mismatch")
+    if approval["integrity"]["self_sha256"] != trusted["approval_artifact_self_sha256"]:
+        raise IntegrityError("producer approval trusted self hash mismatch")
+    if sha256_file(approval_path) != trusted["approval_artifact_physical_sha256"]:
+        raise IntegrityError("producer approval trusted physical hash mismatch")
+    expected_producer = {
+        field: trusted[field]
+        for field in ("component_id", "component_version", "run_id", "commit", "tree")
+    }
+    if dict(producer) != expected_producer:
+        raise ValidationError("producer Git/release identity is not trusted")
     return raw, receipt, (
         (receipt_path, receipt_path.name),
         (cohort_path, _descriptor_relative(receipt["candidate_cohort"])),
@@ -421,6 +490,7 @@ def verify_producer_acceptance_receipt(
     run_id: str,
     phase_id: str,
     split_id: str,
+    trust_profile: TrustedAuthorityProfile,
 ) -> dict[str, Any]:
     """Revalidate detached acceptance authority for a sealed manifest snapshot."""
 
@@ -444,6 +514,7 @@ def verify_producer_acceptance_receipt(
         run_id=run_id,
         phase_id=phase_id,
         split_id=split_id,
+        trust_profile=trust_profile,
     )
     return receipt
 
@@ -467,6 +538,23 @@ def _verify_common_authority_fields(
         observed = producer.get(field)
         if not isinstance(observed, str) or _HEX_40.fullmatch(observed) is None:
             raise ValidationError(f"{label} requires a full producer {field} Git OID")
+
+
+def _verify_trusted_profile_run(
+    profile: TrustedAuthorityProfile,
+    *,
+    run_id: str,
+    phase_id: str,
+    split_id: str,
+) -> None:
+    expected = profile.value
+    if any(
+        expected.get(field) != value
+        for field, value in (
+            ("run_id", run_id), ("phase_id", phase_id), ("split_id", split_id)
+        )
+    ):
+        raise ValidationError("trusted authority profile run/phase/split mismatch")
 
 
 def _verify_run_fields(
@@ -617,8 +705,10 @@ __all__ = [
     "APPROVAL_ARTIFACT_SCHEMA",
     "COHORT_AUTHORITY_SCHEMA",
     "COMPLETE_ACCEPTED",
+    "HISTORICAL_REPLAY_MODE",
     "LEGACY_PACKAGE_SET_SCHEMA",
     "PACKAGE_SET_SCHEMA",
+    "NEW_INPUT_MODE",
     "ProducerItem",
     "ProducerSet",
     "SOURCE_MANIFEST_SCHEMA",

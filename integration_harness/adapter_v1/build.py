@@ -21,6 +21,10 @@ from integration_harness.adapter_v1.dataset import (
     load_dataset_release,
 )
 from integration_harness.adapter_v1.producer import ProducerSet
+from integration_harness.adapter_v1.trust import (
+    TrustedAuthorityProfile,
+    load_trusted_authority_profile,
+)
 from integration_harness.adapter_v1.sidecars import build_sidecars
 from integration_harness.errors import IntegrityError, PolicyError, StorageError
 from integration_harness.hashing import self_sha256, sha256_bytes, sha256_file
@@ -49,6 +53,11 @@ def build_adapter_bundle(
     output_root: Path,
     adapter_mode: str,
     inventory_schema_path: Path | None = None,
+    authority_profile_path: Path | None = None,
+    authority_profile_expected_physical_sha256: str | None = None,
+    authority_profile_expected_self_sha256: str | None = None,
+    authority_profile_expected_issuer_id: str | None = None,
+    authority_profile_expected_authority_id: str | None = None,
 ) -> dict[str, Any]:
     """Build a byte-preserving adapter bundle; never invokes Global or a provider."""
 
@@ -66,11 +75,29 @@ def build_adapter_bundle(
         mode=adapter_mode,
         repository_root=repository_root if adapter_mode == OFFICIAL_MODE else None,
     )
+    trust_profile: TrustedAuthorityProfile | None = None
+    if authority_profile_path is not None:
+        pins = (
+            authority_profile_expected_physical_sha256,
+            authority_profile_expected_self_sha256,
+            authority_profile_expected_issuer_id,
+            authority_profile_expected_authority_id,
+        )
+        if any(pin is None for pin in pins):
+            raise PolicyError("trusted authority profile requires all expected pins")
+        trust_profile = load_trusted_authority_profile(
+            authority_profile_path,
+            expected_physical_sha256=str(authority_profile_expected_physical_sha256),
+            expected_self_sha256=str(authority_profile_expected_self_sha256),
+            expected_issuer_id=str(authority_profile_expected_issuer_id),
+            expected_authority_id=str(authority_profile_expected_authority_id),
+        )
     availability = load_availability_manifest(
         availability_manifest,
         candidates=dataset.candidates,
         schema_root=contracts_root,
         adapter_mode=adapter_mode,
+        trust_profile=trust_profile,
     )
     temp = parent / f".{output_root.name}.tmp-{uuid.uuid4().hex}"
     temp.mkdir()
@@ -80,6 +107,7 @@ def build_adapter_bundle(
             dataset=dataset,
             availability=availability,
             inventory_schema_path=inventory_schema_path,
+            trust_profile=trust_profile,
         )
         inventory_path = temp / "artifact_inventory.json"
         inventory = load_inventory(inventory_path)
@@ -93,7 +121,12 @@ def build_adapter_bundle(
             joined_count = report["joined_count"]
             if joined_count != ready_count or len(joined) != ready_count:
                 raise IntegrityError("adapter runtime join count mismatch")
-            join_status = GLOBAL_READY
+            join_status = (
+                GLOBAL_READY
+                if dataset.mode == SYNTHETIC_MODE
+                or (trust_profile is not None and trust_profile.live_promoted)
+                else GLOBAL_HOLD
+            )
         report = {
             "schema_id": "HarnessDatasetExactCohortAdapterReportV2",
             "schema_version": "2.0.0",
@@ -118,6 +151,9 @@ def build_adapter_bundle(
             "provider_calls": 0,
             "auto_approved_count": 0,
             "certificate_count": 0,
+            "trusted_authority_status": (
+                trust_profile.value["status"] if trust_profile is not None else None
+            ),
             "final_glossary_decision": None,
             "inventory_self_sha256": manifest["integrity"]["self_sha256"],
             "integrity": {},
@@ -144,6 +180,9 @@ def build_adapter_bundle(
         "provider_calls": 0,
         "auto_approved_count": 0,
         "certificate_count": 0,
+        "trusted_authority_status": (
+            trust_profile.value["status"] if trust_profile is not None else None
+        ),
     }
 
 
@@ -153,6 +192,7 @@ def _materialize(
     dataset: DatasetRelease,
     availability: AvailabilityManifest,
     inventory_schema_path: Path | None,
+    trust_profile: TrustedAuthorityProfile | None,
 ) -> dict[str, Any]:
     source_records: list[dict[str, Any]] = []
     _write_bound_source(
@@ -203,6 +243,29 @@ def _materialize(
         raw=availability.manifest_raw,
         declared_self=availability.manifest["integrity"]["self_sha256"],
     )
+    if trust_profile is not None:
+        for index, (source, relative_text) in enumerate(trust_profile.authority_files):
+            raw = source.read_bytes()
+            value = loads_strict(raw, require_object=True)
+            declared_self = (
+                value.get("integrity", {}).get("self_sha256")
+                if isinstance(value, dict)
+                else None
+            )
+            role_name = (
+                "trusted_authority_profile"
+                if index == 0
+                else "trusted_authority_"
+                + relative_text.replace("/", "_").replace("\\", "_")
+            )
+            _write_bound_source(
+                root,
+                source_records,
+                role=role_name,
+                relative=f"source_authority/main_trust/{relative_text}",
+                raw=raw,
+                declared_self=declared_self,
+            )
     for producer in availability.producer_sets:
         _copy_producer_authority(root, source_records, producer)
     if inventory_schema_path is not None:
@@ -226,6 +289,24 @@ def _materialize(
             / "harness_external_acquisition_hold_receipt_v2.schema.json",
             "availability_intake_schema": inventory_schema_path.parent
             / "harness_evidence_availability_intake_v2.schema.json",
+            "trusted_authority_profile_schema": inventory_schema_path.parent
+            / "harness_trusted_main_authority_profile_v1.schema.json",
+            "producer_source_manifest_schema": inventory_schema_path.parent
+            / "harness_producer_source_manifest_v1.schema.json",
+            "candidate_cohort_authority_schema": inventory_schema_path.parent
+            / "harness_candidate_cohort_authority_v1.schema.json",
+            "producer_set_approval_artifact_schema": inventory_schema_path.parent
+            / "harness_producer_set_approval_artifact_v1.schema.json",
+            "producer_run_authorization_receipt_schema": inventory_schema_path.parent
+            / "harness_producer_run_authorization_receipt_v1.schema.json",
+            "producer_run_stop_event_schema": inventory_schema_path.parent
+            / "harness_producer_run_stop_event_v1.schema.json",
+            "producer_safe_parent_payload_authority_schema": inventory_schema_path.parent
+            / "harness_producer_safe_parent_payload_authority_v1.schema.json",
+            "producer_safe_subset_cohort_authority_schema": inventory_schema_path.parent
+            / "harness_producer_safe_subset_cohort_authority_v1.schema.json",
+            "producer_safe_cohort_authority_release_schema": inventory_schema_path.parent
+            / "harness_producer_safe_cohort_authority_release_v1.schema.json",
         }
         for schema_role, schema_path in schema_paths.items():
             schema_raw = schema_path.read_bytes()
@@ -408,11 +489,21 @@ def _materialize(
         }
     ready_count = len(ready_ids)
     not_submitted_count = dataset.candidate_count - ready_count
-    global_status = GLOBAL_READY if ready_count else GLOBAL_HOLD
+    global_status = (
+        GLOBAL_READY
+        if ready_count
+        and (
+            dataset.mode == SYNTHETIC_MODE
+            or (trust_profile is not None and trust_profile.live_promoted)
+        )
+        else GLOBAL_HOLD
+    )
     if dataset.mode == OFFICIAL_MODE:
         status = (
             ADAPTER_STATUS_HOLD_15
             if not_submitted_count
+            or trust_profile is None
+            or not trust_profile.live_promoted
             else ADAPTER_STATUS_READY_15
         )
     elif dataset.mode == SYNTHETIC_MODE:
@@ -451,6 +542,20 @@ def _materialize(
             _producer_summary(producer) for producer in availability.producer_sets
         ],
         "sidecar_bindings": sidecar_bindings,
+        "trusted_authority": (
+            {
+                "relative_path": "source_authority/main_trust/" + trust_profile.path.name,
+                "physical_sha256": sha256_file(
+                    root / "source_authority/main_trust" / trust_profile.path.name
+                ),
+                "self_sha256": trust_profile.value["integrity"]["self_sha256"],
+                "issuer_id": trust_profile.value["issuer_id"],
+                "authority_id": trust_profile.value["authority_id"],
+                "status": trust_profile.value["status"],
+            }
+            if trust_profile is not None
+            else None
+        ),
         "source_authority": sorted(source_records, key=lambda item: item["role"]),
         "artifacts": artifacts,
         "holds": [],
@@ -485,16 +590,22 @@ def _copy_producer_authority(
         declared_self=producer.manifest["integrity"]["self_sha256"],
     )
     if producer.source_manifest_path is not None:
-        raw = producer.source_manifest_path.read_bytes()
-        value = loads_strict(raw, require_object=True)
-        _write_bound_source(
-            root,
-            records,
-            role=f"{prefix}_accepted_source_manifest",
-            relative=f"source_authority/{prefix}/accepted_source_manifest.json",
-            raw=raw,
-            declared_self=value["integrity"]["self_sha256"],
-        )
+        for source, source_relative in producer.source_authority_files:
+            raw = source.read_bytes()
+            value = loads_strict(raw, require_object=True)
+            role_name = (
+                f"{prefix}_accepted_source_manifest"
+                if source == producer.source_manifest_path
+                else f"{prefix}_source_authority_{source_relative.replace('/', '_')}"
+            )
+            _write_bound_source(
+                root,
+                records,
+                role=role_name,
+                relative=f"source_authority/{prefix}/{source_relative}",
+                raw=raw,
+                declared_self=value.get("integrity", {}).get("self_sha256"),
+            )
     if producer.acceptance_receipt_path is not None:
         for source, authority_relative in producer.acceptance_authority_files:
             raw = source.read_bytes()

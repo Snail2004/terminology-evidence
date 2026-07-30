@@ -16,6 +16,7 @@ from .adapter_v1.availability import (
     write_present_availability_manifest,
 )
 from .adapter_v1.dataset import OFFICIAL_MODE, SYNTHETIC_MODE, load_dataset_release
+from .adapter_v1.trust import load_trusted_authority_profile
 from .assembler import GlobalCliAdapter
 from .authority import CONTRACTS_R2_CURRENT, SYNTHETIC_LOCAL_CONFORMANCE, resolve_authority
 from .contracts_verifier import PublicContractR2Verifier
@@ -38,6 +39,34 @@ def _common_authority(parser: argparse.ArgumentParser) -> None:
         "--authority-mode",
         choices=[SYNTHETIC_LOCAL_CONFORMANCE, CONTRACTS_R2_CURRENT],
         default=CONTRACTS_R2_CURRENT,
+    )
+
+
+def _common_trust_profile(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument("--authority-profile", type=Path)
+    parser.add_argument("--authority-profile-physical-sha256")
+    parser.add_argument("--authority-profile-self-sha256")
+    parser.add_argument("--authority-profile-issuer-id")
+    parser.add_argument("--authority-profile-authority-id")
+
+
+def _load_cli_trust_profile(args: argparse.Namespace):
+    if args.authority_profile is None:
+        return None
+    pins = (
+        args.authority_profile_physical_sha256,
+        args.authority_profile_self_sha256,
+        args.authority_profile_issuer_id,
+        args.authority_profile_authority_id,
+    )
+    if any(value is None for value in pins):
+        raise ValueError("authority profile requires all expected pins")
+    return load_trusted_authority_profile(
+        args.authority_profile,
+        expected_physical_sha256=args.authority_profile_physical_sha256,
+        expected_self_sha256=args.authority_profile_self_sha256,
+        expected_issuer_id=args.authority_profile_issuer_id,
+        expected_authority_id=args.authority_profile_authority_id,
     )
 
 
@@ -113,6 +142,7 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         default=Path("docs/integration/artifact_inventory_exact_cohort_v2.schema.json"),
     )
+    _common_trust_profile(adapter_build)
     adapter_build.set_defaults(handler=_adapter_build)
 
     adapter_replay = sub.add_parser("adapter-replay")
@@ -144,6 +174,7 @@ def build_parser() -> argparse.ArgumentParser:
             availability.add_argument("--attestation-set-manifest", type=Path, required=True)
             availability.add_argument("--context-acceptance-receipt", type=Path)
             availability.add_argument("--attestation-acceptance-receipt", type=Path)
+            _common_trust_profile(availability)
         else:
             availability.add_argument("--reason-code", required=True)
         availability.set_defaults(handler=handler)
@@ -266,6 +297,11 @@ def _adapter_build(args: argparse.Namespace) -> dict[str, Any]:
         output_root=args.output,
         adapter_mode=args.adapter_mode,
         inventory_schema_path=args.inventory_schema,
+        authority_profile_path=args.authority_profile,
+        authority_profile_expected_physical_sha256=args.authority_profile_physical_sha256,
+        authority_profile_expected_self_sha256=args.authority_profile_self_sha256,
+        authority_profile_expected_issuer_id=args.authority_profile_issuer_id,
+        authority_profile_expected_authority_id=args.authority_profile_authority_id,
     )
 
 
@@ -311,6 +347,7 @@ def _adapter_create_missing_availability(args: argparse.Namespace) -> dict[str, 
 
 def _adapter_create_present_availability(args: argparse.Namespace) -> dict[str, Any]:
     dataset = _load_cli_dataset(args)
+    trust_profile = _load_cli_trust_profile(args)
     manifest = write_present_availability_manifest(
         args.output,
         candidates=dataset.candidates,
@@ -324,6 +361,7 @@ def _adapter_create_present_availability(args: argparse.Namespace) -> dict[str, 
         phase_id=args.phase_id,
         split_id=args.split_id,
         observed_at=args.observed_at,
+        trust_profile=trust_profile,
     )
     return {
         "status": "PASS",

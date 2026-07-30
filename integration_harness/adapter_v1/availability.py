@@ -9,8 +9,16 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
-from integration_harness.adapter_v1.dataset import DatasetCandidate
-from integration_harness.adapter_v1.producer import ProducerItem, ProducerSet, load_producer_set
+from integration_harness.adapter_v1.dataset import OFFICIAL_MODE, DatasetCandidate
+from integration_harness.adapter_v1.producer import (
+    HISTORICAL_REPLAY_MODE,
+    NEW_INPUT_MODE,
+    ProducerItem,
+    ProducerSet,
+    candidate_set_sha256,
+    load_producer_set,
+)
+from integration_harness.adapter_v1.trust import TrustedAuthorityProfile
 from integration_harness.errors import IntegrityError, PolicyError, ValidationError
 from integration_harness.hashing import self_sha256, sha256_file
 from integration_harness.identity import IDENTITY_FIELDS, CandidateIdentity
@@ -102,12 +110,13 @@ _PRODUCER_AUTHORITY_FIELDS = {
 _RUN_AUTHORIZATION_FIELDS = {
     "schema_id", "schema_version", "status", "issuer_id", "authority_id",
     "run_id", "phase_id", "split_id", "candidate_key", "role", "producer",
-    "final_glossary_decision", "integrity",
+    "main_live_authorization_receipt", "final_glossary_decision", "integrity",
 }
 _STOP_EVENT_FIELDS = {
     "schema_id", "schema_version", "event_type", "status", "run_id",
     "phase_id", "split_id", "candidate_key", "role", "producer",
     "reason_code", "observed_at", "authorization_receipt",
+    "main_run_stop_receipt", "main_stop_event",
     "final_glossary_decision", "integrity",
 }
 
@@ -134,6 +143,8 @@ class AvailabilityManifest:
     manifest: dict[str, Any]
     items: tuple[AvailabilityItem, ...]
     producer_sets: tuple[ProducerSet, ...]
+    trust_profile: TrustedAuthorityProfile | None
+    intake_mode: str
 
     @property
     def ready_candidate_ids(self) -> frozenset[str]:
@@ -154,6 +165,8 @@ def load_availability_manifest(
     candidates: Sequence[DatasetCandidate],
     schema_root: Path,
     adapter_mode: str,
+    trust_profile: TrustedAuthorityProfile | None = None,
+    intake_mode: str = NEW_INPUT_MODE,
 ) -> AvailabilityManifest:
     root = ensure_plain_root(manifest_path.parent)
     manifest_path = ensure_no_symlink(root, safe_relative_path(manifest_path.name))
@@ -162,9 +175,13 @@ def load_availability_manifest(
     _require_exact_keys(manifest, _MANIFEST_FIELDS, "availability manifest")
     schema_id = manifest.get("schema_id")
     if schema_id == AVAILABILITY_SCHEMA:
+        if intake_mode == HISTORICAL_REPLAY_MODE:
+            raise PolicyError("historical replay mode admits only legacy availability intake")
         if manifest.get("schema_version") != SCHEMA_VERSION:
             raise ValidationError("unsupported HarnessEvidenceAvailabilityIntakeV2")
     elif schema_id == LEGACY_AVAILABILITY_SCHEMA:
+        if intake_mode != HISTORICAL_REPLAY_MODE:
+            raise PolicyError("legacy availability intake is historical-replay only")
         if manifest.get("schema_version") != LEGACY_SCHEMA_VERSION:
             raise ValidationError("unsupported legacy availability intake")
     else:
@@ -181,6 +198,14 @@ def load_availability_manifest(
         raise ValidationError("availability expected candidate count mismatch")
     for field in ("run_id", "phase_id", "split_id"):
         _string(manifest.get(field), f"availability {field}")
+    if trust_profile is not None:
+        _verify_trust_profile_binding(
+            trust_profile,
+            candidates=candidates,
+            run_id=str(manifest["run_id"]),
+            phase_id=str(manifest["phase_id"]),
+            split_id=str(manifest["split_id"]),
+        )
     rows = manifest.get("rows")
     if not isinstance(rows, list) or len(rows) != len(expected) * len(ROLES):
         raise ValidationError("availability row cardinality mismatch")
@@ -234,6 +259,7 @@ def load_availability_manifest(
                 observed_at=str(row["observed_at"]),
                 reason_code=str(reason),
                 legacy=schema_id == LEGACY_AVAILABILITY_SCHEMA,
+                trust_profile=trust_profile,
             )
         elif status == MISSING:
             _string(reason, "MISSING reason_code")
@@ -262,6 +288,8 @@ def load_availability_manifest(
         run_id=str(manifest["run_id"]),
         phase_id=str(manifest["phase_id"]),
         split_id=str(manifest["split_id"]),
+        trust_profile=trust_profile,
+        intake_mode=intake_mode,
     )
     package_index = {
         (item.identity.candidate_id, producer.role): item
@@ -289,12 +317,18 @@ def load_availability_manifest(
         )
     if any((item.status == PRESENT) != (item.package is not None) for item in items):
         raise ValidationError("availability PRESENT rows do not match producer package sets")
+    if adapter_mode == OFFICIAL_MODE and any(
+        item.status in {PRESENT, EXTERNAL_HOLD} for item in items
+    ) and trust_profile is None:
+        raise PolicyError("official PRESENT/EXTERNAL_HOLD intake requires trusted Main authority")
     return AvailabilityManifest(
         manifest_path=manifest_path,
         manifest_raw=raw,
         manifest=manifest,
         items=tuple(items),
         producer_sets=tuple(sorted(producer_sets, key=lambda item: item.role)),
+        trust_profile=trust_profile,
+        intake_mode=intake_mode,
     )
 
 
@@ -336,6 +370,8 @@ def write_present_availability_manifest(
     phase_id: str,
     split_id: str,
     observed_at: str,
+    trust_profile: TrustedAuthorityProfile | None = None,
+    intake_mode: str = NEW_INPUT_MODE,
 ) -> Path:
     producers = (
         load_producer_set(
@@ -348,6 +384,8 @@ def write_present_availability_manifest(
             run_id=run_id,
             phase_id=phase_id,
             split_id=split_id,
+            trust_profile=trust_profile,
+            intake_mode=intake_mode,
         ),
         load_producer_set(
             attestation_set_manifest,
@@ -359,6 +397,8 @@ def write_present_availability_manifest(
             run_id=run_id,
             phase_id=phase_id,
             split_id=split_id,
+            trust_profile=trust_profile,
+            intake_mode=intake_mode,
         ),
     )
     return _write_availability_manifest(
@@ -407,14 +447,11 @@ def _write_availability_manifest(
             _copy_file(producer.manifest_path, destination_root / "manifest.json")
             for item in producer.items:
                 _copy_file(item.path, destination_root / safe_relative_path(item.relative_path))
-            for bound in (producer.source_manifest_path,):
-                if bound is None:
-                    continue
-                try:
-                    relative = bound.relative_to(producer.manifest_path.parent)
-                except ValueError as exc:
-                    raise ValidationError("producer source binding escapes its manifest root") from exc
-                _copy_file(bound, destination_root / relative)
+            for bound, relative_text in producer.source_authority_files:
+                _copy_file(
+                    bound,
+                    destination_root / safe_relative_path(relative_text),
+                )
             acceptance_descriptor = None
             if producer.acceptance_receipt_path is not None:
                 authority_root = destination_root / "acceptance_authority"
@@ -493,6 +530,8 @@ def _load_present_sets(
     run_id: str,
     phase_id: str,
     split_id: str,
+    trust_profile: TrustedAuthorityProfile | None,
+    intake_mode: str,
 ) -> tuple[ProducerSet, ...]:
     bindings = manifest.get("producer_sets")
     if not isinstance(bindings, list):
@@ -565,6 +604,8 @@ def _load_present_sets(
             run_id=run_id,
             phase_id=phase_id,
             split_id=split_id,
+            trust_profile=trust_profile,
+            intake_mode=intake_mode,
         )
         if binding.get("producer") != producer.manifest.get("producer"):
             raise ValidationError("availability producer set provenance mismatch")
@@ -584,6 +625,7 @@ def _load_hold_receipt(
     observed_at: str,
     reason_code: str,
     legacy: bool,
+    trust_profile: TrustedAuthorityProfile | None,
 ) -> tuple[Path, bytes, dict[str, Any], tuple[tuple[Path, str], ...]]:
     descriptor = _mapping(value, "EXTERNAL_HOLD receipt descriptor")
     _require_exact_keys(
@@ -622,14 +664,18 @@ def _load_hold_receipt(
     _string(receipt.get("reason_code"), "EXTERNAL_HOLD receipt reason")
     if legacy:
         return path, raw, receipt, ()
+    if trust_profile is None:
+        raise PolicyError("V2 EXTERNAL_HOLD requires trusted Main authority")
     for field, expected in (
         ("run_id", run_id), ("phase_id", phase_id), ("split_id", split_id),
         ("observed_at", observed_at), ("reason_code", reason_code),
     ):
         if receipt.get(field) != expected:
             raise ValidationError(f"EXTERNAL_HOLD receipt {field} binding mismatch")
-    _string(receipt.get("issuer_id"), "EXTERNAL_HOLD receipt issuer_id")
-    _string(receipt.get("authority_id"), "EXTERNAL_HOLD receipt authority_id")
+    if receipt.get("issuer_id") != trust_profile.value["issuer_id"]:
+        raise ValidationError("EXTERNAL_HOLD receipt issuer is not trusted")
+    if receipt.get("authority_id") != trust_profile.value["authority_id"]:
+        raise ValidationError("EXTERNAL_HOLD receipt authority is not trusted")
     producer = _mapping(receipt.get("producer"), "EXTERNAL_HOLD receipt producer")
     _require_exact_keys(producer, _PRODUCER_AUTHORITY_FIELDS, "EXTERNAL_HOLD receipt producer")
     for field in ("component_id", "component_version", "run_id", "commit", "tree"):
@@ -637,6 +683,13 @@ def _load_hold_receipt(
     for field in ("commit", "tree"):
         if _HEX_40.fullmatch(str(producer[field])) is None:
             raise ValidationError(f"EXTERNAL_HOLD producer {field} is not a Git OID")
+    trusted_producer = trust_profile.producer(role)
+    expected_producer = {
+        field: trusted_producer[field]
+        for field in ("component_id", "component_version", "run_id", "commit", "tree")
+    }
+    if any(producer.get(field) != expected for field, expected in expected_producer.items()):
+        raise ValidationError("EXTERNAL_HOLD producer is not trusted")
     authorization_path, authorization = _bound_json(
         path.parent, receipt.get("authorization_receipt"), "EXTERNAL_HOLD authorization receipt"
     )
@@ -651,6 +704,11 @@ def _load_hold_receipt(
         authorization, expected_identity, role, producer, run_id, phase_id, split_id,
         "run authorization receipt",
     )
+    if (
+        authorization.get("main_live_authorization_receipt")
+        != trust_profile.value["main_run_authority"]["live_authorization_receipt"]
+    ):
+        raise IntegrityError("EXTERNAL_HOLD authorization does not bind exact Main receipt")
     for field in ("issuer_id", "authority_id"):
         _string(authorization.get(field), f"run authorization receipt {field}")
         if authorization.get(field) != receipt.get(field):
@@ -670,6 +728,19 @@ def _load_hold_receipt(
     )
     if stop.get("reason_code") != reason_code or stop.get("observed_at") != observed_at:
         raise ValidationError("EXTERNAL_HOLD STOP_EVENT reason/timestamp mismatch")
+    if (
+        stop.get("main_run_stop_receipt")
+        != trust_profile.value["main_run_authority"]["run_stop_receipt"]
+        or stop.get("main_stop_event")
+        != trust_profile.value["main_run_authority"]["stop_event"]
+    ):
+        raise IntegrityError("EXTERNAL_HOLD STOP_EVENT does not bind exact Main stop chain")
+    if reason_code != trust_profile.run_stop.value["stop_reason"]:
+        raise ValidationError("EXTERNAL_HOLD reason differs from Main run-stop")
+    if reason_code != trust_profile.stop_event.value["stop_reason"]:
+        raise ValidationError("EXTERNAL_HOLD reason differs from Main STOP_EVENT")
+    if observed_at != trust_profile.stop_event.value["issued_at"]:
+        raise ValidationError("EXTERNAL_HOLD timestamp differs from Main STOP_EVENT")
     if stop.get("authorization_receipt") != receipt.get("authorization_receipt"):
         raise IntegrityError("EXTERNAL_HOLD authorization binding drift")
     return path, raw, receipt, (
@@ -689,6 +760,7 @@ def verify_external_hold_receipt(
     split_id: str,
     observed_at: str,
     reason_code: str,
+    trust_profile: TrustedAuthorityProfile,
 ) -> dict[str, Any]:
     """Revalidate a materialized V2 hold receipt and its exact STOP_EVENT chain."""
 
@@ -708,8 +780,33 @@ def verify_external_hold_receipt(
         observed_at=observed_at,
         reason_code=reason_code,
         legacy=False,
+        trust_profile=trust_profile,
     )
     return receipt
+
+
+def _verify_trust_profile_binding(
+    profile: TrustedAuthorityProfile,
+    *,
+    candidates: Sequence[DatasetCandidate],
+    run_id: str,
+    phase_id: str,
+    split_id: str,
+) -> None:
+    if any(
+        profile.value.get(field) != expected
+        for field, expected in (
+            ("run_id", run_id),
+            ("phase_id", phase_id),
+            ("split_id", split_id),
+        )
+    ):
+        raise ValidationError("trusted Main authority run/phase/split mismatch")
+    parent = profile.value["parent_dataset"]
+    if parent.get("parent_candidate_count") != len(candidates):
+        raise ValidationError("trusted Main authority candidate count mismatch")
+    if parent.get("authorized_candidate_set_sha256") != candidate_set_sha256(candidates):
+        raise IntegrityError("trusted Main authority candidate-set hash mismatch")
 
 
 def _verify_authority_binding(

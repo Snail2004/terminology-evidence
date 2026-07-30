@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:terminology-evidence:HarnessTrustedMainAuthorityProfileV1:1.0.0",
+  "title": "HarnessTrustedMainAuthorityProfileV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_id", "schema_version", "status", "issuer_id", "authority_id", "run_id", "phase_id", "split_id", "parent_dataset", "protocol", "producer_authorities", "main_run_authority", "final_glossary_decision", "integrity"],
+  "properties": {
+    "schema_id": {"const": "HarnessTrustedMainAuthorityProfileV1"},
+    "schema_version": {"const": "1.0.0"},
+    "status": {"enum": ["ZERO_PROVIDER_TRUST_PROFILE_ACCEPTED", "LIVE_AUTHORITY_APPROVED"]},
+    "issuer_id": {"type": "string", "minLength": 1},
+    "authority_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "phase_id": {"type": "string", "minLength": 1},
+    "split_id": {"type": "string", "minLength": 1},
+    "parent_dataset": {"$ref": "#/$defs/parent"},
+    "protocol": {"$ref": "#/$defs/protocol"},
+    "producer_authorities": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/producer"}},
+    "main_run_authority": {"$ref": "#/$defs/mainRun"},
+    "final_glossary_decision": {"type": "null"},
+    "integrity": {"$ref": "#/$defs/integrity"}
+  },
+  "$defs": {
+    "sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "oid": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "integrity": {"type": "object", "additionalProperties": false, "required": ["self_sha256"], "properties": {"self_sha256": {"$ref": "#/$defs/sha"}}},
+    "selfDescriptor": {"type": "object", "additionalProperties": false, "required": ["relative_path", "physical_sha256", "self_sha256"], "properties": {"relative_path": {"type": "string", "minLength": 1}, "physical_sha256": {"$ref": "#/$defs/sha"}, "self_sha256": {"$ref": "#/$defs/sha"}}},
+    "eventDescriptor": {"type": "object", "additionalProperties": false, "required": ["relative_path", "physical_sha256", "event_sha256"], "properties": {"relative_path": {"type": "string", "minLength": 1}, "physical_sha256": {"$ref": "#/$defs/sha"}, "event_sha256": {"$ref": "#/$defs/sha"}}},
+    "parent": {"type": "object", "additionalProperties": false, "required": ["zip_physical_sha256", "manifest_self_sha256", "sense_identity_sha256", "candidate_identity_sha256", "context_identity_sha256", "parent_candidate_count", "authorized_candidate_set_sha256"], "properties": {"zip_physical_sha256": {"$ref": "#/$defs/sha"}, "manifest_self_sha256": {"$ref": "#/$defs/sha"}, "sense_identity_sha256": {"$ref": "#/$defs/sha"}, "candidate_identity_sha256": {"$ref": "#/$defs/sha"}, "context_identity_sha256": {"$ref": "#/$defs/sha"}, "parent_candidate_count": {"type": "integer", "minimum": 1}, "authorized_candidate_set_sha256": {"$ref": "#/$defs/sha"}}},
+    "protocolSchema": {"type": "object", "additionalProperties": false, "required": ["kind", "schema_id", "schema_version", "relative_path", "physical_sha256"], "properties": {"kind": {"type": "string", "minLength": 1}, "schema_id": {"type": "string", "minLength": 1}, "schema_version": {"type": "string", "minLength": 1}, "relative_path": {"type": "string", "minLength": 1}, "physical_sha256": {"$ref": "#/$defs/sha"}}},
+    "protocol": {"type": "object", "additionalProperties": false, "required": ["status", "commit", "tree", "schemas"], "properties": {"status": {"enum": ["DRAFT4_PUBLIC_SURFACE_UNPROMOTED", "REVIEWED_LIVE_AUTHORITY"]}, "commit": {"$ref": "#/$defs/oid"}, "tree": {"$ref": "#/$defs/oid"}, "schemas": {"type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": {"$ref": "#/$defs/protocolSchema"}}}},
+    "producer": {"type": "object", "additionalProperties": false, "required": ["role", "component_id", "component_version", "run_id", "commit", "tree", "source_manifest_self_sha256", "source_manifest_physical_sha256", "release_receipt_self_sha256", "release_receipt_physical_sha256", "approval_artifact_self_sha256", "approval_artifact_physical_sha256", "acceptance_receipt_self_sha256", "acceptance_receipt_physical_sha256"], "properties": {"role": {"enum": ["context_evidence", "attestation_evidence"]}, "component_id": {"type": "string", "minLength": 1}, "component_version": {"type": "string", "minLength": 1}, "run_id": {"type": "string", "minLength": 1}, "commit": {"$ref": "#/$defs/oid"}, "tree": {"$ref": "#/$defs/oid"}, "source_manifest_self_sha256": {"$ref": "#/$defs/sha"}, "source_manifest_physical_sha256": {"$ref": "#/$defs/sha"}, "release_receipt_self_sha256": {"$ref": "#/$defs/sha"}, "release_receipt_physical_sha256": {"$ref": "#/$defs/sha"}, "approval_artifact_self_sha256": {"$ref": "#/$defs/sha"}, "approval_artifact_physical_sha256": {"$ref": "#/$defs/sha"}, "acceptance_receipt_self_sha256": {"$ref": "#/$defs/sha"}, "acceptance_receipt_physical_sha256": {"$ref": "#/$defs/sha"}}},
+    "mainRun": {"type": "object", "additionalProperties": false, "required": ["live_authorization_receipt", "run_start_receipt", "run_stop_receipt", "stop_event"], "properties": {"live_authorization_receipt": {"$ref": "#/$defs/selfDescriptor"}, "run_start_receipt": {"$ref": "#/$defs/selfDescriptor"}, "run_stop_receipt": {"$ref": "#/$defs/selfDescriptor"}, "stop_event": {"$ref": "#/$defs/eventDescriptor"}}}
+  }
+}
