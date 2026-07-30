@@ -1,0 +1,47 @@
+{
+  "counts": {
+    "candidate_pool": 180,
+    "selected_context": 468,
+    "sense_pool": 60,
+    "stage_a_batch": 9,
+    "stage_a_new_sense": 44
+  },
+  "created_at": "2026-07-29T14:00:00Z",
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "1bc9323642d811e2c78f5b2a5a78fc2cdbfc33d5f43a67ca5e60ee609c717866"
+  },
+  "lane_counts": {
+    "A_OFFICIAL": 5,
+    "B_REVIEW_READY": 6,
+    "C_REPAIRED": 5,
+    "D_NEW": 44
+  },
+  "new_risk_counts": {
+    "R0_CLEAR": 13,
+    "R3_AMBIGUOUS": 15,
+    "R4_SPLIT_OR_POS_RISK": 16
+  },
+  "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+  "pool_stratum_counts": {
+    "ambiguous": 23,
+    "clear": 18,
+    "collision_or_multi_target": 19
+  },
+  "provider_call_count": 0,
+  "schema_id": "D2LFastTrackStageASelectionReportV1",
+  "schema_version": "1.0.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "PARTIAL_BATCH_READY",
+  "workload": {
+    "blind_audits_r0": 13,
+    "conditional_adjudications_r3_max": 15,
+    "existing_senses_not_re_reviewed": 16,
+    "independent_stage_a_review_decisions": 75,
+    "mandatory_adjudications_r4": 16,
+    "new_senses_requiring_stage_a": 44,
+    "reviewer_1_cases": 44,
+    "reviewer_2_cases": 31,
+    "stage_b_candidate_reviews_after_final_50": 300
+  }
+}

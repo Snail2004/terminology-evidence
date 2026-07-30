@@ -1,0 +1,515 @@
+{
+  "batch_id": "batch_002",
+  "case_count": 2,
+  "cases": [
+    {
+      "adjudication": {
+        "adjudication_rationale": "All eight eligible D2L contexts describe a machine-learning task that maps an example to a category or label, covering probabilistic label prediction, binary and multi-label classification, sentiment, CTR, and general category assignment. The synthetic museum sentence is boundary-only and excluded from positive evidence. The proposed noun-phrase definition, scope, and three Vietnamese candidates are supported, with no evidence for a separate sense.",
+        "adjudication_status": "COMPLETE",
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Independent adjudication confirms one coherent D2L task sense: assigning each example to a category or label. All eligible source contexts support the proposal; the synthetic boundary row is not positive evidence.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "adjudication_case_id": "adj_3680eedd6e2e00800387b0d8",
+      "adjudication_case_sha256": "cf1fab341016bd7d3b7fd7a4d064e3ee80de7924b5ff7d51be449d111bb77b16",
+      "batch_id": "batch_002",
+      "disagreement_fields": [],
+      "final_glossary_decision": null,
+      "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+      "provider_call_count": 0,
+      "reviewer_1": {
+        "result_file_sha256": "d2c2f98d50b2cc742e902d7c526a223fa7a2a5fae34ddd932f885ade606b9078",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "Các ngữ cảnh thực định nghĩa trực tiếp việc ánh xạ mỗi ví dụ vào một category/label và minh họa nhiều tác vụ phân loại; POS và ba candidate đều phù hợp.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+        }
+      },
+      "reviewer_2": {
+        "result_file_sha256": "db460c9ba21daab16e453b79ddaf51fc83a25f5edcb688071c17407f9d3b98f7",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "The eligible contexts consistently present classification as mapping or assigning an example to a category or label, with binary, text, sentiment, and CTR examples. This directly supports the proposed definition and noun-phrase POS, and each Vietnamese candidate preserves the task sense. The synthetic boundary row was not used as positive evidence.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+        }
+      },
+      "risk_class": "R4_SPLIT_OR_POS_RISK",
+      "routing_reason": "R4_MANDATORY_ADJUDICATION",
+      "schema_id": "D2LFastTrackStageAAdjudicationCaseV1",
+      "schema_version": "1.0.0",
+      "sense_id": "d2lce_d89e6e83e5f07d1fcb18c6aa",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_e79581f4744e73cf563b7444",
+            "candidate_slot": "candidate_slot_3e965b01022cabcff116edfa",
+            "candidate_target_vi": "bài toán phân loại"
+          },
+          {
+            "candidate_id": "candidate_6a5f71ba4fb7faadd518d7c1",
+            "candidate_slot": "candidate_slot_a2cfa5f174dc06b3fdad065e",
+            "candidate_target_vi": "nhiệm vụ phân loại"
+          },
+          {
+            "candidate_id": "candidate_6d03c0e37bb242222d884992",
+            "candidate_slot": "candidate_slot_d8145d6f1847e870ca95f98f",
+            "candidate_target_vi": "tác vụ phân loại"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_naive_bayes_b030",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+            "content_sha256": "64ca5d02eb5202318260c70c295dfcd732d1b5b57afee0e24151edc7fe9fa743",
+            "context_id": "ctx_03e87b1a98115f17fc26d0f7",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_42828c4350def50b44f169e0",
+            "source_text": "(Refer to :numref:`sec_softmax` for a more detailed explanation.)\nOne natural way to express the classification task is via the probabilistic question: what is the most likely label given the features (i.e., image pixels)?",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_bert_b050",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "aff00aee49f8531c0ba35d5bb0bf5d547c666346f543f4bd0f181f5e0fecc921",
+            "context_id": "ctx_3e389fe6256706465318f5f8",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_7568b99807a9271e2595d3c6",
+            "source_text": "To help understand the relationship between two text sequences,\nBERT considers a binary classification task, *next sentence prediction*, in its pretraining.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_environment_b063",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "7dedf72b03501ae8013614bb15706d2ee251c3da60365f59c8ade36c7747ad8a",
+            "context_id": "ctx_5178997f9928de9b50c9dd24",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_22b1a92cae030a06504187d4",
+            "source_text": "Assume that we are dealing with a\nclassification task with $k$ categories.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_bert_dataset_b011",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "407a5671f4d848182e707ca114fd3a0b2f7447854603a3e3ed0d71ca01c8422e",
+            "context_id": "ctx_7a43f811e64406c483bc4185",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_6533f50394e6f29e718035af",
+            "source_text": "According to descriptions of :numref:`subsec_nsp`,\nthe `_get_next_sentence` function generates a training example\nfor the binary classification task.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_geometry_linear_algebraic_ops_b172",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+            "content_sha256": "b952312f3a3e65393ddd23a8d2d717bf89948a721ec89d74e752fefb47b87702",
+            "context_id": "ctx_85fa1560b684d47c13e4cb02",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_273ca24b86380f65e1515993",
+            "source_text": "They can be used to define decision planes that are often used as the last step in a classification task.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_applications_sentiment_analysis_and_dataset_b003",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_applications",
+            "content_sha256": "f25a8fc1365bd2925b833439f7f9c3d61074275b033f63d0a8156060ce21cb66",
+            "context_id": "ctx_c332d46b413066a4b5ce91fc",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_85c668a0c97280364383a461",
+            "source_text": "Since sentiments\ncan be categorized\nas discrete polarities or scales (e.g., positive and negative),\nwe can consider \nsentiment analysis \nas a text classification task,\nwhich transforms a varying-length text sequence\ninto a fixed-length text category.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_fm_b013",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "408c29fa81de6c228bc332f12baa86ce5cf71f815e2116ef8a707d6fb1d4ea4b",
+            "context_id": "ctx_d3fc4788f9797ce1f2337e72",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_733a50448e94810022af8f4c",
+            "source_text": "We apply a sigmoid function over the final score since we treat the CTR prediction as a classification task.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_naive_bayes_b030",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+            "content_sha256": "18d03162319ab73e22d33b07e5791a60a5bdb45d9ac5b3246d4076a65bad9fc3",
+            "context_id": "ctx_ee34c2df4e3b3b9663241088",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_248d3ba44e4aa61928bb62a1",
+            "source_text": "In a classification task, we map an example into a category.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "efc1e961e8414b8b3ab4c9fb384e364e9824b84652fd08299efeb3a370fbcc5b",
+            "context_id": "ctxx_a2ae7fe0e53d89ee6a8bb119",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: The classification task in the museum was to sort fossils into display trays by species.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_c2a53ed2bb28e6b9d83b964e",
+        "proposed_definition_en": "a machine learning task in which each example is assigned to one of a set of categories or labels",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_d89e6e83e5f07d1fcb18c6aa",
+        "source_sense_pool_record_sha256": "99a15b9d567219ac88a9bff3bdefde84139eb51a97346516d1379299c19c620d",
+        "source_term": "classification task",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_d89e6e83e5f07d1fcb18c6aa"
+      },
+      "source_payload_sha256": "05a8ae457f8a3e8ff0fe83f3fd1529d6c926bb7a171ce7b6c6a7b5197ba2ea51",
+      "source_term": "classification task",
+      "stage_b_gold_label": null
+    },
+    {
+      "adjudication": {
+        "adjudication_rationale": "The source explicitly identifies the convolution kernel with a filter or layer weights and shows its tensor dimensions and use in convolution/cross-correlation. However, the primary wording says the weights are 'often learnable', so the proposed definition's unqualified 'learnable' overstates what the supplied evidence guarantees. The corrected definition retains the supported operation and tensor sense while qualifying learnability as typical. No POS, scope, candidate, evidence, or split change is warranted.",
+        "adjudication_status": "COMPLETE",
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "The filter tensor used in a convolution or cross-correlation operation, typically learned as a layer parameter.",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "REVISE",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Adjudicated definition: convolution kernel is the filter tensor used in the operation; it is typically learned as a layer parameter, but the evidence does not justify making learnability universal. The synthetic chef sentence remains boundary-only.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "adjudication_case_id": "adj_3e045f23481d99193f8add6f",
+      "adjudication_case_sha256": "ebd2375f5c43b659f5bc74994b9a03d9757d06486c6d491fcd38cc2e6f0f327e",
+      "batch_id": "batch_002",
+      "disagreement_fields": [
+        "definition_decision",
+        "corrected_definition_en",
+        "sense_status"
+      ],
+      "final_glossary_decision": null,
+      "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+      "provider_call_count": 0,
+      "reviewer_1": {
+        "result_file_sha256": "d2c2f98d50b2cc742e902d7c526a223fa7a2a5fae34ddd932f885ade606b9078",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "The filter tensor used in a convolution or cross-correlation operation, typically learned as a layer parameter.",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "REVISE",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "Ngữ cảnh chính gọi kernel là filter hoặc weights và nói chúng “often” là tham số học được; các ví dụ cũng dùng kernel được định nghĩa trực tiếp. Bản sửa tránh khẳng định mọi convolution kernel đều bắt buộc learnable.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "REVISION_REQUIRED"
+        }
+      },
+      "reviewer_2": {
+        "result_file_sha256": "db460c9ba21daab16e453b79ddaf51fc83a25f5edcb688071c17407f9d3b98f7",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "The eligible contexts explicitly equate a convolution kernel with a filter or layer weights, describe it as a learnable parameter, give tensor dimensions, and use it in cross-correlation. This supports the proposed definition, noun-phrase POS, scope, and all three Vietnamese candidates. The synthetic boundary row was not used as positive evidence.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+        }
+      },
+      "risk_class": "R4_SPLIT_OR_POS_RISK",
+      "routing_reason": "R4_MANDATORY_ADJUDICATION",
+      "schema_id": "D2LFastTrackStageAAdjudicationCaseV1",
+      "schema_version": "1.0.0",
+      "sense_id": "d2lce_7c27fa40b039d07e81508741",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_477d1eb8658479b3f680eff5",
+            "candidate_slot": "candidate_slot_0ec8f3e68381576a69fc3b6d",
+            "candidate_target_vi": "hạt nhân tích chập"
+          },
+          {
+            "candidate_id": "candidate_f262c620c32e4824f5998288",
+            "candidate_slot": "candidate_slot_559ab063aed293600e4b5ac5",
+            "candidate_target_vi": "bộ lọc tích chập"
+          },
+          {
+            "candidate_id": "candidate_891ab83a1905eeee6fb04e4b",
+            "candidate_slot": "candidate_slot_6133115182b3a171c3601e40",
+            "candidate_target_vi": "nhân chập"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_convolutional_neural_networks_why_conv_b024",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "c8c86a940791a89ca99cc20aad3de7e9540dd7bc0b5156a8ddb2126441bece62",
+            "context_id": "ctx_324283e43fc62ecd24e2a923",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "convolution kernel",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_a9d90970a869cbaebdf775b3",
+            "source_text": "In the deep learning research community,\n$\\mathbf{V}$ is referred to as a *convolution kernel*,\na *filter*, or simply the layer's *weights* that are often learnable parameters.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_why_conv_b046",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "f0d656387ec1fd37fec1c2e68a720c1e10a2a78bdc1f8186e4d374dfe18dc0a8",
+            "context_id": "ctx_3a70b91cc809a88026050552",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "convolution kernel",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_c71be2b79bca6c54d860368d",
+            "source_text": "Assume that the size of the convolution kernel is $\\Delta = 0$.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_transposed_conv_b031",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "bf15a18495485d030c4b2b828ca2e7deb201c07f86f6e38955c4d1b036e70712",
+            "context_id": "ctx_3ef46376e083fc08200cbde9",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "convolution kernel",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_71cfcba0ff2ef48086f021d0",
+            "source_text": "In the example below, we define a $3\\times 3$ input `X` and a $2\\times 2$ convolution kernel `K`, and then use the `corr2d` function to compute the convolution output `Y`.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_modern_googlenet_b002",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_modern",
+            "content_sha256": "9397b1d2a1d60a9b10d4296dd08d23a9ba816645f2105aaf27a8cd040fd3b6c9",
+            "context_id": "ctx_553b80dd5ccbf185fe342d46",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "convolution kernels",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_a764ac4f7da44309f3a540f9",
+            "source_text": "One focus of the paper was to address the question\nof which sized convolution kernels are best.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_applications_sentiment_analysis_cnn_b015",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_applications",
+            "content_sha256": "0d43360b5ec6ec1efd6aa17dddd0354662d534af887d24c0c1515b8904db1479",
+            "context_id": "ctx_62a689a27a8ee80eaa82689e",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "convolution kernel",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_9dd38320ebaac2e6142c41d3",
+            "source_text": "Then for each channel, \nperform a cross-correlation operation on the one-dimensional tensor of the input and the one-dimensional tensor of the convolution kernel, \nsumming the results over all the channels\nto produce the one-dimensional output tensor.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_why_conv_b046",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "85113c6b2c34fb5cf6fb9476d60634639f850b1d5b0a792511ef5d2f5c270a85",
+            "context_id": "ctx_6bfd2b1f7968c3e4e607ba4a",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "convolution kernel",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_61e464969ed6fde0160604a1",
+            "source_text": "Show that in this case the convolution kernel\n   implements an MLP independently for each set of channels.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_multiple_gpus_concise_b006",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "e960ca79f6c968441ce6bf9fbc7d889636e076ab4eb5ec5ffa56c3ca8804c966",
+            "context_id": "ctx_f1e496939bf84efa5b0055a2",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "convolution kernel",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_b0951b106791492a4411a123",
+            "source_text": "In particular, the difference from :numref:`sec_resnet` is that we use a smaller convolution kernel, stride, and padding at the beginning.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_conv_layer_b009",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "4b1044a13032ee046e18b090d06b4ca8f998d272593be2d1db6827f9c7d93218",
+            "context_id": "ctx_f2e17ee567b215267ffa2690",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "convolution kernel",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_7903ae627796e7be773d504e",
+            "source_text": "Because the kernel has width and height greater than one,\nwe can only properly compute the cross-correlation\nfor locations where the kernel fits wholly within the image,\nthe output size is given by the input size $n_h \\times n_w$\nminus the size of the convolution kernel $k_h \\times k_w$\nvia",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "1229e92aaa99668525c440464032e5fe14fe570a86c4aa7460e0b9cf3526be5d",
+            "context_id": "ctxx_1e6dd55bc1e9c0b274749deb",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "convolution kernel",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: The chef named his new sauce the convolution kernel, but it was only a menu joke.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_9405cf22016a4bf4e66ebc62",
+        "proposed_definition_en": "the learnable filter tensor used in a convolution or cross-correlation operation",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_7c27fa40b039d07e81508741",
+        "source_sense_pool_record_sha256": "6742045d6082f5d00137bdd8ce60a4318a41a70549e707f9b6afdcbbf7aa0cf5",
+        "source_term": "convolution kernel",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_7c27fa40b039d07e81508741"
+      },
+      "source_payload_sha256": "ac114cc49d62d14a53b7a2fc4057c820269d6b42d503d39fce1652b3d2968a5a",
+      "source_term": "convolution kernel",
+      "stage_b_gold_label": null
+    }
+  ],
+  "independence_mode": "ADJUDICATION_SEES_REVIEWER_1_AND_REVIEWER_2",
+  "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_ADJUDICATION_FIELDS_FILLED",
+  "reviewer_slot": "reviewer_3_adjudicator",
+  "schema_id": "D2LFastTrackStageAAdjudicatorInputV1",
+  "schema_version": "1.0.0",
+  "source_input_sha256": "4b86db61a07cb48f35b560529dc27b9bb91e4de093a931ba9fac334f116f2b8c"
+}

@@ -1,0 +1,22 @@
+{
+  "excluded_parent_ids": [
+    "d2lce_2684090fd4500122fec2a334",
+    "d2lce_2b76c0f26436945cdf880aed"
+  ],
+  "excluded_parent_terms": [
+    "in place",
+    "statistical power"
+  ],
+  "exclusion_reasons": {
+    "d2lce_2684090fd4500122fec2a334": "SUPERSEDED_BY_TWO_REPAIRED_IN_PLACE_SENSES_IN_50_RELEASE",
+    "d2lce_2b76c0f26436945cdf880aed": "UNRESOLVED_STAGE_A_REPAIR_PARENT_HELD_OUT"
+  },
+  "parent_count": 150,
+  "policy_id": "d2l-dataset-remaining-100-stage-a-v1.0",
+  "provider_call_count": 0,
+  "remaining_count": 100,
+  "schema_id": "D2LRemaining100ExclusionReportV1",
+  "schema_version": "1.0.0",
+  "selected_50_count": 50,
+  "selected_50_ids_sha256": "db2e5298324981c96bb83c5318fc219e2bd0c341273e439a3bae3900fe9a5708"
+}

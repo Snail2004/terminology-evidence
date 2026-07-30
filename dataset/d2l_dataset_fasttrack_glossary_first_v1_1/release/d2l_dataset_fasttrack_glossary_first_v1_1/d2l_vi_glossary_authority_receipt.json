@@ -1,0 +1,18 @@
+{
+  "authority_role": "TIER_3_CANDIDATE_SOURCE_NOT_GOLD",
+  "auto_approval_permitted": false,
+  "commit": "c775d6b4998e6243ec5d11f950e67679555a2c74",
+  "commit_timestamp": "2022-07-09T01:23:34+02:00",
+  "entry_count": 459,
+  "file_path": "glossary.md",
+  "license_path": "LICENSE",
+  "license_sha256": "1ae14c16adcc310b9ce5bcc939f1467160896eff26ef4d76f9a7c8d7340486c2",
+  "license_summary_path": "LICENSE-SUMMARY",
+  "license_summary_sha256": "0b8feb05d39b91387d6e8edf5a980efb1a98808846a8339f7f0a4d897739f7d5",
+  "physical_sha256": "98ba1d6421f252dddf1349ed4a542b245d922fcbe3b0fc841386e3919b83a727",
+  "policy_id": "dataset-fasttrack-glossary-first-v1.1",
+  "receipt_sha256": "071968417b1632ee837a6701290f5bb274c76fe66b8a4bcf46ac810e01b97596",
+  "repository": "https://github.com/d2l-ai/d2l-vi.git",
+  "retrieved_at": "2026-07-29T00:00:00Z",
+  "schema_id": "D2LVIGlossaryAuthorityReceiptV1"
+}

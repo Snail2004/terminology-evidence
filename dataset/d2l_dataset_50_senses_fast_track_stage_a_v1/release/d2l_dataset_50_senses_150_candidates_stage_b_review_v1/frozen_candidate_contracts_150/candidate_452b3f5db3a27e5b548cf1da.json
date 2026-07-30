@@ -1,0 +1,67 @@
+{
+  "alternatives_vi": [
+    "lọc cộng tác",
+    "phương pháp lọc cộng tác"
+  ],
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_452b3f5db3a27e5b548cf1da",
+    "candidate_version": "aba4a016a04ab609caeca79fbbb42cc4360de248503579ec90b9fd4a68ae1872",
+    "candidate_vi": "lọc dựa trên cộng tác",
+    "dataset_manifest_sha256": "7b256808dacf446b06bc4f6cdc0ab8f0aa7585a2a4e3a56364cdb3508d17fbdc",
+    "effective_sense_contract_sha256": "dfdc81bc53548aa2e4b953339c9744be8f6e8677151c8825573299679b59e9fe",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_fb9ad6a6ac7e4ba9167913e1",
+    "sense_inventory_version": "d2l_dataset_50_senses_150_candidates_v1",
+    "source_term": "Collaborative Filtering"
+  },
+  "domain_profile": {
+    "anchors_en": [
+      "Collaborative Filtering"
+    ],
+    "anchors_vi": [
+      "lọc cộng tác",
+      "lọc dựa trên cộng tác",
+      "phương pháp lọc cộng tác"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "a recommendation approach that filters or predicts preferences using patterns derived from multiple users’ interactions or feedback.",
+  "effective_part_of_speech": "noun_phrase",
+  "input_contract_sha256": "ffbebcb0af1a6de2a72843f5ff80d9a27a7b4286deccbedfe07a029d522b7f8e",
+  "input_provenance": {
+    "completed_at": "2026-07-29T17:00:00Z",
+    "component_id": "d2l-dataset-frozen-candidate-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "cf027ff8d20c1d2ecd0c667ab303fc31f25a9eda80257b61329c34e67efcd05d",
+    "model_routes": [],
+    "notes": "Candidate identity is frozen before Stage B; no candidate gold label or final glossary decision is assigned.",
+    "policy_version": "d2l-dataset-50-senses-150-candidates-stage-b-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-dataset-50-sense-contract-release",
+    "run_spec_id": "d2l-dataset-50-sense-contract-spec-v1",
+    "source_artifact_hashes": {
+      "adjudication_manifest": "95482cd1b495b9014a1f00ba4695324f99f0637c6fb96f17d5ffded44c5e2b5c",
+      "base_dataset_manifest": "92fab6032576a5c9c57fe38e23b6c622d5f73718a897197a2c10df35c7fe8b4d",
+      "base_dataset_manifest_physical": "438dffc84aaa735e4f734d4dc5cefcf63dc8360743b6e941380bca71eec1f13a",
+      "candidate_instance": "aba4a016a04ab609caeca79fbbb42cc4360de248503579ec90b9fd4a68ae1872",
+      "r0_result_manifest": "c17198864aeb47233fd658d7e6c333c5beb86c5531e5b240ca30e046d066a616",
+      "review_binding": "6e1b77aec4244344757f2f6308a68b744db845fd940e90782b082ff846176236",
+      "review_intake_manifest": "bcb840616060473ea61b81ca7cf052eff2ac00caeb7bff75e7cbf064e6a7e178",
+      "term_sense": "09861651b182248da26ab25ac4cb2fac5fe726457ce3e659fdc53cf78fc833a0"
+    },
+    "started_at": "2026-07-29T17:00:00Z"
+  },
+  "integrity": {
+    "self_sha256": "1bae0309df53de38c84cb139db2bca48ce5d679ae876996ce4456c421c99cca8"
+  },
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.1.0",
+  "scope_note": null,
+  "surfaces": {
+    "canonical_vi": "lọc dựa trên cộng tác",
+    "rejected_variants_vi": [],
+    "validated_variants_vi": []
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "schema_id": "D2LCSTBlindReviewerProvenanceV1",
+  "policy_id": "d2l_cst_stage_a_blind_result_provenance_v1",
+  "status": "PENDING_OWNER_ATTESTATION",
+  "reviewer_slot": 2,
+  "review_file_sha256": "d5a6271060861b43a4d5f6dd3ddb1b13de4674787902dac7e900dd43c48ea514",
+  "review_file_size_bytes": 8975,
+  "blind_pack_manifest_sha256": "2bb2328a28e22c1ce2d9e4a13d8ed684e4efd30804d4e225dd639694858bc297",
+  "reviewer_type": "",
+  "reviewer_id": "",
+  "started_at": "",
+  "completed_at": "",
+  "run_id": "",
+  "independence_attestation": null,
+  "other_reviewer_outputs_visible": null,
+  "provenance_sha256": "c409fbfe03687b5ae9e7a369bb75acb6d7f0f98f02718df2e1b91045f729ea59"
+}

@@ -1,0 +1,46 @@
+﻿term_id,sense_id,candidate_id,candidate_role,candidate_vi,effective_sense_review_status,candidate_gold_label,allowed_scope,validated_variants,rejected_variants,reason_codes,positive_context_refs,vietnamese_evidence_refs,reviewer_provenance_ref,adjudication_ref,stage_b_eligibility
+d2lce_11e1c294000ac67785408dcd,d2lce_11e1c294000ac67785408dcd,candidate_d748abf800aca789e0a6959f,A,giả thuyết gốc,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_11e1c294000ac67785408dcd,d2lce_11e1c294000ac67785408dcd,candidate_7687a5984af335e4ef18f0e0,B,giả thuyết không,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_11e1c294000ac67785408dcd,d2lce_11e1c294000ac67785408dcd,candidate_60299cfb31868af34ac36c58,C,giả thuyết vô hiệu,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_18c3da2d5bdd6d05a83982fa,d2lce_18c3da2d5bdd6d05a83982fa,candidate_aaf6d2b452a6b41bec5670cd,A,hàm chấm điểm chú ý,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_18c3da2d5bdd6d05a83982fa,d2lce_18c3da2d5bdd6d05a83982fa,candidate_4c262d779f9ab62cfcc06941,B,hàm chấm điểm,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_18c3da2d5bdd6d05a83982fa,d2lce_18c3da2d5bdd6d05a83982fa,candidate_95eb14be22b6ca684d5fce62,C,hàm cho điểm chú ý,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_1a91fdded89249a5cd89ec14,d2lce_1a91fdded89249a5cd89ec14,candidate_2cd868cd5a887ba0ad603218,A,sổ tay Jupyter,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_1a91fdded89249a5cd89ec14,d2lce_1a91fdded89249a5cd89ec14,candidate_f6b58c6b3105859b4723abdb,B,sổ ghi chép Jupyter,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_1a91fdded89249a5cd89ec14,d2lce_1a91fdded89249a5cd89ec14,candidate_e022d537a48001c6bce1d0a5,C,notebook Jupyter,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_2684090fd4500122fec2a334,d2lce_2684090fd4500122fec2a334,candidate_544f2b9c05154c7e07c55014,A,tại chỗ,SPLIT_REQUIRED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_2684090fd4500122fec2a334,d2lce_2684090fd4500122fec2a334,candidate_682c0cf4cd16d04e6f11d709,B,trực tiếp trên dữ liệu hiện có,SPLIT_REQUIRED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_2684090fd4500122fec2a334,d2lce_2684090fd4500122fec2a334,candidate_4d67be83d149fb65c1269d3c,C,ngay trên đối tượng hiện có,SPLIT_REQUIRED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_2b76c0f26436945cdf880aed,d2lce_2b76c0f26436945cdf880aed,candidate_71daf6039ab2e893cedccaf3,A,lực kiểm định,UNRESOLVED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_2b76c0f26436945cdf880aed,d2lce_2b76c0f26436945cdf880aed,candidate_8a4dcddfb53356985673d7d4,B,mạnh,UNRESOLVED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_2b76c0f26436945cdf880aed,d2lce_2b76c0f26436945cdf880aed,candidate_494d3d67a89723a07ce74292,C,độ mạnh thống kê,UNRESOLVED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,candidate_cf6b5d7ea384065914c1c69d,A,ngữ cảnh tính toán,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,candidate_cc725f7224eaaf21d14846d2,B,thiết bị,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_382e4bbab285d56a08249753,d2lce_382e4bbab285d56a08249753,candidate_21094d94f5b8d8d982190730,C,ngữ cảnh,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,candidate_eb4b9982b22d45554720135e,A,Adam,REVISION_REQUIRED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,candidate_d2ab7fc22d0620dfdeb0a667,B,thuật toán tối ưu Adam,REVISION_REQUIRED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,candidate_5b40ab20a731994cf4619c72,C,bộ tối ưu Adam,REVISION_REQUIRED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_8d226b48ba7ec1493faa4ec8,d2lce_8d226b48ba7ec1493faa4ec8,candidate_204bc4d6c83b3843d0a9cee3,A,cắt gradient,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_8d226b48ba7ec1493faa4ec8,d2lce_8d226b48ba7ec1493faa4ec8,candidate_254181f580d0e4f1c354eb86,B,xén gradient,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_8d226b48ba7ec1493faa4ec8,d2lce_8d226b48ba7ec1493faa4ec8,candidate_f8363b003208850d0ad5c4aa,C,giới hạn gradient,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,candidate_69d487fc044881f9f782de53,A,các lớp kết nối đầy đủ,UNRESOLVED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,candidate_bacd2b7d8eb5d2ff10742c27,B,các lớp liên kết đầy đủ,UNRESOLVED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,candidate_ed0f208b38e5ecb43e4b5efc,C,các tầng kết nối đầy đủ,UNRESOLVED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_9bd5113780f8e8160a24e6ad,d2lce_9bd5113780f8e8160a24e6ad,candidate_479fdd8ff6d15304debec117,A,tràn dưới,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_9bd5113780f8e8160a24e6ad,d2lce_9bd5113780f8e8160a24e6ad,candidate_963dd869c9d587f30076cc5d,B,tụt dưới ngưỡng số học,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_9bd5113780f8e8160a24e6ad,d2lce_9bd5113780f8e8160a24e6ad,candidate_d9f03e66a65a60d095aa8e7f,C,mất chính xác do quá nhỏ,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_addfcc9899bef06c500b6b0e,d2lce_addfcc9899bef06c500b6b0e,candidate_9a71121fcd6518d56de52f9c,A,động lượng,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_addfcc9899bef06c500b6b0e,d2lce_addfcc9899bef06c500b6b0e,candidate_c4098f5a8e773ca3b59a1154,B,hệ số động lượng,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_addfcc9899bef06c500b6b0e,d2lce_addfcc9899bef06c500b6b0e,candidate_258ae1b90d8613e645cd9e20,C,tham số động lượng,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_c6b4477a845e2e0e0e02f088,d2lce_c6b4477a845e2e0e0e02f088,candidate_53d82847c792e05a168ce72e,A,cổng đầu ra,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_c6b4477a845e2e0e0e02f088,d2lce_c6b4477a845e2e0e0e02f088,candidate_cfd5638007633bf28dbcd24c,B,cổng xuất,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_c6b4477a845e2e0e0e02f088,d2lce_c6b4477a845e2e0e0e02f088,candidate_7777b315af84852fc15da7b4,C,cổng điều khiển đầu ra,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_cc4cb853eff638abcbdf7691,d2lce_cc4cb853eff638abcbdf7691,candidate_46aef7b0d650be04eb350c62,A,tốc độ học,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_cc4cb853eff638abcbdf7691,d2lce_cc4cb853eff638abcbdf7691,candidate_608318c4819a9ca6886b86c1,B,các tốc độ học,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_cc4cb853eff638abcbdf7691,d2lce_cc4cb853eff638abcbdf7691,candidate_b73c29ba5efc3cff5b96816d,C,hệ số học,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_ce222dd206341f61f2986f7a,d2lce_ce222dd206341f61f2986f7a,candidate_b25e12aa07645f2833df3cc1,A,nhúng từ,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_ce222dd206341f61f2986f7a,d2lce_ce222dd206341f61f2986f7a,candidate_91b5dc2a276c11c0275ee6d6,B,biểu diễn từ,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_ce222dd206341f61f2986f7a,d2lce_ce222dd206341f61f2986f7a,candidate_244a187860a4d58e8575a087,C,các mô hình nhúng từ,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_d7976d0b101e65c34c011871,d2lce_d7976d0b101e65c34c011871,candidate_6b435495f9cc857306264175,A,tiêu biến gradient,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_d7976d0b101e65c34c011871,d2lce_d7976d0b101e65c34c011871,candidate_85d912fdabdf61e981f79a5d,B,gradient tiêu biến,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE
+d2lce_d7976d0b101e65c34c011871,d2lce_d7976d0b101e65c34c011871,candidate_4bb8afc293ac1b105b95dd62,C,vấn đề gradient biến mất,READY_FOR_CONTRACT_CONSTRUCTION,,,,,,,,,,ELIGIBLE

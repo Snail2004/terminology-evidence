@@ -1,0 +1,37 @@
+{
+  "batch_id": "batch_007",
+  "blind_audit_count": 2,
+  "conditional_adjudication_count": 2,
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "a7ea868af6dd34861f838b332621dab84362b6891ec04ce9ad287ff45efeedde"
+  },
+  "mandatory_adjudication_count": 1,
+  "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+  "provider_call_count": 0,
+  "reviewer_1_case_count": 5,
+  "reviewer_1_handoff_zip": "handoff/batch_007_reviewer_1.zip",
+  "reviewer_1_handoff_zip_sha256": "8ae82c1596528356a081a98206358bf3884b5dc769652de315979fa26356fcd5",
+  "reviewer_1_input_sha256": "46cae94667bf985f46e22d79aede0842d3abfb416bd0ac2e92473dd4fa514152",
+  "reviewer_2_case_count": 3,
+  "reviewer_2_handoff_zip": "handoff/batch_007_reviewer_2.zip",
+  "reviewer_2_handoff_zip_sha256": "c78d757eb228ca3dbc90ab9f26a5bdf59ad4334432a74f51d2ca00f468e8a8be",
+  "reviewer_2_input_sha256": "d11a6e91fe845a3ab04f25f0f54b586a42efe64d4e700566591e876f9abeb49a",
+  "risk_counts": {
+    "R0_CLEAR": 2,
+    "R3_AMBIGUOUS": 2,
+    "R4_SPLIT_OR_POS_RISK": 1
+  },
+  "schema_id": "D2LFastTrackStageABatchManifestV1",
+  "schema_version": "1.0.0",
+  "sense_count": 5,
+  "sense_ids": [
+    "d2lce_42900db05a19228ce33eafe0",
+    "d2lce_152a9bcc9b8b5f6cc5586c54",
+    "d2lce_ad0d7cbd5f90ad33075e89aa",
+    "d2lce_e014da89e120449f8881dd5b",
+    "d2lce_5c270f3b3ebe4f0059649e18"
+  ],
+  "sequence": 7,
+  "stage_b_gold_autofill_count": 0
+}

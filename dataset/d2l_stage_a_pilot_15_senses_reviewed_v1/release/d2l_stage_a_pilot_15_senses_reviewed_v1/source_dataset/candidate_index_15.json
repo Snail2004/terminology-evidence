@@ -1,0 +1,279 @@
+{
+  "candidate_count": 45,
+  "parent_dataset_manifest_sha256": "9a32880e32cea5c5e87f38165142968aeca56f39a12f8bb7c4f1500eb3c49c67",
+  "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+  "records": [
+    {
+      "candidate_id": "candidate_d748abf800aca789e0a6959f",
+      "candidate_projection_sha256": "f0f160b8979453fb6a8e24d1f707f539d61aa4a10bb2f2a314bc56dee63e93ad",
+      "candidate_role": "A",
+      "sense_id": "d2lce_11e1c294000ac67785408dcd"
+    },
+    {
+      "candidate_id": "candidate_7687a5984af335e4ef18f0e0",
+      "candidate_projection_sha256": "64c35c8f30f4a59dc1ed4613465fd375366919dd857ce9068cdbadc876f3dd90",
+      "candidate_role": "B",
+      "sense_id": "d2lce_11e1c294000ac67785408dcd"
+    },
+    {
+      "candidate_id": "candidate_60299cfb31868af34ac36c58",
+      "candidate_projection_sha256": "9f6482918a06f32342378e7aabc026c645efa4bc3361c9cb07f792e2b8d66208",
+      "candidate_role": "C",
+      "sense_id": "d2lce_11e1c294000ac67785408dcd"
+    },
+    {
+      "candidate_id": "candidate_aaf6d2b452a6b41bec5670cd",
+      "candidate_projection_sha256": "610286839e256762e6948ac9bfd8a6af6447df8dbe8ad6df83c7a22511251dfe",
+      "candidate_role": "A",
+      "sense_id": "d2lce_18c3da2d5bdd6d05a83982fa"
+    },
+    {
+      "candidate_id": "candidate_4c262d779f9ab62cfcc06941",
+      "candidate_projection_sha256": "f464eb175a63c11e0fa115c1cf2f0976dbebd56fc4ff937f934d8853439e46e7",
+      "candidate_role": "B",
+      "sense_id": "d2lce_18c3da2d5bdd6d05a83982fa"
+    },
+    {
+      "candidate_id": "candidate_95eb14be22b6ca684d5fce62",
+      "candidate_projection_sha256": "5a1cfa271e6b4bb6ef49c310813d3053105eecc11097c85c4aea06bcc447932b",
+      "candidate_role": "C",
+      "sense_id": "d2lce_18c3da2d5bdd6d05a83982fa"
+    },
+    {
+      "candidate_id": "candidate_2cd868cd5a887ba0ad603218",
+      "candidate_projection_sha256": "387616a9482bac0777b2b58b0cddf5b1f09e97f4a9bb557b1f121d7da87eb34f",
+      "candidate_role": "A",
+      "sense_id": "d2lce_1a91fdded89249a5cd89ec14"
+    },
+    {
+      "candidate_id": "candidate_f6b58c6b3105859b4723abdb",
+      "candidate_projection_sha256": "54d51fba387b8e0d707d52eb5f6f154c5ea8be7a732685ee5bb04d753d52c35b",
+      "candidate_role": "B",
+      "sense_id": "d2lce_1a91fdded89249a5cd89ec14"
+    },
+    {
+      "candidate_id": "candidate_e022d537a48001c6bce1d0a5",
+      "candidate_projection_sha256": "1b606b8afd9136dff7bdebd2ed770ad9fa5241bd3bbff4dfe290f0a1afdb2eef",
+      "candidate_role": "C",
+      "sense_id": "d2lce_1a91fdded89249a5cd89ec14"
+    },
+    {
+      "candidate_id": "candidate_544f2b9c05154c7e07c55014",
+      "candidate_projection_sha256": "d018cef606eaab7c295ae93400886b59ed138d6d1f2418ba4bdbf04c2f4f1de0",
+      "candidate_role": "A",
+      "sense_id": "d2lce_2684090fd4500122fec2a334"
+    },
+    {
+      "candidate_id": "candidate_682c0cf4cd16d04e6f11d709",
+      "candidate_projection_sha256": "f47bb485bce049b2dc9ad3af798a74b337cbe7cc554e371b583b28d62de7531f",
+      "candidate_role": "B",
+      "sense_id": "d2lce_2684090fd4500122fec2a334"
+    },
+    {
+      "candidate_id": "candidate_4d67be83d149fb65c1269d3c",
+      "candidate_projection_sha256": "de11bcdb62585294a33616c898557b4eacbb7b7f880bbddf911900896707c0e8",
+      "candidate_role": "C",
+      "sense_id": "d2lce_2684090fd4500122fec2a334"
+    },
+    {
+      "candidate_id": "candidate_71daf6039ab2e893cedccaf3",
+      "candidate_projection_sha256": "d0efcea122df5e2780567f0fe1d5e7ef44354e65f094bcca3bca5d47ec866b9c",
+      "candidate_role": "A",
+      "sense_id": "d2lce_2b76c0f26436945cdf880aed"
+    },
+    {
+      "candidate_id": "candidate_8a4dcddfb53356985673d7d4",
+      "candidate_projection_sha256": "3f6be77eba1bac57d9015a4dcc2b43337a9e07fb2528b2375bae20e57b2cfc24",
+      "candidate_role": "B",
+      "sense_id": "d2lce_2b76c0f26436945cdf880aed"
+    },
+    {
+      "candidate_id": "candidate_494d3d67a89723a07ce74292",
+      "candidate_projection_sha256": "3f0eafe18320d6de5e3ed8e3bb0eea8ea5e0aff4148a81548391ca2673d4ec1c",
+      "candidate_role": "C",
+      "sense_id": "d2lce_2b76c0f26436945cdf880aed"
+    },
+    {
+      "candidate_id": "candidate_cf6b5d7ea384065914c1c69d",
+      "candidate_projection_sha256": "5523c7b9fb68ea99c2cbee78aac7e5f89f9f87ee4fec9013186c9558d528f0e4",
+      "candidate_role": "A",
+      "sense_id": "d2lce_382e4bbab285d56a08249753"
+    },
+    {
+      "candidate_id": "candidate_cc725f7224eaaf21d14846d2",
+      "candidate_projection_sha256": "acb74ff98b080ba44c27ac502d3eacda0058f9ae09c446929f37de336a40b120",
+      "candidate_role": "B",
+      "sense_id": "d2lce_382e4bbab285d56a08249753"
+    },
+    {
+      "candidate_id": "candidate_21094d94f5b8d8d982190730",
+      "candidate_projection_sha256": "6b09629626a383c77963757ff7a285f366de4f54fdf7dfffe283d9355d415797",
+      "candidate_role": "C",
+      "sense_id": "d2lce_382e4bbab285d56a08249753"
+    },
+    {
+      "candidate_id": "candidate_eb4b9982b22d45554720135e",
+      "candidate_projection_sha256": "421299ae7155fe90f25dbca2278bc3919f839b92b62d45baa46087d5d352a9dd",
+      "candidate_role": "A",
+      "sense_id": "d2lce_7ef8ed3f93210606a27312a4"
+    },
+    {
+      "candidate_id": "candidate_d2ab7fc22d0620dfdeb0a667",
+      "candidate_projection_sha256": "f6bbec9c221de38bbad651a32188888f9beb2626f229f6fd35216ab2f9df0089",
+      "candidate_role": "B",
+      "sense_id": "d2lce_7ef8ed3f93210606a27312a4"
+    },
+    {
+      "candidate_id": "candidate_5b40ab20a731994cf4619c72",
+      "candidate_projection_sha256": "cae0dd174f4d5cc12e3fc5c5ba083eda61e4c878c2ced5abcc0ee98471566ddd",
+      "candidate_role": "C",
+      "sense_id": "d2lce_7ef8ed3f93210606a27312a4"
+    },
+    {
+      "candidate_id": "candidate_204bc4d6c83b3843d0a9cee3",
+      "candidate_projection_sha256": "efe583a106433303371a59fa7908318134e940aa65def010fbe0b179221b3759",
+      "candidate_role": "A",
+      "sense_id": "d2lce_8d226b48ba7ec1493faa4ec8"
+    },
+    {
+      "candidate_id": "candidate_254181f580d0e4f1c354eb86",
+      "candidate_projection_sha256": "d56a6c2c64bfbc4358794bfd8a30306a29a836f383dad97c43c38f5310652eba",
+      "candidate_role": "B",
+      "sense_id": "d2lce_8d226b48ba7ec1493faa4ec8"
+    },
+    {
+      "candidate_id": "candidate_f8363b003208850d0ad5c4aa",
+      "candidate_projection_sha256": "328e631e17c7a7e8a5f7134729976a3d08cbe853e6040f2076c46b8017308807",
+      "candidate_role": "C",
+      "sense_id": "d2lce_8d226b48ba7ec1493faa4ec8"
+    },
+    {
+      "candidate_id": "candidate_69d487fc044881f9f782de53",
+      "candidate_projection_sha256": "cdfdc6fa4bfdb8d3486910f255b778aa723d9a2e489b62ad8dd69b4f1806e2b2",
+      "candidate_role": "A",
+      "sense_id": "d2lce_98b37a7bcb47cd2ef2e5f296"
+    },
+    {
+      "candidate_id": "candidate_bacd2b7d8eb5d2ff10742c27",
+      "candidate_projection_sha256": "3eb1b91ebe005795750f048de6e91c89b74c22b881c30f59537a8bf4be410745",
+      "candidate_role": "B",
+      "sense_id": "d2lce_98b37a7bcb47cd2ef2e5f296"
+    },
+    {
+      "candidate_id": "candidate_ed0f208b38e5ecb43e4b5efc",
+      "candidate_projection_sha256": "c1dce588780a83eb156c6b5c5f0ea32d6f29ba7c73cb15d4ed594aced95e4de8",
+      "candidate_role": "C",
+      "sense_id": "d2lce_98b37a7bcb47cd2ef2e5f296"
+    },
+    {
+      "candidate_id": "candidate_479fdd8ff6d15304debec117",
+      "candidate_projection_sha256": "1cfaf699d408820325218c51767deeccca10b4d0f65135d6dabcadce2725a23f",
+      "candidate_role": "A",
+      "sense_id": "d2lce_9bd5113780f8e8160a24e6ad"
+    },
+    {
+      "candidate_id": "candidate_963dd869c9d587f30076cc5d",
+      "candidate_projection_sha256": "93ea498a6c7638a031b44a3a4072c44cdcaae352c41e69a4a64407c22e6a8fe2",
+      "candidate_role": "B",
+      "sense_id": "d2lce_9bd5113780f8e8160a24e6ad"
+    },
+    {
+      "candidate_id": "candidate_d9f03e66a65a60d095aa8e7f",
+      "candidate_projection_sha256": "7367ed414657f7b3cd5af8537a5ec412b371038221e7d386400addc4bde7fb7b",
+      "candidate_role": "C",
+      "sense_id": "d2lce_9bd5113780f8e8160a24e6ad"
+    },
+    {
+      "candidate_id": "candidate_9a71121fcd6518d56de52f9c",
+      "candidate_projection_sha256": "bfea84b05657f4a759f81970853dfdabdd01e1e6e8b9e823e23a32067dda3f67",
+      "candidate_role": "A",
+      "sense_id": "d2lce_addfcc9899bef06c500b6b0e"
+    },
+    {
+      "candidate_id": "candidate_c4098f5a8e773ca3b59a1154",
+      "candidate_projection_sha256": "2073b61bc0fc1a4adcfe83f34d6f5d8ee8fbcb41188011b4d09fa42cb27317b2",
+      "candidate_role": "B",
+      "sense_id": "d2lce_addfcc9899bef06c500b6b0e"
+    },
+    {
+      "candidate_id": "candidate_258ae1b90d8613e645cd9e20",
+      "candidate_projection_sha256": "de42acd87740d8de259f1178463096dc702763688a7cb2d171127c6e5ff791d9",
+      "candidate_role": "C",
+      "sense_id": "d2lce_addfcc9899bef06c500b6b0e"
+    },
+    {
+      "candidate_id": "candidate_53d82847c792e05a168ce72e",
+      "candidate_projection_sha256": "4fac12a5af8be8de9020c4e58000a06ca3810d7649019ec2e6672162b3e4b58f",
+      "candidate_role": "A",
+      "sense_id": "d2lce_c6b4477a845e2e0e0e02f088"
+    },
+    {
+      "candidate_id": "candidate_cfd5638007633bf28dbcd24c",
+      "candidate_projection_sha256": "95f49bab7479867192638b669cf4da14dd00a647795dac3aaf64faa8c0065448",
+      "candidate_role": "B",
+      "sense_id": "d2lce_c6b4477a845e2e0e0e02f088"
+    },
+    {
+      "candidate_id": "candidate_7777b315af84852fc15da7b4",
+      "candidate_projection_sha256": "80de890c6fcacab7c9ba9fda43b0096f5f882c1766bdb9ea8fcd307c613d119a",
+      "candidate_role": "C",
+      "sense_id": "d2lce_c6b4477a845e2e0e0e02f088"
+    },
+    {
+      "candidate_id": "candidate_46aef7b0d650be04eb350c62",
+      "candidate_projection_sha256": "8f1b052417ebb33fb7837fd374eeed380cb1b8f4745a505c668befa828ce4a33",
+      "candidate_role": "A",
+      "sense_id": "d2lce_cc4cb853eff638abcbdf7691"
+    },
+    {
+      "candidate_id": "candidate_608318c4819a9ca6886b86c1",
+      "candidate_projection_sha256": "9e2999fa6dd64b72096228c6baaddf0f6c9909e1708798d6be012c67852bbf2f",
+      "candidate_role": "B",
+      "sense_id": "d2lce_cc4cb853eff638abcbdf7691"
+    },
+    {
+      "candidate_id": "candidate_b73c29ba5efc3cff5b96816d",
+      "candidate_projection_sha256": "3ca1c49e60845270bdb6f48c71cdfbd74fec4ebcb6a42327ef8c31ac14b356c0",
+      "candidate_role": "C",
+      "sense_id": "d2lce_cc4cb853eff638abcbdf7691"
+    },
+    {
+      "candidate_id": "candidate_b25e12aa07645f2833df3cc1",
+      "candidate_projection_sha256": "e88260047d7238bcacea3d4905290f7ba7f15dc0aa5ffb9b131deaec4fe2aba3",
+      "candidate_role": "A",
+      "sense_id": "d2lce_ce222dd206341f61f2986f7a"
+    },
+    {
+      "candidate_id": "candidate_91b5dc2a276c11c0275ee6d6",
+      "candidate_projection_sha256": "cd860ab31404544665060a2ebcca8e59124eb1b42e97e80b6ba2e3c8fe4e5273",
+      "candidate_role": "B",
+      "sense_id": "d2lce_ce222dd206341f61f2986f7a"
+    },
+    {
+      "candidate_id": "candidate_244a187860a4d58e8575a087",
+      "candidate_projection_sha256": "99daf0f5bb36390c6638269ebbf20a04005a34c5a5c5dd49c3f6f640a3f36134",
+      "candidate_role": "C",
+      "sense_id": "d2lce_ce222dd206341f61f2986f7a"
+    },
+    {
+      "candidate_id": "candidate_6b435495f9cc857306264175",
+      "candidate_projection_sha256": "aa5dbf28803c73331c0a62313f0eb9c30b6a6230d2d953740132474da62d4c53",
+      "candidate_role": "A",
+      "sense_id": "d2lce_d7976d0b101e65c34c011871"
+    },
+    {
+      "candidate_id": "candidate_85d912fdabdf61e981f79a5d",
+      "candidate_projection_sha256": "9f68fc0fdebf39a10d7553b51f4eebf3ad0476378265dd695ce1302e70232deb",
+      "candidate_role": "B",
+      "sense_id": "d2lce_d7976d0b101e65c34c011871"
+    },
+    {
+      "candidate_id": "candidate_4bb8afc293ac1b105b95dd62",
+      "candidate_projection_sha256": "54f671f483c49028a076c87dd029627c5d1eaa535b8e89e52784441299377c9d",
+      "candidate_role": "C",
+      "sense_id": "d2lce_d7976d0b101e65c34c011871"
+    }
+  ],
+  "schema_id": "D2LStageAPilotCandidateIndexV1",
+  "sense_count": 15
+}

@@ -1,0 +1,22 @@
+{
+  "contract_authority": {
+    "commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+    "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
+    "tag": "contracts-v1.1.0"
+  },
+  "dataset_v3_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+  "final_glossary_decision": null,
+  "independent_audit_sha256": "e75764898d5438426be2b8cff7e57b7e3f2de3e4e4ae84112c3d76389583997d",
+  "independent_review_sha256": "7047e10bb9278bb0ef83eb7dbd7e0063bc4d1b2b3fcd6eb59679563fcca50021",
+  "integrity": {
+    "self_sha256": "f32758a233d9d648111f2a85a711dae187f06bbc6dac8d75a395fe3c95befc79"
+  },
+  "parent_p0_manifest_sha256": "32b3bbea775362504ef698cfe65a4a9e27890f761d7067b1c88dad7a9670bb6e",
+  "policy_id": "d2l-stage-a-p0b-official-11-sense-v1.0",
+  "provider_call_count": 0,
+  "review_requirement_sha256": "ee7936668d03a3a1120f82cae4397999b77ad924b240ae01d6a57d1d8d3f735a",
+  "reviewed_15_manifest_sha256": "e602af02edf1fb877a9541c5e37f939f4f35ded34ac878d773fc83b96ed3fb48",
+  "schema_id": "D2LOfficial11SensePilotLineageV1",
+  "schema_version": "1.0.0",
+  "source_layout": "REFERENCE_ONLY_PARENTS_PLUS_CLOSED_MATERIALIZED_SUBSET"
+}

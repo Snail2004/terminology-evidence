@@ -1,0 +1,4 @@
+{"backup_count":0,"contrastive_count":1,"gap_codes":["PRIMARY_LT_5","BACKUP_MISSING"],"primary_count":3,"sense_id":"d2lce_1ff0c13e857af8ab6956fc96","source_term":"statistical inference"}
+{"backup_count":0,"contrastive_count":1,"gap_codes":["BACKUP_MISSING"],"primary_count":5,"sense_id":"d2lce_40a50503f2fdc79aa0a549fc","source_term":"Sequential"}
+{"backup_count":0,"contrastive_count":1,"gap_codes":["BACKUP_MISSING"],"primary_count":5,"sense_id":"d2lce_4a5f20bb32b66b1f07d9f37a","source_term":"attention"}
+{"backup_count":0,"contrastive_count":1,"gap_codes":["PRIMARY_LT_5","BACKUP_MISSING"],"primary_count":1,"sense_id":"d2lce_91002293cea2184b43995f47","source_term":"switch"}

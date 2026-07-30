@@ -1,0 +1,871 @@
+{
+  "allowed_audit_decisions": [
+    "APPROVE",
+    "REVISE",
+    "BLOCK"
+  ],
+  "batch_id": "high_risk_audit_batch_003",
+  "case_count": 2,
+  "cases": [
+    {
+      "audit": {
+        "audit_decision": "APPROVE",
+        "audit_notes": "Both SSD children are independently supported by real evidence. The storage child tmpchild_3a6f308aa609ce8f9a1a8fa8 is grounded by ctx_0b0937e42c26b6b23b5692f4, ctx_47a2796ead7d2454fdc45f64, ctx_96fce7b6560a010f307443f6, ctx_9d639b375fad74fc47d1c470, and ctx_aa0eae6611908af9c05e40d3, which consistently use SSD for a storage device or its controller and behavior; both Vietnamese storage candidates are faithful. The object-detection child tmpchild_c78d078bd0a4fb76f5ba81f5 is directly established by ctx_f4c012def8b4623e96d4ac12, which expands SSD as single shot multibox detection, and ctx_12113aa551b0b7a0b905e6bf, which supplies the multiscale architecture described in the child definition. These real contexts ground the corrected Vietnamese model candidate. ctxx_17beba5acdb3e6a8aa8878b6 is synthetic and boundary-only and was not used as positive evidence. No child sense is invalid.",
+        "audit_status": "COMPLETE",
+        "invalid_child_sense_ids": []
+      },
+      "batch_id": "high_risk_audit_batch_003",
+      "case_id": "highrisk_audit_e12bbe9d02c383d8cdc52ab1",
+      "policy_id": "d2l-remaining-100-high-risk-proposal-audit-v1.0",
+      "proposal": {
+        "child_sense_repairs": [
+          {
+            "candidate_assignments": [
+              {
+                "candidate_id": "candidate_161098655c2dafa4b87eb1df",
+                "candidate_slot": "candidate_slot_1bf7791562e6562275591fa5",
+                "target_vi": "ổ lưu trữ SSD"
+              },
+              {
+                "candidate_id": "candidate_5a216a62cfc0927b6616aa85",
+                "candidate_slot": "candidate_slot_9c7338d37b4315a91a894a17",
+                "target_vi": "ổ cứng thể rắn"
+              }
+            ],
+            "context_ids": [
+              "ctx_0b0937e42c26b6b23b5692f4",
+              "ctx_47a2796ead7d2454fdc45f64",
+              "ctx_96fce7b6560a010f307443f6",
+              "ctx_9d639b375fad74fc47d1c470",
+              "ctx_aa0eae6611908af9c05e40d3"
+            ],
+            "definition_en": "SSD as a solid-state drive, a persistent computer-storage device based on nonvolatile memory",
+            "part_of_speech": "symbol",
+            "scope": "d2l_selected_campaign_scope_v1",
+            "temporary_child_sense_id": "tmpchild_3a6f308aa609ce8f9a1a8fa8"
+          },
+          {
+            "candidate_assignments": [
+              {
+                "candidate_id": "candidate_811346453db4d899687a814f",
+                "candidate_slot": "candidate_slot_c126e592b306cf9e96d9b756",
+                "target_vi": "mô hình phát hiện đa hộp một lần (SSD)"
+              }
+            ],
+            "context_ids": [
+              "ctx_12113aa551b0b7a0b905e6bf",
+              "ctx_607c4610b2fb0f15081b64d0",
+              "ctx_f4c012def8b4623e96d4ac12",
+              "ctxx_17beba5acdb3e6a8aa8878b6"
+            ],
+            "definition_en": "SSD as Single Shot Multibox Detection, a multiscale object-detection model with a base network followed by multiscale feature-map blocks",
+            "part_of_speech": "symbol",
+            "scope": "d2l_selected_campaign_scope_v1",
+            "temporary_child_sense_id": "tmpchild_c78d078bd0a4fb76f5ba81f5"
+          }
+        ],
+        "proposal_type": "SPLIT_PROPOSAL"
+      },
+      "proposal_record_sha256": "9bcb218a3991e57f26bb122af566c5e16e436a4c0731e7b75f8f274a645b5caa",
+      "provider_call_count": 0,
+      "schema_id": "D2LRemaining100HighRiskProposalAuditCaseV1",
+      "schema_version": "1.0",
+      "sense_id": "d2lce_c6d5679eb20ff0719dfc35b2",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_161098655c2dafa4b87eb1df",
+            "candidate_instance_sha256": "746d75e720e4869ab346e4207c1481a243256cd06661f65dbdcb61a6ede36b04",
+            "candidate_slot": "candidate_slot_1bf7791562e6562275591fa5",
+            "candidate_target_vi": "ổ lưu trữ SSD"
+          },
+          {
+            "candidate_id": "candidate_5a216a62cfc0927b6616aa85",
+            "candidate_instance_sha256": "d09aa0f033a1d85e41050c686f8ac0c53200ca4700d106965b591c9bb1207165",
+            "candidate_slot": "candidate_slot_9c7338d37b4315a91a894a17",
+            "candidate_target_vi": "ổ cứng thể rắn"
+          },
+          {
+            "candidate_id": "candidate_811346453db4d899687a814f",
+            "candidate_instance_sha256": "a9cc9cfef2d4c3fe635a6361d1a395d0ec908c2a2ed4d56f91a64fa43ef4a818",
+            "candidate_slot": "candidate_slot_c126e592b306cf9e96d9b756",
+            "candidate_target_vi": "SSD"
+          }
+        ],
+        "dataset_version": "d2l_dataset_remaining_100_stage_a_v1",
+        "evidence_contexts": [
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "8277cf99d45e98ee0c7867fcf556fd32aac25e5560424e4536ae6e5065f99554",
+            "context_id": "ctx_0b0937e42c26b6b23b5692f4",
+            "context_role": "PRIMARY",
+            "context_sha256": "2624e23e96935c8c592c0ac6eb7de0e3d3ce22bc7a07ad583e86ed233717e0f6",
+            "context_slot": "C2",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "ssd",
+            "provenance": {
+              "block_id": "d2l_appendix_tools_for_deep_learning_selecting_servers_gpus_b007",
+              "block_index": 175,
+              "block_text_sha256": "e512df6d750b93152e541d9ec98dd6ead7307aa10f2f809fcada425efce7fc1d",
+              "chapter_id": "d2l_appendix_tools_for_deep_learning",
+              "chapter_index": 21,
+              "document_id": "document",
+              "sentence_id": "sentence_0806982af05852158213d400",
+              "sentence_index": 10,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 524,
+              "source_start": 482
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 523,
+            "source_match_start_absolute": 520,
+            "source_text": "Aim for 64 GB DRAM and invest into an SSD.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "8b83a3a7b1fb4a132810f29e81ab714f3cf27767817cdaba330cba8f99fd6807",
+            "context_id": "ctx_12113aa551b0b7a0b905e6bf",
+            "context_role": "PRIMARY",
+            "context_sha256": "5c1140f53ac3fecc5c50e7939636298e038c9331aedafded3d488247278dfeec",
+            "context_slot": "C3",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "ssd",
+            "provenance": {
+              "block_id": "d2l_computer_vision_ssd_b007",
+              "block_index": 316,
+              "block_text_sha256": "8b83a3a7b1fb4a132810f29e81ab714f3cf27767817cdaba330cba8f99fd6807",
+              "chapter_id": "d2l_computer_vision",
+              "chapter_index": 15,
+              "document_id": "document",
+              "sentence_id": "sentence_e36d96d91f6f8c0d7eeadb6a",
+              "sentence_index": 0,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 191,
+              "source_start": 0
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 169,
+            "source_match_start_absolute": 166,
+            "source_text": "![As a multiscale object detection model, single-shot multibox detection mainly consists of a base network followed by several multiscale feature map blocks.](../img/ssd.svg)\n:label:`fig_ssd`",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "ba72f94a7d2501ff99de88d53f98dbcc71a0971f56afb59b49cbcc738394efed",
+            "context_id": "ctx_47a2796ead7d2454fdc45f64",
+            "context_role": "PRIMARY",
+            "context_sha256": "fbf4480bc92588851b2fa4f7476a65bad4a4d6228f8d63a42928abb9620a09ce",
+            "context_slot": "C4",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "ssd",
+            "provenance": {
+              "block_id": "d2l_computational_performance_hardware_b029",
+              "block_index": 183,
+              "block_text_sha256": "d56faf3f6c0fc240d54df3a18b2b5b650419c88475b48780e1e856bdf29145cc",
+              "chapter_id": "d2l_computational_performance",
+              "chapter_index": 14,
+              "document_id": "document",
+              "sentence_id": "sentence_cd4132662d4d71d20943b0db",
+              "sentence_index": 2,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 295,
+              "source_start": 152
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 203,
+            "source_match_start_absolute": 200,
+            "source_text": "Peripherals, such as Ethernet, WiFi, Bluetooth, SSD controller, and USB, are either part of the chipset or directly attached (PCIe) to the CPU.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "4b0a90d7cf678b4f6b0d7c98a2bf60dc3d687f0623172af36a43ebb0109a4ce0",
+            "context_id": "ctx_607c4610b2fb0f15081b64d0",
+            "context_role": "PRIMARY",
+            "context_sha256": "6e3676e55b63240833ae6cb019c67a2977663b43920474831830da60575def7d",
+            "context_slot": "C5",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "ssd",
+            "provenance": {
+              "block_id": "d2l_computer_vision_index_b004",
+              "block_index": 3,
+              "block_text_sha256": "4b0a90d7cf678b4f6b0d7c98a2bf60dc3d687f0623172af36a43ebb0109a4ce0",
+              "chapter_id": "d2l_computer_vision",
+              "chapter_index": 15,
+              "document_id": "document",
+              "sentence_id": "sentence_ad6c7fa1f107c307aaa359a6",
+              "sentence_index": 0,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 230,
+              "source_start": 0
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 128,
+            "source_match_start_absolute": 125,
+            "source_text": "```toc\n:maxdepth: 2\n\nimage-augmentation\nfine-tuning\nbounding-box\nanchor\nmultiscale-object-detection\nobject-detection-dataset\nssd\nrcnn\nsemantic-segmentation-and-dataset\ntransposed-conv\nfcn\nneural-style\nkaggle-cifar10\nkaggle-dog\n```",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "12c09edfb84cd414f29987d45fca57324710368dabb864d9b6d6b6d45c95e037",
+            "context_id": "ctx_96fce7b6560a010f307443f6",
+            "context_role": "BACKUP",
+            "context_sha256": "6fc9595cb683e3470064271f739ec5e0b3bdcf3899236a144e6d7dcb34556953",
+            "context_slot": "B1",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "ssd",
+            "provenance": {
+              "block_id": "d2l_computational_performance_hardware_b023",
+              "block_index": 177,
+              "block_text_sha256": "5f1ef81f459cfc84d78b549e292f31d91ca3d31fb05e8eda2e9aba2feea802e9",
+              "chapter_id": "d2l_computational_performance",
+              "chapter_index": 14,
+              "document_id": "document",
+              "sentence_id": "sentence_a75b0fa795eec68ac447ae8b",
+              "sentence_index": 4,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 409,
+              "source_start": 330
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 340,
+            "source_match_start_absolute": 337,
+            "source_text": "By now SSD controllers and firmware have developed algorithms to mitigate this.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "1ceb288240af21e5871adfa851bd2b636b914006b59316bfb4991d88b181c35e",
+            "context_id": "ctx_9d639b375fad74fc47d1c470",
+            "context_role": "BACKUP",
+            "context_sha256": "b158b9f34871980ae7f9d8c8118bfaae1b85a64d18e9366d93225b3e78ffb0fc",
+            "context_slot": "B2",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "ssd",
+            "provenance": {
+              "block_id": "d2l_computational_performance_hardware_b060",
+              "block_index": 214,
+              "block_text_sha256": "870f7adc9565ac60e5f34308ac27d32319f0440e6550711400dfe3040495b97a",
+              "chapter_id": "d2l_computational_performance",
+              "chapter_index": 14,
+              "document_id": "document",
+              "sentence_id": "sentence_c4c07f95edf9a089a76d81a0",
+              "sentence_index": 4,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 3418,
+              "source_start": 1621
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 2158,
+            "source_match_start_absolute": 2155,
+            "source_text": "(remote CPU)        | 120 ns | TinyMemBench on Broadwell E5-2690v4             |\n| Intel Optane random read                   | 305 ns | UCSD Non-Volatile Systems Lab                   |\n| Send 4KB over 100 Gbps HPC fabric          |   1 μs | MVAPICH2 over Intel Omni-Path                   |\n| Compress 1KB with Google Snappy            |   3 μs |                                                 |\n| Send 4KB over 10 Gbps ethernet             |  10 μs |                                                 |\n| Write 4KB randomly to NVMe SSD             |  30 μs | DC P3608 NVMe SSD (QOS 99% is 500μs)            |\n| Transfer 1MB to/from NVLink GPU            |  30 μs | ~33GB/s on NVIDIA 40GB NVLink                 |\n| Transfer 1MB to/from PCI-E GPU             |  80 μs | ~12GB/s on PCIe 3.0 x16 link                  |\n| Read 4KB randomly from NVMe SSD            | 120 μs | DC P3608 NVMe SSD (QOS 99%)                     |\n| Read 1MB sequentially from NVMe SSD        | 208 μs | ~4.8GB/s DC P3608 NVMe SSD                    |\n| Write 4KB randomly to SATA SSD             | 500 μs | DC S3510 SATA SSD (QOS 99.9%)                   |\n| Read 4KB randomly from SATA SSD            | 500 μs | DC S3510 SATA SSD (QOS 99.9%)                   |\n| Round trip within same datacenter          | 500 μs | One-way ping is ~250μs                          |\n| Read 1MB sequentially from SATA SSD        |   2 ms | ~550MB/s DC S3510 SATA SSD                    |\n| Read 1MB sequentially from disk            |   5 ms | ~200MB/s server HDD                           |\n| Random Disk Access (seek+rotation)         |  10 ms |                                                 |\n| Send packet CA->Netherlands->CA            | 150 ms |                                                 |\n:label:`table_latency_numbers`",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "2757fe81e6b6b3eb28a3ce4796e9bf52be7e5aa26faf6b36bbc53de97680552b",
+            "context_id": "ctx_aa0eae6611908af9c05e40d3",
+            "context_role": "BACKUP",
+            "context_sha256": "a592cf38b3d7f618fc3a7441e7521b6efa664d86eca47ac315073d21780bca19",
+            "context_slot": "B3",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "ssd",
+            "provenance": {
+              "block_id": "d2l_computational_performance_hardware_b023",
+              "block_index": 177,
+              "block_text_sha256": "5f1ef81f459cfc84d78b549e292f31d91ca3d31fb05e8eda2e9aba2feea802e9",
+              "chapter_id": "d2l_computational_performance",
+              "chapter_index": 14,
+              "document_id": "document",
+              "sentence_id": "sentence_f6eba6c4ba7e116cd097c697",
+              "sentence_index": 2,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 192,
+              "source_start": 122
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 164,
+            "source_match_start_absolute": 161,
+            "source_text": "Consequently bit-wise random writes on SSD have very poor performance.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "02fda0706c201971a672d966ef39a18f06f581dedc718261ce36e04460c58bb8",
+            "context_id": "ctx_f4c012def8b4623e96d4ac12",
+            "context_role": "PRIMARY",
+            "context_sha256": "89720f740cb62153ca280b8b6f85d340c756260901095cce8681b74b82b5bb63",
+            "context_slot": "C1",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "ssd",
+            "provenance": {
+              "block_id": "d2l_computer_vision_ssd_b002",
+              "block_index": 311,
+              "block_text_sha256": "3808a7e545c9de4561b82fd713e424d73548f9e2da3b04f22add82be50b64422",
+              "chapter_id": "d2l_computer_vision",
+              "chapter_index": 15,
+              "document_id": "document",
+              "sentence_id": "sentence_2f2624ed2b721154419d7fd4",
+              "sentence_index": 1,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 333,
+              "source_start": 174
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 296,
+            "source_match_start_absolute": 293,
+            "source_text": "Now we are ready to use such background\nknowledge to design an object detection model:\nsingle shot multibox detection\n(SSD) :cite:`Liu.Anguelov.Erhan.ea.2016`.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "61286eaeb88a1c2f2a4930cf9804f0f50fbdd94253eeb334c429af041a44ada8",
+            "context_id": "ctxx_17beba5acdb3e6a8aa8878b6",
+            "context_role": "CONTRASTIVE",
+            "context_sha256": "80b213793247d1c4ae728a4319bdb06866fc299070cb7dd312704056b1c067b6",
+            "context_slot": "X1",
+            "context_type": "CONTRASTIVE",
+            "context_type_review_status": "NOT_APPLICABLE",
+            "matched_surface": "SSD",
+            "provenance": {
+              "audit_ref": "model_evidence/batch_013_b13cb8048476a5500627c3e7946d3a6aadaa67896cea913011cacee35d1bdf0f.json",
+              "audit_sha256": "476d78d18a43db9c1ae775d66e460ac1971d8cde36e8a52f17035431c586fe62",
+              "source_kind": "MODEL_GENERATED_SYNTHETIC"
+            },
+            "sense_relation": "CONTRASTIVE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": null,
+            "source_match_start_absolute": null,
+            "source_text": "Synthetic: In this chapter, SSD refers to Single Shot Multibox Detection, not a storage drive.",
+            "synthetic": true
+          }
+        ],
+        "parent_binding": {
+          "parent_candidate_instance_sha256": [
+            "746d75e720e4869ab346e4207c1481a243256cd06661f65dbdcb61a6ede36b04",
+            "d09aa0f033a1d85e41050c686f8ac0c53200ca4700d106965b591c9bb1207165",
+            "a9cc9cfef2d4c3fe635a6361d1a395d0ec908c2a2ed4d56f91a64fa43ef4a818"
+          ],
+          "parent_context_sha256": [
+            "2624e23e96935c8c592c0ac6eb7de0e3d3ce22bc7a07ad583e86ed233717e0f6",
+            "5c1140f53ac3fecc5c50e7939636298e038c9331aedafded3d488247278dfeec",
+            "fbf4480bc92588851b2fa4f7476a65bad4a4d6228f8d63a42928abb9620a09ce",
+            "6e3676e55b63240833ae6cb019c67a2977663b43920474831830da60575def7d",
+            "6fc9595cb683e3470064271f739ec5e0b3bdcf3899236a144e6d7dcb34556953",
+            "b158b9f34871980ae7f9d8c8118bfaae1b85a64d18e9366d93225b3e78ffb0fc",
+            "a592cf38b3d7f618fc3a7441e7521b6efa664d86eca47ac315073d21780bca19",
+            "89720f740cb62153ca280b8b6f85d340c756260901095cce8681b74b82b5bb63",
+            "80b213793247d1c4ae728a4319bdb06866fc299070cb7dd312704056b1c067b6"
+          ],
+          "parent_dataset": "d2l_context_support_set_validation_ready_v3",
+          "parent_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+          "parent_term_sense_sha256": "ed7dca965d287f68c4fbf31041f82b2aef62730ca8d4f5b75fe9439326b079b1"
+        },
+        "policy_id": "d2l-dataset-remaining-100-stage-a-v1.0",
+        "proposed_definition_en": "abbreviation for either a solid-state drive in hardware contexts or Single Shot Multibox Detection in computer-vision contexts",
+        "proposed_part_of_speech": "symbol",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "schema_id": "D2LRemaining100StageAReviewSourceV1",
+        "schema_version": "1.0.0",
+        "sense_id": "d2lce_c6d5679eb20ff0719dfc35b2",
+        "source_term": "SSD",
+        "stratum": "ambiguous",
+        "term_id": "d2lce_c6d5679eb20ff0719dfc35b2"
+      },
+      "source_payload_sha256": "815bae3ef3a1dd43d9f2914526e0b1d4d48eed4f798b51e0e8b9e04844157b3d",
+      "source_term": "SSD"
+    },
+    {
+      "audit": {
+        "audit_decision": "APPROVE",
+        "audit_notes": "All three children are independently evidence-bound. The statistical-learning child tmpchild_86212c9bc109f9ad76098909 is directly defined as expected population loss by real contexts ctx_09d73755e2ce9336c387813d and ctx_7cbe29eaa7c1116fd7a5e733, grounding tổn thất kỳ vọng. The adverse-uncertainty noun child tmpchild_1e8580059dfd656a51a52dd1 is supported by real contexts for overfitting risk, uncertain risk, default risk, fluctuation risk, and lending risk, including ctx_2c2639ba429795d2935fc5d5, ctx_2fc169f6489bcc78299b417f, ctx_a548badbf36a46c4f9452839, and ctx_a99932a01269042b25d04a4b; rủi ro is faithful. The verb child tmpchild_36d1c6e845afd10244e30e17 is directly supported by ctx_399193474e26307c198edb25, where risk losing information is faithfully rendered by có nguy cơ. ctxx_97deae5f12df8dd84a8318fa is synthetic and boundary-only and was not used as positive evidence. No child sense is invalid.",
+        "audit_status": "COMPLETE",
+        "invalid_child_sense_ids": []
+      },
+      "batch_id": "high_risk_audit_batch_003",
+      "case_id": "highrisk_audit_dcd52f6f08f722a70cba9592",
+      "policy_id": "d2l-remaining-100-high-risk-proposal-audit-v1.0",
+      "proposal": {
+        "child_sense_repairs": [
+          {
+            "candidate_assignments": [
+              {
+                "candidate_id": "candidate_e3e4a5d8653b8d51b2de35a8",
+                "candidate_slot": "candidate_slot_3c28a5fcdef121b4023ceca8",
+                "target_vi": "tổn thất kỳ vọng"
+              }
+            ],
+            "context_ids": [
+              "ctx_09d73755e2ce9336c387813d",
+              "ctx_7cbe29eaa7c1116fd7a5e733"
+            ],
+            "definition_en": "The expected loss over a population or data distribution in statistical learning.",
+            "part_of_speech": "noun",
+            "scope": "d2l_selected_campaign_scope_v1",
+            "temporary_child_sense_id": "tmpchild_86212c9bc109f9ad76098909"
+          },
+          {
+            "candidate_assignments": [
+              {
+                "candidate_id": "candidate_2af7833fbaef603fbea0babc",
+                "candidate_slot": "candidate_slot_d5cb4e8932a7d89c7d5fa660",
+                "target_vi": "rủi ro"
+              }
+            ],
+            "context_ids": [
+              "ctx_2c2639ba429795d2935fc5d5",
+              "ctx_2fc169f6489bcc78299b417f",
+              "ctx_a548badbf36a46c4f9452839",
+              "ctx_a99932a01269042b25d04a4b",
+              "ctx_f4a2c74c968df044ff098382",
+              "ctxx_97deae5f12df8dd84a8318fa"
+            ],
+            "definition_en": "The chance or degree of an adverse uncertain outcome or exposure.",
+            "part_of_speech": "noun",
+            "scope": "d2l_selected_campaign_scope_v1",
+            "temporary_child_sense_id": "tmpchild_1e8580059dfd656a51a52dd1"
+          },
+          {
+            "candidate_assignments": [
+              {
+                "candidate_id": "candidate_51830c0a3662ffb396b9ab88",
+                "candidate_slot": "candidate_slot_9cc00673b94c59e4d9ec697b",
+                "target_vi": "có nguy cơ"
+              }
+            ],
+            "context_ids": [
+              "ctx_399193474e26307c198edb25"
+            ],
+            "definition_en": "To expose something to possible loss or harm.",
+            "part_of_speech": "verb",
+            "scope": "d2l_selected_campaign_scope_v1",
+            "temporary_child_sense_id": "tmpchild_36d1c6e845afd10244e30e17"
+          }
+        ],
+        "proposal_type": "SPLIT_PROPOSAL"
+      },
+      "proposal_record_sha256": "8436cdffc4e134d1595f379f5db13bbcebd51cbf127da4a026735701ae8ae200",
+      "provider_call_count": 0,
+      "schema_id": "D2LRemaining100HighRiskProposalAuditCaseV1",
+      "schema_version": "1.0",
+      "sense_id": "d2lce_c9e2beab505998c5b3b560b5",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_2af7833fbaef603fbea0babc",
+            "candidate_instance_sha256": "24718d9a544fa55fd154d21f30218f0ab6a4a56e05a24b757d2349bd79bc5087",
+            "candidate_slot": "candidate_slot_d5cb4e8932a7d89c7d5fa660",
+            "candidate_target_vi": "rủi ro"
+          },
+          {
+            "candidate_id": "candidate_51830c0a3662ffb396b9ab88",
+            "candidate_instance_sha256": "b73a03b47a6d0f5b330c18917879d367a9a567e572e8b6fee7602c1ae85f4fc7",
+            "candidate_slot": "candidate_slot_9cc00673b94c59e4d9ec697b",
+            "candidate_target_vi": "sai số khái quát hóa"
+          },
+          {
+            "candidate_id": "candidate_e3e4a5d8653b8d51b2de35a8",
+            "candidate_instance_sha256": "735df211be3ee27217079d3d66bea16cfe6605b4c2caa34aa1b86ec1e4665513",
+            "candidate_slot": "candidate_slot_3c28a5fcdef121b4023ceca8",
+            "candidate_target_vi": "tổn thất kỳ vọng"
+          }
+        ],
+        "dataset_version": "d2l_dataset_remaining_100_stage_a_v1",
+        "evidence_contexts": [
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "cb5e8f197c22b20a817c665354c687e5015277e440abda841ff2affa4f551bcf",
+            "context_id": "ctx_09d73755e2ce9336c387813d",
+            "context_role": "PRIMARY",
+            "context_sha256": "ff2fef1b4a49e5e630b5c8a6d47039efef438563ebf6c3361ff38c5b744c988e",
+            "context_slot": "C3",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "risk",
+            "provenance": {
+              "block_id": "d2l_introduction_index_b062",
+              "block_index": 61,
+              "block_text_sha256": "a6e356bcbca78b21b33f28bd71f0e711be2b9f7f1b63851eec3f6c92cc73700f",
+              "chapter_id": "d2l_introduction",
+              "chapter_index": 3,
+              "document_id": "document",
+              "sentence_id": "sentence_28c9d8b71fc01906536bbb75",
+              "sentence_index": 6,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 729,
+              "source_start": 547
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 589,
+            "source_match_start_absolute": 585,
+            "source_text": "Thus, we need to compute the expected risk that we incur as the loss function,\ni.e., we need to multiply the probability of the outcome\nwith the benefit (or harm) associated with it.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "9ee70e72da7afa01ae1e8004adc67eb31b763d0c938c1d2cb00e567e8c08909d",
+            "context_id": "ctx_2c2639ba429795d2935fc5d5",
+            "context_role": "PRIMARY",
+            "context_sha256": "1ffc89759de95a3413fca33c21d9ce9117797c0e91949eca012441c06ae4f8d8",
+            "context_slot": "C4",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "risk",
+            "provenance": {
+              "block_id": "d2l_multilayer_perceptrons_index_b002",
+              "block_index": 1,
+              "block_text_sha256": "537e8a22b9d8a747265fed112adb6587d7242bd4ed4fa3f56adbdea9dc4da8c3",
+              "chapter_id": "d2l_multilayer_perceptrons",
+              "chapter_index": 6,
+              "document_id": "document",
+              "sentence_id": "sentence_fd05c8e08bde591ad667d072",
+              "sentence_index": 2,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 374,
+              "source_start": 308
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 358,
+            "source_match_start_absolute": 354,
+            "source_text": "When we train high-capacity models we run the risk of overfitting.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "ea6eb5bc2850d6716fca80e18e38dece3f58baf37c0bc8b4099d9bc685aa1009",
+            "context_id": "ctx_2fc169f6489bcc78299b417f",
+            "context_role": "BACKUP",
+            "context_sha256": "b5aa216d2da917265c85dbef6eebad7ee820f0f309cb3fe3673a00dc5f8040c3",
+            "context_slot": "B2",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "risk",
+            "provenance": {
+              "block_id": "d2l_introduction_index_b062",
+              "block_index": 61,
+              "block_text_sha256": "a6e356bcbca78b21b33f28bd71f0e711be2b9f7f1b63851eec3f6c92cc73700f",
+              "chapter_id": "d2l_introduction",
+              "chapter_index": 3,
+              "document_id": "document",
+              "sentence_id": "sentence_f56ef371e164000ba43ed1df",
+              "sentence_index": 5,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 546,
+              "source_start": 468
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 516,
+            "source_match_start_absolute": 512,
+            "source_text": "In other words, the effect of the uncertain risk\noutweighs the benefit by far.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "a1e4ef3b3ff97f847b9bb5d0d06485cd05e372ea23fb0d76c8b0c3cc4d778098",
+            "context_id": "ctx_399193474e26307c198edb25",
+            "context_role": "BACKUP",
+            "context_sha256": "81cc3f70213f640010d04a0757b200fc07a52386192fcca6c5a6dc237abd9ecf",
+            "context_slot": "B3",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "risk",
+            "provenance": {
+              "block_id": "d2l_introduction_index_b026",
+              "block_index": 25,
+              "block_text_sha256": "6d495aadf5d49b0efc7e833118845217467e45ceb1c3c6b9c9664908e081e3ad",
+              "chapter_id": "d2l_introduction",
+              "chapter_index": 3,
+              "document_id": "document",
+              "sentence_id": "sentence_4ea75194317ad8c8d2cc0a3b",
+              "sentence_index": 3,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 409,
+              "source_start": 354
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 361,
+            "source_match_start_absolute": 357,
+            "source_text": "We risk losing information in the cropped out portions.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "1d218ea4b906139f116a043e4b1b3070958bd0136771e234f58a636861e422cf",
+            "context_id": "ctx_7cbe29eaa7c1116fd7a5e733",
+            "context_role": "PRIMARY",
+            "context_sha256": "1b0cb2829e638389f6117f353dd33e061931c18f53eabe842796f15c7004424e",
+            "context_slot": "C2",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "risk",
+            "provenance": {
+              "block_id": "d2l_optimization_optimization_intro_b008",
+              "block_index": 12,
+              "block_text_sha256": "9a3c23cfe3fb9308730e7b1a20bbb1934af9024fed42ce1cc22a71d6630c45da",
+              "chapter_id": "d2l_optimization",
+              "chapter_index": 13,
+              "document_id": "document",
+              "sentence_id": "sentence_98204dcedd6d4f05c1295236",
+              "sentence_index": 1,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 291,
+              "source_start": 101
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 147,
+            "source_match_start_absolute": 143,
+            "source_text": "As described\nin :numref:`subsec_empirical-risk-and-risk`,\nthe empirical risk\nis an average loss\non the training dataset\nwhile the risk is the expected loss \non the entire population of data.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "c5eac7333e72ffb123cec881cd379782c7271d923e74f7988a824f093a9b3941",
+            "context_id": "ctx_a548badbf36a46c4f9452839",
+            "context_role": "PRIMARY",
+            "context_sha256": "c2a174c5141bbfe6b0b4adbde2385b59a786b27af851cb824829e36d099164a2",
+            "context_slot": "C1",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "risk",
+            "provenance": {
+              "block_id": "d2l_preliminaries_linear_algebra_b011",
+              "block_index": 163,
+              "block_text_sha256": "c6f15fcc4e52f797a0d766083d84cbc61b5baaba6a8f4ee5e6403cb3e428c6d2",
+              "chapter_id": "d2l_preliminaries",
+              "chapter_index": 4,
+              "document_id": "document",
+              "sentence_id": "sentence_157199781ed5147360a98494",
+              "sentence_index": 2,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 493,
+              "source_start": 248
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 308,
+            "source_match_start_absolute": 304,
+            "source_text": "For example, if we were training a model to predict\nthe risk that a loan defaults,\nwe might associate each applicant with a vector\nwhose components correspond to their income,\nlength of employment, number of previous defaults, and other factors.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "7fb15e971e9e87436985999e095c6d66f028bea58afb2044c3f520603f18c670",
+            "context_id": "ctx_a99932a01269042b25d04a4b",
+            "context_role": "PRIMARY",
+            "context_sha256": "bc94e16c0c32051e41d58733baeecfbe2eb48d743ff8a84bf7298ab4c2a637ea",
+            "context_slot": "C5",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "risk",
+            "provenance": {
+              "block_id": "d2l_appendix_mathematics_for_deep_learning_random_variables_b066",
+              "block_index": 794,
+              "block_text_sha256": "f322e381c152783dfd18cbe8e8d781e7287f5de93f36905fedb1c2a60c58a8da",
+              "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+              "chapter_index": 20,
+              "document_id": "document",
+              "sentence_id": "sentence_0d64550ae7d1bc98f149552e",
+              "sentence_index": 2,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 392,
+              "source_start": 297
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 391,
+            "source_match_start_absolute": 387,
+            "source_text": "The second one has a much larger degree of fluctuation, and thus represents a much larger risk.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "0d9897634abce5b0950c094006f543e42b97465166d883253527703ea6fbddbd",
+            "context_id": "ctx_f4a2c74c968df044ff098382",
+            "context_role": "BACKUP",
+            "context_sha256": "6e5281749dfa3d909e241ce125d413291de42596437303e01c67e1447b96e195",
+            "context_slot": "B1",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "risk",
+            "provenance": {
+              "block_id": "d2l_introduction_index_b028",
+              "block_index": 27,
+              "block_text_sha256": "474933f2ee20857692d98dcda62ac0be1a7cff8c1ac8c54fac04d2136d7d465d",
+              "chapter_id": "d2l_introduction",
+              "chapter_index": 3,
+              "document_id": "document",
+              "sentence_id": "sentence_026bf42388f36ed6e8d61f00",
+              "sentence_index": 5,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 584,
+              "source_start": 395
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 494,
+            "source_match_start_absolute": 490,
+            "source_text": "In sensitive applications of machine learning,\nlike predictive policing, resume screening, and risk models used for lending,\nwe must be especially alert to the consequences of garbage data.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "7c7dd9faeade01e8500e500ada8b20374585930ed7282f79a50c48f6b840e4c5",
+            "context_id": "ctxx_97deae5f12df8dd84a8318fa",
+            "context_role": "CONTRASTIVE",
+            "context_sha256": "a5e1291fa7af1a4d08613c61777fc36070fe05754c98d041240ce72e349383ba",
+            "context_slot": "X1",
+            "context_type": "CONTRASTIVE",
+            "context_type_review_status": "NOT_APPLICABLE",
+            "matched_surface": "risk",
+            "provenance": {
+              "audit_ref": "model_evidence/batch_027_1ff7ed7e51867f514ed2638be59a18ffdfcc3ef5707d26a39f207455042b1539.json",
+              "audit_sha256": "02d33a2086bd0312d38f97120a42c81cadffaa0e9c33389d32647ad249e419ce",
+              "source_kind": "MODEL_GENERATED_SYNTHETIC"
+            },
+            "sense_relation": "CONTRASTIVE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": null,
+            "source_match_start_absolute": null,
+            "source_text": "Synthetic: In finance, the risk of default was estimated before approving the loan.",
+            "synthetic": true
+          }
+        ],
+        "parent_binding": {
+          "parent_candidate_instance_sha256": [
+            "24718d9a544fa55fd154d21f30218f0ab6a4a56e05a24b757d2349bd79bc5087",
+            "b73a03b47a6d0f5b330c18917879d367a9a567e572e8b6fee7602c1ae85f4fc7",
+            "735df211be3ee27217079d3d66bea16cfe6605b4c2caa34aa1b86ec1e4665513"
+          ],
+          "parent_context_sha256": [
+            "ff2fef1b4a49e5e630b5c8a6d47039efef438563ebf6c3361ff38c5b744c988e",
+            "1ffc89759de95a3413fca33c21d9ce9117797c0e91949eca012441c06ae4f8d8",
+            "b5aa216d2da917265c85dbef6eebad7ee820f0f309cb3fe3673a00dc5f8040c3",
+            "81cc3f70213f640010d04a0757b200fc07a52386192fcca6c5a6dc237abd9ecf",
+            "1b0cb2829e638389f6117f353dd33e061931c18f53eabe842796f15c7004424e",
+            "c2a174c5141bbfe6b0b4adbde2385b59a786b27af851cb824829e36d099164a2",
+            "bc94e16c0c32051e41d58733baeecfbe2eb48d743ff8a84bf7298ab4c2a637ea",
+            "6e5281749dfa3d909e241ce125d413291de42596437303e01c67e1447b96e195",
+            "a5e1291fa7af1a4d08613c61777fc36070fe05754c98d041240ce72e349383ba"
+          ],
+          "parent_dataset": "d2l_context_support_set_validation_ready_v3",
+          "parent_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+          "parent_term_sense_sha256": "d293d79b110bb5f2fd21f2dd5292c48b254aa7848621064d813f9c3985cbf884"
+        },
+        "policy_id": "d2l-dataset-remaining-100-stage-a-v1.0",
+        "proposed_definition_en": "possible harm, error, or expected loss associated with an uncertain outcome or model performance",
+        "proposed_part_of_speech": "noun",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "schema_id": "D2LRemaining100StageAReviewSourceV1",
+        "schema_version": "1.0.0",
+        "sense_id": "d2lce_c9e2beab505998c5b3b560b5",
+        "source_term": "risk",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_c9e2beab505998c5b3b560b5"
+      },
+      "source_payload_sha256": "34a5d0f4982520498f2dd2910c437c7423e857e3fc74ec6ebb9282cdc4248912",
+      "source_term": "risk"
+    }
+  ],
+  "independence_mode": "DISTINCT_FROM_PROPOSAL_AUTHOR",
+  "policy_id": "d2l-remaining-100-high-risk-proposal-audit-v1.0",
+  "provider_call_count": 0,
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_AUDIT_OBJECTS_FILLED",
+  "schema_id": "D2LRemaining100HighRiskProposalAuditBatchV1",
+  "schema_version": "1.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "AWAITING_INDEPENDENT_HIGH_RISK_PROPOSAL_AUDIT"
+}

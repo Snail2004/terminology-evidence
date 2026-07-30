@@ -1,0 +1,599 @@
+{
+  "batch_id": "batch_007",
+  "cases": [
+    {
+      "review": {
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "The eligible contexts consistently use numeric minibatch sizes and explicitly relate them to the number of examples or images in a batch. This directly supports the proposed definition, noun-phrase POS, scope, and the Vietnamese size, count, and minibatch-scale formulations. The synthetic boundary row was not used as positive evidence.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_08f00360c15c3bd5b099b850",
+            "candidate_slot": "candidate_slot_27155e6ae4a858776ca58dcd",
+            "candidate_target_vi": "kích thước lô nhỏ"
+          },
+          {
+            "candidate_id": "candidate_e8402f3f1456fe1b47745881",
+            "candidate_slot": "candidate_slot_27657604775724a785acf84d",
+            "candidate_target_vi": "số mẫu trong một lô nhỏ"
+          },
+          {
+            "candidate_id": "candidate_7d4dd6e565652894aa8dc5bb",
+            "candidate_slot": "candidate_slot_34be1126b3af30121b3d220f",
+            "candidate_target_vi": "quy mô minibatch"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_optimization_minibatch_sgd_b004",
+            "boundary_only": false,
+            "chapter_id": "d2l_optimization",
+            "content_sha256": "c23a904c0a7d989d2700906d7907676933c4086a6d96de9dc0671ac4c7a404c2",
+            "context_id": "ctx_1e4dd1bfa6ccb1046784076e",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "minibatch size",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_fadc91c539dede92d34b12fb",
+            "source_text": "With 8 GPUs per server and 16 servers we already arrive at a minibatch size of 128.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_multiple_gpus_b018",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "96eb9f90a6fb61ec105bc5e9bcec294fbb4a633453e631ecf7004b204cd17e8e",
+            "context_id": "ctx_39af2ece89443cd7fa86dfc2",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "minibatch size",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_4e009808425c43f9200b01cd",
+            "source_text": "On a 16-GPU server this can increase the minibatch size considerably and we may have to increase the learning rate accordingly.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_linear_networks_linear_regression_scratch_b024",
+            "boundary_only": false,
+            "chapter_id": "d2l_linear_networks",
+            "content_sha256": "3087a30d1f77d54ebbf4ef390b58d2398a6525fc647d1911ca18a20071ebf53f",
+            "context_id": "ctx_78da4af66f0cedb5ae1b160d",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "minibatch size",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_3d62f37069714d058a1103c6",
+            "source_text": "The shape of the features in each minibatch tells us\nboth the minibatch size and the number of input features.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_introduction_index_b134",
+            "boundary_only": false,
+            "chapter_id": "d2l_introduction",
+            "content_sha256": "f6eb93b57ed9619924460214bfbd29c1cdb2af1f29c518c2d7851450764e7b2a",
+            "context_id": "ctx_7fc6f12ab12ca9a7f0af8274",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "minibatch size",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_ca5de04b699b26aacff76a17",
+            "source_text": "Hence, training on 1024 GPUs with a minibatch size of,\n  say 32 images per batch amounts to an aggregate minibatch\n  of about 32000 images.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_optimization_minibatch_sgd_b060",
+            "boundary_only": false,
+            "chapter_id": "d2l_optimization",
+            "content_sha256": "fc8fc663a3ff84e60d1ba78850816b87cd348bc27b7dd839266fe5e0e21aeec8",
+            "context_id": "ctx_a212b34897ea9058b36ef4f4",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "minibatch size",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_e2fb7ca26bc68d954ad1433d",
+            "source_text": "A minibatch size of 10 is more efficient than stochastic gradient descent; a minibatch size of 100 even outperforms GD in terms of runtime.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_neural_networks_rnn_b035",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_neural_networks",
+            "content_sha256": "634056da51c96982bdc0a3805600e4ffbfd353332f53a744f508446cc988dcdf",
+            "context_id": "ctx_c15f9d27aeea9362be91cca2",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "minibatch size",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_1dc2ce6615515bd62b02350a",
+            "source_text": "Let the minibatch size be one, and the sequence of the text be \"machine\".",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_optimization_minibatch_sgd_b052",
+            "boundary_only": false,
+            "chapter_id": "d2l_optimization",
+            "content_sha256": "a7e8df1c9491fe2eab86a8bb840060427fc2a02a8ab0152ea8920d4990f96837",
+            "context_id": "ctx_d6ab75565ebd010dfbf7b992",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_DEFINITION_PROPOSAL"
+            ],
+            "matched_surface": "minibatch size",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_957a080d232bad99a5bc1c22",
+            "source_text": "This can be achieved by setting the minibatch size to 1500 (i.e., to the total number of examples).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_neural_networks_language_models_and_dataset_b051",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_neural_networks",
+            "content_sha256": "671f1c76930088af2d5f71915b29077ffa0596396f4e8d123cb2de3587de1d27",
+            "context_id": "ctx_dc5cb3bfdafeb7c4a403e8a9",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "minibatch size",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_d9ab5b65dfd5d3f03b039275",
+            "source_text": "With a minibatch size of 2, we only get 3 minibatches.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "afd1f47687d68b6b28d0c314bb74be6fc29c21986b157e3505ec3662cfa19c6d",
+            "context_id": "ctxx_5191a23f7110b644d4202364",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "minibatch size",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "[Synthetic] The minibatch size stayed fixed at 32, but the minibatch contents changed every iteration.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_5c43d25bc8db85ff1dc91305",
+        "proposed_definition_en": "the number of examples contained in one minibatch during training",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+        "risk_class": "R3_AMBIGUOUS",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_152a9bcc9b8b5f6cc5586c54",
+        "source_sense_pool_record_sha256": "e830c6c8443bfc09af7c6791090995f3929e5336e2e98bcfa0dddb34e28c8cab",
+        "source_term": "minibatch size",
+        "stratum": "ambiguous",
+        "term_id": "d2lce_152a9bcc9b8b5f6cc5586c54"
+      },
+      "source_payload_sha256": "5cbf104f71b8a7b725b9ce37d03ef91f5436c2c7639af65f6b024fc3fd06d99a"
+    },
+    {
+      "review": {
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "The eligible evidence expands R-CNN as region-based CNNs, identifies it as an object-detection approach, and describes its use of region proposals before classification and box prediction. This supports the proposed definition, proper-name analysis, scope, and the singular, plural, and expanded Vietnamese candidates. The synthetic boundary row was not used as positive evidence.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_c99f76ddbef2797f9cb0c038",
+            "candidate_slot": "candidate_slot_cd3147a4cc2a3997637071ff",
+            "candidate_target_vi": "R-CNNs"
+          },
+          {
+            "candidate_id": "candidate_4e3e4afa8f5bcaeceb07adf7",
+            "candidate_slot": "candidate_slot_eb72516b9f33bf7c70787dcd",
+            "candidate_target_vi": "mạng R-CNN dựa trên vùng"
+          },
+          {
+            "candidate_id": "candidate_bb742147b7734cbc775103a0",
+            "candidate_slot": "candidate_slot_fdb4d2af82bed77e4eac22d8",
+            "candidate_target_vi": "R-CNN"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_computer_vision_rcnn_b002",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "73eca4abe54788d843c48df24d4966309cba464762e52cbd659a10e40c28bd12",
+            "context_id": "ctx_04626b072f9bfbcc966fac5c",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "r-cnns",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_c36469aad4a112876eb71ef7",
+            "source_text": "Besides single shot multibox detection\ndescribed in :numref:`sec_ssd`,\nregion-based CNNs or regions with CNN features (R-CNNs)\nare also among many pioneering\napproaches of \napplying\ndeep learning to object detection\n:cite:`Girshick.Donahue.Darrell.ea.2014`.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_rcnn_b006",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "4e128212ebdd0efb3c51654a5f305d4eb2a7afd5fdf35dfd9ee3da223e394c24",
+            "context_id": "ctx_281feac9e302997ea88b1aea",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "r-cnn",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_7013fd3bf16d58c09002c0ca",
+            "source_text": "More concretely, the R-CNN consists of the following four steps:",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_rcnn_b003",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "226024ae07907279761fc3158d38cf84987af99390e8025ec84d2b12eac5ebee",
+            "context_id": "ctx_42a91e8bb6e0449e3926152e",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "r-cnns",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_291260738b376d794bb2f488",
+            "source_text": "## R-CNNs",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_rcnn_b002",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "c2aa4c2a33bdfd5799d02ba2e07590e65a3ad75598d825fc6ef52349f37fbef7",
+            "context_id": "ctx_7b2934db82a8f5e942551192",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "r-cnn",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_82836ce505968bf5abaf1dd8",
+            "source_text": "In this section, we will introduce\nthe R-CNN and its series of improvements: the fast R-CNN\n:cite:`Girshick.2015`, the faster R-CNN :cite:`Ren.He.Girshick.ea.2015`, and the mask R-CNN\n:cite:`He.Gkioxari.Dollar.ea.2017`.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_rcnn_b006",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "1f1e871b189f6c224df1a0ac77ea0824f374fae1bfa9e1bf5004da242d0cc679",
+            "context_id": "ctx_824f6a3ffdf2593aacbb41d4",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "r-cnn",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_1236ddb6cf93abf53b96792a",
+            "source_text": ":numref:`fig_r-cnn` shows the R-CNN model.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_rcnn_b004",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "e3feade9c0309b174069c960c4227bf7e2c357e745d2c41ffe1b1ecef59acb49",
+            "context_id": "ctx_82a716f88498c45284012fbc",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "r-cnn",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_05362f961844b86ab4f14c8f",
+            "source_text": "The *R-CNN* first extracts\nmany (e.g., 2000) *region proposals*\nfrom the input image\n(e.g., anchor boxes can also be considered\nas region proposals),\nlabeling their classes and bounding boxes (e.g., offsets).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_rcnn_b001",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "2f5d1f8eb6235a9c0cf8a003f57fefcb674e9b58499cdaf3e722dbb517250574",
+            "context_id": "ctx_b71e137a4385ced462547be2",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "r-cnns",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_527681c6f8f4925ef8d2e011",
+            "source_text": "# Region-based CNNs (R-CNNs)\n:label:`sec_rcnn`",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_rcnn_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "e295e197988d4c0f9b1fac968ea5f84774299e5eabde2e36983a65aaa5c67d90",
+            "context_id": "ctx_c3e2e6f9a837a104a2ffaacc",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "r-cnn",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_37392b030d72950f0b7cedb4",
+            "source_text": "![The R-CNN model.](../img/r-cnn.svg)\n:label:`fig_r-cnn`",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "d9ce8cfe7f930fc80745c2538ecfe46d67f826fe19bedf8c2db56b7f9824c013",
+            "context_id": "ctxx_1f21c52c8120c8f15dfa2c07",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "R-CNN",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: Unlike SSD, the R-CNN first generates region proposals before classification.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_3d06c6ec9118bbe0a6e4012e",
+        "proposed_definition_en": "a region-based convolutional neural network method for object detection.",
+        "proposed_part_of_speech": "proper_noun",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_ad0d7cbd5f90ad33075e89aa",
+        "source_sense_pool_record_sha256": "4595987a67d2706c8663e37e76f0dc92b86cefc7ef36f13df01d305731f8b604",
+        "source_term": "R-CNN",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_ad0d7cbd5f90ad33075e89aa"
+      },
+      "source_payload_sha256": "91b4ddc4062e0ceba8d5f81f4e12e42bbb26ca758b629a7b37cb0ea8056da474"
+    },
+    {
+      "review": {
+        "candidate_replacements": [
+          {
+            "candidate_id": "candidate_f5a9a36ee97259d11b50d005",
+            "candidate_slot": "candidate_slot_bb8fa337a392cb606dee35d7",
+            "replacement_target_vi": "từ nhiễu được lấy mẫu"
+          }
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "The eligible contexts consistently define noise words as words drawn from a predefined distribution for negative sampling and excluded from the true context words. The definition, noun-phrase POS, and scope are supported. However, 'từ âm' can denote a negative-polarity word and does not preserve the supplied sampling/noise distinction, so it should be replaced with 'từ nhiễu được lấy mẫu'. The synthetic boundary row was not used as positive evidence.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "REVISION_REQUIRED"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_b186a25ba78b7670afdf213e",
+            "candidate_slot": "candidate_slot_39661ffe088fe2d7e980c434",
+            "candidate_target_vi": "từ mẫu nhiễu"
+          },
+          {
+            "candidate_id": "candidate_bdaf76f878212a5e3696704c",
+            "candidate_slot": "candidate_slot_83d6febf16851a90c95ff432",
+            "candidate_target_vi": "từ nhiễu"
+          },
+          {
+            "candidate_id": "candidate_f5a9a36ee97259d11b50d005",
+            "candidate_slot": "candidate_slot_bb8fa337a392cb606dee35d7",
+            "candidate_target_vi": "từ âm"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_approx_training_b032",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "098a4ad12f854707d0587f2f06f5c4b88a35efa18d06cf94576b02c856951b34",
+            "context_id": "ctx_20ec226227eb3377a4675027",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_8c288e6fb42ede3a07ddc65b",
+            "source_text": "The computational cost for training is linearly dependent on the number of noise words at each step.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word_embedding_dataset_b031",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "f7233b4e06c1766173e9d73ce2cb690f996fe5ed45733693d5fb6ac8bc08129f",
+            "context_id": "ctx_6c68ff8f58bf4e101cf66d9f",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_35c6bbcba6cbab670d1fbbd7",
+            "source_text": "To sample noise words according to \na predefined distribution,\nwe define the following `RandomGenerator` class,\nwhere the (possibly unnormalized) sampling distribution is passed\nvia the argument `sampling_weights`.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_approx_training_b034",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "d41581fb961b7c2e00ecb8e08822c73bda5e4ceb7026d76688d30463c29c7ed3",
+            "context_id": "ctx_8a60b064bcb2036082395b15",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_a6136d42e3a5b589cd260c1f",
+            "source_text": "How can we sample noise words in negative sampling?",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word_embedding_dataset_b036",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "9b1223d4d83f7eb5c58e1f46a906e83bd9534b795817d3d8920c4efc9af1e2db",
+            "context_id": "ctx_8ee1967b4d544ce02f2d1be9",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_7f0fe73e5b161f316b5dc88c",
+            "source_text": "(index 0 is the\n    # excluded unknown token) in the vocabulary\n    sampling_weights = [counter[vocab.to_tokens(i)]**0.75\n                        for i in range(1, len(vocab))]\n    all_negatives, generator = [], RandomGenerator(sampling_weights)\n    for contexts in all_contexts:\n        negatives = []\n        while len(negatives) < len(contexts) * K:\n            neg = generator.draw()\n            # Noise words cannot be context words\n            if neg not in contexts:\n                negatives.append(neg)\n        all_negatives.append(negatives)\n    return all_negatives\n\nall_negatives = get_negatives(all_contexts, vocab, counter, 5)\n```",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word_embedding_dataset_b036",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "ccecf4e1ef8e5a044778408d4497927e8fe122e5afa4f03ff57203cc73c02cbd",
+            "context_id": "ctx_bd85a6abb1abf1675645f0ec",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_d54ca92179389b3eb24c4d67",
+            "source_text": "```{.python .input}\n#@tab all\n#@save\ndef get_negatives(all_contexts, vocab, counter, K):\n    \"\"\"Return noise words in negative sampling.\"\"\"\n    # Sampling weights for words with indices 1, 2, ...",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_approx_training_b013",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "65377e55611aaa5d3070a263faa23699b0b503541324cfa4156625a0dcf5732e",
+            "context_id": "ctx_c2cff6800a035ffeaff0c52d",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_b56db25533a2cfd630c86937",
+            "source_text": "For this event involving $w_o$,\nfrom a predefined distribution $P(w)$\nsample $K$ *noise words*\nthat are not from this context window.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word_embedding_dataset_b035",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "43749de9ff33d1aa48ed07500ca86d28d212c0bbfd47a0c5597cc0b71dec619c",
+            "context_id": "ctx_e871cab6ee40803901bb1ec7",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_85902cbc725264b2eed2ac4c",
+            "source_text": "For a pair of center word and context word, \nwe randomly sample `K` (5 in the experiment) noise words.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word_embedding_dataset_b038",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "0889e7380519840c3e0581f866cc29957eaf7ba3cf84e49ec4a13e4b6c8c5d1d",
+            "context_id": "ctx_fad78fb3a08530724c4b2aef",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_0409e07b40e56bc8456f99c0",
+            "source_text": "After\nall the center words\ntogether with their\ncontext words and sampled noise words are extracted,\nthey will be transformed into \nminibatches of examples\nthat can be iteratively loaded\nduring training.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "1055c1dc8e29098c676da66abe1a85b95244fb24e889dd53a0e6a41adc935d25",
+            "context_id": "ctxx_ffaf1f7294086734a7ca9f06",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "noise words",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: Here, noise words are sampled negative examples rather than merely messy or misspelled words in a corpus.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_d23079834c5c02d26b3642a6",
+        "proposed_definition_en": "words sampled from a predefined distribution as negative examples, excluding the true context words",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+        "risk_class": "R3_AMBIGUOUS",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_5c270f3b3ebe4f0059649e18",
+        "source_sense_pool_record_sha256": "98eedf3d2bb29fef01d86a0019544d2abd007bbaf44f1bbfb7f5b13c08afc696",
+        "source_term": "noise words",
+        "stratum": "ambiguous",
+        "term_id": "d2lce_5c270f3b3ebe4f0059649e18"
+      },
+      "source_payload_sha256": "fd7897ac6822e50e74306983b17c8824855d84626ffaa471bee7e2a7fbe37597"
+    }
+  ],
+  "independence_requirement": "DO_NOT_VIEW_OTHER_REVIEWER_OUTPUTS",
+  "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_REVIEW_FIELDS_FILLED",
+  "reviewer_slot": "reviewer_2",
+  "schema_id": "D2LFastTrackStageAReviewerInputV1",
+  "schema_version": "1.0.0",
+  "source_input_sha256": "81e4cc7ab34351129b06d26d037c02ab7121ce8c71389fbe6e610475d45075bc"
+}

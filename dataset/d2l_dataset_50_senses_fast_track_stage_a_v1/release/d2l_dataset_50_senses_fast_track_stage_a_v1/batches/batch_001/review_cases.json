@@ -1,0 +1,880 @@
+[
+  {
+    "candidates": [
+      {
+        "candidate_id": "candidate_f366429efd42b798e58b637d",
+        "candidate_slot": "candidate_slot_0a6fdf2cd85eab2a754207a8",
+        "candidate_target_vi": "phép biến đổi affine"
+      },
+      {
+        "candidate_id": "candidate_6430b8a8b1881df8ac9546a5",
+        "candidate_slot": "candidate_slot_78bb7b3c0e4a639ac81f35b5",
+        "candidate_target_vi": "phép biến đổi afin"
+      },
+      {
+        "candidate_id": "candidate_a933adad1fa5d36eb3842dca",
+        "candidate_slot": "candidate_slot_cc326b010f61c22edceb761f",
+        "candidate_target_vi": "phép biến đổi tuyến tính kèm tịnh tiến"
+      }
+    ],
+    "evidence_contexts": [
+      {
+        "block_id": "d2l_multilayer_perceptrons_mlp_b004",
+        "boundary_only": false,
+        "chapter_id": "d2l_multilayer_perceptrons",
+        "content_sha256": "e4659dd87bd73e47f1b769b1dadc13f19110f6cfab4ffe8dbe372244373d57cf",
+        "context_id": "ctx_0cbe39511747c15a73cb01c5",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "affine transformation",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_07db83b3f2ea24b4ec529dbe",
+        "source_text": "We have described the affine transformation in\n:numref:`subsec_linear_model`,\nwhich is a linear transformation added by a bias.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_multilayer_perceptrons_mlp_b020",
+        "boundary_only": false,
+        "chapter_id": "d2l_multilayer_perceptrons",
+        "content_sha256": "a5aa30e997f544e69a33ba45007e06200bba28b855378df009a3e4bd3cf1459d",
+        "context_id": "ctx_107aaac926dcdc82c5d33f4c",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "affine transformation",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_c446c648e27e3e5c58a44827",
+        "source_text": "In order to realize the potential of multilayer architectures,\nwe need one more key ingredient: a\nnonlinear *activation function* $\\sigma$\nto be applied to each hidden unit\nfollowing the affine transformation.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_linear_networks_linear_regression_b011",
+        "boundary_only": false,
+        "chapter_id": "d2l_linear_networks",
+        "content_sha256": "f0c931bf103a8ef7b7c2957d5a8e5cf575fc31d73bb7d08efa39d8251ff48081",
+        "context_id": "ctx_7121f7a9fa4ce1bf37a4b411",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "affine transformation",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_b46a957553bea93a1be2b5b3",
+        "source_text": "Strictly speaking, :eqref:`eq_price-area` is an *affine transformation*\nof input features,\nwhich is characterized by\na *linear transformation* of features via weighted sum, combined with\na *translation* via the added bias.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_multilayer_perceptrons_mlp_b004",
+        "boundary_only": false,
+        "chapter_id": "d2l_multilayer_perceptrons",
+        "content_sha256": "d0c4b7e21787bdd5616ba6a87af105817f5f12859e673975a6a0599b0af59cbe",
+        "context_id": "ctx_77b69954271f4ff69e4986ca",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "affine transformation",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_99c102e2d13805c151b8653b",
+        "source_text": "If our labels truly were related\nto our input data by an affine transformation,\nthen this approach would be sufficient.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_convolutional_modern_batch_norm_b006",
+        "boundary_only": false,
+        "chapter_id": "d2l_convolutional_modern",
+        "content_sha256": "c110b77c0cfaecb3989a913af076a415c835f65a9bab86224b460ce290dc2f0a",
+        "context_id": "ctx_8cc78c2ac5c8304bb46fbe21",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "affine transformation",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_d02e654dc9063142820c0839",
+        "source_text": "Second, for a typical MLP or CNN, as we train,\nthe variables (e.g., affine transformation outputs in MLP)\nin intermediate layers \nmay take values with widely varying magnitudes:\nboth along the layers from the input to the output, across units in the same layer,\nand over time due to our updates to the model parameters.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_multilayer_perceptrons_mlp_b004",
+        "boundary_only": false,
+        "chapter_id": "d2l_multilayer_perceptrons",
+        "content_sha256": "8817459fa764f174032ec072aa65f3ed9c8d5ffebd317f84766fa0fbfffd1845",
+        "context_id": "ctx_a3223aad900f9e33b14c8db7",
+        "evidence_roles": [
+          "BACKUP",
+          "POSITIVE_POS_PROPOSAL"
+        ],
+        "matched_surface": "affine transformation",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_48cffd99a05596627d6fb189",
+        "source_text": "This model mapped our inputs directly to our outputs\nvia a single affine transformation,\nfollowed by a softmax operation.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_linear_networks_linear_regression_b012",
+        "boundary_only": false,
+        "chapter_id": "d2l_linear_networks",
+        "content_sha256": "cc34972df8e96c06781fac08b69df8a57e331625654104ca2f371b5fd30c61e5",
+        "context_id": "ctx_a9050a3dc5a8ccd5afb793f7",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "affine transformation",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_c92b0ae109bc793e79712a07",
+        "source_text": "Models whose output prediction\nis determined by the affine transformation of input features\nare *linear models*,\nwhere the affine transformation is specified by the chosen weights and bias.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_linear_networks_softmax_regression_b029",
+        "boundary_only": false,
+        "chapter_id": "d2l_linear_networks",
+        "content_sha256": "380778e345298d9adca5af5588148f1e737df612ebbcf88add1796ef7dbd05bf",
+        "context_id": "ctx_fb1febc2efebf2be14297c4f",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "affine transformation",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_aefada9c81ed6acf6476805f",
+        "source_text": "Although softmax is a nonlinear function,\nthe outputs of softmax regression are still *determined* by\nan affine transformation of input features;\nthus, softmax regression is a linear model.",
+        "synthetic": false
+      },
+      {
+        "block_id": null,
+        "boundary_only": true,
+        "chapter_id": null,
+        "content_sha256": "6cb862cbe06bb14dfeaa681365404910b3d81de783ae6ce8f4d43acc65fc813a",
+        "context_id": "ctxx_da7c4af0bfaae364e2438bee",
+        "evidence_roles": [
+          "BOUNDARY_PROPOSAL"
+        ],
+        "matched_surface": "affine transformation",
+        "positive_evidence_eligible": false,
+        "sentence_id": null,
+        "source_text": "[Synthetic] Her affine transformation after the vacation made her much more patient with students.",
+        "synthetic": true
+      }
+    ],
+    "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+    "pool_record_id": "pool_a8408e37fa3b6caf4007942e",
+    "proposed_definition_en": "A mapping that applies a linear transformation and then adds a bias or translation.",
+    "proposed_part_of_speech": "noun_phrase",
+    "proposed_scope": "d2l_selected_campaign_scope_v1",
+    "provider_call_count": 0,
+    "review_requirement": "SOURCE_GROUND_PLUS_BLIND_AUDIT",
+    "risk_class": "R0_CLEAR",
+    "schema_id": "D2LFastTrackStageAReviewSourceV1",
+    "sense_id": "d2lce_539543a2360129e2a2fa1b6d",
+    "source_sense_pool_record_sha256": "3748d529783c1ef46aa62e6eaa43370bc3d7823cbebbab341ca94c89f5a4d889",
+    "source_term": "affine transformation",
+    "stratum": "clear",
+    "term_id": "d2lce_539543a2360129e2a2fa1b6d"
+  },
+  {
+    "candidates": [
+      {
+        "candidate_id": "candidate_036dad4f0886bd2e8c606bde",
+        "candidate_slot": "candidate_slot_66abf153dd747c60958eaf0a",
+        "candidate_target_vi": "hàm hoạt hóa"
+      },
+      {
+        "candidate_id": "candidate_352edb0aa6a65269f8bdfae5",
+        "candidate_slot": "candidate_slot_8129a8e5ccf24d1905b32ea3",
+        "candidate_target_vi": "hàm kích hoạt phi tuyến"
+      },
+      {
+        "candidate_id": "candidate_b36f64db6b7dc6ccdc5c646b",
+        "candidate_slot": "candidate_slot_c3ca858b06e74f30dc5da978",
+        "candidate_target_vi": "hàm kích hoạt"
+      }
+    ],
+    "evidence_contexts": [
+      {
+        "block_id": "d2l_recurrent_modern_gru_b009",
+        "boundary_only": false,
+        "chapter_id": "d2l_recurrent_modern",
+        "content_sha256": "50bb1e197d6c29be52b9b34e8abc9903229c980ea2f6683274c54971784ca96c",
+        "context_id": "ctx_12cee07dbdee67f6be90da20",
+        "evidence_roles": [
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "activation function",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_5124ba81bbc32751cf3a0de2",
+        "source_text": "The outputs of two gates\nare given by two fully-connected layers\nwith a sigmoid activation function.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_optimization_optimization_intro_b032",
+        "boundary_only": false,
+        "chapter_id": "d2l_optimization",
+        "content_sha256": "bedb7ac93126a46481a1883474fb22df462ca37cf0912f06ae404adb4b1fecb9",
+        "context_id": "ctx_2970e39beda737feef2164c9",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "activation function",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_453ed9cc1b53ac8cf9033180",
+        "source_text": "This turns out to be one of the reasons that training deep learning models was quite tricky prior to the introduction of the ReLU activation function.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_attention_mechanisms_attention_scoring_functions_b029",
+        "boundary_only": false,
+        "chapter_id": "d2l_attention_mechanisms",
+        "content_sha256": "6a0479c20bf8dd7292a1cc2fea217d7236f9de5517bd380de68697938f9a6247",
+        "context_id": "ctx_34ee6d32a2ff535ee2d88bde",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "activation function",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_e6d40ff587d45d8b3e2770ce",
+        "source_text": "By using $\\tanh$ as the activation function and disabling\nbias terms,\nwe implement additive attention in the following.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_multilayer_perceptrons_mlp_b020",
+        "boundary_only": false,
+        "chapter_id": "d2l_multilayer_perceptrons",
+        "content_sha256": "a5aa30e997f544e69a33ba45007e06200bba28b855378df009a3e4bd3cf1459d",
+        "context_id": "ctx_42efd998d80ced9a64e32ec8",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "activation function",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_c446c648e27e3e5c58a44827",
+        "source_text": "In order to realize the potential of multilayer architectures,\nwe need one more key ingredient: a\nnonlinear *activation function* $\\sigma$\nto be applied to each hidden unit\nfollowing the affine transformation.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_deep_learning_computation_model_construction_b008",
+        "boundary_only": false,
+        "chapter_id": "d2l_deep_learning_computation",
+        "content_sha256": "e559d83b6b5b16033cec0089c5cad3ff2b28a8be8e87386e84433fe4a0bcd026",
+        "context_id": "ctx_5f040cdbc06a01d2f5cc4d87",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "activation function",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_9cf7b7c1c3e52e572c5a7378",
+        "source_text": "The following code generates a network\nwith one fully-connected hidden layer\nwith 256 units and ReLU activation,\nfollowed by a fully-connected output layer\nwith 10 units (no activation function).",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_convolutional_modern_alexnet_b004",
+        "boundary_only": false,
+        "chapter_id": "d2l_convolutional_modern",
+        "content_sha256": "0ca57566f563a7b2db146390b6bf7a5d5176479ef194f616ebdc1df53b17ab09",
+        "context_id": "ctx_6882a07f8f604f30a2c75617",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "activation functions",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_50967f5935e5922459e028f7",
+        "source_text": "Added to these obstacles, key tricks for training neural networks\nincluding parameter initialization heuristics,\nclever variants of stochastic gradient descent,\nnon-squashing activation functions,\nand effective regularization techniques were still missing.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_convolutional_neural_networks_why_conv_b042",
+        "boundary_only": false,
+        "chapter_id": "d2l_convolutional_neural_networks",
+        "content_sha256": "569ffdf2213ae1c8226d0b738e79fb4225a75dfc9ef4845a6150ca202ec7f1d4",
+        "context_id": "ctx_6ba311f80c075eceefec2cba",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "activation functions",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_db0493e3a64b2c51cd59409b",
+        "source_text": "We also need to decide how to compute things efficiently,\nhow to combine multiple layers,\nappropriate activation functions,\nand how to make reasonable design choices\nto yield networks that are effective in practice.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_recurrent_neural_networks_rnn_b010",
+        "boundary_only": false,
+        "chapter_id": "d2l_recurrent_neural_networks",
+        "content_sha256": "4a907ea76623f8587abe1296434d29b76af187ff183eded9d106a652ec5f1aa4",
+        "context_id": "ctx_733d98a23bc0d5e7b59bd272",
+        "evidence_roles": [
+          "BACKUP",
+          "POSITIVE_DEFINITION_PROPOSAL"
+        ],
+        "matched_surface": "activation function",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_c41636447d2a3117402f6335",
+        "source_text": "Let the hidden layer's activation function be $\\phi$.",
+        "synthetic": false
+      },
+      {
+        "block_id": null,
+        "boundary_only": true,
+        "chapter_id": null,
+        "content_sha256": "59530524a93c88db858c4e5f0e7fab037f9fbd5f3dec66267a4782a8b37c7efb",
+        "context_id": "ctxx_22da2d4feabde1fd9e90c75b",
+        "evidence_roles": [
+          "BOUNDARY_PROPOSAL"
+        ],
+        "matched_surface": "activation function",
+        "positive_evidence_eligible": false,
+        "sentence_id": null,
+        "source_text": "Synthetic: In this chapter, activation function means a mathematical mapping in a neural network, not the act of activating a software feature.",
+        "synthetic": true
+      }
+    ],
+    "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+    "pool_record_id": "pool_e1c06a27949d4bd0ed6b820a",
+    "proposed_definition_en": "A function applied in a neural network layer or unit to introduce nonlinear transformation of its output.",
+    "proposed_part_of_speech": "noun_phrase",
+    "proposed_scope": "d2l_selected_campaign_scope_v1",
+    "provider_call_count": 0,
+    "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+    "risk_class": "R3_AMBIGUOUS",
+    "schema_id": "D2LFastTrackStageAReviewSourceV1",
+    "sense_id": "d2lce_e0c693366d811581abbb9e74",
+    "source_sense_pool_record_sha256": "c4f501d68becaae140912ed7376a7c5b8d64b0050b9f8ea2386d925e8d6f39d6",
+    "source_term": "activation function",
+    "stratum": "ambiguous",
+    "term_id": "d2lce_e0c693366d811581abbb9e74"
+  },
+  {
+    "candidates": [
+      {
+        "candidate_id": "candidate_02daee909137d80ef7d133d6",
+        "candidate_slot": "candidate_slot_adcbca1b84d0e8d64867602f",
+        "candidate_target_vi": "bài toán phân lớp"
+      },
+      {
+        "candidate_id": "candidate_b6ac70347dc7413898f7b997",
+        "candidate_slot": "candidate_slot_c326ec5b79f359f34652c0a8",
+        "candidate_target_vi": "vấn đề phân loại"
+      },
+      {
+        "candidate_id": "candidate_a5e2974d57b2986ff5702320",
+        "candidate_slot": "candidate_slot_ffc6aa72330678473090ce65",
+        "candidate_target_vi": "bài toán phân loại"
+      }
+    ],
+    "evidence_contexts": [
+      {
+        "block_id": "d2l_introduction_index_b059",
+        "boundary_only": false,
+        "chapter_id": "d2l_introduction",
+        "content_sha256": "6780d8adf43ac7869dd1eccf226b718aaa1291c58d57828fc33e01a7bc6888b7",
+        "context_id": "ctx_026fffa1498f9353695d8938",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "classification problems",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_66391fd4e0f078f48ee10db7",
+        "source_text": "While we attacked regression problems by trying\nto minimize the squared error loss function,\nthe common loss function for classification problems is called *cross-entropy*,\nwhose name can be demystified \nvia an introduction to information theory in subsequent chapters.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_introduction_index_b069",
+        "boundary_only": false,
+        "chapter_id": "d2l_introduction",
+        "content_sha256": "f8f1ed7021eb82c8b2e28e17fbc4c33c16980d475d04712640785578bfde5c1b",
+        "context_id": "ctx_18f207162816691afd0ac11d",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "classification problems",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_a555018c61a684de6955366a",
+        "source_text": "Auto-tagging problems are typically best described\nas multi-label classification problems.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_introduction_index_b066",
+        "boundary_only": false,
+        "chapter_id": "d2l_introduction",
+        "content_sha256": "9fa7e10b0b1608471d553fd295d4f0df888b6a9f85a0597f8ab9f58f377a3549",
+        "context_id": "ctx_275c69012387f631509a7b14",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "classification problems",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_0c7bde51b2948c01df8665d8",
+        "source_text": "Some classification problems fit neatly\ninto the binary or multiclass classification setups.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_linear_networks_softmax_regression_b010",
+        "boundary_only": false,
+        "chapter_id": "d2l_linear_networks",
+        "content_sha256": "c404ea073b00e020404e09ac88265be1bdd3fb04e882442a85a211ff284d684e",
+        "context_id": "ctx_4f3feaf3fe5fc9145ebc21e9",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "classification problems",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_3e2dceee6e0300a05d1b6868",
+        "source_text": "But general classification problems do not come with natural orderings among the classes.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_multilayer_perceptrons_mlp_b050",
+        "boundary_only": false,
+        "chapter_id": "d2l_multilayer_perceptrons",
+        "content_sha256": "6dc8e4100e0c8c47c4ece4a7d48a926952d48ab214606290e28dd4e07398eb7e",
+        "context_id": "ctx_8ee021478cb4ccd5631a27d8",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "classification problems",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_6c28be2f1495a5a81e29e1f3",
+        "source_text": "Sigmoids are still widely used as\nactivation functions on the output units,\nwhen we want to interpret the outputs as probabilities\nfor binary classification problems\n(you can think of the sigmoid as a special case of the softmax).",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_linear_networks_softmax_regression_b067",
+        "boundary_only": false,
+        "chapter_id": "d2l_linear_networks",
+        "content_sha256": "ddf928230de5b25b8b1d49c063972963fac6794d1ad2221c99f7fac845cbb231",
+        "context_id": "ctx_96aeca71763647a9e736af8b",
+        "evidence_roles": [
+          "BACKUP",
+          "POSITIVE_POS_PROPOSAL"
+        ],
+        "matched_surface": "classification problems",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_821a9094fd78e32dd5c7798a",
+        "source_text": "* Softmax regression applies to classification problems.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_linear_networks_softmax_regression_b051",
+        "boundary_only": false,
+        "chapter_id": "d2l_linear_networks",
+        "content_sha256": "a2738509890c9829faaf4928d07b26a01578aec53ba57a132e7dbd07f788f378",
+        "context_id": "ctx_f94fc680303cbcb3c27ab99b",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "classification problems",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_57c332d1cc85d89ebc27a2c9",
+        "source_text": "This loss is called the *cross-entropy loss* and it is\none of the most commonly used losses for classification problems.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_linear_networks_linear_regression_b003",
+        "boundary_only": false,
+        "chapter_id": "d2l_linear_networks",
+        "content_sha256": "bf5c1cef797a2500017c78d35b59b6a836ec6ae2ac79730fb025a3eb0d11456a",
+        "context_id": "ctx_ffdf1a13224ab9169c7fc415",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "classification problems",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_fa2fdf8e96a70f2837b6a7ff",
+        "source_text": "In subsequent sections, we will introduce classification problems,\nwhere the goal is to predict membership among a set of categories.",
+        "synthetic": false
+      },
+      {
+        "block_id": null,
+        "boundary_only": true,
+        "chapter_id": null,
+        "content_sha256": "47be18dde42e1afd49a251182e5e17984c7b26d9350e4c4386066f9151f4c843",
+        "context_id": "ctxx_84b6c6da320bc9d34290eccf",
+        "evidence_roles": [
+          "BOUNDARY_PROPOSAL"
+        ],
+        "matched_surface": "classification problems",
+        "positive_evidence_eligible": false,
+        "sentence_id": null,
+        "source_text": "Synthetic: The library faced classification problems when volunteers disagreed on where to shelve rare manuscripts.",
+        "synthetic": true
+      }
+    ],
+    "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+    "pool_record_id": "pool_86c0fe38d3b3fe00c7aa356f",
+    "proposed_definition_en": "problems whose goal is to predict which category or label an example belongs to",
+    "proposed_part_of_speech": "noun_phrase",
+    "proposed_scope": "d2l_selected_campaign_scope_v1",
+    "provider_call_count": 0,
+    "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+    "risk_class": "R4_SPLIT_OR_POS_RISK",
+    "schema_id": "D2LFastTrackStageAReviewSourceV1",
+    "sense_id": "d2lce_7070b47672fcb2311c0527b6",
+    "source_sense_pool_record_sha256": "9fcaa61792e1f7d049bd87bcc44ed3490f71882ef075a5f8ba82e490c42af107",
+    "source_term": "classification problems",
+    "stratum": "collision_or_multi_target",
+    "term_id": "d2lce_7070b47672fcb2311c0527b6"
+  },
+  {
+    "candidates": [
+      {
+        "candidate_id": "candidate_7b163f794ee98b610f2c2b0d",
+        "candidate_slot": "candidate_slot_1853a37287ac27499c8af902",
+        "candidate_target_vi": "Chuẩn hóa theo lô"
+      },
+      {
+        "candidate_id": "candidate_e474f1f1e576e00f6cc58036",
+        "candidate_slot": "candidate_slot_8e617b6f457af6f94b1461f2",
+        "candidate_target_vi": "BatchNorm"
+      },
+      {
+        "candidate_id": "candidate_b9af32f5e25f7dc33449cbc9",
+        "candidate_slot": "candidate_slot_de88e4ba440e9b989c8ec79c",
+        "candidate_target_vi": "lớp chuẩn hóa theo lô"
+      }
+    ],
+    "evidence_contexts": [
+      {
+        "block_id": "d2l_computer_vision_ssd_b032",
+        "boundary_only": false,
+        "chapter_id": "d2l_computer_vision",
+        "content_sha256": "4acc9619e77ac14c457d4f85b81a34c603eaa25995446bbe27457c1a83bd480c",
+        "context_id": "ctx_2a4b835e03acf05a36784e49",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "batchnorm",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_807f2b5f4d53546ef88545a4",
+        "source_text": "```{.python .input}\ndef down_sample_blk(num_channels):\n    blk = nn.Sequential()\n    for _ in range(2):\n        blk.add(nn.Conv2D(num_channels, kernel_size=3, padding=1),\n                nn.BatchNorm(in_channels=num_channels),\n                nn.Activation('relu'))\n    blk.add(nn.MaxPool2D(2))\n    return blk\n```",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_attention_mechanisms_transformer_b025",
+        "boundary_only": false,
+        "chapter_id": "d2l_attention_mechanisms",
+        "content_sha256": "323ac492e17ba9ea8c45e44ab586c02222ef6a171d309402f77e5db4dbc559d6",
+        "context_id": "ctx_2bba7bfd16dd89a39a9179f1",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "batchnorm",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_abda4fb08ad484f9abe2d599",
+        "source_text": "```{.python .input}\nln = nn.LayerNorm()\nln.initialize()\nbn = nn.BatchNorm()\nbn.initialize()\nX = d2l.tensor([[1, 2], [2, 3]])\n# Compute mean and variance from `X` in the training mode\nwith autograd.record():\n    print('layer norm:', ln(X), '\\nbatch norm:', bn(X))\n```",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_convolutional_modern_batch_norm_b038",
+        "boundary_only": false,
+        "chapter_id": "d2l_convolutional_modern",
+        "content_sha256": "31ed74ab78f99ca6ae29eb091ac0fa086f71bc77425843c6bb828b9b84e7ae0e",
+        "context_id": "ctx_5799f6d95cc38b1ae654394a",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "batchnorm",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_3f14a3f9e581a077bc6c7494",
+        "source_text": "```{.python .input}\nclass BatchNorm(nn.Block):\n    # `num_features`: the number of outputs for a fully-connected layer\n    # or the number of output channels for a convolutional layer.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_convolutional_modern_batch_norm_b036",
+        "boundary_only": false,
+        "chapter_id": "d2l_convolutional_modern",
+        "content_sha256": "54b800409b6fa73e9798e375441c62f9ccba45630cedced70409a6a5dd839fd0",
+        "context_id": "ctx_8f8f50278fcee237079dc232",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "batchnorm",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_1fa96965f35b89f840155d8d",
+        "source_text": "We can now [**create a proper `BatchNorm` layer.**]\nOur layer will maintain proper parameters\nfor scale `gamma` and shift `beta`,\nboth of which will be updated in the course of training.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_computational_performance_multiple_gpus_concise_b007",
+        "boundary_only": false,
+        "chapter_id": "d2l_computational_performance",
+        "content_sha256": "1caf663e80ad05b6a79972e9f98c5c1d6826cce45932cf8d73130a2713a7f1ef",
+        "context_id": "ctx_97626c8a07aa5d9bfd5cd128",
+        "evidence_roles": [
+          "BACKUP",
+          "POSITIVE_POS_PROPOSAL"
+        ],
+        "matched_surface": "batchnorm",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_0546ad47666330d1edd4c5aa",
+        "source_text": "```{.python .input}\n#@save\ndef resnet18(num_classes):\n    \"\"\"A slightly modified ResNet-18 model.\"\"\"\n    def resnet_block(num_channels, num_residuals, first_block=False):\n        blk = nn.Sequential()\n        for i in range(num_residuals):\n            if i == 0 and not first_block:\n                blk.add(d2l.Residual(\n                    num_channels, use_1x1conv=True, strides=2))\n            else:\n                blk.add(d2l.Residual(num_channels))\n        return blk\n\n    net = nn.Sequential()\n    # This model uses a smaller convolution kernel, stride, and padding and\n    # removes the maximum pooling layer\n    net.add(nn.Conv2D(64, kernel_size=3, strides=1, padding=1),\n            nn.BatchNorm(), nn.Activation('relu'))\n    net.add(resnet_block(64, 2, first_block=True),\n            resnet_block(128, 2),\n            resnet_block(256, 2),\n            resnet_block(512, 2))\n    net.add(nn.GlobalAvgPool2D(), nn.Dense(num_classes))\n    return net\n```",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_generative_adversarial_networks_dcgan_b022",
+        "boundary_only": false,
+        "chapter_id": "d2l_generative_adversarial_networks",
+        "content_sha256": "62c4a1a077bdd330e04cfb93c3ecbb4b6c87c486fb43121c45a276f41bea53eb",
+        "context_id": "ctx_a112ae80926b023797d45e91",
+        "evidence_roles": [
+          "BACKUP",
+          "POSITIVE_POS_PROPOSAL"
+        ],
+        "matched_surface": "batchnorm",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_d6748db1ede7f499b6f6de08",
+        "source_text": "```{.python .input}\nclass G_block(nn.Block):\n    def __init__(self, channels, kernel_size=4,\n                 strides=2, padding=1, **kwargs):\n        super(G_block, self).__init__(**kwargs)\n        self.conv2d_trans = nn.Conv2DTranspose(\n            channels, kernel_size, strides, padding, use_bias=False)\n        self.batch_norm = nn.BatchNorm()\n        self.activation = nn.Activation('relu')\n\n    def forward(self, X):\n        return self.activation(self.batch_norm(self.conv2d_trans(X)))\n```",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_convolutional_modern_batch_norm_b039",
+        "boundary_only": false,
+        "chapter_id": "d2l_convolutional_modern",
+        "content_sha256": "af1bab5fd0ea15c6ba743ee7ddf406bce845b5e87c848fa42f6a8e8aaaffc7cb",
+        "context_id": "ctx_a70b42d220709405815636f8",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "batchnorm",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_f93e61997ff95f848668d9e8",
+        "source_text": "```{.python .input}\n#@tab pytorch\nclass BatchNorm(nn.Module):\n    # `num_features`: the number of outputs for a fully-connected layer\n    # or the number of output channels for a convolutional layer.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_convolutional_modern_batch_norm_b040",
+        "boundary_only": false,
+        "chapter_id": "d2l_convolutional_modern",
+        "content_sha256": "e1773aa79e5af5c3d2cfc320c7c866c0e428908ebb7c33203f5bd331329a8f08",
+        "context_id": "ctx_cc13b838430cc6b65f7256c9",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "batchnorm",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_4cb7687731bad544e6b0d420",
+        "source_text": "```{.python .input}\n#@tab tensorflow\nclass BatchNorm(tf.keras.layers.Layer):\n    def __init__(self, **kwargs):\n        super(BatchNorm, self).__init__(**kwargs)\n\n    def build(self, input_shape):\n        weight_shape = [input_shape[-1], ]\n        # The scale parameter and the shift parameter (model parameters) are\n        # initialized to 1 and 0, respectively\n        self.gamma = self.add_weight(name='gamma', shape=weight_shape,\n            initializer=tf.initializers.ones, trainable=True)\n        self.beta = self.add_weight(name='beta', shape=weight_shape,\n            initializer=tf.initializers.zeros, trainable=True)\n        # The variables that are not model parameters are initialized to 0\n        self.moving_mean = self.add_weight(name='moving_mean',\n            shape=weight_shape, initializer=tf.initializers.zeros,\n            trainable=False)\n        self.moving_variance = self.add_weight(name='moving_variance',\n            shape=weight_shape, initializer=tf.initializers.ones,\n            trainable=False)\n        super(BatchNorm, self).build(input_shape)\n\n    def assign_moving_average(self, variable, value):\n        momentum = 0.9\n        delta = variable * momentum + value * (1 - momentum)\n        return variable.assign(delta)\n\n    @tf.function\n    def call(self, inputs, training):\n        if training:\n            axes = list(range(len(inputs.shape) - 1))\n            batch_mean = tf.reduce_mean(inputs, axes, keepdims=True)\n            batch_variance = tf.reduce_mean(tf.math.squared_difference(\n                inputs, tf.stop_gradient(batch_mean)), axes, keepdims=True)\n            batch_mean = tf.squeeze(batch_mean, axes)\n            batch_variance = tf.squeeze(batch_variance, axes)\n            mean_update = self.assign_moving_average(\n                self.moving_mean, batch_mean)\n            variance_update = self.assign_moving_average(\n                self.moving_variance, batch_variance)\n            self.add_update(mean_update)\n            self.add_update(variance_update)\n            mean, variance = batch_mean, batch_variance\n        else:\n            mean, variance = self.moving_mean, self.moving_variance\n        output = batch_norm(inputs, moving_mean=mean, moving_var=variance,\n            beta=self.beta, gamma=self.gamma, eps=1e-5)\n        return output\n```",
+        "synthetic": false
+      },
+      {
+        "block_id": null,
+        "boundary_only": true,
+        "chapter_id": null,
+        "content_sha256": "f1bfe24cf0dfe6603efd19002ff022b990404a24617d715887e4be43b1c00788",
+        "context_id": "ctxx_e991ae3e7596cfe8d1ca56f6",
+        "evidence_roles": [
+          "BOUNDARY_PROPOSAL"
+        ],
+        "matched_surface": "BatchNorm",
+        "positive_evidence_eligible": false,
+        "sentence_id": null,
+        "source_text": "Synthetic: batch norm describes the normalization technique in general, while BatchNorm here is the specific layer/class name used in code.",
+        "synthetic": true
+      }
+    ],
+    "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+    "pool_record_id": "pool_4109267674565edcb7f44183",
+    "proposed_definition_en": "the layer or class name for batch normalization.",
+    "proposed_part_of_speech": "proper_noun",
+    "proposed_scope": "d2l_selected_campaign_scope_v1",
+    "provider_call_count": 0,
+    "review_requirement": "SOURCE_GROUND_PLUS_BLIND_AUDIT",
+    "risk_class": "R0_CLEAR",
+    "schema_id": "D2LFastTrackStageAReviewSourceV1",
+    "sense_id": "d2lce_4abd762bcd34d370b4fe6498",
+    "source_sense_pool_record_sha256": "2b59f2ebee4cec91bf8bca91ae8a341d709c9a86419f83fa824bc6ef6a3a5f92",
+    "source_term": "BatchNorm",
+    "stratum": "clear",
+    "term_id": "d2lce_4abd762bcd34d370b4fe6498"
+  },
+  {
+    "candidates": [
+      {
+        "candidate_id": "candidate_832455b67722ffa3e11e213c",
+        "candidate_slot": "candidate_slot_10255e56697f20abf3b1c7c8",
+        "candidate_target_vi": "tỷ lệ khung hình"
+      },
+      {
+        "candidate_id": "candidate_64f14741ba76dc93b5d3940c",
+        "candidate_slot": "candidate_slot_921cc1b4c096bd7b59f110da",
+        "candidate_target_vi": "tỷ lệ chiều rộng trên chiều cao"
+      },
+      {
+        "candidate_id": "candidate_0059490283a8739e7a797465",
+        "candidate_slot": "candidate_slot_9ef48e99c5d0fb46bd8c8b18",
+        "candidate_target_vi": "tỷ lệ rộng-cao"
+      }
+    ],
+    "evidence_contexts": [
+      {
+        "block_id": "d2l_computer_vision_anchor_b011",
+        "boundary_only": false,
+        "chapter_id": "d2l_computer_vision",
+        "content_sha256": "ffb77a5404f6ad300c1376f2508f48af9fd10b2ca438832b52baec459d836e46",
+        "context_id": "ctx_1771d4213211e7f2f5001fa2",
+        "evidence_roles": [
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "aspect ratios",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_73d57d65bb0f45fafc9696f7",
+        "source_text": "We specify the input image, a list of scales, and a list of aspect ratios, then this function will return all the anchor boxes.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_computer_vision_fine_tuning_b022",
+        "boundary_only": false,
+        "chapter_id": "d2l_computer_vision",
+        "content_sha256": "584205388ee1701862800b2f032c5bfe1966b3b5a1c71e811ad4691079b27d33",
+        "context_id": "ctx_2ef83967671b4c94ed02f565",
+        "evidence_roles": [
+          "BACKUP",
+          "POSITIVE_DEFINITION_PROPOSAL"
+        ],
+        "matched_surface": "aspect ratio",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_bcc5ab00681f933a4359c942",
+        "source_text": "As you can see, [**the images vary in size and aspect ratio**].",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_computer_vision_anchor_b002",
+        "boundary_only": false,
+        "chapter_id": "d2l_computer_vision",
+        "content_sha256": "6a59d277409b6ff5f0ce3296ede1a472bf43389b82b37df906f6ed4a0ca3ef6c",
+        "context_id": "ctx_49d0624ce664cb21c21aefb1",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "aspect ratios",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_ca9535d15823ea4ab8c81a25",
+        "source_text": "Here we introduce one of such methods:\nit generates multiple bounding boxes with varying scales and aspect ratios centered on each pixel.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_computer_vision_fine_tuning_b024",
+        "boundary_only": false,
+        "chapter_id": "d2l_computer_vision",
+        "content_sha256": "e0acc22bc66ef766bcf962f833cd4583b11f76a40fb2fb97e57d954bb7a27ce0",
+        "context_id": "ctx_88bff3b8804e23bebb2d55a1",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "aspect ratio",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_5c2b6278171e9865c2b2289c",
+        "source_text": "During training, we first crop a random area of random size and random aspect ratio from the image,\nand then scale this area\nto a $224 \\times 224$ input image.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_computer_vision_anchor_b021",
+        "boundary_only": false,
+        "chapter_id": "d2l_computer_vision",
+        "content_sha256": "b12c983627f474c0872027e3bc3cbf6a4fdb552d6fa8bee73e2714f1a836c3f7",
+        "context_id": "ctx_b48760685d8ba1fd7b94cf59",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "aspect ratio",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_bf50f8556dc771e6812b02b0",
+        "source_text": "As you can see, the blue anchor box with a scale of 0.75 and an aspect ratio of 1 well\nsurrounds the dog in the image.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_computer_vision_anchor_b008",
+        "boundary_only": false,
+        "chapter_id": "d2l_computer_vision",
+        "content_sha256": "97e40eee1000c27132e77465f205903991a7db05839205bcbd2ac486a56277d2",
+        "context_id": "ctx_c073292947644f0178d4e119",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "aspect ratios",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_078122e79fcab73090dfa9a9",
+        "source_text": "When using all the combinations of these scales and aspect ratios with each pixel as the center,\nthe input image will have a total of $whnm$ anchor boxes.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_computer_vision_anchor_b007",
+        "boundary_only": false,
+        "chapter_id": "d2l_computer_vision",
+        "content_sha256": "934baec94342f935c170f75319516400d5aa0f24dbacffbd6878da12296e36d6",
+        "context_id": "ctx_ec292af69704274aef814a00",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "aspect ratio",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_5090b2df768ec575a506b2e9",
+        "source_text": "Let the *scale* be $s\\in (0, 1]$ and\nthe *aspect ratio* (ratio of width to height) is $r > 0$.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_computer_vision_anchor_b008",
+        "boundary_only": false,
+        "chapter_id": "d2l_computer_vision",
+        "content_sha256": "350c7c677c167db2c84fdbce6c33a0cbdca3420c3bfd0b0e96a9ab5270d3cc9d",
+        "context_id": "ctx_edee5fe2e1661000bfa4fb46",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "aspect ratios",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_01f3dea307145bea57d193d9",
+        "source_text": "To generate multiple anchor boxes with different shapes,\nlet us set a series of scales\n$s_1,\\ldots, s_n$ and \na series of aspect ratios $r_1,\\ldots, r_m$.",
+        "synthetic": false
+      },
+      {
+        "block_id": null,
+        "boundary_only": true,
+        "chapter_id": null,
+        "content_sha256": "b0f6b8992133d8c66a51b887aafb40aff0e243a536177c98adb090fe4c195d9a",
+        "context_id": "ctxx_21b8f88447b5c0d4d9adc8b7",
+        "evidence_roles": [
+          "BOUNDARY_PROPOSAL"
+        ],
+        "matched_surface": "aspect ratio",
+        "positive_evidence_eligible": false,
+        "sentence_id": null,
+        "source_text": "Synthetic: In these examples, aspect ratio means the numeric width-to-height ratio, not a named media format category.",
+        "synthetic": true
+      }
+    ],
+    "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+    "pool_record_id": "pool_c59a9c8dc2eafac4d968ab46",
+    "proposed_definition_en": "The ratio of width to height of an image, crop, or bounding box shape.",
+    "proposed_part_of_speech": "noun_phrase",
+    "proposed_scope": "d2l_selected_campaign_scope_v1",
+    "provider_call_count": 0,
+    "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+    "risk_class": "R3_AMBIGUOUS",
+    "schema_id": "D2LFastTrackStageAReviewSourceV1",
+    "sense_id": "d2lce_ddf8557de1cd5ff23b86e10e",
+    "source_sense_pool_record_sha256": "9db55ad9308dadca196550b7392087070d73ccfa46056861fb9c5f6d02c5e5ae",
+    "source_term": "aspect ratio",
+    "stratum": "ambiguous",
+    "term_id": "d2lce_ddf8557de1cd5ff23b86e10e"
+  }
+]

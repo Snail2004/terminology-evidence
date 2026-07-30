@@ -1,0 +1,3 @@
+release/**/*.json binary
+release/**/*.jsonl binary
+release/**/*.zip binary

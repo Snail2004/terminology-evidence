@@ -1,0 +1,34 @@
+{
+  "adjudication_ref": null,
+  "blind_audit_ref": null,
+  "boundary_context_ids": [
+    "ctxx_074b644581723493cce06e22"
+  ],
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "4b504f224af0f68d0152c18be21ff2ba41a81187a3b7e57d8bb793a6b9719943"
+  },
+  "parent_review_decision_sha256": "e1606278ef1c76d91a9e4ca92e64bfc230b9e4618967f5da58b5261fcfdca2f8",
+  "policy_id": "d2l-stage-a-p0b-official-11-sense-v1.0",
+  "positive_definition_evidence_ids": [
+    "ctx_6c4a5e45653e72a9298bb89a",
+    "ctx_39e45ec1b48aa92cec021d14",
+    "ctx_4d3789e25e89cb28e438e10a",
+    "ctx_ac1bebe3f69e61f23a9f9382"
+  ],
+  "positive_pos_evidence_ids": [
+    "ctx_6c4a5e45653e72a9298bb89a",
+    "ctx_4d3789e25e89cb28e438e10a"
+  ],
+  "review_provenance_refs": [
+    "327d3fb9d44842c5c0b3dffe1d7877ea188f112f8e9b3cc9f66c4598a2b9a69c",
+    "a883cd17db70035450167bc655d29ec35202632af9b2e933c1cbb48d79543166"
+  ],
+  "review_status": "ACCEPTED",
+  "reviewer_roster_attestation_sha256": "434ef46fd51def30c6ba5f8cf5b0ba9b2afa4c95a4c3c8d634487324ea0e4aac",
+  "schema_id": "D2LOfficialSenseReviewBindingV1",
+  "schema_version": "1.0.0",
+  "sense_id": "d2lce_cc4cb853eff638abcbdf7691",
+  "source_term": "learning rate",
+  "source_term_sense_sha256": "18f27e7c043a00d9c7588b90f125eb8d5b88c1c404f30629a60edf3770bf0e3a"
+}

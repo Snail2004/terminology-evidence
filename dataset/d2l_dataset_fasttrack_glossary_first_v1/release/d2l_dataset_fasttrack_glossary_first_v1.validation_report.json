@@ -1,0 +1,28 @@
+{
+  "counts": {
+    "blind_case": 13,
+    "candidate": 450,
+    "mapping_status": {
+      "AMBIGUOUS_MULTI_SENSE": 1,
+      "GLOSSARY_EXACT": 24,
+      "GLOSSARY_MISSING": 114,
+      "GLOSSARY_QUALIFIED": 6,
+      "GLOSSARY_VARIANT": 5
+    },
+    "quarantined_cross_split_cluster": 45,
+    "risk_class": {
+      "R0_CLEAR": 4,
+      "R1_QUALIFIED": 1,
+      "R2_MISSING": 45,
+      "R3_AMBIGUOUS": 99,
+      "R4_SPLIT_OR_POS_RISK": 1
+    },
+    "sense": 150,
+    "stage_b_rows": 450
+  },
+  "error_count": 0,
+  "errors": [],
+  "manifest_sha256": "9a32880e32cea5c5e87f38165142968aeca56f39a12f8bb7c4f1500eb3c49c67",
+  "schema_id": "D2LFastTrackArtifactValidationReportV1",
+  "status": "PASS"
+}

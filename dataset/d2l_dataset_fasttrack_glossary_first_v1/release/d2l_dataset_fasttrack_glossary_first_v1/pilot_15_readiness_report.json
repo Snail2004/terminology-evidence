@@ -1,0 +1,38 @@
+{
+  "blockers": [
+    "STAGE_A_REVIEW_PROVENANCE_INCOMPLETE",
+    "RISK_REVIEW_AND_ADJUDICATION_INCOMPLETE",
+    "FROZEN_CANDIDATE_CONTRACTS_NOT_EMITTED",
+    "COMPLETE_CONSTRAINT_EVIDENCE_PACKAGES_NOT_EMITTED"
+  ],
+  "complete_constraint_evidence_package_count": 0,
+  "official_frozen_candidate_contract_count": 0,
+  "policy_id": "dataset-fasttrack-glossary-first-v1.0",
+  "real_ce_pilot_allowed": false,
+  "report_sha256": "c1b00e2a9c8acdf0d39295dbf75534eadc469ae91ecf13bda368546e43652927",
+  "schema_id": "D2LFastTrackPilotReadinessV1",
+  "selected_risk_counts": {
+    "R0_CLEAR": 3,
+    "R1_QUALIFIED": 1,
+    "R2_MISSING": 11
+  },
+  "selected_sense_count": 15,
+  "selected_sense_ids": [
+    "d2lce_11e1c294000ac67785408dcd",
+    "d2lce_8d226b48ba7ec1493faa4ec8",
+    "d2lce_addfcc9899bef06c500b6b0e",
+    "d2lce_9bd5113780f8e8160a24e6ad",
+    "d2lce_1cc990a2aa4f03a55ea8c851",
+    "d2lce_20a7e6887718c68fb6b88a05",
+    "d2lce_2485cc2d1b2606bcc62d63c1",
+    "d2lce_42900db05a19228ce33eafe0",
+    "d2lce_455f2de181035ca8388c30b0",
+    "d2lce_499fa9391d57e930a19f1b19",
+    "d2lce_4abd762bcd34d370b4fe6498",
+    "d2lce_52085fef12f840d2350b2049",
+    "d2lce_5300144b7f5b4ce29dd12ec6",
+    "d2lce_539543a2360129e2a2fa1b6d",
+    "d2lce_53c32398310471fac3dacf35"
+  ],
+  "selection_status": "SELECTED_PENDING_STAGE_A_FINALIZATION"
+}

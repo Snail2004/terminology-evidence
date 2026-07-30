@@ -1,0 +1,21 @@
+{
+  "contract_authority": {
+    "commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+    "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b",
+    "tag": "contracts-v1.1.0"
+  },
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "c6619f89703638f5df92dafa7c86dbc32f24c294ddcae593deb77da6c8c5a1d1"
+  },
+  "policy_id": "d2l-dataset-50-senses-150-candidates-stage-b-v1.0",
+  "provider_call_count": 0,
+  "schema_id": "D2LFinal50DatasetLineageV1",
+  "schema_version": "1.0.0",
+  "selection_manifest_sha256": "7b256808dacf446b06bc4f6cdc0ab8f0aa7585a2a4e3a56364cdb3508d17fbdc",
+  "source_adjudication_release_zip_sha256": "d9615a52c4fcc7666f421802965dcb4cf999f49e276efd2cfa34cdaa1ea620e9",
+  "source_base_release_zip_sha256": "c509a2fea1932e6d42e751346ebd403e691433fd6eca4a4591030d7c3a89e79a",
+  "source_intake_release_zip_sha256": "96b76db28554e1d57bd030603dbc30c41afbbb319b1857a7617637395c73081a",
+  "source_r0_result_release_zip_sha256": "e621eba4dfead41d0da28bbed645b6c554d4da2803220dfa0a4525dc8ecc961b",
+  "stage_b_gold_autofill_count": 0
+}

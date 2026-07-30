@@ -1,0 +1,25 @@
+{
+  "adjudication_case_count": 55,
+  "agreement_count": 245,
+  "final_glossary_decision": null,
+  "policy_id": "d2l-remaining-300-candidates-stage-b-review-preflight-v1.0",
+  "provider_call_count": 0,
+  "reviewer_1_repair_issues": [
+    {
+      "candidate_id": "candidate_811346453db4d899687a814f",
+      "case_index": 222,
+      "code": "MISSING_ALLOWED_SCOPE",
+      "message": "allowed_scope is required for SPLIT_REQUIRED",
+      "reviewer_slot": "reviewer_1"
+    }
+  ],
+  "reviewer_1_source_sha256": "403faa57fc84be4ccbfedd881e3d35d596872b6b66953c74c8c2966d66601812",
+  "reviewer_1_valid_case_count": 299,
+  "reviewer_2_issues": [],
+  "reviewer_2_source_sha256": "f1310ddf9662ae595c51b0dee9292dfb7958e31124d0926e60c5ddcd76d321ea",
+  "reviewer_2_valid_case_count": 300,
+  "schema_id": "D2LRemainingStageBReviewPreflightReportV1",
+  "schema_version": "1.0.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "REVIEWER_1_REPAIR_AND_REVIEWER_3_ADJUDICATION_REQUIRED"
+}

@@ -1,0 +1,64 @@
+{
+  "artifact_name": "d2l_fast_track_stage_a_r0_reaudit_result_v1",
+  "case_count": 4,
+  "created_at": "2026-07-29T16:00:00Z",
+  "files": {
+    "commands.txt": {
+      "sha256": "53fa7ce6a5c9454c25e38c7d494bf0934edfcc6d02c02663618ec1a6c7f1247f",
+      "size_bytes": 192
+    },
+    "r0_reaudit_results_4.jsonl": {
+      "sha256": "70b49456971cb126d7f8246d3ee6fd81783484bee7366571f1fca5e09be25164",
+      "size_bytes": 36589
+    },
+    "raw_review/r0_blind_reauditor_completed.json": {
+      "sha256": "30fdcec724a033a9ea00b3c3a0664ef206af747d029018c0b63bca86c0a41e56",
+      "size_bytes": 46918
+    },
+    "result_report.json": {
+      "sha256": "5f7ab90751b26fc0cff7a4d43da16dbcf0964ccfad37bbbc33b581a1fa03e1fb",
+      "size_bytes": 962
+    },
+    "source/.gitattributes": {
+      "sha256": "a51e4210b15c2bac0f4126425e7d418b0ec19314aecb604f8a9940229637c3c4",
+      "size_bytes": 75
+    },
+    "source/README.md": {
+      "sha256": "c97d02db7653da93994aa8f08775d2e3853d7350aaac4af1e3294efd028ae606",
+      "size_bytes": 1873
+    },
+    "source/tests/test_r0_reaudit_result.py": {
+      "sha256": "8cb69fa726896106d95c6ca40bb613a7d176e083012716df61b1a671f78e82dc",
+      "size_bytes": 4055
+    },
+    "source/tools/__init__.py": {
+      "sha256": "8e54bb1d41f8db713f28e8fdc2c7eab7628ca5bde1d1abcda5656781964563a1",
+      "size_bytes": 69
+    },
+    "source/tools/build_r0_reaudit_result.py": {
+      "sha256": "42007653cd62fec5cc0b0b1d612594615badd8878d647748e2d18b500379b587",
+      "size_bytes": 8834
+    },
+    "source/tools/common.py": {
+      "sha256": "465ea6fc3c941710b939de297cc22389f5e3afd9fd9c0c27ce10da2ff5044e79",
+      "size_bytes": 7501
+    },
+    "source/tools/r0_result.py": {
+      "sha256": "ad383d7e1100e27fffbf260478916cd16ca55323b31f01c43dc3662ebf35b173",
+      "size_bytes": 7629
+    },
+    "source/tools/validate_r0_reaudit_result.py": {
+      "sha256": "fd3cb020a36f2bfba7711dd66f83f6400723e506bc471bcb677cdbd05eff1fdd",
+      "size_bytes": 6446
+    }
+  },
+  "final_glossary_decision": null,
+  "manifest_sha256": "c17198864aeb47233fd658d7e6c333c5beb86c5531e5b240ca30e046d066a616",
+  "policy_id": "d2l-fast-track-stage-a-r0-reaudit-result-v1.0",
+  "provider_call_count": 0,
+  "ready_count": 4,
+  "schema_id": "D2LFastTrackStageAR0ReauditResultManifestV1",
+  "schema_version": "1.0.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "R0_REAUDIT_COMPLETE_EXACT_50_UNLOCKED"
+}

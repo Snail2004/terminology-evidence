@@ -1,0 +1,64 @@
+{
+  "alternatives_vi": [
+    "xén gradient",
+    "giới hạn gradient"
+  ],
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_204bc4d6c83b3843d0a9cee3",
+    "candidate_version": "338684eb1eec7df35848a696ae0f03092edb771de6cc4006f5578667798b8bf0",
+    "candidate_vi": "cắt gradient",
+    "dataset_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+    "effective_sense_contract_sha256": "7f0000a10c45458b130e9828bab2fb85661cd11ccad133e23ea26db74523b47b",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_8d226b48ba7ec1493faa4ec8",
+    "sense_inventory_version": "d2l_context_support_set_validation_ready_v3",
+    "source_term": "Gradient Clipping"
+  },
+  "domain_profile": {
+    "anchors_en": [
+      "Gradient Clipping"
+    ],
+    "anchors_vi": [
+      "cắt gradient",
+      "giới hạn gradient",
+      "xén gradient"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "A training technique that limits gradient size to prevent exploding gradients and improve stable convergence.",
+  "effective_part_of_speech": "noun_phrase",
+  "input_contract_sha256": "64b19f9d4d4791e3d492c7dd0362ce81097b5b9b8fae0d5196abe5670280f87a",
+  "input_provenance": {
+    "completed_at": "2026-07-29T08:00:00Z",
+    "component_id": "d2l-dataset-frozen-candidate-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "c0a8a26c215ffdd4a5c3586c500adfc4cb7b86691b47f0ba6990857f7bb43e61",
+    "model_routes": [],
+    "notes": "Candidate identity is frozen; no candidate gold label or final glossary decision is assigned.",
+    "policy_version": "d2l-stage-a-p0b-official-11-sense-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-stage-a-p0b-official-11-sense-release",
+    "run_spec_id": "d2l-stage-a-p0b-official-11-sense-spec-v1",
+    "source_artifact_hashes": {
+      "candidate_instance": "338684eb1eec7df35848a696ae0f03092edb771de6cc4006f5578667798b8bf0",
+      "dataset_manifest": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+      "review_binding": "13b4ade41b25a79f64f8bede27f707baa8463144f746972b6a9df3fd04f6b1d6",
+      "reviewed_manifest": "e602af02edf1fb877a9541c5e37f939f4f35ded34ac878d773fc83b96ed3fb48",
+      "term_sense": "2a9bd4df21c05697b279d243b18ee02219e7fd3b18402f3eca15c2381eb126f9"
+    },
+    "started_at": "2026-07-29T08:00:00Z"
+  },
+  "integrity": {
+    "self_sha256": "fb689a26c92bac43932019053fea13a18160265c681cf1a9550d785523540b4a"
+  },
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.1.0",
+  "scope_note": null,
+  "surfaces": {
+    "canonical_vi": "cắt gradient",
+    "rejected_variants_vi": [],
+    "validated_variants_vi": []
+  }
+}

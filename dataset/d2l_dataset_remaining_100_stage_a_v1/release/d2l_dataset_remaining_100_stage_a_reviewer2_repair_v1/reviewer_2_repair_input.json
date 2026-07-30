@@ -1,0 +1,245 @@
+{
+  "canonical_stage_a_manifest_sha256": "68912e96c070d5f1801d45cf18c77498d1fa8a48b4504344b4d497348fa418ec",
+  "case_count": 6,
+  "cases": [
+    {
+      "batch_id": "batch_001",
+      "candidates": [
+        {
+          "candidate_id": "candidate_258a1ca2540dd0ce8524c052",
+          "candidate_slot": "candidate_slot_4daf92548ab1947c12e54f3e",
+          "candidate_target_vi": "sự tập trung"
+        },
+        {
+          "candidate_id": "candidate_321a292b5c98be516cae8c65",
+          "candidate_slot": "candidate_slot_6ac9f55664101072a0bb2906",
+          "candidate_target_vi": "sự chú ý"
+        },
+        {
+          "candidate_id": "candidate_482e3946916aa3c448e1ee83",
+          "candidate_slot": "candidate_slot_babf68a78e3bb0a8b94724bf",
+          "candidate_target_vi": "mức độ chú ý"
+        }
+      ],
+      "case_id": "remaining100_1dee3464f4f3bdbb32ba9689",
+      "case_index": 3,
+      "completed_file_sha256": "c12ca593e7f16fd5c436f6e9d83f9f086c9c9d892b4de38fb10c13edf9ebf59a",
+      "current_proposed_split_labels": [
+        "attention: focused notice or concentration",
+        "attention: modeling concept in attention mechanisms"
+      ],
+      "current_review_notes": "The source evidence divides between ordinary 'pay attention' usage and the technical collocation 'attention mechanisms'. These uses and their candidate translations must be separated; the synthetic boundary is not positive evidence.",
+      "current_sense_status": "SPLIT_REQUIRED",
+      "original_review_sha256": "2f20c621cb1558db54aff5a81763693642f67c95b8c862753dc8279b928ee5a8",
+      "repair": {
+        "candidate_replacements": [],
+        "candidate_set_decision": ""
+      },
+      "risk_class": "R3_AMBIGUOUS",
+      "sense_id": "d2lce_4a5f20bb32b66b1f07d9f37a",
+      "source_payload_sha256": "2610b7fbc4e3fc5c4ae551c8b7ea44ea6025ba3991244c3401a32d61181034c3",
+      "source_term": "attention"
+    },
+    {
+      "batch_id": "batch_001",
+      "candidates": [
+        {
+          "candidate_id": "candidate_2e0a5147febe8b4142fc8a26",
+          "candidate_slot": "candidate_slot_1ddd7759b40b9b2be4cc5f15",
+          "candidate_target_vi": "khối dữ liệu"
+        },
+        {
+          "candidate_id": "candidate_6b64b809b4317a104ff865c3",
+          "candidate_slot": "candidate_slot_7991814058ea170c1754c224",
+          "candidate_target_vi": "khối thành phần"
+        },
+        {
+          "candidate_id": "candidate_fe4d3ab70bd7cd796ae89245",
+          "candidate_slot": "candidate_slot_d034690ccd5846348c201555",
+          "candidate_target_vi": "khối"
+        }
+      ],
+      "case_id": "remaining100_f7142189cbb85071b97efd04",
+      "case_index": 4,
+      "completed_file_sha256": "c12ca593e7f16fd5c436f6e9d83f9f086c9c9d892b4de38fb10c13edf9ebf59a",
+      "current_proposed_split_labels": [
+        "blocks: model or program components",
+        "blocks: matrix or data chunks"
+      ],
+      "current_review_notes": "Most contexts use blocks as architectural components, while ctx_b9ce0a059491eaaa6fbf542f uses blocks as matrix chunks moved into cache. The evidence and specialized candidates should be partitioned into two noun senses rather than kept under one umbrella.",
+      "current_sense_status": "SPLIT_REQUIRED",
+      "original_review_sha256": "b08d835b5caac3e4ce8ffc73012f2bf87c9f491ce79e6542cbce5eaad776b78c",
+      "repair": {
+        "candidate_replacements": [],
+        "candidate_set_decision": ""
+      },
+      "risk_class": "R4_SPLIT_OR_POS_RISK",
+      "sense_id": "d2lce_20c658fd4e221ee551790ec2",
+      "source_payload_sha256": "0739ed1139c9787db9589bf25ddd816a04e6692c7987964e277b80613c6ea323",
+      "source_term": "blocks"
+    },
+    {
+      "batch_id": "batch_002",
+      "candidates": [
+        {
+          "candidate_id": "candidate_0da261c72f0af576cd790d70",
+          "candidate_slot": "candidate_slot_e9c317e839744eb514dc7bd6",
+          "candidate_target_vi": "hằng số"
+        },
+        {
+          "candidate_id": "candidate_484ee9a7611d4a0d21283b48",
+          "candidate_slot": "candidate_slot_a1a9741fa761d3590e29329f",
+          "candidate_target_vi": "bất biến"
+        },
+        {
+          "candidate_id": "candidate_4e1bbc64e4431fa3db4b50d8",
+          "candidate_slot": "candidate_slot_2717f8476e4b9598f5936a29",
+          "candidate_target_vi": "giá trị không đổi"
+        }
+      ],
+      "case_id": "remaining100_289dea8e37c21e76668b220d",
+      "case_index": 4,
+      "completed_file_sha256": "9ce57ffebffda3bbe5a8f013ab171e93de23118ae83a1e0a44f287f9fe3a49f0",
+      "current_proposed_split_labels": [
+        "constant: fixed value or quantity (noun)",
+        "constant: unchanging (adjective)"
+      ],
+      "current_review_notes": "The proposed noun sense is supported by 'a small constant', 'the constant 1/2', and 'a constant c'. Three other contexts use constant adjectivally in 'keeping ... constant', 'constant parameters', and 'constant length'; those contexts and the candidate set must be reassigned to a separate adjective sense.",
+      "current_sense_status": "SPLIT_REQUIRED",
+      "original_review_sha256": "3c538c152c6e6250d29e28df4187d51337bc10d3b6326de47995134c098d1781",
+      "repair": {
+        "candidate_replacements": [],
+        "candidate_set_decision": ""
+      },
+      "risk_class": "R4_SPLIT_OR_POS_RISK",
+      "sense_id": "d2lce_46e81052dcb25b16e429062a",
+      "source_payload_sha256": "a9256ea6f9a4e4ec86049c4c122c6c4b0b06ce2f720faca05a17a6af396cdd74",
+      "source_term": "constant"
+    },
+    {
+      "batch_id": "batch_005",
+      "candidates": [
+        {
+          "candidate_id": "candidate_222f6697b5d4fb13ca0fd249",
+          "candidate_slot": "candidate_slot_ba1fc7f6ffaaedf18faa719b",
+          "candidate_target_vi": "ma trận nghịch đảo"
+        },
+        {
+          "candidate_id": "candidate_730b2972e7ae131da2b83621",
+          "candidate_slot": "candidate_slot_97e1090fae37609ba49bbd58",
+          "candidate_target_vi": "phép nghịch đảo"
+        },
+        {
+          "candidate_id": "candidate_9dfc9e1aba25a6e77f59ec41",
+          "candidate_slot": "candidate_slot_33764c6810b0e75bb89c81fd",
+          "candidate_target_vi": "nghịch đảo"
+        }
+      ],
+      "case_id": "remaining100_3b71361f3f11622d053514f1",
+      "case_index": 2,
+      "completed_file_sha256": "df9aff798e2a85d4d237e30dd9c552daf356e9a7d61c21c3d089c7612e2a4dd8",
+      "current_proposed_split_labels": [
+        "inverse: reversing operation or object (noun)",
+        "inverse: reversing or reciprocal (adjective)"
+      ],
+      "current_review_notes": "The noun uses ('the inverse', 'inverse of matrix X', and the inverse of speech recognition) fit the proposed core meaning. Other contexts use inverse adjectivally in 'inverse matrix', 'inverse offset transformations', 'inverse square root', 'inverse norm', and 'inverse operation'; those must be moved to a separate adjective sense and the candidates partitioned by POS.",
+      "current_sense_status": "SPLIT_REQUIRED",
+      "original_review_sha256": "e41a3301d97e7c7db80be0fd538af6f40b4856e1eba9efb8a9d0bbfb17f9e8dd",
+      "repair": {
+        "candidate_replacements": [],
+        "candidate_set_decision": ""
+      },
+      "risk_class": "R4_SPLIT_OR_POS_RISK",
+      "sense_id": "d2lce_98211ac6b2c27c6359ce6dae",
+      "source_payload_sha256": "fa6e830fd5908e49720c599a2ad697b79740ce106d8f2a217c3a5f022a8057a6",
+      "source_term": "inverse"
+    },
+    {
+      "batch_id": "batch_005",
+      "candidates": [
+        {
+          "candidate_id": "candidate_61b91dc620b5705893dad66a",
+          "candidate_slot": "candidate_slot_caecd37e60a0e36a94ab4ffb",
+          "candidate_target_vi": "bước lặp"
+        },
+        {
+          "candidate_id": "candidate_b4b69605232ebe7b91d7cd38",
+          "candidate_slot": "candidate_slot_075d47e686ff34836665e881",
+          "candidate_target_vi": "quá trình lặp"
+        },
+        {
+          "candidate_id": "candidate_ca6f97e2104b4ae801ac295c",
+          "candidate_slot": "candidate_slot_4cb9a2e1a73070b359e17a4e",
+          "candidate_target_vi": "lần lặp"
+        }
+      ],
+      "case_id": "remaining100_b0417648512ca430181387ef",
+      "case_index": 4,
+      "completed_file_sha256": "df9aff798e2a85d4d237e30dd9c552daf356e9a7d61c21c3d089c7612e2a4dd8",
+      "current_proposed_split_labels": [
+        "iteration: one repeated cycle or step",
+        "iteration: ongoing iterative process"
+      ],
+      "current_review_notes": "Seven contexts use iteration as one countable cycle or step, explicitly with 'each', 'any', 'final', or 'last', matching 'bước lặp' and 'lần lặp'. ctx_05c2a4c1509fd139937710c2 uses 'during iteration' for the ongoing traversal process, matching 'quá trình lặp'; that evidence and candidate require a separate process sense rather than replacement.",
+      "current_sense_status": "SPLIT_REQUIRED",
+      "original_review_sha256": "247619ab20afc2e2977dbac061f1239198c4e45701dc90e9f93855db8ea27aac",
+      "repair": {
+        "candidate_replacements": [],
+        "candidate_set_decision": ""
+      },
+      "risk_class": "R4_SPLIT_OR_POS_RISK",
+      "sense_id": "d2lce_c3c46748b1a49e32c07ca9d7",
+      "source_payload_sha256": "912b92ab087d37e926068c8178fc49124074f72358dee518fab1bed54f8f25bd",
+      "source_term": "iteration"
+    },
+    {
+      "batch_id": "batch_008",
+      "candidates": [
+        {
+          "candidate_id": "candidate_02fd8cebfe75674a17ecf88d",
+          "candidate_slot": "candidate_slot_9535d779a954b387fa6be24a",
+          "candidate_target_vi": "dạng"
+        },
+        {
+          "candidate_id": "candidate_0982ed2ca3019b74f56d40ff",
+          "candidate_slot": "candidate_slot_470955466e40091d7f9dd60c",
+          "candidate_target_vi": "kích thước"
+        },
+        {
+          "candidate_id": "candidate_54c7a5be171a441139675a5c",
+          "candidate_slot": "candidate_slot_efaa47bf0b4e5f71ec98aa23",
+          "candidate_target_vi": "hình dạng"
+        }
+      ],
+      "case_id": "remaining100_6fd46e7092dc06a4fa11e53b",
+      "case_index": 1,
+      "completed_file_sha256": "dd4fe50da65e1589af3e04a7716f059e25356109772fad256cae8ee251f5d1d5",
+      "current_proposed_split_labels": [
+        "shape: tensor or array axis dimensions",
+        "shape: geometric or functional form"
+      ],
+      "current_review_notes": "The tensor/code contexts define shape as axis lengths or array dimensions and align with 'kích thước'. The function, image, and convolution-window contexts use shape for geometric/functional form and align with 'dạng' or 'hình dạng'. These related uses require separate senses and candidate partitioning rather than one combined definition.",
+      "current_sense_status": "SPLIT_REQUIRED",
+      "original_review_sha256": "51095c678a74b51280ea2f15442d55b1f9095dfdf0a0880e6f5e34539cd608a8",
+      "repair": {
+        "candidate_replacements": [],
+        "candidate_set_decision": ""
+      },
+      "risk_class": "R3_AMBIGUOUS",
+      "sense_id": "d2lce_7d91b65d1e0031ab994be237",
+      "source_payload_sha256": "6167b6951f3733f21882c839a8944124094a0f7d1654afdab3a9cbbdeb37da19",
+      "source_term": "shape"
+    }
+  ],
+  "final_glossary_decision": null,
+  "policy_id": "d2l-remaining-100-stage-a-reviewer2-targeted-repair-v1.0",
+  "provider_call_count": 0,
+  "repair_scope": "CANDIDATE_SET_CONSISTENCY_ONLY",
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_CASES_REPAIR_FIELDS_FILLED",
+  "reviewer_slot": "reviewer_2",
+  "schema_id": "D2LRemaining100StageAReviewer2RepairV1",
+  "schema_version": "1.0",
+  "source_review_inventory_sha256": "f84bda2052a1a2245c94eebfa2ee74811a2a290a1f7cd3eeaaadaf48706a85d0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "AWAITING_REVIEWER_2_REPAIR"
+}

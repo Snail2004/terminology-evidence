@@ -1,0 +1,201 @@
+{
+  "b2_decisions_file_name": "decisions.json",
+  "b2_decisions_sha256": "6db80ed16d4c16515c5839cb31cc94803c9ccc01da6cb517e65dca15df8046c2",
+  "evidence_blocks": [
+    {
+      "block_id": "d2l_appendix_mathematics_for_deep_learning_index_b009",
+      "text": "Closely related to probability theory is the study of statistics.  While statistics is far too large a field to do justice in a short section, we will introduce fundamental concepts that all machine learning practitioners should be aware of, in particular: evaluating and comparing estimators, conducting hypothesis tests, and constructing confidence intervals."
+    },
+    {
+      "block_id": "d2l_appendix_mathematics_for_deep_learning_statistics_b048",
+      "text": "## Conducting Hypothesis Tests"
+    },
+    {
+      "block_id": "d2l_appendix_mathematics_for_deep_learning_statistics_b055",
+      "text": "In this way, hypothesis testing provides a framework for experimental design and reasoning about certainty in observed results.  If we can now show that the null hypothesis is very unlikely to be true, we may reject it with confidence."
+    },
+    {
+      "block_id": "d2l_appendix_mathematics_for_deep_learning_statistics_b056",
+      "text": "To complete the story of how to work with hypothesis testing, we need to now introduce some additional terminology and make some of our concepts above formal."
+    },
+    {
+      "block_id": "d2l_appendix_mathematics_for_deep_learning_statistics_b069",
+      "text": "We can imagine the power as a water filter. In this analogy, a high power hypothesis test is like a high quality water filtration system that will reduce harmful substances in the water as much as possible. On the other hand, a smaller discrepancy is like a low quality water filter, where some relative small substances may easily escape from the gaps. Similarly, if the statistical power is not of enough high power, then the test may not catch the smaller discrepancy."
+    },
+    {
+      "block_id": "d2l_appendix_mathematics_for_deep_learning_statistics_b079",
+      "text": "### General Steps of Hypothesis Testing"
+    },
+    {
+      "block_id": "d2l_appendix_mathematics_for_deep_learning_statistics_b080",
+      "text": "After getting familiar with the above concepts, let us go through the general steps of hypothesis testing."
+    },
+    {
+      "block_id": "d2l_appendix_mathematics_for_deep_learning_statistics_b082",
+      "text": "To conduct a hypothesis test, we start by defining a null hypothesis and a level of risk that we are willing to take. Then we calculate the test statistic of the sample, taking an extreme value of the test statistic as evidence against the null hypothesis. If the test statistic falls within the reject region, we may reject the null hypothesis in favor of the alternative."
+    },
+    {
+      "block_id": "d2l_appendix_mathematics_for_deep_learning_statistics_b114",
+      "text": "* Statistics focuses on inference problems, whereas deep learning emphasizes on making accurate predictions without explicitly programming and understanding.\n* There are three common statistics inference methods: evaluating and comparing estimators, conducting hypothesis tests, and constructing confidence intervals.\n* There are three most common estimators: statistical bias, standard deviation, and mean square error.\n* A confidence interval is an estimated range of a true population parameter that we can construct by given the samples.\n* Hypothesis testing is a way of evaluating some evidence against the default statement about a population."
+    }
+  ],
+  "glossary_file_name": "glossary.json",
+  "glossary_record": {
+    "lifecycle": "committed",
+    "record_hash": "49CD8465C863A7C66215B09C39E74C7FF855F21F9ED79847FA3663488C617BF4",
+    "record_id": "d2lce_bad32719ece6439b4716d093",
+    "revision": 1,
+    "value": {
+      "alternative_targets": [],
+      "canonical_applicability": null,
+      "canonical_source": "hypothesis testing",
+      "canonical_target_vi": "kiểm định giả thuyết",
+      "chapter_id": "d2l_selected_campaign_scope_v1",
+      "decision_rationale": "'hypothesis test', 'hypothesis testing', and 'hypothesis tests' refer to the same statistics procedure/framework, including conducting tests and general steps of testing.",
+      "directive": "translate",
+      "entry_id": "d2lce_bad32719ece6439b4716d093",
+      "evidence_block_ids": [
+        "d2l_appendix_mathematics_for_deep_learning_index_b009",
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b048",
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b055",
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b056",
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b069",
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b079",
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b080",
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b082",
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b114"
+      ],
+      "evidence_complete": true,
+      "pending_target_proposals": [],
+      "rejected_target_proposals": [],
+      "resolution": {
+        "auditor_cited_evidence_block_ids": [],
+        "auditor_rationale": null,
+        "authority_kind": "deterministic_single_target",
+        "authority_sha256": "914930648A4E8C5719A158F8E10F1B85D82545885DBB457305A6285CED29023A",
+        "packet_id": null,
+        "pending_reason": null
+      },
+      "source_lineage": {
+        "authority_hash": "914930648A4E8C5719A158F8E10F1B85D82545885DBB457305A6285CED29023A",
+        "authority_kind": "stage1_live_audit",
+        "source_index_sha256": "7B4CBA736F206744740501C3F195A6ABA5A5596C658860CEA36E5399A5B5FB42",
+        "source_member_candidate_ids": [
+          "cand_51bbb94487ca4ade2afc23f3",
+          "cand_a13c1b81ada76bcdd1bc666c",
+          "cand_c2bca10f77520f4e129d3f3a"
+        ]
+      },
+      "source_member_candidate_ids": [
+        "cand_51bbb94487ca4ade2afc23f3",
+        "cand_a13c1b81ada76bcdd1bc666c",
+        "cand_c2bca10f77520f4e129d3f3a"
+      ],
+      "status": "ready_draft",
+      "surfaces": [
+        "hypothesis test",
+        "Hypothesis Testing",
+        "hypothesis testing",
+        "Hypothesis Tests",
+        "hypothesis tests"
+      ]
+    }
+  },
+  "glossary_sha256": "6238b86b64d3be775adc0257f703370c08b4bbe446e03a23c9afc3053e4c660b",
+  "integrity": {
+    "self_sha256": "c1257567d61da1339dbf3eb370e4a1048012bbd12c9f07937a601d3c10d4ee16"
+  },
+  "policy_id": "d2l-switch-replacement-stage-a-v1.0",
+  "schema_id": "D2LSwitchReplacementSourceEvidenceV1",
+  "schema_version": "1.0",
+  "source_decisions": [
+    {
+      "candidate_id": "cand_51bbb94487ca4ade2afc23f3",
+      "canonical_source": "hypothesis testing",
+      "chapter_id": "d2l_selected_campaign_scope_v1",
+      "decision": "admit",
+      "decision_rationale": "Repeated section/topic-level teaching target and conceptual framework throughout the appendix; strong consistency value.",
+      "directive": "translate",
+      "evidence_block_ids": [
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b055",
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b056",
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b079",
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b080"
+      ],
+      "evidence_complete": true,
+      "lineage": {
+        "candidate_index_sha256": "732335848549A994BABB4FEBF87E118BF80C02F0517AC0361E469C2FD792295B",
+        "packet_id": "b2pkt_c501817d37debc20dec41b38",
+        "validator_version": "d2l_b2_consistency_admission_validator_v3_7"
+      },
+      "surfaces": [
+        "hypothesis testing",
+        "Hypothesis Testing"
+      ],
+      "target_proposals": [
+        {
+          "applicability": null,
+          "target_vi": "kiểm định giả thuyết"
+        }
+      ]
+    },
+    {
+      "candidate_id": "cand_a13c1b81ada76bcdd1bc666c",
+      "canonical_source": "hypothesis test",
+      "chapter_id": "d2l_selected_campaign_scope_v1",
+      "decision": "admit",
+      "decision_rationale": "Named repeatedly as the procedure being explained and summarized; separate surface from 'hypothesis testing' but still a core taught concept.",
+      "directive": "translate",
+      "evidence_block_ids": [
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b069",
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b080",
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b082",
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b114"
+      ],
+      "evidence_complete": true,
+      "lineage": {
+        "candidate_index_sha256": "732335848549A994BABB4FEBF87E118BF80C02F0517AC0361E469C2FD792295B",
+        "packet_id": "b2pkt_c501817d37debc20dec41b38",
+        "validator_version": "d2l_b2_consistency_admission_validator_v3_7"
+      },
+      "surfaces": [
+        "hypothesis test"
+      ],
+      "target_proposals": [
+        {
+          "applicability": null,
+          "target_vi": "kiểm định giả thuyết"
+        }
+      ]
+    },
+    {
+      "candidate_id": "cand_c2bca10f77520f4e129d3f3a",
+      "canonical_source": "hypothesis tests",
+      "chapter_id": "d2l_selected_campaign_scope_v1",
+      "decision": "admit",
+      "decision_rationale": "Named as a fundamental inference method, given its own section, and summarized definitionally, so it has clear book-level consistency value.",
+      "directive": "translate",
+      "evidence_block_ids": [
+        "d2l_appendix_mathematics_for_deep_learning_index_b009",
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b048",
+        "d2l_appendix_mathematics_for_deep_learning_statistics_b114"
+      ],
+      "evidence_complete": true,
+      "lineage": {
+        "candidate_index_sha256": "732335848549A994BABB4FEBF87E118BF80C02F0517AC0361E469C2FD792295B",
+        "packet_id": "b2pkt_8dcb1329d97b1e021b45e17e",
+        "validator_version": "d2l_b2_consistency_admission_validator_v3_7"
+      },
+      "surfaces": [
+        "hypothesis tests",
+        "Hypothesis Tests"
+      ],
+      "target_proposals": [
+        {
+          "applicability": null,
+          "target_vi": "kiểm định giả thuyết"
+        }
+      ]
+    }
+  ]
+}

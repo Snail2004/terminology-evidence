@@ -1,0 +1,67 @@
+{
+  "alternatives_vi": [
+    "vấn đề gradient biến mất",
+    "tiêu biến gradient"
+  ],
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_85d912fdabdf61e981f79a5d",
+    "candidate_version": "e639f35385efd7528d0973c10e451d2d04311e5ed46542a7cdb1490999e10aac",
+    "candidate_vi": "gradient tiêu biến",
+    "dataset_manifest_sha256": "7b256808dacf446b06bc4f6cdc0ab8f0aa7585a2a4e3a56364cdb3508d17fbdc",
+    "effective_sense_contract_sha256": "e3fb0623bac84a9f13565b8aa06bf5405f4f93104566387820552a6b03973471",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_d7976d0b101e65c34c011871",
+    "sense_inventory_version": "d2l_dataset_50_senses_150_candidates_v1",
+    "source_term": "vanishing gradients"
+  },
+  "domain_profile": {
+    "anchors_en": [
+      "vanishing gradients"
+    ],
+    "anchors_vi": [
+      "gradient tiêu biến",
+      "tiêu biến gradient",
+      "vấn đề gradient biến mất"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "a training problem where gradients become extremely small, so parameters barely update and learning becomes difficult",
+  "effective_part_of_speech": "noun_phrase",
+  "input_contract_sha256": "2026fa50751809c29d8dd0fe86f3eed3bb0b7e572ea86fb165b9abd10491e826",
+  "input_provenance": {
+    "completed_at": "2026-07-29T17:00:00Z",
+    "component_id": "d2l-dataset-frozen-candidate-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "cf027ff8d20c1d2ecd0c667ab303fc31f25a9eda80257b61329c34e67efcd05d",
+    "model_routes": [],
+    "notes": "Candidate identity is frozen before Stage B; no candidate gold label or final glossary decision is assigned.",
+    "policy_version": "d2l-dataset-50-senses-150-candidates-stage-b-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-dataset-50-sense-contract-release",
+    "run_spec_id": "d2l-dataset-50-sense-contract-spec-v1",
+    "source_artifact_hashes": {
+      "adjudication_manifest": "95482cd1b495b9014a1f00ba4695324f99f0637c6fb96f17d5ffded44c5e2b5c",
+      "base_dataset_manifest": "92fab6032576a5c9c57fe38e23b6c622d5f73718a897197a2c10df35c7fe8b4d",
+      "base_dataset_manifest_physical": "438dffc84aaa735e4f734d4dc5cefcf63dc8360743b6e941380bca71eec1f13a",
+      "candidate_instance": "e639f35385efd7528d0973c10e451d2d04311e5ed46542a7cdb1490999e10aac",
+      "r0_result_manifest": "c17198864aeb47233fd658d7e6c333c5beb86c5531e5b240ca30e046d066a616",
+      "review_binding": "cafac1c537fa77ffaa07ca766dc73ed3b7b95c39741a5f2aea4d2933292b82f2",
+      "review_intake_manifest": "bcb840616060473ea61b81ca7cf052eff2ac00caeb7bff75e7cbf064e6a7e178",
+      "term_sense": "a3793f78312fae1f0008a4c4ee797e849bab7a329bb6cb3aa6ca1acc81b99584"
+    },
+    "started_at": "2026-07-29T17:00:00Z"
+  },
+  "integrity": {
+    "self_sha256": "dd57b45632ad06b9473b87b5c1c592426c10cbff76c54dc471ded89068f602e1"
+  },
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.1.0",
+  "scope_note": null,
+  "surfaces": {
+    "canonical_vi": "gradient tiêu biến",
+    "rejected_variants_vi": [],
+    "validated_variants_vi": []
+  }
+}

@@ -1,0 +1,499 @@
+{
+  "batch_id": "batch_005",
+  "case_count": 2,
+  "cases": [
+    {
+      "adjudication": {
+        "adjudication_rationale": "The eligible D2L contexts consistently identify the input gate as an LSTM gate and state that it controls how much new data enters or is taken into account by the memory cell. The proposed definition, noun-phrase POS, scope, and single sense are supported. Candidate 1 contains the indefinite determiner 'một' and candidate 2 is plural, so replace them with the clean technical glosses 'cổng nhập' and 'cổng đầu vào LSTM'; candidate 3 remains valid.",
+        "adjudication_status": "COMPLETE",
+        "candidate_replacements": [
+          {
+            "candidate_id": "candidate_617eda7ff1b327bb29e87721",
+            "candidate_slot": "candidate_slot_2158e1d655f0614f27b25976",
+            "replacement_target_vi": "cổng nhập"
+          },
+          {
+            "candidate_id": "candidate_ef1b5a0693c5a2a06c8d894b",
+            "candidate_slot": "candidate_slot_ac3c06b33cdca07209d4ce66",
+            "replacement_target_vi": "cổng đầu vào LSTM"
+          }
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Both replacements are bound to the source candidates: remove the determiner from candidate 1 and the plural mismatch from candidate 2. Candidate 3 'cổng đầu vào' is retained as the concise general variant. The synthetic stadium gate is boundary-only.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "adjudication_case_id": "adj_c3a71ae76e6cf09c5ccb7148",
+      "adjudication_case_sha256": "bebdc6ca39c218570da4b50ed19584f754a3c9b717db4919d6a9dc84da2a983e",
+      "batch_id": "batch_005",
+      "disagreement_fields": [
+        "candidate_set_decision",
+        "candidate_replacements",
+        "sense_status"
+      ],
+      "final_glossary_decision": null,
+      "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+      "provider_call_count": 0,
+      "reviewer_1": {
+        "result_file_sha256": "9fb27b350310dec13aa14b15472b37832f7d2d43b60ad09651f143d5acfe1f11",
+        "review": {
+          "candidate_replacements": [
+            "cổng nhập",
+            "cổng đầu vào LSTM"
+          ],
+          "candidate_set_decision": "REVISE",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "Ngữ cảnh thực xác nhận input gate điều tiết lượng dữ liệu mới đi vào memory cell. “một cổng đầu vào” mang từ hạn định và “các cổng đầu vào” sai số nhiều đối với term-sense số ít; nên thay bằng hai phương án được đề xuất.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "REVISION_REQUIRED"
+        }
+      },
+      "reviewer_2": {
+        "result_file_sha256": "c78b52617f3f9394579ed047e51daaec25610a895d5edc6175cf88550c158fdf",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "The eligible LSTM contexts explicitly identify the input gate and state that it governs how much new data is taken into account in the memory cell. This supports the proposed definition, noun-phrase POS, scope, and the singular, plural, and quantified Vietnamese forms. The synthetic boundary row was not used as positive evidence.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+        }
+      },
+      "risk_class": "R4_SPLIT_OR_POS_RISK",
+      "routing_reason": "R4_MANDATORY_ADJUDICATION",
+      "schema_id": "D2LFastTrackStageAAdjudicationCaseV1",
+      "schema_version": "1.0.0",
+      "sense_id": "d2lce_c6c1c6e96c39b88a9f94e8d9",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_617eda7ff1b327bb29e87721",
+            "candidate_slot": "candidate_slot_2158e1d655f0614f27b25976",
+            "candidate_target_vi": "một cổng đầu vào"
+          },
+          {
+            "candidate_id": "candidate_ef1b5a0693c5a2a06c8d894b",
+            "candidate_slot": "candidate_slot_ac3c06b33cdca07209d4ce66",
+            "candidate_target_vi": "các cổng đầu vào"
+          },
+          {
+            "candidate_id": "candidate_122cf2846721613042bbc36c",
+            "candidate_slot": "candidate_slot_c8696990af4a53bfafef386b",
+            "candidate_target_vi": "cổng đầu vào"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_recurrent_modern_lstm_b008",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "90b884665dd6ee49dfa5fee913f093b60d52f116cc3d78195ba9b97803f2cebb",
+            "context_id": "ctx_55d21390aec0ff7a7336858a",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_fcdc03178a1ddc209508d444",
+            "source_text": "Correspondingly, the gates at time step $t$\nare defined as follows: the input gate is $\\mathbf{I}_t \\in \\mathbb{R}^{n \\times h}$, the forget gate is $\\mathbf{F}_t \\in \\mathbb{R}^{n \\times h}$, and the output gate is $\\mathbf{O}_t \\in \\mathbb{R}^{n \\times h}$.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_lstm_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "b3c049aeabeabb53e9775b793ce86f1addf8e527937ad51b8a8c2d6dd3fdbcd1",
+            "context_id": "ctx_6a19e08d950ca7bef8fb4c89",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_677a13b6f66d36d6302a385a",
+            "source_text": "### Input Gate, Forget Gate, and Output Gate",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_lstm_b020",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "5dca5c30d09667c90ed8c7f0378328b9f18139891b58d13735d880f3e42c7028",
+            "context_id": "ctx_6c0d6d0d558005aaf9be6fc3",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_d9eab84c98c32b0f1e563a2d",
+            "source_text": "If the forget gate is always approximately 1 and the input gate is always approximately 0, the past memory cells $\\mathbf{C}_{t-1}$ will be saved over time and passed to the current time step.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_lstm_b007",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "8786cd0135697b270c7b754861ef2c97fb7f7333492b0c23b14c1d7b01335a01",
+            "context_id": "ctx_9ee60265b7c99b18fa9a46f2",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_233f5dae07761e1a4528c1bc",
+            "source_text": "![Computing the input gate, the forget gate, and the output gate in an LSTM model.](../img/lstm-0.svg)\n:label:`lstm_0`",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_lstm_b018",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "b6c117b8b37e9b704e6fbc4f4b730b800b7f0673a3041b285c24e89abc732c85",
+            "context_id": "ctx_a7c81a70b68bbf602ecfbeab",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_DEFINITION_PROPOSAL"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_5eee1983829a0a9512ac9b20",
+            "source_text": "Similarly,\nin LSTMs we have two dedicated gates for such purposes: the input gate $\\mathbf{I}_t$ governs how much we take new data into account via $\\tilde{\\mathbf{C}}_t$ and the forget gate $\\mathbf{F}_t$ addresses how much of the old memory cell content $\\mathbf{C}_{t-1} \\in \\mathbb{R}^{n \\times h}$ we retain.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_lstm_b037",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "f87dae16c4798192b496b3fc0c93b3e30bc95a6ff23a95a4bd14cff3c0fa96e4",
+            "context_id": "ctx_b2ecc4429423fc36a19369d3",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_82a449631f50a21335913618",
+            "source_text": "```{.python .input}\ndef get_lstm_params(vocab_size, num_hiddens, device):\n    num_inputs = num_outputs = vocab_size\n\n    def normal(shape):\n        return np.random.normal(scale=0.01, size=shape, ctx=device)\n\n    def three():\n        return (normal((num_inputs, num_hiddens)),\n                normal((num_hiddens, num_hiddens)),\n                np.zeros(num_hiddens, ctx=device))\n\n    W_xi, W_hi, b_i = three()  # Input gate parameters\n    W_xf, W_hf, b_f = three()  # Forget gate parameters\n    W_xo, W_ho, b_o = three()  # Output gate parameters\n    W_xc, W_hc, b_c = three()  # Candidate memory cell parameters\n    # Output layer parameters\n    W_hq = normal((num_hiddens, num_outputs))\n    b_q = np.zeros(num_outputs, ctx=device)\n    # Attach gradients\n    params = [W_xi, W_hi, b_i, W_xf, W_hf, b_f, W_xo, W_ho, b_o, W_xc, W_hc,\n              b_c, W_hq, b_q]\n    for param in params:\n        param.attach_grad()\n    return params\n```",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_lstm_b038",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "3a89755d01def81dfe93e85ab32c15756b167fd48c53ebe335576641d3674de9",
+            "context_id": "ctx_d97ae77a3b700998ac63cadd",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_95d3eecd0e190204ceeb33f8",
+            "source_text": "```{.python .input}\n#@tab pytorch\ndef get_lstm_params(vocab_size, num_hiddens, device):\n    num_inputs = num_outputs = vocab_size\n\n    def normal(shape):\n        return torch.randn(size=shape, device=device)*0.01\n\n    def three():\n        return (normal((num_inputs, num_hiddens)),\n                normal((num_hiddens, num_hiddens)),\n                d2l.zeros(num_hiddens, device=device))\n\n    W_xi, W_hi, b_i = three()  # Input gate parameters\n    W_xf, W_hf, b_f = three()  # Forget gate parameters\n    W_xo, W_ho, b_o = three()  # Output gate parameters\n    W_xc, W_hc, b_c = three()  # Candidate memory cell parameters\n    # Output layer parameters\n    W_hq = normal((num_hiddens, num_outputs))\n    b_q = d2l.zeros(num_outputs, device=device)\n    # Attach gradients\n    params = [W_xi, W_hi, b_i, W_xf, W_hf, b_f, W_xo, W_ho, b_o, W_xc, W_hc,\n              b_c, W_hq, b_q]\n    for param in params:\n        param.requires_grad_(True)\n    return params\n```",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_lstm_b004",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "5c1f9bb4f29285dd86b408780f367e05e57b35c26a2ffadd7a291b8878796160",
+            "context_id": "ctx_ef08148c1866b77ae7d4ed7f",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_5c55018b2481b5ab6faeb4f1",
+            "source_text": "We refer to this as the *input gate*.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "de4f8dc97cc99c89f1457fde4aa1c32909c7f16e2c6779ab704e9c4f41d08368",
+            "context_id": "ctxx_3e2772e947e6f76d5a66533c",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "input gate",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: Visitors should wait at the input gate before entering the stadium.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_563ab0ef6c35c134390ac75d",
+        "proposed_definition_en": "the LSTM gate that controls how much new input information enters the memory cell",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_c6c1c6e96c39b88a9f94e8d9",
+        "source_sense_pool_record_sha256": "b005ac56c1ab6ecaab48a9537f2e5bd38cf8bb2b416ce08ee38107d998503a4d",
+        "source_term": "input gate",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_c6c1c6e96c39b88a9f94e8d9"
+      },
+      "source_payload_sha256": "87f1fae742929290f148917c444114fcab27dc659b9a50c855301373de23d97c",
+      "source_term": "input gate",
+      "stage_b_gold_label": null
+    },
+    {
+      "adjudication": {
+        "adjudication_rationale": "The eligible D2L contexts consistently use keys in the query-key-value attention mechanism: queries interact with keys and the resulting weights aggregate values. The dictionary-key context is explicitly boundary-only and is excluded. The proposed definition, noun-phrase POS, scope, and all three Vietnamese candidates fit the attention sense, so no correction or split is warranted.",
+        "adjudication_status": "COMPLETE",
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Independent adjudication confirms the attention-mechanism sense and deliberately excludes the dictionary-key boundary row from positive evidence.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "adjudication_case_id": "adj_61cfc492aa662985aa8dc671",
+      "adjudication_case_sha256": "b51870f7c9b2e97d23a1968250f7656c34c22ce9b2759a572bfe602fdba413f3",
+      "batch_id": "batch_005",
+      "disagreement_fields": [],
+      "final_glossary_decision": null,
+      "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+      "provider_call_count": 0,
+      "reviewer_1": {
+        "result_file_sha256": "9fb27b350310dec13aa14b15472b37832f7d2d43b60ad09651f143d5acfe1f11",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "Các ngữ cảnh dương nhất quán về keys trong attention: tương tác với queries để tính trọng số cho values. Ngữ cảnh dictionary keys được đánh dấu boundary-only, và candidate set giữ đúng nghĩa attention.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+        }
+      },
+      "reviewer_2": {
+        "result_file_sha256": "c78b52617f3f9394579ed047e51daaec25610a895d5edc6175cf88550c158fdf",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "The eligible attention contexts consistently place keys in the query-key-value mechanism and explicitly state that query-key interactions determine weights used to aggregate values. This supports the proposed definition, noun-phrase POS, scope, and the Vietnamese key variants. The real dictionary-key boundary row was excluded from positive evidence.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+        }
+      },
+      "risk_class": "R4_SPLIT_OR_POS_RISK",
+      "routing_reason": "R4_MANDATORY_ADJUDICATION",
+      "schema_id": "D2LFastTrackStageAAdjudicationCaseV1",
+      "schema_version": "1.0.0",
+      "sense_id": "d2lce_776fd3328d5e31aeebe484ec",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_4d3e881d152ab02ad2326786",
+            "candidate_slot": "candidate_slot_55d842c51467634bebf594fa",
+            "candidate_target_vi": "khóa"
+          },
+          {
+            "candidate_id": "candidate_e28c28932bd181642fba4a51",
+            "candidate_slot": "candidate_slot_787989d9d18e438ee60b150e",
+            "candidate_target_vi": "khóa chú ý"
+          },
+          {
+            "candidate_id": "candidate_811f2542a90f4279c9f5f695",
+            "candidate_slot": "candidate_slot_ea36278f8af5d159e3d7bbd2",
+            "candidate_target_vi": "các khóa"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b025",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "e47a86bb2e219502c3dce1e20472d079845459046df95eb554c86dd043a62765",
+            "context_id": "ctx_01b68302bb447eeeccec65cb",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "keys",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_f9c47ae8915c09bfb16fad06",
+            "source_text": "```{.python .input}\n#@tab all\nattention_weights = d2l.reshape(d2l.eye(10), (1, 1, 10, 10))\nshow_heatmaps(attention_weights, xlabel='Keys', ylabel='Queries')\n```",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_subword_embedding_b014",
+            "boundary_only": true,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "210bb58ce8d7a8ccc636e16976c0721111e8313908cb2c2c13b18824c90f9ecc",
+            "context_id": "ctx_2d690f0922be1eb4be420c9d",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "keys",
+            "positive_evidence_eligible": false,
+            "sentence_id": "sentence_245949d0fcbb60aa8a647e00",
+            "source_text": "Since we start the merging process from a vocabulary of only single characters and special symbols, space is inserted between every pair of consecutive characters within each word (keys of the dictionary `token_freqs`).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b014",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "50bb6186751528e70bb467c5ec3ef6bbc62a8b3aa4f24d3afdf02ed8fcb78a1d",
+            "context_id": "ctx_3c14b0a0feee3453249740d4",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "keys",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_148cff5fea05df5b2c3e4f97",
+            "source_text": "As shown in :numref:`fig_qkv`,\nwe can design attention pooling\nso that the given query (volitional cue) can interact with keys (nonvolitional cues),\nwhich guides bias selection over values (sensory inputs).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b011",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "020dad4f71a716d7b21f8ce020ca83300b7e75fecd747e4ee3c41367888371ee",
+            "context_id": "ctx_8a0bb471a0a435399c5293f9",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "keys",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_8ad63badeb83373acafa6f6f",
+            "source_text": "## Queries, Keys, and Values",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b022",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "f8a6fa3d69cc8daaeaeeb567fc9c17ac5e8d2bdd7785fa63ed5b23ed5ecca1dc",
+            "context_id": "ctx_9dd2818707ebbd9b97accac9",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_DEFINITION_PROPOSAL"
+            ],
+            "matched_surface": "keys",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_bdf0d1b0c8c18c36c677dbf8",
+            "source_text": "Its input `matrices` has the shape (number of rows for display, number of columns for display, number of queries, number of keys).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b015",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "a271eab92195cab05498787c0ae5102830efc8c3e485b8c21ef7d36edbdeb983",
+            "context_id": "ctx_a91d32742b0c4bd9260a1334",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "keys",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_51f0ad7dd12913eb59a39972",
+            "source_text": "![Attention mechanisms bias selection over values (sensory inputs) via attention pooling, which incorporates queries (volitional cues) and keys (nonvolitional cues).](../img/qkv.svg)\n:label:`fig_qkv`",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b018",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "3f189fdcc8b00611891cda6d89e6e3795c5666bdb3da9e1f39db78887c04df51",
+            "context_id": "ctx_cac33728aec4217e211eb0da",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "keys",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_5171914ec0223429c8fc28f8",
+            "source_text": "In practice,\nattention pooling aggregates values using weighted average, where weights are computed between the given query and different keys.",
+            "synthetic": false
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_a4af6fc4cb351a84cd11a5d4",
+        "proposed_definition_en": "items in attention mechanisms that interact with queries to determine weights over values.",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_776fd3328d5e31aeebe484ec",
+        "source_sense_pool_record_sha256": "eb6c1c6b29f9881364a1071ab037cd7247090e83c6574f363c0cd23fcf282d66",
+        "source_term": "keys",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_776fd3328d5e31aeebe484ec"
+      },
+      "source_payload_sha256": "5acd538011db456199e0dc7436e288edca7609d6f877fbbc9f92ece4f4c2589a",
+      "source_term": "keys",
+      "stage_b_gold_label": null
+    }
+  ],
+  "independence_mode": "ADJUDICATION_SEES_REVIEWER_1_AND_REVIEWER_2",
+  "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_ADJUDICATION_FIELDS_FILLED",
+  "reviewer_slot": "reviewer_3_adjudicator",
+  "schema_id": "D2LFastTrackStageAAdjudicatorInputV1",
+  "schema_version": "1.0.0",
+  "source_input_sha256": "4aa63cc7ad6baa88bbef823093494bf48f17c7ab49128ac2ad5593302fb64b3d"
+}

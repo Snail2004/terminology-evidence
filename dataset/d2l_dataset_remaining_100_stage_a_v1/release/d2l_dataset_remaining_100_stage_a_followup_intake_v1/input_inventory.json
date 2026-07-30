@@ -1,0 +1,111 @@
+{
+  "file_count": 10,
+  "files": [
+    {
+      "batch_id": "highrisk_batch_001",
+      "captured_relative_path": "high_risk/reviewer_2/highrisk_batch_001_reviewer_2.json",
+      "kind": "high_risk",
+      "reviewer_role": "reviewer_2",
+      "sha256": "e21e7c540f635fbf64be9fae3f577e90b27f495beda9f002f719b3dda7501de7",
+      "size_bytes": 170064,
+      "source_file_name": "highrisk_batch_001_reviewer_2.json",
+      "source_input_sha256": "03dabeb1ff1cbaae4a10547af18f5750363da7e0147015076c238811e32f7b6a"
+    },
+    {
+      "batch_id": "highrisk_batch_002",
+      "captured_relative_path": "high_risk/reviewer_2/highrisk_batch_002_reviewer_2.json",
+      "kind": "high_risk",
+      "reviewer_role": "reviewer_2",
+      "sha256": "9df5d0296ae58c5143d8aa4acdfc108af630e4b4edb9ab8cbd711824fc70a420",
+      "size_bytes": 205238,
+      "source_file_name": "highrisk_batch_002_reviewer_2.json",
+      "source_input_sha256": "2750897894918ac066df1d153f64453434eb05d5bfb319d8a903321b5113120a"
+    },
+    {
+      "batch_id": "highrisk_batch_003",
+      "captured_relative_path": "high_risk/reviewer_3/highrisk_batch_003_reviewer_3.json",
+      "kind": "high_risk",
+      "reviewer_role": "reviewer_3",
+      "sha256": "009693193a90f6de706601d328476ec2c92a5910370c8bcaeb2444a822548eb7",
+      "size_bytes": 124119,
+      "source_file_name": "highrisk_batch_003_reviewer_3.json",
+      "source_input_sha256": "85a4ebc077b15e88a05138c770d07efa25ebe16adf12a600f4e8fcdc41795522"
+    },
+    {
+      "batch_id": "blind_batch_001",
+      "captured_relative_path": "r0_blind/reviewer_4/blind_batch_001_reviewer_4.json",
+      "kind": "r0_blind",
+      "reviewer_role": "reviewer_4",
+      "sha256": "a48cb66f60f74f3d77c930222e86e34cb8bc6cb67e9a7ace668b69144dae29a9",
+      "size_bytes": 106898,
+      "source_file_name": "blind_batch_001_reviewer_4.json",
+      "source_input_sha256": "065ec1e0a475f39e564358525133990f9c065fef94fba322d6f30fedb7a4bce7"
+    },
+    {
+      "batch_id": "blind_batch_003",
+      "captured_relative_path": "r0_blind/reviewer_4/blind_batch_003_reviewer_4.json",
+      "kind": "r0_blind",
+      "reviewer_role": "reviewer_4",
+      "sha256": "d2c2ede245b804ee30c0328f9fd87aaa836cf8806b59bbb1ca6515ca4420ce96",
+      "size_bytes": 103982,
+      "source_file_name": "blind_batch_003_reviewer_4.json",
+      "source_input_sha256": "9aa005dfd33b36642bd3977f5d4d9ac437441ba576b3be85199ca971e2420939"
+    },
+    {
+      "batch_id": "blind_batch_005",
+      "captured_relative_path": "r0_blind/reviewer_4/blind_batch_005_reviewer_4.json",
+      "kind": "r0_blind",
+      "reviewer_role": "reviewer_4",
+      "sha256": "cb63140246ad6417cf9918022f01fcb246867ca7d1b5be2a68249f032e35bf1c",
+      "size_bytes": 104603,
+      "source_file_name": "blind_batch_005_reviewer_4.json",
+      "source_input_sha256": "35a3cf050fe1d4f310716e100c8529b916886a8f89fc4005c42efcfdc8e55561"
+    },
+    {
+      "batch_id": "blind_batch_002",
+      "captured_relative_path": "r0_blind/reviewer_5/blind_batch_002_reviewer_5.json",
+      "kind": "r0_blind",
+      "reviewer_role": "reviewer_5",
+      "sha256": "5e63e50905870c9e89c98537b6f7a2e1dc90d9c135a69df750129a19cc437a60",
+      "size_bytes": 103497,
+      "source_file_name": "blind_batch_002_reviewer_5.json",
+      "source_input_sha256": "243499f8f0aff52113bf454d73e0b6f9709175d3d401b172e32c17d8256e8afd"
+    },
+    {
+      "batch_id": "blind_batch_004",
+      "captured_relative_path": "r0_blind/reviewer_5/blind_batch_004_reviewer_5.json",
+      "kind": "r0_blind",
+      "reviewer_role": "reviewer_5",
+      "sha256": "7c295dd1bd1044c2954f62176b935c64cc4a0b6e7116c7c7d11470cf1bd72fb0",
+      "size_bytes": 107744,
+      "source_file_name": "blind_batch_004_reviewer_5.json",
+      "source_input_sha256": "1227e6dc43609165275dc7e520e5399b11292d8af5da19bc6d3f8a2f815cc7a6"
+    },
+    {
+      "batch_id": "repair_batch_001",
+      "captured_relative_path": "r0_repair/reviewer_1/repair_batch_001_reviewer_1.json",
+      "kind": "r0_repair",
+      "reviewer_role": "reviewer_1",
+      "sha256": "c3fb6f8c2990056e7b3ae5fb32bfea305f4a8d58a33671e194ff2e498168aad9",
+      "size_bytes": 109486,
+      "source_file_name": "repair_batch_001_reviewer_1.json",
+      "source_input_sha256": "f9a9062ea67037db21a0c95cbe8885f9024e51c737622c9567d71f782ea612c1"
+    },
+    {
+      "batch_id": "repair_batch_002",
+      "captured_relative_path": "r0_repair/reviewer_1/repair_batch_002_reviewer_1.json",
+      "kind": "r0_repair",
+      "reviewer_role": "reviewer_1",
+      "sha256": "de95aaaae76c809e61f0766e6274c7a7e010c29488655019f1edd37d98197364",
+      "size_bytes": 117040,
+      "source_file_name": "repair_batch_002_reviewer_1.json",
+      "source_input_sha256": "39bf3eb3f4c7e1adffb1b156f93c5071ed03b52bc670320edf74f0a5f48a583e"
+    }
+  ],
+  "integrity": {
+    "self_sha256": "7275f58057b894029ac4c0855efcdf9536633cdc01d1e79c8a9c5cbf04485718"
+  },
+  "policy_id": "d2l-remaining-100-stage-a-followup-intake-v1.0",
+  "schema_id": "D2LRemaining100FollowupInputInventoryV1",
+  "schema_version": "1.0"
+}

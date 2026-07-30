@@ -1,0 +1,288 @@
+{
+  "batch_count": 10,
+  "batches": [
+    {
+      "batch_id": "batch_001",
+      "reviewer_1_case_count": 10,
+      "reviewer_1_handoff_zip": "handoff/batch_001_reviewer_1.zip",
+      "reviewer_1_handoff_zip_sha256": "40b35decc50fa50e4c8d0e04211110766b3312db2c093cd32fb47b0f4de67c44",
+      "reviewer_2_case_count": 6,
+      "reviewer_2_handoff_zip": "handoff/batch_001_reviewer_2.zip",
+      "reviewer_2_handoff_zip_sha256": "f303cc6e783a8e88775cfe76f46639fa33a3ddcd476e37a9925afa80202a3021",
+      "risk_counts": {
+        "R0_CLEAR": 4,
+        "R3_AMBIGUOUS": 3,
+        "R4_SPLIT_OR_POS_RISK": 3
+      },
+      "sense_count": 10,
+      "sense_ids": [
+        "d2lce_539543a2360129e2a2fa1b6d",
+        "d2lce_28ab2b419f6b871a62a06060",
+        "d2lce_89406dadb8c277a1b688698c",
+        "d2lce_20a7e6887718c68fb6b88a05",
+        "d2lce_4a5f20bb32b66b1f07d9f37a",
+        "d2lce_20c658fd4e221ee551790ec2",
+        "d2lce_bb2aa6e567ff5ce9563e209b",
+        "d2lce_80f4d6555a6ea1d2e5e881a1",
+        "d2lce_0e100796a86968fbdb5730e8",
+        "d2lce_53c32398310471fac3dacf35"
+      ],
+      "sequence": 1
+    },
+    {
+      "batch_id": "batch_002",
+      "reviewer_1_case_count": 10,
+      "reviewer_1_handoff_zip": "handoff/batch_002_reviewer_1.zip",
+      "reviewer_1_handoff_zip_sha256": "49a8e2c367226e4756d3661b7f5463f0e8243f3fae3fdd943f5beddd5fcf75ca",
+      "reviewer_2_case_count": 7,
+      "reviewer_2_handoff_zip": "handoff/batch_002_reviewer_2.zip",
+      "reviewer_2_handoff_zip_sha256": "1eb561a4f48b6b5f28a1ac6d564ddb39f6503196acbecccfb70b899366bb47c1",
+      "risk_counts": {
+        "R0_CLEAR": 3,
+        "R3_AMBIGUOUS": 4,
+        "R4_SPLIT_OR_POS_RISK": 3
+      },
+      "sense_count": 10,
+      "sense_ids": [
+        "d2lce_eba859df6c63311dce4a5eb7",
+        "d2lce_270e1a75bb70807d9c2dd507",
+        "d2lce_0dbb5a3cc045f69a43d09a7a",
+        "d2lce_6239b2ef1cec1800e3d6f13f",
+        "d2lce_46e81052dcb25b16e429062a",
+        "d2lce_7d7b617aacd41c76538d06af",
+        "d2lce_dc193feb1eeef3a1349d9b74",
+        "d2lce_0a19e86b29b5e64f79a45ddc",
+        "d2lce_9c874642b8c028465cfbb71e",
+        "d2lce_6c7e95cd232fb7fcca6b3bdc"
+      ],
+      "sequence": 2
+    },
+    {
+      "batch_id": "batch_003",
+      "reviewer_1_case_count": 10,
+      "reviewer_1_handoff_zip": "handoff/batch_003_reviewer_1.zip",
+      "reviewer_1_handoff_zip_sha256": "ada9c314ec0044fa6205b4ea72f84013ce464da8f0d35bb8a44f5e62bc6cc0fb",
+      "reviewer_2_case_count": 7,
+      "reviewer_2_handoff_zip": "handoff/batch_003_reviewer_2.zip",
+      "reviewer_2_handoff_zip_sha256": "e8c55e33fbb10b9585f1c4e8994b2b9bf6eefc905cd7f5882e8462aa55b6e6fe",
+      "risk_counts": {
+        "R0_CLEAR": 3,
+        "R3_AMBIGUOUS": 3,
+        "R4_SPLIT_OR_POS_RISK": 4
+      },
+      "sense_count": 10,
+      "sense_ids": [
+        "d2lce_c47822c187c02e12aa499ec6",
+        "d2lce_144baca5ccb9be2154705e92",
+        "d2lce_ebd36388b50538b928ebbb4a",
+        "d2lce_10d4d01fa40b67d92527e5ed",
+        "d2lce_8de4d36bcb2f1ad2291dd52e",
+        "d2lce_20dc13bc32661f00e7c68b89",
+        "d2lce_fbe9efe0d390976cb31e5af7",
+        "d2lce_73c8ce2915c4c64a52fab4a2",
+        "d2lce_ca2ca961829e131bbc0fd92b",
+        "d2lce_24988c975f984ef488776c0b"
+      ],
+      "sequence": 3
+    },
+    {
+      "batch_id": "batch_004",
+      "reviewer_1_case_count": 10,
+      "reviewer_1_handoff_zip": "handoff/batch_004_reviewer_1.zip",
+      "reviewer_1_handoff_zip_sha256": "126d7221c1e7bc90dd8c871eedb847fd642047e2227d05ca4ecb413fe4b70530",
+      "reviewer_2_case_count": 6,
+      "reviewer_2_handoff_zip": "handoff/batch_004_reviewer_2.zip",
+      "reviewer_2_handoff_zip_sha256": "7b3aaeb488689d5cce5d5981c5fafa1f76757f9f16df170ba8b6f7381a3aec88",
+      "risk_counts": {
+        "R0_CLEAR": 4,
+        "R3_AMBIGUOUS": 3,
+        "R4_SPLIT_OR_POS_RISK": 3
+      },
+      "sense_count": 10,
+      "sense_ids": [
+        "d2lce_a5537c415bcbe54cdd82a669",
+        "d2lce_22496a6fabe26e046ad5d5ac",
+        "d2lce_d0b3a65c5f21e6064395a475",
+        "d2lce_54e0621e7c3812cb511231dc",
+        "d2lce_dbb300a90e4b0f8b815b5e12",
+        "d2lce_401e038a0835f7c5733a9857",
+        "d2lce_f7c1845f1d67dcb386e8fc22",
+        "d2lce_9372cdb5752db6ba6fa38fbd",
+        "d2lce_8373decbb6e405f0386ec8a0",
+        "d2lce_a1d9f9c783c09cc52dedbe55"
+      ],
+      "sequence": 4
+    },
+    {
+      "batch_id": "batch_005",
+      "reviewer_1_case_count": 10,
+      "reviewer_1_handoff_zip": "handoff/batch_005_reviewer_1.zip",
+      "reviewer_1_handoff_zip_sha256": "0c47b14eeb66685e847648e1f336a91ea657f73d9d0623fd13b79394329d859f",
+      "reviewer_2_case_count": 7,
+      "reviewer_2_handoff_zip": "handoff/batch_005_reviewer_2.zip",
+      "reviewer_2_handoff_zip_sha256": "dc00a46116ce519b75b7399b244b7d952688fd71f6b6a6bf6664e1f9486475d9",
+      "risk_counts": {
+        "R0_CLEAR": 3,
+        "R3_AMBIGUOUS": 4,
+        "R4_SPLIT_OR_POS_RISK": 3
+      },
+      "sense_count": 10,
+      "sense_ids": [
+        "d2lce_d8d3db5e12791f4de99286be",
+        "d2lce_98211ac6b2c27c6359ce6dae",
+        "d2lce_e246c0d41c7b8bc2c145f69a",
+        "d2lce_6898a7f7f35ca368f75fda48",
+        "d2lce_c3c46748b1a49e32c07ca9d7",
+        "d2lce_c343a692fe9bdfdabefe7687",
+        "d2lce_609638f74bc5b32d32469bbc",
+        "d2lce_776fd3328d5e31aeebe484ec",
+        "d2lce_455f2de181035ca8388c30b0",
+        "d2lce_5c270f3b3ebe4f0059649e18"
+      ],
+      "sequence": 5
+    },
+    {
+      "batch_id": "batch_006",
+      "reviewer_1_case_count": 10,
+      "reviewer_1_handoff_zip": "handoff/batch_006_reviewer_1.zip",
+      "reviewer_1_handoff_zip_sha256": "9bc28db6d3d2a31a9cb0d7882aef4b0e7270f7dbb8e948a6f1f3ab198bb025b6",
+      "reviewer_2_case_count": 7,
+      "reviewer_2_handoff_zip": "handoff/batch_006_reviewer_2.zip",
+      "reviewer_2_handoff_zip_sha256": "302cdaa517b2437432485500288496f91a8c9e6d479aab35518075a429e7798e",
+      "risk_counts": {
+        "R0_CLEAR": 3,
+        "R3_AMBIGUOUS": 3,
+        "R4_SPLIT_OR_POS_RISK": 4
+      },
+      "sense_count": 10,
+      "sense_ids": [
+        "d2lce_a7105fea7b2b3447548b6d7a",
+        "d2lce_ed44d125cc1110c1c39f7b3e",
+        "d2lce_41109297e6bf8f44d9bb9178",
+        "d2lce_bbf89ef89c96205886255dcf",
+        "d2lce_ceb82e896665f8c0cd942ed6",
+        "d2lce_3b6a75bdbf023ea1f3ed2cc8",
+        "d2lce_0ac8f3308547fb001c31e869",
+        "d2lce_1cc990a2aa4f03a55ea8c851",
+        "d2lce_2e41378b04489016bfe5707a",
+        "d2lce_abae8f75b732ffe9c8a965c0"
+      ],
+      "sequence": 6
+    },
+    {
+      "batch_id": "batch_007",
+      "reviewer_1_case_count": 10,
+      "reviewer_1_handoff_zip": "handoff/batch_007_reviewer_1.zip",
+      "reviewer_1_handoff_zip_sha256": "6a24c2adcc0110e8a899fc1959688de126cab0f27b9537149dab7c5ddbe5ea9c",
+      "reviewer_2_case_count": 6,
+      "reviewer_2_handoff_zip": "handoff/batch_007_reviewer_2.zip",
+      "reviewer_2_handoff_zip_sha256": "7b84bea748f64e5b6da4176895c6b056f727bd61d9ee1bcb276ecb202c668f15",
+      "risk_counts": {
+        "R0_CLEAR": 4,
+        "R3_AMBIGUOUS": 3,
+        "R4_SPLIT_OR_POS_RISK": 3
+      },
+      "sense_count": 10,
+      "sense_ids": [
+        "d2lce_b0fd0234a2a3049734e8011c",
+        "d2lce_b85d9a7a642afee03175796f",
+        "d2lce_cf168d11faf5e675efa7e0a3",
+        "d2lce_d96258f97579b9b414c21815",
+        "d2lce_40a50503f2fdc79aa0a549fc",
+        "d2lce_4f85955c4fd10e184dc97d32",
+        "d2lce_e27a9787bb13f8580103adc4",
+        "d2lce_e8992d8478a28e673fe551dc",
+        "d2lce_e749bbd007351d6963f2bbd0",
+        "d2lce_fa115d4c3a8140d91339df15"
+      ],
+      "sequence": 7
+    },
+    {
+      "batch_id": "batch_008",
+      "reviewer_1_case_count": 10,
+      "reviewer_1_handoff_zip": "handoff/batch_008_reviewer_1.zip",
+      "reviewer_1_handoff_zip_sha256": "077338ccec3613d4fc366dd2e709ba1130d4d765c8f93cd6bf7b3b6071822661",
+      "reviewer_2_case_count": 7,
+      "reviewer_2_handoff_zip": "handoff/batch_008_reviewer_2.zip",
+      "reviewer_2_handoff_zip_sha256": "35b252501c9b83adf6d1e3e7e50b2a05cdc2248ab59e5f4262ff291c28b502ed",
+      "risk_counts": {
+        "R0_CLEAR": 3,
+        "R3_AMBIGUOUS": 4,
+        "R4_SPLIT_OR_POS_RISK": 3
+      },
+      "sense_count": 10,
+      "sense_ids": [
+        "d2lce_7d91b65d1e0031ab994be237",
+        "d2lce_06b54fbb7406aced0daac405",
+        "d2lce_88251c1ff8b5d3756955ca7b",
+        "d2lce_c6d5679eb20ff0719dfc35b2",
+        "d2lce_f33d434f8362f23d43285427",
+        "d2lce_43488a3e1f15598ac9b1b6bc",
+        "d2lce_d53294d467b28b07bf000b10",
+        "d2lce_c9e2beab505998c5b3b560b5",
+        "d2lce_bee01b92f7b0b02cc1d77bd7",
+        "d2lce_041add3a2f3aa452408a5384"
+      ],
+      "sequence": 8
+    },
+    {
+      "batch_id": "batch_009",
+      "reviewer_1_case_count": 10,
+      "reviewer_1_handoff_zip": "handoff/batch_009_reviewer_1.zip",
+      "reviewer_1_handoff_zip_sha256": "7435831957a6f961b8fafd6015ed1ff1d23f582c40db494aa2d90f4a4c7bbd78",
+      "reviewer_2_case_count": 7,
+      "reviewer_2_handoff_zip": "handoff/batch_009_reviewer_2.zip",
+      "reviewer_2_handoff_zip_sha256": "f7c8b8858414ae92dcb5d5d500305d4fe721a2c3b358339b6f827f11b6e2da98",
+      "risk_counts": {
+        "R0_CLEAR": 3,
+        "R3_AMBIGUOUS": 3,
+        "R4_SPLIT_OR_POS_RISK": 4
+      },
+      "sense_count": 10,
+      "sense_ids": [
+        "d2lce_bc240ce7b3e0abeb18f82a6b",
+        "d2lce_2485cc2d1b2606bcc62d63c1",
+        "d2lce_91002293cea2184b43995f47",
+        "d2lce_355f5686f2178281893eb6cb",
+        "d2lce_5300144b7f5b4ce29dd12ec6",
+        "d2lce_d30763678be8999b747cf0ee",
+        "d2lce_1ff0c13e857af8ab6956fc96",
+        "d2lce_b5d6207f8142a696435e27e0",
+        "d2lce_963a14fc5042969e330bb020",
+        "d2lce_6f20c5222ebea4830603817b"
+      ],
+      "sequence": 9
+    },
+    {
+      "batch_id": "batch_010",
+      "reviewer_1_case_count": 10,
+      "reviewer_1_handoff_zip": "handoff/batch_010_reviewer_1.zip",
+      "reviewer_1_handoff_zip_sha256": "934df0ce595effd516e955eaa822a8e91b7fe0ef6a693886bc67504eb1c775ce",
+      "reviewer_2_case_count": 5,
+      "reviewer_2_handoff_zip": "handoff/batch_010_reviewer_2.zip",
+      "reviewer_2_handoff_zip_sha256": "f88326a14b14bc4d90ae3158fe4678fa6a02cc8d042775246348bca6b936c6b5",
+      "risk_counts": {
+        "R0_CLEAR": 5,
+        "R3_AMBIGUOUS": 1,
+        "R4_SPLIT_OR_POS_RISK": 4
+      },
+      "sense_count": 10,
+      "sense_ids": [
+        "d2lce_00c0e4f7d0d5537d738af8a7",
+        "d2lce_a3e7228aef125ec437a840fa",
+        "d2lce_1edc567804c90f134219a8f0",
+        "d2lce_6b1b75f43b72ec9bace62065",
+        "d2lce_a47c0fa6efae6f5b3c950575",
+        "d2lce_73dbe839de3f1d00bf1226f0",
+        "d2lce_ad03ff147d19eb2ea47d5b0e",
+        "d2lce_9e5c3dd254843c7ec95d4960",
+        "d2lce_6f3afd43e74e8d70778dc0c8",
+        "d2lce_7be1455c48134d411f51fe7c"
+      ],
+      "sequence": 10
+    }
+  ],
+  "policy_id": "d2l-dataset-remaining-100-stage-a-v1.0",
+  "schema_id": "D2LRemaining100BatchIndexV1",
+  "schema_version": "1.0.0"
+}

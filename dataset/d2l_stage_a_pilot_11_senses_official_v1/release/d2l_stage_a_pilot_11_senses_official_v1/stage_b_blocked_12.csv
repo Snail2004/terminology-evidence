@@ -1,0 +1,13 @@
+﻿term_id,sense_id,candidate_id,candidate_role,candidate_vi,effective_sense_review_status,candidate_gold_label,allowed_scope,validated_variants,rejected_variants,reason_codes,positive_context_refs,vietnamese_evidence_refs,reviewer_provenance_ref,adjudication_ref,stage_b_eligibility
+d2lce_2684090fd4500122fec2a334,d2lce_2684090fd4500122fec2a334,candidate_544f2b9c05154c7e07c55014,A,tại chỗ,SPLIT_REQUIRED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_2684090fd4500122fec2a334,d2lce_2684090fd4500122fec2a334,candidate_682c0cf4cd16d04e6f11d709,B,trực tiếp trên dữ liệu hiện có,SPLIT_REQUIRED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_2684090fd4500122fec2a334,d2lce_2684090fd4500122fec2a334,candidate_4d67be83d149fb65c1269d3c,C,ngay trên đối tượng hiện có,SPLIT_REQUIRED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_2b76c0f26436945cdf880aed,d2lce_2b76c0f26436945cdf880aed,candidate_71daf6039ab2e893cedccaf3,A,lực kiểm định,UNRESOLVED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_2b76c0f26436945cdf880aed,d2lce_2b76c0f26436945cdf880aed,candidate_8a4dcddfb53356985673d7d4,B,mạnh,UNRESOLVED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_2b76c0f26436945cdf880aed,d2lce_2b76c0f26436945cdf880aed,candidate_494d3d67a89723a07ce74292,C,độ mạnh thống kê,UNRESOLVED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,candidate_eb4b9982b22d45554720135e,A,Adam,REVISION_REQUIRED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,candidate_d2ab7fc22d0620dfdeb0a667,B,thuật toán tối ưu Adam,REVISION_REQUIRED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_7ef8ed3f93210606a27312a4,d2lce_7ef8ed3f93210606a27312a4,candidate_5b40ab20a731994cf4619c72,C,bộ tối ưu Adam,REVISION_REQUIRED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,candidate_69d487fc044881f9f782de53,A,các lớp kết nối đầy đủ,UNRESOLVED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,candidate_bacd2b7d8eb5d2ff10742c27,B,các lớp liên kết đầy đủ,UNRESOLVED,,,,,,,,,,BLOCKED_BY_STAGE_A
+d2lce_98b37a7bcb47cd2ef2e5f296,d2lce_98b37a7bcb47cd2ef2e5f296,candidate_ed0f208b38e5ecb43e4b5efc,C,các tầng kết nối đầy đủ,UNRESOLVED,,,,,,,,,,BLOCKED_BY_STAGE_A

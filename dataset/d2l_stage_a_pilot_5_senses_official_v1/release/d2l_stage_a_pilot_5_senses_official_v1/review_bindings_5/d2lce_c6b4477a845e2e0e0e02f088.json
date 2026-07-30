@@ -1,0 +1,31 @@
+{
+  "adjudication_ref": null,
+  "blind_audit_ref": null,
+  "boundary_context_ids": [
+    "ctxx_821e879eea68458c73930916"
+  ],
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "15c2b7f7ea13d9cfa73ec2b28fcca1a0c62ca2ab3ad48b69ca839f5cfb074f00"
+  },
+  "parent_review_decision_sha256": "9b496d329dfe32e8e76f8c271650ab57d664f9cff1039d7b33d89889782db638",
+  "policy_id": "d2l-stage-a-p0b-official-5-sense-v1.0",
+  "positive_definition_evidence_ids": [
+    "ctx_044bf29b52339083b6accce1",
+    "ctx_df998c3c68076fd4dfeea859"
+  ],
+  "positive_pos_evidence_ids": [
+    "ctx_6143b29417b0fe55f7875c10",
+    "ctx_044bf29b52339083b6accce1"
+  ],
+  "review_provenance_refs": [
+    "3bc8038740778406f76ce03e926b9ece0a3a2d92fafc611cb83272757c002a98"
+  ],
+  "review_status": "ACCEPTED",
+  "reviewer_roster_attestation_sha256": "a45014f09629ca711539e6f0585e08a443b3d2e81b66de38745db32959852bd4",
+  "schema_id": "D2LOfficialSenseReviewBindingV1",
+  "schema_version": "1.0.0",
+  "sense_id": "d2lce_c6b4477a845e2e0e0e02f088",
+  "source_term": "output gate",
+  "source_term_sense_sha256": "d46ce5e05acd519c876e5c23b91df03f10c5e18bbd41286573a654a1c7f1030f"
+}

@@ -1,0 +1,164 @@
+{
+  "artifact_name": "d2l_stage_a_pilot_15_senses_v1",
+  "counts": {
+    "adjudication_template": 2,
+    "blind_audit_case": 3,
+    "candidate": 45,
+    "complete_constraint_evidence_package": 0,
+    "official_effective_sense_contract": 0,
+    "official_frozen_candidate_contract": 0,
+    "review_provenance_template": 27,
+    "selected_context": 73,
+    "selected_sense": 15,
+    "stage_b_open_rows": 45
+  },
+  "created_at": "2026-07-29T00:00:00Z",
+  "files": {
+    "candidate_index_15.json": {
+      "sha256": "b64c27fe7a61358250af040317676ba9417c5cf08f3d1a204b094a46eff9f1e8",
+      "size_bytes": 11886
+    },
+    "candidate_instances_45.jsonl": {
+      "sha256": "9607ef2bb8f23d1095ea7378e26308b338f1e9286690117eb27caee53c8d58ac",
+      "size_bytes": 236039
+    },
+    "commands.txt": {
+      "sha256": "1188dc6be5fb61b9999966b506b636ce00505a2437dab5eabdd2273bb7406bdc",
+      "size_bytes": 320
+    },
+    "contexts_selected.jsonl": {
+      "sha256": "28c93c1092a4e9dbf4095ac73dfea07cf91194fd08a9684cc29e4d04d6c1d4d6",
+      "size_bytes": 184717
+    },
+    "credential_scan.json": {
+      "sha256": "0e2e908dabd7c60bddaf0f89e6060b8c2a007c3903eb086837c8688e36fac119",
+      "size_bytes": 59
+    },
+    "effective_sense_contracts_15/README.md": {
+      "sha256": "954a9a3b01925aacf9610957c11f8afa27a7253d87c7dcdea0f87a74deb45fe3",
+      "size_bytes": 182
+    },
+    "environment.json": {
+      "sha256": "93fef4f71ce500259cbad1e788f42aa006dc91ef7d273f484bc242ebaa55d6a8",
+      "size_bytes": 130
+    },
+    "git_commit_receipt.json": {
+      "sha256": "e6d83e1c6abdca4f87b2e508ca4fc8e1b0364bb490f57d75fb74de5b02aeaf36",
+      "size_bytes": 242
+    },
+    "integration_pilot_5_sense_selection_receipt.json": {
+      "sha256": "71973978c3a7c6bab2ee6aacb3daa2917b8d138ee5ba77b365ee4d0f4152d1f5",
+      "size_bytes": 2357
+    },
+    "integration_pilot_constraint_packages_15/README.md": {
+      "sha256": "9b11d17178d6fe872da26e9a96299ccb2c932d6809377a4d584ea354b09d7119",
+      "size_bytes": 99
+    },
+    "integration_pilot_effective_sense_contracts_5/README.md": {
+      "sha256": "511086957e34e3bdae8fb6b27201af50ff891e093b0486a5e44982f04bba28a9",
+      "size_bytes": 107
+    },
+    "integration_pilot_frozen_candidates_15/README.md": {
+      "sha256": "8006dc348e2a5e214405d9277dc7e2feb51c53137c3d2f73838424bed5e5858e",
+      "size_bytes": 107
+    },
+    "lineage.json": {
+      "sha256": "938498941cd2772188941459c93d5f0ac85dbde29ffab5f4a2f18cedc4d7c47b",
+      "size_bytes": 7238
+    },
+    "ownership_scan.json": {
+      "sha256": "b6ea2b97e34499f10e181b73e95cb98ea004fdcd9312eb05d64760d6268dad26",
+      "size_bytes": 167
+    },
+    "pilot_15_sense_selection_receipt.json": {
+      "sha256": "8d2bb1b08abc0d79ee37d35a32ab03f69833d253221ff30ab3a06f110e3877ba",
+      "size_bytes": 31781
+    },
+    "pilot_release_receipt.json": {
+      "sha256": "0cf0ebf6b14a9da46dfbe381d215ecd91aa804684cce7510d0cde8a9d14a0f88",
+      "size_bytes": 2499
+    },
+    "review_provenance_15_senses.jsonl": {
+      "sha256": "c18f01cb9757ac50aa55181d7ee933b389db615397c47cd0ba07e5e549adcfe6",
+      "size_bytes": 22146
+    },
+    "selected_senses_15.jsonl": {
+      "sha256": "b9549c4c180c586cecbecd2924b077cb8c39737609965633b772bc24b59a20f4",
+      "size_bytes": 25882
+    },
+    "stage_a_adjudication_15_senses.jsonl": {
+      "sha256": "f650d5c79711649c80dfa95215bbdfd515be1039280ab98926dfc40ef8671a9b",
+      "size_bytes": 1463
+    },
+    "stage_a_blind_audit_template_3.csv": {
+      "sha256": "586c3d0625de702d684e75aa5880a3aa031532be0e7be724cfc6364707a4e48f",
+      "size_bytes": 1056
+    },
+    "stage_a_pilot_15_acceptance_gate_report.json": {
+      "sha256": "d7bc5f64e9175c3e9c8a791902c42faead3ac3192b428259bcae3f18724fa4da",
+      "size_bytes": 1596
+    },
+    "stage_a_pilot_15_summary.json": {
+      "sha256": "cd41236cfa7d0ee6ae9e25f8c32dec5022d25ae0062c5989cbc1d6d0b40cd21c",
+      "size_bytes": 795
+    },
+    "stage_a_review_instructions.md": {
+      "sha256": "de9ac59612f3a6390cd4b028945463975fa31bcede5a80fa42b5f089555a184c",
+      "size_bytes": 671
+    },
+    "stage_a_review_results_15_senses.csv": {
+      "sha256": "67f18a4da798d809a62f2fff08fa0555a07008fa08e2c7a33762bb3ce81a43d4",
+      "size_bytes": 3844
+    },
+    "stage_b_annotation_template_45.csv": {
+      "sha256": "d07647a6ac3b487c717ee47e004b207005820cf3209bce0ab6e4c26d887a72d0",
+      "size_bytes": 7134
+    }
+  },
+  "final_glossary_decision": null,
+  "group_counts": {
+    "AMBIGUOUS_POLYSEMOUS": 5,
+    "CLEAR_LOW_RISK": 5,
+    "GATE_ADJUDICATION_RISK": 5
+  },
+  "human_authority_present": false,
+  "manifest_sha256": "32b3bbea775362504ef698cfe65a4a9e27890f761d7067b1c88dad7a9670bb6e",
+  "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+  "provider_call_count": 0,
+  "review_pack_zip_sha256": "e84a669c5a2ad0d670ffe0c585bccc68dc50aae6adb993bd3e5df0f7cb95dfed",
+  "schema_id": "D2LStageAPilot15ManifestV1",
+  "schema_version": "1.0.0",
+  "source_bindings": {
+    "dataset_v3": {
+      "artifact_name": null,
+      "manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+      "physical_manifest_sha256": "b5f2067427c6b88344109f2c62f8db02ac61b0cef76f193d5285f378ff5f96a8"
+    },
+    "immutable_fasttrack_v1": {
+      "artifact_name": "d2l_dataset_fasttrack_glossary_first_v1",
+      "commit": "edc43e4e08a50af83881aa5a16d4d88c6d7dbc54",
+      "manifest_sha256": "9a32880e32cea5c5e87f38165142968aeca56f39a12f8bb7c4f1500eb3c49c67",
+      "physical_manifest_sha256": "ebe7003877d955a3575e1e9627fc34e299fdff380d77fb0e3566bde8d52458bb",
+      "status": "BLOCKED_PENDING_HUMAN_REVIEW_AND_PILOT_CONTRACTS",
+      "zip_sha256": "92f7b15d36ac62ab01be53080b6eceb0e385e97b25ea79c09199e1df1d72fd38"
+    },
+    "methodology_hardening": {
+      "manifest_sha256": "801dbcad7a2d9ea42c764b1a8edffff33eb04a7bec21e23f8ddbe21016ca6591",
+      "physical_manifest_sha256": "7830f553ee467ac40c8aefe4a0576faa45e5e1ae8914694df1a45f40957f4a89"
+    },
+    "repair_companion_v1_1": {
+      "artifact_name": "d2l_dataset_fasttrack_glossary_first_v1_1",
+      "commit": "8239656965b00bb4a67ed7409a306e4d3a4e48c2",
+      "manifest_sha256": "21d6f61cb21860b32d6596c97956185bfccb8d6398ac98bf400f8c127e43e9d7",
+      "physical_manifest_sha256": "2e06bddf04aff2cad45c71e657d9e9becdd426e00d5695c14596fabff08ceb5a",
+      "status": "BLOCKED_PENDING_HUMAN_REVIEW_AND_PILOT_CONTRACTS",
+      "zip_sha256": "776a202fb25012bbcc6d16924fc0aec7602fe67af8d7675e0be02dbc53a0c0f9"
+    },
+    "terminology_contracts": {
+      "authority_commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+      "authority_tag": "contracts-v1.1.0",
+      "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b"
+    }
+  },
+  "status": "BLOCKED_BY_HUMAN_REVIEW"
+}

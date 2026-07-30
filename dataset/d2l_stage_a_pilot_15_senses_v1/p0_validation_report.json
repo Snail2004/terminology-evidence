@@ -1,0 +1,18 @@
+{
+  "counts": {
+    "adjudication_template": 2,
+    "blind_audit_case": 3,
+    "boundary_context": 15,
+    "candidate": 45,
+    "context": 73,
+    "positive_context": 58,
+    "review_provenance_template": 27,
+    "selected_sense": 15,
+    "stage_b_rows": 45
+  },
+  "error_count": 0,
+  "errors": [],
+  "manifest_sha256": "32b3bbea775362504ef698cfe65a4a9e27890f761d7067b1c88dad7a9670bb6e",
+  "schema_id": "D2LStageAPilotValidationReportV1",
+  "status": "PASS"
+}

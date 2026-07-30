@@ -1,0 +1,43 @@
+{
+  "blockers": [
+    "all_required_risk_reviews_complete",
+    "r3_two_human_reviews_complete",
+    "r4_adjudication_complete",
+    "review_provenance_complete",
+    "official_effective_sense_contract_count_15",
+    "integration_pilot_effective_sense_count_5",
+    "official_frozen_candidate_count_15",
+    "complete_constraint_package_count_15"
+  ],
+  "checks": {
+    "all_positive_contexts_real_d2l": true,
+    "all_required_risk_reviews_complete": false,
+    "complete_constraint_package_count_15": false,
+    "fabricated_human_authority_zero": true,
+    "identity_join_mismatch_zero": true,
+    "integration_pilot_effective_sense_count_5": false,
+    "official_effective_sense_contract_count_15": false,
+    "official_frozen_candidate_count_15": false,
+    "positive_boundary_overlap_zero": true,
+    "quarantined_positive_refs_zero": true,
+    "r3_two_human_reviews_complete": false,
+    "r4_adjudication_complete": false,
+    "review_provenance_complete": false,
+    "selected_sense_count_15": true,
+    "stage_b_gold_autofill_zero": true,
+    "synthetic_positive_evidence_zero": true
+  },
+  "complete_constraint_package_count": 0,
+  "final_glossary_decision": null,
+  "finalized_sense_count": 0,
+  "official_effective_sense_contract_count": 0,
+  "official_frozen_candidate_count": 0,
+  "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+  "r3_review_count": 0,
+  "r4_adjudication_count": 0,
+  "schema_id": "D2LStageAPilot15AcceptanceGateReportV1",
+  "selected_sense_count": 15,
+  "stage_b_gold_autofill_count": 0,
+  "stage_b_open_row_count": 45,
+  "status": "BLOCKED_BY_HUMAN_REVIEW"
+}

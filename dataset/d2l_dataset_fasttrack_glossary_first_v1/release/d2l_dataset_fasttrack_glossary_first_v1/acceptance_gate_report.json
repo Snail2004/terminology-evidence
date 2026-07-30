@@ -1,0 +1,18 @@
+{
+  "checks": {
+    "blind_audit_complete": false,
+    "cross_split_active_block_count_zero": true,
+    "mapped_150_senses": true,
+    "pilot_complete_constraint_evidence_packages_15": false,
+    "pilot_frozen_candidate_contracts_15": false,
+    "real_positive_context_coverage_150": true,
+    "review_provenance_complete": false,
+    "synthetic_positive_evidence_zero": true,
+    "unresolved_r4_zero": false
+  },
+  "final_glossary_decision": null,
+  "policy_id": "dataset-fasttrack-glossary-first-v1.0",
+  "provider_call_count": 0,
+  "schema_id": "D2LFastTrackAcceptanceGateV1",
+  "status": "BLOCKED_BEFORE_REAL_CE_PILOT"
+}

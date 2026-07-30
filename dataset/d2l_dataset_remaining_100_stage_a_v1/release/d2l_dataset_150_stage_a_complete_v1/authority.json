@@ -1,0 +1,22 @@
+{
+  "integrity": {
+    "self_sha256": "77b0e507ab219e9f5d312651d8619ac24daf4208e6465b55559a6df89fda6b83"
+  },
+  "manifests": {
+    "remaining100": {
+      "physical_sha256": "eed69d9603b517f243c6d3c132eebf696e1c54704fb704af16734eee7df17087",
+      "self_sha256": "89d22f5e7f0315248cbd16451a634382b1bacfd4d3785dfbfa0cda3e80083516"
+    },
+    "replacement": {
+      "physical_sha256": "426c3259be51e583905ce04e41bcca3719aa7d9b61a04060c5f2132fa8590a16",
+      "self_sha256": "8342ec5255f4cd1508620ade0923af671d9c0c6fafcc20a9d5647514e6c6b1e2"
+    },
+    "stage_b_50": {
+      "physical_sha256": "3f7e49ef623c5cf9fba3c3eecf11535c23228ccfc240e2d651a3cd7144467bf2",
+      "self_sha256": "30aca9b841a70ac24c327be8a655e90c715a907261c22dc45c53a1f00c29cfc2"
+    }
+  },
+  "policy_id": "d2l-dataset-150-stage-a-complete-v1.0",
+  "schema_id": "D2LDataset150StageACompletionAuthorityV1",
+  "schema_version": "1.0"
+}

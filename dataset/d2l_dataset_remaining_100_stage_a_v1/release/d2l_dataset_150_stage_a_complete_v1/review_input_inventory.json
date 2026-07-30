@@ -1,0 +1,22 @@
+{
+  "files": [
+    {
+      "captured_path": "captured_reviews/reviewer_1.json",
+      "reviewer_slot": "reviewer_1",
+      "sha256": "e8c20f5c3657176efd48c4e8ff919af9c1e535fc68be5ce371e653416a59445f",
+      "source_path_name": "switch_replacement_reviewer_1.json"
+    },
+    {
+      "captured_path": "captured_reviews/reviewer_2.json",
+      "reviewer_slot": "reviewer_2",
+      "sha256": "ae3da774beca1a3b388a0dd9b6d29786859ea4a2c85c55cfe9f1ab9fd1fa041c",
+      "source_path_name": "switch_replacement_reviewer_2.json"
+    }
+  ],
+  "integrity": {
+    "self_sha256": "2d3f382ee26c148d95b6fd81bcfae2a79f387068a43f50efb84beebd51cc1758"
+  },
+  "policy_id": "d2l-dataset-150-stage-a-complete-v1.0",
+  "schema_id": "D2LReplacementReviewInputInventoryV1",
+  "schema_version": "1.0"
+}

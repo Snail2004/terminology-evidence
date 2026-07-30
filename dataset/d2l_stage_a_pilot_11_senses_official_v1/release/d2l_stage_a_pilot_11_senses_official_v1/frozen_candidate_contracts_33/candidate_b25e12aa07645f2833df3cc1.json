@@ -1,0 +1,64 @@
+{
+  "alternatives_vi": [
+    "biểu diễn từ",
+    "các mô hình nhúng từ"
+  ],
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_b25e12aa07645f2833df3cc1",
+    "candidate_version": "f84279633ebe53a82530e9d3036116394746f8a8a2cae439ecc3a794be6ee0a2",
+    "candidate_vi": "nhúng từ",
+    "dataset_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+    "effective_sense_contract_sha256": "8b4e2f73bec57fbfd86fe081a71b3f98c3563735dc1ee6c1c27b48d912e52b3b",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_ce222dd206341f61f2986f7a",
+    "sense_inventory_version": "d2l_context_support_set_validation_ready_v3",
+    "source_term": "word embedding"
+  },
+  "domain_profile": {
+    "anchors_en": [
+      "word embedding"
+    ],
+    "anchors_vi": [
+      "biểu diễn từ",
+      "các mô hình nhúng từ",
+      "nhúng từ"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "a technique or model family that maps words to real-valued vectors for representing them in NLP",
+  "effective_part_of_speech": "noun_phrase",
+  "input_contract_sha256": "3a49f0b7ac69f87f7e14bf85f3b509d6fb45becf06649f47db4ddb44d8e8c69f",
+  "input_provenance": {
+    "completed_at": "2026-07-29T08:00:00Z",
+    "component_id": "d2l-dataset-frozen-candidate-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "c0a8a26c215ffdd4a5c3586c500adfc4cb7b86691b47f0ba6990857f7bb43e61",
+    "model_routes": [],
+    "notes": "Candidate identity is frozen; no candidate gold label or final glossary decision is assigned.",
+    "policy_version": "d2l-stage-a-p0b-official-11-sense-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-stage-a-p0b-official-11-sense-release",
+    "run_spec_id": "d2l-stage-a-p0b-official-11-sense-spec-v1",
+    "source_artifact_hashes": {
+      "candidate_instance": "f84279633ebe53a82530e9d3036116394746f8a8a2cae439ecc3a794be6ee0a2",
+      "dataset_manifest": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+      "review_binding": "721927f51ac95db7440513cce7926537d0de76f477fc2726ff45c608b81fb49c",
+      "reviewed_manifest": "e602af02edf1fb877a9541c5e37f939f4f35ded34ac878d773fc83b96ed3fb48",
+      "term_sense": "45e49cdec55003634f587d9f2076503f3678f58ab497d6cb38261bbb5dce2f4b"
+    },
+    "started_at": "2026-07-29T08:00:00Z"
+  },
+  "integrity": {
+    "self_sha256": "fb9e5ee7681abc20f7a2c67beaef6f7a04f29040cbc94a4843fb0dbfe2bcfabd"
+  },
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.1.0",
+  "scope_note": null,
+  "surfaces": {
+    "canonical_vi": "nhúng từ",
+    "rejected_variants_vi": [],
+    "validated_variants_vi": []
+  }
+}

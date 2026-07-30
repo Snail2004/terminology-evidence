@@ -1,0 +1,64 @@
+{
+  "alternatives_vi": [
+    "tụt dưới ngưỡng số học",
+    "mất chính xác do quá nhỏ"
+  ],
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_479fdd8ff6d15304debec117",
+    "candidate_version": "58f825aa61c43eda71e8bd298b66cd74dbcc73b6a48d64e367c56b57c36bd016",
+    "candidate_vi": "tràn dưới",
+    "dataset_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+    "effective_sense_contract_sha256": "372e685e42338bf6b5b4b73835bef9dcde369dfc439ceb22cb9b0079d6f89d3f",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_9bd5113780f8e8160a24e6ad",
+    "sense_inventory_version": "d2l_context_support_set_validation_ready_v3",
+    "source_term": "underflow"
+  },
+  "domain_profile": {
+    "anchors_en": [
+      "underflow"
+    ],
+    "anchors_vi": [
+      "mất chính xác do quá nhỏ",
+      "tràn dưới",
+      "tụt dưới ngưỡng số học"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "a numerical computing condition where a value becomes too small to represent and is rounded to zero",
+  "effective_part_of_speech": "noun",
+  "input_contract_sha256": "64c65a03d82d9687f2618c5b0446041a36f049d5830096196378da03fdc35add",
+  "input_provenance": {
+    "completed_at": "2026-07-29T08:00:00Z",
+    "component_id": "d2l-dataset-frozen-candidate-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "c0a8a26c215ffdd4a5c3586c500adfc4cb7b86691b47f0ba6990857f7bb43e61",
+    "model_routes": [],
+    "notes": "Candidate identity is frozen; no candidate gold label or final glossary decision is assigned.",
+    "policy_version": "d2l-stage-a-p0b-official-11-sense-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-stage-a-p0b-official-11-sense-release",
+    "run_spec_id": "d2l-stage-a-p0b-official-11-sense-spec-v1",
+    "source_artifact_hashes": {
+      "candidate_instance": "58f825aa61c43eda71e8bd298b66cd74dbcc73b6a48d64e367c56b57c36bd016",
+      "dataset_manifest": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+      "review_binding": "4fc0721636477a7d3f856466199166c72ca366f460270e6ed227a70c7d71350a",
+      "reviewed_manifest": "e602af02edf1fb877a9541c5e37f939f4f35ded34ac878d773fc83b96ed3fb48",
+      "term_sense": "f032153974496e057ef7410cd4c6be165b8d8e772b15e1bdb92e0756273193d6"
+    },
+    "started_at": "2026-07-29T08:00:00Z"
+  },
+  "integrity": {
+    "self_sha256": "e4ce7f3368b2abb1a0d16a73b3e981379c58d4661d8bf30c03fcc66ddd0b079b"
+  },
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.1.0",
+  "scope_note": null,
+  "surfaces": {
+    "canonical_vi": "tràn dưới",
+    "rejected_variants_vi": [],
+    "validated_variants_vi": []
+  }
+}

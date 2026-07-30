@@ -1,0 +1,800 @@
+{
+  "batch_id": "batch_009",
+  "cases": [
+    {
+      "review": {
+        "candidate_replacements": [
+          "huấn luyện mô hình",
+          "khớp mô hình với dữ liệu"
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Các ngữ cảnh thực định nghĩa train là cập nhật hoặc tối ưu model bằng dữ liệu. “đào tạo” và “rèn luyện” dễ lệch sang huấn luyện con người/thể chất như boundary probe; nên thay bằng các phương án gắn rõ với mô hình và dữ liệu.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "REVISION_REQUIRED"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_e4645d27ffa77281bc40b1ab",
+            "candidate_slot": "candidate_slot_2e1e685d3f1b911e501c2ea9",
+            "candidate_target_vi": "đào tạo"
+          },
+          {
+            "candidate_id": "candidate_4f8f15c5b536775b24a0e10a",
+            "candidate_slot": "candidate_slot_99c125d00f1333f1ab594d72",
+            "candidate_target_vi": "huấn luyện"
+          },
+          {
+            "candidate_id": "candidate_aa2f4a23eabe6836bdfd53a2",
+            "candidate_slot": "candidate_slot_a79db27c2cd160f04c419a5f",
+            "candidate_target_vi": "rèn luyện"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_multilayer_perceptrons_index_b002",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "9ee70e72da7afa01ae1e8004adc67eb31b763d0c938c1d2cb00e567e8c08909d",
+            "context_id": "ctx_6b5fc1533573098a302c2aa6",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "train",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_fd05c8e08bde591ad667d072",
+            "source_text": "When we train high-capacity models we run the risk of overfitting.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_linear_networks_linear_regression_b037",
+            "boundary_only": false,
+            "chapter_id": "d2l_linear_networks",
+            "content_sha256": "53ea1e93b4f92f1672a28f96a78756bd65c08152ccd4e4c28bf268649cb5c45e",
+            "context_id": "ctx_71176d223ed033be9203e626",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "train",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_45a6666b8d9fefc79de65675",
+            "source_text": "Moreover, for many tasks, those difficult-to-optimize models\nturn out to be so much better that figuring out how to train them\nends up being well worth the trouble.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_modern_alexnet_b006",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_modern",
+            "content_sha256": "eb030d3395a0e10e74295dd769afd775faf07eacb4c9ee955ee9f0b5d79dab14",
+            "context_id": "ctx_732118a0817f428f0428816a",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "train",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_dcc3b2b727703dc039a91106",
+            "source_text": "Dump the resulting representations into your favorite classifier, likely a linear model or kernel method, to train a classifier.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_preliminaries_calculus_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_preliminaries",
+            "content_sha256": "9cf7d4416140998265b123495fcb128309f69f826d9e8c65be7076cd2bddd588",
+            "context_id": "ctx_9282f3ace8d089f60898e962",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "train",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_e00c7fd8152534bcee32ef83",
+            "source_text": "In deep learning, we *train* models, updating them successively\nso that they get better and better as they see more and more data.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_deep_learning_computation_parameters_b087",
+            "boundary_only": false,
+            "chapter_id": "d2l_deep_learning_computation",
+            "content_sha256": "7d64fda3ff7395b66e073068b275b138d673668b497abd5c8b38bf4fee31af1a",
+            "context_id": "ctx_929bfbfdad0e6f80c43c25a6",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "train",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_a51a5469520ba2a89ae125d2",
+            "source_text": "Construct an MLP containing a shared parameter layer and train it.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_preface_index_b008",
+            "boundary_only": false,
+            "chapter_id": "d2l_preface",
+            "content_sha256": "21d21d1b47ecfa98bea4e813a9d921179ba2d9a622fcab8adc6ecb2f5a21c8c0",
+            "context_id": "ctx_c59d1952fd176678e6067a09",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "train",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_9d871f3ee125fae56c9892a9",
+            "source_text": "Applying deep learning requires simultaneously understanding\n(i) the motivations for casting a problem in a particular way;\n(ii) the mathematical form of a given model;\n(iii) the optimization algorithms for fitting the models to data;\n(iv) the statistical principles that tell us \nwhen we should expect our models \nto generalize to unseen data\nand practical methods for certifying \nthat they have, in fact, generalized;\nand (v) the engineering techniques\nrequired to train models efficiently,\nnavigating the pitfalls of numerical computing\nand getting the most out of available hardware.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_lenet_b003",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "577ade0b8c35660a506936ced476527308423e582ce21b23840830e3fa7c791b",
+            "context_id": "ctx_d6a61508bc9d44444618bd65",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "train",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_f881a6cbebb415d00759d864",
+            "source_text": "In 1989, LeCun published the first study to successfully\ntrain CNNs via backpropagation.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_introduction_index_b015",
+            "boundary_only": false,
+            "chapter_id": "d2l_introduction",
+            "content_sha256": "10b0dab3ded66849c923eb5907da4ea7ec6708746353cf0f2c73d22cbc99aabe",
+            "context_id": "ctx_ea5790fe6044cd61bc133385",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "train",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_4dc923592f20885f25666f07",
+            "source_text": "In other words,\nwe *train* our model with data.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "5b8f911ed1a3e208cbacc59c83c18cc34a1414da3096d6ff2ab8742411c89ded",
+            "context_id": "ctxx_341e6741173efa8aa1ba0c71",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "train",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: They train every morning for the marathon before sunrise.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_c96d05bef7ec23a43507dc74",
+        "proposed_definition_en": "to fit or optimize a machine learning model using data",
+        "proposed_part_of_speech": "verb",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_d1ca2fd5568e11a79b1b3366",
+        "source_sense_pool_record_sha256": "a37a6ea1d1bf74a821f47a806f6cdf24e2a8b184957741af7ff65366c32d103b",
+        "source_term": "train",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_d1ca2fd5568e11a79b1b3366"
+      },
+      "source_payload_sha256": "b0352188a268bbdb9269648d2c5bff9b20d5955f5db2ec941e1eea45ae9ca89b"
+    },
+    {
+      "review": {
+        "candidate_replacements": [
+          "hàm tan hyperbolic"
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Bằng chứng thực hỗ trợ tanh là hyperbolic tangent có đầu ra trong khoảng gần [-1, 1]. Candidate “hàm hyperbolic tan” giữ trật tự từ tiếng Anh và không tự nhiên trong tiếng Việt; nên thay bằng “hàm tan hyperbolic”.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "REVISION_REQUIRED"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_54bc49106e438062800ed086",
+            "candidate_slot": "candidate_slot_871560c7bce5afc910e4c39c",
+            "candidate_target_vi": "hàm hyperbolic tan"
+          },
+          {
+            "candidate_id": "candidate_a8601465a6792091f4507d71",
+            "candidate_slot": "candidate_slot_a14769efa1f50acf0e9abc1b",
+            "candidate_target_vi": "hàm tang hyperbolic"
+          },
+          {
+            "candidate_id": "candidate_87095e99fb8a906fe709f7a6",
+            "candidate_slot": "candidate_slot_aee840cdaa7920d19d0a8d26",
+            "candidate_target_vi": "hàm tanh"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_multilayer_perceptrons_mlp_b070",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "26a3cad01d285d22aaf6d181f30afe2722e77bfdb1dc099e5412ab5c0ec40a17",
+            "context_id": "ctx_004316e859832b3cfcf7035e",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "tanh function",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_54f1e60ebae3563f83762065",
+            "source_text": "The derivative of tanh function is plotted below.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_mlp_b064",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "da1cecefadb91f86f7965f3851eb9873336a0975195ab082430d41ad53908d74",
+            "context_id": "ctx_72c288a96527180e7730ec3d",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "tanh function",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_d92f384efffcd1507ca7de3e",
+            "source_text": "Note that as the input nears 0, the tanh function approaches a linear transformation.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_mlp_b068",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "2d4bde784ab0b914fb4595722502fad6232d7083cadee3b1e2efe4bb756b5de9",
+            "context_id": "ctx_8bd905bd87e3d1f74a1769c5",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "tanh function",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_9b0ba41212bd8b35664369cb",
+            "source_text": "The derivative of the tanh function is:",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_mlp_b070",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "cb96612e8d29c8d6e6eb965ff1d399b56088ef868bc24b3dd39d7b90f8734a9f",
+            "context_id": "ctx_9f96534b3ab6f71f9412e1e5",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "tanh function",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_3aa539bb7db21db2db34db0b",
+            "source_text": "And as we saw with the sigmoid function,\nas the input moves away from 0 in either direction,\nthe derivative of the tanh function approaches 0.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_mlp_b064",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "8d890d1b0458c81603b9611d4c79b24cca7015ad4bbad6c5b3cd558f7c2c6f77",
+            "context_id": "ctx_a57f35de660fe1e76b9815a6",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "tanh function",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_3239d846633183383808593e",
+            "source_text": "We plot the tanh function below.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_mlp_b064",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "1e8d946f9a61be7b965677d39e335b9cafba211590f161fa29e0bfbd60d09120",
+            "context_id": "ctx_c92778674f8f7766091d01d2",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "tanh function",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_dbb2ebebac3bc09bec4fcc11",
+            "source_text": "Although the shape of the function is similar to that of the sigmoid function, the tanh function exhibits point symmetry about the origin of the coordinate system.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_mlp_b061",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "fdba1349a2109e6e82bbf0900f3970c5f4aa9709c014a093ad0d974c83e41d55",
+            "context_id": "ctx_c985b1faee54cf1ba7064dca",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "tanh function",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_ac1b18d7c8ceb100d8b1bb78",
+            "source_text": "### Tanh Function",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_generative_adversarial_networks_dcgan_b012",
+            "boundary_only": false,
+            "chapter_id": "d2l_generative_adversarial_networks",
+            "content_sha256": "bb08831a1f1735569e9e79f778b5fe671bf1a3fd1ccab35e2b4c875e759174bd",
+            "context_id": "ctx_fd599f0c3c95a18b0f5b16da",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "tanh function",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_965a937363ed3ee419546acb",
+            "source_text": "The `ToTensor` transformation will project the pixel value into $[0, 1]$, while our generator will use the tanh function to obtain outputs in $[-1, 1]$.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "7a9b4e565816868186123ec31b044c1135f6a2ec563f4903c898b0573ff26266",
+            "context_id": "ctxx_b6e39d014543fc56157b513b",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "Tanh Function",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "[Synthetic] The tanh function is nonlinear, unlike the identity function y = x.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_4c05435d109666952ac297e4",
+        "proposed_definition_en": "the hyperbolic tangent function, often used to map values to the range [-1, 1]",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+        "risk_class": "R3_AMBIGUOUS",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_658174b1687c73f5aa1957ab",
+        "source_sense_pool_record_sha256": "9cbe7a53415b8f1f7092860bc8bd3864eb10b47b8094082877a7224b828bc0fb",
+        "source_term": "Tanh Function",
+        "stratum": "ambiguous",
+        "term_id": "d2lce_658174b1687c73f5aa1957ab"
+      },
+      "source_payload_sha256": "e4ae244de392ea4af167b58614d6ff6fb8ce15cf778f14b2fc5021bafb0774d4"
+    },
+    {
+      "review": {
+        "candidate_replacements": [
+          "tầng tích chập chuyển vị",
+          "lớp chập chuyển vị"
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Các ngữ cảnh thực xác nhận đây là layer thực hiện transposed convolution và thường khôi phục kích thước không gian. Candidate số nhiều không khớp term-sense, còn “tích chập đảo” có thể bị hiểu là phép nghịch đảo; nên dùng các phương án chuyển vị chính xác hơn.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "REVISION_REQUIRED"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_359a4b4dd86c49121a816fde",
+            "candidate_slot": "candidate_slot_163c1ebb7f27adad4621643e",
+            "candidate_target_vi": "các lớp tích chập chuyển vị"
+          },
+          {
+            "candidate_id": "candidate_89964d727dadf926accba669",
+            "candidate_slot": "candidate_slot_4c68c048e1c28add49f49edd",
+            "candidate_target_vi": "lớp tích chập chuyển vị"
+          },
+          {
+            "candidate_id": "candidate_86faacf2fd5a8b76c806b607",
+            "candidate_slot": "candidate_slot_dcd96a9472b35b8e7cfbb020",
+            "candidate_target_vi": "lớp tích chập đảo"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_computer_vision_transposed_conv_b041",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "a50cfdb145add616bed617155062c94fa3ad0969081177eacbf4acd14c55d3ca",
+            "context_id": "ctx_0065bebfdcf4a9b6ce79df26",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "transposed convolutional layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_09f187fa9778cf2ef4abac12",
+            "source_text": "* If we feed $\\mathsf{X}$ into a convolutional layer $f$ to output $\\mathsf{Y}=f(\\mathsf{X})$ and create a transposed convolutional layer $g$ with the same hyperparameters as $f$ except for the number of output channels being the number of channels in $\\mathsf{X}$, then $g(Y)$ will have the same shape as $\\mathsf{X}$.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_generative_adversarial_networks_dcgan_b048",
+            "boundary_only": false,
+            "chapter_id": "d2l_generative_adversarial_networks",
+            "content_sha256": "b3ff8e696e55f23fbc6727c6b23227a20a579e291ad4d9e19322c0b42f0e9d68",
+            "context_id": "ctx_6bfa4b829229eac81f6930d5",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "transpose convolution layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_e92b9db645038c40d69db5f3",
+            "source_text": "The hyperparameters of the convolution layer are similar to the transpose convolution layer in the generator block.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_transposed_conv_b027",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "e9d09d28fbdd1f3b1a06c54b8b9003824a6b4ab6781f7633970e5c7a6172706e",
+            "context_id": "ctx_700b11b81ca2e72692a5a10b",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "transposed convolutional layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_6b0df839953815ad0075f10a",
+            "source_text": "As in all, if we feed $\\mathsf{X}$ into a convolutional layer $f$ to output $\\mathsf{Y}=f(\\mathsf{X})$ and create a transposed convolutional layer $g$ with the same hyperparameters as $f$ except \nfor the number of output channels \nbeing the number of channels in $\\mathsf{X}$,\nthen $g(Y)$ will have the same shape as $\\mathsf{X}$.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_fcn_b020",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "a5c310d62ea4236e94eba76b7afb80e6b1b8cc65a2fab865da78440ec321aa5b",
+            "context_id": "ctx_8ce15c1d9039adf76ce88c55",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "transposed convolutional layers",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_b2922bb9c52823f0c42e418b",
+            "source_text": "## [**Initializing Transposed Convolutional Layers**]",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_fcn_b002",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "a1549613e446d6242118963921b8db6002cecf68a8bc0ed5a7db5a8c0e51b922",
+            "context_id": "ctx_8d6f6ef23f8bdcf7a45e53a7",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "transposed convolutional layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_b49062f6b6b6784a4a082dab",
+            "source_text": "Unlike the CNNs that we encountered earlier\nfor image classification \nor object detection,\na fully convolutional network\ntransforms \nthe height and width of intermediate feature maps\nback to those of the input image:\nthis is achieved by\nthe transposed convolutional layer\nintroduced in :numref:`sec_transposed_conv`.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_transposed_conv_b039",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "d3828fe15d898084179320da995296d66674b67a4bb8ddd7d8bfcaad53b6bb63",
+            "context_id": "ctx_9b15a3bec2eb4c48b77389f6",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "transposed convolutional layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_3ef8b3644e75a3eb46bc68a8",
+            "source_text": "Therefore, \nthe transposed convolutional layer\ncan just exchange the forward propagation function\nand the backpropagation function of the convolutional layer:\nits forward propagation \nand backpropagation functions\nmultiply their input vector with \n$\\mathbf{W}^\\top$ and $\\mathbf{W}$, respectively.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_fcn_b017",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "ff6557595c2439ba0038426ed3a96275433849b4d9ee5a8f723ba07d4a525484",
+            "context_id": "ctx_c31c40505234fb275a371e68",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "transposed convolutional layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_a372bf4eb52f0116f6b2ff24",
+            "source_text": "Since $(320-64+16\\times2+32)/32=10$ and $(480-64+16\\times2+32)/32=15$, we construct a transposed convolutional layer with stride of $32$, \nsetting\nthe height and width of the kernel\nto $64$, the padding to $16$.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_transposed_conv_b041",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "6efb692e49b98a188c6e95664a8bf31c4d6ebb47d10f91c1f0a4dbf35232681b",
+            "context_id": "ctx_d91e676cce0a871ea754a783",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "transposed convolutional layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_8fdab7cc74352d5365e7fc4f",
+            "source_text": "The transposed convolutional layer can just exchange the forward propagation function and the backpropagation function of the convolutional layer.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "3e98ea5277cbcb7ea68de4344a157b9c9c0c2afffa4bd0c17a20083d0ad3dfa4",
+            "context_id": "ctxx_bd3b044469ca93d412c30d46",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "transposed convolutional layer",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: The transposed convolutional layer upsamples a feature map so its height and width move back toward the input image size.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_d914ac24cb89296c4b8fa888",
+        "proposed_definition_en": "a neural network layer that performs transposed convolution, often used to increase the spatial size of feature maps",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_b63485c15ac13f80b0d98676",
+        "source_sense_pool_record_sha256": "8c8ce19237fbe3b1683c3041067f057b7932c3a1f3741cecd5c2aef308eddc03",
+        "source_term": "transposed convolutional layer",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_b63485c15ac13f80b0d98676"
+      },
+      "source_payload_sha256": "dbfb5442c101e324947d16d3d29fa370b1800dcf3c63f649d8af10e3de477c34"
+    },
+    {
+      "review": {
+        "candidate_replacements": [
+          "dấu hiệu chủ ý",
+          "tín hiệu định hướng có chủ đích"
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Bằng chứng thực liên hệ volitional cue với query và sự định hướng attention có chủ đích. “các tín hiệu tự nguyện” vừa sai số nhiều vừa không tự nhiên, còn “tín hiệu tự nguyện” dễ gán tính tự nguyện cho vật; nên thay bằng các phương án nêu rõ chủ ý.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "REVISION_REQUIRED"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_4016a32093a8521e09d53515",
+            "candidate_slot": "candidate_slot_8dfae8c852d21e413b0cd879",
+            "candidate_target_vi": "các tín hiệu tự nguyện"
+          },
+          {
+            "candidate_id": "candidate_b76cfb612cc0ead2ff5802fe",
+            "candidate_slot": "candidate_slot_dedf3f9ae011e87fae40afce",
+            "candidate_target_vi": "tín hiệu tự nguyện"
+          },
+          {
+            "candidate_id": "candidate_ee99c1193edcd4cbbbbe7c57",
+            "candidate_slot": "candidate_slot_e0d5000a0d04d80976cbb025",
+            "candidate_target_vi": "tín hiệu chủ ý"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b014",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "0a66f436bd5b1c95f0d496e2940acceffb42d5a4ecfa5a9418e9a4edda8e0552",
+            "context_id": "ctx_0018248a05d490e292afdea5",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "volitional cues",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_b55a324b907b8b68eff4c103",
+            "source_text": "Therefore,\nwhat sets attention mechanisms\napart from those fully-connected layers\nor pooling layers\nis the inclusion of the volitional cues.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b010",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "8b9584025b9eff7a90df1eb368b0aaa33317a9c77fad6819d02071f3e5e33f99",
+            "context_id": "ctx_0196df223b107d63e312df82",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "volitional cue",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_3245613c96a7ef414afcfc67",
+            "source_text": "![Using the volitional cue (want to read a book) that is task-dependent, attention is directed to the book under volitional control.](../img/eye-book.svg)\n:width:`400px`\n:label:`fig_eye-book`",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b028",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "dc7b3d1509d9ae52566b88b5eda0f7a5e064b96863d62ec440eaa11008263534",
+            "context_id": "ctx_187de8cd1e12dd890c442ade",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "volitional cues",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_0e72c50e800305be82fdf302",
+            "source_text": "* Attention mechanisms are different from fully-connected layers or pooling layers due to inclusion of the volitional cues.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b009",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "d6a1200258bcb65fed7a261f96ed273e21d6e5254cd2063468532b3387803fa8",
+            "context_id": "ctx_31ee4f7a5863ed678a04e350",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "volitional cue",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_5bd2889bd08ca883a7a68773",
+            "source_text": "Using the volitional cue based on variable selection criteria,\nthis form of attention is more deliberate.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b015",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "a271eab92195cab05498787c0ae5102830efc8c3e485b8c21ef7d36edbdeb983",
+            "context_id": "ctx_495329d7ea08710cf266062c",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "volitional cues",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_51f0ad7dd12913eb59a39972",
+            "source_text": "![Attention mechanisms bias selection over values (sensory inputs) via attention pooling, which incorporates queries (volitional cues) and keys (nonvolitional cues).](../img/qkv.svg)\n:label:`fig_qkv`",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b014",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "50bb6186751528e70bb467c5ec3ef6bbc62a8b3aa4f24d3afdf02ed8fcb78a1d",
+            "context_id": "ctx_61e1112cbf2424e69a7a2487",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "volitional cue",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_148cff5fea05df5b2c3e4f97",
+            "source_text": "As shown in :numref:`fig_qkv`,\nwe can design attention pooling\nso that the given query (volitional cue) can interact with keys (nonvolitional cues),\nwhich guides bias selection over values (sensory inputs).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b014",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "43e0428aa804e6ab7a1f52479b059bccf288d16067d75c1afedb0a7b4254b724",
+            "context_id": "ctx_6733f9355787febdfa53f095",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "volitional cues",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_9b2c8da1beddf86c378cd4df",
+            "source_text": "In the context of attention mechanisms,\nwe refer to volitional cues as *queries*.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_attention_cues_b006",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "0072d5bd1f7ff0f0f712ddb9581c50af35abc6cc24183c58325346e48ba42a69",
+            "context_id": "ctx_6e5eabbf33032ac2428b591c",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "volitional cue",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_bb624538ad20c0f788c924c6",
+            "source_text": "In this framework,\nsubjects selectively direct the spotlight of attention\nusing both the *nonvolitional cue* and *volitional cue*.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "65ac30c9ebd64634e260fbb9c2276e1eba17949a142ee0aacc23c4f2b1f2396d",
+            "context_id": "ctxx_9e314f27a0624fba37123793",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "volitional cue",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: A sudden flash acts as a cue, but not a volitional cue, because it captures attention involuntarily.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_4cc20a99c39155b8f764a2dc",
+        "proposed_definition_en": "a task-dependent cue that deliberately directs attention; in attention mechanisms, it corresponds to a query.",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_ad03ff147d19eb2ea47d5b0e",
+        "source_sense_pool_record_sha256": "11e5d8144963d6ef1f2fdfc9506398cd04a6a8ce9baa0efebad1e1a4f1d65f4b",
+        "source_term": "volitional cue",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_ad03ff147d19eb2ea47d5b0e"
+      },
+      "source_payload_sha256": "a48ad48ed2a3cef3f7ac7aeb073e4b0821a3f7722460f62e6facbed4f2788d93"
+    }
+  ],
+  "independence_requirement": "DO_NOT_VIEW_OTHER_REVIEWER_OUTPUTS",
+  "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_REVIEW_FIELDS_FILLED",
+  "reviewer_slot": "reviewer_1",
+  "schema_id": "D2LFastTrackStageAReviewerInputV1",
+  "schema_version": "1.0.0",
+  "source_input_sha256": "d569947796a70ae2fcdd24dbe871a0617df1a4d0137455f02c273ddfdd3184a0"
+}

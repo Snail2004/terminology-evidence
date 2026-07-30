@@ -1,0 +1,3 @@
+# Reviewer 3 targeted evidence repair
+
+Review only the eight listed cases and fill only each `repair` object. If every listed source context remains valid evidence and the contexts only need to be partitioned between split senses, set `evidence_decision` to `ACCEPT` and keep `invalid_evidence_context_ids` empty. If one or more contexts are not valid evidence for any resulting sense, keep `REVISE` and list every invalid source-bound context ID. Use `UNJUDGEABLE` only when the evidence cannot support either conclusion, with an empty ID list. Do not change any other field. Return only `reviewer_3_repair_input.json`.

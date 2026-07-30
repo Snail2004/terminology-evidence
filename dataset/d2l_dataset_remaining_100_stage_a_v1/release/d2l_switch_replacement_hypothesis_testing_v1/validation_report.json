@@ -1,0 +1,18 @@
+{
+  "candidate_count": 3,
+  "context_count": 7,
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "cfe062a26b6cc942f70e304f47988ef0c3263f879b7fc9da67560faab6a7730e"
+  },
+  "nonduplicate_against_current_150": true,
+  "policy_id": "d2l-switch-replacement-stage-a-v1.0",
+  "primary_context_count": 5,
+  "provider_call_count": 0,
+  "reviewer_pack_count": 2,
+  "schema_id": "D2LSwitchReplacementValidationReportV1",
+  "schema_version": "1.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "REPLACEMENT_SELECTED_PENDING_TWO_INDEPENDENT_REVIEWS_ZERO_PROVIDER",
+  "synthetic_context_count": 0
+}

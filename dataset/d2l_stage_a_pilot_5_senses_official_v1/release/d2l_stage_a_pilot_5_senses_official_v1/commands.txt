@@ -1,0 +1,3 @@
+python -B tools/build_official_pilot.py --output-root <OUTPUT_ROOT> --created-at 2026-07-29T08:00:00Z
+python -B tools/validate_official_pilot.py --artifact-root <OUTPUT_ROOT> --contracts-root <REPO>/terminology_contracts_v1 --zip-path <HANDOFF_ZIP>
+python -m unittest discover -s tests -p test_official_pilot.py

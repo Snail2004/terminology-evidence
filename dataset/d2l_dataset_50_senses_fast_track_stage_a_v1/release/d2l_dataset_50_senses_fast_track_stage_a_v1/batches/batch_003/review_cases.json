@@ -1,0 +1,877 @@
+[
+  {
+    "candidates": [
+      {
+        "candidate_id": "candidate_0cbbc51c9450e818bef20d57",
+        "candidate_slot": "candidate_slot_73a78a5254f11ee20e1aca50",
+        "candidate_target_vi": "biến đổi khái niệm"
+      },
+      {
+        "candidate_id": "candidate_e71570827e365e4851182d53",
+        "candidate_slot": "candidate_slot_99b3d12869b52f7f472950d0",
+        "candidate_target_vi": "dịch chuyển khái niệm"
+      },
+      {
+        "candidate_id": "candidate_c57cd6b07ade608e711afb18",
+        "candidate_slot": "candidate_slot_dbff78dc9bcccce5a64074de",
+        "candidate_target_vi": "sự thay đổi khái niệm"
+      }
+    ],
+    "evidence_contexts": [
+      {
+        "block_id": "d2l_multilayer_perceptrons_environment_b019",
+        "boundary_only": false,
+        "chapter_id": "d2l_multilayer_perceptrons",
+        "content_sha256": "2da87f55f8123829fbbb2f6422a83f1beeb3a777b3891227773ae5e2b9e97795",
+        "context_id": "ctx_30ad642fb487987fba85babd",
+        "evidence_roles": [
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "concept shift",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_94584880575266a9a76c0b7c",
+        "source_text": "### Concept Shift",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_multilayer_perceptrons_environment_b024",
+        "boundary_only": false,
+        "chapter_id": "d2l_multilayer_perceptrons",
+        "content_sha256": "f50cd877cdd634e57dcde50cb8c2104b21467f2e942a8c4f34f9b40bbe672a3b",
+        "context_id": "ctx_4422b292ae2706ac3853e015",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "concept shift",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_1f5ef97ddbe81ec4ed337cb4",
+        "source_text": "Before delving into formalism and algorithms,\nwe can discuss some concrete situations\nwhere covariate or concept shift might not be obvious.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_multilayer_perceptrons_environment_b038",
+        "boundary_only": false,
+        "chapter_id": "d2l_multilayer_perceptrons",
+        "content_sha256": "c714c62df83d59866683a8aa708c1dd88aed20aea9a29c4d085147a651bbf391",
+        "context_id": "ctx_65ee0c7626e807bcbfcdf1cf",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "concept shift",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_103684b7ceaa2aa00a2869a1",
+        "source_text": "In some cases, we get lucky and the models work\ndespite covariate, label, or concept shift.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_multilayer_perceptrons_environment_b074",
+        "boundary_only": false,
+        "chapter_id": "d2l_multilayer_perceptrons",
+        "content_sha256": "c3bef712e18437b8c2337c4a7d6a14bd390d7bc0729578d9359657088e14e930",
+        "context_id": "ctx_661ce5b03c03edebdfde8f55",
+        "evidence_roles": [
+          "BACKUP",
+          "POSITIVE_POS_PROPOSAL"
+        ],
+        "matched_surface": "concept shift",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_e49dfea4ab00e2cbc6d6c7ce",
+        "source_text": "### Concept Shift Correction",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_multilayer_perceptrons_environment_b020",
+        "boundary_only": false,
+        "chapter_id": "d2l_multilayer_perceptrons",
+        "content_sha256": "dbc55189f23907c2b353a3cf06adabd4a2c23bdac8307680f1285e6e3b024d5d",
+        "context_id": "ctx_877769c7d10adbd8a43011a6",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "concept shift",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_ee865343b985a0ad58e8a315",
+        "source_text": "We may also encounter the related problem of *concept shift*,\nwhich arises when the very definitions of labels can change.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_multilayer_perceptrons_environment_b020",
+        "boundary_only": false,
+        "chapter_id": "d2l_multilayer_perceptrons",
+        "content_sha256": "9031bb04eeb0a5b250d68cc6b1e651dabaec9d070d9de75d2cb9c942417d4384",
+        "context_id": "ctx_a28b330881ada6423af8128e",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "concept shift",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_2c2cb1c93fbb01b360da0fe3",
+        "source_text": "It turns out that if we navigate around the United States,\nshifting the source of our data by geography,\nwe will find considerable concept shift regarding\nthe distribution of names for *soft drinks*\nas shown in :numref:`fig_popvssoda`.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_multilayer_perceptrons_environment_b020",
+        "boundary_only": false,
+        "chapter_id": "d2l_multilayer_perceptrons",
+        "content_sha256": "19f6050eb22fe8829c1416da7fa8622d30432c71848f831e9311ea40663c9a4f",
+        "context_id": "ctx_a37d035d836b9e4a6c867c99",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "concept shift",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_98ec65e474e660b9c4a13b13",
+        "source_text": "Diagnostic criteria for mental illness,\nwhat passes for fashionable, and job titles,\nare all subject to considerable\namounts of concept shift.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_multilayer_perceptrons_environment_b021",
+        "boundary_only": false,
+        "chapter_id": "d2l_multilayer_perceptrons",
+        "content_sha256": "c539aeca1558100339e364891081bb9a63b7c2463131e8c0261a979e975b0900",
+        "context_id": "ctx_dcc02d9a71dc0b1466d0d8f2",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "concept shift",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_6cbe928043a7495480bdfd4b",
+        "source_text": "![Concept shift on soft drink names in the United States.](../img/popvssoda.png)\n:width:`400px`\n:label:`fig_popvssoda`",
+        "synthetic": false
+      },
+      {
+        "block_id": null,
+        "boundary_only": true,
+        "chapter_id": null,
+        "content_sha256": "0649d865eb49e42ef904d0debe3365778ca96d6227bb0debce37957d1192733e",
+        "context_id": "ctxx_f0910b6ff0468e52839a49e3",
+        "evidence_roles": [
+          "BOUNDARY_PROPOSAL"
+        ],
+        "matched_surface": "Concept Shift",
+        "positive_evidence_eligible": false,
+        "sentence_id": null,
+        "source_text": "Synthetic: A concept shift happens when the meaning of the target label changes, not merely when input features become more common or rare.",
+        "synthetic": true
+      }
+    ],
+    "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+    "pool_record_id": "pool_84a93f5995554cc089bb1ab9",
+    "proposed_definition_en": "a change in what labels or categories mean, so the definition of the prediction target shifts",
+    "proposed_part_of_speech": "noun_phrase",
+    "proposed_scope": "d2l_selected_campaign_scope_v1",
+    "provider_call_count": 0,
+    "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+    "risk_class": "R3_AMBIGUOUS",
+    "schema_id": "D2LFastTrackStageAReviewSourceV1",
+    "sense_id": "d2lce_6239b2ef1cec1800e3d6f13f",
+    "source_sense_pool_record_sha256": "7f7c135e268c5549d0d49ebd5deedaa5c2bfe82c953d4a44b71f5524dfc05dc5",
+    "source_term": "Concept Shift",
+    "stratum": "ambiguous",
+    "term_id": "d2lce_6239b2ef1cec1800e3d6f13f"
+  },
+  {
+    "candidates": [
+      {
+        "candidate_id": "candidate_0a9e9996fb0dbf97ca4f06d8",
+        "candidate_slot": "candidate_slot_0423979062c0bbd395e5078f",
+        "candidate_target_vi": "các lớp tích chập"
+      },
+      {
+        "candidate_id": "candidate_362164e231a5e76536f38828",
+        "candidate_slot": "candidate_slot_2da88c977153e24738101565",
+        "candidate_target_vi": "lớp chập"
+      },
+      {
+        "candidate_id": "candidate_f301079302ca4f4fe6c4719d",
+        "candidate_slot": "candidate_slot_e585989059b6cc38f7b115b0",
+        "candidate_target_vi": "lớp tích chập"
+      }
+    ],
+    "evidence_contexts": [
+      {
+        "block_id": "d2l_recommender_systems_seqrec_b008",
+        "boundary_only": false,
+        "chapter_id": "d2l_recommender_systems",
+        "content_sha256": "c6d92f5d0781b40ed5c0d6b4f3c0346fac01202edd074100997fd274d50d2ca5",
+        "context_id": "ctx_122d659e4bf66f4b335db6fb",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "convolutional layer",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_0f800d52d6106c2f94eb8cb8",
+        "source_text": "The horizontal convolutional layer has $d$ horizontal filters $\\mathbf{F}^j \\in \\mathbb{R}^{h \\times k}, 1 \\leq j \\leq d, h = \\{1, ..., L\\}$, and the vertical convolutional layer has $d'$ vertical filters $\\mathbf{G}^j \\in \\mathbb{R}^{ L \\times 1}, 1 \\leq j \\leq d'$.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_convolutional_neural_networks_index_b005",
+        "boundary_only": false,
+        "chapter_id": "d2l_convolutional_neural_networks",
+        "content_sha256": "797545d4829d49809c4ef85ee3d9c7449e00ed9ce8b949f0b99dbcb71e1abd60",
+        "context_id": "ctx_1c4e159780d719c00ce3022e",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "convolutional layers",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_27f3e0ec9d14cbd6108f4db0",
+        "source_text": "These include the convolutional layers themselves,\nnitty-gritty details including padding and stride,\nthe pooling layers used to aggregate information\nacross adjacent spatial regions,\nthe use of multiple channels  at each layer,\nand a careful discussion of the structure of modern architectures.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_attention_mechanisms_self_attention_and_positional_encoding_b018",
+        "boundary_only": false,
+        "chapter_id": "d2l_attention_mechanisms",
+        "content_sha256": "6bf3a32fa94a0d1f32560fadef365e9b2a4e60739e004e848bd865405eacbab8",
+        "context_id": "ctx_3a787d4bd1c1d0430072fda6",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "convolutional layer",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_aec5f1a0b7ef3071c4be97a2",
+        "source_text": "Consider a convolutional layer whose kernel size is $k$.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_convolutional_modern_alexnet_b020",
+        "boundary_only": false,
+        "chapter_id": "d2l_convolutional_modern",
+        "content_sha256": "d75f137807d57af1d66272ea7efa976ccd30e6d17c0f00274559b550760c64a4",
+        "context_id": "ctx_3a83fa91846a046a5913f179",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "convolutional layers",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_91f0f881de565f72844a6999",
+        "source_text": "Fortunately, this math is strikingly similar\nto that required to calculate convolutional layers.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_convolutional_neural_networks_why_conv_b024",
+        "boundary_only": false,
+        "chapter_id": "d2l_convolutional_neural_networks",
+        "content_sha256": "425091ac8da030e1e38c61fc33d5a4314cdebb173766bc7b99e31f8b64411170",
+        "context_id": "ctx_5e631862394a07c36c8b145d",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "convolutional layer",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_3ea7ec123b513408061e30d8",
+        "source_text": "Note that :eqref:`eq_conv-layer`, in a nutshell, is a *convolutional layer*.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_natural_language_processing_applications_sentiment_analysis_cnn_b031",
+        "boundary_only": false,
+        "chapter_id": "d2l_natural_language_processing_applications",
+        "content_sha256": "e5ede9cf06b6a38f4365efed63d333b6769316f2d34b15c440c592669c56aa15",
+        "context_id": "ctx_63c1cf674ecc0c73541e5bad",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "convolutional layers",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_7b2062a18d06ab49c316b8bd",
+        "source_text": "Compared with the bidirectional RNN model in\n:numref:`sec_sentiment_rnn`,\nbesides\nreplacing recurrent layers with convolutional layers,\nwe also use two embedding layers:\none with trainable weights and the other \nwith fixed weights.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_generative_adversarial_networks_dcgan_b021",
+        "boundary_only": false,
+        "chapter_id": "d2l_generative_adversarial_networks",
+        "content_sha256": "2d9373d2d77aba3cf786ae5f8d30c89b4fa52f4567a37494834bdea7d577250d",
+        "context_id": "ctx_807d458f1292afa6921eb40d",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "convolution layer",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_7ae324ae77fc5723203d7a82",
+        "source_text": "The basic block of the generator contains a transposed convolution layer followed by the batch normalization and ReLU activation.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_computer_vision_image_augmentation_b020",
+        "boundary_only": false,
+        "chapter_id": "d2l_computer_vision",
+        "content_sha256": "2323f76c26e50c0e4c5b31551a3841ab4f5d45e071adec1869dcd0a633ae1610",
+        "context_id": "ctx_bf6f31236287c027cde6c33f",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "convolutional layer",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_4653b3c6257b67742ac39817",
+        "source_text": "In :numref:`sec_pooling`, we explained that the pooling layer can reduce the sensitivity of a convolutional layer to the target position.",
+        "synthetic": false
+      },
+      {
+        "block_id": null,
+        "boundary_only": true,
+        "chapter_id": null,
+        "content_sha256": "8f8062cee14e94096d334d3ae75a51a443a8de6ed817424469b4c8873ce8594a",
+        "context_id": "ctxx_d055f040c0bff77d97b93e9f",
+        "evidence_roles": [
+          "BOUNDARY_PROPOSAL"
+        ],
+        "matched_surface": "convolutional layer",
+        "positive_evidence_eligible": false,
+        "sentence_id": null,
+        "source_text": "Synthetic: This convolutional layer of rock was formed over millions of years.",
+        "synthetic": true
+      }
+    ],
+    "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+    "pool_record_id": "pool_184942d54777ee4a53014a6e",
+    "proposed_definition_en": "a neural network layer that applies convolution filters to its input",
+    "proposed_part_of_speech": "noun_phrase",
+    "proposed_scope": "d2l_selected_campaign_scope_v1",
+    "provider_call_count": 0,
+    "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+    "risk_class": "R4_SPLIT_OR_POS_RISK",
+    "schema_id": "D2LFastTrackStageAReviewSourceV1",
+    "sense_id": "d2lce_d2bfc7b3a0a02ddfd71b3526",
+    "source_sense_pool_record_sha256": "21ef272a110d50176e512272b6e76390b942e12c7f03cb9070a90df22850ade3",
+    "source_term": "convolutional layer",
+    "stratum": "collision_or_multi_target",
+    "term_id": "d2lce_d2bfc7b3a0a02ddfd71b3526"
+  },
+  {
+    "candidates": [
+      {
+        "candidate_id": "candidate_cc4d5bdcb58f5e53f2c1fbdc",
+        "candidate_slot": "candidate_slot_1d30f693675ba1ea9d5505cb",
+        "candidate_target_vi": "mô hình Caser"
+      },
+      {
+        "candidate_id": "candidate_0eaf7d366df95c85530ee565",
+        "candidate_slot": "candidate_slot_9293405d4e9184f04eb8dc4e",
+        "candidate_target_vi": "Caser"
+      },
+      {
+        "candidate_id": "candidate_720818fad69c30d720be7ca7",
+        "candidate_slot": "candidate_slot_c356bec00ef23b676393d827",
+        "candidate_target_vi": "mô hình khuyến nghị nhúng chuỗi tích chập"
+      }
+    ],
+    "evidence_contexts": [
+      {
+        "block_id": "d2l_recommender_systems_seqrec_b017",
+        "boundary_only": false,
+        "chapter_id": "d2l_recommender_systems",
+        "content_sha256": "4c8124024270c7dfedf48aa55166740d49df99da9d4f69febf44f5b0d8d3ba24",
+        "context_id": "ctx_26a6365155d601f3009c3236",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "caser",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_83121b0683367ef9a6f6ae98",
+        "source_text": "![Illustration of the Caser Model](../img/rec-caser.svg)",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_recommender_systems_seqrec_b016",
+        "boundary_only": false,
+        "chapter_id": "d2l_recommender_systems",
+        "content_sha256": "8a49400dbf82bc6bd7c344a8d614847eb36f0ffb3e69cc62c2494b9bd446a22f",
+        "context_id": "ctx_27b2e4936143566a8ca5e421",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "caser",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_a0972456818b2b9f0adb09ec",
+        "source_text": "The architecture of Caser is shown below:",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_recommender_systems_seqrec_b020",
+        "boundary_only": false,
+        "chapter_id": "d2l_recommender_systems",
+        "content_sha256": "e61731440f89e4123138286751b14b1b23b78a700964ec48330b756dcacf2c7a",
+        "context_id": "ctx_89f8785f0d47f0a72eb28a8d",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "caser",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_ff6999abe1481494f88a8061",
+        "source_text": "## Model Implementation\nThe following code implements the Caser model.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_recommender_systems_seqrec_b005",
+        "boundary_only": false,
+        "chapter_id": "d2l_recommender_systems",
+        "content_sha256": "61cef2ad8b392cc69045d11760b0ed13e94bf53e7fbd68dc6013046ca32c7bd2",
+        "context_id": "ctx_a07c31185d557a9cba947172",
+        "evidence_roles": [
+          "BACKUP",
+          "POSITIVE_DEFINITION_PROPOSAL"
+        ],
+        "matched_surface": "caser",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_2782fb7a8705fe01395419b5",
+        "source_text": "The goal of Caser is to recommend item by considering user general tastes as well as short-term intention.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_recommender_systems_seqrec_b021",
+        "boundary_only": false,
+        "chapter_id": "d2l_recommender_systems",
+        "content_sha256": "03e5d55b50f33dc2759d510e8c9ff747a4be7b2aac9275ca5eb4d740ce1cae09",
+        "context_id": "ctx_b400985b05d02328a55f0c52",
+        "evidence_roles": [
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "caser",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_d6c3cc690e394aff5da8633b",
+        "source_text": "```{.python .input  n=4}\nclass Caser(nn.Block):\n    def __init__(self, num_factors, num_users, num_items, L=5, d=16,\n                 d_prime=4, drop_ratio=0.05, **kwargs):\n        super(Caser, self).__init__(**kwargs)\n        self.P = nn.Embedding(num_users, num_factors)\n        self.Q = nn.Embedding(num_items, num_factors)\n        self.d_prime, self.d = d_prime, d\n        # Vertical convolution layer\n        self.conv_v = nn.Conv2D(d_prime, (L, 1), in_channels=1)\n        # Horizontal convolution layer\n        h = [i + 1 for i in range(L)]\n        self.conv_h, self.max_pool = nn.Sequential(), nn.Sequential()\n        for i in h:\n            self.conv_h.add(nn.Conv2D(d, (i, num_factors), in_channels=1))\n            self.max_pool.add(nn.MaxPool1D(L - i + 1))\n        # Fully-connected layer\n        self.fc1_dim_v, self.fc1_dim_h = d_prime * num_factors, d * len(h)\n        self.fc = nn.Dense(in_units=d_prime * num_factors + d * L,\n                           activation='relu', units=num_factors)\n        self.Q_prime = nn.Embedding(num_items, num_factors * 2)\n        self.b = nn.Embedding(num_items, 1)\n        self.dropout = nn.Dropout(drop_ratio)\n\n    def forward(self, user_id, seq, item_id):\n        item_embs = np.expand_dims(self.Q(seq), 1)\n        user_emb = self.P(user_id)\n        out, out_h, out_v, out_hs = None, None, None, []\n        if self.d_prime:\n            out_v = self.conv_v(item_embs)\n            out_v = out_v.reshape(out_v.shape[0], self.fc1_dim_v)\n        if self.d:\n            for conv, maxp in zip(self.conv_h, self.max_pool):\n                conv_out = np.squeeze(npx.relu(conv(item_embs)), axis=3)\n                t = maxp(conv_out)\n                pool_out = np.squeeze(t, axis=2)\n                out_hs.append(pool_out)\n            out_h = np.concatenate(out_hs, axis=1)\n        out = np.concatenate([out_v, out_h], axis=1)\n        z = self.fc(self.dropout(out))\n        x = np.concatenate([z, user_emb], axis=1)\n        q_prime_i = np.squeeze(self.Q_prime(item_id))\n        b = np.squeeze(self.b(item_id))\n        res = (x * q_prime_i).sum(1) + b\n        return res\n```",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_recommender_systems_seqrec_b003",
+        "boundary_only": false,
+        "chapter_id": "d2l_recommender_systems",
+        "content_sha256": "fd78fac28fb3d1c8ba9f312905ce9903a0f28f92046c7a01abd102c3340a4999",
+        "context_id": "ctx_c48fb3f822f811ccbb8750b6",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "caser",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_c26e9a92679c70ae156ff685",
+        "source_text": "The model we will introduce, Caser :cite:`Tang.Wang.2018`, short for convolutional sequence embedding recommendation model, adopts convolutional neural networks capture the dynamic pattern influences of users' recent activities.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_recommender_systems_seqrec_b003",
+        "boundary_only": false,
+        "chapter_id": "d2l_recommender_systems",
+        "content_sha256": "8b62e12453d9654faf3a86272ae6769d458e560bf152950d08f12280d540c1e1",
+        "context_id": "ctx_efedd61e884ed0fdc81eff25",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "caser",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_cc4e0ff54c598e39504930cb",
+        "source_text": "The main component of Caser consists of a horizontal convolutional network and a vertical convolutional network, aiming to uncover the union-level and point-level sequence patterns, respectively.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_recommender_systems_seqrec_b030",
+        "boundary_only": false,
+        "chapter_id": "d2l_recommender_systems",
+        "content_sha256": "1ed16af86383a1f20e90aab5979f0d04147ebba0948a579e1b72669d031e4345",
+        "context_id": "ctx_f3d1cfd65cb60c18b67864a5",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "caser",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_65b6653cbfccefea9ccdce40",
+        "source_text": "```{.python .input  n=7}\ndevices = d2l.try_all_gpus()\nnet = Caser(10, num_users, num_items, L)\nnet.initialize(ctx=devices, force_reinit=True, init=mx.init.Normal(0.01))\nlr, num_epochs, wd, optimizer = 0.04, 8, 1e-5, 'adam'\nloss = d2l.BPRLoss()\ntrainer = gluon.Trainer(net.collect_params(), optimizer,\n                        {\"learning_rate\": lr, 'wd': wd})\n\nd2l.train_ranking(net, train_iter, test_iter, loss, trainer, test_seq_iter,\n                  num_users, num_items, num_epochs, devices,\n                  d2l.evaluate_ranking, candidates, eval_step=1)\n```",
+        "synthetic": false
+      },
+      {
+        "block_id": null,
+        "boundary_only": true,
+        "chapter_id": null,
+        "content_sha256": "62ba0c13e0f8e8b2fa093a74fd83d53802f1a2e733c9bd61845ed7988da040f1",
+        "context_id": "ctxx_bf63c5eaf66d6b7ef991742c",
+        "evidence_roles": [
+          "BOUNDARY_PROPOSAL"
+        ],
+        "matched_surface": "Caser",
+        "positive_evidence_eligible": false,
+        "sentence_id": null,
+        "source_text": "[Synthetic] Everyone in the lab called him Caser because he always carried old cassette cases.",
+        "synthetic": true
+      }
+    ],
+    "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+    "pool_record_id": "pool_9d6e54c137123ac46c9d5409",
+    "proposed_definition_en": "A convolution-based sequential recommendation model that captures recent activity patterns and user preferences.",
+    "proposed_part_of_speech": "proper_noun",
+    "proposed_scope": "d2l_selected_campaign_scope_v1",
+    "provider_call_count": 0,
+    "review_requirement": "SOURCE_GROUND_PLUS_BLIND_AUDIT",
+    "risk_class": "R0_CLEAR",
+    "schema_id": "D2LFastTrackStageAReviewSourceV1",
+    "sense_id": "d2lce_52085fef12f840d2350b2049",
+    "source_sense_pool_record_sha256": "c11552e27675835d0375b87dc66ee061ca8c30e3ccb8a38d479ddf8007c9371d",
+    "source_term": "Caser",
+    "stratum": "clear",
+    "term_id": "d2lce_52085fef12f840d2350b2049"
+  },
+  {
+    "candidates": [
+      {
+        "candidate_id": "candidate_4211a8d499b346ed01b54d27",
+        "candidate_slot": "candidate_slot_1f538166307961ec71918e08",
+        "candidate_target_vi": "mô hình túi từ liên tục"
+      },
+      {
+        "candidate_id": "candidate_8b4dcb337fd27f8ba1ded160",
+        "candidate_slot": "candidate_slot_63ab8a5e5459d1a2444f0f29",
+        "candidate_target_vi": "túi từ liên tục"
+      },
+      {
+        "candidate_id": "candidate_8be7dba3743106738f1353c0",
+        "candidate_slot": "candidate_slot_9b4cb3affc1c9063b940eab9",
+        "candidate_target_vi": "các mô hình túi từ liên tục"
+      }
+    ],
+    "evidence_contexts": [
+      {
+        "block_id": "d2l_natural_language_processing_pretraining_word2vec_b009",
+        "boundary_only": false,
+        "chapter_id": "d2l_natural_language_processing_pretraining",
+        "content_sha256": "883a811d1ffb43117ba3a3e6b7d98d0f63e8fd56c6a41488c79947c73309c315",
+        "context_id": "ctx_27620623f1cb8074d3971cbc",
+        "evidence_roles": [
+          "BACKUP",
+          "POSITIVE_POS_PROPOSAL"
+        ],
+        "matched_surface": "continuous bag of words",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_aba5d702078aed2aa34748dd",
+        "source_text": "The word2vec tool contains two models, namely *skip-gram* :cite:`Mikolov.Sutskever.Chen.ea.2013`  and *continuous bag of words* (CBOW) :cite:`Mikolov.Chen.Corrado.ea.2013`.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_natural_language_processing_pretraining_word2vec_b032",
+        "boundary_only": false,
+        "chapter_id": "d2l_natural_language_processing_pretraining",
+        "content_sha256": "663bbb2ae916c03cff8c654c5a63a15340ba7a1e62b0bba5d19bfa32de69f17b",
+        "context_id": "ctx_3e4d253c9ff11b6a3080d990",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "continuous bag of words",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_33191bdfdb87b3833c84d23d",
+        "source_text": "For example,\nin the same text sequence \"the\", \"man\", \"loves\", \"his\", and \"son\", with \"loves\" as the center word and the context window size being 2,\nthe continuous bag of words model\nconsiders\nthe conditional probability of generating the center word \"loves\" based on the context words \"the\", \"man\", \"his\" and \"son\" (as shown in :numref:`fig_cbow`), which is",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_natural_language_processing_pretraining_word2vec_b035",
+        "boundary_only": false,
+        "chapter_id": "d2l_natural_language_processing_pretraining",
+        "content_sha256": "f57c87a721200739f29210ce52ba09d4eba123c42b3522057642be23af46903d",
+        "context_id": "ctx_500e392a6212984ed97679b6",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "continuous bag of words",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_18d32bd5e9e5e76b2e7a59e4",
+        "source_text": "Since there are multiple context words\nin the continuous bag of words model,\nthese context word vectors are averaged\nin the calculation of the conditional probability.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_natural_language_processing_pretraining_word2vec_b032",
+        "boundary_only": false,
+        "chapter_id": "d2l_natural_language_processing_pretraining",
+        "content_sha256": "d520a84526c732a100d01121a20c9691e75b37a22fc9bc41ea4828d46b2e0aa3",
+        "context_id": "ctx_7592d6eb1986a0c2bd965c36",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "continuous bag of words",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_d817077031ebd0ab4c570d0a",
+        "source_text": "The major difference\nfrom the skip-gram model is that\nthe continuous bag of words model\nassumes that a center word is generated\nbased on its surrounding context words in the text sequence.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_natural_language_processing_pretraining_word2vec_b009",
+        "boundary_only": false,
+        "chapter_id": "d2l_natural_language_processing_pretraining",
+        "content_sha256": "02351ac6beccf6972aba3fd938662b5ac96f62c6051c924657781c068418345d",
+        "context_id": "ctx_8ae5ddde35de799cd4b51696",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "continuous bag of words",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_120717dab0f18c821c479676",
+        "source_text": "Since supervision comes from the data without labels,\nboth skip-gram and continuous bag of words\nare self-supervised models.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_natural_language_processing_pretraining_word2vec_b032",
+        "boundary_only": false,
+        "chapter_id": "d2l_natural_language_processing_pretraining",
+        "content_sha256": "905940cbe5460a9cce711ab6ee4775d282f5302fd6accd53afab4129ffb15ebe",
+        "context_id": "ctx_9539bbe8c2ac486d267b808a",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "continuous bag of words",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_8cf77efb03581702fc05aa42",
+        "source_text": "The *continuous bag of words* (CBOW) model is similar to the skip-gram model.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_natural_language_processing_pretraining_word2vec_b034",
+        "boundary_only": false,
+        "chapter_id": "d2l_natural_language_processing_pretraining",
+        "content_sha256": "60daca1fa6009d7c700e4337ae13c4d8035fdf0b0bdad8361b4599b3fc610a22",
+        "context_id": "ctx_ba4bc22bf919f20441dc05b2",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "continuous bag of words",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_33f4778e37d3d9c131a2b938",
+        "source_text": "![The continuous bag of words model considers the conditional probability of generating the center word given its surrounding context words.](../img/cbow.svg)\n:eqlabel:`fig_cbow`",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_natural_language_processing_pretraining_word2vec_b031",
+        "boundary_only": false,
+        "chapter_id": "d2l_natural_language_processing_pretraining",
+        "content_sha256": "becf83192bab1efe28f2abf9c0eda3341e71075556582fe00a98dd31948f5474",
+        "context_id": "ctx_c5722940f2ea3be48a188764",
+        "evidence_roles": [
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "continuous bag of words",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_04b44f341b9230a5d03290b7",
+        "source_text": "## The Continuous Bag of Words (CBOW) Model",
+        "synthetic": false
+      },
+      {
+        "block_id": null,
+        "boundary_only": true,
+        "chapter_id": null,
+        "content_sha256": "cc13a8dfb2d91f369518cb5a636e69668154fc8143d2dc57c1bc0a8b8f8b5eac",
+        "context_id": "ctxx_48fcd5c971dd15c9961d3824",
+        "evidence_roles": [
+          "BOUNDARY_PROPOSAL"
+        ],
+        "matched_surface": "continuous bag of words",
+        "positive_evidence_eligible": false,
+        "sentence_id": null,
+        "source_text": "Synthetic: The phrase continuous bag of words here refers to a named prediction model, not just any continuously updated bag of vocabulary items.",
+        "synthetic": true
+      }
+    ],
+    "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+    "pool_record_id": "pool_4a93a2968c22fc316a218f56",
+    "proposed_definition_en": "a word2vec model that predicts a center word from its surrounding context words",
+    "proposed_part_of_speech": "noun_phrase",
+    "proposed_scope": "d2l_selected_campaign_scope_v1",
+    "provider_call_count": 0,
+    "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+    "risk_class": "R3_AMBIGUOUS",
+    "schema_id": "D2LFastTrackStageAReviewSourceV1",
+    "sense_id": "d2lce_dc193feb1eeef3a1349d9b74",
+    "source_sense_pool_record_sha256": "67fe5634a9f60801ef0affe14dde4059bcd1aca19515cabc2a7c49d1a73f937d",
+    "source_term": "continuous bag of words",
+    "stratum": "ambiguous",
+    "term_id": "d2lce_dc193feb1eeef3a1349d9b74"
+  },
+  {
+    "candidates": [
+      {
+        "candidate_id": "candidate_0ee512c785ee4d98c9c558dc",
+        "candidate_slot": "candidate_slot_0ce7878592fca33957ba4473",
+        "candidate_target_vi": "các mạng nơ-ron tích chập"
+      },
+      {
+        "candidate_id": "candidate_0b086e82c491048443425a46",
+        "candidate_slot": "candidate_slot_1ef7ddd803e6a53ed0030df2",
+        "candidate_target_vi": "các CNN"
+      },
+      {
+        "candidate_id": "candidate_1d87249fc333e16518d19db4",
+        "candidate_slot": "candidate_slot_72f505ff9ae3c39d21b09b31",
+        "candidate_target_vi": "mạng nơ-ron tích chập"
+      }
+    ],
+    "evidence_contexts": [
+      {
+        "block_id": "d2l_deep_learning_computation_model_construction_b032",
+        "boundary_only": false,
+        "chapter_id": "d2l_deep_learning_computation",
+        "content_sha256": "6456cd8f5c97da27809f754d167701f53c2e3ec7a9a7e0ef5bd810128316bec6",
+        "context_id": "ctx_654cb542dec605b7a07f0d38",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "convolutional neural networks",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_7ab04d8f07da1c8d3c9f9710",
+        "source_text": "We exploit this versatility\nthroughout the following chapters,\nsuch as when addressing\nconvolutional neural networks.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_convolutional_neural_networks_index_b001",
+        "boundary_only": false,
+        "chapter_id": "d2l_convolutional_neural_networks",
+        "content_sha256": "02f6c169354f041c310b6e7363fa8dc59cac81af4477ba51d42f16a6b70d55fd",
+        "context_id": "ctx_7d255ebc2d354c8e85c00cb4",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "convolutional neural networks",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_de1a5ce03ba43dcf9380b546",
+        "source_text": "# Convolutional Neural Networks\n:label:`chap_cnn`",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_introduction_index_b132",
+        "boundary_only": false,
+        "chapter_id": "d2l_introduction",
+        "content_sha256": "7421665a2152817221e204576f333e86ba447b29e6792bace8fb376fc6f9ad58",
+        "context_id": "ctx_9ddb8f2418fda4eee49c9494",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "convolutional neural networks",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_6c97a4a20050b15946fd48a2",
+        "source_text": "This is also one of the reasons why many of the mainstays\nof deep learning, such as multilayer perceptrons\n:cite:`McCulloch.Pitts.1943`, convolutional neural networks\n:cite:`LeCun.Bottou.Bengio.ea.1998`, long short-term memory\n:cite:`Hochreiter.Schmidhuber.1997`,\nand Q-Learning :cite:`Watkins.Dayan.1992`,\nwere essentially \"rediscovered\" in the past decade,\nafter laying comparatively dormant for considerable time.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_preface_index_b022",
+        "boundary_only": false,
+        "chapter_id": "d2l_preface",
+        "content_sha256": "c858d06dde8d1b92cd97b8b5bee9e4abe0fa8d213b51bbc09d20b3e5b3c68873",
+        "context_id": "ctx_ae21d86ceba363f31d12fca3",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "POSITIVE_POS_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "convolutional neural networks",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_bf72dc8151fca388a6abaa77",
+        "source_text": "Next, :numref:`chap_cnn` and :numref:`chap_modern_cnn`,\nintroduce convolutional neural networks (CNNs), \npowerful tools that form the backbone \nof most modern computer vision systems.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_attention_mechanisms_self_attention_and_positional_encoding_b002",
+        "boundary_only": false,
+        "chapter_id": "d2l_attention_mechanisms",
+        "content_sha256": "87399d9dcbd6873e89e75f2933a522963be478102f3e7f5121173f6396b4794b",
+        "context_id": "ctx_cba7a66d443fedea8b0f37bf",
+        "evidence_roles": [
+          "PRIMARY"
+        ],
+        "matched_surface": "cnns",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_e9773094eed8fd27302cd957",
+        "source_text": "In deep learning,\nwe often use CNNs or RNNs to encode a sequence.",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_convolutional_modern_index_b001",
+        "boundary_only": false,
+        "chapter_id": "d2l_convolutional_modern",
+        "content_sha256": "2b9a367ff58792d134748a5cd50df6ed08b28c94fa0b36dd80e0df80a8eb5165",
+        "context_id": "ctx_d32ca634c60e5bdb199798a6",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "convolutional neural networks",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_4b08f1470009e48006b44e05",
+        "source_text": "# Modern Convolutional Neural Networks\n:label:`chap_modern_cnn`",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_optimization_lr_scheduler_b007",
+        "boundary_only": false,
+        "chapter_id": "d2l_optimization",
+        "content_sha256": "b07bb86b33969fd39776a647de0d44169a466df14bef5926b05603c97bf4270e",
+        "context_id": "ctx_d72570c9e0d6a16eed3d4320",
+        "evidence_roles": [
+          "BACKUP"
+        ],
+        "matched_surface": "convolutional neural networks",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_f1351f02c1b8d1a32749acc0",
+        "source_text": "```{.python .input}\n%matplotlib inline\nfrom d2l import mxnet as d2l\nfrom mxnet import autograd, gluon, init, lr_scheduler, np, npx\nfrom mxnet.gluon import nn\nnpx.set_np()\n\nnet = nn.HybridSequential()\nnet.add(nn.Conv2D(channels=6, kernel_size=5, padding=2, activation='relu'),\n        nn.MaxPool2D(pool_size=2, strides=2),\n        nn.Conv2D(channels=16, kernel_size=5, activation='relu'),\n        nn.MaxPool2D(pool_size=2, strides=2),\n        nn.Dense(120, activation='relu'),\n        nn.Dense(84, activation='relu'),\n        nn.Dense(10))\nnet.hybridize()\nloss = gluon.loss.SoftmaxCrossEntropyLoss()\ndevice = d2l.try_gpu()\n\nbatch_size = 256\ntrain_iter, test_iter = d2l.load_data_fashion_mnist(batch_size=batch_size)\n\n# The code is almost identical to `d2l.train_ch6` defined in the \n# lenet section of chapter convolutional neural networks\ndef train(net, train_iter, test_iter, num_epochs, loss, trainer, device):\n    net.initialize(force_reinit=True, ctx=device, init=init.Xavier())\n    animator = d2l.Animator(xlabel='epoch', xlim=[0, num_epochs],\n                            legend=['train loss', 'train acc', 'test acc'])\n    for epoch in range(num_epochs):\n        metric = d2l.Accumulator(3)  # train_loss, train_acc, num_examples\n        for i, (X, y) in enumerate(train_iter):\n            X, y = X.as_in_ctx(device), y.as_in_ctx(device)\n            with autograd.record():\n                y_hat = net(X)\n                l = loss(y_hat, y)\n            l.backward()\n            trainer.step(X.shape[0])\n            metric.add(l.sum(), d2l.accuracy(y_hat, y), X.shape[0])\n            train_loss = metric[0] / metric[2]\n            train_acc = metric[1] / metric[2]\n            if (i + 1) % 50 == 0:\n                animator.add(epoch + i / len(train_iter),\n                             (train_loss, train_acc, None))\n        test_acc = d2l.evaluate_accuracy_gpu(net, test_iter)\n        animator.add(epoch + 1, (None, None, test_acc))\n    print(f'train loss {train_loss:.3f}, train acc {train_acc:.3f}, '\n          f'test acc {test_acc:.3f}')\n```",
+        "synthetic": false
+      },
+      {
+        "block_id": "d2l_recurrent_neural_networks_index_b005",
+        "boundary_only": false,
+        "chapter_id": "d2l_recurrent_neural_networks",
+        "content_sha256": "8273046fad3d8d335c9d128e0320408240f4012e1811126b296738121fdab1c4",
+        "context_id": "ctx_ffd36cb1d841c0421cbd90cc",
+        "evidence_roles": [
+          "POSITIVE_DEFINITION_PROPOSAL",
+          "PRIMARY"
+        ],
+        "matched_surface": "cnns",
+        "positive_evidence_eligible": true,
+        "sentence_id": "sentence_b3798d7240c67f79bb65225e",
+        "source_text": "In short, while CNNs can efficiently process spatial information, *recurrent neural networks* (RNNs) are designed to better handle sequential information.",
+        "synthetic": false
+      },
+      {
+        "block_id": null,
+        "boundary_only": true,
+        "chapter_id": null,
+        "content_sha256": "9c59f3f82367ff1c81d3785e04458d108c08d9663faef713e3bb87bb113be4d1",
+        "context_id": "ctxx_00f5dd007cb768664fadf619",
+        "evidence_roles": [
+          "BOUNDARY_PROPOSAL"
+        ],
+        "matched_surface": "convolutional neural networks",
+        "positive_evidence_eligible": false,
+        "sentence_id": null,
+        "source_text": "Synthetic: This paper trains one convolutional neural network, while related work compares several convolutional neural networks.",
+        "synthetic": true
+      }
+    ],
+    "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+    "pool_record_id": "pool_70890723db87d10dbdefbed8",
+    "proposed_definition_en": "A class of neural networks that use convolution operations, especially for processing spatial data such as images.",
+    "proposed_part_of_speech": "noun_phrase",
+    "proposed_scope": "d2l_selected_campaign_scope_v1",
+    "provider_call_count": 0,
+    "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+    "risk_class": "R4_SPLIT_OR_POS_RISK",
+    "schema_id": "D2LFastTrackStageAReviewSourceV1",
+    "sense_id": "d2lce_c4e87e5ee47d3e26ba618290",
+    "source_sense_pool_record_sha256": "fec71590a74351237feb6dbef9c2cb6bb7aa4abc33fb3099c5b6863e657cb0b4",
+    "source_term": "convolutional neural networks",
+    "stratum": "collision_or_multi_target",
+    "term_id": "d2lce_c4e87e5ee47d3e26ba618290"
+  }
+]

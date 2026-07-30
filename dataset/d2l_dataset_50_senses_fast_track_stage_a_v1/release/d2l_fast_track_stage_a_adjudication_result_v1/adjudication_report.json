@@ -1,0 +1,66 @@
+{
+  "artifact_name": "d2l_fast_track_stage_a_adjudication_result_v1",
+  "canonical_intake_manifest_physical_sha256": "0127bc4c7c9f5385938d0b2a60ed4f9b55382f8ec8002df5738154de887a10b8",
+  "canonical_intake_manifest_sha256": "bcb840616060473ea61b81ca7cf052eff2ac00caeb7bff75e7cbf064e6a7e178",
+  "canonical_r0_repair_queue_sha256": "0934d456391813b52b0cef20a3ca827f50d2c57b5c9089e809c18639f3a5d33b",
+  "created_at": "2026-07-29T14:00:00Z",
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "ffce951eabdf16ea90832dde3b7c6510d4a11b56a7ed577f354ecb6f34455d85"
+  },
+  "policy_id": "d2l-fast-track-stage-a-adjudication-result-v1.0",
+  "provider_call_count": 0,
+  "schema_id": "D2LFastTrackStageAAdjudicationResultReportV1",
+  "schema_version": "1.0.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "ADJUDICATION_COMPLETE_R0_REPAIR_PENDING",
+  "summary": {
+    "adjudicated_case_count": 24,
+    "candidate_replacement_count": 26,
+    "decision_counts": {
+      "candidate_set_decision": {
+        "ACCEPT": 6,
+        "REVISE": 18
+      },
+      "definition_decision": {
+        "ACCEPT": 23,
+        "REVISE": 1
+      },
+      "evidence_decision": {
+        "ACCEPT": 24
+      },
+      "part_of_speech_decision": {
+        "ACCEPT": 24
+      },
+      "scope_decision": {
+        "ACCEPT": 24
+      },
+      "sense_status": {
+        "READY_FOR_CONTRACT_CONSTRUCTION": 24
+      }
+    },
+    "pool_funnel": {
+      "inherited_reviewed_senses": 16,
+      "new_ready_senses": 40,
+      "pending_r0_senses": 4,
+      "pool_sense_count": 60
+    },
+    "ready_for_contract_construction_count": 24,
+    "risk_counts": {
+      "R3_AMBIGUOUS": 8,
+      "R4_SPLIT_OR_POS_RISK": 16
+    },
+    "routing_counts": {
+      "R3_REVIEWER_DISAGREEMENT": 8,
+      "R4_MANDATORY_ADJUDICATION": 16
+    },
+    "stage_a_new_sense_funnel": {
+      "new_sense_count": 44,
+      "r0_ready_without_adjudication": 9,
+      "r0_repair_and_reaudit_pending": 4,
+      "r3_ready_by_two_reviewer_agreement": 7,
+      "ready_after_reviewer_3_adjudication": 24,
+      "ready_for_contract_construction_total": 40
+    }
+  }
+}

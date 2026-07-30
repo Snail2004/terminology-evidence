@@ -1,0 +1,33 @@
+{
+  "blocked_case_count": 1,
+  "created_at": "2026-07-30T00:00:00Z",
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "990dddb602bd224285f6e3d7ce26472abee0ebe0bdcfc6e5e9117eae8db47123"
+  },
+  "pending_reaudit_case_count": 4,
+  "policy_id": "d2l-remaining-100-stage-a-proposal-repair-intake-v1.0",
+  "provider_call_count": 0,
+  "ready_stage_a_source_sense_count": 95,
+  "reaudit_handoffs": [
+    {
+      "batch_id": "proposal_reaudit_reviewer_4",
+      "case_count": 1,
+      "handoff_zip": "handoff/proposal_reaudit_reviewer_4.zip",
+      "input_path": "reaudit_batches/proposal_reaudit_reviewer_4/auditor_input.json",
+      "reviewer_slot": "reviewer_4"
+    },
+    {
+      "batch_id": "proposal_reaudit_reviewer_5",
+      "case_count": 3,
+      "handoff_zip": "handoff/proposal_reaudit_reviewer_5.zip",
+      "input_path": "reaudit_batches/proposal_reaudit_reviewer_5/auditor_input.json",
+      "reviewer_slot": "reviewer_5"
+    }
+  ],
+  "schema_id": "D2LRemaining100ProposalRepairIntakeReportV1",
+  "schema_version": "1.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "PROPOSAL_REPAIRS_VALIDATED_REAUDIT_READY_ZERO_PROVIDER",
+  "validated_result_file_count": 2
+}

@@ -1,0 +1,29 @@
+{
+  "candidate_count": 150,
+  "candidate_per_sense": {
+    "3": 50
+  },
+  "context_count": 386,
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "2bd0dcd913782f4a565079ea791178a9f79b779d58d3d29d18eb34d598288af5"
+  },
+  "label_distribution": "PENDING_STAGE_B_REVIEW",
+  "policy_id": "d2l-dataset-50-senses-150-candidates-stage-b-v1.0",
+  "provider_call_count": 0,
+  "schema_id": "D2LFinal50DatasetStatisticsV1",
+  "schema_version": "1.0.0",
+  "sense_count": 50,
+  "split_counts": {
+    "development": 30,
+    "test": 10,
+    "validation": 10
+  },
+  "stage_b_gold_autofill_count": 0,
+  "stage_b_review_cases_per_reviewer": 150,
+  "stratum_counts": {
+    "ambiguous": 20,
+    "clear": 15,
+    "collision_or_multi_target": 15
+  }
+}

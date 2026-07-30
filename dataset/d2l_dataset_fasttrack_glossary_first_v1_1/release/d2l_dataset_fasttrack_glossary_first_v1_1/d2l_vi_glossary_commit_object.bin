@@ -1,0 +1,22 @@
+tree 847968d8721ab98c4df86dafd6d7f39edc547fd8
+parent 925baab1d4c56b0cdd678ea32ca08eb2f643464b
+author Anirudh Dagar <anirudhdagar6@gmail.com> 1657322614 +0200
+committer Anirudh Dagar <anirudhdagar6@gmail.com> 1657322614 +0200
+gpgsig -----BEGIN PGP SIGNATURE-----
+ 
+ iQIzBAABCAAdFiEEbReaOBy1ejNkvok//71fz1rOH2wFAmLIvHYACgkQ/71fz1rO
+ H2yqXA/+MI6Zv3ZKCWMitXc7SKgf/K/y9xFvqhMIh3W+Digzz3tY4mzfBnjmKq3T
+ 22v3Q1D30OLZZ/MXZYnJuVkuw8yf75BTb/Sbw2nyuV0QNAwAKb8ccNK0VLNkmfoY
+ OCM5ceOv3HZplU15TlqbUHeyt0MIdeB+nxq0bnwIu2ffhAXT1dr9DturE/NtvZ70
+ xDJ8eUKc3ltCAOJwe2FcRX+Xe08VqN8Cb0neb1M2wLnIsXoNRGHJfpxxu0tj53TN
+ yDFEmtAZdqRkmPbAUpkZUmoWCo7Vt7QHSo2lDeFZkUsGoN5LbGtYvmoiV0AK6Cbh
+ pH6ln9WnUecxEjDAkB5RjfVunQJXOZX2dh/6BoOAPLvXjClLOKn8u2RJa1FNjKbq
+ 7MSqgI7rANoK9iSE4c9cPjjJlOGjpwDUH3j6xgLTN9nNag/+32QCJMbL9e9l81zy
+ G6BnQl7x4nGNafAkwdqLmoLJtHPiW/P1r9xf03Wntdxy7NGrxHA4raij9wApiBLF
+ ffTM09BqgI60wpddgC9bRIQ7w6adZF0JHibWuw0gJpuEHfrOuE7qlO/MdnSuAfqi
+ MK5O14EDsiIqUdvSG2qcBtEvf7VhVb4JNmMJIXdqYAGEd0wcFqIqQCnJqU2F1lDK
+ 4cSrwVRUXcIOuQc8jZcovQFM/N9yD0heEt5EEaZPiOUj4M9OBpU=
+ =1Zwo
+ -----END PGP SIGNATURE-----
+
+Fix latex error in exercise numbering naive bayes

@@ -1,0 +1,95 @@
+{
+  "adjudication_count": 19,
+  "artifact_name": "d2l_dataset_50_senses_150_candidates_stage_b_gold_v1",
+  "candidate_count": 150,
+  "dataset_artifact_manifest_sha256": "eeac0fcd72e6327cbed463636b19b99eb606dbc0ec8659fe0cf2f280a7727f89",
+  "files": {
+    "CHECKSUMS.sha256": {
+      "sha256": "68338bc2a1c8d64466346fa72840a530ecbdc95b8de3c430f0c8d384e4d5287c",
+      "size_bytes": 1680
+    },
+    "RELEASE_REPORT.md": {
+      "sha256": "995f5524cad0da0bbb646213e49f608e65326f674c5dcc9ded18e579744c0101",
+      "size_bytes": 367
+    },
+    "agreement_report.json": {
+      "sha256": "6ac8ffb04312c63e6c3578c83678d89a2f622282a4f0f3a9351272ff213c9905",
+      "size_bytes": 2296
+    },
+    "commands.txt": {
+      "sha256": "d1189b5dc1999d785e67852d9e0366a87fa119330f75bbfba099ab3610a14d8d",
+      "size_bytes": 205
+    },
+    "lineage.json": {
+      "sha256": "7ffbc7ca4c1b62ce680933593bd50d9c2ed56fba23ad298a81608622c48d8c63",
+      "size_bytes": 729
+    },
+    "raw_reviews/reviewer_1.json": {
+      "sha256": "fb566f10497edd28ab17261f8623d5fb351efefb03a70b73c990da5b66c5436b",
+      "size_bytes": 1366500
+    },
+    "raw_reviews/reviewer_2.json": {
+      "sha256": "e880c594ff8d83943ddfa3ef91303fafe82e1e5c98597b5b9e60072e6ac22e90",
+      "size_bytes": 1414910
+    },
+    "raw_reviews/reviewer_3.json": {
+      "sha256": "bea0088cbc195e321ac9f1f60e4e4d60b022f3ffa0e7cd6c87f8719099e7de09",
+      "size_bytes": 209556
+    },
+    "source/.gitattributes": {
+      "sha256": "a51e4210b15c2bac0f4126425e7d418b0ec19314aecb604f8a9940229637c3c4",
+      "size_bytes": 75
+    },
+    "source/README.md": {
+      "sha256": "ee5eb852ef2a5e9a7f0874b112b170449f8353d7f6a4390a8b472a2be600237c",
+      "size_bytes": 2484
+    },
+    "source/tests/test_stage_b_gold_release.py": {
+      "sha256": "fabc05ea616975966d4f6c5c27a7615037586310c7329145fa9a637e94ff32a9",
+      "size_bytes": 5207
+    },
+    "source/tools/__init__.py": {
+      "sha256": "8e54bb1d41f8db713f28e8fdc2c7eab7628ca5bde1d1abcda5656781964563a1",
+      "size_bytes": 69
+    },
+    "source/tools/build_stage_b_gold_release.py": {
+      "sha256": "45d83a27b96c218101137c14c1594323a907b011713d744980b6f79322c499ec",
+      "size_bytes": 16982
+    },
+    "source/tools/common.py": {
+      "sha256": "465ea6fc3c941710b939de297cc22389f5e3afd9fd9c0c27ce10da2ff5044e79",
+      "size_bytes": 7501
+    },
+    "source/tools/stage_b_adjudication_result.py": {
+      "sha256": "7435fcc8dd4d745018d0f62c199577b3d6a121d72b33bd3485b6c447c20b6b6a",
+      "size_bytes": 6164
+    },
+    "source/tools/validate_stage_b_gold_release.py": {
+      "sha256": "da8d21d423637a0320d437192585fb16da9da00d2b530104c9afd2c7495f9571",
+      "size_bytes": 10679
+    },
+    "stage_b_gold_150.jsonl": {
+      "sha256": "92df782c0df476a4d0d7448298de93591e45c8bb121d3a38a8c8a1eeb2c73771",
+      "size_bytes": 249527
+    },
+    "stage_b_gold_summary.json": {
+      "sha256": "b710637d335d7ce43fd4bdfa0ea104d2a41f69684f2260d9eb3f125a9f4c8c65",
+      "size_bytes": 2338
+    },
+    "stage_b_review_pairs_150.jsonl": {
+      "sha256": "5647d291d13f38f1747badec8d95c17cd682fd03e1c7f9f632a1a82415f06bfb",
+      "size_bytes": 1297946
+    }
+  },
+  "final_glossary_decision_count": 0,
+  "final_gold_label_count": 150,
+  "manifest_sha256": "30aca9b841a70ac24c327be8a655e90c715a907261c22dc45c53a1f00c29cfc2",
+  "policy_id": "d2l-dataset-50-senses-stage-b-gold-v1.0",
+  "provider_call_count": 0,
+  "release_status": "STAGE_B_GOLD_COMPLETE_READY_FOR_C_E_EVALUATION",
+  "review_intake_manifest_sha256": "dc87a571562c264b6d04e31d50cdcb70e69aee88f2c173cd92d6393efec84a9a",
+  "reviewer_3_result_sha256": "bea0088cbc195e321ac9f1f60e4e4d60b022f3ffa0e7cd6c87f8719099e7de09",
+  "schema_id": "D2LStageB50GoldManifestV1",
+  "schema_version": "1.0.0",
+  "sense_count": 50
+}

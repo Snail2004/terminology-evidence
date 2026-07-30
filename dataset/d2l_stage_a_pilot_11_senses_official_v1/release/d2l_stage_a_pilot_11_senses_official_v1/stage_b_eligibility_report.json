@@ -1,0 +1,33 @@
+{
+  "blocked_sense_ids": [
+    "d2lce_2684090fd4500122fec2a334",
+    "d2lce_2b76c0f26436945cdf880aed",
+    "d2lce_7ef8ed3f93210606a27312a4",
+    "d2lce_98b37a7bcb47cd2ef2e5f296"
+  ],
+  "eligibility_counts": {
+    "BLOCKED_BY_STAGE_A": 12,
+    "ELIGIBLE": 33
+  },
+  "eligible_sense_ids": [
+    "d2lce_11e1c294000ac67785408dcd",
+    "d2lce_18c3da2d5bdd6d05a83982fa",
+    "d2lce_1a91fdded89249a5cd89ec14",
+    "d2lce_382e4bbab285d56a08249753",
+    "d2lce_8d226b48ba7ec1493faa4ec8",
+    "d2lce_9bd5113780f8e8160a24e6ad",
+    "d2lce_addfcc9899bef06c500b6b0e",
+    "d2lce_c6b4477a845e2e0e0e02f088",
+    "d2lce_cc4cb853eff638abcbdf7691",
+    "d2lce_ce222dd206341f61f2986f7a",
+    "d2lce_d7976d0b101e65c34c011871"
+  ],
+  "integrity": {
+    "self_sha256": "addef5999c0488eee4e29098518882b9f7f30286e609fda1733499d8fd83ea4f"
+  },
+  "policy_id": "d2l-stage-a-p0b-official-11-sense-v1.0",
+  "row_count": 45,
+  "schema_id": "D2LStageBEligibilityReportV1",
+  "schema_version": "1.0.0",
+  "stage_b_gold_autofill_count": 0
+}

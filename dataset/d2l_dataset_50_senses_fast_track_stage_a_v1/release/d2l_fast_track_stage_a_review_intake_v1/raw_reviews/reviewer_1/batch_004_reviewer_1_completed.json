@@ -1,0 +1,964 @@
+{
+  "batch_id": "batch_004",
+  "cases": [
+    {
+      "review": {
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Các ngữ cảnh dương xác định generator network trong GAN là mạng tạo dữ liệu giả để giống dữ liệu thật và đánh lừa discriminator. Ngữ cảnh RandomGenerator được đánh dấu boundary-only đúng cách; các candidate phù hợp.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_86430ab164ff051e4f2f3ac2",
+            "candidate_slot": "candidate_slot_6d58111b16b14438729169be",
+            "candidate_target_vi": "bộ tạo dữ liệu giả"
+          },
+          {
+            "candidate_id": "candidate_5c36c722c6f99db7ba4684d4",
+            "candidate_slot": "candidate_slot_8342392dfd3ec4c0b6d44516",
+            "candidate_target_vi": "bộ sinh"
+          },
+          {
+            "candidate_id": "candidate_d228b025466ac2820e46bb39",
+            "candidate_slot": "candidate_slot_d7b4d0175b68000f5dfc94af",
+            "candidate_target_vi": "mạng sinh"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_generative_adversarial_networks_gan_b007",
+            "boundary_only": false,
+            "chapter_id": "d2l_generative_adversarial_networks",
+            "content_sha256": "366dcf4bec1d94f19680237085f37e6cf925cf5f073e6130ffff8075ddea5c18",
+            "context_id": "ctx_111ebd3664347c4b99a35b2e",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "generator",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_ef0c432371de43008c187951",
+            "source_text": "We call this the generator network.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_generative_adversarial_networks_gan_b007",
+            "boundary_only": false,
+            "chapter_id": "d2l_generative_adversarial_networks",
+            "content_sha256": "7c3e96597e2b4681d57b70c8f2b1b30b706f5c37b1a1be1f494210a1943f2d82",
+            "context_id": "ctx_2aca2894517926700f9e34d1",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "generator",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_56b42587f984dab5f63f8fb2",
+            "source_text": "This information, in turn is used to improve the generator network, and so on.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_generative_adversarial_networks_gan_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_generative_adversarial_networks",
+            "content_sha256": "4420e088ff6dfc098dcaeab5c04ef4d4efd78c4ee40f8717da35bb2a515fad2e",
+            "context_id": "ctx_2cc55c7c27ecd856fe623eec",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "generator",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_4dd57ac80e5036eb182ea463",
+            "source_text": "This allows us to improve the data generator until it generates something that resembles the real data.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_generative_adversarial_networks_gan_b007",
+            "boundary_only": false,
+            "chapter_id": "d2l_generative_adversarial_networks",
+            "content_sha256": "598a9fecaf2409502d7261f2568078bd16a6d902dd4d8ae7312402776f19bdd9",
+            "context_id": "ctx_33e923407e067945b2c17e33",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "generator",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_e2ab610a2bfaf42a279db17f",
+            "source_text": "The generator network attempts to fool the discriminator network.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_generative_adversarial_networks_gan_b008",
+            "boundary_only": false,
+            "chapter_id": "d2l_generative_adversarial_networks",
+            "content_sha256": "cbd65d93d67c8ad4b49928f1487efe286af2001057a3f5abcbe37e96f145c575",
+            "context_id": "ctx_545710fbceae0d3428fd3a00",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "generator",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_acdc94766cb933ef5156bc2f",
+            "source_text": "The discriminator is a binary classifier to distinguish if the input $x$ is real (from real data) or fake (from the generator).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word_embedding_dataset_b036",
+            "boundary_only": true,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "9b1223d4d83f7eb5c58e1f46a906e83bd9534b795817d3d8920c4efc9af1e2db",
+            "context_id": "ctx_5b966a1024783f92c10a4b61",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "generator",
+            "positive_evidence_eligible": false,
+            "sentence_id": "sentence_7f0fe73e5b161f316b5dc88c",
+            "source_text": "(index 0 is the\n    # excluded unknown token) in the vocabulary\n    sampling_weights = [counter[vocab.to_tokens(i)]**0.75\n                        for i in range(1, len(vocab))]\n    all_negatives, generator = [], RandomGenerator(sampling_weights)\n    for contexts in all_contexts:\n        negatives = []\n        while len(negatives) < len(contexts) * K:\n            neg = generator.draw()\n            # Noise words cannot be context words\n            if neg not in contexts:\n                negatives.append(neg)\n        all_negatives.append(negatives)\n    return all_negatives\n\nall_negatives = get_negatives(all_contexts, vocab, counter, 5)\n```",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_generative_adversarial_networks_gan_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_generative_adversarial_networks",
+            "content_sha256": "b357b9f9b72bce2a3b7fb7fbe63e93bbf96adcd41cf1c589df53c3da1ec09137",
+            "context_id": "ctx_ce5770ebbcecab9cd14b31d1",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "generator",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_dddfdcc606098836390e143f",
+            "source_text": "At their heart, GANs rely on the idea that a data generator is good if we cannot tell fake data apart from real data.",
+            "synthetic": false
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_76d15ae1ea1735d6b20aca73",
+        "proposed_definition_en": "the model in a GAN that produces fake data samples to resemble real data",
+        "proposed_part_of_speech": "noun",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "SOURCE_GROUND_PLUS_BLIND_AUDIT",
+        "risk_class": "R0_CLEAR",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_73c8ce2915c4c64a52fab4a2",
+        "source_sense_pool_record_sha256": "dafe5163aaa7300a5ca3125cd8e808c7c911c610de4b23db56c956234beeafda",
+        "source_term": "Generator",
+        "stratum": "clear",
+        "term_id": "d2lce_73c8ce2915c4c64a52fab4a2"
+      },
+      "source_payload_sha256": "84fc137b80a50d4c728ac4f4c244c7f349709e10f344889222ef42a5a4731a98"
+    },
+    {
+      "review": {
+        "candidate_replacements": [
+          "số lượng chiều",
+          "số chiều biểu diễn"
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Định nghĩa được hỗ trợ trực tiếp bởi ngữ cảnh về độ dài vector, số feature và hidden representation. “Tính chiều” và “độ chiều” không tự nhiên hoặc không đủ rõ; nên dùng “số lượng chiều” và “số chiều biểu diễn”.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "REVISION_REQUIRED"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_73d278869cb74dd631bde020",
+            "candidate_slot": "candidate_slot_7a9331a29de1dc1989ca66a2",
+            "candidate_target_vi": "tính chiều"
+          },
+          {
+            "candidate_id": "candidate_81f35d264560e4304a39f65c",
+            "candidate_slot": "candidate_slot_a193f784d9382f596f7b8b53",
+            "candidate_target_vi": "số chiều"
+          },
+          {
+            "candidate_id": "candidate_4d702eba933761fbfafda5a7",
+            "candidate_slot": "candidate_slot_b94efc9249a4e8a71218ea2e",
+            "candidate_target_vi": "độ chiều"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_introduction_index_b025",
+            "boundary_only": false,
+            "chapter_id": "d2l_introduction",
+            "content_sha256": "c1954773f59b7946b486a645bf57b22c8c8c8a8282feaa25b4b5ef36afd61934",
+            "context_id": "ctx_305c430849e3734c0aa7afaf",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "dimensionality",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_5700a426581db0e5405886b2",
+            "source_text": "When every example is characterized by the same number of numerical values,\nwe say that the data consist of fixed-length vectors\nand we describe the constant length of the vectors\nas the *dimensionality* of the data.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_why_conv_b024",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "f88647e9668714d70941323834cfba6ed0fd9c1220d3470b893298317eebd7af",
+            "context_id": "ctx_3923942a6da07182f6169b13",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "dimensionality",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_9f5becd63a4c7ebe588de85a",
+            "source_text": "While previously, we might have required billions of parameters\nto represent just a single layer in an image-processing network,\nwe now typically need just a few hundred, without\naltering the dimensionality of either\nthe inputs or the hidden representations.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_deep_learning_computation_deferred_init_b003",
+            "boundary_only": false,
+            "chapter_id": "d2l_deep_learning_computation",
+            "content_sha256": "14b037c0cf46c0e97af1f01bcade0e074bdf5868f3e05c73429fa27a5d6e8a9e",
+            "context_id": "ctx_4d511a9e270716621c12b480",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "dimensionality",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_669fc705ed1d247da76a2a0f",
+            "source_text": "* We defined the network architectures\n  without specifying the input dimensionality.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_linear_networks_linear_regression_b090",
+            "boundary_only": false,
+            "chapter_id": "d2l_linear_networks",
+            "content_sha256": "a9b4023298af39c7259bd8914b8cc3a3283df5d11e279c0ae04ce4ca2ce6c47a",
+            "context_id": "ctx_571461d7592e0eb07fae9808",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "dimensionality",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_e2345e6aa1792a8c68b3a919",
+            "source_text": "For the neural network shown in :numref:`fig_single_neuron`,\nthe inputs are $x_1, \\ldots, x_d$,\nso the *number of inputs* (or *feature dimensionality*) in the input layer is $d$.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_preliminaries_linear_algebra_b022",
+            "boundary_only": false,
+            "chapter_id": "d2l_preliminaries",
+            "content_sha256": "f9eaf45fa0c3085530f83756eea266b91333ed63a740862b6e2e661f92327673",
+            "context_id": "ctx_9a25a4253bc511ca8268d02a",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "dimensionality",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_c0c69e53d0a3344cac8170d5",
+            "source_text": "### Length, Dimensionality, and Shape",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_modern_googlenet_b012",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_modern",
+            "content_sha256": "af2ae9b06b4b5a9f61507fd4ae59664cbff415fd53b25ca5ba424a3715708936",
+            "context_id": "ctx_bc1664e975977f0d9d0df8c9",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "dimensionality",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_7746e3daea3383a70cdda573",
+            "source_text": "Maximum pooling between inception blocks reduces the dimensionality.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_weight_decay_b025",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "f1a24477304c26ef1820b379c136348db6d3dcd698be96fb358e52250fe47a84",
+            "context_id": "ctx_cf2fee46db0f41e6ec64a579",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "dimensionality",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_8106df143bde2e828a585a2a",
+            "source_text": "To make the effects of overfitting pronounced,\nwe can increase the dimensionality of our problem to $d = 200$\nand work with a small training set containing only 20 examples.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_neural_networks_rnn_scratch_b036",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_neural_networks",
+            "content_sha256": "90e55edefd6ef38652c87c61b2de87ee55fde53058b8def70f08188df7179e14",
+            "context_id": "ctx_e9947a95d89c9d79c07f1e69",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_DEFINITION_PROPOSAL"
+            ],
+            "matched_surface": "dimensionality",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_54987552a27678ba22c968af",
+            "source_text": "Let us [**check whether the outputs have the correct shapes**], e.g., to ensure that the dimensionality of the hidden state remains unchanged.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "68d0e5e079a6ec122b9c34e3d6e563ccd39157d525e70e7493a3a5d6912f087f",
+            "context_id": "ctxx_a3ccd49d589dc3af43f18b02",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "dimensionality",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: Here, dimensionality means how many features or axes represent the data, not the physical length of an object.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_f58856d399c2946884a0befa",
+        "proposed_definition_en": "The number of components, features, or axes used to represent data or an internal representation.",
+        "proposed_part_of_speech": "noun",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+        "risk_class": "R3_AMBIGUOUS",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_f3dedf5fcd54a46940474022",
+        "source_sense_pool_record_sha256": "fb91c378a1fefa64216b543ade41c46539a41d3aa29e92e665d0153f0dede702",
+        "source_term": "dimensionality",
+        "stratum": "ambiguous",
+        "term_id": "d2lce_f3dedf5fcd54a46940474022"
+      },
+      "source_payload_sha256": "ced716d55030f3dba19b08ce22ce660d9fd3e7e1f5fde262fdbb2250038fb806"
+    },
+    {
+      "review": {
+        "candidate_replacements": [
+          "lớp do người dùng định nghĩa"
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Các ngữ cảnh thực nhất quán mô tả layer do người dùng tự xây dựng và dùng như built-in layer. Candidate “các lớp tùy chỉnh” lệch số nhiều so với term-sense số ít; nên thay bằng “lớp do người dùng định nghĩa”.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "REVISION_REQUIRED"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_7fdbdc7d6e6c4dfe732c2cdd",
+            "candidate_slot": "candidate_slot_421e99f2ad336b1f17c05a46",
+            "candidate_target_vi": "lớp tự định nghĩa"
+          },
+          {
+            "candidate_id": "candidate_b296b7959afa7dba8cc17df1",
+            "candidate_slot": "candidate_slot_82e2d2d970d07c74e98e2eed",
+            "candidate_target_vi": "các lớp tùy chỉnh"
+          },
+          {
+            "candidate_id": "candidate_d8a87d5558481391b747b303",
+            "candidate_slot": "candidate_slot_8a1d8eca17ec1c1ef5d0b0c3",
+            "candidate_target_vi": "lớp tùy chỉnh"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_deep_learning_computation_custom_layer_b031",
+            "boundary_only": false,
+            "chapter_id": "d2l_deep_learning_computation",
+            "content_sha256": "0c1f4e52ff0b90f9a8e4a1e787bfa9ee3cfd59dcbed13a9a164c767f6f4087a8",
+            "context_id": "ctx_01c5f3adb58f2f2203f6a24f",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "custom layers",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_aab4ccb514cb3816db93a978",
+            "source_text": "We can [**directly carry out forward propagation calculations using custom layers.**]",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_deep_learning_computation_custom_layer_b001",
+            "boundary_only": false,
+            "chapter_id": "d2l_deep_learning_computation",
+            "content_sha256": "4b4789761cd56f71323195cec36846a870e9f011541ac32bed1041020292db9d",
+            "context_id": "ctx_30b81bc472e7bfa9272f2568",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "custom layers",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_003f404b63b7c5511e9e72dd",
+            "source_text": "# Custom Layers",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_deep_learning_computation_custom_layer_b021",
+            "boundary_only": false,
+            "chapter_id": "d2l_deep_learning_computation",
+            "content_sha256": "2c8887a5ba185a027c8fbd2b11594f0dc4fd29bfb4e03c030097e37185454942",
+            "context_id": "ctx_51a667c40e6f2983a4ba8c80",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "custom layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_3260ee9661797a220ec228c8",
+            "source_text": "This way, among other benefits, we will not need to write\ncustom serialization routines for every custom layer.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_deep_learning_computation_custom_layer_b035",
+            "boundary_only": false,
+            "chapter_id": "d2l_deep_learning_computation",
+            "content_sha256": "ed4703ec8903fb55121fed39c6af649574c56ad866db385c1cd1fca278730c08",
+            "context_id": "ctx_5b4647a086d9552408986cb3",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "custom layers",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_8c520d8a7324179220de96e3",
+            "source_text": "We can also (**construct models using custom layers.**)\nOnce we have that we can use it just like the built-in fully-connected layer.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_deep_learning_computation_index_b003",
+            "boundary_only": false,
+            "chapter_id": "d2l_deep_learning_computation",
+            "content_sha256": "64af754d6c578d5a4b719c578e1a3773d99913ae8dbcfb14560ae86b97b53c5a",
+            "context_id": "ctx_6c7cc3e81d29fe5dcb962f5f",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "custom layers",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_d2212eb9f9ae14979349b33d",
+            "source_text": "In this chapter, we will peel back the curtain,\ndigging deeper into the key components of deep learning computation,\nnamely model construction, parameter access and initialization,\ndesigning custom layers and blocks, reading and writing models to disk,\nand leveraging GPUs to achieve dramatic speedups.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_modern_batch_norm_b037",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_modern",
+            "content_sha256": "183ac81c42007397ac06d3e45c8acf60197fabfdde8696ec197d903851e3085c",
+            "context_id": "ctx_73804fdbddef8388a5550f4a",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "custom layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_88458388a6d1feaf20f9b956",
+            "source_text": "We then integrate this functionality into a custom layer,\nwhose code mostly addresses bookkeeping matters,\nsuch as moving data to the right device context,\nallocating and initializing any required variables,\nkeeping track of moving averages (here for mean and variance), and so on.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_deep_learning_computation_custom_layer_b004",
+            "boundary_only": false,
+            "chapter_id": "d2l_deep_learning_computation",
+            "content_sha256": "1d285a1681394b126a53045c4a461cb44004718edf73ec2e2c97a8bc01900e5e",
+            "context_id": "ctx_c650fc71af7d6c2789e47035",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "custom layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_42caa2359c8c1411b3abf461",
+            "source_text": "To start, we construct a custom layer\nthat does not have any parameters of its own.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_deep_learning_computation_custom_layer_b002",
+            "boundary_only": false,
+            "chapter_id": "d2l_deep_learning_computation",
+            "content_sha256": "fc762145a44d0814d69957e730334e96bbc0ccc273beeccacc4c4ff839495bfb",
+            "context_id": "ctx_d91ca38d8df2fb6f84356a08",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "custom layer",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_6634e9baa52a6da3411e776b",
+            "source_text": "In these cases, you must build a custom layer.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "7ddb841cae90d9de9cd560ec866aba51416e8281f2f11a258b26b6eeec13b5fd",
+            "context_id": "ctxx_11de6b7878d206af216e9882",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "custom layer",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: The custom layer of sediment was added by the artist to the sculpture.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_012351c6c26279d6c06a5291",
+        "proposed_definition_en": "a user-defined neural network layer implemented to provide functionality not covered by built-in layers",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_4d2b37402e25d2f56746ea23",
+        "source_sense_pool_record_sha256": "c0ec48f68aa37ada9799b4bec018b0a3eceb18c189734884658bf913d15aee55",
+        "source_term": "custom layer",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_4d2b37402e25d2f56746ea23"
+      },
+      "source_payload_sha256": "aeb858528e42d5377a1f96fac69209ef054cfc06f96c6ce17b67ca2259a0d874"
+    },
+    {
+      "review": {
+        "candidate_replacements": [
+          "ma trận tương tác người dùng–mặt hàng",
+          "ma trận tương tác người dùng–sản phẩm"
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Bằng chứng thực xác định rõ ma trận m×n giữa users và items, thường chứa ratings. Hai candidate đầu có cấu tạo từ và dấu nối khó hiểu (“người-dùng–mặt-hàng”, “người-mục”); nên chuẩn hóa thành các phương án được đề xuất.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "REVISION_REQUIRED"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_bf03c5fe1fcc088419aae681",
+            "candidate_slot": "candidate_slot_9b94922f0f088cc71d321b3b",
+            "candidate_target_vi": "ma trận tương tác người-dùng–mặt-hàng"
+          },
+          {
+            "candidate_id": "candidate_3a2246627a7624c8d1d58bce",
+            "candidate_slot": "candidate_slot_d687c811cf89c514650d2410",
+            "candidate_target_vi": "ma trận tương tác người-mục"
+          },
+          {
+            "candidate_id": "candidate_8d1002a82a03b20982928d5a",
+            "candidate_slot": "candidate_slot_d9e8dd4af8073b96884631cc",
+            "candidate_target_vi": "ma trận tương tác"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_recommender_systems_movielens_b012",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "732d03663e086d1bf0a4a05b09b77dc5adb0447fd121431d7917b81a1068516a",
+            "context_id": "ctx_04dd6ec44fd039cb21d5367d",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "interaction matrix",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_f0fc1efad5facb51fbe0ec38",
+            "source_text": "Clearly, the interaction matrix is extremely sparse (i.e., sparsity = 93.695%).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_movielens_b012",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "76af98ff580f69bb69203345c4426477a03bf62a51172779c2080e6a769c8740",
+            "context_id": "ctx_5565f012ff929a17a39b50a3",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "interaction matrix",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_a3acec6fc3dc2ed25d0b8936",
+            "source_text": "We can construct an interaction matrix of size $n \\times m$, where $n$ and $m$ are the number of users and the number of items respectively.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_mf_b004",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "0877a70a59bf5c6deee7957fa9043e8d97126a0342f7da23ea9fe81c4328f309",
+            "context_id": "ctx_5614646f2d0d26ef6a76ee86",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "interaction matrix",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_201b1c167e151958262d3a68",
+            "source_text": "Specifically, the model factorizes the user-item interaction matrix (e.g., rating matrix) into the product of two lower-rank matrices, capturing the low-rank structure of the user-item interactions.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_movielens_b012",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "0ddc67192da2c08dfeff82bc3d143cb3c505efc2f71626e7a3c9ba603918c097",
+            "context_id": "ctx_7288cb7b7bb4df7b76d25aeb",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "interaction matrix",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_be203218a9617e3d75b24bd0",
+            "source_text": "This dataset only records the existing ratings, so we can also call it rating matrix and we will use interaction matrix and rating matrix interchangeably in case that the values of this matrix represent exact ratings.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_mf_b002",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "84fdbf3b063a7730bb10a5ea17d9830e3fe1b35707d6020f0445362de2188f9f",
+            "context_id": "ctx_8d54eee9a00c6d0088c74e34",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "interaction matrix",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_c8e70647bde1c006e21f6d74",
+            "source_text": "The first version of matrix factorization model is proposed by Simon Funk in a famous [blog\npost](https://sifter.org/~simon/journal/20061211.html) in which he described the idea of factorizing the interaction matrix.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_autorec_b003",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "14f8ab568d922064c8d3e237e01bf92c9e409bb6e1de3f883e2d42f959e1579e",
+            "context_id": "ctx_a8d97fb4a07460b132bbdf0d",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "interaction matrix",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_7f300d1775a086ff94da7876",
+            "source_text": "In AutoRec, instead of explicitly embedding users/items into low-dimensional space, it uses the column/row of the interaction matrix as the input, then reconstructs the interaction matrix in the output layer.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_mf_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "126e1cd06f40a37afe081fe465593def2ce7ffaf130d49c25a0218f7207973a3",
+            "context_id": "ctx_b138719571716898b8d88624",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "interaction matrix",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_8fa4b60dd00b5279b63ddc16",
+            "source_text": "Let $\\mathbf{R} \\in \\mathbb{R}^{m \\times n}$ denote the interaction matrix with $m$ users and $n$ items, and the values of $\\mathbf{R}$ represent explicit ratings.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_autorec_b004",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "3d9a467db5f80d78a9e0c35640b0854c87a9581ac1fb98caecce8884301a92ab",
+            "context_id": "ctx_e1b68dcd92df41c824d6b973",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "interaction matrix",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_e5cec1953ccbb566c92f2f5a",
+            "source_text": "It uses a partially observed interaction matrix as the input, aiming to reconstruct a completed rating matrix.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "509c5eaddda498e355f651720d620f49d6a5ef90e31b57df511a17ec4cea774e",
+            "context_id": "ctxx_5ab100fa98fa8d89b89fa850",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "interaction matrix",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: In chemistry, an interaction matrix could summarize interactions among molecules, not user-item data.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_a37ca1519faf55369f427945",
+        "proposed_definition_en": "A matrix whose entries represent observed user-item interactions, such as ratings, in a recommender system.",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "SOURCE_GROUND_PLUS_BLIND_AUDIT",
+        "risk_class": "R0_CLEAR",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_c01c503b792019c6e3827ac0",
+        "source_sense_pool_record_sha256": "7da2b5db1aebd90bd5603f8975a5dad6433d4ab7c08fa0fb9a06df03902e63bf",
+        "source_term": "interaction matrix",
+        "stratum": "clear",
+        "term_id": "d2lce_c01c503b792019c6e3827ac0"
+      },
+      "source_payload_sha256": "d72d842e2c6d51e2403f7c96c8806248c9fbd50f3aacfb87d9afc79211199252"
+    },
+    {
+      "review": {
+        "candidate_replacements": [
+          "các biến ngẫu nhiên rời rạc"
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Ngữ cảnh thực định nghĩa trực tiếp các biến nhận tập giá trị hữu hạn hoặc các số nguyên. Candidate “biến rời rạc ngẫu nhiên” đảo trật tự bổ nghĩa và không tự nhiên; nên thay bằng “các biến ngẫu nhiên rời rạc”.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "REVISION_REQUIRED"
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_ec51872e22995fcae5b81313",
+            "candidate_slot": "candidate_slot_443b99df8e0cd314b64a82a1",
+            "candidate_target_vi": "biến ngẫu nhiên nhận giá trị rời rạc"
+          },
+          {
+            "candidate_id": "candidate_7a8738a0c79e42a524fd8e64",
+            "candidate_slot": "candidate_slot_bbe14366025895a7c2405562",
+            "candidate_target_vi": "biến ngẫu nhiên rời rạc"
+          },
+          {
+            "candidate_id": "candidate_85dac8e1a141c704755a9919",
+            "candidate_slot": "candidate_slot_f9cdf376020ec62cea5bf6d7",
+            "candidate_target_vi": "biến rời rạc ngẫu nhiên"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_random_variables_b004",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+            "content_sha256": "fc212815951a51dabc47e6770bb2aba78c636b241a22d6b65a268173ccef2d5a",
+            "context_id": "ctx_35cd85b391dd71dfd55cf5b7",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "discrete random variables",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_fb287baaca698e293962428b",
+            "source_text": "Continuous random variables are a significantly more subtle topic than discrete random variables.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_information_theory_b072",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+            "content_sha256": "72e1d7a20db4c0edbe8ba9bd6f6de497a1ba60235c385a96244ff8d251a385f5",
+            "context_id": "ctx_631db6dfad58f0e98ac2eeaa",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "discrete random variables",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_800985335d6a150119b3b5df",
+            "source_text": "Specifically, if $(X, Y)$ is a pair of discrete random variables, then",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_random_variables_b106",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+            "content_sha256": "1c82b5fe1f5c1430b27d167549307454a1a6a87583d4a661202637748b7e5fc0",
+            "context_id": "ctx_b4043b79b40224019aa27e38",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "discrete random variables",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_0d24772a876b5cf0884f867d",
+            "source_text": "This has all been in terms of discrete random variables, but the case of continuous random variables is similar.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_random_variables_b208",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+            "content_sha256": "29bc844a39c962c17d77aa26ef6c3ddd10f0902dea8441940aa2c3a29aeb5eb6",
+            "context_id": "ctx_be8318b49ee8de45eb672658",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "discrete random variables",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_911ce5257dff458d08c8facd",
+            "source_text": "They have some technical difficulties that make them more challenging to work with compared to discrete random variables.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_random_variables_b002",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+            "content_sha256": "0caaecc41804066e986cdabe4b882821d424d485a00317d148479bef51e44139",
+            "context_id": "ctx_dcc2558c83757b30c8a58c12",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "discrete random variables",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_66e5c5fb8607b702d5e007b8",
+            "source_text": "In :numref:`sec_prob` we saw the basics of how to work with discrete random variables, which in our case refer to those random variables which take either a finite set of possible values, or the integers.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_random_variables_b055",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+            "content_sha256": "fd7a10f661c846dd78ef609e60f62800629b085a2d964699b9163347c3406a42",
+            "context_id": "ctx_ddc48912aae8d4e18d86b760",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_DEFINITION_PROPOSAL"
+            ],
+            "matched_surface": "discrete random variables",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_db31d642ac437bba15285c17",
+            "source_text": "In this example, we see one of the benefits of working with the c.d.f., the ability to deal with continuous or discrete random variables in the same framework, or indeed mixtures of the two (flip a coin: if heads return the roll of a die, if tails return the distance of a dart throw from the center of a dart board).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_information_theory_b057",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+            "content_sha256": "77cf34bebf11b04605ca49d9f4f96b7785e3db300a1665afdedc503df14bfbd2",
+            "context_id": "ctx_e7f67dd37287b32e45850474",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "discrete random variables",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_91ab43549975f0911615e1e7",
+            "source_text": "Precisely, on the one hand, if $(X, Y)$ is a pair of discrete random variables, then",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_maximum_likelihood_b054",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+            "content_sha256": "18b8dd8347a76ed685119a0edffd7542c489ef9f054dc3b2cdd552f20eb8f42a",
+            "context_id": "ctx_f2b3de5d26527ae31c4c6363",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "discrete random variables",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_d257530b82bc8d8b33a7d835",
+            "source_text": "Everything that we have done so far assumes we are working with discrete random variables, but what if we want to work with continuous ones?",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "6728a8ed9e29abcb2cb23abe83434de3277c31f9996a744d6e71f2a34778bfe2",
+            "context_id": "ctxx_e479e370dcd3d280d6ac3552",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "discrete random variables",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: Unlike discrete random variables, continuous random variables can take values across an interval.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_1d544c5bdb47bc421425cc25",
+        "proposed_definition_en": "Random variables that take values from a finite set or from countable values such as the integers.",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+        "risk_class": "R3_AMBIGUOUS",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_e1a7c8e04c91b48272b3b5ee",
+        "source_sense_pool_record_sha256": "a1c3e56c55e5e6acea078c85da8c1c861990f0e5afdadb9af849cd4ad236792f",
+        "source_term": "discrete random variables",
+        "stratum": "ambiguous",
+        "term_id": "d2lce_e1a7c8e04c91b48272b3b5ee"
+      },
+      "source_payload_sha256": "70820c1558fe03969782641309a170c9a67cc36b07670a76c9257bfacaeef5b1"
+    }
+  ],
+  "independence_requirement": "DO_NOT_VIEW_OTHER_REVIEWER_OUTPUTS",
+  "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_REVIEW_FIELDS_FILLED",
+  "reviewer_slot": "reviewer_1",
+  "schema_id": "D2LFastTrackStageAReviewerInputV1",
+  "schema_version": "1.0.0",
+  "source_input_sha256": "f6d2a5ffeb4b6c28bd69cf8a6b3d9ddb1d93501979d83d3e66186a1c22a81215"
+}

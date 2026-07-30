@@ -1,0 +1,32 @@
+{
+  "affected_batch_count": 4,
+  "artifact_name": "d2l_dataset_remaining_100_stage_a_reviewer2_repair_v1",
+  "files": {
+    "MESSAGE.md": {
+      "sha256": "2428a4bd6ad4bed6841eb73b64763923540bea3f7d09b19e938e04e8dab8d0a8",
+      "size_bytes": 177
+    },
+    "REPAIR_INSTRUCTIONS.md": {
+      "sha256": "49b1681837b0a831bc1132e2e361d75e578eb5e37e1fff6d2a976ec2a6d58330",
+      "size_bytes": 562
+    },
+    "preflight_report.json": {
+      "sha256": "f554ba6ec39a36ccede103d3727557fac8272831710da4c6cc36fc79167dd3f6",
+      "size_bytes": 5636
+    },
+    "reviewer_2_repair_input.json": {
+      "sha256": "54fa45e42a744d883ec326c90b6d6bc3e2487ca326086de92c086b9cd1bfb4b9",
+      "size_bytes": 11784
+    }
+  },
+  "final_glossary_decision": null,
+  "manifest_sha256": "61e8ce6a57a90f19fb4eb33e58ecbed05fadaaeb17e4bdc74a427f93cb96527e",
+  "policy_id": "d2l-remaining-100-stage-a-reviewer2-targeted-repair-v1.0",
+  "provider_call_count": 0,
+  "repair_case_count": 6,
+  "schema_id": "D2LRemaining100StageAReviewer2RepairV1",
+  "schema_version": "1.0",
+  "source_review_file_count": 20,
+  "stage_b_gold_autofill_count": 0,
+  "status": "REVIEWER_2_TARGETED_REPAIR_REQUIRED"
+}

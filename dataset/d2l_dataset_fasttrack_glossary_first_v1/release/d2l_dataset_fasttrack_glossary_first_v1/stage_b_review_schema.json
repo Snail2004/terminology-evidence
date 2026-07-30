@@ -1,0 +1,102 @@
+{
+  "$id": "https://thesis.local/dataset/d2l-stage-b-review-v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adjudication_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "allowed_scope": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "candidate_gold_label": {
+      "enum": [
+        null,
+        "ACCEPT",
+        "CONDITIONAL",
+        "REJECT",
+        "SPLIT_REQUIRED",
+        "HUMAN_UNJUDGEABLE"
+      ],
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "candidate_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "candidate_vi": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "positive_context_refs": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "reason_codes": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "rejected_variants": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "reviewer_provenance_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sense_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "term_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "validated_variants": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "vietnamese_evidence_refs": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "term_id",
+    "sense_id",
+    "candidate_id",
+    "candidate_vi",
+    "candidate_gold_label",
+    "allowed_scope",
+    "validated_variants",
+    "rejected_variants",
+    "reason_codes",
+    "positive_context_refs",
+    "vietnamese_evidence_refs",
+    "reviewer_provenance_ref",
+    "adjudication_ref"
+  ],
+  "title": "D2L Stage B Candidate Gold Review V1",
+  "type": "object"
+}

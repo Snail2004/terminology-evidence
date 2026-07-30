@@ -1,0 +1,24 @@
+{
+  "canonical_main_dataset_authority": {
+    "accepted_zip_sha256": "9b6a9ee1272b6403054b61f5399d4391328d1d2d8a964b1102af0a2656bc2738",
+    "main_commit": "7fd046cc6a9b8f78fd122549feaefa4b2ab83821",
+    "manifest_sha256": "16bd2b9c7a974bdccfb977384fa1a35381e6e810c110f489f31d1606398ce2f5",
+    "relationship": "SEPARATE_TARGETED_REPAIR_REVIEW_ARTIFACT"
+  },
+  "completed_adjudication_sha256": "76c276af401c633ad9f341d482513689ec6121d36731f25662e8459d6666c1d5",
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "6c79575d372e2fa4ed131cfdafd30a31076bcea68d039369ec0fb43b221be278"
+  },
+  "provider_call_count": 0,
+  "schema_id": "D2LTargetedRepairReviewCompleteLineageV1",
+  "schema_version": "1.0.0",
+  "source_result_artifact": "d2l_stage_a_targeted_repair_review_result_5_senses_v1",
+  "source_result_manifest_physical_sha256": "4f31b59d0c422510309d0d1d8193f1ef1ed949d2d898cc5c5c26d7c5ddc8c463",
+  "source_result_manifest_sha256": "acf053cfaeefebb57f4e5fe98f2df91b73f78e2cf698da2a45a4c1271a338445",
+  "source_result_zip_sha256": "d0a5e02338f19781c4d17ccb25743d59248ca2e64ae20bdc11a0d989f3f4a115",
+  "source_review_artifact": "d2l_stage_a_targeted_repair_review_pack_5_senses_v1",
+  "source_review_manifest_physical_sha256": "419f6af277ede673e097e9e640bdafa9f6b046721ffdf4a8406c5a52f93c6b37",
+  "source_review_manifest_sha256": "0648e699af2a6d1e0ccb77c35707f688574ed1714a67e3806db65436d73ec015",
+  "source_review_zip_sha256": "36031531b2d0f52d37e06e4860d3e85cd26acda8af0a1997563e0cf78639679c"
+}

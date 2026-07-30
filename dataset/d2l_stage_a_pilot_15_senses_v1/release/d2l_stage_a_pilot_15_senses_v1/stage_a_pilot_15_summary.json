@@ -1,0 +1,31 @@
+{
+  "adjudication_template_count": 2,
+  "blind_audit_case_count": 3,
+  "boundary_context_count": 15,
+  "candidate_count": 45,
+  "group_counts": {
+    "AMBIGUOUS_POLYSEMOUS": 5,
+    "CLEAR_LOW_RISK": 5,
+    "GATE_ADJUDICATION_RISK": 5
+  },
+  "official_counts": {
+    "constraint_package": 0,
+    "effective_sense": 0,
+    "frozen_candidate": 0
+  },
+  "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+  "positive_context_count": 58,
+  "review_provenance_template_count": 27,
+  "risk_counts": {
+    "R0_CLEAR": 3,
+    "R1_QUALIFIED": 1,
+    "R2_MISSING": 1,
+    "R3_AMBIGUOUS": 9,
+    "R4_SPLIT_OR_POS_RISK": 1
+  },
+  "schema_id": "D2LStageAPilot15SummaryV1",
+  "selected_context_count": 73,
+  "selected_sense_count": 15,
+  "stage_b_open_row_count": 45,
+  "status": "BLOCKED_BY_HUMAN_REVIEW"
+}

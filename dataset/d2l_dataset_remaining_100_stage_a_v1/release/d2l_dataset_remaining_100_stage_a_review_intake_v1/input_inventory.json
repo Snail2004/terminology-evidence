@@ -1,0 +1,220 @@
+{
+  "files": [
+    {
+      "batch_id": null,
+      "captured_relative_path": "repair/reviewer_2_repair_input.json",
+      "captured_sha256": "54fa45e42a744d883ec326c90b6d6bc3e2487ca326086de92c086b9cd1bfb4b9",
+      "input_role": "repair_input",
+      "size_bytes": 11784,
+      "source_file_name": "reviewer_2_repair_input.json",
+      "source_sha256": "54fa45e42a744d883ec326c90b6d6bc3e2487ca326086de92c086b9cd1bfb4b9"
+    },
+    {
+      "batch_id": null,
+      "captured_relative_path": "repair/preflight_report.json",
+      "captured_sha256": "f554ba6ec39a36ccede103d3727557fac8272831710da4c6cc36fc79167dd3f6",
+      "input_role": "repair_preflight",
+      "size_bytes": 5636,
+      "source_file_name": "preflight_report.json",
+      "source_sha256": "f554ba6ec39a36ccede103d3727557fac8272831710da4c6cc36fc79167dd3f6"
+    },
+    {
+      "batch_id": null,
+      "captured_relative_path": "repair/reviewer_2_repair_response.json",
+      "captured_sha256": "df3989dfbe01afeb849d41c6c130ad132e7d317d9de4be13244231bd0b1e5e73",
+      "input_role": "repair_response",
+      "size_bytes": 12049,
+      "source_file_name": "reviewer_2_repair_response.json",
+      "source_sha256": "df3989dfbe01afeb849d41c6c130ad132e7d317d9de4be13244231bd0b1e5e73"
+    },
+    {
+      "batch_id": "batch_001",
+      "captured_relative_path": "raw_reviews/reviewer_1/batch_001_reviewer_1_completed.json",
+      "captured_sha256": "6fd5d04b404bab23e115b615c61ef937bfc41ab916cc9292478ede89563f5c40",
+      "input_role": "reviewer_1",
+      "size_bytes": 203699,
+      "source_file_name": "batch_001_reviewer_1_completed.json",
+      "source_sha256": "6fd5d04b404bab23e115b615c61ef937bfc41ab916cc9292478ede89563f5c40"
+    },
+    {
+      "batch_id": "batch_002",
+      "captured_relative_path": "raw_reviews/reviewer_1/batch_002_reviewer_1_completed.json",
+      "captured_sha256": "850fe16a2e661418024331923abf771fe0beb7949971c2bfe6e21ac87ffdcd68",
+      "input_role": "reviewer_1",
+      "size_bytes": 211297,
+      "source_file_name": "batch_002_reviewer_1_completed.json",
+      "source_sha256": "850fe16a2e661418024331923abf771fe0beb7949971c2bfe6e21ac87ffdcd68"
+    },
+    {
+      "batch_id": "batch_003",
+      "captured_relative_path": "raw_reviews/reviewer_1/batch_003_reviewer_1_completed.json",
+      "captured_sha256": "b6e73a4811257890bb20de035dd93818c6654452863bc3bdf0097fe6e8a9edb4",
+      "input_role": "reviewer_1",
+      "size_bytes": 204245,
+      "source_file_name": "batch_003_reviewer_1_completed.json",
+      "source_sha256": "b6e73a4811257890bb20de035dd93818c6654452863bc3bdf0097fe6e8a9edb4"
+    },
+    {
+      "batch_id": "batch_004",
+      "captured_relative_path": "raw_reviews/reviewer_1/batch_004_reviewer_1_completed.json",
+      "captured_sha256": "b661b95a1d3a2ee0998cb69142d0708409858688a771698288147537814b7224",
+      "input_role": "reviewer_1",
+      "size_bytes": 203063,
+      "source_file_name": "batch_004_reviewer_1_completed.json",
+      "source_sha256": "b661b95a1d3a2ee0998cb69142d0708409858688a771698288147537814b7224"
+    },
+    {
+      "batch_id": "batch_005",
+      "captured_relative_path": "raw_reviews/reviewer_1/batch_005_reviewer_1_completed.json",
+      "captured_sha256": "ce3eedc761bf51f41cf8deb766c53c17f018cc31d89f99800676c1429224c8da",
+      "input_role": "reviewer_1",
+      "size_bytes": 211484,
+      "source_file_name": "batch_005_reviewer_1_completed.json",
+      "source_sha256": "ce3eedc761bf51f41cf8deb766c53c17f018cc31d89f99800676c1429224c8da"
+    },
+    {
+      "batch_id": "batch_006",
+      "captured_relative_path": "raw_reviews/reviewer_1/batch_006_reviewer_1_completed.json",
+      "captured_sha256": "d2ca0e32b5e9cba739b5e6441ccddbdc67586c3d5b0d3f0bec73bdc51b6636bd",
+      "input_role": "reviewer_1",
+      "size_bytes": 211913,
+      "source_file_name": "batch_006_reviewer_1_completed.json",
+      "source_sha256": "d2ca0e32b5e9cba739b5e6441ccddbdc67586c3d5b0d3f0bec73bdc51b6636bd"
+    },
+    {
+      "batch_id": "batch_007",
+      "captured_relative_path": "raw_reviews/reviewer_1/batch_007_reviewer_1_completed.json",
+      "captured_sha256": "45637b249d93aed4d8647d6022f513333006377d41b7e19e0893b8872587a43d",
+      "input_role": "reviewer_1",
+      "size_bytes": 211374,
+      "source_file_name": "batch_007_reviewer_1_completed.json",
+      "source_sha256": "45637b249d93aed4d8647d6022f513333006377d41b7e19e0893b8872587a43d"
+    },
+    {
+      "batch_id": "batch_008",
+      "captured_relative_path": "raw_reviews/reviewer_1/batch_008_reviewer_1_completed.json",
+      "captured_sha256": "7bf08ebd0e035b50545138b483b79ad0ac9dc39b1d06b9ed988e7381d29d25f3",
+      "input_role": "reviewer_1",
+      "size_bytes": 211973,
+      "source_file_name": "batch_008_reviewer_1_completed.json",
+      "source_sha256": "7bf08ebd0e035b50545138b483b79ad0ac9dc39b1d06b9ed988e7381d29d25f3"
+    },
+    {
+      "batch_id": "batch_009",
+      "captured_relative_path": "raw_reviews/reviewer_1/batch_009_reviewer_1_completed.json",
+      "captured_sha256": "7750c498a08939b0069c810aac504fc463e8d08303845c13e826b9adf676f416",
+      "input_role": "reviewer_1",
+      "size_bytes": 190116,
+      "source_file_name": "batch_009_reviewer_1_completed.json",
+      "source_sha256": "7750c498a08939b0069c810aac504fc463e8d08303845c13e826b9adf676f416"
+    },
+    {
+      "batch_id": "batch_010",
+      "captured_relative_path": "raw_reviews/reviewer_1/batch_010_reviewer_1_completed.json",
+      "captured_sha256": "a7ac57bd113139037abc5497f3e5f9ce91e80c6981bf7cb00ff5553dd1f9fc6f",
+      "input_role": "reviewer_1",
+      "size_bytes": 212168,
+      "source_file_name": "batch_010_reviewer_1_completed.json",
+      "source_sha256": "a7ac57bd113139037abc5497f3e5f9ce91e80c6981bf7cb00ff5553dd1f9fc6f"
+    },
+    {
+      "batch_id": "batch_001",
+      "captured_relative_path": "raw_reviews/reviewer_2/batch_001_reviewer_2_completed.json",
+      "captured_sha256": "c12ca593e7f16fd5c436f6e9d83f9f086c9c9d892b4de38fb10c13edf9ebf59a",
+      "input_role": "reviewer_2",
+      "size_bytes": 118011,
+      "source_file_name": "batch_001_reviewer_2_completed.json",
+      "source_sha256": "c12ca593e7f16fd5c436f6e9d83f9f086c9c9d892b4de38fb10c13edf9ebf59a"
+    },
+    {
+      "batch_id": "batch_002",
+      "captured_relative_path": "raw_reviews/reviewer_2/batch_002_reviewer_2_completed.json",
+      "captured_sha256": "9ce57ffebffda3bbe5a8f013ab171e93de23118ae83a1e0a44f287f9fe3a49f0",
+      "input_role": "reviewer_2",
+      "size_bytes": 148842,
+      "source_file_name": "batch_002_reviewer_2_completed.json",
+      "source_sha256": "9ce57ffebffda3bbe5a8f013ab171e93de23118ae83a1e0a44f287f9fe3a49f0"
+    },
+    {
+      "batch_id": "batch_003",
+      "captured_relative_path": "raw_reviews/reviewer_2/batch_003_reviewer_2_completed.json",
+      "captured_sha256": "779cbb01879d3889f2ec01bb4c9134fbd4761d7661399a70a314aa14d2515349",
+      "input_role": "reviewer_2",
+      "size_bytes": 145486,
+      "source_file_name": "batch_003_reviewer_2_completed.json",
+      "source_sha256": "779cbb01879d3889f2ec01bb4c9134fbd4761d7661399a70a314aa14d2515349"
+    },
+    {
+      "batch_id": "batch_004",
+      "captured_relative_path": "raw_reviews/reviewer_2/batch_004_reviewer_2_completed.json",
+      "captured_sha256": "31ff9422d715add5bd30dee33cdfd02b5eab47e80a0ae5fa664a74549afcb628",
+      "input_role": "reviewer_2",
+      "size_bytes": 119259,
+      "source_file_name": "batch_004_reviewer_2_completed.json",
+      "source_sha256": "31ff9422d715add5bd30dee33cdfd02b5eab47e80a0ae5fa664a74549afcb628"
+    },
+    {
+      "batch_id": "batch_005",
+      "captured_relative_path": "raw_reviews/reviewer_2/batch_005_reviewer_2_completed.json",
+      "captured_sha256": "df9aff798e2a85d4d237e30dd9c552daf356e9a7d61c21c3d089c7612e2a4dd8",
+      "input_role": "reviewer_2",
+      "size_bytes": 149098,
+      "source_file_name": "batch_005_reviewer_2_completed.json",
+      "source_sha256": "df9aff798e2a85d4d237e30dd9c552daf356e9a7d61c21c3d089c7612e2a4dd8"
+    },
+    {
+      "batch_id": "batch_006",
+      "captured_relative_path": "raw_reviews/reviewer_2/batch_006_reviewer_2_completed.json",
+      "captured_sha256": "0c2cd92d49e228a5f8f92241028fb7e356165d363162911ec939e24e4b889e92",
+      "input_role": "reviewer_2",
+      "size_bytes": 150736,
+      "source_file_name": "batch_006_reviewer_2_completed.json",
+      "source_sha256": "0c2cd92d49e228a5f8f92241028fb7e356165d363162911ec939e24e4b889e92"
+    },
+    {
+      "batch_id": "batch_007",
+      "captured_relative_path": "raw_reviews/reviewer_2/batch_007_reviewer_2_completed.json",
+      "captured_sha256": "6de46282805b92c07b055d2395214acdd48df3643c4cffe49eab4e9e94abeac6",
+      "input_role": "reviewer_2",
+      "size_bytes": 124526,
+      "source_file_name": "batch_007_reviewer_2_completed.json",
+      "source_sha256": "6de46282805b92c07b055d2395214acdd48df3643c4cffe49eab4e9e94abeac6"
+    },
+    {
+      "batch_id": "batch_008",
+      "captured_relative_path": "raw_reviews/reviewer_2/batch_008_reviewer_2_completed.json",
+      "captured_sha256": "dd4fe50da65e1589af3e04a7716f059e25356109772fad256cae8ee251f5d1d5",
+      "input_role": "reviewer_2",
+      "size_bytes": 149730,
+      "source_file_name": "batch_008_reviewer_2_completed.json",
+      "source_sha256": "dd4fe50da65e1589af3e04a7716f059e25356109772fad256cae8ee251f5d1d5"
+    },
+    {
+      "batch_id": "batch_009",
+      "captured_relative_path": "raw_reviews/reviewer_2/batch_009_reviewer_2_completed.json",
+      "captured_sha256": "16342e8ce4a6706ac30d46ea4851fff93d6b5d3a0b6aba937a616c5518a78115",
+      "input_role": "reviewer_2",
+      "size_bytes": 125345,
+      "source_file_name": "batch_009_reviewer_2_completed.json",
+      "source_sha256": "16342e8ce4a6706ac30d46ea4851fff93d6b5d3a0b6aba937a616c5518a78115"
+    },
+    {
+      "batch_id": "batch_010",
+      "captured_relative_path": "raw_reviews/reviewer_2/batch_010_reviewer_2_completed.json",
+      "captured_sha256": "1904e7e0c1bf90e50abc1723f2306e32daf630f0a1f7ae927f048c3451930a2c",
+      "input_role": "reviewer_2",
+      "size_bytes": 103954,
+      "source_file_name": "batch_010_reviewer_2_completed.json",
+      "source_sha256": "1904e7e0c1bf90e50abc1723f2306e32daf630f0a1f7ae927f048c3451930a2c"
+    }
+  ],
+  "input_file_count": 23,
+  "integrity": {
+    "self_sha256": "3ebac1cd53b9648a3fd99b5290396cfb5168e2e26b6a686e5edfe714eb5d18bd"
+  },
+  "policy_id": "d2l-remaining-100-stage-a-review-intake-v1.0",
+  "raw_review_file_count": 20,
+  "repair_case_count": 6,
+  "schema_id": "D2LRemaining100StageAIntakeInventoryV1",
+  "schema_version": "1.0"
+}

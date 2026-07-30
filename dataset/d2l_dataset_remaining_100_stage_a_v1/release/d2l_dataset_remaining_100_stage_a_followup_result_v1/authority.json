@@ -1,0 +1,23 @@
+{
+  "base_authority_commit": "d748fcd8e7c26f48d760cbfbd2ae5ad75aac7787",
+  "integrity": {
+    "self_sha256": "3000b65740b1ad1b29f5fb3509f7207b2dfa3e827c0b1e2efde1d10ccb190491"
+  },
+  "policy_id": "d2l-remaining-100-stage-a-followup-result-v1.0",
+  "schema_id": "D2LRemaining100FollowupResultAuthorityV1",
+  "schema_version": "1.0",
+  "source_artifacts": {
+    "followup": {
+      "manifest_physical_sha256": "e19dca79828fc5641c28cf005e36ad9939b4161c2459708cf789dc728257e1b5",
+      "manifest_self_sha256": "71db84bee3c9b6f97f9587416c5088189e636fb77d64b4963389e39ffd17cd98"
+    },
+    "initial_intake": {
+      "manifest_physical_sha256": "a408793130640906b2cbef6f244c92ac166e5d38d5a47f2b89e75ede96e2c6ee",
+      "manifest_self_sha256": "d22875f5f700fe6212e32cbdbb8295a8c74d0eb2fe446a5ca03311a43251d65e"
+    },
+    "reviewer_3_corrected": {
+      "manifest_physical_sha256": "74f2f82f6725875a43adc6cf75e3234cf39d84f2e7ea2e7267f1008f3254311e",
+      "manifest_self_sha256": "a2242c5d1c3f6fa23a7782bd8b442cc0d485dd6a94caf27f7766f07a4d86411d"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "definition_source": "MODEL_ACCEPTED",
+  "domain_profile": {
+    "anchors_en": [
+      "output gate"
+    ],
+    "anchors_vi": [
+      "cổng xuất",
+      "cổng điều khiển đầu ra",
+      "cổng đầu ra"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "the LSTM gate that controls how much memory information is exposed to the output at a time step.",
+  "effective_part_of_speech": "noun_phrase",
+  "integrity": {
+    "self_sha256": "606c6fdd0ff9faead083d50d1baca77a7bb8eae5ef4be4e9ecdae567bbf3fcb8"
+  },
+  "parent_dataset_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+  "provenance": {
+    "completed_at": "2026-07-29T08:00:00Z",
+    "component_id": "d2l-dataset-effective-sense-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "c0a8a26c215ffdd4a5c3586c500adfc4cb7b86691b47f0ba6990857f7bb43e61",
+    "model_routes": [],
+    "notes": "Zero-network Dataset projection from human-reviewed Stage A evidence.",
+    "policy_version": "d2l-stage-a-p0b-official-11-sense-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-stage-a-p0b-official-11-sense-release",
+    "run_spec_id": "d2l-stage-a-p0b-official-11-sense-spec-v1",
+    "source_artifact_hashes": {
+      "dataset_manifest": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+      "review_binding": "d546d84d10ffe3ee2ee128f620d25b5da99a77bf400fb9d4fc7ba9b8e3cb6931",
+      "reviewed_manifest": "e602af02edf1fb877a9541c5e37f939f4f35ded34ac878d773fc83b96ed3fb48",
+      "term_sense": "d46ce5e05acd519c876e5c23b91df03f10c5e18bbd41286573a654a1c7f1030f"
+    },
+    "started_at": "2026-07-29T08:00:00Z"
+  },
+  "review_artifact_sha256": "d546d84d10ffe3ee2ee128f620d25b5da99a77bf400fb9d4fc7ba9b8e3cb6931",
+  "review_status": "ACCEPTED",
+  "schema_id": "EffectiveSenseContractV1",
+  "schema_version": "1.1.0",
+  "scope_id": "d2l_selected_campaign_scope_v1",
+  "scope_note": null,
+  "sense_id": "d2lce_c6b4477a845e2e0e0e02f088",
+  "sense_inventory_version": "d2l_context_support_set_validation_ready_v3",
+  "source_term": "output gate"
+}

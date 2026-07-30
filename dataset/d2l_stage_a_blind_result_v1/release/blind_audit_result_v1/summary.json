@@ -1,0 +1,23 @@
+{
+  "schema_id": "D2LCSTBlindResultSummaryV1",
+  "policy_id": "d2l_cst_stage_a_blind_result_summary_v1",
+  "artifact_status": "BLOCKED_PENDING_REVIEWER_PROVENANCE_AND_ADJUDICATION",
+  "reviewer_slot_count": 3,
+  "blind_case_count": 13,
+  "normalized_review_record_count": 39,
+  "split_unanimous_count": 12,
+  "split_majority_matches_anchor_count": 13,
+  "pos_unanimous_count": 12,
+  "pos_consensus_matches_anchor_count": 12,
+  "definition_exact_unanimous_count": 0,
+  "adjudication_case_count": 3,
+  "adjudication_terms": [
+    "contexts",
+    "fully-connected layers",
+    "in place"
+  ],
+  "reviewer_provenance_status": "PENDING_OWNER_ATTESTATION",
+  "anchoring_assessment_status": "INCONCLUSIVE_PENDING_PROVENANCE_AND_SEMANTIC_ADJUDICATION",
+  "final_glossary_decision": null,
+  "summary_sha256": "21d979b7c5f8b76cc5e3217a995d81eda1b3facac91e5d5d98e7d5c1da8bfce2"
+}

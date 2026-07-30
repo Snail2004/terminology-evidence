@@ -1,0 +1,597 @@
+{
+  "batch_id": "batch_002",
+  "cases": [
+    {
+      "review": {
+        "candidate_replacements": [],
+        "candidate_set_decision": "",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "",
+        "evidence_decision": "",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "",
+        "proposed_split_labels": [],
+        "review_notes": "",
+        "review_status": "",
+        "scope_decision": "",
+        "sense_status": ""
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_e79581f4744e73cf563b7444",
+            "candidate_slot": "candidate_slot_3e965b01022cabcff116edfa",
+            "candidate_target_vi": "bài toán phân loại"
+          },
+          {
+            "candidate_id": "candidate_6a5f71ba4fb7faadd518d7c1",
+            "candidate_slot": "candidate_slot_a2cfa5f174dc06b3fdad065e",
+            "candidate_target_vi": "nhiệm vụ phân loại"
+          },
+          {
+            "candidate_id": "candidate_6d03c0e37bb242222d884992",
+            "candidate_slot": "candidate_slot_d8145d6f1847e870ca95f98f",
+            "candidate_target_vi": "tác vụ phân loại"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_naive_bayes_b030",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+            "content_sha256": "64ca5d02eb5202318260c70c295dfcd732d1b5b57afee0e24151edc7fe9fa743",
+            "context_id": "ctx_03e87b1a98115f17fc26d0f7",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_42828c4350def50b44f169e0",
+            "source_text": "(Refer to :numref:`sec_softmax` for a more detailed explanation.)\nOne natural way to express the classification task is via the probabilistic question: what is the most likely label given the features (i.e., image pixels)?",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_bert_b050",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "aff00aee49f8531c0ba35d5bb0bf5d547c666346f543f4bd0f181f5e0fecc921",
+            "context_id": "ctx_3e389fe6256706465318f5f8",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_7568b99807a9271e2595d3c6",
+            "source_text": "To help understand the relationship between two text sequences,\nBERT considers a binary classification task, *next sentence prediction*, in its pretraining.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_environment_b063",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "7dedf72b03501ae8013614bb15706d2ee251c3da60365f59c8ade36c7747ad8a",
+            "context_id": "ctx_5178997f9928de9b50c9dd24",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_22b1a92cae030a06504187d4",
+            "source_text": "Assume that we are dealing with a\nclassification task with $k$ categories.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_bert_dataset_b011",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "407a5671f4d848182e707ca114fd3a0b2f7447854603a3e3ed0d71ca01c8422e",
+            "context_id": "ctx_7a43f811e64406c483bc4185",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_6533f50394e6f29e718035af",
+            "source_text": "According to descriptions of :numref:`subsec_nsp`,\nthe `_get_next_sentence` function generates a training example\nfor the binary classification task.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_geometry_linear_algebraic_ops_b172",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+            "content_sha256": "b952312f3a3e65393ddd23a8d2d717bf89948a721ec89d74e752fefb47b87702",
+            "context_id": "ctx_85fa1560b684d47c13e4cb02",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_273ca24b86380f65e1515993",
+            "source_text": "They can be used to define decision planes that are often used as the last step in a classification task.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_applications_sentiment_analysis_and_dataset_b003",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_applications",
+            "content_sha256": "f25a8fc1365bd2925b833439f7f9c3d61074275b033f63d0a8156060ce21cb66",
+            "context_id": "ctx_c332d46b413066a4b5ce91fc",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_85c668a0c97280364383a461",
+            "source_text": "Since sentiments\ncan be categorized\nas discrete polarities or scales (e.g., positive and negative),\nwe can consider \nsentiment analysis \nas a text classification task,\nwhich transforms a varying-length text sequence\ninto a fixed-length text category.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_fm_b013",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "408c29fa81de6c228bc332f12baa86ce5cf71f815e2116ef8a707d6fb1d4ea4b",
+            "context_id": "ctx_d3fc4788f9797ce1f2337e72",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_733a50448e94810022af8f4c",
+            "source_text": "We apply a sigmoid function over the final score since we treat the CTR prediction as a classification task.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_naive_bayes_b030",
+            "boundary_only": false,
+            "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+            "content_sha256": "18d03162319ab73e22d33b07e5791a60a5bdb45d9ac5b3246d4076a65bad9fc3",
+            "context_id": "ctx_ee34c2df4e3b3b9663241088",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_248d3ba44e4aa61928bb62a1",
+            "source_text": "In a classification task, we map an example into a category.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "efc1e961e8414b8b3ab4c9fb384e364e9824b84652fd08299efeb3a370fbcc5b",
+            "context_id": "ctxx_a2ae7fe0e53d89ee6a8bb119",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "classification task",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: The classification task in the museum was to sort fossils into display trays by species.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_c2a53ed2bb28e6b9d83b964e",
+        "proposed_definition_en": "a machine learning task in which each example is assigned to one of a set of categories or labels",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_d89e6e83e5f07d1fcb18c6aa",
+        "source_sense_pool_record_sha256": "99a15b9d567219ac88a9bff3bdefde84139eb51a97346516d1379299c19c620d",
+        "source_term": "classification task",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_d89e6e83e5f07d1fcb18c6aa"
+      },
+      "source_payload_sha256": "05a8ae457f8a3e8ff0fe83f3fd1529d6c926bb7a171ce7b6c6a7b5197ba2ea51"
+    },
+    {
+      "review": {
+        "candidate_replacements": [],
+        "candidate_set_decision": "",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "",
+        "evidence_decision": "",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "",
+        "proposed_split_labels": [],
+        "review_notes": "",
+        "review_status": "",
+        "scope_decision": "",
+        "sense_status": ""
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_452b3f5db3a27e5b548cf1da",
+            "candidate_slot": "candidate_slot_1b01e42e0db0a3987ea24dfb",
+            "candidate_target_vi": "lọc dựa trên cộng tác"
+          },
+          {
+            "candidate_id": "candidate_f2ecc9435dc6bce747a9c6f9",
+            "candidate_slot": "candidate_slot_f4c19c82e51cc31708671fe0",
+            "candidate_target_vi": "phương pháp lọc cộng tác"
+          },
+          {
+            "candidate_id": "candidate_ebaa60d5f0aac51d56bb7fd0",
+            "candidate_slot": "candidate_slot_fa57fa512c5c629d01d8df56",
+            "candidate_target_vi": "lọc cộng tác"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_recommender_systems_autorec_b002",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "ef68526ff177adb128e9a81f958ab47cbff6a00aff4a5565612fa3b09b350d67",
+            "context_id": "ctx_3ef068df4dff9397568c05a1",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "collaborative filtering",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_0bb764c3b6817ba590dab2f9",
+            "source_text": "It identifies collaborative filtering (CF) with an autoencoder architecture and aims to integrate nonlinear transformations into CF on the basis of explicit feedback.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_neumf_b001",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "8be80e9d3e0d0c3eb12f6692120d672d264162066d03ffe86aecd1f2b37f84c6",
+            "context_id": "ctx_6c1b00ba70e27b85908261c3",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "collaborative filtering",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_6ea18aee65aded46371b7a8b",
+            "source_text": "# Neural Collaborative Filtering for Personalized Ranking",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_mf_b004",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "1bbf66a9ed0335148bac48c76c8e6ea47de9cb19fd7e80faaaee779811405936",
+            "context_id": "ctx_6f061caa3cf5adf9643ce3cf",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "collaborative filtering",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_854f69475565dbe45c2494f9",
+            "source_text": "Matrix factorization is a class of collaborative filtering models.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_recsys_intro_b004",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "93c4846d872a0371b821ae1c1c81ffe12512d9482c8709f3b67265edcf0e48cf",
+            "context_id": "ctx_75434b30d17229e486daa408",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "collaborative filtering",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_073345c87513bbeda3aa0dd3",
+            "source_text": "## Collaborative Filtering",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_autorec_b002",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "9732c4870fd89ab240693547c1bddbf34d515afe96809bd4cade0ddf6f59377d",
+            "context_id": "ctx_8f9b78e1ec3bfbc4e8e8f524",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "collaborative filtering",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_7dd92fb006c2aeb8dca5e83f",
+            "source_text": "In this section, we introduce a nonlinear neural network collaborative filtering model, AutoRec :cite:`Sedhain.Menon.Sanner.ea.2015`.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_optimization_adagrad_b004",
+            "boundary_only": false,
+            "chapter_id": "d2l_optimization",
+            "content_sha256": "fb882caadadafd0d23f418cb441893c8de10ab2ad15e4192e1909c7c5bc3d4d0",
+            "context_id": "ctx_b163c5e1230dbed8d61eda33",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "collaborative filtering",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_e9818fe4c531422aaf199a92",
+            "source_text": "However, it is also common in other areas such as computational advertising and personalized collaborative filtering.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_recsys_intro_b005",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "d873148099c9d227d801f6b7b42dd3b877633a938c1061fd839b345c960095dd",
+            "context_id": "ctx_bb4169d27d43ea9f72386558",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "collaborative filtering",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_6a5f1e25806d4cbef44789ed",
+            "source_text": "We start the journey with the important concept in recommender systems---collaborative filtering\n(CF), which was first coined by the Tapestry system :cite:`Goldberg.Nichols.Oki.ea.1992`, referring to \"people collaborate to help one another perform the filtering process  in order to handle the large amounts of email and messages posted to newsgroups\".",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_recsys_intro_b012",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "5f327003bc8942b58ef52d7aca91e27d5557d1aea7a89636dc41d55359eabd56",
+            "context_id": "ctx_f875ab990af98aaf8fbc46b2",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "collaborative filtering",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_461378f83c359e99b35d020a",
+            "source_text": "Collaborative filtering is a key concept in recommendation.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "bbaf7cca8778f883b033a1ef004765d1fb6c4e1c16eb49832a45a6245c0abb76",
+            "context_id": "ctxx_6e73fc3ec644b4b97b928c84",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "Collaborative Filtering",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: The moderators used collaborative filtering to jointly sort spam emails by hand.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_b46fe677ffbcf32ce85b46f8",
+        "proposed_definition_en": "a recommendation approach that filters or predicts preferences using patterns derived from multiple users’ interactions or feedback.",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+        "risk_class": "R3_AMBIGUOUS",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_fb9ad6a6ac7e4ba9167913e1",
+        "source_sense_pool_record_sha256": "8d68cc01a46c2524a1f32adcb38a2f05028230a0511e7eed2bd39657f7689de5",
+        "source_term": "Collaborative Filtering",
+        "stratum": "ambiguous",
+        "term_id": "d2lce_fb9ad6a6ac7e4ba9167913e1"
+      },
+      "source_payload_sha256": "914037bd41d4a915e7abb110a08705d2d00222287ec3a854e381c9fe45c204ba"
+    },
+    {
+      "review": {
+        "candidate_replacements": [],
+        "candidate_set_decision": "",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "",
+        "evidence_decision": "",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "",
+        "proposed_split_labels": [],
+        "review_notes": "",
+        "review_status": "",
+        "scope_decision": "",
+        "sense_status": ""
+      },
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_477d1eb8658479b3f680eff5",
+            "candidate_slot": "candidate_slot_0ec8f3e68381576a69fc3b6d",
+            "candidate_target_vi": "hạt nhân tích chập"
+          },
+          {
+            "candidate_id": "candidate_f262c620c32e4824f5998288",
+            "candidate_slot": "candidate_slot_559ab063aed293600e4b5ac5",
+            "candidate_target_vi": "bộ lọc tích chập"
+          },
+          {
+            "candidate_id": "candidate_891ab83a1905eeee6fb04e4b",
+            "candidate_slot": "candidate_slot_6133115182b3a171c3601e40",
+            "candidate_target_vi": "nhân chập"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_convolutional_neural_networks_why_conv_b024",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "c8c86a940791a89ca99cc20aad3de7e9540dd7bc0b5156a8ddb2126441bece62",
+            "context_id": "ctx_324283e43fc62ecd24e2a923",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "convolution kernel",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_a9d90970a869cbaebdf775b3",
+            "source_text": "In the deep learning research community,\n$\\mathbf{V}$ is referred to as a *convolution kernel*,\na *filter*, or simply the layer's *weights* that are often learnable parameters.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_why_conv_b046",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "f0d656387ec1fd37fec1c2e68a720c1e10a2a78bdc1f8186e4d374dfe18dc0a8",
+            "context_id": "ctx_3a70b91cc809a88026050552",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "convolution kernel",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_c71be2b79bca6c54d860368d",
+            "source_text": "Assume that the size of the convolution kernel is $\\Delta = 0$.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computer_vision_transposed_conv_b031",
+            "boundary_only": false,
+            "chapter_id": "d2l_computer_vision",
+            "content_sha256": "bf15a18495485d030c4b2b828ca2e7deb201c07f86f6e38955c4d1b036e70712",
+            "context_id": "ctx_3ef46376e083fc08200cbde9",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "convolution kernel",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_71cfcba0ff2ef48086f021d0",
+            "source_text": "In the example below, we define a $3\\times 3$ input `X` and a $2\\times 2$ convolution kernel `K`, and then use the `corr2d` function to compute the convolution output `Y`.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_modern_googlenet_b002",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_modern",
+            "content_sha256": "9397b1d2a1d60a9b10d4296dd08d23a9ba816645f2105aaf27a8cd040fd3b6c9",
+            "context_id": "ctx_553b80dd5ccbf185fe342d46",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "convolution kernels",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_a764ac4f7da44309f3a540f9",
+            "source_text": "One focus of the paper was to address the question\nof which sized convolution kernels are best.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_applications_sentiment_analysis_cnn_b015",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_applications",
+            "content_sha256": "0d43360b5ec6ec1efd6aa17dddd0354662d534af887d24c0c1515b8904db1479",
+            "context_id": "ctx_62a689a27a8ee80eaa82689e",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "convolution kernel",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_9dd38320ebaac2e6142c41d3",
+            "source_text": "Then for each channel, \nperform a cross-correlation operation on the one-dimensional tensor of the input and the one-dimensional tensor of the convolution kernel, \nsumming the results over all the channels\nto produce the one-dimensional output tensor.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_why_conv_b046",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "85113c6b2c34fb5cf6fb9476d60634639f850b1d5b0a792511ef5d2f5c270a85",
+            "context_id": "ctx_6bfd2b1f7968c3e4e607ba4a",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "convolution kernel",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_61e464969ed6fde0160604a1",
+            "source_text": "Show that in this case the convolution kernel\n   implements an MLP independently for each set of channels.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_multiple_gpus_concise_b006",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "e960ca79f6c968441ce6bf9fbc7d889636e076ab4eb5ec5ffa56c3ca8804c966",
+            "context_id": "ctx_f1e496939bf84efa5b0055a2",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "convolution kernel",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_b0951b106791492a4411a123",
+            "source_text": "In particular, the difference from :numref:`sec_resnet` is that we use a smaller convolution kernel, stride, and padding at the beginning.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_neural_networks_conv_layer_b009",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "4b1044a13032ee046e18b090d06b4ca8f998d272593be2d1db6827f9c7d93218",
+            "context_id": "ctx_f2e17ee567b215267ffa2690",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "convolution kernel",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_7903ae627796e7be773d504e",
+            "source_text": "Because the kernel has width and height greater than one,\nwe can only properly compute the cross-correlation\nfor locations where the kernel fits wholly within the image,\nthe output size is given by the input size $n_h \\times n_w$\nminus the size of the convolution kernel $k_h \\times k_w$\nvia",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "1229e92aaa99668525c440464032e5fe14fe570a86c4aa7460e0b9cf3526be5d",
+            "context_id": "ctxx_1e6dd55bc1e9c0b274749deb",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "convolution kernel",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: The chef named his new sauce the convolution kernel, but it was only a menu joke.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_9405cf22016a4bf4e66ebc62",
+        "proposed_definition_en": "the learnable filter tensor used in a convolution or cross-correlation operation",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_7c27fa40b039d07e81508741",
+        "source_sense_pool_record_sha256": "6742045d6082f5d00137bdd8ce60a4318a41a70549e707f9b6afdcbbf7aa0cf5",
+        "source_term": "convolution kernel",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_7c27fa40b039d07e81508741"
+      },
+      "source_payload_sha256": "ac114cc49d62d14a53b7a2fc4057c820269d6b42d503d39fce1652b3d2968a5a"
+    }
+  ],
+  "independence_requirement": "DO_NOT_VIEW_OTHER_REVIEWER_OUTPUTS",
+  "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_REVIEW_FIELDS_FILLED",
+  "reviewer_slot": "reviewer_2",
+  "schema_id": "D2LFastTrackStageAReviewerInputV1",
+  "schema_version": "1.0.0",
+  "source_input_sha256": "b971ed2f462acaa1d1a7a01931ac00b2da120284414a97f871b14cce861aea5c"
+}

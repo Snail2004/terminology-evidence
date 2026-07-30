@@ -1,0 +1,87 @@
+{
+  "candidate_replacement_binding": {
+    "candidate_bound_object_cases": 8,
+    "legacy_unbound_text_cases": 20,
+    "resolution": "REVIEWER_3_MUST_RETURN_CANDIDATE_BOUND_OBJECTS"
+  },
+  "canonical_stage_a_manifest_sha256": "92fab6032576a5c9c57fe38e23b6c622d5f73718a897197a2c10df35c7fe8b4d",
+  "comparison": {
+    "r0_ready": 9,
+    "r0_repair_required": 4,
+    "r3_agreement": 7,
+    "r3_disagreement": 8,
+    "r4_mandatory": 16,
+    "r4_with_agreement": 5,
+    "r4_with_disagreement": 11,
+    "reviewer_3_adjudication_cases": 24
+  },
+  "completed_review_decisions": 75,
+  "created_at": "2026-07-29T14:00:00Z",
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "67155c6fcaa43158d8e475ccf1a8f66d2583ccbf08396a85adc9f557b2001bb0"
+  },
+  "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+  "provider_call_count": 0,
+  "reviewer_3_handoffs": [
+    {
+      "batch_id": "batch_001",
+      "case_count": 1,
+      "zip_path": "handoff/batch_001_reviewer_3_adjudication.zip",
+      "zip_sha256": "dbb81b8f91950191b5ecfa697687c83356a61497513daa7bdfe2baecce17156f"
+    },
+    {
+      "batch_id": "batch_002",
+      "case_count": 2,
+      "zip_path": "handoff/batch_002_reviewer_3_adjudication.zip",
+      "zip_sha256": "2be31aeb4e882626e86fe871e9ffef917e7adcf301ba198a4755ab327f945e43"
+    },
+    {
+      "batch_id": "batch_003",
+      "case_count": 3,
+      "zip_path": "handoff/batch_003_reviewer_3_adjudication.zip",
+      "zip_sha256": "0555feab20e87a86732a8cd4f9474a8c1628a74857c79778a3fe8bcc1b8cbc94"
+    },
+    {
+      "batch_id": "batch_004",
+      "case_count": 3,
+      "zip_path": "handoff/batch_004_reviewer_3_adjudication.zip",
+      "zip_sha256": "c4281d2c5f370c0e773795ff832bae1b1c324968072ed075f675a0fca6b74fb4"
+    },
+    {
+      "batch_id": "batch_005",
+      "case_count": 2,
+      "zip_path": "handoff/batch_005_reviewer_3_adjudication.zip",
+      "zip_sha256": "f2a3f322befc6373f259d4138ebe4deeff8fe5aa3ff184b01df3fb122e0582e7"
+    },
+    {
+      "batch_id": "batch_006",
+      "case_count": 3,
+      "zip_path": "handoff/batch_006_reviewer_3_adjudication.zip",
+      "zip_sha256": "2a0870ac1e62cb530f8f123175240cf52ba87ccc66aa950bc91b77ae9a431551"
+    },
+    {
+      "batch_id": "batch_007",
+      "case_count": 2,
+      "zip_path": "handoff/batch_007_reviewer_3_adjudication.zip",
+      "zip_sha256": "be07bb702e7f05527cca1206b8bbc038d98b2deedb5772194c63d25c8ff23e16"
+    },
+    {
+      "batch_id": "batch_008",
+      "case_count": 4,
+      "zip_path": "handoff/batch_008_reviewer_3_adjudication.zip",
+      "zip_sha256": "75cd266405a2c48065d4dfcaf4f19e202ba461f99882caf12596717f25fbaab0"
+    },
+    {
+      "batch_id": "batch_009",
+      "case_count": 4,
+      "zip_path": "handoff/batch_009_reviewer_3_adjudication.zip",
+      "zip_sha256": "6943112c885aa5e2eb241b96ea72b47dc7ca8bd47db23957191e39cf5aed4305"
+    }
+  ],
+  "schema_id": "D2LFastTrackStageAReviewComparisonReportV1",
+  "schema_version": "1.0.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "READY_FOR_REVIEWER_3_ADJUDICATION",
+  "validated_result_files": 18
+}

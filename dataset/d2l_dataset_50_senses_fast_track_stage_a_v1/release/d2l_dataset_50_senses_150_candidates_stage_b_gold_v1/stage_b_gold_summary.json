@@ -1,0 +1,111 @@
+{
+  "adjudication_count": 19,
+  "adjudication_label_counts": {
+    "ACCEPT": 9,
+    "CONDITIONAL": 10
+  },
+  "by_lane": {
+    "A_OFFICIAL": {
+      "candidate_count": 15,
+      "label_counts": {
+        "ACCEPT": 8,
+        "CONDITIONAL": 6,
+        "REJECT": 1
+      }
+    },
+    "B_REVIEW_READY": {
+      "candidate_count": 18,
+      "label_counts": {
+        "ACCEPT": 9,
+        "CONDITIONAL": 9
+      }
+    },
+    "C_REPAIRED": {
+      "candidate_count": 12,
+      "label_counts": {
+        "ACCEPT": 9,
+        "CONDITIONAL": 3
+      }
+    },
+    "D_NEW": {
+      "candidate_count": 105,
+      "label_counts": {
+        "ACCEPT": 91,
+        "CONDITIONAL": 13,
+        "REJECT": 1
+      }
+    }
+  },
+  "by_split": {
+    "development": {
+      "candidate_count": 90,
+      "label_counts": {
+        "ACCEPT": 68,
+        "CONDITIONAL": 20,
+        "REJECT": 2
+      }
+    },
+    "test": {
+      "candidate_count": 30,
+      "label_counts": {
+        "ACCEPT": 23,
+        "CONDITIONAL": 7
+      }
+    },
+    "validation": {
+      "candidate_count": 30,
+      "label_counts": {
+        "ACCEPT": 26,
+        "CONDITIONAL": 4
+      }
+    }
+  },
+  "by_stratum": {
+    "ambiguous": {
+      "candidate_count": 60,
+      "label_counts": {
+        "ACCEPT": 46,
+        "CONDITIONAL": 14
+      }
+    },
+    "clear": {
+      "candidate_count": 45,
+      "label_counts": {
+        "ACCEPT": 33,
+        "CONDITIONAL": 11,
+        "REJECT": 1
+      }
+    },
+    "collision_or_multi_target": {
+      "candidate_count": 45,
+      "label_counts": {
+        "ACCEPT": 38,
+        "CONDITIONAL": 6,
+        "REJECT": 1
+      }
+    }
+  },
+  "c_e_evaluation_status": "READY_NOT_RUN",
+  "candidate_count": 150,
+  "cohen_kappa": 0.649274,
+  "final_glossary_decision_count": 0,
+  "final_gold_label_count": 150,
+  "final_gold_label_counts": {
+    "ACCEPT": 117,
+    "CONDITIONAL": 31,
+    "REJECT": 2
+  },
+  "global_validator_status": "NOT_RUN",
+  "human_unjudgeable_count": 0,
+  "policy_id": "d2l-dataset-50-senses-stage-b-gold-v1.0",
+  "provider_call_count": 0,
+  "raw_agreement": 0.873333,
+  "release_status": "STAGE_B_GOLD_COMPLETE_READY_FOR_C_E_EVALUATION",
+  "resolution_counts": {
+    "DUAL_REVIEW_CONSENSUS": 131,
+    "REVIEWER_3_ADJUDICATED": 19
+  },
+  "schema_id": "D2LStageB50GoldSummaryV1",
+  "schema_version": "1.0.0",
+  "sense_count": 50
+}

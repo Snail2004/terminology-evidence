@@ -1,0 +1,2 @@
+python tools/build_pilot.py --repo-root C:\work\terminology_evidence-worktrees\dataset-v1 --output release\d2l_stage_a_pilot_15_senses_v1 --created-at 2026-07-29T00:00:00Z
+python tools/validate_pilot.py --artifact-root release\d2l_stage_a_pilot_15_senses_v1 --repo-root C:\work\terminology_evidence-worktrees\dataset-v1

@@ -1,0 +1,71 @@
+{
+  "file_count": 6,
+  "files": [
+    {
+      "batch_id": "followup_reaudit_batch_001",
+      "captured_relative_path": "followup_reaudit/reviewer_4/followup_reaudit_batch_001_reviewer_4.json",
+      "kind": "followup_reaudit",
+      "reviewer_role": "reviewer_4",
+      "sha256": "c89f672c97c8ee1ee7e5346006b4025ff3654bd0226a4c597680f9b9aebd68f5",
+      "size_bytes": 106605,
+      "source_file_name": "followup_reaudit_batch_001_reviewer_4.json",
+      "source_input_sha256": "9704aaf470d5bd463602a7aa55c7fcfa837a1e9495ab9084a8d1a9a8c75c6b85"
+    },
+    {
+      "batch_id": "followup_reaudit_batch_003",
+      "captured_relative_path": "followup_reaudit/reviewer_4/followup_reaudit_batch_003_reviewer_4.json",
+      "kind": "followup_reaudit",
+      "reviewer_role": "reviewer_4",
+      "sha256": "7af089db660e8d89ef01223da19fcd3aeacbb5091412aaea6ffe39f826955d33",
+      "size_bytes": 42102,
+      "source_file_name": "followup_reaudit_batch_003_reviewer_4.json",
+      "source_input_sha256": "d9be146c535f2fdd89dce0b54e9144a7a28fd6c237260ba2c0f58dea0f8c72d5"
+    },
+    {
+      "batch_id": "followup_reaudit_batch_002",
+      "captured_relative_path": "followup_reaudit/reviewer_5/followup_reaudit_batch_002_reviewer_5.json",
+      "kind": "followup_reaudit",
+      "reviewer_role": "reviewer_5",
+      "sha256": "7879f0e27905041ee3e646281399631433f8a9e054f444061c15a9137dee9112",
+      "size_bytes": 106080,
+      "source_file_name": "followup_reaudit_batch_002_reviewer_5.json",
+      "source_input_sha256": "72c0e2daf9fe4a77facca87330659f6358baa76988952ec1c422d9cc9d123c9c"
+    },
+    {
+      "batch_id": "high_risk_audit_batch_001",
+      "captured_relative_path": "high_risk_audit/reviewer_4/high_risk_audit_batch_001_reviewer_4.json",
+      "kind": "high_risk_audit",
+      "reviewer_role": "reviewer_4",
+      "sha256": "6285be421a9f1e6feb3c5a2f30da15b81c8128058d844a543b21f6017fc74943",
+      "size_bytes": 112709,
+      "source_file_name": "high_risk_audit_batch_001_reviewer_4.json",
+      "source_input_sha256": "21fc34546e785e7de066fa5b7daf00508ef078921eec73712fc061c501988e29"
+    },
+    {
+      "batch_id": "high_risk_audit_batch_002",
+      "captured_relative_path": "high_risk_audit/reviewer_5/high_risk_audit_batch_002_reviewer_5.json",
+      "kind": "high_risk_audit",
+      "reviewer_role": "reviewer_5",
+      "sha256": "98875182a41acd853d0b80fb74d93ac2c2a0bf45b6c3d6aefe09525e6d37b1dd",
+      "size_bytes": 88395,
+      "source_file_name": "high_risk_audit_batch_002_reviewer_5.json",
+      "source_input_sha256": "4ee75f79a7cf818ca7ec78c22e3412a4ddc68a6d1390ab32b36bd130855bcf91"
+    },
+    {
+      "batch_id": "high_risk_audit_batch_003",
+      "captured_relative_path": "high_risk_audit/reviewer_5/high_risk_audit_batch_003_reviewer_5.json",
+      "kind": "high_risk_audit",
+      "reviewer_role": "reviewer_5",
+      "sha256": "ca42775ea36344fc2071beb24f571ee86daf26bdd2a704009c457e8e8b4c86f6",
+      "size_bytes": 48301,
+      "source_file_name": "high_risk_audit_batch_003_reviewer_5.json",
+      "source_input_sha256": "e1a799c0546d363b77376545e3fb8bf92108347bdf7a8855fc31093492c3d014"
+    }
+  ],
+  "integrity": {
+    "self_sha256": "9ee069c50c02d074cfe324ee7cad2b9302d5423c2cbe52e7e690433f88e4467d"
+  },
+  "policy_id": "d2l-remaining-100-stage-a-followup-result-v1.0",
+  "schema_id": "D2LRemaining100FollowupResultInputInventoryV1",
+  "schema_version": "1.0"
+}

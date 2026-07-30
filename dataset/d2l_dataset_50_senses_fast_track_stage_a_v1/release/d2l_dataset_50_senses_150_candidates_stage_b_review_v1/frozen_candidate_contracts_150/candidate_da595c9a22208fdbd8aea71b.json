@@ -1,0 +1,67 @@
+{
+  "alternatives_vi": [
+    "lô con",
+    "tiểu lô"
+  ],
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_da595c9a22208fdbd8aea71b",
+    "candidate_version": "86b2475de6090c5792a5db45efe54e6d1ae3d89289b4e3c8e10c7b59397ced17",
+    "candidate_vi": "lô nhỏ",
+    "dataset_manifest_sha256": "7b256808dacf446b06bc4f6cdc0ab8f0aa7585a2a4e3a56364cdb3508d17fbdc",
+    "effective_sense_contract_sha256": "45f293f559ca9315b9f515040e5c9a47c8170a5f2ee93623421b3f5d1f9d659b",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_04b7107b328dedc7c1f9af65",
+    "sense_inventory_version": "d2l_dataset_50_senses_150_candidates_v1",
+    "source_term": "minibatch"
+  },
+  "domain_profile": {
+    "anchors_en": [
+      "minibatch"
+    ],
+    "anchors_vi": [
+      "lô con",
+      "lô nhỏ",
+      "tiểu lô"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "a small batch of training examples processed together in one step of learning or computation",
+  "effective_part_of_speech": "noun",
+  "input_contract_sha256": "2496849648f2486613664bb89f7bfe8b1a312caf1d7f86caa8773b2bcef32e67",
+  "input_provenance": {
+    "completed_at": "2026-07-29T17:00:00Z",
+    "component_id": "d2l-dataset-frozen-candidate-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "cf027ff8d20c1d2ecd0c667ab303fc31f25a9eda80257b61329c34e67efcd05d",
+    "model_routes": [],
+    "notes": "Candidate identity is frozen before Stage B; no candidate gold label or final glossary decision is assigned.",
+    "policy_version": "d2l-dataset-50-senses-150-candidates-stage-b-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-dataset-50-sense-contract-release",
+    "run_spec_id": "d2l-dataset-50-sense-contract-spec-v1",
+    "source_artifact_hashes": {
+      "adjudication_manifest": "95482cd1b495b9014a1f00ba4695324f99f0637c6fb96f17d5ffded44c5e2b5c",
+      "base_dataset_manifest": "92fab6032576a5c9c57fe38e23b6c622d5f73718a897197a2c10df35c7fe8b4d",
+      "base_dataset_manifest_physical": "438dffc84aaa735e4f734d4dc5cefcf63dc8360743b6e941380bca71eec1f13a",
+      "candidate_instance": "86b2475de6090c5792a5db45efe54e6d1ae3d89289b4e3c8e10c7b59397ced17",
+      "r0_result_manifest": "c17198864aeb47233fd658d7e6c333c5beb86c5531e5b240ca30e046d066a616",
+      "review_binding": "23a26f191ded72479ed6d016d5d2a0f2755b374a153427940d6e2b9bd595756f",
+      "review_intake_manifest": "bcb840616060473ea61b81ca7cf052eff2ac00caeb7bff75e7cbf064e6a7e178",
+      "term_sense": "a1703a805060d22b6ca6e4643676377981946b983347021b0be79adf8db7b13e"
+    },
+    "started_at": "2026-07-29T17:00:00Z"
+  },
+  "integrity": {
+    "self_sha256": "de8cdeeb6423cb8828eca66c60e1bf90cccdb9d0cafd6811ab2a4d621f702068"
+  },
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.1.0",
+  "scope_note": null,
+  "surfaces": {
+    "canonical_vi": "lô nhỏ",
+    "rejected_variants_vi": [],
+    "validated_variants_vi": []
+  }
+}

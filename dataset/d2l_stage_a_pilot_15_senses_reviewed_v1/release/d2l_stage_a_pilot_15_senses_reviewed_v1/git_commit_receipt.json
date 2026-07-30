@@ -1,0 +1,8 @@
+{
+  "external_untracked_paths_excluded": true,
+  "schema_id": "D2LStageAPilot15ReviewedSourceReceiptV1",
+  "source_code_included": true,
+  "source_namespace": "dataset/d2l_stage_a_pilot_15_senses_reviewed_v1",
+  "source_parent_commit": "30c08622e7252ba888c5715d8ce13a7a2ff42749",
+  "tracked_worktree_status_at_build": "CLEAN_TRACKED_FILES_ONLY"
+}

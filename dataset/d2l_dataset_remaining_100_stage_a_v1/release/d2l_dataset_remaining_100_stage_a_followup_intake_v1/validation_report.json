@@ -1,0 +1,59 @@
+{
+  "accepted_blind_case_count": 23,
+  "blocked_case_count": 1,
+  "created_at": "2026-07-30T00:00:00Z",
+  "final_glossary_decision": null,
+  "high_risk_audit_case_count": 10,
+  "high_risk_handoffs": [
+    {
+      "batch_id": "high_risk_audit_batch_001",
+      "case_count": 4,
+      "handoff_zip": "handoff/high_risk_audit_batch_001.zip",
+      "input_path": "review_batches/high_risk_audit_batch_001/auditor_input.json"
+    },
+    {
+      "batch_id": "high_risk_audit_batch_002",
+      "case_count": 4,
+      "handoff_zip": "handoff/high_risk_audit_batch_002.zip",
+      "input_path": "review_batches/high_risk_audit_batch_002/auditor_input.json"
+    },
+    {
+      "batch_id": "high_risk_audit_batch_003",
+      "case_count": 2,
+      "handoff_zip": "handoff/high_risk_audit_batch_003.zip",
+      "input_path": "review_batches/high_risk_audit_batch_003/auditor_input.json"
+    }
+  ],
+  "integrity": {
+    "self_sha256": "e48118b07d59e48cd4723cac4e84bc69891fead6b130a97d74665b71dc71d538"
+  },
+  "policy_id": "d2l-remaining-100-stage-a-followup-intake-v1.0",
+  "provider_call_count": 0,
+  "r0_reaudit_case_count": 12,
+  "reaudit_handoffs": [
+    {
+      "batch_id": "followup_reaudit_batch_001",
+      "case_count": 5,
+      "handoff_zip": "handoff/followup_reaudit_batch_001.zip",
+      "input_path": "review_batches/followup_reaudit_batch_001/reviewer_input.json"
+    },
+    {
+      "batch_id": "followup_reaudit_batch_002",
+      "case_count": 5,
+      "handoff_zip": "handoff/followup_reaudit_batch_002.zip",
+      "input_path": "review_batches/followup_reaudit_batch_002/reviewer_input.json"
+    },
+    {
+      "batch_id": "followup_reaudit_batch_003",
+      "case_count": 2,
+      "handoff_zip": "handoff/followup_reaudit_batch_003.zip",
+      "input_path": "review_batches/followup_reaudit_batch_003/reviewer_input.json"
+    }
+  ],
+  "schema_id": "D2LRemaining100FollowupIntakeReportV1",
+  "schema_version": "1.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "FOLLOWUP_REVIEW_PACKS_READY_ZERO_PROVIDER",
+  "validated_result_file_count": 10,
+  "validated_source_case_count": 46
+}

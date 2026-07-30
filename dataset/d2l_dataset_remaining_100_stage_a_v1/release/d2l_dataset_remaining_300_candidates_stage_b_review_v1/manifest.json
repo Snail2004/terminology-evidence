@@ -1,0 +1,162 @@
+{
+  "artifact_name": "d2l_dataset_remaining_300_candidates_stage_b_review_v1",
+  "counts": {
+    "batch": 10,
+    "candidate": 300,
+    "effective_sense": 105,
+    "reviewer": 2,
+    "reviewer_case_each": 300,
+    "stage_b_gold_autofill": 0
+  },
+  "created_at": "2026-07-30T00:00:00Z",
+  "file_count": 35,
+  "files": {
+    "RELEASE_REPORT.md": {
+      "sha256": "65ee10c7d80417edbb5d7abb9e103dd1df0d66ec47e3787d9993dfa2ee578904",
+      "size_bytes": 247
+    },
+    "authority.json": {
+      "sha256": "c56387196d54b24b94388141623b454db68a2aacadfa325e7e79aa92d812da32",
+      "size_bytes": 1440
+    },
+    "batch_index.json": {
+      "sha256": "effa3cba28a6f68be0ee8b60cfceaab7d48ee65b1355f276771f9825e6908853",
+      "size_bytes": 6196
+    },
+    "candidate_instances_300.jsonl": {
+      "sha256": "4a020b50fb9567c9d83f26252a4fbf32324947336e847179c3a05d6b8f602161",
+      "size_bytes": 137090
+    },
+    "contexts_selected.jsonl": {
+      "sha256": "83e6c464c0a03b590dec0eb0d56045fc471f843c586dbd0734e55af669a77e7e",
+      "size_bytes": 666790
+    },
+    "effective_senses_105.jsonl": {
+      "sha256": "a0b3b8925a50092d782e080d93f4fb8860febee1356dad43e35ca1ed0d5095e5",
+      "size_bytes": 116246
+    },
+    "handoff/reviewer_1.zip": {
+      "sha256": "ad61c39c1f53109e7c54a6e14043f1b813d6b5708a797178f068b875a6eff27f",
+      "size_bytes": 559658
+    },
+    "handoff/reviewer_2.zip": {
+      "sha256": "933dc70684eff9f43af5d43e739464143748322e4f89687649fb35ddba58ca2f",
+      "size_bytes": 559723
+    },
+    "release_summary.json": {
+      "sha256": "3cd2df56688372b9d1283bf77303a98ebebccbcf4d4aaf2325a221262c1c934d",
+      "size_bytes": 973
+    },
+    "review_batches/batch_001/reviewer_1_input.json": {
+      "sha256": "521b63bac140e9c3c00c44cc96d80fe9e6b84a304dcc58897a690a6df552e57c",
+      "size_bytes": 305296
+    },
+    "review_batches/batch_001/reviewer_2_input.json": {
+      "sha256": "d4ce59076bdc690ccea3a6fb748c1f220e2799efc307790d9a0ea230f2a38fee",
+      "size_bytes": 305296
+    },
+    "review_batches/batch_002/reviewer_1_input.json": {
+      "sha256": "56bc3b5ba4228299a1abbaba7afb7153ed72c2fc759671257f349f3ab4387f44",
+      "size_bytes": 303464
+    },
+    "review_batches/batch_002/reviewer_2_input.json": {
+      "sha256": "2aaf1fcbe6db3277a804f777b1f01364219fa3d79de5f580e2c8aa16c381ce85",
+      "size_bytes": 303464
+    },
+    "review_batches/batch_003/reviewer_1_input.json": {
+      "sha256": "7fd9dc15b883ab6abd281d81e5d01cc72dfd40871b5bdc2b7d054e88fc214595",
+      "size_bytes": 299388
+    },
+    "review_batches/batch_003/reviewer_2_input.json": {
+      "sha256": "5afa23d6543ad0d11fd6e4346f62487c52afdcb831c67fbe8e2ee02122c62bf4",
+      "size_bytes": 299388
+    },
+    "review_batches/batch_004/reviewer_1_input.json": {
+      "sha256": "dd042b759c5fb78f5555a7e4d35e7f0e30ac3853662164417eba1e6f435b6013",
+      "size_bytes": 324398
+    },
+    "review_batches/batch_004/reviewer_2_input.json": {
+      "sha256": "c09245466000f69660f4d9027941b49108b6016205c06983bc369410ddad5ec7",
+      "size_bytes": 324398
+    },
+    "review_batches/batch_005/reviewer_1_input.json": {
+      "sha256": "15c2bee56fa5f5030b20503a116e5cd779de927a4adde592523be74fd868f0cd",
+      "size_bytes": 296588
+    },
+    "review_batches/batch_005/reviewer_2_input.json": {
+      "sha256": "697fe22188af99fb63afc59be2ea986ce8b113afeed5ba6b9925566c26e56fc4",
+      "size_bytes": 296588
+    },
+    "review_batches/batch_006/reviewer_1_input.json": {
+      "sha256": "32552dd1985e8664a06a1549d7dfb85beecec6ae88691885b89e894096e4fc48",
+      "size_bytes": 310349
+    },
+    "review_batches/batch_006/reviewer_2_input.json": {
+      "sha256": "6c391b2268ec9e95c5f5cf72a9ed8392358a962b9f6280d2d173a2bd55fdc8bd",
+      "size_bytes": 310349
+    },
+    "review_batches/batch_007/reviewer_1_input.json": {
+      "sha256": "319a571745b37a1357f506d89a7394c895349da9c6bf53a0c84982eaeb0becb2",
+      "size_bytes": 308314
+    },
+    "review_batches/batch_007/reviewer_2_input.json": {
+      "sha256": "f4c5f64a84110346ba1b1b6fcb2770ec0aaaf215508cd483e81479c84b4a21b8",
+      "size_bytes": 308314
+    },
+    "review_batches/batch_008/reviewer_1_input.json": {
+      "sha256": "3585473b3253f0eef2660cf2c88bf91b9b8298fa11e1077d49b68542b919ecca",
+      "size_bytes": 320306
+    },
+    "review_batches/batch_008/reviewer_2_input.json": {
+      "sha256": "d3784b8832fdd9fc1258a425d7d69a7d20799626530f15cf4f832a95bf6fa082",
+      "size_bytes": 320306
+    },
+    "review_batches/batch_009/reviewer_1_input.json": {
+      "sha256": "70d00307a98f512f43e748ebe399b12cadf721a40aebeafd720f00bb2f5005d1",
+      "size_bytes": 336205
+    },
+    "review_batches/batch_009/reviewer_2_input.json": {
+      "sha256": "2bf931f47878c56f4ca95e7638334042ad0c86a740d28e91225aa41f42d0f13e",
+      "size_bytes": 336205
+    },
+    "review_batches/batch_010/reviewer_1_input.json": {
+      "sha256": "09e7c36233056862f7257a2029f7ce5d036aec46f857260d9ae75a9cb65ae7ed",
+      "size_bytes": 250789
+    },
+    "review_batches/batch_010/reviewer_2_input.json": {
+      "sha256": "2c45875856fa3bd5103b3cc57e81dd777c66b01042ca85a44030df0201c8162f",
+      "size_bytes": 250789
+    },
+    "reviewer_1_full_input.json": {
+      "sha256": "0571d593e67a20c9e3610d8e2808431040fe0db2f2fd2b6e30c2ba0f1a856ac1",
+      "size_bytes": 3048609
+    },
+    "reviewer_2_full_input.json": {
+      "sha256": "742944a17ac939fc034b136e38bab78a8913276d2ffd9d3088316ce5d641bae3",
+      "size_bytes": 3048609
+    },
+    "source/tests/test_remaining_stage_b_review.py": {
+      "sha256": "36e4e0fd6bfbb5ad8d692149175c6d8b7e0f4191773bf6f7b10e013e96daf363",
+      "size_bytes": 5775
+    },
+    "source/tools/build_remaining_stage_b_review.py": {
+      "sha256": "946f9b848ff8d792426cc283eebfa833b79061d5fc385896e518cafff8436a0d",
+      "size_bytes": 37446
+    },
+    "source/tools/validate_remaining_stage_b_review.py": {
+      "sha256": "8f43628513d59fc46f31278a057cd425fb3ba40446841462b4a06beeb6869a6b",
+      "size_bytes": 11082
+    },
+    "stage_b_gold_300_template.jsonl": {
+      "sha256": "3dff38cdce45d6e85b67a7e60b60ddcf65ef2ee8df7f0ec31cf03d690a0579b8",
+      "size_bytes": 61836
+    }
+  },
+  "final_glossary_decision": null,
+  "manifest_sha256": "db0a46fb4d38861ffd9f2bb048dbc614ad7148b8fc1a31eed427b6f7cec85021",
+  "policy_id": "d2l-remaining-300-candidates-stage-b-dual-review-v1.0",
+  "provider_call_count": 0,
+  "schema_id": "D2LRemainingStageBReviewManifestV1",
+  "schema_version": "1.0",
+  "status": "READY_FOR_STAGE_B_DUAL_REVIEW_ZERO_PROVIDER"
+}

@@ -1,0 +1,1066 @@
+{
+  "batch_id": "batch_008",
+  "case_count": 4,
+  "cases": [
+    {
+      "adjudication": {
+        "adjudication_rationale": "The eligible D2L contexts explicitly state that padding tokens are appended to equalize sequence lengths and then excluded through valid lengths, masks, attention, and loss computation. The proposed definition, noun-phrase POS, scope, and one-sense interpretation are supported. Candidate 1 translates token as 'mã thông báo', which is the wrong Vietnamese sense for an NLP sequence symbol; replace it with 'ký hiệu đệm'.",
+        "adjudication_status": "COMPLETE",
+        "candidate_replacements": [
+          {
+            "candidate_id": "candidate_f1fd40a97e2d851c723b1aeb",
+            "candidate_slot": "candidate_slot_14fc0b5312c97c69e164c129",
+            "replacement_target_vi": "ký hiệu đệm"
+          }
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Replace only candidate 1; the new gloss identifies a padding symbol/token in a sequence, while the other two candidates remain understandable NLP forms. The synthetic label-only probe is boundary-only.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "adjudication_case_id": "adj_303d80ba2a888656339da862",
+      "adjudication_case_sha256": "3b3b1992b99a913f0dbfd66f6884447b9a80ea064153ac9a131edd4a7204dd4a",
+      "batch_id": "batch_008",
+      "disagreement_fields": [
+        "candidate_set_decision",
+        "candidate_replacements",
+        "sense_status"
+      ],
+      "final_glossary_decision": null,
+      "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+      "provider_call_count": 0,
+      "reviewer_1": {
+        "result_file_sha256": "f2574eb0a4fdd3b04bc66b5563342664f3b7060159d774944a061c18ef668fc2",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "Bằng chứng thực nêu trực tiếp padding tokens được nối vào cuối chuỗi để đồng nhất độ dài và bị loại khỏi attention/loss bằng valid length hoặc mask; các candidate đều đúng nghĩa.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+        }
+      },
+      "reviewer_2": {
+        "result_file_sha256": "2ea175bf103d06600e6b813d043308635308ca7644487cc93669576f1c2a0a3b",
+        "review": {
+          "candidate_replacements": [
+            {
+              "candidate_id": "candidate_f1fd40a97e2d851c723b1aeb",
+              "candidate_slot": "candidate_slot_14fc0b5312c97c69e164c129",
+              "replacement_target_vi": "ký hiệu đệm"
+            }
+          ],
+          "candidate_set_decision": "REVISE",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "The eligible evidence states that special padding tokens are appended to equalize sequence lengths and then excluded through valid lengths, masks, attention, and loss computation. The definition, noun-phrase POS, and scope are supported. 'Mã thông báo đệm' uses the notification/authentication sense of token rather than an NLP sequence symbol, so it should be replaced with 'ký hiệu đệm'. The synthetic boundary row was not used as positive evidence.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "REVISION_REQUIRED"
+        }
+      },
+      "risk_class": "R3_AMBIGUOUS",
+      "routing_reason": "R3_REVIEWER_DISAGREEMENT",
+      "schema_id": "D2LFastTrackStageAAdjudicationCaseV1",
+      "schema_version": "1.0.0",
+      "sense_id": "d2lce_b967af36e17c22a478eaed6d",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_f1fd40a97e2d851c723b1aeb",
+            "candidate_slot": "candidate_slot_14fc0b5312c97c69e164c129",
+            "candidate_target_vi": "mã thông báo đệm"
+          },
+          {
+            "candidate_id": "candidate_6fa487059dbe4a4caba19028",
+            "candidate_slot": "candidate_slot_96f857fceb795bdd71e2cf37",
+            "candidate_target_vi": "token chèn đệm"
+          },
+          {
+            "candidate_id": "candidate_6f158bf9b8a00d455e4d571e",
+            "candidate_slot": "candidate_slot_daa6a0ce207db597a9db4c36",
+            "candidate_target_vi": "token đệm"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_attention_mechanisms_bahdanau_attention_b017",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "561a68186cff67dd28f46669367cd8b636df7ff6062e211b4c28e2d8aa4a34b4",
+            "context_id": "ctx_05cde72313ed2987ab19ac0d",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "padding tokens",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_2db84b8197c5095d4e9ed62b",
+            "source_text": "The state of the decoder\nis initialized with\n(i) the encoder final-layer hidden states at all the time steps (as keys and values of the attention);\n(ii) the encoder all-layer hidden state at the final time step (to initialize the hidden state of the decoder);\nand (iii) the encoder valid length (to exclude the padding tokens in attention pooling).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_seq2seq_b047",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "1b12bf450d1733d7dc2cd1c6eb8b94235d2e0192fe9f3ce0cb30a0a14bd9a28b",
+            "context_id": "ctx_12f79eaad5bc278a9b83706f",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "padding tokens",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_bdf696f2cae2434c7ac74462",
+            "source_text": "For example,\nif the valid length of two sequences\nexcluding padding tokens\nare one and two, respectively,\nthe remaining entries after\nthe first one\nand the first two entries are cleared to zeros.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_seq2seq_b055",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "2179cb4a4edc309da3f59623e8193670b038ec0a7ca78c582c1751d924623a39",
+            "context_id": "ctx_451ef79974ff5019b4225f46",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "padding token",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_ccbb37929b60e42122c64aef",
+            "source_text": "Once the valid length is given,\nthe mask corresponding to any padding token\nwill be cleared to zero.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_seq2seq_b055",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "572a61269cf1b5f3fc4c88f8ae3f72fb567c49902c67de26f37529421ac82b00",
+            "context_id": "ctx_92a3a25f66c701ea53cc38e8",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "padding tokens",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_6f04dfec225f4fb387e2b997",
+            "source_text": "In the end,\nthe loss for all the tokens\nwill be multipled by the mask to filter out\nirrelevant predictions of padding tokens in the loss.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_attention_mechanisms_self_attention_and_positional_encoding_b017",
+            "boundary_only": false,
+            "chapter_id": "d2l_attention_mechanisms",
+            "content_sha256": "1855888a6c737030b7d4b11ba71de1ec52e88bca04e41afe8b16de9207e992bc",
+            "context_id": "ctx_a2d3def650d89773da69782d",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "padding tokens",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_1b1aa3d4cb52172a92318771",
+            "source_text": "![Comparing CNN (padding tokens are omitted), RNN, and self-attention architectures.](../img/cnn-rnn-self-attention.svg)\n:label:`fig_cnn-rnn-self-attention`",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_seq2seq_b046",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "110153978f89add6ef4b6b615078886b1daea3633140bc49b05ba4bc5fb64d7d",
+            "context_id": "ctx_b9a74a0f4d6af5455b521e4e",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "padding tokens",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_a7c9a043baa42c58731c59ac",
+            "source_text": "However,\nprediction of padding tokens\nshould be excluded from loss calculations.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_seq2seq_b046",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "662600f96c85db72be6b55ce2af337b9540ebdd2a77c57567e5e2adda8768ed5",
+            "context_id": "ctx_be96ec1f7ec2e0237f326eab",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "padding tokens",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_18fa842eb1f3382bb14ad0d3",
+            "source_text": "Recall :numref:`sec_machine_translation`\nthat the special padding tokens\nare appended to the end of sequences\nso sequences of varying lengths\ncan be efficiently loaded\nin minibatches of the same shape.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_machine_translation_and_dataset_b026",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "2533b25b16bc349595d420e47fb15850d44737b52a7be99c58b6c32ad17ac8d7",
+            "context_id": "ctx_d8aa0be85777a629e809fc47",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "padding tokens",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_6e69be03fe37ba00be7bbc8d",
+            "source_text": "Besides,\nwe also record the length\nof each text sequence excluding the padding tokens.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "b9c13cbd2c8d9a4a523c866943d18286d18bda9745e63a797e6fba1d8f174b34",
+            "context_id": "ctxx_42a6357f3553d007faf93757",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "padding tokens",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic boundary probe: \"padding tokens\" is quoted here only as a document label, not as an occurrence of the reviewed D2L sense.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_9aa9a8cc93eee50893571a61",
+        "proposed_definition_en": "special tokens added to sequences to make them a common length, usually ignored by masking, attention, or loss computation.",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+        "risk_class": "R3_AMBIGUOUS",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_b967af36e17c22a478eaed6d",
+        "source_sense_pool_record_sha256": "edf5a0a745b65a2c9828abefe90c5478c87b323be9d8b6cdd80bde14948b323e",
+        "source_term": "padding tokens",
+        "stratum": "ambiguous",
+        "term_id": "d2lce_b967af36e17c22a478eaed6d"
+      },
+      "source_payload_sha256": "7616c3c354e606c011e670b481df4d874b3e9184227bb250c8aeb97e1caa5e6c",
+      "source_term": "padding tokens",
+      "stage_b_gold_label": null
+    },
+    {
+      "adjudication": {
+        "adjudication_rationale": "The eligible D2L contexts identify sigmoid as an S-shaped activation function and provide the logistic formula 1/(1+e^-o) for mapping a real-valued output to a probability between zero and one. The proposed definition, noun-phrase POS, scope, and single sense are supported. Candidate 2 'hàm xích ma' refers to sigma rather than the sigmoid/logistic function; replace it with 'hàm logistic'.",
+        "adjudication_status": "COMPLETE",
+        "candidate_replacements": [
+          {
+            "candidate_id": "candidate_2dff1549f1aeba53de058c0d",
+            "candidate_slot": "candidate_slot_7a32e7d2c9a81981a7a72227",
+            "replacement_target_vi": "hàm logistic"
+          }
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "The formula-supported synonym 'hàm logistic' is bound to candidate 2; 'hàm kích hoạt sigmoid' and 'hàm sigmoid' remain valid candidates for the same activation-function sense.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "adjudication_case_id": "adj_75a356e3262cd7d54195b259",
+      "adjudication_case_sha256": "30624a6beea4b39e442ef3fb987a102891a22bd5f77dcbaf727216e0cfc6bf77",
+      "batch_id": "batch_008",
+      "disagreement_fields": [
+        "candidate_replacements"
+      ],
+      "final_glossary_decision": null,
+      "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+      "provider_call_count": 0,
+      "reviewer_1": {
+        "result_file_sha256": "f2574eb0a4fdd3b04bc66b5563342664f3b7060159d774944a061c18ef668fc2",
+        "review": {
+          "candidate_replacements": [
+            "hàm logistic"
+          ],
+          "candidate_set_decision": "REVISE",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "Các ngữ cảnh thực xác nhận sigmoid là activation hình chữ S với công thức logistic cho đầu ra xác suất. Candidate “hàm xích ma” dễ bị hiểu thành tên chữ cái sigma, không phải sigmoid; nên thay bằng “hàm logistic”.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "REVISION_REQUIRED"
+        }
+      },
+      "reviewer_2": {
+        "result_file_sha256": "2ea175bf103d06600e6b813d043308635308ca7644487cc93669576f1c2a0a3b",
+        "review": {
+          "candidate_replacements": [
+            {
+              "candidate_id": "candidate_2dff1549f1aeba53de058c0d",
+              "candidate_slot": "candidate_slot_7a32e7d2c9a81981a7a72227",
+              "replacement_target_vi": "hàm logistic"
+            }
+          ],
+          "candidate_set_decision": "REVISE",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "The eligible contexts identify sigmoid as an activation function and give the logistic formula used to obtain a probability, supporting the proposed S-shaped 0-to-1 mapping, noun-phrase POS, and scope. However, 'hàm xích ma' names sigma rather than sigmoid and should be replaced with the formula-supported synonym 'hàm logistic'. The synthetic boundary row was not used as positive evidence.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "REVISION_REQUIRED"
+        }
+      },
+      "risk_class": "R4_SPLIT_OR_POS_RISK",
+      "routing_reason": "R4_MANDATORY_ADJUDICATION",
+      "schema_id": "D2LFastTrackStageAAdjudicationCaseV1",
+      "schema_version": "1.0.0",
+      "sense_id": "d2lce_00f50f89defd8652bb8c429e",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_6c14b83609eee2c9a6b7f4bb",
+            "candidate_slot": "candidate_slot_31abdfc2520070720d1b5413",
+            "candidate_target_vi": "hàm kích hoạt sigmoid"
+          },
+          {
+            "candidate_id": "candidate_2dff1549f1aeba53de058c0d",
+            "candidate_slot": "candidate_slot_7a32e7d2c9a81981a7a72227",
+            "candidate_target_vi": "hàm xích ma"
+          },
+          {
+            "candidate_id": "candidate_ccb492334a414a908094d7d8",
+            "candidate_slot": "candidate_slot_ed3e4c985c0ea32b42e156f6",
+            "candidate_target_vi": "hàm sigmoid"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_convolutional_neural_networks_lenet_b008",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_neural_networks",
+            "content_sha256": "4872b1efebb1c9366b3a4f543e854e59f78e407db2e5a692c7a1a5b4f45d08c4",
+            "context_id": "ctx_0c2556749af5509e2a8a0d38",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "sigmoid",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_9910a4f411497b56c56be39e",
+            "source_text": "The basic units in each convolutional block\nare a convolutional layer, a sigmoid activation function,\nand a subsequent average pooling operation.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_optimization_lr_scheduler_b006",
+            "boundary_only": false,
+            "chapter_id": "d2l_optimization",
+            "content_sha256": "976acb1c1fb7d9304d559a5ecadb0f5147e960d1ab87dfb1af08ffe73f66d388",
+            "context_id": "ctx_26b5e8bf7b8da7042c80bc48",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "sigmoid",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_13449a1fb4388af2142a3f0b",
+            "source_text": "For that we pick a slightly modernized version of LeNet (`relu` instead of `sigmoid` activation, MaxPooling rather than AveragePooling), as applied to Fashion-MNIST.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_approx_training_b008",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "b3a900c77c87e1536277405e9cff03a8368587686ac939bef199c14d72899ea2",
+            "context_id": "ctx_5998384435b11da31468fd92",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "sigmoid",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_9172893ff95325523c1bdbe4",
+            "source_text": "where $\\sigma$ uses the definition of the sigmoid activation function:",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_multilayer_perceptrons_mlp_b046",
+            "boundary_only": false,
+            "chapter_id": "d2l_multilayer_perceptrons",
+            "content_sha256": "ace2b728ae64b4186c924a00d7b4865a2a4bb4d5993081fd168c6ba188bb30de",
+            "context_id": "ctx_677a8cad69668bf7ea4b032d",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "sigmoid",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_25d8fe5a35598915ef7691a9",
+            "source_text": "### Sigmoid Function",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_generative_adversarial_networks_gan_b008",
+            "boundary_only": false,
+            "chapter_id": "d2l_generative_adversarial_networks",
+            "content_sha256": "a471e0b4dafebce9658d765f9ca8ffbd450659d826eb8ee8dc88a6e24ce80766",
+            "context_id": "ctx_6fba33e1194891da74822687",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "sigmoid",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_265b9c5d6489e7d62400252e",
+            "source_text": "Typically, the discriminator outputs a scalar prediction $o\\in\\mathbb R$ for input $\\mathbf x$, such as using a dense layer with hidden size 1, and then applies sigmoid function to obtain the predicted probability $D(\\mathbf x) = 1/(1+e^{-o})$.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_convolutional_modern_alexnet_b028",
+            "boundary_only": false,
+            "chapter_id": "d2l_convolutional_modern",
+            "content_sha256": "051fc2352c6bdaa9c43a3c71d53e5c07043762f6a6f3736c77e375b2ec3f3a75",
+            "context_id": "ctx_83aa1ec70a5aa698b67dadb3",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "sigmoid",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_65ea567aa0b1dda573785112",
+            "source_text": "Second, AlexNet used the ReLU instead of the sigmoid\nas its activation function.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recurrent_modern_gru_b009",
+            "boundary_only": false,
+            "chapter_id": "d2l_recurrent_modern",
+            "content_sha256": "50bb1e197d6c29be52b9b34e8abc9903229c980ea2f6683274c54971784ca96c",
+            "context_id": "ctx_b1671787eb98927f1ad13a78",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "sigmoid",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_5124ba81bbc32751cf3a0de2",
+            "source_text": "The outputs of two gates\nare given by two fully-connected layers\nwith a sigmoid activation function.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_recommender_systems_autorec_b015",
+            "boundary_only": false,
+            "chapter_id": "d2l_recommender_systems",
+            "content_sha256": "630566ee5658aa1555d94d7e013a43626c4b811393514b29fe075c6e46ed1ea2",
+            "context_id": "ctx_cf0365ae6ea1bcdfd1296ed3",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "sigmoid",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_08d0a03fa0865e47718bd2d0",
+            "source_text": "The activation of encoder is set to `sigmoid` by default and no activation is applied for decoder.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "660f9d93332e0b81159c2f7e7bbb8473cc9694d14c2b86cdf356652251568443",
+            "context_id": "ctxx_6e2436fba822b8df6af232ec",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "sigmoid function",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: In medicine, a sigmoid function could be discussed as an S-shaped dose-response curve rather than specifically as a neural-network activation.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_aedb161fe2849040a209e088",
+        "proposed_definition_en": "an S-shaped activation function that maps a real-valued input to a value between 0 and 1",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_00f50f89defd8652bb8c429e",
+        "source_sense_pool_record_sha256": "c003eb217b895486e149decfb0db19d372dbea6bed0dbc0e38c959902b84f31e",
+        "source_term": "sigmoid function",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_00f50f89defd8652bb8c429e"
+      },
+      "source_payload_sha256": "ae7f488485eeee96101bdeeeddbcaaca1a2259fbf92168e9f66b562f3e05babc",
+      "source_term": "sigmoid function",
+      "stage_b_gold_label": null
+    },
+    {
+      "adjudication": {
+        "adjudication_rationale": "The eligible D2L contexts define the skip-gram model as a word-embedding model that generates surrounding context words from a center word and identify its center-word vectors as representations. The proposed definition, noun-phrase POS, scope, and one-sense interpretation are supported. Candidate 2 is an unlocalized English plural and candidate 3 is a misleading word-for-word calque; replace them with the named-model form and an evidence-explicit Vietnamese description.",
+        "adjudication_status": "COMPLETE",
+        "candidate_replacements": [
+          {
+            "candidate_id": "candidate_ab813adfb4fba7d28e3d89dc",
+            "candidate_slot": "candidate_slot_bb1497a8cd70d4ddfc28902a",
+            "replacement_target_vi": "Skip-Gram"
+          },
+          {
+            "candidate_id": "candidate_ead91fdc98214e79c4a1c16c",
+            "candidate_slot": "candidate_slot_cf807e58a8aa38d19c537f5a",
+            "replacement_target_vi": "mô hình Skip-Gram dự đoán từ xung quanh"
+          }
+        ],
+        "candidate_set_decision": "REVISE",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Candidate 2 is normalized to the uninflected named model 'Skip-Gram'; candidate 3 now states the center-to-context prediction behavior supported by the source, avoiding the false literal reading of 'gram bỏ qua'.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "adjudication_case_id": "adj_8d293f93d85be9d7239c48ff",
+      "adjudication_case_sha256": "b5cef9009d5488db785d3780930ccae0683bfe1f062b2cb2354a9b03eff2f39f",
+      "batch_id": "batch_008",
+      "disagreement_fields": [
+        "candidate_replacements"
+      ],
+      "final_glossary_decision": null,
+      "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+      "provider_call_count": 0,
+      "reviewer_1": {
+        "result_file_sha256": "f2574eb0a4fdd3b04bc66b5563342664f3b7060159d774944a061c18ef668fc2",
+        "review": {
+          "candidate_replacements": [
+            "Skip-Gram",
+            "mô hình dự đoán ngữ cảnh Skip-Gram"
+          ],
+          "candidate_set_decision": "REVISE",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "Bằng chứng thực xác nhận Skip-Gram dự đoán các context words từ center word. Candidate tiếng Anh số nhiều “skip-gram models” không phải phương án Việt cho term-sense số ít, còn “mô hình gram bỏ qua” dịch từng chữ và mất nghĩa mô hình; nên thay như đề xuất.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "REVISION_REQUIRED"
+        }
+      },
+      "reviewer_2": {
+        "result_file_sha256": "2ea175bf103d06600e6b813d043308635308ca7644487cc93669576f1c2a0a3b",
+        "review": {
+          "candidate_replacements": [
+            {
+              "candidate_id": "candidate_ab813adfb4fba7d28e3d89dc",
+              "candidate_slot": "candidate_slot_bb1497a8cd70d4ddfc28902a",
+              "replacement_target_vi": "các mô hình Skip-Gram"
+            },
+            {
+              "candidate_id": "candidate_ead91fdc98214e79c4a1c16c",
+              "candidate_slot": "candidate_slot_cf807e58a8aa38d19c537f5a",
+              "replacement_target_vi": "mô hình Skip-Gram dự đoán từ xung quanh"
+            }
+          ],
+          "candidate_set_decision": "REVISE",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "The eligible contexts directly define Skip-Gram as generating surrounding context words from a center word and identify its center-word vectors as word representations, supporting the definition, noun-phrase POS, and scope. The English-only plural candidate should be localized as 'các mô hình Skip-Gram', while the compositional calque 'mô hình gram bỏ qua' misrepresents the named model and should be replaced with the evidence-explicit 'mô hình Skip-Gram dự đoán từ xung quanh'. The synthetic boundary row was not used as positive evidence.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "REVISION_REQUIRED"
+        }
+      },
+      "risk_class": "R3_AMBIGUOUS",
+      "routing_reason": "R3_REVIEWER_DISAGREEMENT",
+      "schema_id": "D2LFastTrackStageAAdjudicationCaseV1",
+      "schema_version": "1.0.0",
+      "sense_id": "d2lce_9cee0f2f668259a2568b89f4",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_84676fb80b4f9044bfa206d8",
+            "candidate_slot": "candidate_slot_6d825e8284c9f485e8c390ee",
+            "candidate_target_vi": "mô hình Skip-Gram"
+          },
+          {
+            "candidate_id": "candidate_ab813adfb4fba7d28e3d89dc",
+            "candidate_slot": "candidate_slot_bb1497a8cd70d4ddfc28902a",
+            "candidate_target_vi": "skip-gram models"
+          },
+          {
+            "candidate_id": "candidate_ead91fdc98214e79c4a1c16c",
+            "candidate_slot": "candidate_slot_cf807e58a8aa38d19c537f5a",
+            "candidate_target_vi": "mô hình gram bỏ qua"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word2vec_b017",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "87eb9d1faaa5faa748fca7b099375332e565ba16d761760099d3963dad50a5df",
+            "context_id": "ctx_08609f360a045dec1b2c96f2",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_POS_PROPOSAL"
+            ],
+            "matched_surface": "skip-gram model",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_8a29c3fc7bf547fdd4b023f0",
+            "source_text": "In the skip-gram model, each word\nhas two $d$-dimensional-vector representations\nfor calculating conditional probabilities.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word2vec_b032",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "d520a84526c732a100d01121a20c9691e75b37a22fc9bc41ea4828d46b2e0aa3",
+            "context_id": "ctx_0cbd6b544c567ce5e0d6a15e",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "skip-gram model",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_d817077031ebd0ab4c570d0a",
+            "source_text": "The major difference\nfrom the skip-gram model is that\nthe continuous bag of words model\nassumes that a center word is generated\nbased on its surrounding context words in the text sequence.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word2vec_b023",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "f5cd6a909d1f423e4f2a23dc5be791547e16adbd81966dec45becfc032e5fbb9",
+            "context_id": "ctx_35d82b9dff7df8ff9a2c49cd",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "skip-gram model",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_0d8dee004eaf705069b266b2",
+            "source_text": "The skip-gram model parameters are the center word vector and context word vector for each word in the vocabulary.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word2vec_b011",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "dca0634af3f26b37e35e15ce84ab9b2b494ca6a7e5af34719970ecbb8f84eba4",
+            "context_id": "ctx_408899a3fd525147fbd6f4e6",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "skip-gram model",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_167c0020d44529157d2f68ea",
+            "source_text": "## The Skip-Gram Model\n:label:`subsec_skip-gram`",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word2vec_b030",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "1dea4b49f583ecccdb06e118c4fe440394944d5c8c5bd5ff4a0a274b8b8a443e",
+            "context_id": "ctx_67062c99a9f339aaec98d9aa",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "skip-gram model",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_164aa8ee5320ab83fa370233",
+            "source_text": "In natural language processing applications, the center word vectors of the skip-gram model are typically\nused as the word representations.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word2vec_b012",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "b7eba23c9583e3c350dae8f267a2506258bfb50008c71fb71a4f891171b200ab",
+            "context_id": "ctx_7ab8e2d37def67d0148f52d5",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_DEFINITION_PROPOSAL"
+            ],
+            "matched_surface": "skip-gram model",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_9a96571ee9889acc457a68cf",
+            "source_text": "As shown in :numref:`fig_skip_gram`,\ngiven the center word \"loves\",\nthe skip-gram model considers\nthe conditional probability for generating the *context words*: \"the\", \"man\", \"his\", and \"son\",\nwhich are no more than 2 words away from the center word:",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word2vec_b019",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "5221a9032bce0663211978d4b8bf1fafc01bdde58ac1e0538e58dda813538a19",
+            "context_id": "ctx_9afa421e80e79b49583f6bb8",
+            "evidence_roles": [
+              "BACKUP",
+              "POSITIVE_DEFINITION_PROPOSAL"
+            ],
+            "matched_surface": "skip-gram model",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_cb5a6526da0bdc717a0af1b5",
+            "source_text": "For context window size $m$,\nthe likelihood function of the skip-gram model\nis the probability of generating all context words\ngiven any center word:",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_natural_language_processing_pretraining_word2vec_b016",
+            "boundary_only": false,
+            "chapter_id": "d2l_natural_language_processing_pretraining",
+            "content_sha256": "ea5d43ed16325b50a3ef7c96a308911a0981f1dfc07dd8bac8b5f13edba75329",
+            "context_id": "ctx_bfaedeed2ce02517e3497cb8",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "skip-gram model",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_c85293de33fee6397255a13e",
+            "source_text": "![The skip-gram model considers the conditional probability of generating the surrounding context words given a center word.](../img/skip-gram.svg)\n:label:`fig_skip_gram`",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "3f7bc11491ba7f83905206b8bfc1f47114d902f2d7b34be4a1d98fd0c461b6f8",
+            "context_id": "ctxx_3a64557efe58ea113612c86e",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "Skip-Gram Model",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: In typography, a skip-gram model could be misread as a layout pattern that skips printed letter groups, not a word embedding model.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_d1bb1cfea5197ff459f8daa6",
+        "proposed_definition_en": "A word embedding model that predicts surrounding context words from a center word.",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_BLIND_REVIEWERS",
+        "risk_class": "R3_AMBIGUOUS",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_9cee0f2f668259a2568b89f4",
+        "source_sense_pool_record_sha256": "fe21b6fd493e8febf01fb4f7cc6892dc0a917aef41e676e9abc8f8b42939c571",
+        "source_term": "Skip-Gram Model",
+        "stratum": "ambiguous",
+        "term_id": "d2lce_9cee0f2f668259a2568b89f4"
+      },
+      "source_payload_sha256": "28323a22dba0c1cea6229affab8df9c3fecb0037724badb9f1e6fa88c7ca1a15",
+      "source_term": "Skip-Gram Model",
+      "stage_b_gold_label": null
+    },
+    {
+      "adjudication": {
+        "adjudication_rationale": "The eligible D2L contexts explicitly expand SSDs as solid state drives using flash memory for persistent storage and consistently discuss storage blocks, wear, I/O performance, and PCIe attachment. The proposed definition, plural noun-phrase POS, scope, and all three Vietnamese candidates fit this single storage-device sense; no correction, split, or candidate replacement is warranted.",
+        "adjudication_status": "COMPLETE",
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Independent adjudication confirms the flash-based persistent-storage sense; the synthetic alternate-subsystem row is boundary-only and not positive evidence.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "adjudication_case_id": "adj_105b6f072222ccfd9a30f5d0",
+      "adjudication_case_sha256": "f0067311310a657512333adfcc4848140546a8869b9c6e4e2c324b0040d1fdf4",
+      "batch_id": "batch_008",
+      "disagreement_fields": [],
+      "final_glossary_decision": null,
+      "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+      "provider_call_count": 0,
+      "reviewer_1": {
+        "result_file_sha256": "f2574eb0a4fdd3b04bc66b5563342664f3b7060159d774944a061c18ef668fc2",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "Ngữ cảnh thực định nghĩa trực tiếp SSDs là solid state drives dùng flash memory để lưu trữ bền vững và bổ sung đặc tính phần cứng liên quan; definition, POS và candidate set đều phù hợp.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+        }
+      },
+      "reviewer_2": {
+        "result_file_sha256": "2ea175bf103d06600e6b813d043308635308ca7644487cc93669576f1c2a0a3b",
+        "review": {
+          "candidate_replacements": [],
+          "candidate_set_decision": "ACCEPT",
+          "corrected_definition_en": "",
+          "corrected_part_of_speech": "",
+          "corrected_scope": "",
+          "definition_decision": "ACCEPT",
+          "evidence_decision": "ACCEPT",
+          "invalid_evidence_context_ids": [],
+          "part_of_speech_decision": "ACCEPT",
+          "proposed_split_labels": [],
+          "review_notes": "The eligible evidence explicitly expands SSDs as solid state drives and states that they use flash memory for persistent storage; the remaining contexts consistently discuss storage performance and wear. This supports the proposed definition, plural noun-phrase POS, scope, and all three Vietnamese candidates. The synthetic boundary row was not used as positive evidence.",
+          "review_status": "COMPLETE",
+          "scope_decision": "ACCEPT",
+          "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+        }
+      },
+      "risk_class": "R4_SPLIT_OR_POS_RISK",
+      "routing_reason": "R4_MANDATORY_ADJUDICATION",
+      "schema_id": "D2LFastTrackStageAAdjudicationCaseV1",
+      "schema_version": "1.0.0",
+      "sense_id": "d2lce_355f5686f2178281893eb6cb",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_e894054169150b0874b25a8e",
+            "candidate_slot": "candidate_slot_401a55d47f28e570b6678637",
+            "candidate_target_vi": "các ổ đĩa thể rắn"
+          },
+          {
+            "candidate_id": "candidate_02ec7727b368c42e3cbe493a",
+            "candidate_slot": "candidate_slot_6be14caaf21eb77aff06b408",
+            "candidate_target_vi": "ổ SSD"
+          },
+          {
+            "candidate_id": "candidate_195a11225214e815185ccbce",
+            "candidate_slot": "candidate_slot_e5c4c5c503d47c5df8d50a46",
+            "candidate_target_vi": "ổ đĩa thể rắn"
+          }
+        ],
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_computational_performance_hardware_b023",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "c3f87559fd771ab22cf9abb329c04ae77c6dc82daef8ecf0839fe0193b1c2e35",
+            "context_id": "ctx_3f1cc59dfa423c8dcd335761",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "ssds",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_263981924b016db08853e7de",
+            "source_text": "* SSDs store information in blocks (256 KB or larger).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_hardware_b022",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "4980933fed3bf13cd4c90e85561cbf2e06becee3c71077741cd79142c615ad06",
+            "context_id": "ctx_571553d886295f4729859f52",
+            "evidence_roles": [
+              "POSITIVE_DEFINITION_PROPOSAL",
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "ssds",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_75f662e22d71474abc72a4e3",
+            "source_text": "Solid state drives (SSDs) use flash memory to store information persistently.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_hardware_b023",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "3b1450ab9a57bf73dcf9200d2c7aef0bef45d4db2a5ae42197497f0c46852dd4",
+            "context_id": "ctx_705c90ebb1cd32c03359a437",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "ssds",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_adc5c237f8c7b88ef7f5e973",
+            "source_text": "* The memory cells in SSDs wear out relatively quickly (often already after a few thousand writes).",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_hardware_b022",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "7866bbd935ff0a5a3ccef5e314b72b0e9061cf2d497789748efde86283645c72",
+            "context_id": "ctx_aeabd68e0656c4863b7b2e43",
+            "evidence_roles": [
+              "PRIMARY"
+            ],
+            "matched_surface": "ssds",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_5c2e8d30a166679f44041ec4",
+            "source_text": "Indeed, they come with the following caveats, due to the way SSDs are designed.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_hardware_b023",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "5f6e10f67291b2761c22c86a74e9bc3d29a899fa775e4c527ff4768926b61ad7",
+            "context_id": "ctx_bfd113ac65a2d763da1c337d",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "ssds",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_4103db2b006506e8eac9536d",
+            "source_text": "Nonetheless, writes can be much slower, in particular for QLC (quad level cell) SSDs.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_hardware_b023",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "880f24060a96fe401e4c6bb6eecfdd2c7d61d958993067c131c375730d1ce01b",
+            "context_id": "ctx_cd56410dc228003d2dde79bc",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "ssds",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_18e651df448b6b641eb88c7c",
+            "source_text": "* Lastly, the massive increase in bandwidth has forced computer designers to attach SSDs directly to the PCIe bus.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_hardware_b023",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "7552880937a33c93a4f86812350700fafc16641ca17e751cc500fae4b518bfc0",
+            "context_id": "ctx_f6224c38623494a8a418203b",
+            "evidence_roles": [
+              "BACKUP"
+            ],
+            "matched_surface": "ssds",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_d19ed062fc9f260d6933560c",
+            "source_text": "That said, it is not recommended to use SSDs for swapping files or for large aggregations of log-files.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_computational_performance_hardware_b022",
+            "boundary_only": false,
+            "chapter_id": "d2l_computational_performance",
+            "content_sha256": "c29a9d53dd4a1f31661e2c0d52fc39bea532f6a424eec38f8167618e208c0cfa",
+            "context_id": "ctx_f9902516e49104afd3afe24a",
+            "evidence_roles": [
+              "POSITIVE_POS_PROPOSAL",
+              "PRIMARY"
+            ],
+            "matched_surface": "ssds",
+            "positive_evidence_eligible": true,
+            "sentence_id": "sentence_f63a17d256b8018f30f36fc5",
+            "source_text": "Modern SSDs can operate at 100,000 to 500,000 IOPs, i.e., up to 3 orders of magnitude faster than HDDs.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "18f11d76e43b0ad3c202fbe9687b87e3d2a60207fa22806d0cf423e9941ebf97",
+            "context_id": "ctxx_e83cbf8b4ab05bffd72e091c",
+            "evidence_roles": [
+              "BOUNDARY_PROPOSAL"
+            ],
+            "matched_surface": "SSDs",
+            "positive_evidence_eligible": false,
+            "sentence_id": null,
+            "source_text": "Synthetic: In a different document, SSDs could name a software subsystem, not storage drives.",
+            "synthetic": true
+          }
+        ],
+        "policy_id": "d2l-dataset-50-senses-fast-track-stage-a-v1.0",
+        "pool_record_id": "pool_95f0b4c95ba6c5d24da8dbdb",
+        "proposed_definition_en": "solid state drives; persistent storage devices based on flash memory",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_DISTINCT_REVIEWERS_PLUS_MANDATORY_ADJUDICATION",
+        "risk_class": "R4_SPLIT_OR_POS_RISK",
+        "schema_id": "D2LFastTrackStageAReviewSourceV1",
+        "sense_id": "d2lce_355f5686f2178281893eb6cb",
+        "source_sense_pool_record_sha256": "00363fdc2d6dba06dfff636857402d6d9c21a77debcde4885da02e657fd3c2b9",
+        "source_term": "SSDs",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_355f5686f2178281893eb6cb"
+      },
+      "source_payload_sha256": "4e20b7cad5708b32c208cf86ec9bc8024bf5a862c47b3d3773c7427702deb8d9",
+      "source_term": "SSDs",
+      "stage_b_gold_label": null
+    }
+  ],
+  "independence_mode": "ADJUDICATION_SEES_REVIEWER_1_AND_REVIEWER_2",
+  "policy_id": "d2l-fast-track-stage-a-review-intake-v1.0",
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_ADJUDICATION_FIELDS_FILLED",
+  "reviewer_slot": "reviewer_3_adjudicator",
+  "schema_id": "D2LFastTrackStageAAdjudicatorInputV1",
+  "schema_version": "1.0.0",
+  "source_input_sha256": "1692e6eb5be9ef8a5fc9abe06905b26793709b3671ed649daeebf5586d7dd11c"
+}

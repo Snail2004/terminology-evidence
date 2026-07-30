@@ -1,0 +1,98 @@
+{
+  "adjudication_rate": 0.126667,
+  "agreement_count": 131,
+  "by_lane": {
+    "A_OFFICIAL": {
+      "agreement_count": 11,
+      "case_count": 15,
+      "disagreement_count": 4,
+      "raw_agreement": 0.733333
+    },
+    "B_REVIEW_READY": {
+      "agreement_count": 13,
+      "case_count": 18,
+      "disagreement_count": 5,
+      "raw_agreement": 0.722222
+    },
+    "C_REPAIRED": {
+      "agreement_count": 11,
+      "case_count": 12,
+      "disagreement_count": 1,
+      "raw_agreement": 0.916667
+    },
+    "D_NEW": {
+      "agreement_count": 96,
+      "case_count": 105,
+      "disagreement_count": 9,
+      "raw_agreement": 0.914286
+    }
+  },
+  "by_split": {
+    "development": {
+      "agreement_count": 78,
+      "case_count": 90,
+      "disagreement_count": 12,
+      "raw_agreement": 0.866667
+    },
+    "test": {
+      "agreement_count": 25,
+      "case_count": 30,
+      "disagreement_count": 5,
+      "raw_agreement": 0.833333
+    },
+    "validation": {
+      "agreement_count": 28,
+      "case_count": 30,
+      "disagreement_count": 2,
+      "raw_agreement": 0.933333
+    }
+  },
+  "by_stratum": {
+    "ambiguous": {
+      "agreement_count": 52,
+      "case_count": 60,
+      "disagreement_count": 8,
+      "raw_agreement": 0.866667
+    },
+    "clear": {
+      "agreement_count": 37,
+      "case_count": 45,
+      "disagreement_count": 8,
+      "raw_agreement": 0.822222
+    },
+    "collision_or_multi_target": {
+      "agreement_count": 42,
+      "case_count": 45,
+      "disagreement_count": 3,
+      "raw_agreement": 0.933333
+    }
+  },
+  "case_count": 150,
+  "cohen_kappa": 0.649274,
+  "disagreement_count": 19,
+  "final_glossary_decision": null,
+  "final_gold_label_count": 0,
+  "label_pair_counts": {
+    "ACCEPT__ACCEPT": 108,
+    "ACCEPT__CONDITIONAL": 4,
+    "CONDITIONAL__ACCEPT": 12,
+    "CONDITIONAL__CONDITIONAL": 21,
+    "REJECT__CONDITIONAL": 3,
+    "REJECT__REJECT": 2
+  },
+  "policy_id": "d2l-dataset-50-senses-stage-b-review-intake-v1.0",
+  "provider_call_count": 0,
+  "raw_agreement": 0.873333,
+  "reviewer_1_label_counts": {
+    "ACCEPT": 112,
+    "CONDITIONAL": 33,
+    "REJECT": 5
+  },
+  "reviewer_2_label_counts": {
+    "ACCEPT": 120,
+    "CONDITIONAL": 28,
+    "REJECT": 2
+  },
+  "schema_id": "D2LStageB50AgreementReportV1",
+  "schema_version": "1.0.0"
+}

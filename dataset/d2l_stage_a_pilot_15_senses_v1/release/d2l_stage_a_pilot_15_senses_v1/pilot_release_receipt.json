@@ -1,0 +1,51 @@
+{
+  "artifact_name": "d2l_stage_a_pilot_15_senses_v1",
+  "candidate_count": 45,
+  "created_at": "2026-07-29T00:00:00Z",
+  "final_glossary_decision": null,
+  "official_counts": {
+    "constraint_package": 0,
+    "effective_sense": 0,
+    "frozen_candidate": 0
+  },
+  "parent_bindings": {
+    "dataset_v3": {
+      "artifact_name": null,
+      "manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+      "physical_manifest_sha256": "b5f2067427c6b88344109f2c62f8db02ac61b0cef76f193d5285f378ff5f96a8"
+    },
+    "immutable_fasttrack_v1": {
+      "artifact_name": "d2l_dataset_fasttrack_glossary_first_v1",
+      "commit": "edc43e4e08a50af83881aa5a16d4d88c6d7dbc54",
+      "manifest_sha256": "9a32880e32cea5c5e87f38165142968aeca56f39a12f8bb7c4f1500eb3c49c67",
+      "physical_manifest_sha256": "ebe7003877d955a3575e1e9627fc34e299fdff380d77fb0e3566bde8d52458bb",
+      "status": "BLOCKED_PENDING_HUMAN_REVIEW_AND_PILOT_CONTRACTS",
+      "zip_sha256": "92f7b15d36ac62ab01be53080b6eceb0e385e97b25ea79c09199e1df1d72fd38"
+    },
+    "methodology_hardening": {
+      "manifest_sha256": "801dbcad7a2d9ea42c764b1a8edffff33eb04a7bec21e23f8ddbe21016ca6591",
+      "physical_manifest_sha256": "7830f553ee467ac40c8aefe4a0576faa45e5e1ae8914694df1a45f40957f4a89"
+    },
+    "repair_companion_v1_1": {
+      "artifact_name": "d2l_dataset_fasttrack_glossary_first_v1_1",
+      "commit": "8239656965b00bb4a67ed7409a306e4d3a4e48c2",
+      "manifest_sha256": "21d6f61cb21860b32d6596c97956185bfccb8d6398ac98bf400f8c127e43e9d7",
+      "physical_manifest_sha256": "2e06bddf04aff2cad45c71e657d9e9becdd426e00d5695c14596fabff08ceb5a",
+      "status": "BLOCKED_PENDING_HUMAN_REVIEW_AND_PILOT_CONTRACTS",
+      "zip_sha256": "776a202fb25012bbcc6d16924fc0aec7602fe67af8d7675e0be02dbc53a0c0f9"
+    },
+    "terminology_contracts": {
+      "authority_commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+      "authority_tag": "contracts-v1.1.0",
+      "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b"
+    }
+  },
+  "policy_id": "dataset-stage-a-pilot-15-senses-v1.0",
+  "receipt_sha256": "7cf6abeae272c7bde9d8e74908fc3355df7000d1a0dab6305886f18ee7ae2d01",
+  "review_pack_zip_ref": "stage_a_review_pack_15_senses.zip",
+  "review_pack_zip_sha256": "e84a669c5a2ad0d670ffe0c585bccc68dc50aae6adb993bd3e5df0f7cb95dfed",
+  "schema_id": "D2LStageAPilotReleaseReceiptV1",
+  "selected_sense_count": 15,
+  "stage_b_open_row_count": 45,
+  "status": "BLOCKED_BY_HUMAN_REVIEW"
+}

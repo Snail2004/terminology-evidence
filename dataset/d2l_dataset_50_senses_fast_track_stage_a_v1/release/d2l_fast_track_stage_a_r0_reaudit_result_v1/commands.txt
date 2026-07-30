@@ -1,0 +1,2 @@
+python -B tools/build_r0_reaudit_result.py --repair-release-zip <ZIP> --completed-review <RESULT> --output-root <OUTPUT>
+python -B tools/validate_r0_reaudit_result.py --artifact-root <OUTPUT>

@@ -1,0 +1,67 @@
+{
+  "alternatives_vi": [
+    "tỷ lệ chiều rộng trên chiều cao",
+    "tỷ lệ khung hình"
+  ],
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_0059490283a8739e7a797465",
+    "candidate_version": "0028d01d119b3dbbffd3bc9203a565d70a8dc530dea7a2984e663a517f43156a",
+    "candidate_vi": "tỷ lệ rộng-cao",
+    "dataset_manifest_sha256": "7b256808dacf446b06bc4f6cdc0ab8f0aa7585a2a4e3a56364cdb3508d17fbdc",
+    "effective_sense_contract_sha256": "2a98e2899a7e2316a4f8d4485efde07a25ae4e34e1c20f4645e0c649e892fb8c",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_ddf8557de1cd5ff23b86e10e",
+    "sense_inventory_version": "d2l_dataset_50_senses_150_candidates_v1",
+    "source_term": "aspect ratio"
+  },
+  "domain_profile": {
+    "anchors_en": [
+      "aspect ratio"
+    ],
+    "anchors_vi": [
+      "tỷ lệ chiều rộng trên chiều cao",
+      "tỷ lệ khung hình",
+      "tỷ lệ rộng-cao"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "The ratio of width to height of an image, crop, or bounding box shape.",
+  "effective_part_of_speech": "noun_phrase",
+  "input_contract_sha256": "cdf3dbb797bfb43b9e3eaf1e89480ef9f282f34ac22cf2dc148b6e036138a615",
+  "input_provenance": {
+    "completed_at": "2026-07-29T17:00:00Z",
+    "component_id": "d2l-dataset-frozen-candidate-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "cf027ff8d20c1d2ecd0c667ab303fc31f25a9eda80257b61329c34e67efcd05d",
+    "model_routes": [],
+    "notes": "Candidate identity is frozen before Stage B; no candidate gold label or final glossary decision is assigned.",
+    "policy_version": "d2l-dataset-50-senses-150-candidates-stage-b-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-dataset-50-sense-contract-release",
+    "run_spec_id": "d2l-dataset-50-sense-contract-spec-v1",
+    "source_artifact_hashes": {
+      "adjudication_manifest": "95482cd1b495b9014a1f00ba4695324f99f0637c6fb96f17d5ffded44c5e2b5c",
+      "base_dataset_manifest": "92fab6032576a5c9c57fe38e23b6c622d5f73718a897197a2c10df35c7fe8b4d",
+      "base_dataset_manifest_physical": "438dffc84aaa735e4f734d4dc5cefcf63dc8360743b6e941380bca71eec1f13a",
+      "candidate_instance": "0028d01d119b3dbbffd3bc9203a565d70a8dc530dea7a2984e663a517f43156a",
+      "r0_result_manifest": "c17198864aeb47233fd658d7e6c333c5beb86c5531e5b240ca30e046d066a616",
+      "review_binding": "5ecf20cd1d075228e0a4b94a9a9dd5a280bd9f83c35116b18dfa8f7fbd6b4d77",
+      "review_intake_manifest": "bcb840616060473ea61b81ca7cf052eff2ac00caeb7bff75e7cbf064e6a7e178",
+      "term_sense": "4da27d9eb749ad4354148747f782c3d095571f7325f6818bf2c1f8b6255112b3"
+    },
+    "started_at": "2026-07-29T17:00:00Z"
+  },
+  "integrity": {
+    "self_sha256": "b69f1b2a48356f7a71ca977e37283a38796c9ceac9fa089ddcdf7cb7759e67fb"
+  },
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.1.0",
+  "scope_note": null,
+  "surfaces": {
+    "canonical_vi": "tỷ lệ rộng-cao",
+    "rejected_variants_vi": [],
+    "validated_variants_vi": []
+  }
+}

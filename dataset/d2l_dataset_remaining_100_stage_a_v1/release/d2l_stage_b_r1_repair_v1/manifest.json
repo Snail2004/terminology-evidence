@@ -1,0 +1,89 @@
+{
+  "agreement_count": 245,
+  "artifact_name": "d2l_stage_b_r1_repair_v1",
+  "case_count": 300,
+  "disagreement_count": 55,
+  "files": {
+    "CHECKSUMS.sha256": {
+      "sha256": "4f4c78c0cf4e4e87b4c71514f635c17700fe133c823003fe75ccdd4387c92e65",
+      "size_bytes": 1611
+    },
+    "RELEASE_REPORT.md": {
+      "sha256": "64f9e7ed5a6463bb503a9b63d76d3a4defafecf56e3db2bafea42be55a50a572",
+      "size_bytes": 355
+    },
+    "agreement_report.json": {
+      "sha256": "56ec3bf19b3cddf311c5a74c835fdbf86504a8bc1a9cea5b26e130b34b887e1d",
+      "size_bytes": 1112
+    },
+    "handoff/reviewer_3.zip": {
+      "sha256": "ee27a5e03c5336e470edff0a81a244956b46973dc031983c5eaeb2f4f63b4272",
+      "size_bytes": 147451
+    },
+    "lineage.json": {
+      "sha256": "1bdb4131b993313047f5ce83587aaa784b65760156536fe994d58005242ec7b0",
+      "size_bytes": 1002
+    },
+    "raw_repair/reviewer_1_repair.json": {
+      "sha256": "330a65ecf9b7181bb0c1eab32b10b281e19a2741f7d5f2742584583da52b0b09",
+      "size_bytes": 14047
+    },
+    "repaired_reviews/reviewer_1.json": {
+      "sha256": "990283e635511bb4d10d32166814bb20e52ca0cc7b478256eac365aed3099358",
+      "size_bytes": 3212459
+    },
+    "repaired_reviews/reviewer_2.json": {
+      "sha256": "f1310ddf9662ae595c51b0dee9292dfb7958e31124d0926e60c5ddcd76d321ea",
+      "size_bytes": 3168323
+    },
+    "review_pairs_300.jsonl": {
+      "sha256": "39acf674f14d6691e70364901f4037c3afea8f3570256bd38c3a64d82b21f0b9",
+      "size_bytes": 2932240
+    },
+    "reviewer_3_adjudication_input.json": {
+      "sha256": "5dd907bc879432f53e69307d7daf0fd21aff99f566e2ba19894e0e5a8d475ac5",
+      "size_bytes": 704044
+    },
+    "source/tests/test_remaining_stage_b_reviewer1_repair_intake.py": {
+      "sha256": "7ab9eb634bfba7fab95fe89906eb0e5f66424df507ec1b3561f0a6266bac566d",
+      "size_bytes": 7287
+    },
+    "source/tools/__init__.py": {
+      "sha256": "05f9b315bc1d32ccfffe6f1447fd2dc92658bcd6fc6ac5ec09f2aa7f1bd5d09c",
+      "size_bytes": 76
+    },
+    "source/tools/build_remaining_stage_b_reviewer1_repair_intake.py": {
+      "sha256": "e9a49db3caaaed761731fd43d557e3f3737c91b4bdaba455ded73436c60a0d72",
+      "size_bytes": 19780
+    },
+    "source/tools/remaining_stage_b_review_result.py": {
+      "sha256": "de9b3b570bb8f27fdc7f39c579f6dd49e66e3984d9eafb4393ce7a0e692d3c1c",
+      "size_bytes": 15430
+    },
+    "source/tools/validate_remaining_stage_b_reviewer1_repair_intake.py": {
+      "sha256": "5cbe55b053ed69d293830cd3665a27e96eb16ed99b00d858169b4c7d53a3f406",
+      "size_bytes": 10532
+    },
+    "stage_b_gold_pending_300.jsonl": {
+      "sha256": "4e0a3230a6642d0f46578ec145fbf5d95a24289e4f5e3cb114e54a20392beb26",
+      "size_bytes": 121355
+    },
+    "validation_report.json": {
+      "sha256": "131c5967c3eb1e80f0169bf069a37314f95f9a9e77d5a98e1f5c53df86b0c198",
+      "size_bytes": 716
+    }
+  },
+  "final_glossary_decision": null,
+  "final_gold_label_count": 0,
+  "manifest_sha256": "f0cc263c761d98730cb6257fd6e2b455470f87c391c302bfdaad14ec463dd807",
+  "parent_manifest_sha256": "b9b74ebd9565bef94565329e607a0fbf384e7db97fdcd297b6749c4c8bab367a",
+  "policy_id": "d2l-remaining-300-stage-b-reviewer1-repair-intake-v1.0",
+  "provider_call_count": 0,
+  "repair_response_sha256": "330a65ecf9b7181bb0c1eab32b10b281e19a2741f7d5f2742584583da52b0b09",
+  "repaired_candidate_id": "candidate_811346453db4d899687a814f",
+  "reviewer_3_handoff_path": "handoff/reviewer_3.zip",
+  "reviewer_3_handoff_sha256": "ee27a5e03c5336e470edff0a81a244956b46973dc031983c5eaeb2f4f63b4272",
+  "schema_id": "D2LRemainingStageBReviewer1RepairIntakeManifestV1",
+  "schema_version": "1.0.0",
+  "status": "REVIEWER_1_REPAIR_APPLIED_REVIEWER_3_ADJUDICATION_PENDING"
+}

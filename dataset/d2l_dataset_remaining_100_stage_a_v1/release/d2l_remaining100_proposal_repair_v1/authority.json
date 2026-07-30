@@ -1,0 +1,11 @@
+{
+  "base_authority_commit": "02077c41e4007154176e44307dcbf49a32427998",
+  "integrity": {
+    "self_sha256": "3df892f7ac213fd27c34698518625006d22de18873f4394a4a5d027940c4256e"
+  },
+  "policy_id": "d2l-remaining-100-stage-a-proposal-repair-intake-v1.0",
+  "schema_id": "D2LRemaining100ProposalRepairIntakeAuthorityV1",
+  "schema_version": "1.0",
+  "source_manifest_physical_sha256": "13ac87ddb68f6153c1ac7a470857c28477411d9ff5c999718c3b07157dbbaf96",
+  "source_manifest_self_sha256": "37853f6d13092dc07190d826d615725d040bda1a415d65d16cb2a7855d943f06"
+}

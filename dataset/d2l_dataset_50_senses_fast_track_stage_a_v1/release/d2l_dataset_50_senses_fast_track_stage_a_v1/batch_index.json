@@ -1,0 +1,207 @@
+[
+  {
+    "batch_id": "batch_001",
+    "batch_manifest_sha256": "e325aae1c03c43c71796ee9c6e17bbbd5b8390770605346964707869a3ccaf91",
+    "blind_audit_count": 2,
+    "conditional_adjudication_count": 2,
+    "mandatory_adjudication_count": 1,
+    "reviewer_1_case_count": 5,
+    "reviewer_2_case_count": 3,
+    "risk_counts": {
+      "R0_CLEAR": 2,
+      "R3_AMBIGUOUS": 2,
+      "R4_SPLIT_OR_POS_RISK": 1
+    },
+    "sense_count": 5,
+    "sense_ids": [
+      "d2lce_539543a2360129e2a2fa1b6d",
+      "d2lce_e0c693366d811581abbb9e74",
+      "d2lce_7070b47672fcb2311c0527b6",
+      "d2lce_4abd762bcd34d370b4fe6498",
+      "d2lce_ddf8557de1cd5ff23b86e10e"
+    ],
+    "sequence": 1
+  },
+  {
+    "batch_id": "batch_002",
+    "batch_manifest_sha256": "a47638439cbfe8571a8b1dc4e60b4a5d8c64337a0f0f91ea6373fb74f84e29d9",
+    "blind_audit_count": 2,
+    "conditional_adjudication_count": 1,
+    "mandatory_adjudication_count": 2,
+    "reviewer_1_case_count": 5,
+    "reviewer_2_case_count": 3,
+    "risk_counts": {
+      "R0_CLEAR": 2,
+      "R3_AMBIGUOUS": 1,
+      "R4_SPLIT_OR_POS_RISK": 2
+    },
+    "sense_count": 5,
+    "sense_ids": [
+      "d2lce_d89e6e83e5f07d1fcb18c6aa",
+      "d2lce_ad13d119a140210b487eeb9c",
+      "d2lce_fb9ad6a6ac7e4ba9167913e1",
+      "d2lce_7c27fa40b039d07e81508741",
+      "d2lce_499fa9391d57e930a19f1b19"
+    ],
+    "sequence": 2
+  },
+  {
+    "batch_id": "batch_003",
+    "batch_manifest_sha256": "905afef22238d2c424bc2709dc62ad609a31320ded267e8148c7a6f414c07a5e",
+    "blind_audit_count": 1,
+    "conditional_adjudication_count": 2,
+    "mandatory_adjudication_count": 2,
+    "reviewer_1_case_count": 5,
+    "reviewer_2_case_count": 4,
+    "risk_counts": {
+      "R0_CLEAR": 1,
+      "R3_AMBIGUOUS": 2,
+      "R4_SPLIT_OR_POS_RISK": 2
+    },
+    "sense_count": 5,
+    "sense_ids": [
+      "d2lce_6239b2ef1cec1800e3d6f13f",
+      "d2lce_d2bfc7b3a0a02ddfd71b3526",
+      "d2lce_52085fef12f840d2350b2049",
+      "d2lce_dc193feb1eeef3a1349d9b74",
+      "d2lce_c4e87e5ee47d3e26ba618290"
+    ],
+    "sequence": 3
+  },
+  {
+    "batch_id": "batch_004",
+    "batch_manifest_sha256": "6e56d4504a173a31a15dc8ee8ab77528926b7e3b228fc09542d508a6019cfca7",
+    "blind_audit_count": 2,
+    "conditional_adjudication_count": 2,
+    "mandatory_adjudication_count": 1,
+    "reviewer_1_case_count": 5,
+    "reviewer_2_case_count": 3,
+    "risk_counts": {
+      "R0_CLEAR": 2,
+      "R3_AMBIGUOUS": 2,
+      "R4_SPLIT_OR_POS_RISK": 1
+    },
+    "sense_count": 5,
+    "sense_ids": [
+      "d2lce_73c8ce2915c4c64a52fab4a2",
+      "d2lce_f3dedf5fcd54a46940474022",
+      "d2lce_4d2b37402e25d2f56746ea23",
+      "d2lce_c01c503b792019c6e3827ac0",
+      "d2lce_e1a7c8e04c91b48272b3b5ee"
+    ],
+    "sequence": 4
+  },
+  {
+    "batch_id": "batch_005",
+    "batch_manifest_sha256": "78cadb4ec2ba2940f70c62b721b659faab9c6fc0290d93d337df72eeac9b7571",
+    "blind_audit_count": 2,
+    "conditional_adjudication_count": 1,
+    "mandatory_adjudication_count": 2,
+    "reviewer_1_case_count": 5,
+    "reviewer_2_case_count": 3,
+    "risk_counts": {
+      "R0_CLEAR": 2,
+      "R3_AMBIGUOUS": 1,
+      "R4_SPLIT_OR_POS_RISK": 2
+    },
+    "sense_count": 5,
+    "sense_ids": [
+      "d2lce_c6c1c6e96c39b88a9f94e8d9",
+      "d2lce_ccf7d0a5109d86ee76a75b9c",
+      "d2lce_9199c3ba27076b186a42df23",
+      "d2lce_776fd3328d5e31aeebe484ec",
+      "d2lce_35df896f9860f8aac814ce37"
+    ],
+    "sequence": 5
+  },
+  {
+    "batch_id": "batch_006",
+    "batch_manifest_sha256": "10fb09fb59c324f149103ebdd55d5a5a8a7a5ff25301f7ea85a5f9df85df8254",
+    "blind_audit_count": 1,
+    "conditional_adjudication_count": 2,
+    "mandatory_adjudication_count": 2,
+    "reviewer_1_case_count": 5,
+    "reviewer_2_case_count": 4,
+    "risk_counts": {
+      "R0_CLEAR": 1,
+      "R3_AMBIGUOUS": 2,
+      "R4_SPLIT_OR_POS_RISK": 2
+    },
+    "sense_count": 5,
+    "sense_ids": [
+      "d2lce_49603071e9c21eb4bcbdf1e7",
+      "d2lce_3e633e212e54590ca20bfc99",
+      "d2lce_d96258f97579b9b414c21815",
+      "d2lce_04b7107b328dedc7c1f9af65",
+      "d2lce_2b9f63478b6ef59511a4f930"
+    ],
+    "sequence": 6
+  },
+  {
+    "batch_id": "batch_007",
+    "batch_manifest_sha256": "a7ea868af6dd34861f838b332621dab84362b6891ec04ce9ad287ff45efeedde",
+    "blind_audit_count": 2,
+    "conditional_adjudication_count": 2,
+    "mandatory_adjudication_count": 1,
+    "reviewer_1_case_count": 5,
+    "reviewer_2_case_count": 3,
+    "risk_counts": {
+      "R0_CLEAR": 2,
+      "R3_AMBIGUOUS": 2,
+      "R4_SPLIT_OR_POS_RISK": 1
+    },
+    "sense_count": 5,
+    "sense_ids": [
+      "d2lce_42900db05a19228ce33eafe0",
+      "d2lce_152a9bcc9b8b5f6cc5586c54",
+      "d2lce_ad0d7cbd5f90ad33075e89aa",
+      "d2lce_e014da89e120449f8881dd5b",
+      "d2lce_5c270f3b3ebe4f0059649e18"
+    ],
+    "sequence": 7
+  },
+  {
+    "batch_id": "batch_008",
+    "batch_manifest_sha256": "94e60f3dcd52730c812481ce64f750272ff6801b3be3890bc724b6b81311b4ef",
+    "blind_audit_count": 1,
+    "conditional_adjudication_count": 2,
+    "mandatory_adjudication_count": 2,
+    "reviewer_1_case_count": 5,
+    "reviewer_2_case_count": 4,
+    "risk_counts": {
+      "R0_CLEAR": 1,
+      "R3_AMBIGUOUS": 2,
+      "R4_SPLIT_OR_POS_RISK": 2
+    },
+    "sense_count": 5,
+    "sense_ids": [
+      "d2lce_00f50f89defd8652bb8c429e",
+      "d2lce_eae5d94b4d2b73165c5d8795",
+      "d2lce_b967af36e17c22a478eaed6d",
+      "d2lce_355f5686f2178281893eb6cb",
+      "d2lce_9cee0f2f668259a2568b89f4"
+    ],
+    "sequence": 8
+  },
+  {
+    "batch_id": "batch_009",
+    "batch_manifest_sha256": "8010188543621e0d355a1be9f0abb50496db35fae72d4219425cfc1812d64d2e",
+    "blind_audit_count": 0,
+    "conditional_adjudication_count": 1,
+    "mandatory_adjudication_count": 3,
+    "reviewer_1_case_count": 4,
+    "reviewer_2_case_count": 4,
+    "risk_counts": {
+      "R3_AMBIGUOUS": 1,
+      "R4_SPLIT_OR_POS_RISK": 3
+    },
+    "sense_count": 4,
+    "sense_ids": [
+      "d2lce_d1ca2fd5568e11a79b1b3366",
+      "d2lce_658174b1687c73f5aa1957ab",
+      "d2lce_b63485c15ac13f80b0d98676",
+      "d2lce_ad03ff147d19eb2ea47d5b0e"
+    ],
+    "sequence": 9
+  }
+]

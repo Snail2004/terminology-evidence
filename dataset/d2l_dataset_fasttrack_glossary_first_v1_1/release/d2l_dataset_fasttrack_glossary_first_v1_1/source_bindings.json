@@ -1,0 +1,27 @@
+{
+  "dataset_v3": {
+    "manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+    "physical_manifest_sha256": "b5f2067427c6b88344109f2c62f8db02ac61b0cef76f193d5285f378ff5f96a8"
+  },
+  "historical_blind_result": {
+    "manifest_sha256": "251a6dec625461883bf9678f767e52389e92e0d5940bd960be73d9dbaa076175",
+    "physical_manifest_sha256": "a543e480ae97ab2011db5c1308a066b5e198fd414242e9860cf104916153bd3f"
+  },
+  "methodology_hardening": {
+    "manifest_sha256": "801dbcad7a2d9ea42c764b1a8edffff33eb04a7bec21e23f8ddbe21016ca6591",
+    "physical_manifest_sha256": "7830f553ee467ac40c8aefe4a0576faa45e5e1ae8914694df1a45f40957f4a89"
+  },
+  "parent_fasttrack_v1": {
+    "artifact_name": "d2l_dataset_fasttrack_glossary_first_v1",
+    "manifest_sha256": "9a32880e32cea5c5e87f38165142968aeca56f39a12f8bb7c4f1500eb3c49c67",
+    "physical_manifest_sha256": "ebe7003877d955a3575e1e9627fc34e299fdff380d77fb0e3566bde8d52458bb",
+    "policy_id": "dataset-fasttrack-glossary-first-v1.0",
+    "status": "BLOCKED_PENDING_HUMAN_REVIEW_AND_PILOT_CONTRACTS",
+    "zip_sha256": "92f7b15d36ac62ab01be53080b6eceb0e385e97b25ea79c09199e1df1d72fd38"
+  },
+  "terminology_contracts": {
+    "authority_commit": "38bc1c1b888c97d53d40bfd61264cd8f1a66a6ed",
+    "authority_tag": "contracts-v1.1.0",
+    "manifest_sha256": "e0dd96cd1c33e7d27df802c3de42d8ad6979e29204b741591f1ab445905a500b"
+  }
+}

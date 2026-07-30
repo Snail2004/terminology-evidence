@@ -1,0 +1,13 @@
+{
+  "base_authority_commit": "0603573c8934fe457398554d33411d84709473f1",
+  "closure_manifest_physical_sha256": "eed69d9603b517f243c6d3c132eebf696e1c54704fb704af16734eee7df17087",
+  "closure_manifest_self_sha256": "89d22f5e7f0315248cbd16451a634382b1bacfd4d3785dfbfa0cda3e80083516",
+  "integrity": {
+    "self_sha256": "08378466d4888ec956cec3290c15bfa36bf500355888efd6a51c89ced76d0a5e"
+  },
+  "policy_id": "d2l-switch-replacement-stage-a-v1.0",
+  "schema_id": "D2LSwitchReplacementAuthorityV1",
+  "schema_version": "1.0",
+  "v3_manifest_physical_sha256": "b5f2067427c6b88344109f2c62f8db02ac61b0cef76f193d5285f378ff5f96a8",
+  "v3_manifest_self_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce"
+}

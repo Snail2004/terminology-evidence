@@ -1,0 +1,17 @@
+{
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "85188c4814e43ecdae38d44aac05697aac0004c951553a658ebf734efb69353e"
+  },
+  "policy_id": "d2l-switch-replacement-stage-a-v1.0",
+  "provider_call_count": 0,
+  "replaced_sense_id": "d2lce_91002293cea2184b43995f47",
+  "replaced_source_term": "switch",
+  "replacement_sense_id": "d2lce_bad32719ece6439b4716d093",
+  "replacement_source_term": "hypothesis testing",
+  "replacement_status": "SELECTED_PENDING_TWO_INDEPENDENT_REVIEWS",
+  "schema_id": "D2LSwitchReplacementSelectionV1",
+  "schema_version": "1.0",
+  "stage_b_gold_autofill_count": 0,
+  "stage_b_gold_label": null
+}

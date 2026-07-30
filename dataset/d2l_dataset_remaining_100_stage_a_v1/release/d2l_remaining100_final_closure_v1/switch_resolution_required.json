@@ -1,0 +1,26 @@
+{
+  "allowed_next_actions": [
+    "ADD_REAL_POSITIVE_CORPUS_EVIDENCE_AND_REVIEW",
+    "REPLACE_SOURCE_SLOT_WITH_FROZEN_ELIGIBLE_SENSE"
+  ],
+  "final_glossary_decision": null,
+  "forbidden_positive_evidence": [
+    "SYNTHETIC_CONTEXT",
+    "BOUNDARY_ONLY_CONTEXT"
+  ],
+  "integrity": {
+    "self_sha256": "3996ab512f037e64e9ab4cc94b7bdf0b09c42bfd0c7faf3a0faae11f8767d42f"
+  },
+  "parent_closure_record_sha256": "3f5f1d4ae8ac63165fe13a1aa72e9240605b837a438b245773d2ea4f8a5b840b",
+  "policy_id": "d2l-remaining-100-stage-a-final-closure-v1.0",
+  "provider_call_count": 0,
+  "schema_id": "D2LRemaining100SwitchResolutionRequirementV1",
+  "schema_version": "1.0",
+  "sense_id": "d2lce_91002293cea2184b43995f47",
+  "source_payload_sha256": "ba4ad2e393a7558cff45c2ac3179d824654ea81352f9b0421c9fc1bcbd42e77f",
+  "source_term": "switch",
+  "stage_a_status": "BLOCKED",
+  "stage_b_gold_autofill_count": 0,
+  "stage_b_gold_label": null,
+  "status": "REAL_POSITIVE_EVIDENCE_OR_REPLACEMENT_REQUIRED"
+}

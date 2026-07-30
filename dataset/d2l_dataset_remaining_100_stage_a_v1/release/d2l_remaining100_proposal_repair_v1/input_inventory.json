@@ -1,0 +1,29 @@
+{
+  "file_count": 2,
+  "files": [
+    {
+      "batch_id": "high_risk_proposal_repair_reviewer_2",
+      "captured_relative_path": "reviewer_2/high_risk_proposal_repair_reviewer_2.json",
+      "reviewer_role": "reviewer_2",
+      "sha256": "07e4877f1076133d9ffcf46bddc982462007abca5979c56ce9c891b35c496908",
+      "size_bytes": 74113,
+      "source_file_name": "high_risk_proposal_repair_reviewer_2.json",
+      "source_input_sha256": "ae2e51c119c4f52c12619ce4a0e9ce5f604fd6c1ecc0ae5baf45f19eb20aa093"
+    },
+    {
+      "batch_id": "high_risk_proposal_repair_reviewer_3",
+      "captured_relative_path": "reviewer_3/high_risk_proposal_repair_reviewer_3.json",
+      "reviewer_role": "reviewer_3",
+      "sha256": "c174542fc62888924f5e528dfe36ee5c08b2ed0df967550f3ec0fc40e15549f3",
+      "size_bytes": 27108,
+      "source_file_name": "high_risk_proposal_repair_reviewer_3.json",
+      "source_input_sha256": "6207bbb7a0e784b66e4c73f25b054cdfeb689005d680a5b20184ad8fc39cf212"
+    }
+  ],
+  "integrity": {
+    "self_sha256": "b0f8b542ce65b367d31858f72294f59c47789c7bc8a41a1644ff0b93e1f33b7b"
+  },
+  "policy_id": "d2l-remaining-100-stage-a-proposal-repair-intake-v1.0",
+  "schema_id": "D2LRemaining100ProposalRepairInputInventoryV1",
+  "schema_version": "1.0"
+}

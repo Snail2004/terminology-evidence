@@ -1,0 +1,31 @@
+{
+  "integrity": {
+    "self_sha256": "81306db53a332da08c9cb4594aae8aae701428ea319b72f7bd37ea4d3964dbfc"
+  },
+  "manifests": {
+    "remaining100": {
+      "physical_sha256": "eed69d9603b517f243c6d3c132eebf696e1c54704fb704af16734eee7df17087",
+      "self_sha256": "89d22f5e7f0315248cbd16451a634382b1bacfd4d3785dfbfa0cda3e80083516"
+    },
+    "replacement": {
+      "physical_sha256": "426c3259be51e583905ce04e41bcca3719aa7d9b61a04060c5f2132fa8590a16",
+      "self_sha256": "8342ec5255f4cd1508620ade0923af671d9c0c6fafcc20a9d5647514e6c6b1e2"
+    },
+    "stage_a_complete": {
+      "physical_sha256": "b0a2e65ab8986cdc1b5214b1390ec87d97dcfc15eb5f5b85e06d5e6ee888a443",
+      "self_sha256": "003ca6ea07430f82ef497e0d40efa5dcaa235c569e34cfd231d1f38d5bee134f"
+    },
+    "stage_b_50": {
+      "physical_sha256": "3f7e49ef623c5cf9fba3c3eecf11535c23228ccfc240e2d651a3cd7144467bf2",
+      "self_sha256": "30aca9b841a70ac24c327be8a655e90c715a907261c22dc45c53a1f00c29cfc2"
+    },
+    "v3": {
+      "physical_sha256": "b5f2067427c6b88344109f2c62f8db02ac61b0cef76f193d5285f378ff5f96a8",
+      "self_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce"
+    }
+  },
+  "policy_id": "d2l-remaining-300-candidates-stage-b-dual-review-v1.0",
+  "schema_id": "D2LRemainingStageBReviewAuthorityV1",
+  "schema_version": "1.0",
+  "stage_a_completion_authority_self_sha256": "77b0e507ab219e9f5d312651d8619ac24daf4208e6465b55559a6df89fda6b83"
+}

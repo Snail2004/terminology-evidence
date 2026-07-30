@@ -1,0 +1,67 @@
+{
+  "alternatives_vi": [
+    "tham số động lượng",
+    "động lượng"
+  ],
+  "binding_status": "COMPLETE",
+  "candidate_key": {
+    "candidate_id": "candidate_c4098f5a8e773ca3b59a1154",
+    "candidate_version": "6d3b9d221a2edbd598778853ec464e4e73f2816dd83a053c174b25a5087285cc",
+    "candidate_vi": "hệ số động lượng",
+    "dataset_manifest_sha256": "7b256808dacf446b06bc4f6cdc0ab8f0aa7585a2a4e3a56364cdb3508d17fbdc",
+    "effective_sense_contract_sha256": "cf044b4c8c8fb1fb4eabb86b3203c4c3fb50a80bcb0688e3af22d22cc09f5128",
+    "scope_id": "d2l_selected_campaign_scope_v1",
+    "sense_id": "d2lce_addfcc9899bef06c500b6b0e",
+    "sense_inventory_version": "d2l_dataset_50_senses_150_candidates_v1",
+    "source_term": "momentum"
+  },
+  "domain_profile": {
+    "anchors_en": [
+      "momentum"
+    ],
+    "anchors_vi": [
+      "hệ số động lượng",
+      "tham số động lượng",
+      "động lượng"
+    ],
+    "domain_id": "d2l_selected_campaign_scope_v1"
+  },
+  "effective_definition_en": "a parameter or mechanism that uses an exponentially weighted average of past values, especially past gradients, to smooth updates.",
+  "effective_part_of_speech": "noun",
+  "input_contract_sha256": "3ace2321d6f71d8c5564cc4e4a3bd7b0c8ab50a70ec925c19e5c4583eaa3b3fb",
+  "input_provenance": {
+    "completed_at": "2026-07-29T17:00:00Z",
+    "component_id": "d2l-dataset-frozen-candidate-projector",
+    "component_version": "1.0.0",
+    "execution_config_sha256": "cf027ff8d20c1d2ecd0c667ab303fc31f25a9eda80257b61329c34e67efcd05d",
+    "model_routes": [],
+    "notes": "Candidate identity is frozen before Stage B; no candidate gold label or final glossary decision is assigned.",
+    "policy_version": "d2l-dataset-50-senses-150-candidates-stage-b-v1.0",
+    "prompt_hashes": {},
+    "raw_ledger_ref": null,
+    "run_id": "d2l-dataset-50-sense-contract-release",
+    "run_spec_id": "d2l-dataset-50-sense-contract-spec-v1",
+    "source_artifact_hashes": {
+      "adjudication_manifest": "95482cd1b495b9014a1f00ba4695324f99f0637c6fb96f17d5ffded44c5e2b5c",
+      "base_dataset_manifest": "92fab6032576a5c9c57fe38e23b6c622d5f73718a897197a2c10df35c7fe8b4d",
+      "base_dataset_manifest_physical": "438dffc84aaa735e4f734d4dc5cefcf63dc8360743b6e941380bca71eec1f13a",
+      "candidate_instance": "6d3b9d221a2edbd598778853ec464e4e73f2816dd83a053c174b25a5087285cc",
+      "r0_result_manifest": "c17198864aeb47233fd658d7e6c333c5beb86c5531e5b240ca30e046d066a616",
+      "review_binding": "4c110be4ee5ef701ad3939bb16b8f05a748c6da3d6e2e6402aa09166d7ffc5cb",
+      "review_intake_manifest": "bcb840616060473ea61b81ca7cf052eff2ac00caeb7bff75e7cbf064e6a7e178",
+      "term_sense": "b600ca55c59dc048b4b7f544890dc9152dc70a5cdee519003ee9f6d069b77169"
+    },
+    "started_at": "2026-07-29T17:00:00Z"
+  },
+  "integrity": {
+    "self_sha256": "fc96d2969a48c3f19f1e0bb2875e721bc533724388364e2699abfdcb71278a67"
+  },
+  "schema_id": "FrozenCandidateContractV1",
+  "schema_version": "1.1.0",
+  "scope_note": null,
+  "surfaces": {
+    "canonical_vi": "hệ số động lượng",
+    "rejected_variants_vi": [],
+    "validated_variants_vi": []
+  }
+}

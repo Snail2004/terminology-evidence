@@ -1,0 +1,86 @@
+{
+  "artifact_name": "d2l_stage_b_official_5_candidate_review_v1",
+  "candidate_count": 15,
+  "created_at": "2026-07-29T14:00:00Z",
+  "files": {
+    "RELEASE_REPORT.json": {
+      "sha256": "62eabb31c29d2d8cba699124593462508a6aab80afefd85992b930608fb217a6",
+      "size_bytes": 1118
+    },
+    "authority_binding.json": {
+      "sha256": "576375d398d4b17749b6fc3bbef05bca7849aaaa4afcc627a08cef832d06a72c",
+      "size_bytes": 473
+    },
+    "handoff/reviewer_1.zip": {
+      "sha256": "e5001595cc2d1e649a5f42bbe646ebef0abd566ad98296dfbeef96df60127f28",
+      "size_bytes": 11726
+    },
+    "handoff/reviewer_2.zip": {
+      "sha256": "3f5f78e7a58bf71f9b7aa90a1d9faf2dfc77efef5a44a844c0ed0231e870011b",
+      "size_bytes": 11733
+    },
+    "reviewer_1_input.json": {
+      "sha256": "7d5d18ca753390ecf0d1344bd3fb95e55bc43f0318f06177ce4930d042e36eae",
+      "size_bytes": 106378
+    },
+    "reviewer_2_input.json": {
+      "sha256": "68cac521549038d5530dcfcfdace8cbbab6b9215de62377559b82481e40b681c",
+      "size_bytes": 106378
+    },
+    "source/.gitattributes": {
+      "sha256": "a51e4210b15c2bac0f4126425e7d418b0ec19314aecb604f8a9940229637c3c4",
+      "size_bytes": 75
+    },
+    "source/README.md": {
+      "sha256": "4dd17e5761f35b3fbc3fa7d66eb4707f812425a31c6552b18212181d2a21c4a1",
+      "size_bytes": 676
+    },
+    "source/tests/test_stage_b_official_5.py": {
+      "sha256": "c3e7edf9b0d198240a5685e309452c2481224e64215b042ccb76af0df0a5ae5a",
+      "size_bytes": 4577
+    },
+    "source/tools/__init__.py": {
+      "sha256": "8e54bb1d41f8db713f28e8fdc2c7eab7628ca5bde1d1abcda5656781964563a1",
+      "size_bytes": 69
+    },
+    "source/tools/build_stage_b_official_5.py": {
+      "sha256": "a9afe94f7e45071e06a6962dc8b93247aa4805a4a33787625909e7ad94fd2fe8",
+      "size_bytes": 16336
+    },
+    "source/tools/common.py": {
+      "sha256": "465ea6fc3c941710b939de297cc22389f5e3afd9fd9c0c27ce10da2ff5044e79",
+      "size_bytes": 7501
+    },
+    "source/tools/spec.py": {
+      "sha256": "02e797b4afc252bcf9057deda11c6ab57dfe7823b27018af56fd9bca76e24c66",
+      "size_bytes": 3370
+    },
+    "source/tools/validate_stage_b_official_5.py": {
+      "sha256": "59626f5f1000db1235eb291539218ee0ca03641b60da3d3424255a6b01123271",
+      "size_bytes": 12003
+    },
+    "source_candidates_15.jsonl": {
+      "sha256": "7241add9a77e571688281bb6d81b0f7fb0ef6deebac888253eab658a76ea5846",
+      "size_bytes": 63554
+    },
+    "source_contexts_29.jsonl": {
+      "sha256": "d762e2335c7ba51993adaab313f1e479d58ed04bfd6dfedfc2202296b9e01879",
+      "size_bytes": 73416
+    },
+    "source_term_senses_5.jsonl": {
+      "sha256": "336d355f01010bd9134fe97fa9f381b95b51dc9fad261e58c9bfa09124c18ffe",
+      "size_bytes": 14355
+    }
+  },
+  "final_glossary_decision": null,
+  "final_gold_label_count": 0,
+  "judgments_required": 30,
+  "manifest_sha256": "baffd4ca4cfcd6cf3fdb26cef8d3ab3b924b0291c0f1e8c592202ae816807b1d",
+  "official_manifest_sha256": "16bd2b9c7a974bdccfb977384fa1a35381e6e810c110f489f31d1606398ce2f5",
+  "policy_id": "d2l-stage-b-official-5-candidate-review-v1.0",
+  "provider_call_count": 0,
+  "schema_id": "D2LStageBOfficial5ReviewManifestV1",
+  "schema_version": "1.0.0",
+  "sense_count": 5,
+  "status": "READY_FOR_STAGE_B_REVIEW"
+}

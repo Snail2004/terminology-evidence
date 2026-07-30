@@ -1,0 +1,2 @@
+python -B source/tools/validate_review_pack.py --artifact-root . --source-document <D2L_SOURCE_DOCUMENT_JSON>
+python -m unittest discover -s source/tests -p test_review_pack.py
