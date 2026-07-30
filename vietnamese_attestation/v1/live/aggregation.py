@@ -250,9 +250,6 @@ def build_attestation_package(
         "diagnostics": {
             "strong_positive_cluster_count": counts["independent_same_cluster_count"],
             "conflict_ratio": round(counts["different_count"] / evidence_count, 6),
-            "positive_eligible_count": counts["positive_eligible_count"],
-            "supporting_eligible_count": counts["supporting_eligible_count"],
-            "ineligible_count": counts["ineligible_count"],
         },
         "final_glossary_decision": None,
         "integrity": {},
