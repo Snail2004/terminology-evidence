@@ -19,10 +19,10 @@ from typing import Any, Mapping
 CANDIDATE_ID = "candidate_479fdd8ff6d15304debec117"
 PHASE_ID = "D0_ONE_CANDIDATE"
 RUN_ID = "RUN-D0"
-C_WORKTREE = Path(os.environ.get("D0_C_WORKTREE", r"C:\work\terminology_evidence-worktrees\context-substitution-v2"))
-E_WORKTREE = Path(os.environ.get("D0_E_WORKTREE", r"C:\work\terminology_evidence-worktrees\vietnamese-attestation-v1"))
-GLOBAL_WORKTREE = Path(os.environ.get("D0_GLOBAL_WORKTREE", r"C:\work\terminology_evidence-worktrees\global-one-canary-v1"))
 MAIN_REPOSITORY = Path(os.environ.get("D0_MAIN_REPOSITORY", r"C:\work\terminology_evidence"))
+C_WORKTREE = Path(os.environ.get("D0_C_WORKTREE", str(MAIN_REPOSITORY)))
+E_WORKTREE = Path(os.environ.get("D0_E_WORKTREE", str(MAIN_REPOSITORY)))
+GLOBAL_WORKTREE = Path(os.environ.get("D0_GLOBAL_WORKTREE", str(MAIN_REPOSITORY)))
 CONTRACT_PYTHON = MAIN_REPOSITORY / "terminology_contracts_v1" / "python"
 CONTRACT_RECEIPT = (
     MAIN_REPOSITORY
