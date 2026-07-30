@@ -15,6 +15,12 @@ from .e05 import (
     validate_e05_protocol_instance,
 )
 from .production import load_production_authority
+from .source_governance import (
+    RuntimeRegistryProjection,
+    admit_url_before_network,
+    fetch_after_path_admission,
+    load_runtime_registry_projection,
+)
 
 __all__ = [
     "EXTERNAL_RECEIPT_ROLES",
@@ -23,6 +29,10 @@ __all__ = [
     "load_authority_bundle",
     "load_e05_exact_integration_inputs",
     "load_production_authority",
+    "RuntimeRegistryProjection",
+    "admit_url_before_network",
+    "fetch_after_path_admission",
+    "load_runtime_registry_projection",
     "make_external_authority_receipt",
     "make_trusted_authority_profile",
     "validate_authority_profile",

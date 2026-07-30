@@ -53,6 +53,11 @@ from .authority_adapter.e05 import (
     E05ExactIntegrationInputs,
     load_e05_exact_integration_inputs,
 )
+from .authority_adapter.source_governance import (
+    RuntimeRegistryProjection,
+    fetch_after_path_admission,
+    load_runtime_registry_projection,
+)
 from .schemas import (
     PREFLIGHT_RESPONSE_SCHEMA_ID,
     compute_run_spec_id,
@@ -221,6 +226,7 @@ class ELiveService:
         production_authorization_schema: str | Path | None = None,
         production_authority_inputs: Mapping[str, Any] | None = None,
         e05_delivery_path: str | Path | None = None,
+        source_governance_package_path: str | Path | None = None,
         provider_adapter: ProviderAdapter | None = None,
         clock=utc_now,
     ) -> None:
@@ -228,6 +234,18 @@ class ELiveService:
         reject_link(self.root)
         self.root.mkdir(parents=True, exist_ok=True)
         self.registry = validate_registry(registry)
+        self.source_governance: RuntimeRegistryProjection | None = None
+        if source_governance_package_path is not None:
+            self.source_governance = load_runtime_registry_projection(
+                source_governance_package_path
+            )
+            if (
+                self.registry["integrity"]["self_sha256"]
+                != self.source_governance.registry["integrity"]["self_sha256"]
+            ):
+                raise LiveSchemaError(
+                    "runtime registry does not match exact source-governance package"
+                )
         self.snapshot_root = Path(snapshot_root).absolute()
         self.snapshot = verify_snapshot(self.snapshot_root)
         self.policy_bundle = {key: dict(value) for key, value in policy_bundle.items()}
@@ -563,6 +581,14 @@ class ELiveService:
             candidate_vi=request["candidate_vi"],
             candidate_variants=request["candidate_variants"],
         )
+        if (
+            not evidence
+            and self.execution_mode == "PRODUCTION_AUTHORITY"
+            and self.source_governance is None
+        ):
+            raise LiveSchemaError(
+                "production acquisition requires the exact source-governance package"
+            )
         snapshot_document_count = int(self.snapshot["document_count"])
         coverage_counts: dict[str, Any] = {
             "search_expected": 0,
@@ -640,6 +666,7 @@ class ELiveService:
                     int(request["budget"]["max_retries"]) + 1,
                     int(self.policy_bundle["retrieval_policy"]["max_fetch_retries"]) + 1,
                 )
+                path_admission: dict[str, Any] | None = None
                 for attempt in range(max_attempts):
                     physical_count = sum(
                         1
@@ -654,7 +681,16 @@ class ELiveService:
                     kind = "E_DIRECT_FETCH_REQUEST" if attempt == 0 else "E_FETCH_RETRY"
                     ledger.append(kind, candidate_replicate_id=request["candidate_id"], semantic_role="FETCH", semantic_call_id=lead["candidate_id"], transport_attempt_id=f"{lead['url']}#{attempt}", retry_of=lead["url"] if attempt else None, payload={"url": lead["url"], "retry_index": attempt})
                     try:
-                        fetched = self.fetcher.fetch(lead["url"], retry_index=attempt)
+                        if self.source_governance is None:
+                            fetched = self.fetcher.fetch(lead["url"], retry_index=attempt)
+                        else:
+                            path_admission, fetched = fetch_after_path_admission(
+                                self.source_governance,
+                                self.registry,
+                                self.fetcher.fetch,
+                                lead["url"],
+                                retry_index=attempt,
+                            )
                         break
                     except FixtureTransientFetchError:
                         continue
@@ -675,6 +711,10 @@ class ELiveService:
                     return
                 coverage_counts["fetch_success"] += 1
                 source_id = str(metadata.get("source_id", ""))
+                if path_admission is not None and source_id != path_admission["source_id"]:
+                    raise LiveSchemaError(
+                        "fetched source_id does not match pre-network path admission"
+                    )
                 admission = admit_source(
                     self.registry,
                     source_id=source_id,

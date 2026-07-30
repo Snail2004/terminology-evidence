@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import json
+import os
 import zipfile
 from pathlib import Path
 
@@ -14,6 +15,11 @@ from vietnamese_attestation.v1.live.authority_adapter.adapter import (
     load_authority_bundle,
     make_external_authority_receipt,
     make_trusted_authority_profile,
+)
+from vietnamese_attestation.v1.live.authority_adapter.source_governance import (
+    RUNTIME_REGISTRY_SELF_SHA256,
+    fetch_after_path_admission,
+    load_runtime_registry_projection,
 )
 from vietnamese_attestation.v1.live.common import (
     LiveSchemaError,
@@ -30,6 +36,45 @@ from vietnamese_attestation.v1.live.snapshot import (
     verify_snapshot,
     zip_snapshot,
 )
+
+
+SOURCE_GOVERNANCE_PACKAGE = Path(
+    os.environ.get(
+        "E_SOURCE_GOVERNANCE_PACKAGE",
+        r"C:\work\terminology-evidence-artifacts\D0_API_Execution_Plan_Operations_V1\runtime-registry-projection-v1\release\build-a.zip",
+    )
+)
+
+
+def test_source_governance_path_admission_precedes_fetch() -> None:
+    projection = load_runtime_registry_projection(SOURCE_GOVERNANCE_PACKAGE)
+    calls: list[str] = []
+
+    def fetch(url: str, *, retry_index: int) -> dict[str, int]:
+        calls.append(url)
+        return {"retry_index": retry_index}
+
+    with pytest.raises(LiveSchemaError, match="outside reviewed host/path projection"):
+        fetch_after_path_admission(
+            projection,
+            projection.registry,
+            fetch,
+            "https://users.soict.hust.edu.vn/private/unreviewed.pdf",
+            retry_index=0,
+        )
+    assert calls == []
+
+    admission, result = fetch_after_path_admission(
+        projection,
+        projection.registry,
+        fetch,
+        "https://users.soict.hust.edu.vn/huonglt/AI/lecture.pdf",
+        retry_index=0,
+    )
+    assert admission["source_id"] == "HUST_SOICT_LECTURES"
+    assert admission["registry_self_sha256"] == RUNTIME_REGISTRY_SELF_SHA256
+    assert result == {"retry_index": 0}
+    assert calls == ["https://users.soict.hust.edu.vn/huonglt/AI/lecture.pdf"]
 
 
 def test_external_authority_adapter_binds_exact_bytes_and_trust(tmp_path: Path) -> None:
