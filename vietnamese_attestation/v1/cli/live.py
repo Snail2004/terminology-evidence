@@ -37,7 +37,14 @@ def main(argv: list[str] | None = None) -> int:
     schema_export.add_argument("output_dir", type=Path)
     args = parser.parse_args(argv)
     if args.command == "snapshot-build":
-        manifest = build_snapshot(args.input_dir, args.output_dir, registry=load_object(args.registry), retrieval_policy=load_object(args.retrieval_policy), acquisition_receipt=load_object(args.receipt))
+        manifest = build_snapshot(
+            args.input_dir,
+            args.output_dir,
+            registry=load_object(args.registry),
+            retrieval_policy=load_object(args.retrieval_policy),
+            acquisition_receipt=load_object(args.receipt),
+            acquisition_receipt_source=args.receipt,
+        )
         if args.zip_path:
             zip_snapshot(args.output_dir, args.zip_path)
         _print(manifest)

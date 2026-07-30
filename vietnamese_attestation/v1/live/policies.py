@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import hashlib
+import string
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -81,6 +83,8 @@ def make_provider_role_plan(
     secondary_model_id: str = "fixture-judge-secondary-v1",
     producer_commit: str = "0000000000000000000000000000000000000000",
     producer_tree: str = "fixture-tree-v1",
+    primary_max_semantic_calls: int = 8,
+    secondary_max_semantic_calls: int = 8,
 ) -> dict[str, Any]:
     prompt_primary = canonical_sha256(
         {"role": "PRIMARY_ATTESTATION_JUDGE", "prompt_version": "v1"}
@@ -101,8 +105,8 @@ def make_provider_role_plan(
                     "mode": "ZERO_PROVIDER_FIXTURE",
                     "prompt_sha256": prompt_primary,
                     "generation_config": {"temperature": 0, "reasoning": "none"},
-                    "max_semantic_calls": 1,
-                    "max_physical_requests": 1,
+                    "max_semantic_calls": primary_max_semantic_calls,
+                    "max_physical_requests": primary_max_semantic_calls,
                     "max_retries": 0,
                     "same_family_group": "fixture-judge",
                 },
@@ -113,8 +117,8 @@ def make_provider_role_plan(
                     "mode": "ZERO_PROVIDER_FIXTURE",
                     "prompt_sha256": prompt_secondary,
                     "generation_config": {"temperature": 0, "reasoning": "none"},
-                    "max_semantic_calls": 1,
-                    "max_physical_requests": 1,
+                    "max_semantic_calls": secondary_max_semantic_calls,
+                    "max_physical_requests": secondary_max_semantic_calls,
                     "max_retries": 0,
                     "same_family_group": "fixture-judge",
                 },
@@ -196,6 +200,65 @@ def validate_policy_bundle(bundle: Mapping[str, Mapping[str, Any]]) -> dict[str,
     return result
 
 
+def render_query_plan(
+    template_set: Mapping[str, Any],
+    *,
+    selected_template_ids: list[str],
+    request: Mapping[str, Any],
+    max_queries: int,
+) -> list[dict[str, str]]:
+    checked = validate_query_templates(template_set)
+    if not selected_template_ids or len(selected_template_ids) > max_queries:
+        raise LiveSchemaError("selected query template count exceeds the approved cap")
+    if len(selected_template_ids) != len(set(selected_template_ids)):
+        raise LiveSchemaError("selected query template IDs must be unique")
+    templates = {row["template_id"]: row for row in checked["templates"]}
+    anchors = request.get("domain", {}).get("anchors", [])
+    if not isinstance(anchors, list) or any(not isinstance(item, str) for item in anchors):
+        raise LiveSchemaError("request domain anchors must be strings")
+    values = {
+        "candidate_vi": str(request["candidate_vi"]),
+        "sense_definition": str(request["sense_definition"]),
+        "term_en": str(request["term_en"]),
+        "source_term_en": str(request["term_en"]),
+        **{f"anchor_{index + 1}_vi": value for index, value in enumerate(anchors[:3])},
+    }
+    rendered: list[dict[str, str]] = []
+    for template_id in selected_template_ids:
+        if template_id not in templates:
+            raise LiveSchemaError(f"unapproved query template ID: {template_id}")
+        template = templates[template_id]
+        fields = {
+            field_name
+            for _, field_name, _, _ in string.Formatter().parse(template["template"])
+            if field_name
+        }
+        missing = sorted(field for field in fields if field not in values)
+        if missing:
+            raise LiveSchemaError(
+                "query template cannot be rendered from frozen request fields: "
+                + ", ".join(missing)
+            )
+        query_text = template["template"].format_map(values).strip()
+        if not query_text:
+            raise LiveSchemaError("rendered query is empty")
+        rendered.append(
+            {
+                "template_id": template_id,
+                "query_class": str(template["query_class"]),
+                "template_sha256": canonical_sha256(template),
+                "rendered_query": query_text,
+                "rendered_query_sha256": hashlib.sha256(query_text.encode("utf-8")).hexdigest(),
+            }
+        )
+    return rendered
+
+
+def provider_roles_by_name(plan: Mapping[str, Any]) -> dict[str, dict[str, Any]]:
+    checked = validate_provider_role_plan(plan)
+    return {str(row["semantic_role"]): dict(row) for row in checked["roles"]}
+
+
 def policy_file_binding(path: str | Path) -> dict[str, str]:
     resolved = Path(path).resolve(strict=True)
     value = load_object(resolved)
@@ -215,5 +278,7 @@ __all__ = [
     "make_query_template_set",
     "make_retrieval_policy",
     "policy_file_binding",
+    "provider_roles_by_name",
+    "render_query_plan",
     "validate_policy_bundle",
 ]

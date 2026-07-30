@@ -138,12 +138,11 @@ def extract_snapshot_evidence(
                 "snapshot_manifest_sha256": manifest["integrity"]["self_sha256"],
             }
         )
-    clustered = cluster_evidence_documents(rows)
-    for row in clustered:
+    for row in rows:
         row["evidence_sha256"] = canonical_sha256(
             {key: row[key] for key in ("evidence_id", "document_id", "snippet_original", "content_sha256")}
         )
-    return clustered
+    return rows
 
 
 def extract_fetched_evidence(
@@ -168,9 +167,8 @@ def extract_fetched_evidence(
         return []
     document_id = "doc_" + hashlib.sha256((source_id + "\0" + document.canonical_url + "\0" + document.content_sha256).encode("utf-8")).hexdigest()[:32]
     evidence_id = "evidence_" + hashlib.sha256((candidate_id + "\0" + document_id + "\0" + str(snippet.span_start)).encode("utf-8")).hexdigest()[:32]
-    rows = cluster_evidence_documents(
-        [
-            {
+    rows = [
+        {
                 "evidence_id": evidence_id,
                 "candidate_id": candidate_id,
                 "sense_id": sense_id,
@@ -194,11 +192,48 @@ def extract_fetched_evidence(
                 "organization": source_id,
                 "document_ref": "fixture-fetch://" + document_id,
                 "snapshot_manifest_sha256": "0" * 64,
-            }
-        ]
-    )
+        }
+    ]
     rows[0]["evidence_sha256"] = canonical_sha256({"evidence_id": evidence_id, "content_sha256": document.content_sha256, "snippet_original": snippet.original})
     return rows
 
 
-__all__ = ["FixtureDiscovery", "FixtureFetcher", "FixtureTransientFetchError", "UnknownPhysicalOutcome", "extract_fetched_evidence", "extract_snapshot_evidence"]
+def cluster_global_evidence(
+    rows: Sequence[Mapping[str, Any]],
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Cluster the combined snapshot+fetch set and select one Judge row per cluster."""
+    clustered = cluster_evidence_documents(rows)
+    clustered.sort(key=lambda row: str(row["evidence_id"]))
+    representatives: dict[str, dict[str, Any]] = {}
+    tier_order = {"A": 0, "B": 1, "C": 2, "D": 3}
+    for row in clustered:
+        cluster_id = str(row["duplicate_cluster_id"])
+        current = representatives.get(cluster_id)
+        row_key = (
+            tier_order.get(str(row.get("source_tier", "D")), 9),
+            str(row.get("canonical_url", "")),
+            str(row["evidence_id"]),
+        )
+        if current is None:
+            representatives[cluster_id] = row
+            continue
+        current_key = (
+            tier_order.get(str(current.get("source_tier", "D")), 9),
+            str(current.get("canonical_url", "")),
+            str(current["evidence_id"]),
+        )
+        if row_key < current_key:
+            representatives[cluster_id] = row
+    selected = [representatives[key] for key in sorted(representatives)]
+    return clustered, selected
+
+
+__all__ = [
+    "FixtureDiscovery",
+    "FixtureFetcher",
+    "FixtureTransientFetchError",
+    "UnknownPhysicalOutcome",
+    "cluster_global_evidence",
+    "extract_fetched_evidence",
+    "extract_snapshot_evidence",
+]

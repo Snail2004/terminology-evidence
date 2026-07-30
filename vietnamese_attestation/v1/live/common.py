@@ -100,6 +100,16 @@ def require_keys(
         raise LiveSchemaError(f"{path} missing keys: {', '.join(missing)}")
 
 
+def require_exact_keys(
+    value: Mapping[str, Any], expected: set[str], *, path: str = "$"
+) -> None:
+    """Require one exact object shape at a persisted contract boundary."""
+    require_keys(value, expected, path=path)
+    extra = sorted(set(value) - expected)
+    if extra:
+        raise LiveSchemaError(f"{path} unsupported keys: {', '.join(extra)}")
+
+
 def require_string(value: Any, *, path: str, allow_empty: bool = False) -> str:
     if not isinstance(value, str) or (not allow_empty and not value.strip()):
         raise LiveSchemaError(f"{path} must be a nonempty string")
@@ -176,6 +186,7 @@ __all__ = [
     "load_object",
     "require_bool",
     "require_identifier",
+    "require_exact_keys",
     "require_keys",
     "require_nonnegative_int",
     "require_positive_int",

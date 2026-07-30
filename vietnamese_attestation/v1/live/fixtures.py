@@ -75,7 +75,7 @@ def build_fixture_workspace(root: str | Path) -> dict[str, Any]:
     auth = make_authorization_receipt(cohort_id="fixture-cohort-v1", candidate_ids=["candidate_model"], registry_self_sha256=registry["integrity"]["self_sha256"], snapshot_manifest_sha256=snapshot["integrity"]["self_sha256"], policy_hashes=policy_hashes)
     candidate_key = {
         "candidate_id": "candidate_model",
-        "candidate_version": "fixture-candidate-v1",
+        "candidate_version": hashlib.sha256(b"fixture-candidate-v1").hexdigest(),
         "source_term": "language model",
         "candidate_vi": "mô hình ngôn ngữ",
         "sense_id": "sense_model_001",

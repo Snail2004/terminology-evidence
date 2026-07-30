@@ -11,6 +11,7 @@ from .common import (
     LiveSchemaError,
     canonical_sha256,
     require_bool,
+    require_exact_keys,
     require_keys,
     require_sha256,
     require_string,
@@ -57,7 +58,7 @@ def make_registry(
 
 
 def validate_registry(value: Mapping[str, Any]) -> dict[str, Any]:
-    require_keys(
+    require_exact_keys(
         value,
         {"schema_id", "schema_version", "registry_id", "records", "authority", "integrity"},
     )
@@ -68,7 +69,7 @@ def validate_registry(value: Mapping[str, Any]) -> dict[str, Any]:
     authority = value["authority"]
     if not isinstance(authority, Mapping):
         raise LiveSchemaError("registry authority binding is required")
-    require_keys(
+    require_exact_keys(
         authority,
         {"approval_status", "approval_id", "approved_by", "authority_receipt_ref", "authority_receipt_sha256"},
         path="$.authority",
@@ -78,6 +79,10 @@ def validate_registry(value: Mapping[str, Any]) -> dict[str, Any]:
     for key in ("approval_id", "approved_by", "authority_receipt_ref"):
         require_string(authority[key], path=f"$.authority.{key}")
     require_sha256(authority["authority_receipt_sha256"], path="$.authority.authority_receipt_sha256")
+    if not isinstance(value["integrity"], Mapping):
+        raise LiveSchemaError("$.integrity must be an object")
+    require_exact_keys(value["integrity"], {"self_sha256"}, path="$.integrity")
+    require_sha256(value["integrity"]["self_sha256"], path="$.integrity.self_sha256")
     rows = value["records"]
     if not isinstance(rows, list) or not rows:
         raise LiveSchemaError("registry records must be nonempty")
@@ -151,7 +156,7 @@ def source_record(registry: Mapping[str, Any], source_id: str) -> dict[str, Any]
 
 
 def _normalize_record(row: Mapping[str, Any], *, path: str = "$") -> dict[str, Any]:
-    require_keys(
+    require_exact_keys(
         row,
         {"source_id", "host_pattern", "source_tier", "source_type", "allowed_content_types", "allowed", "domain_tags"},
         path=path,

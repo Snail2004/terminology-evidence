@@ -9,18 +9,59 @@ from .common import LIVE_TOOL_SCHEMA_VERSION, LiveSchemaError, canonical_sha256,
 from .schemas import LOCAL_STATUSES
 
 
+POSITIVE_DOMAIN_RELATIONS = frozenset({"MATCH"})
+INELIGIBLE_USAGE_TYPES = frozenset(
+    {"GENERAL_LANGUAGE", "MENTION_ONLY", "METALINGUISTIC_REFERENCE"}
+)
+
+
+def positive_evidence_eligible(judge: Mapping[str, Any]) -> bool:
+    """The single reviewed predicate for positive/accepted E evidence."""
+    return (
+        judge.get("judgeability") == "JUDGEABLE"
+        and judge.get("concept_relation") == "SAME"
+        and judge.get("domain_relation") in POSITIVE_DOMAIN_RELATIONS
+        and judge.get("usage_type") == "TECHNICAL_TERM"
+    )
+
+
+def supporting_evidence_eligible(judge: Mapping[str, Any]) -> bool:
+    """RELATED evidence may support a weak result, but is never accepted."""
+    return (
+        judge.get("judgeability") == "JUDGEABLE"
+        and judge.get("concept_relation") == "RELATED"
+        and judge.get("domain_relation") in POSITIVE_DOMAIN_RELATIONS
+        and judge.get("usage_type") == "TECHNICAL_TERM"
+    )
+
+
+def contradictory_evidence_eligible(judge: Mapping[str, Any]) -> bool:
+    return (
+        judge.get("judgeability") == "JUDGEABLE"
+        and judge.get("concept_relation") == "DIFFERENT"
+        and judge.get("domain_relation") in POSITIVE_DOMAIN_RELATIONS
+        and judge.get("usage_type") == "TECHNICAL_TERM"
+    )
+
+
 def aggregate_candidate(
     evidence_rows: Sequence[Mapping[str, Any]],
     judge_rows: Mapping[str, Mapping[str, Any]],
     *,
     policy: Mapping[str, Any],
-    coverage_fraction: float = 1.0,
+    coverage_fraction: float | None = None,
     expected_evidence_count: int | None = None,
+    coverage: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Apply the frozen status order; no glossary/global decision is made."""
-    if not 0 <= coverage_fraction <= 1:
-        raise LiveSchemaError("coverage_fraction must be in [0,1]")
     min_coverage = float(policy["min_coverage"])
+    coverage_record = _coverage_record(
+        coverage,
+        coverage_fraction=coverage_fraction,
+        minimum=min_coverage,
+        observed=len(evidence_rows),
+        expected=expected_evidence_count,
+    )
     enriched: list[dict[str, Any]] = []
     for row in evidence_rows:
         evidence_id = str(row["evidence_id"])
@@ -30,14 +71,14 @@ def aggregate_candidate(
         item["judge"] = dict(judge_rows[evidence_id])
         enriched.append(item)
     judgeable = [row for row in enriched if row["judge"]["judgeability"] == "JUDGEABLE"]
-    same = [row for row in judgeable if row["judge"]["concept_relation"] == "SAME" and row["judge"]["domain_relation"] in {"MATCH", "PARTIAL"}]
-    related = [row for row in judgeable if row["judge"]["concept_relation"] == "RELATED"]
-    different = [row for row in judgeable if row["judge"]["concept_relation"] == "DIFFERENT" and row["judge"]["domain_relation"] in {"MATCH", "PARTIAL"}]
+    same = [row for row in enriched if positive_evidence_eligible(row["judge"])]
+    related = [row for row in enriched if supporting_evidence_eligible(row["judge"])]
+    different = [row for row in enriched if contradictory_evidence_eligible(row["judge"])]
     same_clusters = _clusters(same)
     related_clusters = _clusters(related)
     different_clusters = _clusters(different)
     organizations = {str(row.get("organization", row.get("source_id", ""))) for row in same}
-    if coverage_fraction < min_coverage or not enriched:
+    if not coverage_record["measured"] or not coverage_record["sufficient"]:
         status = "ATTESTATION_UNJUDGEABLE"
     elif same_clusters and different_clusters:
         status = "CONFLICTING_ATTESTATION"
@@ -59,10 +100,14 @@ def aggregate_candidate(
         "independent_same_cluster_count": len(same_clusters),
         "independent_organization_count": len(organizations),
         "expected_evidence_count": expected_evidence_count,
+        "positive_eligible_count": len(same),
+        "supporting_eligible_count": len(related),
+        "contradictory_eligible_count": len(different),
+        "ineligible_count": len(enriched) - len(same) - len(related) - len(different),
     }
     return {
         "status": status,
-        "coverage": {"observed": len(enriched), "expected": expected_evidence_count, "fraction": round(coverage_fraction, 6), "minimum": min_coverage},
+        "coverage": coverage_record,
         "counts": counts,
         "evidence_rows": enriched,
         "clusters": _cluster_summary(enriched),
@@ -88,6 +133,7 @@ def build_attestation_package(
     started_at: str,
     completed_at: str,
     provider_role_plan_sha256: str,
+    provider_role_plan: Mapping[str, Any],
 ) -> dict[str, Any]:
     """Build the official shared ``AttestationEvidencePackageV1`` shape.
 
@@ -95,7 +141,7 @@ def build_attestation_package(
     only the Global Terminology Validator can make a glossary decision.
     """
     rows = [dict(row) for row in aggregation["evidence_rows"]]
-    accepted = [row for row in rows if row["judge"]["concept_relation"] in {"SAME", "RELATED"} and row["judge"]["judgeability"] == "JUDGEABLE"]
+    accepted = [row for row in rows if positive_evidence_eligible(row["judge"])]
     rejected = [row for row in rows if row not in accepted]
     candidate_key = authority_refs.get("candidate_key")
     input_contract_sha256 = authority_refs.get("input_contract_sha256")
@@ -111,8 +157,17 @@ def build_attestation_package(
     counts = aggregation["counts"]
     evidence_count = max(1, counts["evidence_count"])
     judgeable_count = counts["judgeable_count"]
-    domain_match_count = sum(1 for row in rows if row["judge"]["domain_relation"] in {"MATCH", "PARTIAL"} and row["judge"]["judgeability"] == "JUDGEABLE")
-    concept_score = sum({"SAME": 1.0, "RELATED": 0.5, "DIFFERENT": 0.0, "UNCERTAIN": 0.0}[row["judge"]["concept_relation"]] for row in rows) / evidence_count
+    domain_match_count = sum(
+        1
+        for row in rows
+        if row["judge"]["judgeability"] == "JUDGEABLE"
+        and row["judge"]["domain_relation"] == "MATCH"
+        and row["judge"]["usage_type"] == "TECHNICAL_TERM"
+    )
+    concept_score = (
+        sum(1.0 for row in rows if positive_evidence_eligible(row["judge"]))
+        + sum(0.5 for row in rows if supporting_evidence_eligible(row["judge"]))
+    ) / evidence_count
     independent_clusters = len({str(row.get("independent_cluster_id", row["evidence_id"])) for row in rows})
     independent_orgs = len({str(row.get("organization_id", row.get("organization", ""))) for row in rows})
     strong_tier_count = sum(1 for row in accepted if row.get("source_tier") in {"A", "B"})
@@ -125,20 +180,21 @@ def build_attestation_package(
         "E_conventionality": round(min(1.0, independent_orgs / 3.0), 6),
         "E_coverage": round(coverage_fraction, 6),
     }
+    stages = aggregation["coverage"].get("stages", {})
     stage_metrics = {
-        "search_coverage": 1.0,
-        "fetch_coverage": 1.0,
-        "extraction_coverage": 1.0,
-        "language_coverage": 1.0,
-        "span_yield": round(min(1.0, counts["evidence_count"] / max(1, counts.get("expected_evidence_count") or counts["evidence_count"])), 6),
-        "judge_coverage": round(judgeable_count / evidence_count, 6),
+        "search_coverage": _stage_fraction(stages, "search"),
+        "fetch_coverage": _stage_fraction(stages, "fetch"),
+        "extraction_coverage": _stage_fraction(stages, "extraction"),
+        "language_coverage": _stage_fraction(stages, "language"),
+        "span_yield": _stage_fraction(stages, "span"),
+        "judge_coverage": _stage_fraction(stages, "judge"),
         "unique_document_count": len({str(row.get("document_id", "")) for row in rows}),
         "duplicate_cluster_count": len({str(row.get("duplicate_cluster_id", row["evidence_id"])) for row in rows}),
         "independent_organization_count": independent_orgs,
     }
     raw_ledger_sha = str(ledger_refs.get("artifact_sha256", snapshot_manifest_sha256))
     ledger_evidence_ref = {"evidence_id": "ledger_" + canonical_sha256({"run_id": request["run_id"]})[:24], "evidence_type": "OTHER", "uri": f"artifact://e-live/{request['run_id']}/{ledger_refs.get('artifact_ref', 'evidence_ledger.json')}", "sha256": raw_ledger_sha}
-    different_refs = [_evidence_ref(row) for row in rows if row["judge"]["concept_relation"] == "DIFFERENT" and row["judge"]["judgeability"] == "JUDGEABLE"]
+    different_refs = [_evidence_ref(row) for row in rows if contradictory_evidence_eligible(row["judge"])]
     gate_signals = _gate_signals(aggregation["status"], accepted_refs, rejected_refs, different_refs, ledger_evidence_ref)
     flags = [_flag(code, accepted_refs + rejected_refs) for code in aggregation["flags"]]
     flags.extend(
@@ -165,8 +221,19 @@ def build_attestation_package(
             "component_id": "vietnamese-attestation",
             "component_version": "1.1.0",
             "policy_version": "e-live-controlled-corpus-v1",
-            "prompt_hashes": {"judge": provider_role_plan_sha256},
-            "model_routes": [{"provider_id": "ZERO_PROVIDER_FIXTURE", "model_id": "fixture-judge-v1", "model_family": "fixture-judge", "independence_group": "fixture-judge"}],
+            "prompt_hashes": {
+                str(row["semantic_role"]): str(row["prompt_sha256"])
+                for row in provider_role_plan["roles"]
+            },
+            "model_routes": [
+                {
+                    "provider_id": str(row["provider_id"]),
+                    "model_id": str(row["model_id"]),
+                    "model_family": str(row["same_family_group"]),
+                    "independence_group": str(row["same_family_group"]),
+                }
+                for row in provider_role_plan["roles"]
+            ],
             "source_artifact_hashes": {"dataset": candidate_key["dataset_manifest_sha256"], "input_contract": input_contract_sha256, "controlled_corpus_snapshot": snapshot_manifest_sha256, "evidence_ledger": raw_ledger_sha},
             "raw_ledger_ref": ledger_evidence_ref,
             "notes": "Zero-provider local-fixture E Live projection; no global decision.",
@@ -177,6 +244,9 @@ def build_attestation_package(
         "diagnostics": {
             "strong_positive_cluster_count": counts["independent_same_cluster_count"],
             "conflict_ratio": round(counts["different_count"] / evidence_count, 6),
+            "positive_eligible_count": counts["positive_eligible_count"],
+            "supporting_eligible_count": counts["supporting_eligible_count"],
+            "ineligible_count": counts["ineligible_count"],
         },
         "final_glossary_decision": None,
         "integrity": {},
@@ -253,7 +323,57 @@ def _flags(status: str, rows: Sequence[Mapping[str, Any]]) -> list[str]:
         flags.add("JUDGE_UNJUDGEABLE")
     if any(row["judge"]["concept_relation"] == "DIFFERENT" for row in rows):
         flags.add("DIFFERENT_CONCEPT_OBSERVED")
+    if any(row["judge"].get("usage_type") in INELIGIBLE_USAGE_TYPES for row in rows):
+        flags.add("NON_TECHNICAL_USAGE_REJECTED")
+    if any(row["judge"].get("domain_relation") == "MISMATCH" for row in rows):
+        flags.add("DOMAIN_MISMATCH_REJECTED")
     return sorted(flags)
 
 
-__all__ = ["aggregate_candidate", "build_attestation_package", "validate_attestation_evidence_package"]
+def _coverage_record(
+    coverage: Mapping[str, Any] | None,
+    *,
+    coverage_fraction: float | None,
+    minimum: float,
+    observed: int,
+    expected: int | None,
+) -> dict[str, Any]:
+    if coverage is None:
+        measured = coverage_fraction is not None
+        fraction = float(coverage_fraction or 0.0)
+        stages: dict[str, Any] = {}
+    else:
+        fraction = float(coverage.get("overall_attestation_coverage", -1))
+        measured = bool(coverage.get("measured", False))
+        stages = {str(key): dict(value) for key, value in dict(coverage.get("stages", {})).items()}
+    if not 0 <= fraction <= 1:
+        raise LiveSchemaError("coverage fraction must be in [0,1]")
+    return {
+        "observed": observed,
+        "expected": expected,
+        "fraction": round(fraction, 6),
+        "minimum": minimum,
+        "measured": measured,
+        "sufficient": measured and fraction >= minimum,
+        "stages": stages,
+    }
+
+
+def _stage_fraction(stages: Mapping[str, Any], name: str) -> float:
+    stage = stages.get(name)
+    if not isinstance(stage, Mapping) or not stage.get("measured"):
+        return 0.0
+    value = float(stage.get("fraction", 0.0))
+    if not 0 <= value <= 1:
+        raise LiveSchemaError(f"coverage stage {name} is outside [0,1]")
+    return round(value, 6)
+
+
+__all__ = [
+    "aggregate_candidate",
+    "build_attestation_package",
+    "contradictory_evidence_eligible",
+    "positive_evidence_eligible",
+    "supporting_evidence_eligible",
+    "validate_attestation_evidence_package",
+]

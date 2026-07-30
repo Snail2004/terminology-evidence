@@ -144,7 +144,7 @@ def test_direct_fetch_retry_and_redirect_are_physical_attempts() -> None:
 
 def test_ledger_chain_detects_tamper() -> None:
     ledger = EventLedger(run_id="run", phase_id="phase", clock=lambda: "2026-07-30T00:00:00Z")
-    ledger.append("E_DISCOVERY_QUERY", candidate_replicate_id="candidate", semantic_role="DISCOVERY", semantic_call_id="call", transport_attempt_id="transport", payload={"is_evidence": False})
+    ledger.append("E_DISCOVERY_QUERY", candidate_replicate_id="candidate", semantic_role="DISCOVERY", semantic_call_id="call", transport_attempt_id="transport", payload={"template_id": "exact_candidate", "query_class": "EXACT_CANDIDATE", "template_sha256": "1" * 64, "rendered_query": '"ứng viên"', "rendered_query_sha256": "2" * 64, "result_count": 0, "lead_urls": [], "is_evidence": False})
     assert len(verify_event_chain(ledger.events, run_id="run")) == 1
     tampered = [dict(ledger.events[0])]
     tampered[0]["payload"] = {"is_evidence": True}
@@ -181,11 +181,11 @@ def test_aggregation_emits_all_five_local_statuses() -> None:
     policy = {"min_coverage": 0.5, "min_same_clusters_for_attested": 2, "min_organizations_for_attested": 2}
     assert aggregate_candidate([], {}, policy=policy, coverage_fraction=0.0)["status"] == "ATTESTATION_UNJUDGEABLE"
     conflict_rows = [_row(1, "c1", "o1"), _row(2, "c2", "o2")]
-    assert aggregate_candidate(conflict_rows, {"e1": _judge("SAME"), "e2": _judge("DIFFERENT")}, policy=policy)["status"] == "CONFLICTING_ATTESTATION"
+    assert aggregate_candidate(conflict_rows, {"e1": _judge("SAME"), "e2": _judge("DIFFERENT")}, policy=policy, coverage_fraction=1.0)["status"] == "CONFLICTING_ATTESTATION"
     same_rows = [_row(1, "c1", "o1"), _row(2, "c2", "o2")]
-    assert aggregate_candidate(same_rows, {"e1": _judge("SAME"), "e2": _judge("SAME")}, policy=policy)["status"] == "ATTESTED"
-    assert aggregate_candidate([_row(1, "c1", "o1")], {"e1": _judge("RELATED")}, policy=policy)["status"] == "WEAKLY_ATTESTED"
-    assert aggregate_candidate([_row(1, "c1", "o1")], {"e1": _judge("DIFFERENT")}, policy=policy)["status"] == "NOT_ATTESTED"
+    assert aggregate_candidate(same_rows, {"e1": _judge("SAME"), "e2": _judge("SAME")}, policy=policy, coverage_fraction=1.0)["status"] == "ATTESTED"
+    assert aggregate_candidate([_row(1, "c1", "o1")], {"e1": _judge("RELATED")}, policy=policy, coverage_fraction=1.0)["status"] == "WEAKLY_ATTESTED"
+    assert aggregate_candidate([_row(1, "c1", "o1")], {"e1": _judge("DIFFERENT")}, policy=policy, coverage_fraction=1.0)["status"] == "NOT_ATTESTED"
 
 
 def test_malformed_judge_response_stops_one_candidate_canary(tmp_path: Path) -> None:
@@ -252,6 +252,8 @@ def test_strict_json_rejects_duplicate_and_nonfinite() -> None:
 
 def test_schema_catalog_exports_all_required_live_contracts(tmp_path: Path) -> None:
     manifest = export_schemas(tmp_path / "schemas")
-    assert manifest["schema_count"] == len(SCHEMA_CATALOG) == 10
+    assert manifest["schema_count"] == len(SCHEMA_CATALOG) == 15
     assert (tmp_path / "schemas" / "ControlledVietnameseSourceRegistryV1.schema.json").is_file()
     assert (tmp_path / "schemas" / "EAttestationJudgeResponseV1.schema.json").is_file()
+    assert (tmp_path / "schemas" / "EControlledAcquisitionReceiptV1.schema.json").is_file()
+    assert (tmp_path / "schemas" / "ETrustedAuthorityProfileV1.schema.json").is_file()

@@ -7,13 +7,20 @@ import json
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
-from .aggregation import aggregate_candidate, build_attestation_package
+from .aggregation import (
+    aggregate_candidate,
+    build_attestation_package,
+    contradictory_evidence_eligible,
+    positive_evidence_eligible,
+)
+from .authority_adapter import validate_loaded_authority_bundle
 from .common import (
     LIVE_TOOL_SCHEMA_VERSION,
     LiveSchemaError,
     canonical_bytes,
     canonical_sha256,
     load_object,
+    require_exact_keys,
     require_keys,
     require_sha256,
     require_string,
@@ -23,7 +30,12 @@ from .common import (
 )
 from .judge import FixtureJudge, judge_request_sha256, make_judge_request
 from .ledger import EventLedger
-from .policies import validate_policy_bundle
+from .execution import derive_coverage_from_ledger
+from .policies import (
+    provider_roles_by_name,
+    render_query_plan,
+    validate_policy_bundle,
+)
 from .registry import admit_source, validate_registry
 from .replay import replay_run
 from .retrieval import (
@@ -31,6 +43,7 @@ from .retrieval import (
     FixtureFetcher,
     FixtureTransientFetchError,
     UnknownPhysicalOutcome,
+    cluster_global_evidence,
     extract_fetched_evidence,
     extract_snapshot_evidence,
 )
@@ -81,6 +94,58 @@ def make_authorization_receipt(
     )
 
 
+def validate_authorization_receipt(value: Mapping[str, Any]) -> dict[str, Any]:
+    require_exact_keys(
+        value,
+        {
+            "schema_id",
+            "schema_version",
+            "receipt_id",
+            "receipt_ref",
+            "authorization_status",
+            "cohort_id",
+            "candidate_ids",
+            "registry_self_sha256",
+            "snapshot_manifest_sha256",
+            "policy_hashes",
+            "provider_calls_allowed",
+            "network_calls_allowed",
+            "integrity",
+        },
+    )
+    if value["schema_id"] != AUTHORIZATION_SCHEMA_ID or value["schema_version"] != LIVE_TOOL_SCHEMA_VERSION:
+        raise LiveSchemaError("authorization receipt identity mismatch")
+    for key in ("receipt_id", "receipt_ref", "cohort_id"):
+        require_string(value[key], path=f"$.{key}")
+    candidate_ids = value["candidate_ids"]
+    if not isinstance(candidate_ids, list) or not candidate_ids or candidate_ids != sorted(set(candidate_ids)):
+        raise LiveSchemaError("authorization candidate_ids must be sorted and unique")
+    for index, candidate_id in enumerate(candidate_ids):
+        require_string(candidate_id, path=f"$.candidate_ids[{index}]")
+    for key in ("registry_self_sha256", "snapshot_manifest_sha256"):
+        require_sha256(value[key], path=f"$.{key}")
+    policy_hashes = value["policy_hashes"]
+    require_exact_keys(
+        policy_hashes,
+        {
+            "retrieval_policy",
+            "query_template_set",
+            "provider_role_plan",
+            "aggregation_policy",
+        },
+        path="$.policy_hashes",
+    )
+    for key, digest in policy_hashes.items():
+        require_sha256(digest, path=f"$.policy_hashes.{key}")
+    if value["authorization_status"] != "CONTROLLED_LOCAL_FIXTURE_ONLY":
+        raise LiveSchemaError("authorization receipt is not a local controlled canary receipt")
+    if value["provider_calls_allowed"] != 0 or value["network_calls_allowed"] != 0:
+        raise LiveSchemaError("zero-provider authorization receipt permits external calls")
+    if not verify_seal(value):
+        raise LiveSchemaError("authorization receipt self hash mismatch")
+    return dict(value)
+
+
 def make_run_request(
     *,
     run_id: str,
@@ -95,6 +160,7 @@ def make_run_request(
     authority_refs: Mapping[str, Any],
     budget: Mapping[str, Any],
     policy_hashes: Mapping[str, str],
+    query_template_ids: Sequence[str] = ("exact_candidate",),
 ) -> dict[str, Any]:
     request = {
         "schema_id": "ERunRequestV1",
@@ -109,6 +175,7 @@ def make_run_request(
         "sense_definition": sense_definition,
         "domain": dict(domain),
         "candidate_variants": list(candidate_variants),
+        "query_template_ids": list(query_template_ids),
         "authority_refs": dict(authority_refs),
         "budget": dict(budget),
         "retrieval_policy_sha256": policy_hashes["retrieval_policy"],
@@ -138,6 +205,8 @@ class ELiveService:
         discovery: FixtureDiscovery | None = None,
         fetcher: FixtureFetcher | None = None,
         judge: FixtureJudge | None = None,
+        execution_mode: str = "LOCAL_FIXTURE_ONLY",
+        authority_bundle: Mapping[str, Any] | None = None,
         clock=utc_now,
     ) -> None:
         self.root = Path(root).absolute()
@@ -148,13 +217,19 @@ class ELiveService:
         self.snapshot = verify_snapshot(self.snapshot_root)
         self.policy_bundle = {key: dict(value) for key, value in policy_bundle.items()}
         self.policy_hashes = validate_policy_bundle(self.policy_bundle)
-        self.authorization_receipt = dict(authorization_receipt)
-        if self.authorization_receipt.get("schema_id") != AUTHORIZATION_SCHEMA_ID or not verify_seal(self.authorization_receipt):
-            raise LiveSchemaError("authorization receipt is invalid")
-        if self.authorization_receipt.get("authorization_status") != "CONTROLLED_LOCAL_FIXTURE_ONLY":
-            raise LiveSchemaError("authorization receipt is not a local controlled canary receipt")
-        if self.authorization_receipt.get("provider_calls_allowed") != 0 or self.authorization_receipt.get("network_calls_allowed") != 0:
-            raise LiveSchemaError("zero-provider authorization receipt permits external calls")
+        if execution_mode not in {"LOCAL_FIXTURE_ONLY", "PRODUCTION_AUTHORITY"}:
+            raise LiveSchemaError("unsupported E Live execution mode")
+        self.execution_mode = execution_mode
+        self.authority_bundle = dict(authority_bundle) if authority_bundle is not None else None
+        if self.authority_bundle is not None:
+            self.authority_bundle = validate_loaded_authority_bundle(self.authority_bundle)
+        self.authorization_receipt = validate_authorization_receipt(authorization_receipt)
+        if self.execution_mode == "PRODUCTION_AUTHORITY":
+            raise LiveSchemaError(
+                "local canary authorization receipt is forbidden in production mode"
+            )
+        if self.authority_bundle is not None and self.authority_bundle.get("execution_mode") != self.execution_mode:
+            raise LiveSchemaError("authority bundle execution mode mismatch")
         self.authorized_cohort_id = authorized_cohort_id
         self.authorized_candidate_ids = frozenset(str(item) for item in authorized_candidate_ids)
         self.credentials_ready = bool(credentials_ready)
@@ -209,6 +284,7 @@ class ELiveService:
             checks["registry_snapshot"] = f"FAIL:{type(exc).__name__}"
         try:
             current_policy_hashes = validate_policy_bundle(self.policy_bundle)
+            checks["policy_bundle"] = "PASS"
         except Exception as exc:
             current_policy_hashes = self.policy_hashes
             blockers.append("POLICY_BUNDLE_INVALID")
@@ -218,6 +294,9 @@ class ELiveService:
         if dict(receipt.get("policy_hashes", {})) != current_policy_hashes:
             blockers.append("AUTHORITY_POLICY_BINDING_MISMATCH")
         checks["authorization_receipt"] = "PASS" if "AUTHORIZATION_RECEIPT_MISMATCH" not in blockers else "FAIL"
+        if self.execution_mode != "LOCAL_FIXTURE_ONLY":
+            blockers.append("PRODUCTION_AUTHORITY_NOT_ACTIVE")
+        checks["authority_adapter"] = "PASS_LOCAL_FIXTURE_ONLY" if self.execution_mode == "LOCAL_FIXTURE_ONLY" else "FAIL"
         expected = {
             "retrieval_policy_sha256": self.policy_hashes.get("retrieval_policy"),
             "query_template_set_sha256": self.policy_hashes.get("query_template_set"),
@@ -285,7 +364,7 @@ class ELiveService:
             if record["status"] == "RUNNING":
                 record["status"] = "STOPPED"
             if not ledger.events or ledger.events[-1]["event_kind"] != "STOP_EVENT":
-                ledger.append("STOP_EVENT", candidate_replicate_id=checked["candidate_id"], semantic_role="CONTROL", semantic_call_id="exception", transport_attempt_id="exception", failure_disposition=type(exc).__name__, payload={"error": str(exc)})
+                ledger.append("STOP_EVENT", candidate_replicate_id=checked["candidate_id"], semantic_role="CONTROL", semantic_call_id="exception", transport_attempt_id="exception", failure_disposition=type(exc).__name__, payload={"code": type(exc).__name__, "message": str(exc), "details": {}})
             self._persist_run(record, ledger, package=None)
             raise
         return dict(record)
@@ -307,7 +386,7 @@ class ELiveService:
         if events_path.is_file():
             from .common import load_jsonl
             ledger.events = load_jsonl(events_path)
-        ledger.append("STOP_EVENT", candidate_replicate_id=record["run_id"], semantic_role="CONTROL", semantic_call_id="stop", transport_attempt_id="stop", failure_disposition=reason, payload={"reason": reason})
+        ledger.append("STOP_EVENT", candidate_replicate_id=record["run_id"], semantic_role="CONTROL", semantic_call_id="stop", transport_attempt_id="stop", failure_disposition=reason, payload={"code": reason, "message": reason, "details": {}})
         record["status"] = "STOPPED"
         self._persist_run(record, ledger, package=None)
         self.runs[run_id] = record
@@ -354,19 +433,76 @@ class ELiveService:
             candidate_vi=request["candidate_vi"],
             candidate_variants=request["candidate_variants"],
         )
+        snapshot_document_count = int(self.snapshot["document_count"])
+        coverage_counts: dict[str, Any] = {
+            "search_expected": 0,
+            "search_success": 0,
+            "search_required": False,
+            "fetch_expected": 0,
+            "fetch_success": 0,
+            "fetch_required": False,
+            "extraction_expected": snapshot_document_count,
+            "extraction_attempted": snapshot_document_count,
+            "extraction_success": snapshot_document_count,
+            "language_expected": snapshot_document_count,
+            "language_attempted": snapshot_document_count,
+            "language_success": snapshot_document_count,
+            "span_expected": snapshot_document_count,
+            "span_attempted": snapshot_document_count,
+            "span_success": len(evidence),
+            "judge_expected": 0,
+            "judge_attempted": 0,
+            "judge_success": 0,
+        }
         if not evidence and self.discovery is not None:
             query_cap = min(
                 int(request["budget"]["max_queries"]),
                 int(self.policy_bundle["retrieval_policy"]["max_queries_per_candidate"]),
                 int(self.policy_bundle["query_template_set"]["max_queries"]),
             )
-            leads = self.discovery.query(f'"{request["candidate_vi"]}"', candidate_id=request["candidate_id"], max_queries=query_cap)
+            query_plan = render_query_plan(
+                self.policy_bundle["query_template_set"],
+                selected_template_ids=list(request["query_template_ids"]),
+                request=request,
+                max_queries=query_cap,
+            )
+            coverage_counts["search_expected"] = len(query_plan)
+            coverage_counts["search_required"] = True
+            leads_by_url: dict[str, dict[str, Any]] = {}
+            for query in query_plan:
+                query_leads = self.discovery.query(
+                    query["rendered_query"],
+                    candidate_id=request["candidate_id"],
+                    max_queries=query_cap,
+                )
+                coverage_counts["search_success"] += 1
+                ledger.append(
+                    "E_DISCOVERY_QUERY",
+                    candidate_replicate_id=request["candidate_id"],
+                    semantic_role="DISCOVERY",
+                    semantic_call_id=query["template_id"],
+                    transport_attempt_id=query["rendered_query_sha256"],
+                    payload={
+                        "template_id": query["template_id"],
+                        "query_class": query["query_class"],
+                        "template_sha256": query["template_sha256"],
+                        "rendered_query": query["rendered_query"],
+                        "rendered_query_sha256": query["rendered_query_sha256"],
+                        "result_count": len(query_leads),
+                        "lead_urls": sorted({str(row["url"]) for row in query_leads}),
+                        "is_evidence": False,
+                    },
+                )
+                for lead in query_leads:
+                    leads_by_url.setdefault(str(lead["url"]), dict(lead))
             fetch_cap = min(
                 int(request["budget"]["max_fetches"]),
                 int(self.policy_bundle["retrieval_policy"]["max_direct_fetches"]),
             )
-            for lead in leads[:fetch_cap]:
-                ledger.append("E_DISCOVERY_QUERY", candidate_replicate_id=request["candidate_id"], semantic_role="DISCOVERY", semantic_call_id=lead["candidate_id"], transport_attempt_id=lead["url"], payload={"lead_url": lead["url"], "is_evidence": False, "query_text": lead["query_text"]})
+            leads = [leads_by_url[url] for url in sorted(leads_by_url)[:fetch_cap]]
+            coverage_counts["fetch_expected"] = len(leads)
+            coverage_counts["fetch_required"] = True
+            for lead in leads:
                 if self.fetcher is None:
                     continue
                 fetched = None
@@ -381,7 +517,7 @@ class ELiveService:
                         if event["event_kind"] in {"E_DIRECT_FETCH_REQUEST", "E_FETCH_RETRY"}
                     )
                     if physical_count >= int(request["budget"]["max_physical_requests"]):
-                        ledger.append("STOP_EVENT", candidate_replicate_id=request["candidate_id"], semantic_role="CONTROL", semantic_call_id=lead["candidate_id"], transport_attempt_id=lead["url"], failure_disposition="BUDGET_EXCEEDED", payload={"reason": "physical request budget exhausted"})
+                        ledger.append("STOP_EVENT", candidate_replicate_id=request["candidate_id"], semantic_role="CONTROL", semantic_call_id=lead["candidate_id"], transport_attempt_id=lead["url"], failure_disposition="BUDGET_EXCEEDED", payload={"code": "PHYSICAL_REQUEST_BUDGET_EXHAUSTED", "message": "physical request budget exhausted", "details": {}})
                         record["status"] = "STOPPED"
                         self._persist_run(record, ledger, package=None)
                         return
@@ -393,12 +529,13 @@ class ELiveService:
                     except FixtureTransientFetchError:
                         continue
                     except UnknownPhysicalOutcome as exc:
-                        ledger.append("STOP_EVENT", candidate_replicate_id=request["candidate_id"], semantic_role="CONTROL", semantic_call_id=lead["candidate_id"], transport_attempt_id=lead["url"], failure_disposition="UNKNOWN_PHYSICAL_OUTCOME", payload={"error": str(exc)})
+                        ledger.append("STOP_EVENT", candidate_replicate_id=request["candidate_id"], semantic_role="CONTROL", semantic_call_id=lead["candidate_id"], transport_attempt_id=lead["url"], failure_disposition="UNKNOWN_PHYSICAL_OUTCOME", payload={"code": "UNKNOWN_PHYSICAL_OUTCOME", "message": str(exc), "details": {}})
                         record["status"] = "STOPPED"
                         self._persist_run(record, ledger, package=None)
                         return
                 if fetched is None:
                     continue
+                coverage_counts["fetch_success"] += 1
                 metadata = self.fetcher.metadata(lead["url"])
                 source_id = str(metadata.get("source_id", ""))
                 admission = admit_source(
@@ -412,17 +549,29 @@ class ELiveService:
                 if fetched.redirect_chain:
                     for hop in fetched.redirect_chain:
                         ledger.append("E_REDIRECT_HOP", candidate_replicate_id=request["candidate_id"], semantic_role="FETCH", semantic_call_id=lead["candidate_id"], transport_attempt_id=lead["url"], payload={"url": hop})
-                fetched_rows = extract_fetched_evidence(
-                    fetched,
-                    source_id=source_id,
-                    source_tier=admission["source_tier"],
-                    source_type=admission["source_type"],
-                    candidate_id=request["candidate_id"],
-                    sense_id=request["sense_id"],
-                    term_en=request["term_en"],
-                    candidate_vi=request["candidate_vi"],
-                    candidate_variants=request["candidate_variants"],
-                )
+                coverage_counts["extraction_expected"] += 1
+                coverage_counts["extraction_attempted"] += 1
+                try:
+                    fetched_rows = extract_fetched_evidence(
+                        fetched,
+                        source_id=source_id,
+                        source_tier=admission["source_tier"],
+                        source_type=admission["source_type"],
+                        candidate_id=request["candidate_id"],
+                        sense_id=request["sense_id"],
+                        term_en=request["term_en"],
+                        candidate_vi=request["candidate_vi"],
+                        candidate_variants=request["candidate_variants"],
+                    )
+                except LiveSchemaError:
+                    continue
+                coverage_counts["extraction_success"] += 1
+                coverage_counts["language_expected"] += 1
+                coverage_counts["language_attempted"] += 1
+                coverage_counts["language_success"] += 1
+                coverage_counts["span_expected"] += 1
+                coverage_counts["span_attempted"] += 1
+                coverage_counts["span_success"] += len(fetched_rows)
                 raw_document_ref = f"raw_documents/{fetched.content_sha256}.bin"
                 raw_document_path = Path(record["run_root"]).joinpath(*raw_document_ref.split("/"))
                 raw_document_path.parent.mkdir(parents=True, exist_ok=True)
@@ -430,49 +579,179 @@ class ELiveService:
                 for fetched_row in fetched_rows:
                     fetched_row["document_ref"] = raw_document_ref
                 evidence.extend(fetched_rows)
-        if not evidence:
-            record["status"] = "STOPPED"
-            ledger.append("STOP_EVENT", candidate_replicate_id=request["candidate_id"], semantic_role="CONTROL", semantic_call_id="coverage", transport_attempt_id="coverage", failure_disposition="ATTESTATION_UNJUDGEABLE", payload={"reason": "no frozen corpus evidence"})
-            self._persist_run(record, ledger, package=None)
-            return
+        all_evidence, evidence = cluster_global_evidence(evidence)
         judge_rows: dict[str, dict[str, Any]] = {}
+        judge_attempts: list[dict[str, Any]] = []
+        role_counts: dict[str, dict[str, int]] = {}
+        roles = provider_roles_by_name(self.policy_bundle["provider_role_plan"])
+        primary_role = "PRIMARY_ATTESTATION_JUDGE"
+        secondary_role = "SECONDARY_ATTESTATION_JUDGE"
+        if primary_role not in roles or secondary_role not in roles:
+            raise LiveSchemaError("provider role plan must define Primary and Secondary")
+        secondary_conditions = set(self.policy_bundle["provider_role_plan"]["secondary_condition"])
+        coverage_counts["judge_expected"] = len(evidence)
         if len(evidence) > int(request["budget"]["max_semantic_calls"]):
             record["status"] = "STOPPED"
-            ledger.append("STOP_EVENT", candidate_replicate_id=request["candidate_id"], semantic_role="CONTROL", semantic_call_id="budget", transport_attempt_id="budget", failure_disposition="BUDGET_EXCEEDED", payload={"required_semantic_calls": len(evidence), "max_semantic_calls": request["budget"]["max_semantic_calls"]})
+            ledger.append("STOP_EVENT", candidate_replicate_id=request["candidate_id"], semantic_role="CONTROL", semantic_call_id="budget", transport_attempt_id="budget", failure_disposition="BUDGET_EXCEEDED", payload={"code": "SEMANTIC_CALL_BUDGET_EXHAUSTED", "message": "semantic call budget exhausted", "details": {"required_semantic_calls": len(evidence), "max_semantic_calls": request["budget"]["max_semantic_calls"]}})
             self._persist_run(record, ledger, package=None)
             return
-        for row in evidence:
+        for row in all_evidence:
             ledger.append("E_SOURCE_DOCUMENT_ACCEPTED", candidate_replicate_id=request["candidate_id"], semantic_role="CORPUS", semantic_call_id=row["evidence_id"], transport_attempt_id=row["document_id"], payload={"document_id": row["document_id"], "source_id": row["source_id"], "content_sha256": row["content_sha256"], "document_ref": row["document_ref"], "snapshot_manifest_sha256": row["snapshot_manifest_sha256"]})
+        for row in evidence:
             if self.judge is None:
                 raise LiveSchemaError("fixture Judge is required for a local run")
-            judge_request = make_judge_request(candidate_id=request["candidate_id"], sense_id=request["sense_id"], evidence_id=row["evidence_id"], term_en=request["term_en"], candidate_vi=request["candidate_vi"], sense_definition=request["sense_definition"], snippet_original=row["snippet_original"], snippet_masked=row["snippet_masked"], source_id=row["source_id"], source_tier=row["source_tier"])
             try:
-                role, response = self.judge.route(judge_request)
+                response = self._invoke_judge(
+                    request=request,
+                    evidence=row,
+                    role=primary_role,
+                    role_config=roles[primary_role],
+                    role_counts=role_counts,
+                    judge_attempts=judge_attempts,
+                    ledger=ledger,
+                )
+                if (
+                    response["concept_relation"] == "UNCERTAIN"
+                    and "PRIMARY_CONCEPT_UNCERTAIN" in secondary_conditions
+                ):
+                    response = self._invoke_judge(
+                        request=request,
+                        evidence=row,
+                        role=secondary_role,
+                        role_config=roles[secondary_role],
+                        role_counts=role_counts,
+                        judge_attempts=judge_attempts,
+                        ledger=ledger,
+                    )
             except Exception as exc:
-                ledger.append("STOP_EVENT", candidate_replicate_id=request["candidate_id"], semantic_role="CONTROL", semantic_call_id=row["evidence_id"], transport_attempt_id=row["evidence_id"], failure_disposition="MALFORMED_E_MODEL_RESPONSE", payload={"error": str(exc)})
+                ledger.append("STOP_EVENT", candidate_replicate_id=request["candidate_id"], semantic_role="CONTROL", semantic_call_id=row["evidence_id"], transport_attempt_id=row["evidence_id"], failure_disposition="MALFORMED_E_MODEL_RESPONSE", payload={"code": "MALFORMED_E_MODEL_RESPONSE", "message": str(exc), "details": {}})
                 record["status"] = "STOPPED"
                 self._persist_run(record, ledger, package=None)
                 return
             judge_rows[row["evidence_id"]] = response
-            response_sha = canonical_sha256(response)
-            raw_ref = f"raw_responses/{response_sha}.json"
-            raw_path = Path(record["run_root"]).joinpath(*raw_ref.split("/"))
-            raw_path.parent.mkdir(parents=True, exist_ok=True)
-            raw_path.write_bytes(canonical_bytes(response))
-            ledger.append_model_request(candidate_id=request["candidate_id"], sense_id=request["sense_id"], semantic_call_id=row["evidence_id"], provider_request_id="fixture-" + row["evidence_id"], provider_id="ZERO_PROVIDER_FIXTURE", model_id="fixture-judge-v1", route=role, prompt_sha256=canonical_sha256(judge_request), request_sha256=judge_request_sha256(judge_request), response_sha256=response_sha, raw_response_locator=raw_ref, usage={"input_tokens": 0, "output_tokens": 0, "reasoning_tokens": 0, "total_tokens": 0, "cost": 0.0, "currency": "USD"})
-        aggregation = aggregate_candidate(evidence, judge_rows, policy=self.policy_bundle["aggregation_policy"], coverage_fraction=1.0)
-        evidence_ledger = seal({"schema_id": "EEvidenceLedgerV1", "schema_version": LIVE_TOOL_SCHEMA_VERSION, "run_id": request["run_id"], "run_spec_id": request["run_spec_id"], "evidence_rows": evidence, "judge_rows": judge_rows, "aggregation": aggregation, "provider_calls": 0, "network_calls": 0, "integrity": {}})
+        positive_clusters = {
+            str(row["duplicate_cluster_id"])
+            for row in evidence
+            if positive_evidence_eligible(judge_rows[row["evidence_id"]])
+        }
+        contradictory_clusters = {
+            str(row["duplicate_cluster_id"])
+            for row in evidence
+            if contradictory_evidence_eligible(judge_rows[row["evidence_id"]])
+        }
+        if positive_clusters and contradictory_clusters and "INDEPENDENT_CLUSTER_CONFLICT" in secondary_conditions:
+            for row in evidence:
+                if str(row["duplicate_cluster_id"]) not in positive_clusters | contradictory_clusters:
+                    continue
+                try:
+                    judge_rows[row["evidence_id"]] = self._invoke_judge(
+                        request=request,
+                        evidence=row,
+                        role=secondary_role,
+                        role_config=roles[secondary_role],
+                        role_counts=role_counts,
+                        judge_attempts=judge_attempts,
+                        ledger=ledger,
+                    )
+                except Exception as exc:
+                    ledger.append("STOP_EVENT", candidate_replicate_id=request["candidate_id"], semantic_role="CONTROL", semantic_call_id=row["evidence_id"], transport_attempt_id=row["evidence_id"], failure_disposition="MALFORMED_E_MODEL_RESPONSE", payload={"code": "MALFORMED_E_MODEL_RESPONSE", "message": str(exc), "details": {}})
+                    record["status"] = "STOPPED"
+                    self._persist_run(record, ledger, package=None)
+                    return
+        coverage_counts["judge_attempted"] = len(judge_rows)
+        coverage_counts["judge_success"] = len(judge_rows)
+        coverage = derive_coverage_from_ledger(ledger.events, counts=coverage_counts)
+        aggregation = aggregate_candidate(
+            evidence,
+            judge_rows,
+            policy=self.policy_bundle["aggregation_policy"],
+            expected_evidence_count=coverage_counts["span_expected"],
+            coverage=coverage,
+        )
+        evidence_ledger = seal({"schema_id": "EEvidenceLedgerV1", "schema_version": LIVE_TOOL_SCHEMA_VERSION, "run_id": request["run_id"], "run_spec_id": request["run_spec_id"], "all_evidence_rows": all_evidence, "evidence_rows": evidence, "judge_rows": judge_rows, "judge_attempts": judge_attempts, "coverage": coverage, "aggregation": aggregation, "provider_calls": 0, "network_calls": 0, "integrity": {}})
         evidence_ledger_path = Path(record["run_root"]) / "evidence_ledger.json"
         evidence_ledger_path.write_bytes(canonical_bytes(evidence_ledger))
         evidence_ledger_sha = hashlib.sha256(evidence_ledger_path.read_bytes()).hexdigest()
         completed_at = self.clock()
-        package = build_attestation_package(request=request, aggregation=aggregation, snapshot_manifest_sha256=self.snapshot["integrity"]["self_sha256"], ledger_refs={"artifact_ref": "evidence_ledger.json", "artifact_sha256": evidence_ledger_sha, "event_count": len(ledger.events)}, authority_refs=request["authority_refs"], run_spec_id=request["run_spec_id"], started_at=record["started_at"], completed_at=completed_at, provider_role_plan_sha256=request["provider_role_plan_sha256"])
+        package = build_attestation_package(request=request, aggregation=aggregation, snapshot_manifest_sha256=self.snapshot["integrity"]["self_sha256"], ledger_refs={"artifact_ref": "evidence_ledger.json", "artifact_sha256": evidence_ledger_sha, "event_count": len(ledger.events)}, authority_refs=request["authority_refs"], run_spec_id=request["run_spec_id"], started_at=record["started_at"], completed_at=completed_at, provider_role_plan_sha256=request["provider_role_plan_sha256"], provider_role_plan=self.policy_bundle["provider_role_plan"])
         record["status"] = "COMPLETED"
         record["completed_at"] = completed_at
         record["event_count"] = len(ledger.events)
         record["local_status"] = aggregation["status"]
+        record["coverage"] = coverage
         record["package"] = package
         self._persist_run(record, ledger, package=package)
+
+    def _invoke_judge(
+        self,
+        *,
+        request: Mapping[str, Any],
+        evidence: Mapping[str, Any],
+        role: str,
+        role_config: Mapping[str, Any],
+        role_counts: dict[str, dict[str, int]],
+        judge_attempts: list[dict[str, Any]],
+        ledger: EventLedger,
+    ) -> dict[str, Any]:
+        if self.judge is None:
+            raise LiveSchemaError("fixture Judge is required")
+        if role_config["semantic_role"] != role or role_config["mode"] != "ZERO_PROVIDER_FIXTURE":
+            raise LiveSchemaError("zero-provider execution refuses the selected provider role")
+        counts = role_counts.setdefault(role, {"semantic": 0, "physical": 0})
+        if counts["semantic"] >= int(role_config["max_semantic_calls"]) or counts["physical"] >= int(role_config["max_physical_requests"]):
+            raise LiveSchemaError(f"provider role cap exceeded: {role}")
+        total_calls = sum(item["semantic"] for item in role_counts.values())
+        if total_calls >= int(request["budget"]["max_semantic_calls"]):
+            raise LiveSchemaError("global semantic call budget exceeded")
+        judge_request = make_judge_request(
+            candidate_id=request["candidate_id"],
+            sense_id=request["sense_id"],
+            evidence_id=evidence["evidence_id"],
+            term_en=request["term_en"],
+            candidate_vi=request["candidate_vi"],
+            sense_definition=request["sense_definition"],
+            snippet_original=evidence["snippet_original"],
+            snippet_masked=evidence["snippet_masked"],
+            source_id=evidence["source_id"],
+            source_tier=evidence["source_tier"],
+            semantic_role=role,
+        )
+        counts["semantic"] += 1
+        counts["physical"] += 1
+        response = self.judge.judge(judge_request, role=role)
+        response_sha = canonical_sha256(response)
+        raw_ref = f"raw_responses/{response_sha}.json"
+        raw_path = Path(self.runs[request["run_id"]]["run_root"]).joinpath(*raw_ref.split("/"))
+        raw_path.parent.mkdir(parents=True, exist_ok=True)
+        raw_path.write_bytes(canonical_bytes(response))
+        provider_request_id = f"fixture-{role.casefold()}-{evidence['evidence_id']}-{counts['physical']}"
+        ledger.append_model_request(
+            candidate_id=request["candidate_id"],
+            sense_id=request["sense_id"],
+            semantic_call_id=evidence["evidence_id"],
+            provider_request_id=provider_request_id,
+            provider_id=str(role_config["provider_id"]),
+            model_id=str(role_config["model_id"]),
+            route=role,
+            prompt_sha256=str(role_config["prompt_sha256"]),
+            request_sha256=judge_request_sha256(judge_request),
+            response_sha256=response_sha,
+            raw_response_locator=raw_ref,
+            usage={"input_tokens": 0, "output_tokens": 0, "reasoning_tokens": 0, "total_tokens": 0, "cost": 0.0, "currency": "USD"},
+        )
+        judge_attempts.append(
+            {
+                "evidence_id": evidence["evidence_id"],
+                "semantic_role": role,
+                "provider_id": role_config["provider_id"],
+                "model_id": role_config["model_id"],
+                "prompt_sha256": role_config["prompt_sha256"],
+                "request_sha256": judge_request_sha256(judge_request),
+                "response_sha256": response_sha,
+                "raw_response_locator": raw_ref,
+            }
+        )
+        return response
 
     def _persist_run(self, record: dict[str, Any], ledger: EventLedger, package: Mapping[str, Any] | None) -> None:
         root = Path(record["run_root"])
@@ -491,4 +770,4 @@ class ELiveService:
         self.runs[record["run_id"]] = dict(record)
 
 
-__all__ = ["AUTHORIZATION_SCHEMA_ID", "ELiveService", "RUN_SCHEMA_ID", "RunBlocked", "make_authorization_receipt", "make_run_request"]
+__all__ = ["AUTHORIZATION_SCHEMA_ID", "ELiveService", "RUN_SCHEMA_ID", "RunBlocked", "make_authorization_receipt", "make_run_request", "validate_authorization_receipt"]
