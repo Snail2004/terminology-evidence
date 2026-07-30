@@ -28,7 +28,7 @@ from .common import (
     utc_now,
     verify_seal,
 )
-from .judge import FixtureJudge, judge_request_sha256, make_judge_request
+from .judge import FixtureJudge, judge_request_sha256, make_judge_request, validate_provider_transport_result
 from .ledger import EventLedger
 from .execution import derive_coverage_from_ledger
 from .policies import (
@@ -48,7 +48,7 @@ from .retrieval import (
     extract_snapshot_evidence,
 )
 from .judge import ProviderAdapter
-from .authority_adapter.adapter import validate_protocol_instance
+from .authority_adapter.production import load_production_authority
 from .schemas import (
     PREFLIGHT_RESPONSE_SCHEMA_ID,
     compute_run_spec_id,
@@ -66,6 +66,10 @@ class RunBlocked(LiveSchemaError):
     def __init__(self, response: Mapping[str, Any]) -> None:
         self.response = dict(response)
         super().__init__("E Live preflight is BLOCKED")
+
+
+class ProviderUnknownPhysicalOutcome(LiveSchemaError):
+    pass
 
 
 def make_authorization_receipt(
@@ -210,6 +214,7 @@ class ELiveService:
         execution_mode: str = "LOCAL_FIXTURE_ONLY",
         authority_bundle: Mapping[str, Any] | None = None,
         production_authorization_schema: str | Path | None = None,
+        production_authority_inputs: Mapping[str, Any] | None = None,
         provider_adapter: ProviderAdapter | None = None,
         clock=utc_now,
     ) -> None:
@@ -225,23 +230,20 @@ class ELiveService:
             raise LiveSchemaError("unsupported E Live execution mode")
         self.execution_mode = execution_mode
         self.authority_bundle = dict(authority_bundle) if authority_bundle is not None else None
-        if self.authority_bundle is not None:
-            self.authority_bundle = validate_loaded_authority_bundle(self.authority_bundle)
+        self.production_authority: dict[str, Any] | None = None
         if self.execution_mode == "PRODUCTION_AUTHORITY":
-            if production_authorization_schema is None:
-                raise LiveSchemaError("production authorization schema is required")
-            self.authorization_receipt = validate_protocol_instance(
-                authorization_receipt,
-                role="LIVE_AUTHORIZATION_RECEIPT",
-                schema_path=production_authorization_schema,
-            )
-            if self.authorization_receipt.get("authorization_status") != "RUN_AUTHORIZED" or self.authorization_receipt.get("test_only") is not False:
-                raise LiveSchemaError("production execution requires reviewed RUN_AUTHORIZED bytes")
-            if self.authority_bundle is None or self.authority_bundle.get("execution_mode") != "PRODUCTION_AUTHORITY":
-                raise LiveSchemaError("production execution requires pinned authority bundle")
+            if authority_bundle is not None or production_authorization_schema is not None:
+                raise LiveSchemaError("production authority cannot be supplied as an in-memory bundle or arbitrary schema")
+            if production_authority_inputs is None:
+                raise LiveSchemaError("production execution requires externally pinned authority inputs")
+            self.production_authority = load_production_authority(production_authority_inputs)
+            self.authority_bundle = self.production_authority["bundle"]
+            self.authorization_receipt = self.production_authority["receipt"]
             if provider_adapter is None:
                 raise LiveSchemaError("production execution requires provider adapter")
         else:
+            if self.authority_bundle is not None:
+                self.authority_bundle = validate_loaded_authority_bundle(self.authority_bundle)
             self.authorization_receipt = validate_authorization_receipt(authorization_receipt)
         if self.authority_bundle is not None and self.authority_bundle.get("execution_mode") != self.execution_mode:
             raise LiveSchemaError("authority bundle execution mode mismatch")
@@ -322,6 +324,23 @@ class ELiveService:
                 blockers.append("AUTHORITY_BINDING_MISMATCH")
             if dict(receipt.get("policy_hashes", {})) != current_policy_hashes:
                 blockers.append("AUTHORITY_POLICY_BINDING_MISMATCH")
+        else:
+            binding = self.production_authority["execution_binding"] if self.production_authority else {}
+            exact_production = {
+                "cohort_id": self.authorized_cohort_id,
+                "candidate_ids": sorted(self.authorized_candidate_ids),
+                "run_id": checked.get("run_id"),
+                "phase_id": checked.get("phase_id"),
+                "run_spec_id": checked.get("run_spec_id"),
+                "registry_self_sha256": current_registry["integrity"]["self_sha256"],
+                "snapshot_manifest_sha256": current_snapshot["integrity"]["self_sha256"],
+                "policy_hashes": current_policy_hashes,
+                "provider_role_plan_sha256": current_policy_hashes["provider_role_plan"],
+                "budget_sha256": canonical_sha256(checked.get("budget", {})),
+            }
+            for field, expected_value in exact_production.items():
+                if binding.get(field) != expected_value:
+                    blockers.append(f"PRODUCTION_{field.upper()}_MISMATCH")
         checks["authorization_receipt"] = "PASS" if "AUTHORIZATION_RECEIPT_MISMATCH" not in blockers else "FAIL"
         checks["authority_adapter"] = "PASS_LOCAL_FIXTURE_ONLY" if self.execution_mode == "LOCAL_FIXTURE_ONLY" else "PASS_RUN_AUTHORIZED"
         expected = {
@@ -392,6 +411,7 @@ class ELiveService:
                 record["status"] = "STOPPED"
             if not ledger.events or ledger.events[-1]["event_kind"] != "STOP_EVENT":
                 ledger.append("STOP_EVENT", candidate_replicate_id=checked["candidate_id"], semantic_role="CONTROL", semantic_call_id="exception", transport_attempt_id="exception", failure_disposition=type(exc).__name__, payload={"code": type(exc).__name__, "message": str(exc), "details": {}})
+            self._apply_telemetry(record, ledger)
             self._persist_run(record, ledger, package=None)
             raise
         return dict(record)
@@ -661,9 +681,16 @@ class ELiveService:
                         judge_attempts=judge_attempts,
                         ledger=ledger,
                     )
+            except ProviderUnknownPhysicalOutcome as exc:
+                ledger.append("STOP_EVENT", candidate_replicate_id=request["candidate_id"], semantic_role="CONTROL", semantic_call_id=row["evidence_id"], transport_attempt_id=row["evidence_id"], failure_disposition="UNKNOWN_PHYSICAL_OUTCOME", payload={"code": "UNKNOWN_PHYSICAL_OUTCOME", "message": str(exc), "details": {}})
+                record["status"] = "STOPPED"
+                self._apply_telemetry(record, ledger)
+                self._persist_run(record, ledger, package=None)
+                return
             except Exception as exc:
                 ledger.append("STOP_EVENT", candidate_replicate_id=request["candidate_id"], semantic_role="CONTROL", semantic_call_id=row["evidence_id"], transport_attempt_id=row["evidence_id"], failure_disposition="MALFORMED_E_MODEL_RESPONSE", payload={"code": "MALFORMED_E_MODEL_RESPONSE", "message": str(exc), "details": {}})
                 record["status"] = "STOPPED"
+                self._apply_telemetry(record, ledger)
                 self._persist_run(record, ledger, package=None)
                 return
             judge_rows[row["evidence_id"]] = response
@@ -691,9 +718,16 @@ class ELiveService:
                         judge_attempts=judge_attempts,
                         ledger=ledger,
                     )
+                except ProviderUnknownPhysicalOutcome as exc:
+                    ledger.append("STOP_EVENT", candidate_replicate_id=request["candidate_id"], semantic_role="CONTROL", semantic_call_id=row["evidence_id"], transport_attempt_id=row["evidence_id"], failure_disposition="UNKNOWN_PHYSICAL_OUTCOME", payload={"code": "UNKNOWN_PHYSICAL_OUTCOME", "message": str(exc), "details": {}})
+                    record["status"] = "STOPPED"
+                    self._apply_telemetry(record, ledger)
+                    self._persist_run(record, ledger, package=None)
+                    return
                 except Exception as exc:
                     ledger.append("STOP_EVENT", candidate_replicate_id=request["candidate_id"], semantic_role="CONTROL", semantic_call_id=row["evidence_id"], transport_attempt_id=row["evidence_id"], failure_disposition="MALFORMED_E_MODEL_RESPONSE", payload={"code": "MALFORMED_E_MODEL_RESPONSE", "message": str(exc), "details": {}})
                     record["status"] = "STOPPED"
+                    self._apply_telemetry(record, ledger)
                     self._persist_run(record, ledger, package=None)
                     return
         coverage_counts["judge_attempted"] = len(judge_rows)
@@ -706,7 +740,8 @@ class ELiveService:
             expected_evidence_count=coverage_counts["span_expected"],
             coverage=coverage,
         )
-        evidence_ledger = seal({"schema_id": "EEvidenceLedgerV1", "schema_version": LIVE_TOOL_SCHEMA_VERSION, "run_id": request["run_id"], "run_spec_id": request["run_spec_id"], "all_evidence_rows": all_evidence, "evidence_rows": evidence, "judge_rows": judge_rows, "judge_attempts": judge_attempts, "coverage": coverage, "aggregation": aggregation, "provider_calls": 0, "network_calls": 0, "integrity": {}})
+        telemetry = summarize_provider_telemetry(ledger.events)
+        evidence_ledger = seal({"schema_id": "EEvidenceLedgerV1", "schema_version": LIVE_TOOL_SCHEMA_VERSION, "run_id": request["run_id"], "run_spec_id": request["run_spec_id"], "all_evidence_rows": all_evidence, "evidence_rows": evidence, "judge_rows": judge_rows, "judge_attempts": judge_attempts, "coverage": coverage, "aggregation": aggregation, **telemetry, "integrity": {}})
         evidence_ledger_path = Path(record["run_root"]) / "evidence_ledger.json"
         evidence_ledger_path.write_bytes(canonical_bytes(evidence_ledger))
         evidence_ledger_sha = hashlib.sha256(evidence_ledger_path.read_bytes()).hexdigest()
@@ -718,6 +753,7 @@ class ELiveService:
         record["local_status"] = aggregation["status"]
         record["coverage"] = coverage
         record["package"] = package
+        self._apply_telemetry(record, ledger)
         self._persist_run(record, ledger, package=package)
 
     def _invoke_judge(
@@ -756,16 +792,17 @@ class ELiveService:
             source_tier=evidence["source_tier"],
             semantic_role=role,
         )
+        if self.execution_mode == "PRODUCTION_AUTHORITY":
+            return self._invoke_production_judge(
+                request=request, evidence=evidence, role=role, role_config=role_config,
+                role_counts=role_counts, judge_attempts=judge_attempts, ledger=ledger,
+                judge_request=judge_request,
+            )
         counts["semantic"] += 1
         counts["physical"] += 1
-        if self.execution_mode == "PRODUCTION_AUTHORITY":
-            if self.provider_adapter is None:
-                raise LiveSchemaError("provider adapter is unavailable")
-            response = dict(self.provider_adapter.invoke(judge_request, role_config=role_config))
-        else:
-            if self.judge is None:
-                raise LiveSchemaError("fixture Judge is required")
-            response = self.judge.judge(judge_request, role=role)
+        if self.judge is None:
+            raise LiveSchemaError("fixture Judge is required")
+        response = self.judge.judge(judge_request, role=role)
         response_sha = canonical_sha256(response)
         raw_ref = f"raw_responses/{response_sha}.json"
         raw_path = Path(self.runs[request["run_id"]]["run_root"]).joinpath(*raw_ref.split("/"))
@@ -801,6 +838,63 @@ class ELiveService:
             }
         )
         return response
+
+    def _invoke_production_judge(
+        self, *, request: Mapping[str, Any], evidence: Mapping[str, Any], role: str,
+        role_config: Mapping[str, Any], role_counts: dict[str, dict[str, int]],
+        judge_attempts: list[dict[str, Any]], ledger: EventLedger,
+        judge_request: Mapping[str, Any],
+    ) -> dict[str, Any]:
+        if self.provider_adapter is None:
+            raise LiveSchemaError("provider adapter is unavailable")
+        counts = role_counts[role]
+        counts["semantic"] += 1
+        request_sha = judge_request_sha256(judge_request)
+        max_attempts = int(role_config["max_retries"]) + 1
+        for retry_index in range(max_attempts):
+            if counts["physical"] >= int(role_config["max_physical_requests"]):
+                raise LiveSchemaError(f"provider physical request cap exceeded: {role}")
+            if sum(item["physical"] for item in role_counts.values()) >= int(request["budget"]["max_physical_requests"]):
+                raise LiveSchemaError("global physical request budget exceeded")
+            result = validate_provider_transport_result(
+                self.provider_adapter.invoke(judge_request, role_config=role_config),
+                request_sha256=request_sha,
+            )
+            if result["retry_index"] != retry_index:
+                raise LiveSchemaError("provider transport retry index mismatch")
+            counts["physical"] += result["physical_request_count"]
+            response = result["response"]
+            raw = response
+            raw_ref = f"raw_responses/{result['response_physical_sha256']}.json"
+            raw_path = Path(self.runs[request["run_id"]]["run_root"]).joinpath(*raw_ref.split("/"))
+            raw_path.parent.mkdir(parents=True, exist_ok=True)
+            raw_path.write_bytes(canonical_bytes(raw))
+            usage = {key: result[key] for key in ("input_tokens", "output_tokens", "reasoning_tokens", "total_tokens", "cost", "currency")}
+            ledger.append_model_request(
+                candidate_id=request["candidate_id"], sense_id=request["sense_id"],
+                semantic_call_id=evidence["evidence_id"], provider_request_id=result["provider_request_id"],
+                provider_id=str(role_config["provider_id"]), model_id=str(role_config["model_id"]), route=role,
+                prompt_sha256=str(role_config["prompt_sha256"]), request_sha256=request_sha,
+                response_sha256=result["response_canonical_sha256"], response_physical_sha256=result["response_physical_sha256"],
+                raw_response_locator=raw_ref, generation_config=role_config["generation_config"],
+                provider_role_plan_sha256=request["provider_role_plan_sha256"], retry_index=retry_index,
+                outcome=result["outcome"], latency_ms=result["latency_ms"], physical_request_count=result["physical_request_count"],
+                started_at=result["started_at"], completed_at=result["completed_at"], usage=usage,
+                failure_disposition="NONE" if result["outcome"] == "SUCCESS" else result["outcome"],
+            )
+            judge_attempts.append({**dict(result), "evidence_id": evidence["evidence_id"], "semantic_role": role,
+                                   "provider_id": role_config["provider_id"], "model_id": role_config["model_id"],
+                                   "prompt_sha256": role_config["prompt_sha256"], "raw_response_locator": raw_ref})
+            if result["outcome"] == "SUCCESS":
+                return dict(response)
+            if result["outcome"] == "UNKNOWN_PHYSICAL_OUTCOME":
+                raise ProviderUnknownPhysicalOutcome(result["provider_request_id"])
+            if result["outcome"] == "TERMINAL_FAILURE":
+                raise LiveSchemaError("provider terminal failure")
+        raise LiveSchemaError("provider retry budget exhausted")
+
+    def _apply_telemetry(self, record: dict[str, Any], ledger: EventLedger) -> None:
+        record.update(summarize_provider_telemetry(ledger.events))
 
     def _stop_budget(
         self,
@@ -839,4 +933,27 @@ class ELiveService:
         self.runs[record["run_id"]] = dict(record)
 
 
-__all__ = ["AUTHORIZATION_SCHEMA_ID", "ELiveService", "RUN_SCHEMA_ID", "RunBlocked", "make_authorization_receipt", "make_run_request", "validate_authorization_receipt"]
+def summarize_provider_telemetry(events: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
+    model_events = [
+        row for row in events
+        if row.get("event_kind") == "E_MODEL_REQUEST"
+        and not str(row.get("payload", {}).get("provider_request_id", "")).startswith("fixture-")
+    ]
+    physical_requests = sum(int(row["payload"]["physical_request_count"]) for row in model_events)
+    return {
+        "provider_calls": physical_requests,
+        "network_calls": physical_requests,
+        "physical_requests": physical_requests,
+        "retry_count": sum(1 for row in model_events if int(row["payload"]["retry_index"]) > 0),
+        "input_tokens": sum(int(row["usage"]["input_tokens"]) for row in model_events),
+        "output_tokens": sum(int(row["usage"]["output_tokens"]) for row in model_events),
+        "reasoning_tokens": sum(int(row["usage"]["reasoning_tokens"]) for row in model_events),
+        "total_tokens": sum(int(row["usage"]["total_tokens"]) for row in model_events),
+        "total_cost": sum(float(row["usage"]["cost"]) for row in model_events),
+        "currency": model_events[0]["usage"]["currency"] if model_events else "USD",
+        "latency_total_ms": sum(int(row["payload"]["latency_ms"]) for row in model_events),
+        "latency_measurements": [int(row["payload"]["latency_ms"]) for row in model_events],
+    }
+
+
+__all__ = ["AUTHORIZATION_SCHEMA_ID", "ELiveService", "RUN_SCHEMA_ID", "RunBlocked", "make_authorization_receipt", "make_run_request", "summarize_provider_telemetry", "validate_authorization_receipt"]

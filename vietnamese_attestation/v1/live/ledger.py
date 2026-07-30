@@ -77,12 +77,20 @@ class EventLedger:
         raw_response_locator: str,
         generation_config: Mapping[str, Any],
         provider_role_plan_sha256: str,
+        outcome: str = "SUCCESS",
+        latency_ms: int = 0,
+        physical_request_count: int = 1,
+        response_physical_sha256: str | None = None,
+        started_at: str | None = None,
+        completed_at: str | None = None,
         retry_index: int = 0,
         failure_disposition: str = "NONE",
         usage: Mapping[str, Any] | None = None,
     ) -> dict[str, Any]:
         for name, value in (("prompt_sha256", prompt_sha256), ("request_sha256", request_sha256), ("response_sha256", response_sha256), ("provider_role_plan_sha256", provider_role_plan_sha256)):
             require_sha256(value, path=f"$.payload.{name}")
+        physical_response = response_physical_sha256 or response_sha256
+        require_sha256(physical_response, path="$.payload.response_physical_sha256")
         return self.append(
             "E_MODEL_REQUEST",
             candidate_replicate_id=candidate_id,
@@ -107,6 +115,12 @@ class EventLedger:
                 "raw_response_locator": raw_response_locator,
                 "generation_config": dict(generation_config),
                 "provider_role_plan_sha256": provider_role_plan_sha256,
+                "outcome": outcome,
+                "latency_ms": latency_ms,
+                "physical_request_count": physical_request_count,
+                "response_physical_sha256": physical_response,
+                "started_at": started_at or self.clock(),
+                "completed_at": completed_at or self.clock(),
             },
         )
 

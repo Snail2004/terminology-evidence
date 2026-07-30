@@ -504,8 +504,11 @@ def validate_event(value: Mapping[str, Any]) -> dict[str, Any]:
         raise LiveSchemaError("$.usage.cost must be nonnegative")
     require_string(value["usage"]["currency"], path="$.usage.currency")
     if value["event_kind"] == "E_MODEL_REQUEST":
-        require_exact_keys(value["payload"], {"candidate_id", "sense_id", "semantic_role", "semantic_call_id", "provider_request_id", "retry_index", "provider_id", "model_id", "route", "prompt_sha256", "request_sha256", "response_sha256", "raw_response_locator", "generation_config", "provider_role_plan_sha256"}, path="$.payload")
+        require_exact_keys(value["payload"], {"candidate_id", "sense_id", "semantic_role", "semantic_call_id", "provider_request_id", "retry_index", "provider_id", "model_id", "route", "prompt_sha256", "request_sha256", "response_sha256", "response_physical_sha256", "raw_response_locator", "generation_config", "provider_role_plan_sha256", "outcome", "latency_ms", "physical_request_count", "started_at", "completed_at"}, path="$.payload")
         require_sha256(value["payload"]["provider_role_plan_sha256"], path="$.payload.provider_role_plan_sha256")
+        require_sha256(value["payload"]["response_physical_sha256"], path="$.payload.response_physical_sha256")
+        require_string(value["payload"]["started_at"], path="$.payload.started_at")
+        require_string(value["payload"]["completed_at"], path="$.payload.completed_at")
         generation = value["payload"]["generation_config"]
         if not isinstance(generation, Mapping):
             raise LiveSchemaError("$.payload.generation_config must be an object")
@@ -513,6 +516,10 @@ def validate_event(value: Mapping[str, Any]) -> dict[str, Any]:
         if isinstance(generation["temperature"], bool) or not isinstance(generation["temperature"], (int, float)):
             raise LiveSchemaError("$.payload.generation_config.temperature must be numeric")
         require_string(generation["reasoning"], path="$.payload.generation_config.reasoning")
+        if value["payload"]["outcome"] not in {"SUCCESS", "RETRYABLE_FAILURE", "TERMINAL_FAILURE", "UNKNOWN_PHYSICAL_OUTCOME"}:
+            raise LiveSchemaError("$.payload.outcome is unsupported")
+        require_nonnegative_int(value["payload"]["latency_ms"], path="$.payload.latency_ms")
+        require_positive_int(value["payload"]["physical_request_count"], path="$.payload.physical_request_count")
     elif value["event_kind"] == "E_DISCOVERY_QUERY":
         require_exact_keys(value["payload"], {"template_id", "query_class", "template_sha256", "rendered_query", "rendered_query_sha256", "result_count", "lead_urls", "is_evidence"}, path="$.payload")
         if value["payload"].get("is_evidence") is not False:
