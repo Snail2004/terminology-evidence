@@ -1,0 +1,31 @@
+{
+  "batch_count": 10,
+  "candidate_count": 300,
+  "effective_sense_count": 105,
+  "final_glossary_decision": null,
+  "handoffs": [
+    {
+      "case_count": 300,
+      "path": "handoff/reviewer_1.zip",
+      "reviewer_slot": "reviewer_1",
+      "sha256": "ad61c39c1f53109e7c54a6e14043f1b813d6b5708a797178f068b875a6eff27f"
+    },
+    {
+      "case_count": 300,
+      "path": "handoff/reviewer_2.zip",
+      "reviewer_slot": "reviewer_2",
+      "sha256": "933dc70684eff9f43af5d43e739464143748322e4f89687649fb35ddba58ca2f"
+    }
+  ],
+  "integrity": {
+    "self_sha256": "aae81864964829610a62e0e51cd437250876b627fe000df47d90a00ee396716c"
+  },
+  "policy_id": "d2l-remaining-300-candidates-stage-b-dual-review-v1.0",
+  "provider_call_count": 0,
+  "reviewer_case_count_each": 300,
+  "reviewer_count": 2,
+  "schema_id": "D2LRemainingStageBReviewSummaryV1",
+  "schema_version": "1.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "READY_FOR_STAGE_B_DUAL_REVIEW_ZERO_PROVIDER"
+}
