@@ -30,13 +30,15 @@ from evaluation.v1.analysis_plan.publication import (
 from evaluation.v1.analysis_plan.verifier import AnalysisPlanError, verify_analysis_plan_content
 from evaluation.v1.jsonio import read_json, sha256_value, write_json
 from evaluation.v1.d0_preparation.builder import build_d0_content
+from evaluation.v1.d0_preparation.publication import verify_d0_publication
 from evaluation.v1.d0_preparation.verifier import verify_d0_content
+from tests.evaluation.git_context import resolve_test_git_context
 
 
 class AnalysisPlanFreezeTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.repo = Path(__file__).resolve().parents[2]
+        cls.repo, cls.source_commit = resolve_test_git_context(Path(__file__).resolve().parents[2])
         cls.content = cls.repo / CONTENT_DIRECTORY
 
     def test_frozen_content_matches_registry_and_has_no_access(self):
@@ -72,6 +74,12 @@ class AnalysisPlanFreezeTests(unittest.TestCase):
             self.assertFalse(verified["gold_access"])
             self.assertEqual(verified["provider_calls"], 0)
             self.assertEqual(verified["network_calls"], 0)
+
+        publication = self.repo / "evaluation" / "v1" / "authority" / "d0_preparation_v1"
+        if (publication / "manifest.json").is_file():
+            report = verify_d0_publication(self.repo, publication)
+            self.assertEqual(report["status"], "PASS")
+            self.assertFalse(report["gold_access"])
 
     def test_planned_tables_and_builder_are_result_free_and_deterministic(self):
         plan = read_json(self.content / PLAN_FILE)

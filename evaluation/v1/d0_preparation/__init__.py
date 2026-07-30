@@ -8,6 +8,7 @@ from .builder import (
 from .publication import (
     D0PublicationError,
     build_d0_publication,
+    verify_d0_publication,
 )
 from .verifier import verify_d0_content
 
@@ -17,5 +18,6 @@ __all__ = [
     "D0PublicationError",
     "build_d0_content",
     "build_d0_publication",
+    "verify_d0_publication",
     "verify_d0_content",
 ]

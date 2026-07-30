@@ -24,6 +24,7 @@ from .builder import (
     _select,
     _verify_base_freeze,
 )
+from .publication import verify_d0_publication
 from .dataset_authority import load_d0_dataset_snapshot
 from .specification import D0_AMENDMENT_ID, D0_CANDIDATE_COUNT, D0_CANDIDATES_PER_SENSE, D0_COHORT_SIZE, D0_PREPARATION_ID
 
@@ -125,7 +126,8 @@ def verify_d0_content(repo: Path, content_directory: Path) -> dict[str, Any]:
     if not content_directory.is_dir():
         raise D0PreparationError("D0 content directory is missing")
     actual = sorted(path.name for path in content_directory.iterdir() if path.is_file())
-    if actual != sorted(ALL_CONTENT_FILES):
+    allowed_publication = {"pre_d0_refreeze_receipt_v1.json", "manifest.json", "CHECKSUMS.sha256"}
+    if set(actual) - set(ALL_CONTENT_FILES) - allowed_publication or not set(ALL_CONTENT_FILES).issubset(actual):
         raise D0PreparationError(f"D0 content file set differs: {actual}")
     manifest = read_json(content_directory / CONTENT_MANIFEST_FILE)
     manifest_self = _verify_self(manifest, "content manifest")
