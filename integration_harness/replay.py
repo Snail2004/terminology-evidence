@@ -23,6 +23,7 @@ from .hashing import sha256_file, self_sha256
 from .identity import CandidateIdentity
 from .inventory import (
     ADAPTER_INVENTORY_SCHEMA,
+    LEGACY_ADAPTER_INVENTORY_SCHEMA,
     ArtifactInventory,
     ArtifactRecord,
     SourceAuthorityRecord,
@@ -291,7 +292,11 @@ def _verify_adapter_sources_if_present(
     repository_root: Path | None,
 ) -> None:
     binding = run_spec.get("adapter_inventory_binding")
-    if not isinstance(binding, dict) or binding.get("schema_id") != ADAPTER_INVENTORY_SCHEMA:
+    if (
+        not isinstance(binding, dict)
+        or binding.get("schema_id")
+        not in {ADAPTER_INVENTORY_SCHEMA, LEGACY_ADAPTER_INVENTORY_SCHEMA}
+    ):
         return
     manifest_path = run_dir / "input" / "inventory" / "artifact_manifest.json"
     manifest = load_json(manifest_path, require_object=True)

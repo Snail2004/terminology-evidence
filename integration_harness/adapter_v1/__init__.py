@@ -1,4 +1,4 @@
-"""Dataset and producer package adapter for 15/150 candidate integration."""
+"""Dataset and producer package adapter for exact-cohort integration."""
 
 from .build import build_adapter_bundle
 from .replay import replay_adapter_bundle

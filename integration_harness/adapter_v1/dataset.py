@@ -89,7 +89,7 @@ def load_dataset_release(
     mode: str,
     repository_root: Path | None = None,
 ) -> DatasetRelease:
-    """Verify an official 5/15 release or an explicit synthetic 50/150 fixture."""
+    """Verify the pinned official release or an exact synthetic cohort fixture."""
 
     if mode not in {OFFICIAL_MODE, SYNTHETIC_MODE}:
         raise ValidationError(f"unsupported Dataset adapter mode: {mode}")
@@ -352,17 +352,19 @@ def _verify_counts(
         raise ValidationError("Dataset pin constraint count mismatch")
     if pin_counts.get("effective_sense_contracts") != sense_count:
         raise ValidationError("Dataset pin sense count mismatch")
-    expected = (5, 15) if mode == OFFICIAL_MODE else (50, 150)
-    if (sense_count, candidate_count) != expected:
+    if mode == OFFICIAL_MODE and (sense_count, candidate_count) != (5, 15):
         raise ValidationError(
-            f"Dataset profile mismatch: expected {expected[0]}/{expected[1]}, "
-            f"got {sense_count}/{candidate_count}"
+            f"official Dataset profile mismatch: expected 5/15, got {sense_count}/{candidate_count}"
         )
+    if mode == SYNTHETIC_MODE and (candidate_count <= 0 or sense_count <= 0):
+        raise ValidationError("synthetic Dataset cohort must be non-empty")
     per_sense: dict[str, int] = {}
     for item in candidates:
         per_sense[item.identity.sense_id] = per_sense.get(item.identity.sense_id, 0) + 1
-    if set(per_sense.values()) != {3}:
-        raise ValidationError("Dataset profile requires exactly three candidates per sense")
+    if mode == OFFICIAL_MODE and set(per_sense.values()) != {3}:
+        raise ValidationError("official Dataset profile requires exactly three candidates per sense")
+    if mode == SYNTHETIC_MODE and any(count < 1 or count > 3 for count in per_sense.values()):
+        raise ValidationError("synthetic Dataset cohort allows one to three candidates per sense")
 
 
 def _verify_git_receipt(

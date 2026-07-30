@@ -1,4 +1,4 @@
-"""Portable replay verification for Dataset 15/150 adapter bundles."""
+"""Portable replay verification for Dataset exact-cohort adapter bundles."""
 
 from __future__ import annotations
 
@@ -6,13 +6,26 @@ from collections import Counter
 from pathlib import Path
 from typing import Any, Mapping
 
-from integration_harness.adapter_v1.availability import EXTERNAL_HOLD, PRESENT
+from integration_harness.adapter_v1.availability import (
+    EXTERNAL_HOLD,
+    PRESENT,
+    verify_external_hold_receipt,
+)
 from integration_harness.adapter_v1.dataset import OFFICIAL_MODE, load_dataset_release
-from integration_harness.adapter_v1.producer import PACKAGE_SET_SCHEMA
+from integration_harness.adapter_v1.producer import (
+    LEGACY_PACKAGE_SET_SCHEMA,
+    PACKAGE_SET_SCHEMA,
+    verify_producer_acceptance_receipt,
+)
 from integration_harness.adapter_v1.sidecars import SidecarSet, verify_sidecars
 from integration_harness.errors import IntegrityError, ReplayError
 from integration_harness.hashing import self_sha256, sha256_bytes, sha256_file
-from integration_harness.inventory import ADAPTER_INVENTORY_SCHEMA, ArtifactInventory, load_inventory
+from integration_harness.inventory import (
+    ADAPTER_INVENTORY_SCHEMA,
+    LEGACY_ADAPTER_INVENTORY_SCHEMA,
+    ArtifactInventory,
+    load_inventory,
+)
 from integration_harness.join import validate_and_join
 from integration_harness.jsonio import load_json
 from integration_harness.paths import ensure_no_symlink, safe_relative_path
@@ -28,7 +41,7 @@ def replay_adapter_bundle(
     checksums = _verify_checksums(bundle_root)
     inventory = load_inventory(bundle_root / "artifact_inventory.json")
     manifest = inventory.manifest
-    if manifest.get("schema_id") != ADAPTER_INVENTORY_SCHEMA:
+    if manifest.get("schema_id") not in {ADAPTER_INVENTORY_SCHEMA, LEGACY_ADAPTER_INVENTORY_SCHEMA}:
         raise ReplayError("adapter bundle has the wrong inventory schema")
     sources = {record.role: record for record in inventory.source_authority}
     source_paths = {role: record.path for role, record in sources.items()}
@@ -51,6 +64,7 @@ def replay_adapter_bundle(
         inventory,
         availability=sidecar_stats["availability"],
         source_paths=source_paths,
+        dataset=dataset,
     )
     if ready_count:
         joined, report = validate_and_join(inventory, schema_root=contracts_root)
@@ -134,6 +148,15 @@ def verify_adapter_inventory_source_binding(
     }
     if manifest.get("adapter_mode") == OFFICIAL_MODE:
         required.add("dataset_git_receipt")
+    if manifest.get("schema_id") == ADAPTER_INVENTORY_SCHEMA:
+        required.update(
+            {
+                "producer_package_set_schema",
+                "producer_acceptance_receipt_schema",
+                "external_hold_receipt_schema",
+                "availability_intake_schema",
+            }
+        )
     if not required.issubset(source_paths):
         raise ReplayError("adapter bundle is missing required source authority")
     dataset = load_dataset_release(
@@ -233,6 +256,12 @@ def _verify_sidecar_sources(
     }
     stats = verify_sidecars(sidecars, dataset=dataset, physical_hashes=physical)
     intake = load_json(source_paths["availability_intake_manifest"], require_object=True)
+    if "availability_intake_schema" in source_paths:
+        _validate_jsonschema(
+            intake,
+            source_paths["availability_intake_schema"],
+            "availability intake",
+        )
     if intake.get("integrity", {}).get("self_sha256") != self_sha256(intake):
         raise ReplayError("availability intake self hash mismatch")
     intake_rows = {
@@ -298,6 +327,7 @@ def _verify_availability_artifact_projection(
     *,
     availability: Mapping[str, Any],
     source_paths: Mapping[str, Path],
+    dataset: Any,
 ) -> None:
     records = {
         (record.candidate_key["candidate_id"], record.role): record
@@ -358,6 +388,22 @@ def _verify_availability_artifact_projection(
                 raise ReplayError("EXTERNAL_HOLD receipt physical binding mismatch")
             if receipt.get("self_sha256") != source_record.declared_self_sha256:
                 raise ReplayError("EXTERNAL_HOLD receipt self binding mismatch")
+            if "external_hold_receipt_schema" in source_paths:
+                _validate_jsonschema(
+                    load_json(source_record.path, require_object=True),
+                    source_paths["external_hold_receipt_schema"],
+                    "EXTERNAL_HOLD receipt",
+                )
+            verify_external_hold_receipt(
+                source_record.path,
+                candidate_key=dict(row["candidate_key"]),
+                role=str(row["role"]),
+                run_id=str(availability["run_id"]),
+                phase_id=str(availability["phase_id"]),
+                split_id=str(availability["split_id"]),
+                observed_at=str(row["observed_at"]),
+                reason_code=str(row["reason_code"]),
+            )
         elif receipt is not None:
             raise ReplayError("non-EXTERNAL_HOLD row contains a hold receipt")
     declared_sets = availability.get("producer_sets")
@@ -387,6 +433,15 @@ def _verify_availability_artifact_projection(
                 raise ReplayError(f"PRESENT availability lacks producer set manifest: {role}")
             declared = set_by_role.get(role)
             source_value = load_json(source_path, require_object=True)
+            if (
+                source_value.get("schema_id") == PACKAGE_SET_SCHEMA
+                and "producer_package_set_schema" in source_paths
+            ):
+                _validate_jsonschema(
+                    source_value,
+                    source_paths["producer_package_set_schema"],
+                    f"producer package set {role}",
+                )
             if not isinstance(declared, Mapping):
                 raise ReplayError(f"availability producer set binding is missing: {role}")
             if declared.get("manifest_self_sha256") != source_value.get("integrity", {}).get("self_sha256"):
@@ -395,7 +450,52 @@ def _verify_availability_artifact_projection(
                 raise ReplayError(f"availability producer set physical binding mismatch: {role}")
             if declared.get("producer") != source_value.get("producer"):
                 raise ReplayError(f"availability producer set provenance mismatch: {role}")
+            prefix = "context" if role == "context_evidence" else "attestation"
+            declared_acceptance = declared.get("acceptance_receipt")
+            acceptance_record = source_records.get(f"{prefix}_acceptance_receipt")
+            if source_value.get("status") == "COMPLETE_ACCEPTED":
+                if acceptance_record is None or not isinstance(declared_acceptance, Mapping):
+                    raise ReplayError(f"official producer acceptance binding is missing: {role}")
+                if (
+                    declared_acceptance.get("physical_sha256") != acceptance_record.physical_sha256
+                    or declared_acceptance.get("self_sha256") != acceptance_record.declared_self_sha256
+                ):
+                    raise ReplayError(f"official producer acceptance binding drift: {role}")
+            elif declared_acceptance is not None:
+                raise ReplayError(f"synthetic producer set claims an acceptance receipt: {role}")
             verify_producer_manifest_snapshot(source_path, inventory, role=role)
+            if source_value.get("status") == "COMPLETE_ACCEPTED":
+                receipt_path = source_paths.get(f"{prefix}_acceptance_receipt")
+                if receipt_path is None:
+                    raise ReplayError(f"official producer acceptance receipt is missing: {role}")
+                if "producer_acceptance_receipt_schema" in source_paths:
+                    _validate_jsonschema(
+                        load_json(receipt_path, require_object=True),
+                        source_paths["producer_acceptance_receipt_schema"],
+                        f"producer acceptance receipt {role}",
+                    )
+                present_ids = {
+                    row["candidate_key"]["candidate_id"]
+                    for row in availability.get("rows", [])
+                    if isinstance(row, Mapping)
+                    and isinstance(row.get("candidate_key"), Mapping)
+                    and row.get("role") == role
+                    and row.get("status") == PRESENT
+                }
+                candidates = [
+                    candidate
+                    for candidate in dataset.candidates
+                    if candidate.identity.candidate_id in present_ids
+                ]
+                verify_producer_acceptance_receipt(
+                    receipt_path,
+                    manifest_path=source_path,
+                    role=role,
+                    candidates=candidates,
+                    run_id=str(availability["run_id"]),
+                    phase_id=str(availability["phase_id"]),
+                    split_id=str(availability["split_id"]),
+                )
         elif source_path is not None:
             raise ReplayError(f"unused producer set manifest is sealed: {role}")
     if set(set_by_role) != present_roles:
@@ -409,9 +509,10 @@ def verify_producer_manifest_snapshot(
     role: str,
 ) -> None:
     value = load_json(manifest_path, require_object=True)
-    if value.get("schema_id") != PACKAGE_SET_SCHEMA:
+    if value.get("schema_id") not in {PACKAGE_SET_SCHEMA, LEGACY_PACKAGE_SET_SCHEMA}:
         raise ReplayError(f"sealed producer manifest schema mismatch: {role}")
-    if value.get("schema_version") != "1.0.0":
+    expected_version = "2.0.0" if value.get("schema_id") == PACKAGE_SET_SCHEMA else "1.0.0"
+    if value.get("schema_version") != expected_version:
         raise ReplayError(f"sealed producer manifest version mismatch: {role}")
     if value.get("producer_role") != role:
         raise ReplayError(f"sealed producer manifest role mismatch: {role}")
@@ -443,7 +544,7 @@ def verify_producer_manifest_snapshot(
     if package_count != len(entries) or value.get("package_count") != package_count:
         raise ReplayError(f"sealed producer manifest package count mismatch: {role}")
     if value.get("hold_count") != 0:
-        raise ReplayError(f"sealed producer manifest contains fake HOLD packages: {role}")
+        raise ReplayError(f"sealed producer manifest contains a non-package entry: {role}")
     if value.get("status") not in {"COMPLETE_ACCEPTED", "SYNTHETIC_LOCAL_CONFORMANCE"}:
         raise ReplayError(f"sealed producer manifest complete status mismatch: {role}")
     observed: set[str] = set()

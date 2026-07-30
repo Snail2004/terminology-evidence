@@ -111,7 +111,7 @@ def build_parser() -> argparse.ArgumentParser:
     adapter_build.add_argument(
         "--inventory-schema",
         type=Path,
-        default=Path("docs/integration/artifact_inventory_50_150_schema.json"),
+        default=Path("docs/integration/artifact_inventory_exact_cohort_v2.schema.json"),
     )
     adapter_build.set_defaults(handler=_adapter_build)
 
@@ -142,6 +142,8 @@ def build_parser() -> argparse.ArgumentParser:
         if present:
             availability.add_argument("--context-set-manifest", type=Path, required=True)
             availability.add_argument("--attestation-set-manifest", type=Path, required=True)
+            availability.add_argument("--context-acceptance-receipt", type=Path)
+            availability.add_argument("--attestation-acceptance-receipt", type=Path)
         else:
             availability.add_argument("--reason-code", required=True)
         availability.set_defaults(handler=handler)
@@ -315,6 +317,8 @@ def _adapter_create_present_availability(args: argparse.Namespace) -> dict[str, 
         adapter_mode=args.adapter_mode,
         context_set_manifest=args.context_set_manifest,
         attestation_set_manifest=args.attestation_set_manifest,
+        context_acceptance_receipt=args.context_acceptance_receipt,
+        attestation_acceptance_receipt=args.attestation_acceptance_receipt,
         schema_root=args.contracts_root,
         run_id=args.run_id,
         phase_id=args.phase_id,

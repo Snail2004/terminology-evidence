@@ -39,7 +39,7 @@ def main() -> int:
     if output.exists():
         raise SystemExit(f"refusing to overwrite {output}")
     output.mkdir(parents=True)
-    schema = repo / "docs" / "integration" / "artifact_inventory_50_150_schema.json"
+    schema = repo / "docs" / "integration" / "artifact_inventory_exact_cohort_v2.schema.json"
     contracts = repo / "terminology_contracts_v1"
     official_root = (
         repo / "review_evidence" / "dataset" / "d2l-stage-a-official-5-sense-pilot-v1"
@@ -125,8 +125,8 @@ def main() -> int:
         synthetic_replay = replay_adapter_bundle(synthetic_out, contracts_root=contracts)
 
     summary = {
-        "schema_id": "HarnessDataset50150EvidenceSummaryV1",
-        "schema_version": "1.0.0",
+        "schema_id": "HarnessDatasetExactCohortEvidenceSummaryV2",
+        "schema_version": "2.0.0",
         "source_commit": args.issuer_commit,
         "official_5_15": {
             "build": _portable_build_result(official_result),
@@ -152,8 +152,8 @@ def main() -> int:
     _zip_tree(official_out, output / "official_5_15_adapter_bundle.zip")
     _zip_tree(synthetic_out, output / "synthetic_50_150_adapter_bundle.zip")
     release = {
-        "schema_id": "HarnessDataset50150EvidenceReleaseManifestV1",
-        "schema_version": "1.0.0",
+        "schema_id": "HarnessDatasetExactCohortEvidenceReleaseManifestV2",
+        "schema_version": "2.0.0",
         "status": "PASS_WITH_OFFICIAL_C_E_MISSING",
         "files": {},
         "summary_self_sha256": summary["integrity"]["self_sha256"],

@@ -25,7 +25,11 @@ from integration_harness.jsonio import dump_json, load_json
 from integration_harness.pipeline import execute_run
 from integration_harness.replay import replay_run
 
-from .adapter_helpers import make_producer_set, make_synthetic_dataset_release
+from .adapter_helpers import (
+    make_external_hold_authority,
+    make_producer_set,
+    make_synthetic_dataset_release,
+)
 from .helpers import FakePublicGlobalAdapter, make_fixture_repo
 
 
@@ -160,24 +164,16 @@ class Adapter50150Tests(unittest.TestCase):
             hold_row = manifest["rows"][0]
             hold_row["status"] = "EXTERNAL_HOLD"
             hold_row["reason_code"] = "EXTERNAL_ACQUISITION_STOP_RECEIPT"
-            receipt = {
-                "schema_id": "HarnessExternalAcquisitionHoldReceiptV1",
-                "schema_version": "1.0.0",
-                "candidate_key": hold_row["candidate_key"],
-                "role": hold_row["role"],
-                "status": "EXTERNAL_HOLD",
-                "reason_code": hold_row["reason_code"],
-                "final_glossary_decision": None,
-                "integrity": {},
-            }
-            receipt["integrity"]["self_sha256"] = self_sha256(receipt)
-            receipt_path = availability.parent / "receipts" / "hold.json"
-            dump_json(receipt_path, receipt)
-            hold_row["external_hold_receipt"] = {
-                "relative_path": "receipts/hold.json",
-                "physical_sha256": sha256_file(receipt_path),
-                "self_sha256": receipt["integrity"]["self_sha256"],
-            }
+            hold_row["external_hold_receipt"] = make_external_hold_authority(
+                availability,
+                candidate_key=hold_row["candidate_key"],
+                role=hold_row["role"],
+                run_id=manifest["run_id"],
+                phase_id=manifest["phase_id"],
+                split_id=manifest["split_id"],
+                reason_code=hold_row["reason_code"],
+                observed_at=hold_row["observed_at"],
+            )
             invalid_row = manifest["rows"][3]
             invalid_row["status"] = "INVALID"
             invalid_row["reason_code"] = "REJECTED_EXISTING_ARTIFACT"
@@ -204,7 +200,7 @@ class Adapter50150Tests(unittest.TestCase):
             self.assertEqual(result["availability_counts"]["EXTERNAL_HOLD"], 1)
             self.assertEqual(result["availability_counts"]["INVALID"], 1)
             readiness = load_json(
-                work / "bundle" / "sidecars" / "global_batch_readiness_report_v1.json",
+                work / "bundle" / "sidecars" / "global_batch_readiness_report_v2.json",
                 require_object=True,
             )
             self.assertEqual(readiness["counts"]["identity_rejected"], 1)
@@ -290,7 +286,7 @@ class Adapter50150Tests(unittest.TestCase):
             self.assertEqual(replay["semantic_replay"], "SEALED_ADAPTER_COMPLETE_REPLAY_PASS")
             self.assertEqual(replay["joined_count"], 150)
             availability_sidecar = load_json(
-                work / "bundle-a" / "sidecars" / "evidence_availability_manifest_v1.json",
+                work / "bundle-a" / "sidecars" / "evidence_availability_manifest_v2.json",
                 require_object=True,
             )
             for candidate_id, expected_status in zip(
@@ -466,7 +462,7 @@ class Adapter50150Tests(unittest.TestCase):
             self.assertEqual(len(joined), 149)
             self.assertEqual(report["joined_count"], 149)
             readiness = load_json(
-                work / "bundle" / "sidecars" / "global_batch_readiness_report_v1.json",
+                work / "bundle" / "sidecars" / "global_batch_readiness_report_v2.json",
                 require_object=True,
             )
             self.assertEqual(readiness["not_submitted"][0]["candidate_id"], excluded_id)
@@ -515,13 +511,13 @@ class Adapter50150Tests(unittest.TestCase):
                 adapter_mode=OFFICIAL_MODE,
                 inventory_schema_path=self.schema,
             )
-            authority_path = work / "bundle" / "sidecars" / "global_batch_authority_v1.json"
+            authority_path = work / "bundle" / "sidecars" / "global_batch_authority_v2.json"
             authority = load_json(authority_path, require_object=True)
             authority["expected_sense_count"] = 50
             authority["integrity"]["self_sha256"] = self_sha256(authority)
             authority_path.unlink()
             dump_json(authority_path, authority)
-            readiness_path = work / "bundle" / "sidecars" / "global_batch_readiness_report_v1.json"
+            readiness_path = work / "bundle" / "sidecars" / "global_batch_readiness_report_v2.json"
             readiness = load_json(readiness_path, require_object=True)
             readiness["batch_authority"] = {
                 "physical_sha256": sha256_file(authority_path),

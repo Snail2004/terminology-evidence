@@ -13,7 +13,7 @@ from .contracts_verifier import PublicContractR2Verifier
 from .errors import ExecutionError, PolicyError
 from .hashing import sha256_bytes
 from .jsonio import canonical_bytes
-from .inventory import load_inventory
+from .inventory import ADAPTER_INVENTORY_SCHEMA, LEGACY_ADAPTER_INVENTORY_SCHEMA, load_inventory
 from .join import validate_and_join
 from .preflight import validate_preflight
 from .report import build_report
@@ -49,9 +49,10 @@ def execute_run(
     )
     inventory = load_inventory(manifest_path)
     if inventory.holds:
-        raise PolicyError("producer HOLDs block Global execution")
+        raise PolicyError("legacy producer hold records block Global execution")
     if (
-        inventory.manifest.get("schema_id") == "ArtifactInventory50_150V1"
+        inventory.manifest.get("schema_id")
+        in {ADAPTER_INVENTORY_SCHEMA, LEGACY_ADAPTER_INVENTORY_SCHEMA}
         and inventory.manifest.get("global_execution", {}).get("status")
         != "READY_FOR_PUBLIC_GLOBAL_CLI"
     ):

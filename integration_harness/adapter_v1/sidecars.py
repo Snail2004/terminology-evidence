@@ -19,11 +19,16 @@ from integration_harness.errors import IntegrityError, ReplayError, ValidationEr
 from integration_harness.hashing import self_sha256, sha256_bytes
 
 
-COHORT_SCHEMA = "HarnessCohortInventoryV1"
-BATCH_AUTHORITY_SCHEMA = "GlobalBatchAuthorityV1"
-AVAILABILITY_SCHEMA = "EvidenceAvailabilityManifestV1"
-READINESS_SCHEMA = "GlobalBatchReadinessReportV1"
-SCHEMA_VERSION = "1.0.0"
+LEGACY_COHORT_SCHEMA = "HarnessCohortInventoryV1"
+LEGACY_BATCH_AUTHORITY_SCHEMA = "GlobalBatchAuthorityV1"
+LEGACY_AVAILABILITY_SCHEMA = "EvidenceAvailabilityManifestV1"
+LEGACY_READINESS_SCHEMA = "GlobalBatchReadinessReportV1"
+COHORT_SCHEMA = "HarnessCohortInventoryV2"
+BATCH_AUTHORITY_SCHEMA = "GlobalBatchAuthorityV2"
+AVAILABILITY_SCHEMA = "EvidenceAvailabilityManifestV2"
+READINESS_SCHEMA = "GlobalBatchReadinessReportV2"
+LEGACY_SCHEMA_VERSION = "1.0.0"
+SCHEMA_VERSION = "2.0.0"
 
 
 @dataclass(frozen=True)
@@ -81,16 +86,42 @@ def verify_sidecars(
     authority = sidecars.authority
     availability = sidecars.availability
     readiness = sidecars.readiness
-    for value, schema, label in (
-        (cohort, COHORT_SCHEMA, "cohort inventory"),
-        (authority, BATCH_AUTHORITY_SCHEMA, "batch authority"),
-        (availability, AVAILABILITY_SCHEMA, "availability manifest"),
-        (readiness, READINESS_SCHEMA, "readiness report"),
+    accepted = {
+        "cohort inventory": {(COHORT_SCHEMA, SCHEMA_VERSION), (LEGACY_COHORT_SCHEMA, LEGACY_SCHEMA_VERSION)},
+        "batch authority": {(BATCH_AUTHORITY_SCHEMA, SCHEMA_VERSION), (LEGACY_BATCH_AUTHORITY_SCHEMA, LEGACY_SCHEMA_VERSION)},
+        "availability manifest": {(AVAILABILITY_SCHEMA, SCHEMA_VERSION), (LEGACY_AVAILABILITY_SCHEMA, LEGACY_SCHEMA_VERSION)},
+        "readiness report": {(READINESS_SCHEMA, SCHEMA_VERSION), (LEGACY_READINESS_SCHEMA, LEGACY_SCHEMA_VERSION)},
+    }
+    for value, label in (
+        (cohort, "cohort inventory"),
+        (authority, "batch authority"),
+        (availability, "availability manifest"),
+        (readiness, "readiness report"),
     ):
-        if value.get("schema_id") != schema or value.get("schema_version") != SCHEMA_VERSION:
+        if (value.get("schema_id"), value.get("schema_version")) not in accepted[label]:
             raise ReplayError(f"unsupported {label} schema")
         if value.get("integrity", {}).get("self_sha256") != self_sha256(value):
             raise ReplayError(f"{label} self hash mismatch")
+    observed_family = {
+        (cohort.get("schema_id"), cohort.get("schema_version")),
+        (authority.get("schema_id"), authority.get("schema_version")),
+        (availability.get("schema_id"), availability.get("schema_version")),
+        (readiness.get("schema_id"), readiness.get("schema_version")),
+    }
+    active_family = {
+        (COHORT_SCHEMA, SCHEMA_VERSION),
+        (BATCH_AUTHORITY_SCHEMA, SCHEMA_VERSION),
+        (AVAILABILITY_SCHEMA, SCHEMA_VERSION),
+        (READINESS_SCHEMA, SCHEMA_VERSION),
+    }
+    legacy_family = {
+        (LEGACY_COHORT_SCHEMA, LEGACY_SCHEMA_VERSION),
+        (LEGACY_BATCH_AUTHORITY_SCHEMA, LEGACY_SCHEMA_VERSION),
+        (LEGACY_AVAILABILITY_SCHEMA, LEGACY_SCHEMA_VERSION),
+        (LEGACY_READINESS_SCHEMA, LEGACY_SCHEMA_VERSION),
+    }
+    if observed_family not in (active_family, legacy_family):
+        raise ReplayError("mixed sidecar schema families are not admitted")
     common = {
         "run_id": availability.get("run_id"),
         "phase_id": availability.get("phase_id"),
@@ -320,6 +351,15 @@ def _build_availability(
                 "manifest_self_sha256": producer.manifest["integrity"]["self_sha256"],
                 "manifest_physical_sha256": sha256_bytes(producer.manifest_raw),
                 "producer": producer.manifest["producer"],
+                "acceptance_receipt": (
+                    {
+                        "self_sha256": producer.acceptance_receipt["integrity"]["self_sha256"],
+                        "physical_sha256": sha256_bytes(producer.acceptance_receipt_raw),
+                    }
+                    if producer.acceptance_receipt is not None
+                    and producer.acceptance_receipt_raw is not None
+                    else None
+                ),
             }
         )
     for item in source.items:
@@ -406,9 +446,10 @@ def _build_readiness(
             for row in rows
         )
     }
+    legacy = authority.get("schema_id") == LEGACY_BATCH_AUTHORITY_SCHEMA
     value = {
-        "schema_id": READINESS_SCHEMA,
-        "schema_version": SCHEMA_VERSION,
+        "schema_id": LEGACY_READINESS_SCHEMA if legacy else READINESS_SCHEMA,
+        "schema_version": LEGACY_SCHEMA_VERSION if legacy else SCHEMA_VERSION,
         "run_id": authority["run_id"],
         "phase_id": authority["phase_id"],
         "split_id": authority["split_id"],

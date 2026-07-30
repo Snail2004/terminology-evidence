@@ -12,7 +12,10 @@ from .jsonio import load_json
 from .paths import ensure_no_symlink, ensure_plain_root, safe_relative_path
 
 
-ADAPTER_INVENTORY_SCHEMA = "ArtifactInventory50_150V1"
+LEGACY_ADAPTER_INVENTORY_SCHEMA = "ArtifactInventory50_150V1"
+ADAPTER_INVENTORY_SCHEMA = "ArtifactInventoryExactCohortV2"
+LEGACY_INVENTORY_VERSION = "1.0.0"
+INVENTORY_VERSION = "2.0.0"
 
 
 @dataclass(frozen=True)
@@ -100,9 +103,11 @@ def load_inventory(manifest_path: Path) -> ArtifactInventory:
         raise DiscoveryError(f"manifest does not exist: {manifest_path}")
     manifest = load_json(manifest_path, require_object=True)
     schema_id = manifest.get("schema_id")
-    if schema_id not in {"ArtifactInventoryV1", ADAPTER_INVENTORY_SCHEMA}:
+    if schema_id not in {"ArtifactInventoryV1", LEGACY_ADAPTER_INVENTORY_SCHEMA, ADAPTER_INVENTORY_SCHEMA}:
         raise DiscoveryError("unsupported artifact manifest schema")
-    if manifest.get("schema_version") != "1.0.0":
+    if schema_id == ADAPTER_INVENTORY_SCHEMA and manifest.get("schema_version") != INVENTORY_VERSION:
+        raise DiscoveryError("unsupported exact-cohort artifact manifest version")
+    if schema_id in {"ArtifactInventoryV1", LEGACY_ADAPTER_INVENTORY_SCHEMA} and manifest.get("schema_version") != LEGACY_INVENTORY_VERSION:
         raise DiscoveryError("unsupported artifact manifest version")
     integrity = manifest.get("integrity")
     if not isinstance(integrity, dict) or integrity.get("self_sha256") != self_sha256(manifest):
@@ -110,7 +115,7 @@ def load_inventory(manifest_path: Path) -> ArtifactInventory:
     raw_records = manifest.get("artifacts")
     if not isinstance(raw_records, list):
         raise DiscoveryError("artifact manifest artifacts must be an array")
-    if not raw_records and schema_id != ADAPTER_INVENTORY_SCHEMA:
+    if not raw_records and schema_id not in {ADAPTER_INVENTORY_SCHEMA, LEGACY_ADAPTER_INVENTORY_SCHEMA}:
         raise DiscoveryError("artifact manifest must contain artifacts")
     records: list[ArtifactRecord] = []
     seen_paths: dict[str, ArtifactRecord] = {}
@@ -151,13 +156,13 @@ def load_inventory(manifest_path: Path) -> ArtifactInventory:
         records.append(record)
     source_authority = _load_source_authority(manifest_path, manifest, schema_id=schema_id)
     holds = _load_holds(manifest_path, manifest, schema_id=schema_id)
-    if schema_id == ADAPTER_INVENTORY_SCHEMA:
+    if schema_id in {ADAPTER_INVENTORY_SCHEMA, LEGACY_ADAPTER_INVENTORY_SCHEMA}:
         candidate_count = manifest.get("candidate_count")
         sense_count = manifest.get("sense_count")
-        if not isinstance(candidate_count, int) or candidate_count not in {15, 150}:
-            raise DiscoveryError("adapter inventory candidate_count must be 15 or 150")
-        if not isinstance(sense_count, int) or sense_count not in {5, 50}:
-            raise DiscoveryError("adapter inventory sense_count must be 5 or 50")
+        if not isinstance(candidate_count, int) or candidate_count <= 0:
+            raise DiscoveryError("adapter inventory candidate_count must be positive")
+        if not isinstance(sense_count, int) or sense_count <= 0:
+            raise DiscoveryError("adapter inventory sense_count must be positive")
         ready_count = manifest.get("ready_candidate_count")
         not_submitted = manifest.get("not_submitted_count")
         if (
@@ -195,7 +200,7 @@ def _shared_effective_allowed(
     *,
     schema_id: Any,
 ) -> bool:
-    if schema_id != ADAPTER_INVENTORY_SCHEMA:
+    if schema_id not in {ADAPTER_INVENTORY_SCHEMA, LEGACY_ADAPTER_INVENTORY_SCHEMA}:
         return False
     if previous.role != "effective_sense" or current.role != "effective_sense":
         return False
@@ -230,7 +235,7 @@ def _load_source_authority(
     schema_id: Any,
 ) -> tuple[SourceAuthorityRecord, ...]:
     raw_records = manifest.get("source_authority", [])
-    if schema_id == ADAPTER_INVENTORY_SCHEMA and not raw_records:
+    if schema_id in {ADAPTER_INVENTORY_SCHEMA, LEGACY_ADAPTER_INVENTORY_SCHEMA} and not raw_records:
         raise DiscoveryError("adapter inventory requires source_authority")
     if not isinstance(raw_records, list):
         raise DiscoveryError("source_authority must be an array")
@@ -275,7 +280,7 @@ def _load_holds(
 ) -> tuple[HoldRecord, ...]:
     raw_records = manifest.get("holds", [])
     if raw_records:
-        raise DiscoveryError("producer HOLD packages are forbidden; use availability sidecars")
+        raise DiscoveryError("legacy hold records are forbidden; use availability sidecars")
     if not isinstance(raw_records, list):
         raise DiscoveryError("holds must be an array")
     result: list[HoldRecord] = []
@@ -290,7 +295,7 @@ def _load_holds(
         candidate_id = _string(candidate_key.get("candidate_id"), "holds.candidate_id")
         key = (role, candidate_id)
         if key in seen:
-            raise DiscoveryError("duplicate producer HOLD")
+            raise DiscoveryError("duplicate legacy hold record")
         seen.add(key)
         relative = safe_relative_path(
             _string(raw.get("relative_path"), "holds.relative_path")

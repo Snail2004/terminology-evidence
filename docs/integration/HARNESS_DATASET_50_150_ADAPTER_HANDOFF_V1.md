@@ -99,8 +99,9 @@ evidence.
 ## Gates
 
 ```text
-focused adapter              10 passed
-full Harness                 36 passed + 33 subtests
+focused authority/cohort      8 passed + 14 subtests
+legacy adapter regression    10 passed
+full Harness                 44 passed + 47 subtests
 Contracts V1.1              113 passed, 2 skipped
 Global Validator             80 passed
 Context Substitution C       79 passed
@@ -114,18 +115,20 @@ final_glossary_decision     null
 ```
 
 Adversarial coverage includes missing/extra/duplicate identity, package and
-sidecar hash drift, coherent sidecar reseal drift, fake producer HOLD,
-EXTERNAL_HOLD without a receipt, valid EXTERNAL_HOLD and INVALID exclusion,
-partial-ready exclusion, inventory reorder, and reparse/junction rejection.
+sidecar hash drift, coherent sidecar reseal drift, forbidden non-package
+producer entries, EXTERNAL_HOLD without an authoritative STOP_EVENT, valid
+EXTERNAL_HOLD and INVALID exclusion, partial-ready exclusion, inventory
+reorder, and reparse/junction rejection.
 
 JUnit:
 
 ```text
-docs/integration/system-integration-harness-adapter-50-150-v1.junit.xml
-SHA256 c1fd573a7c7e9a49d57e98439bf55c103d712d6b5aeca75156dcbdb019b31440
-
-docs/integration/system-integration-harness-v1.junit.xml
-SHA256 d0f8b3d56fef54fbef6d1cfe6e1bfc9c19240f0c2c82e6d59c3524db00f23c86
+docs/integration/system-integration-batch-authority-hardening-v1.junit.xml
+docs/integration/system-integration-harness-v1-hardened.junit.xml
+docs/integration/compat-contracts-v1.1.junit.xml
+docs/integration/compat-global-validator-v1.1.junit.xml
+docs/integration/compat-context-substitution-v2.2.junit.xml
+docs/integration/compat-vietnamese-attestation-v1.1.junit.xml
 ```
 
 ## Remaining Hold

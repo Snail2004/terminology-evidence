@@ -1,0 +1,6 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"urn:terminology-evidence:HarnessCohortInventoryV2:2.0.0","type":"object","additionalProperties":false,
+  "required":["schema_id","schema_version","adapter_mode","run_id","phase_id","split_id","candidate_count","sense_count","candidates","final_glossary_decision","integrity"],
+  "properties":{"schema_id":{"const":"HarnessCohortInventoryV2"},"schema_version":{"const":"2.0.0"},"adapter_mode":{"type":"string","minLength":1},"run_id":{"type":"string","minLength":1},"phase_id":{"type":"string","minLength":1},"split_id":{"type":"string","minLength":1},"candidate_count":{"type":"integer","minimum":1},"sense_count":{"type":"integer","minimum":1},"candidates":{"type":"array","minItems":1,"items":{"type":"object"}},"final_glossary_decision":{"type":"null"},"integrity":{"$ref":"#/$defs/integrity"}},
+  "$defs":{"sha":{"type":"string","pattern":"^[0-9a-f]{64}$"},"integrity":{"type":"object","additionalProperties":false,"required":["self_sha256"],"properties":{"self_sha256":{"$ref":"#/$defs/sha"}}}}
+}

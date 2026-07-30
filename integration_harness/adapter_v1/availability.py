@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 import shutil
 import uuid
 from dataclasses import dataclass
@@ -17,9 +18,18 @@ from integration_harness.jsonio import dump_json, load_json
 from integration_harness.paths import ensure_no_symlink, ensure_plain_root, safe_relative_path
 
 
-AVAILABILITY_SCHEMA = "HarnessEvidenceAvailabilityIntakeV1"
-EXTERNAL_HOLD_RECEIPT_SCHEMA = "HarnessExternalAcquisitionHoldReceiptV1"
-SCHEMA_VERSION = "1.0.0"
+_HEX_40 = re.compile(r"^[0-9a-f]{40}$")
+
+
+LEGACY_AVAILABILITY_SCHEMA = "HarnessEvidenceAvailabilityIntakeV1"
+AVAILABILITY_SCHEMA = "HarnessEvidenceAvailabilityIntakeV2"
+LEGACY_EXTERNAL_HOLD_RECEIPT_SCHEMA = "HarnessExternalAcquisitionHoldReceiptV1"
+EXTERNAL_HOLD_RECEIPT_SCHEMA = "HarnessExternalAcquisitionHoldReceiptV2"
+RUN_AUTHORIZATION_SCHEMA = "HarnessProducerRunAuthorizationReceiptV1"
+RUN_STOP_EVENT_SCHEMA = "HarnessProducerRunStopEventV1"
+LEGACY_SCHEMA_VERSION = "1.0.0"
+SCHEMA_VERSION = "2.0.0"
+AUTHORITY_SCHEMA_VERSION = "1.0.0"
 
 PRESENT = "PRESENT"
 EXTERNAL_HOLD = "EXTERNAL_HOLD"
@@ -59,17 +69,46 @@ _PRODUCER_SET_FIELDS = {
     "physical_sha256",
     "self_sha256",
     "producer",
+    "acceptance_receipt",
 }
+_LEGACY_PRODUCER_SET_FIELDS = _PRODUCER_SET_FIELDS - {"acceptance_receipt"}
 _RECEIPT_DESCRIPTOR_FIELDS = {"relative_path", "physical_sha256", "self_sha256"}
 _HOLD_RECEIPT_FIELDS = {
     "schema_id",
     "schema_version",
+    "issuer_id",
+    "authority_id",
+    "run_id",
+    "phase_id",
+    "split_id",
     "candidate_key",
     "role",
     "status",
+    "producer",
+    "authorization_receipt",
+    "stop_event",
     "reason_code",
+    "observed_at",
     "final_glossary_decision",
     "integrity",
+}
+_LEGACY_HOLD_RECEIPT_FIELDS = {
+    "schema_id", "schema_version", "candidate_key", "role", "status",
+    "reason_code", "final_glossary_decision", "integrity",
+}
+_PRODUCER_AUTHORITY_FIELDS = {
+    "component_id", "component_version", "run_id", "commit", "tree",
+}
+_RUN_AUTHORIZATION_FIELDS = {
+    "schema_id", "schema_version", "status", "issuer_id", "authority_id",
+    "run_id", "phase_id", "split_id", "candidate_key", "role", "producer",
+    "final_glossary_decision", "integrity",
+}
+_STOP_EVENT_FIELDS = {
+    "schema_id", "schema_version", "event_type", "status", "run_id",
+    "phase_id", "split_id", "candidate_key", "role", "producer",
+    "reason_code", "observed_at", "authorization_receipt",
+    "final_glossary_decision", "integrity",
 }
 
 
@@ -85,6 +124,7 @@ class AvailabilityItem:
     receipt_path: Path | None
     receipt_raw: bytes | None
     receipt: dict[str, Any] | None
+    receipt_authority_files: tuple[tuple[Path, str], ...]
 
 
 @dataclass(frozen=True)
@@ -120,8 +160,15 @@ def load_availability_manifest(
     raw = manifest_path.read_bytes()
     manifest = load_json(manifest_path, require_object=True)
     _require_exact_keys(manifest, _MANIFEST_FIELDS, "availability manifest")
-    if manifest.get("schema_id") != AVAILABILITY_SCHEMA or manifest.get("schema_version") != SCHEMA_VERSION:
-        raise ValidationError("unsupported HarnessEvidenceAvailabilityIntakeV1")
+    schema_id = manifest.get("schema_id")
+    if schema_id == AVAILABILITY_SCHEMA:
+        if manifest.get("schema_version") != SCHEMA_VERSION:
+            raise ValidationError("unsupported HarnessEvidenceAvailabilityIntakeV2")
+    elif schema_id == LEGACY_AVAILABILITY_SCHEMA:
+        if manifest.get("schema_version") != LEGACY_SCHEMA_VERSION:
+            raise ValidationError("unsupported legacy availability intake")
+    else:
+        raise ValidationError("unsupported Harness availability intake")
     if manifest.get("adapter_mode") != adapter_mode:
         raise ValidationError("availability adapter mode mismatch")
     if manifest.get("expected_roles") != list(ROLES):
@@ -142,7 +189,10 @@ def load_availability_manifest(
     raw_rows: dict[tuple[str, str], Mapping[str, Any]] = {}
     present_ids: dict[str, set[str]] = {role: set() for role in ROLES}
     counts = {status: 0 for status in STATUSES}
-    receipt_data: dict[tuple[str, str], tuple[Path, bytes, dict[str, Any]]] = {}
+    receipt_data: dict[
+        tuple[str, str],
+        tuple[Path, bytes, dict[str, Any], tuple[tuple[Path, str], ...]],
+    ] = {}
     for offset, row_value in enumerate(rows):
         row = _mapping(row_value, f"availability row {offset}")
         _require_exact_keys(row, _ROW_FIELDS, f"availability row {offset}")
@@ -178,6 +228,12 @@ def load_availability_manifest(
                 receipt_value,
                 expected_identity=identity,
                 role=role,
+                run_id=str(manifest["run_id"]),
+                phase_id=str(manifest["phase_id"]),
+                split_id=str(manifest["split_id"]),
+                observed_at=str(row["observed_at"]),
+                reason_code=str(reason),
+                legacy=schema_id == LEGACY_AVAILABILITY_SCHEMA,
             )
         elif status == MISSING:
             _string(reason, "MISSING reason_code")
@@ -202,6 +258,10 @@ def load_availability_manifest(
         present_ids=present_ids,
         schema_root=schema_root,
         adapter_mode=adapter_mode,
+        availability_schema_id=str(schema_id),
+        run_id=str(manifest["run_id"]),
+        phase_id=str(manifest["phase_id"]),
+        split_id=str(manifest["split_id"]),
     )
     package_index = {
         (item.identity.candidate_id, producer.role): item
@@ -224,6 +284,7 @@ def load_availability_manifest(
                 receipt_path=receipt[0] if receipt else None,
                 receipt_raw=receipt[1] if receipt else None,
                 receipt=receipt[2] if receipt else None,
+                receipt_authority_files=receipt[3] if receipt else (),
             )
         )
     if any((item.status == PRESENT) != (item.package is not None) for item in items):
@@ -268,6 +329,8 @@ def write_present_availability_manifest(
     adapter_mode: str,
     context_set_manifest: Path,
     attestation_set_manifest: Path,
+    context_acceptance_receipt: Path | None = None,
+    attestation_acceptance_receipt: Path | None = None,
     schema_root: Path,
     run_id: str,
     phase_id: str,
@@ -281,6 +344,10 @@ def write_present_availability_manifest(
             candidates=candidates,
             schema_root=schema_root,
             adapter_mode=adapter_mode,
+            acceptance_receipt_path=context_acceptance_receipt,
+            run_id=run_id,
+            phase_id=phase_id,
+            split_id=split_id,
         ),
         load_producer_set(
             attestation_set_manifest,
@@ -288,6 +355,10 @@ def write_present_availability_manifest(
             candidates=candidates,
             schema_root=schema_root,
             adapter_mode=adapter_mode,
+            acceptance_receipt_path=attestation_acceptance_receipt,
+            run_id=run_id,
+            phase_id=phase_id,
+            split_id=split_id,
         ),
     )
     return _write_availability_manifest(
@@ -336,7 +407,7 @@ def _write_availability_manifest(
             _copy_file(producer.manifest_path, destination_root / "manifest.json")
             for item in producer.items:
                 _copy_file(item.path, destination_root / safe_relative_path(item.relative_path))
-            for bound in (producer.source_manifest_path, producer.acceptance_receipt_path):
+            for bound in (producer.source_manifest_path,):
                 if bound is None:
                     continue
                 try:
@@ -344,6 +415,21 @@ def _write_availability_manifest(
                 except ValueError as exc:
                     raise ValidationError("producer source binding escapes its manifest root") from exc
                 _copy_file(bound, destination_root / relative)
+            acceptance_descriptor = None
+            if producer.acceptance_receipt_path is not None:
+                authority_root = destination_root / "acceptance_authority"
+                for source, relative_text in producer.acceptance_authority_files:
+                    _copy_file(source, authority_root / safe_relative_path(relative_text))
+                receipt_relative = producer.acceptance_receipt_path.name
+                receipt_destination = authority_root / receipt_relative
+                acceptance_descriptor = {
+                    "relative_path": (
+                        f"producer_sets/{producer.role}/acceptance_authority/"
+                        f"{receipt_relative}"
+                    ),
+                    "physical_sha256": sha256_file(receipt_destination),
+                    "self_sha256": producer.acceptance_receipt["integrity"]["self_sha256"],
+                }
             bindings.append(
                 {
                     "role": producer.role,
@@ -351,6 +437,7 @@ def _write_availability_manifest(
                     "physical_sha256": sha256_file(destination_root / "manifest.json"),
                     "self_sha256": producer.manifest["integrity"]["self_sha256"],
                     "producer": producer.manifest["producer"],
+                    "acceptance_receipt": acceptance_descriptor,
                 }
             )
         rows: list[dict[str, Any]] = []
@@ -402,6 +489,10 @@ def _load_present_sets(
     present_ids: Mapping[str, set[str]],
     schema_root: Path,
     adapter_mode: str,
+    availability_schema_id: str,
+    run_id: str,
+    phase_id: str,
+    split_id: str,
 ) -> tuple[ProducerSet, ...]:
     bindings = manifest.get("producer_sets")
     if not isinstance(bindings, list):
@@ -411,11 +502,12 @@ def _load_present_sets(
     by_role: dict[str, Mapping[str, Any]] = {}
     for value in bindings:
         binding = _mapping(value, "availability producer set binding")
-        _require_exact_keys(
-            binding,
-            _PRODUCER_SET_FIELDS,
-            "availability producer set binding",
+        expected_fields = (
+            _PRODUCER_SET_FIELDS
+            if availability_schema_id == AVAILABILITY_SCHEMA
+            else _LEGACY_PRODUCER_SET_FIELDS
         )
+        _require_exact_keys(binding, expected_fields, "availability producer set binding")
         role = _string(binding.get("role"), "availability producer set role")
         if role not in ROLES or role in by_role:
             raise ValidationError("duplicate or unsupported availability producer set")
@@ -433,12 +525,46 @@ def _load_present_sets(
         value = load_json(path, require_object=True)
         if value.get("integrity", {}).get("self_sha256") != binding.get("self_sha256"):
             raise IntegrityError("availability producer set self hash mismatch")
+        acceptance_path = None
+        if availability_schema_id == AVAILABILITY_SCHEMA:
+            descriptor_value = binding.get("acceptance_receipt")
+            if descriptor_value is not None:
+                descriptor = _mapping(
+                    descriptor_value, "availability acceptance receipt descriptor"
+                )
+                _require_exact_keys(
+                    descriptor,
+                    _RECEIPT_DESCRIPTOR_FIELDS,
+                    "availability acceptance receipt descriptor",
+                )
+                receipt_relative = safe_relative_path(
+                    _string(
+                        descriptor.get("relative_path"),
+                        "availability acceptance receipt path",
+                    )
+                )
+                acceptance_path = ensure_no_symlink(manifest_path.parent, receipt_relative)
+                if (
+                    not acceptance_path.is_file()
+                    or sha256_file(acceptance_path) != descriptor.get("physical_sha256")
+                ):
+                    raise IntegrityError("availability acceptance receipt physical mismatch")
+                acceptance_value = load_json(acceptance_path, require_object=True)
+                if (
+                    acceptance_value.get("integrity", {}).get("self_sha256")
+                    != descriptor.get("self_sha256")
+                ):
+                    raise IntegrityError("availability acceptance receipt self mismatch")
         producer = load_producer_set(
             path,
             role=role,
             candidates=[candidates[candidate_id] for candidate_id in sorted(present_ids[role])],
             schema_root=schema_root,
             adapter_mode=adapter_mode,
+            acceptance_receipt_path=acceptance_path,
+            run_id=run_id,
+            phase_id=phase_id,
+            split_id=split_id,
         )
         if binding.get("producer") != producer.manifest.get("producer"):
             raise ValidationError("availability producer set provenance mismatch")
@@ -452,7 +578,13 @@ def _load_hold_receipt(
     *,
     expected_identity: CandidateIdentity,
     role: str,
-) -> tuple[Path, bytes, dict[str, Any]]:
+    run_id: str,
+    phase_id: str,
+    split_id: str,
+    observed_at: str,
+    reason_code: str,
+    legacy: bool,
+) -> tuple[Path, bytes, dict[str, Any], tuple[tuple[Path, str], ...]]:
     descriptor = _mapping(value, "EXTERNAL_HOLD receipt descriptor")
     _require_exact_keys(
         descriptor,
@@ -465,8 +597,18 @@ def _load_hold_receipt(
         raise IntegrityError("EXTERNAL_HOLD receipt physical hash mismatch")
     raw = path.read_bytes()
     receipt = load_json(path, require_object=True)
-    _require_exact_keys(receipt, _HOLD_RECEIPT_FIELDS, "EXTERNAL_HOLD receipt")
-    if receipt.get("schema_id") != EXTERNAL_HOLD_RECEIPT_SCHEMA or receipt.get("schema_version") != SCHEMA_VERSION:
+    expected_fields = _LEGACY_HOLD_RECEIPT_FIELDS if legacy else _HOLD_RECEIPT_FIELDS
+    _require_exact_keys(receipt, expected_fields, "EXTERNAL_HOLD receipt")
+    if legacy:
+        if (
+            receipt.get("schema_id") != LEGACY_EXTERNAL_HOLD_RECEIPT_SCHEMA
+            or receipt.get("schema_version") != LEGACY_SCHEMA_VERSION
+        ):
+            raise ValidationError("unsupported legacy EXTERNAL_HOLD receipt")
+    elif (
+        receipt.get("schema_id") != EXTERNAL_HOLD_RECEIPT_SCHEMA
+        or receipt.get("schema_version") != SCHEMA_VERSION
+    ):
         raise ValidationError("unsupported EXTERNAL_HOLD receipt")
     _verify_self_hash(receipt, "EXTERNAL_HOLD receipt")
     if descriptor.get("self_sha256") != receipt["integrity"]["self_sha256"]:
@@ -478,7 +620,118 @@ def _load_hold_receipt(
     if receipt.get("final_glossary_decision") is not None:
         raise PolicyError("EXTERNAL_HOLD receipt contains a final decision")
     _string(receipt.get("reason_code"), "EXTERNAL_HOLD receipt reason")
-    return path, raw, receipt
+    if legacy:
+        return path, raw, receipt, ()
+    for field, expected in (
+        ("run_id", run_id), ("phase_id", phase_id), ("split_id", split_id),
+        ("observed_at", observed_at), ("reason_code", reason_code),
+    ):
+        if receipt.get(field) != expected:
+            raise ValidationError(f"EXTERNAL_HOLD receipt {field} binding mismatch")
+    _string(receipt.get("issuer_id"), "EXTERNAL_HOLD receipt issuer_id")
+    _string(receipt.get("authority_id"), "EXTERNAL_HOLD receipt authority_id")
+    producer = _mapping(receipt.get("producer"), "EXTERNAL_HOLD receipt producer")
+    _require_exact_keys(producer, _PRODUCER_AUTHORITY_FIELDS, "EXTERNAL_HOLD receipt producer")
+    for field in ("component_id", "component_version", "run_id", "commit", "tree"):
+        _string(producer.get(field), f"EXTERNAL_HOLD producer.{field}")
+    for field in ("commit", "tree"):
+        if _HEX_40.fullmatch(str(producer[field])) is None:
+            raise ValidationError(f"EXTERNAL_HOLD producer {field} is not a Git OID")
+    authorization_path, authorization = _bound_json(
+        path.parent, receipt.get("authorization_receipt"), "EXTERNAL_HOLD authorization receipt"
+    )
+    _require_exact_keys(authorization, _RUN_AUTHORIZATION_FIELDS, "run authorization receipt")
+    if (
+        authorization.get("schema_id") != RUN_AUTHORIZATION_SCHEMA
+        or authorization.get("schema_version") != AUTHORITY_SCHEMA_VERSION
+        or authorization.get("status") != "AUTHORIZED"
+    ):
+        raise ValidationError("EXTERNAL_HOLD authorization is not an authoritative receipt")
+    _verify_authority_binding(
+        authorization, expected_identity, role, producer, run_id, phase_id, split_id,
+        "run authorization receipt",
+    )
+    for field in ("issuer_id", "authority_id"):
+        _string(authorization.get(field), f"run authorization receipt {field}")
+        if authorization.get(field) != receipt.get(field):
+            raise ValidationError(f"EXTERNAL_HOLD authorization {field} mismatch")
+    stop_path, stop = _bound_json(path.parent, receipt.get("stop_event"), "EXTERNAL_HOLD STOP_EVENT")
+    _require_exact_keys(stop, _STOP_EVENT_FIELDS, "EXTERNAL_HOLD STOP_EVENT")
+    if (
+        stop.get("schema_id") != RUN_STOP_EVENT_SCHEMA
+        or stop.get("schema_version") != AUTHORITY_SCHEMA_VERSION
+        or stop.get("event_type") != "STOP_EVENT"
+        or stop.get("status") != "STOPPED"
+    ):
+        raise ValidationError("EXTERNAL_HOLD is not bound to a STOP_EVENT")
+    _verify_authority_binding(
+        stop, expected_identity, role, producer, run_id, phase_id, split_id,
+        "EXTERNAL_HOLD STOP_EVENT",
+    )
+    if stop.get("reason_code") != reason_code or stop.get("observed_at") != observed_at:
+        raise ValidationError("EXTERNAL_HOLD STOP_EVENT reason/timestamp mismatch")
+    if stop.get("authorization_receipt") != receipt.get("authorization_receipt"):
+        raise IntegrityError("EXTERNAL_HOLD authorization binding drift")
+    return path, raw, receipt, (
+        (path, path.name),
+        (authorization_path, _descriptor_relative(receipt["authorization_receipt"])),
+        (stop_path, _descriptor_relative(receipt["stop_event"])),
+    )
+
+
+def verify_external_hold_receipt(
+    receipt_path: Path,
+    *,
+    candidate_key: Mapping[str, Any],
+    role: str,
+    run_id: str,
+    phase_id: str,
+    split_id: str,
+    observed_at: str,
+    reason_code: str,
+) -> dict[str, Any]:
+    """Revalidate a materialized V2 hold receipt and its exact STOP_EVENT chain."""
+
+    descriptor = {
+        "relative_path": receipt_path.name,
+        "physical_sha256": sha256_file(receipt_path),
+        "self_sha256": load_json(receipt_path, require_object=True)["integrity"]["self_sha256"],
+    }
+    _, _, receipt, _ = _load_hold_receipt(
+        receipt_path.parent,
+        descriptor,
+        expected_identity=_identity(candidate_key),
+        role=role,
+        run_id=run_id,
+        phase_id=phase_id,
+        split_id=split_id,
+        observed_at=observed_at,
+        reason_code=reason_code,
+        legacy=False,
+    )
+    return receipt
+
+
+def _verify_authority_binding(
+    value: Mapping[str, Any],
+    expected_identity: CandidateIdentity,
+    role: str,
+    producer: Mapping[str, Any],
+    run_id: str,
+    phase_id: str,
+    split_id: str,
+    label: str,
+) -> None:
+    if value.get("candidate_key") != expected_identity.as_dict() or value.get("role") != role:
+        raise ValidationError(f"{label} candidate/role mismatch")
+    if any(value.get(field) != expected for field, expected in (
+        ("run_id", run_id), ("phase_id", phase_id), ("split_id", split_id),
+    )):
+        raise ValidationError(f"{label} run/phase/split mismatch")
+    if value.get("producer") != dict(producer):
+        raise ValidationError(f"{label} producer binding mismatch")
+    if value.get("final_glossary_decision") is not None:
+        raise PolicyError(f"{label} contains a final glossary decision")
 
 
 def _copy_file(source: Path, destination: Path) -> None:
@@ -488,6 +741,29 @@ def _copy_file(source: Path, destination: Path) -> None:
             return
         raise IntegrityError(f"conflicting availability source path: {destination}")
     shutil.copyfile(source, destination)
+
+
+def _bound_json(root: Path, value: Any, label: str) -> tuple[Path, dict[str, Any]]:
+    descriptor = _mapping(value, label)
+    _require_exact_keys(descriptor, _RECEIPT_DESCRIPTOR_FIELDS, label)
+    relative = safe_relative_path(
+        _string(descriptor.get("relative_path"), f"{label} path")
+    )
+    path = ensure_no_symlink(root, relative)
+    if not path.is_file() or sha256_file(path) != descriptor.get("physical_sha256"):
+        raise IntegrityError(f"{label} physical binding mismatch")
+    payload = load_json(path, require_object=True)
+    _verify_self_hash(payload, label)
+    if descriptor.get("self_sha256") != payload["integrity"]["self_sha256"]:
+        raise IntegrityError(f"{label} self binding mismatch")
+    return path, payload
+
+
+def _descriptor_relative(value: Any) -> str:
+    descriptor = _mapping(value, "bound authority descriptor")
+    return safe_relative_path(
+        _string(descriptor.get("relative_path"), "bound authority path")
+    ).as_posix()
 
 
 def _identity(value: Any) -> CandidateIdentity:
@@ -554,4 +830,5 @@ __all__ = [
     "load_availability_manifest",
     "write_missing_availability_manifest",
     "write_present_availability_manifest",
+    "verify_external_hold_receipt",
 ]
