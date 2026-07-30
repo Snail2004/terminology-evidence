@@ -1,0 +1,13 @@
+{
+  "base_authority_commit": "0281ed3bfa4ebd10f950c2c639f98242285d1c62",
+  "integrity": {
+    "self_sha256": "653bdfd11af032f791ee072e72f00be4ba3f54db7dfacb59e07bb7cc6cbd8746"
+  },
+  "policy_id": "d2l-remaining-100-stage-a-final-closure-v1.0",
+  "prior_closure_manifest_physical_sha256": "13ac87ddb68f6153c1ac7a470857c28477411d9ff5c999718c3b07157dbbaf96",
+  "prior_closure_manifest_self_sha256": "37853f6d13092dc07190d826d615725d040bda1a415d65d16cb2a7855d943f06",
+  "proposal_manifest_physical_sha256": "1a71e8043763a03bf663c9a0e1ac43caef1b4d15fec553a684d93db9fffc5028",
+  "proposal_manifest_self_sha256": "c95454c18c3b8b2f623248141adba638d0e9621d93fe5b73b510262d23aee25e",
+  "schema_id": "D2LRemaining100FinalClosureAuthorityV1",
+  "schema_version": "1.0"
+}

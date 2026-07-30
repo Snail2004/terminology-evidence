@@ -1,0 +1,29 @@
+{
+  "file_count": 2,
+  "files": [
+    {
+      "batch_id": "proposal_reaudit_reviewer_4",
+      "captured_relative_path": "reviewer_4/proposal_reaudit_reviewer_4.json",
+      "reviewer_role": "reviewer_4",
+      "sha256": "7b9023541436d8225b3feb87a59cd4def2f3dbbe3ab95fcd6c63176ebbbe7a12",
+      "size_bytes": 27144,
+      "source_file_name": "proposal_reaudit_reviewer_4.json",
+      "source_input_sha256": "4ed239604dcd7ad8719dcfba2e10e3c31e20ab04617ac01e3181d92b03bb052e"
+    },
+    {
+      "batch_id": "proposal_reaudit_reviewer_5",
+      "captured_relative_path": "reviewer_5/proposal_reaudit_reviewer_5.json",
+      "reviewer_role": "reviewer_5",
+      "sha256": "955c71f213fa54bca040855983fd7044f51712cbdd55d455dd1247d0a7429819",
+      "size_bytes": 77419,
+      "source_file_name": "proposal_reaudit_reviewer_5.json",
+      "source_input_sha256": "2c03f834e4cc6e18056ac0224e22e2d53412cbf61608058215333b09656fce83"
+    }
+  ],
+  "integrity": {
+    "self_sha256": "4ce54e94917279c676163f4efe22098c79e14c0e7308c0010e78e174bda00f5a"
+  },
+  "policy_id": "d2l-remaining-100-stage-a-final-closure-v1.0",
+  "schema_id": "D2LRemaining100FinalReauditInputInventoryV1",
+  "schema_version": "1.0"
+}
