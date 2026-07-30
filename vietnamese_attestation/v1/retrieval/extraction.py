@@ -62,6 +62,7 @@ class _VisibleTextParser(HTMLParser):
             name = (
                 attributes.get("name")
                 or attributes.get("property")
+                or ""
             ).casefold()
             content = attributes.get("content", "").strip()
             if name in {"author", "article:author"} and content:
