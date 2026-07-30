@@ -23,6 +23,7 @@ from context_substitution.v2.providers.role_plan import (
 )
 from context_substitution.v2.providers.role_routing import (
     RoleRoutedStructuredModel,
+    _normalize_known_top_level_response_key,
     _unwrap_complete_outer_json_fence,
 )
 from context_substitution.v2.providers.ledger import ProviderResponseLedger
@@ -153,7 +154,10 @@ def test_unknown_provider_outcome_is_recorded_then_hard_stops() -> None:
 def test_single_complete_json_fence_is_unwrapped_after_raw_capture(
     tmp_path: Path,
 ) -> None:
-    response_text = " \r\n```json\r\n{\"ok\":true}\r\n```\t\r\n"
+    response_text = (
+        " \r\n```json\r\n"
+        "{\"additionalProperties\":false,\"ok\":true}\r\n```\t\r\n"
+    )
     senders = _senders(
         ckey=[ProviderRawResponse(text=response_text, payload=None)]
     )
@@ -173,6 +177,32 @@ def test_single_complete_json_fence_is_unwrapped_after_raw_capture(
     assert (ledger_root / attempt["raw_response_ref"]).read_bytes() == (
         response_text.encode("utf-8")
     )
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        {"additionalProperties": True, "ok": True},
+        {"additionalProperties": 0, "ok": True},
+        {"additionalProperties": "false", "ok": True},
+        {"additionalProperties": None, "ok": True},
+        {"ok": {"additionalProperties": False}},
+        {"additionalProperties": False, "ok": {"additionalProperties": False}},
+        [{"additionalProperties": False}],
+    ],
+)
+def test_known_response_key_normalization_rejects_nonexact_or_nested_forms(
+    value: Any,
+) -> None:
+    with pytest.raises(StrictJSONError):
+        _normalize_known_top_level_response_key(value)
+
+
+def test_known_response_key_normalization_preserves_every_other_extra_key() -> None:
+    normalized = _normalize_known_top_level_response_key(
+        {"additionalProperties": False, "ok": True, "other": "still-visible"}
+    )
+    assert normalized == {"ok": True, "other": "still-visible"}
 
 
 @pytest.mark.parametrize(

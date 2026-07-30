@@ -44,6 +44,40 @@ def _unwrap_complete_outer_json_fence(response_text: str) -> str:
     return body
 
 
+def _normalize_known_top_level_response_key(value: Any) -> Any:
+    if not isinstance(value, Mapping):
+        if _contains_additional_properties_key(value):
+            raise StrictJSONError(
+                "provider response: nested additionalProperties is forbidden"
+            )
+        return value
+    has_known_key = "additionalProperties" in value
+    if has_known_key and value["additionalProperties"] is not False:
+        raise StrictJSONError(
+            "provider response: top-level additionalProperties must be false"
+        )
+    normalized = dict(value)
+    if has_known_key:
+        normalized.pop("additionalProperties")
+    if _contains_additional_properties_key(normalized):
+        raise StrictJSONError(
+            "provider response: nested additionalProperties is forbidden"
+        )
+    return normalized if has_known_key else value
+
+
+def _contains_additional_properties_key(value: Any) -> bool:
+    if isinstance(value, Mapping):
+        return any(
+            key == "additionalProperties"
+            or _contains_additional_properties_key(child)
+            for key, child in value.items()
+        )
+    if isinstance(value, list):
+        return any(_contains_additional_properties_key(child) for child in value)
+    return False
+
+
 class RoleRoutedStructuredModel:
     """Execute only routes sealed for the requested semantic role."""
 
@@ -216,6 +250,7 @@ class RoleRoutedStructuredModel:
                             source=f"provider:{role}:{tag}",
                         )
                     )
+                    parsed = _normalize_known_top_level_response_key(parsed)
                     validated = validator(parsed)
                     provenance = provider_provenance(
                         route=route,
