@@ -21,6 +21,9 @@ from vietnamese_attestation.v1.live.authority_adapter.source_governance import (
     fetch_after_path_admission,
     load_runtime_registry_projection,
 )
+from vietnamese_attestation.v1.live.authority_adapter.final_canary import (
+    load_final_canary_authority_inputs,
+)
 from vietnamese_attestation.v1.live.common import (
     LiveSchemaError,
     canonical_bytes,
@@ -42,6 +45,18 @@ SOURCE_GOVERNANCE_PACKAGE = Path(
     os.environ.get(
         "E_SOURCE_GOVERNANCE_PACKAGE",
         r"C:\work\terminology-evidence-artifacts\D0_API_Execution_Plan_Operations_V1\runtime-registry-projection-v1\release\build-a.zip",
+    )
+)
+CORPUS_AUTHORITY_PACKAGE = Path(
+    os.environ.get(
+        "E_CORPUS_AUTHORITY_PACKAGE",
+        r"C:\work\terminology-evidence-artifacts\D0_API_Execution_Plan_Operations_V1\corpus-acquisition-runtime-v1\release\build-a.zip",
+    )
+)
+DRAFT4_FINAL_AUTHORITY_PACKAGE = Path(
+    os.environ.get(
+        "E_DRAFT4_FINAL_AUTHORITY_PACKAGE",
+        r"C:\work\terminology-evidence-artifacts\D0_API_Execution_Plan_Operations_V1\draft4-final-authority\release\build-a.zip",
     )
 )
 
@@ -75,6 +90,79 @@ def test_source_governance_path_admission_precedes_fetch() -> None:
     assert admission["registry_self_sha256"] == RUNTIME_REGISTRY_SELF_SHA256
     assert result == {"retry_index": 0}
     assert calls == ["https://users.soict.hust.edu.vn/huonglt/AI/lecture.pdf"]
+
+
+def test_live_snapshot_preserves_exact_authorities_and_run_hold(
+    tmp_path: Path,
+) -> None:
+    projection = load_runtime_registry_projection(SOURCE_GOVERNANCE_PACKAGE)
+    authorities = load_final_canary_authority_inputs(
+        CORPUS_AUTHORITY_PACKAGE, DRAFT4_FINAL_AUTHORITY_PACKAGE
+    )
+    source_root = tmp_path / "acquired"
+    source_root.mkdir()
+    (source_root / "lecture.html").write_bytes(
+        b"<html><body>Underflow is called tran duoi.</body></html>"
+    )
+    receipt = seal(
+        {
+            "schema_id": "EControlledAcquisitionReceiptV1",
+            "schema_version": "1.0.0",
+            "mode": "LIVE_AUTHORIZED",
+            "rows": [
+                {
+                    "file_ref": "lecture.html",
+                    "source_id": "HUST_SOICT_LECTURES",
+                    "canonical_url": "https://users.soict.hust.edu.vn/huonglt/AI/lecture.html",
+                    "final_url": "https://users.soict.hust.edu.vn/huonglt/AI/lecture.html",
+                    "content_type": "text/html",
+                    "redirect_chain": [],
+                    "retrieved_at_utc": "2026-07-30T13:00:00Z",
+                    "http_status": 200,
+                }
+            ],
+            "integrity": {},
+        }
+    )
+    receipt_path = tmp_path / "acquisition_receipt.json"
+    receipt_path.write_bytes(canonical_bytes(receipt) + b"\n")
+    retrieval_policy = seal(
+        {
+            "schema_id": "ERetrievalPolicyV1",
+            "schema_version": "1.0.0",
+            "policy_id": "focused-live-snapshot-v1",
+            "network_mode": "LIVE_AUTHORIZED",
+            "integrity": {},
+        }
+    )
+    snapshot_root = tmp_path / "snapshot"
+    manifest = build_snapshot(
+        source_root,
+        snapshot_root,
+        registry=projection.registry,
+        retrieval_policy=retrieval_policy,
+        acquisition_receipt=receipt,
+        acquisition_receipt_source=receipt_path,
+        corpus_authority_package_path=CORPUS_AUTHORITY_PACKAGE,
+        draft4_final_authority_package_path=DRAFT4_FINAL_AUTHORITY_PACKAGE,
+        source_governance_package_path=SOURCE_GOVERNANCE_PACKAGE,
+    )
+    assert manifest["mode"] == "LIVE_AUTHORIZED"
+    assert verify_snapshot(snapshot_root)["mode"] == "LIVE_AUTHORIZED"
+    assert (
+        snapshot_root / "authority" / "acquisition_receipt.original.json"
+    ).read_bytes() == receipt_path.read_bytes()
+    assert (
+        snapshot_root
+        / "authority"
+        / "main_corpus_acquisition_authorization.original.json"
+    ).read_bytes() == authorities.corpus_authorization_bytes
+    assert (
+        snapshot_root
+        / "authority"
+        / "draft4_final_authority_receipt.original.json"
+    ).read_bytes() == authorities.draft4_authority_bytes
+    assert authorities.live_execution_authorized is False
 
 
 def test_external_authority_adapter_binds_exact_bytes_and_trust(tmp_path: Path) -> None:

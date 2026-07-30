@@ -43,6 +43,20 @@ from .authority_adapter import (
     validate_authority_profile,
     validate_loaded_authority_bundle,
 )
+from .authority_adapter.final_canary import (
+    CORPUS_AUTHORITY_PACKAGE_SHA256,
+    CORPUS_AUTHORIZATION_PHYSICAL_SHA256,
+    CORPUS_AUTHORIZATION_SELF_SHA256,
+    DRAFT4_FINAL_AUTHORITY_PHYSICAL_SHA256,
+    DRAFT4_FINAL_AUTHORITY_SELF_SHA256,
+    DRAFT4_FINAL_PACKAGE_SHA256,
+    FinalCanaryAuthorityInputs,
+    load_final_canary_authority_inputs,
+)
+from .authority_adapter.source_governance import (
+    admit_url_before_network,
+    load_runtime_registry_projection,
+)
 
 SNAPSHOT_SCHEMA_ID = "EControlledCorpusSnapshotV1"
 ACQUISITION_SCHEMA_ID = "EControlledAcquisitionReceiptV1"
@@ -65,6 +79,9 @@ def build_snapshot(
     authority_bundle: Mapping[str, Any] | None = None,
     authority_receipt_paths: Mapping[str, str | Path] | None = None,
     authority_profile_path: str | Path | None = None,
+    corpus_authority_package_path: str | Path | None = None,
+    draft4_final_authority_package_path: str | Path | None = None,
+    source_governance_package_path: str | Path | None = None,
 ) -> dict[str, Any]:
     """Freeze supplied local bytes; this function never performs network IO."""
     source_root = resolve_artifact_root(input_dir)
@@ -75,9 +92,46 @@ def build_snapshot(
             raise LiveSchemaError("snapshot output directory must be new and empty")
     else:
         target.mkdir(parents=True)
-    validate_registry(registry)
+    registry = validate_registry(registry)
     if retrieval_policy.get("network_mode") not in {"LOCAL_FIXTURE_ONLY", "LIVE_AUTHORIZED"}:
         raise LiveSchemaError("retrieval policy network mode is invalid")
+    snapshot_mode = (
+        str(acquisition_receipt.get("mode", "LOCAL_FIXTURE_ONLY"))
+        if isinstance(acquisition_receipt, Mapping)
+        else "LOCAL_FIXTURE_ONLY"
+    )
+    if snapshot_mode not in {"LOCAL_FIXTURE_ONLY", "LIVE_AUTHORIZED"}:
+        raise LiveSchemaError("acquisition receipt mode is unsupported")
+    live_authorities: FinalCanaryAuthorityInputs | None = None
+    source_projection = None
+    live_paths = (
+        corpus_authority_package_path,
+        draft4_final_authority_package_path,
+        source_governance_package_path,
+    )
+    if snapshot_mode == "LIVE_AUTHORIZED":
+        if acquisition_receipt_source is None or any(path is None for path in live_paths):
+            raise LiveSchemaError(
+                "live snapshot requires exact receipt, acquisition authority, Draft4 authority, and source governance"
+            )
+        if authority_bundle is not None or authority_receipt_paths or authority_profile_path:
+            raise LiveSchemaError("live snapshot cannot mix legacy authority inputs")
+        live_authorities = load_final_canary_authority_inputs(
+            corpus_authority_package_path,
+            draft4_final_authority_package_path,
+        )
+        source_projection = load_runtime_registry_projection(
+            source_governance_package_path
+        )
+        if (
+            source_projection.registry["integrity"]["self_sha256"]
+            != registry["integrity"]["self_sha256"]
+        ):
+            raise LiveSchemaError("live snapshot registry does not match exact projection")
+        if retrieval_policy.get("network_mode") != "LIVE_AUTHORIZED":
+            raise LiveSchemaError("live snapshot requires LIVE_AUTHORIZED retrieval policy")
+    elif any(path is not None for path in live_paths):
+        raise LiveSchemaError("local snapshot cannot accept live authority inputs")
     rows = _receipt_rows(acquisition_receipt)
     if not rows:
         raise LiveSchemaError("acquisition receipt has no local documents")
@@ -99,7 +153,7 @@ def build_snapshot(
     receipt_copy = {
         "schema_id": ACQUISITION_SCHEMA_ID,
         "schema_version": LIVE_TOOL_SCHEMA_VERSION,
-        "mode": "LOCAL_FIXTURE_ONLY",
+        "mode": snapshot_mode,
         "rows": rows,
         "integrity": {},
     }
@@ -114,7 +168,14 @@ def build_snapshot(
         original_receipt_ref=original_receipt_ref,
         original_receipt_sha256=hashlib.sha256(original_receipt).hexdigest(),
         normalized_receipt_self_sha256=receipt_copy["integrity"]["self_sha256"],
-        source_kind="EXACT_EXTERNAL_FILE" if acquisition_receipt_source is not None else "CANONICAL_IN_MEMORY_FIXTURE",
+        source_kind=(
+            "EXACT_EXTERNAL_ACQUISITION_RECEIPT"
+            if snapshot_mode == "LIVE_AUTHORIZED"
+            else "EXACT_EXTERNAL_FILE"
+            if acquisition_receipt_source is not None
+            else "CANONICAL_IN_MEMORY_FIXTURE"
+        ),
+        live_authorities=live_authorities,
     )
     physical_members.extend(authority_members)
     for index, raw in enumerate(sorted(rows, key=lambda item: str(item["file_ref"]))):
@@ -130,6 +191,15 @@ def build_snapshot(
         redirect_chain = raw.get("redirect_chain", [])
         if not isinstance(redirect_chain, list) or any(not isinstance(item, str) for item in redirect_chain):
             raise LiveSchemaError("redirect_chain must be a string list")
+        if source_projection is not None:
+            for checked_url in [canonical_url, *redirect_chain, final_url]:
+                path_admission = admit_url_before_network(
+                    source_projection, registry, checked_url
+                )
+                if path_admission["source_id"] != source_id:
+                    raise LiveSchemaError(
+                        "live acquisition receipt source/path identity mismatch"
+                    )
         admission = admit_source(
             registry,
             source_id=source_id,
@@ -158,8 +228,16 @@ def build_snapshot(
             retrieved_at=str(raw.get("retrieved_at_utc", "1970-01-01T00:00:00Z")),
             http_status=int(raw.get("http_status", 200)),
             response_headers=(),
-            fetch_policy_version="EControlledCorpusSnapshotV1",
-            robots_status="NOT_APPLICABLE_LOCAL_FIXTURE",
+            fetch_policy_version=(
+                "EControlledCorpusSnapshotLiveAuthorizedV1"
+                if snapshot_mode == "LIVE_AUTHORIZED"
+                else "EControlledCorpusSnapshotV1"
+            ),
+            robots_status=(
+                "RECORDED_EXTERNAL_ACQUISITION"
+                if snapshot_mode == "LIVE_AUTHORIZED"
+                else "NOT_APPLICABLE_LOCAL_FIXTURE"
+            ),
             redirect_chain=tuple(redirect_chain),
         )
         extracted = extract_document(fetched)
@@ -195,7 +273,7 @@ def build_snapshot(
             "schema_id": SNAPSHOT_SCHEMA_ID,
             "schema_version": LIVE_TOOL_SCHEMA_VERSION,
             "snapshot_id": "e-corpus-snapshot-" + physical_digest[:24],
-            "mode": "LOCAL_FIXTURE_ONLY",
+            "mode": snapshot_mode,
             "documents": document_records,
             "member_manifest": physical_members,
             "registry_binding": {
@@ -289,8 +367,8 @@ def _verify_directory(root: Path, expected_registry: str | None, expected_policy
     if manifest["schema_id"] != SNAPSHOT_SCHEMA_ID or manifest["schema_version"] != LIVE_TOOL_SCHEMA_VERSION:
         raise LiveSchemaError("snapshot schema identity mismatch")
     _validate_snapshot_manifest_nesting(manifest)
-    if manifest["mode"] != "LOCAL_FIXTURE_ONLY":
-        raise LiveSchemaError("only local fixture snapshots are accepted in this milestone")
+    if manifest["mode"] not in {"LOCAL_FIXTURE_ONLY", "LIVE_AUTHORIZED"}:
+        raise LiveSchemaError("snapshot manifest mode is unsupported")
     if not verify_seal(manifest):
         raise LiveSchemaError("snapshot manifest self hash mismatch")
     if expected_registry and manifest["registry_binding"]["registry_self_sha256"] != expected_registry:
@@ -323,6 +401,8 @@ def _verify_directory(root: Path, expected_registry: str | None, expected_policy
         raise LiveSchemaError("acquisition receipt is invalid")
     if canonical_sha256(receipt) != manifest["acquisition_receipt_sha256"]:
         raise LiveSchemaError("acquisition receipt binding mismatch")
+    if receipt["mode"] != manifest["mode"]:
+        raise LiveSchemaError("snapshot/acquisition receipt mode mismatch")
     actual_members.append(_member(receipt_path, root))
     authority_members = _verify_authority_binding(root, manifest["authority_binding"], receipt)
     actual_members.extend(authority_members)
@@ -442,7 +522,11 @@ def _validate_acquisition_receipt(receipt: Mapping[str, Any]) -> None:
         {"schema_id", "schema_version", "mode", "rows", "integrity"},
         path="$.acquisition_receipt",
     )
-    if receipt["schema_id"] != ACQUISITION_SCHEMA_ID or receipt["schema_version"] != LIVE_TOOL_SCHEMA_VERSION or receipt["mode"] != "LOCAL_FIXTURE_ONLY":
+    if (
+        receipt["schema_id"] != ACQUISITION_SCHEMA_ID
+        or receipt["schema_version"] != LIVE_TOOL_SCHEMA_VERSION
+        or receipt["mode"] not in {"LOCAL_FIXTURE_ONLY", "LIVE_AUTHORIZED"}
+    ):
         raise LiveSchemaError("acquisition receipt identity/mode mismatch")
     if not isinstance(receipt["integrity"], Mapping):
         raise LiveSchemaError("acquisition receipt integrity must be an object")
@@ -480,7 +564,19 @@ def _persist_authority_bundle(
     original_receipt_sha256: str,
     normalized_receipt_self_sha256: str,
     source_kind: str,
+    live_authorities: FinalCanaryAuthorityInputs | None,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    if live_authorities is not None:
+        if authority_bundle is not None or authority_receipt_paths or authority_profile_path:
+            raise LiveSchemaError("live snapshot cannot mix authority mechanisms")
+        return _persist_live_authorities(
+            target,
+            live_authorities,
+            original_receipt_ref=original_receipt_ref,
+            original_receipt_sha256=original_receipt_sha256,
+            normalized_receipt_self_sha256=normalized_receipt_self_sha256,
+            source_kind=source_kind,
+        )
     if authority_bundle is None:
         if authority_receipt_paths or authority_profile_path is not None:
             raise LiveSchemaError("authority files require a verified authority bundle")
@@ -578,6 +674,72 @@ def _persist_authority_bundle(
     )
 
 
+def _persist_live_authorities(
+    target: Path,
+    inputs: FinalCanaryAuthorityInputs,
+    *,
+    original_receipt_ref: str,
+    original_receipt_sha256: str,
+    normalized_receipt_self_sha256: str,
+    source_kind: str,
+) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    artifacts = {
+        "corpus_receipt": (
+            "authority/main_corpus_acquisition_authorization.original.json",
+            inputs.corpus_authorization_bytes,
+        ),
+        "corpus_package": (
+            "authority/main_corpus_acquisition_runtime.zip",
+            inputs.corpus_package_bytes,
+        ),
+        "draft4_receipt": (
+            "authority/draft4_final_authority_receipt.original.json",
+            inputs.draft4_authority_bytes,
+        ),
+        "draft4_package": (
+            "authority/draft4_final_authority.zip",
+            inputs.draft4_package_bytes,
+        ),
+    }
+    members: list[dict[str, Any]] = []
+    for ref, raw in artifacts.values():
+        path = target.joinpath(*ref.split("/"))
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(raw)
+        members.append(_member(path, target))
+    corpus_receipt_ref = artifacts["corpus_receipt"][0]
+    draft4_receipt_ref = artifacts["draft4_receipt"][0]
+    return (
+        {
+            "mode": "LIVE_AUTHORIZED",
+            "acquisition_receipt_source_kind": source_kind,
+            "acquisition_receipt_original_ref": original_receipt_ref,
+            "acquisition_receipt_physical_sha256": original_receipt_sha256,
+            "acquisition_receipt_self_sha256": normalized_receipt_self_sha256,
+            "authority_profile_ref": corpus_receipt_ref,
+            "authority_profile_physical_sha256": CORPUS_AUTHORIZATION_PHYSICAL_SHA256,
+            "authority_bundle_ref": draft4_receipt_ref,
+            "authority_bundle_physical_sha256": DRAFT4_FINAL_AUTHORITY_PHYSICAL_SHA256,
+            "authority_bundle_self_sha256": DRAFT4_FINAL_AUTHORITY_SELF_SHA256,
+            "external_receipts": [
+                {
+                    "role": "CORPUS_ACQUISITION_PACKAGE",
+                    "artifact_ref": artifacts["corpus_package"][0],
+                    "artifact_physical_sha256": CORPUS_AUTHORITY_PACKAGE_SHA256,
+                    "artifact_self_sha256": CORPUS_AUTHORIZATION_SELF_SHA256,
+                },
+                {
+                    "role": "DRAFT4_FINAL_AUTHORITY_PACKAGE",
+                    "artifact_ref": artifacts["draft4_package"][0],
+                    "artifact_physical_sha256": DRAFT4_FINAL_PACKAGE_SHA256,
+                    "artifact_self_sha256": DRAFT4_FINAL_AUTHORITY_SELF_SHA256,
+                },
+            ],
+        },
+        members,
+    )
+
+
 def _verify_authority_binding(
     root: Path, binding: Mapping[str, Any], normalized_receipt: Mapping[str, Any]
 ) -> list[dict[str, Any]]:
@@ -595,7 +757,11 @@ def _verify_authority_binding(
         "external_receipts",
     }
     require_exact_keys(binding, expected, path="$.authority_binding")
-    if binding["mode"] not in {"LOCAL_FIXTURE_ONLY", "PRODUCTION_AUTHORITY"}:
+    if binding["mode"] not in {
+        "LOCAL_FIXTURE_ONLY",
+        "LIVE_AUTHORIZED",
+        "PRODUCTION_AUTHORITY",
+    }:
         raise LiveSchemaError("snapshot authority mode is unsupported")
     original_path = resolve_artifact_file(root, binding["acquisition_receipt_original_ref"])
     if file_sha256(original_path) != binding["acquisition_receipt_physical_sha256"]:
@@ -606,6 +772,13 @@ def _verify_authority_binding(
     if normalized_receipt["integrity"]["self_sha256"] != binding["acquisition_receipt_self_sha256"]:
         raise LiveSchemaError("normalized acquisition receipt self hash mismatch")
     members = [_member(original_path, root)]
+    if binding["mode"] == "LIVE_AUTHORIZED":
+        if normalized_receipt["mode"] != "LIVE_AUTHORIZED":
+            raise LiveSchemaError("live authority binding has non-live acquisition receipt")
+        return [
+            *members,
+            *_verify_live_authorities(root, binding),
+        ]
     nullable = (
         "authority_profile_ref",
         "authority_profile_physical_sha256",
@@ -666,6 +839,51 @@ def _verify_authority_binding(
             raise LiveSchemaError("snapshot external receipt binding drift")
         members.append(_member(receipt_path, root))
     return members
+
+
+def _verify_live_authorities(
+    root: Path, binding: Mapping[str, Any]
+) -> list[dict[str, Any]]:
+    rows = binding["external_receipts"]
+    if not isinstance(rows, list) or [row.get("role") for row in rows] != [
+        "CORPUS_ACQUISITION_PACKAGE",
+        "DRAFT4_FINAL_AUTHORITY_PACKAGE",
+    ]:
+        raise LiveSchemaError("live snapshot package bindings are incomplete")
+    for index, row in enumerate(rows):
+        require_exact_keys(
+            row,
+            {"role", "artifact_ref", "artifact_physical_sha256", "artifact_self_sha256"},
+            path=f"$.authority_binding.external_receipts[{index}]",
+        )
+    corpus_package = resolve_artifact_file(root, rows[0]["artifact_ref"])
+    draft4_package = resolve_artifact_file(root, rows[1]["artifact_ref"])
+    authorities = load_final_canary_authority_inputs(
+        corpus_package, draft4_package
+    )
+    corpus_receipt = resolve_artifact_file(root, binding["authority_profile_ref"])
+    draft4_receipt = resolve_artifact_file(root, binding["authority_bundle_ref"])
+    if (
+        corpus_receipt.read_bytes() != authorities.corpus_authorization_bytes
+        or draft4_receipt.read_bytes() != authorities.draft4_authority_bytes
+        or binding["authority_profile_physical_sha256"]
+        != CORPUS_AUTHORIZATION_PHYSICAL_SHA256
+        or binding["authority_bundle_physical_sha256"]
+        != DRAFT4_FINAL_AUTHORITY_PHYSICAL_SHA256
+        or binding["authority_bundle_self_sha256"]
+        != DRAFT4_FINAL_AUTHORITY_SELF_SHA256
+        or rows[0]["artifact_physical_sha256"] != CORPUS_AUTHORITY_PACKAGE_SHA256
+        or rows[0]["artifact_self_sha256"] != CORPUS_AUTHORIZATION_SELF_SHA256
+        or rows[1]["artifact_physical_sha256"] != DRAFT4_FINAL_PACKAGE_SHA256
+        or rows[1]["artifact_self_sha256"] != DRAFT4_FINAL_AUTHORITY_SELF_SHA256
+    ):
+        raise LiveSchemaError("live snapshot authority byte binding mismatch")
+    return [
+        _member(corpus_receipt, root),
+        _member(corpus_package, root),
+        _member(draft4_receipt, root),
+        _member(draft4_package, root),
+    ]
 
 
 def _receipt_rows(receipt: Mapping[str, Any] | Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:

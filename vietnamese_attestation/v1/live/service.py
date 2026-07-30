@@ -58,6 +58,11 @@ from .authority_adapter.source_governance import (
     fetch_after_path_admission,
     load_runtime_registry_projection,
 )
+from .authority_adapter.final_canary import (
+    FinalCanaryAuthorityInputs,
+    load_final_canary_authority_inputs,
+    load_future_live_authorization_receipt,
+)
 from .schemas import (
     PREFLIGHT_RESPONSE_SCHEMA_ID,
     compute_run_spec_id,
@@ -227,6 +232,9 @@ class ELiveService:
         production_authority_inputs: Mapping[str, Any] | None = None,
         e05_delivery_path: str | Path | None = None,
         source_governance_package_path: str | Path | None = None,
+        corpus_authority_package_path: str | Path | None = None,
+        draft4_final_authority_package_path: str | Path | None = None,
+        live_authorization_receipt_path: str | Path | None = None,
         provider_adapter: ProviderAdapter | None = None,
         clock=utc_now,
     ) -> None:
@@ -260,6 +268,8 @@ class ELiveService:
         self.authority_bundle = dict(authority_bundle) if authority_bundle is not None else None
         self.production_authority: dict[str, Any] | None = None
         self.e05_inputs: E05ExactIntegrationInputs | None = None
+        self.final_canary_authority: FinalCanaryAuthorityInputs | None = None
+        self.live_execution_authorized = False
         if self.execution_mode == "PRODUCTION_AUTHORITY":
             if (
                 authority_bundle is not None
@@ -274,7 +284,46 @@ class ELiveService:
             self.e05_inputs = load_e05_exact_integration_inputs(e05_delivery_path)
             self.authority_bundle = None
             self.authorization_receipt = dict(self.e05_inputs.authorization_receipt)
+            authority_paths = (
+                corpus_authority_package_path,
+                draft4_final_authority_package_path,
+            )
+            if any(path is not None for path in authority_paths):
+                if any(path is None for path in authority_paths):
+                    raise LiveSchemaError(
+                        "production canary authority requires both exact Main packages"
+                    )
+                self.final_canary_authority = load_final_canary_authority_inputs(
+                    corpus_authority_package_path,
+                    draft4_final_authority_package_path,
+                )
+            if live_authorization_receipt_path is not None:
+                if self.final_canary_authority is None or self.source_governance is None:
+                    raise LiveSchemaError(
+                        "live receipt requires exact final and source-governance authorities"
+                    )
+                self.authorization_receipt = load_future_live_authorization_receipt(
+                    live_authorization_receipt_path,
+                    inputs=self.e05_inputs,
+                    final_authority=self.final_canary_authority,
+                    registry_self_sha256=self.registry["integrity"]["self_sha256"],
+                    snapshot_self_sha256=self.snapshot["integrity"]["self_sha256"],
+                    retrieval_policy_sha256=self.policy_hashes["retrieval_policy"],
+                    query_template_set_sha256=self.policy_hashes[
+                        "query_template_set"
+                    ],
+                )
+                self.live_execution_authorized = True
         elif self.execution_mode == RECORDED_PROVIDER_CONFORMANCE:
+            if any(
+                path is not None
+                for path in (
+                    corpus_authority_package_path,
+                    draft4_final_authority_package_path,
+                    live_authorization_receipt_path,
+                )
+            ):
+                raise LiveSchemaError("recorded conformance cannot accept live authority paths")
             if authority_bundle is not None or production_authorization_schema is not None:
                 raise LiveSchemaError(
                     "recorded provider conformance cannot use an in-memory bundle or arbitrary schema"
@@ -293,6 +342,15 @@ class ELiveService:
                     "recorded provider conformance requires a zero-network adapter"
                 )
         else:
+            if any(
+                path is not None
+                for path in (
+                    corpus_authority_package_path,
+                    draft4_final_authority_package_path,
+                    live_authorization_receipt_path,
+                )
+            ):
+                raise LiveSchemaError("local fixture mode cannot accept live authority paths")
             if e05_delivery_path is not None or production_authority_inputs is not None:
                 raise LiveSchemaError("local fixture mode cannot accept production authority inputs")
             if self.authority_bundle is not None:
@@ -354,7 +412,7 @@ class ELiveService:
                 blockers.append("AUTHORIZATION_RECEIPT_MISMATCH")
         elif (
             self.e05_inputs is None
-            or not self.e05_inputs.live_execution_authorized
+            or not self.live_execution_authorized
             or receipt.get("authorization_status") != "RUN_AUTHORIZED"
             or receipt.get("test_only") is not False
         ):
