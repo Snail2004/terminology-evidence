@@ -33,7 +33,13 @@ from vietnamese_attestation.v1.live.common import (
     seal,
 )
 from vietnamese_attestation.v1.live.fixtures import build_fixture_workspace
+from vietnamese_attestation.v1.live.policies import validate_policy_bundle
 from vietnamese_attestation.v1.live.schema_tools import SCHEMA_CATALOG
+from vietnamese_attestation.v1.live.service import (
+    ELiveService,
+    compute_run_spec_id,
+    make_run_request,
+)
 from vietnamese_attestation.v1.live.snapshot import (
     build_snapshot,
     verify_snapshot,
@@ -57,6 +63,18 @@ DRAFT4_FINAL_AUTHORITY_PACKAGE = Path(
     os.environ.get(
         "E_DRAFT4_FINAL_AUTHORITY_PACKAGE",
         r"C:\work\terminology-evidence-artifacts\D0_API_Execution_Plan_Operations_V1\draft4-final-authority\release\build-a.zip",
+    )
+)
+E05_DELIVERY = Path(
+    os.environ.get(
+        "E05_EXACT_INPUT_DELIVERY",
+        r"C:\work\terminology-evidence-artifacts\e05-exact-integration-input-v1\delivery.zip",
+    )
+)
+FROZEN_CANDIDATE_CONTRACT = Path(
+    os.environ.get(
+        "E_FROZEN_CANDIDATE_CONTRACT",
+        r"C:\work\terminology-evidence-artifacts\D0_API_Execution_Plan_Operations_V1\canary-global-contracts-v2\release\build-a\contracts\frozen_candidate.json",
     )
 )
 
@@ -163,6 +181,73 @@ def test_live_snapshot_preserves_exact_authorities_and_run_hold(
         / "draft4_final_authority_receipt.original.json"
     ).read_bytes() == authorities.draft4_authority_bytes
     assert authorities.live_execution_authorized is False
+
+
+def test_production_preflight_joins_official_frozen_candidate_contract(
+    tmp_path: Path,
+) -> None:
+    workspace = build_fixture_workspace(tmp_path / "workspace")
+    frozen = load_object(FROZEN_CANDIDATE_CONTRACT)
+    candidate_key = frozen["candidate_key"]
+    assert frozen["input_contract_sha256"] != canonical_sha256(candidate_key)
+    policy_hashes = validate_policy_bundle(workspace["policy_bundle"])
+    request = make_run_request(
+        run_id="run_frozen_candidate_join_v1",
+        phase_id="E_CONTROLLED_CORPUS_CANARY",
+        sense_id=candidate_key["sense_id"],
+        candidate_id=candidate_key["candidate_id"],
+        term_en=candidate_key["source_term"],
+        candidate_vi=candidate_key["candidate_vi"],
+        sense_definition=frozen["effective_definition_en"],
+        domain={
+            "scope_id": candidate_key["scope_id"],
+            "anchors": [candidate_key["source_term"]],
+        },
+        candidate_variants=[],
+        authority_refs={
+            "cohort_id": "fixture-cohort-v1",
+            "registry_self_sha256": workspace["registry"]["integrity"][
+                "self_sha256"
+            ],
+            "snapshot_manifest_sha256": workspace["service"].snapshot[
+                "integrity"
+            ]["self_sha256"],
+            "candidate_key": candidate_key,
+            "input_contract_sha256": frozen["input_contract_sha256"],
+        },
+        budget=workspace["request"]["budget"],
+        policy_hashes=policy_hashes,
+    )
+    service = ELiveService(
+        root=tmp_path / "runs",
+        registry=workspace["registry"],
+        snapshot_root=workspace["snapshot_root"],
+        policy_bundle=workspace["policy_bundle"],
+        authorization_receipt={},
+        authorized_cohort_id="fixture-cohort-v1",
+        authorized_candidate_ids=[candidate_key["candidate_id"]],
+        execution_mode="PRODUCTION_AUTHORITY",
+        e05_delivery_path=E05_DELIVERY,
+        frozen_candidate_contract_path=FROZEN_CANDIDATE_CONTRACT,
+    )
+
+    accepted = service.preflight(request)
+    assert "REQUEST_INPUT_CONTRACT_SHA256_MISMATCH" not in accepted["blockers"]
+    assert "FROZEN_CANDIDATE_KEY_MISMATCH" not in accepted["blockers"]
+
+    key_drift = copy.deepcopy(request)
+    key_drift["authority_refs"]["candidate_key"]["candidate_version"] = "f" * 64
+    key_drift["run_spec_id"] = compute_run_spec_id(key_drift)
+    assert "FROZEN_CANDIDATE_KEY_MISMATCH" in service.preflight(key_drift)[
+        "blockers"
+    ]
+
+    hash_drift = copy.deepcopy(request)
+    hash_drift["authority_refs"]["input_contract_sha256"] = "0" * 64
+    hash_drift["run_spec_id"] = compute_run_spec_id(hash_drift)
+    assert "REQUEST_INPUT_CONTRACT_SHA256_MISMATCH" in service.preflight(
+        hash_drift
+    )["blockers"]
 
 
 def test_external_authority_adapter_binds_exact_bytes_and_trust(tmp_path: Path) -> None:

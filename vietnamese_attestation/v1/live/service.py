@@ -70,6 +70,7 @@ from .schemas import (
     validate_run_request,
 )
 from .snapshot import verify_snapshot
+from ..contracts.shared import validate_shared_frozen_candidate
 from ..strict_json import reject_link
 
 AUTHORIZATION_SCHEMA_ID = "ELocalCanaryAuthorizationReceiptV1"
@@ -235,6 +236,7 @@ class ELiveService:
         corpus_authority_package_path: str | Path | None = None,
         draft4_final_authority_package_path: str | Path | None = None,
         live_authorization_receipt_path: str | Path | None = None,
+        frozen_candidate_contract_path: str | Path | None = None,
         provider_adapter: ProviderAdapter | None = None,
         clock=utc_now,
     ) -> None:
@@ -269,6 +271,7 @@ class ELiveService:
         self.production_authority: dict[str, Any] | None = None
         self.e05_inputs: E05ExactIntegrationInputs | None = None
         self.final_canary_authority: FinalCanaryAuthorityInputs | None = None
+        self.frozen_candidate_contract: dict[str, Any] | None = None
         self.live_execution_authorized = False
         if self.execution_mode == "PRODUCTION_AUTHORITY":
             if (
@@ -284,6 +287,10 @@ class ELiveService:
             self.e05_inputs = load_e05_exact_integration_inputs(e05_delivery_path)
             self.authority_bundle = None
             self.authorization_receipt = dict(self.e05_inputs.authorization_receipt)
+            if frozen_candidate_contract_path is not None:
+                self.frozen_candidate_contract = validate_shared_frozen_candidate(
+                    load_object(frozen_candidate_contract_path)
+                )
             authority_paths = (
                 corpus_authority_package_path,
                 draft4_final_authority_package_path,
@@ -321,9 +328,12 @@ class ELiveService:
                     corpus_authority_package_path,
                     draft4_final_authority_package_path,
                     live_authorization_receipt_path,
+                    frozen_candidate_contract_path,
                 )
             ):
-                raise LiveSchemaError("recorded conformance cannot accept live authority paths")
+                raise LiveSchemaError(
+                    "recorded conformance cannot accept live authority paths"
+                )
             if authority_bundle is not None or production_authorization_schema is not None:
                 raise LiveSchemaError(
                     "recorded provider conformance cannot use an in-memory bundle or arbitrary schema"
@@ -348,6 +358,7 @@ class ELiveService:
                     corpus_authority_package_path,
                     draft4_final_authority_package_path,
                     live_authorization_receipt_path,
+                    frozen_candidate_contract_path,
                 )
             ):
                 raise LiveSchemaError("local fixture mode cannot accept live authority paths")
@@ -434,7 +445,24 @@ class ELiveService:
             current_policy_hashes = self.policy_hashes
             blockers.append("POLICY_BUNDLE_INVALID")
             checks["policy_bundle"] = f"FAIL:{type(exc).__name__}"
-        expected_input_contract = canonical_sha256(candidate_key) if isinstance(candidate_key, Mapping) else None
+        if self.execution_mode == "PRODUCTION_AUTHORITY":
+            frozen_candidate = self.frozen_candidate_contract
+            if frozen_candidate is None:
+                blockers.append("FROZEN_CANDIDATE_CONTRACT_REQUIRED")
+                expected_input_contract = None
+            else:
+                if (
+                    not isinstance(candidate_key, Mapping)
+                    or dict(candidate_key) != frozen_candidate["candidate_key"]
+                ):
+                    blockers.append("FROZEN_CANDIDATE_KEY_MISMATCH")
+                expected_input_contract = frozen_candidate["input_contract_sha256"]
+        else:
+            expected_input_contract = (
+                canonical_sha256(candidate_key)
+                if isinstance(candidate_key, Mapping)
+                else None
+            )
         exact_request_authority = {
             "registry_self_sha256": current_registry["integrity"]["self_sha256"],
             "snapshot_manifest_sha256": current_snapshot["integrity"]["self_sha256"],
