@@ -1,0 +1,115 @@
+{
+  "adjudication_count": 55,
+  "adjudication_label_counts": {
+    "ACCEPT": 16,
+    "CONDITIONAL": 30,
+    "REJECT": 4,
+    "SPLIT_REQUIRED": 5
+  },
+  "by_kind": {
+    "APPROVED_SPLIT_CHILD": {
+      "candidate_count": 12,
+      "label_counts": {
+        "ACCEPT": 11,
+        "CONDITIONAL": 1
+      }
+    },
+    "REPLACEMENT": {
+      "candidate_count": 3,
+      "label_counts": {
+        "ACCEPT": 2,
+        "CONDITIONAL": 1
+      }
+    },
+    "UNSPLIT": {
+      "candidate_count": 285,
+      "label_counts": {
+        "ACCEPT": 198,
+        "CONDITIONAL": 67,
+        "REJECT": 14,
+        "SPLIT_REQUIRED": 6
+      }
+    }
+  },
+  "by_split": {
+    "development": {
+      "candidate_count": 192,
+      "label_counts": {
+        "ACCEPT": 132,
+        "CONDITIONAL": 47,
+        "REJECT": 10,
+        "SPLIT_REQUIRED": 3
+      }
+    },
+    "test": {
+      "candidate_count": 54,
+      "label_counts": {
+        "ACCEPT": 41,
+        "CONDITIONAL": 9,
+        "REJECT": 1,
+        "SPLIT_REQUIRED": 3
+      }
+    },
+    "validation": {
+      "candidate_count": 54,
+      "label_counts": {
+        "ACCEPT": 38,
+        "CONDITIONAL": 13,
+        "REJECT": 3
+      }
+    }
+  },
+  "by_stratum": {
+    "ambiguous": {
+      "candidate_count": 90,
+      "label_counts": {
+        "ACCEPT": 70,
+        "CONDITIONAL": 16,
+        "REJECT": 1,
+        "SPLIT_REQUIRED": 3
+      }
+    },
+    "clear": {
+      "candidate_count": 108,
+      "label_counts": {
+        "ACCEPT": 85,
+        "CONDITIONAL": 20,
+        "REJECT": 3
+      }
+    },
+    "collision_or_multi_target": {
+      "candidate_count": 102,
+      "label_counts": {
+        "ACCEPT": 56,
+        "CONDITIONAL": 33,
+        "REJECT": 10,
+        "SPLIT_REQUIRED": 3
+      }
+    }
+  },
+  "c_e_evaluation_status": "READY_NOT_RUN",
+  "candidate_count": 300,
+  "cohen_kappa": 0.594276,
+  "effective_sense_count": 105,
+  "final_glossary_decision_count": 0,
+  "final_gold_label_count": 300,
+  "final_gold_label_counts": {
+    "ACCEPT": 211,
+    "CONDITIONAL": 69,
+    "REJECT": 14,
+    "SPLIT_REQUIRED": 6
+  },
+  "global_validator_status": "NOT_RUN",
+  "human_unjudgeable_count": 0,
+  "policy_id": "d2l-remaining-300-candidates-stage-b-gold-v1.0",
+  "provider_call_count": 0,
+  "raw_agreement": 0.816667,
+  "release_status": "STAGE_B_300_GOLD_COMPLETE_READY_FOR_C_E_EVALUATION",
+  "resolution_counts": {
+    "DUAL_REVIEW_CONSENSUS": 245,
+    "REVIEWER_3_ADJUDICATED": 55
+  },
+  "schema_id": "D2LRemainingStageBGoldSummaryV1",
+  "schema_version": "1.0.0",
+  "source_slot_count": 100
+}

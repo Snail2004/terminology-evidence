@@ -1,0 +1,100 @@
+{
+  "adjudication_count": 74,
+  "by_source_partition": {
+    "BASELINE_50": {
+      "candidate_count": 150,
+      "label_counts": {
+        "ACCEPT": 117,
+        "CONDITIONAL": 31,
+        "REJECT": 2
+      }
+    },
+    "REMAINING_100": {
+      "candidate_count": 300,
+      "label_counts": {
+        "ACCEPT": 211,
+        "CONDITIONAL": 69,
+        "REJECT": 14,
+        "SPLIT_REQUIRED": 6
+      }
+    }
+  },
+  "by_split": {
+    "development": {
+      "candidate_count": 282,
+      "label_counts": {
+        "ACCEPT": 200,
+        "CONDITIONAL": 67,
+        "REJECT": 12,
+        "SPLIT_REQUIRED": 3
+      }
+    },
+    "test": {
+      "candidate_count": 84,
+      "label_counts": {
+        "ACCEPT": 64,
+        "CONDITIONAL": 16,
+        "REJECT": 1,
+        "SPLIT_REQUIRED": 3
+      }
+    },
+    "validation": {
+      "candidate_count": 84,
+      "label_counts": {
+        "ACCEPT": 64,
+        "CONDITIONAL": 17,
+        "REJECT": 3
+      }
+    }
+  },
+  "by_stratum": {
+    "ambiguous": {
+      "candidate_count": 150,
+      "label_counts": {
+        "ACCEPT": 116,
+        "CONDITIONAL": 30,
+        "REJECT": 1,
+        "SPLIT_REQUIRED": 3
+      }
+    },
+    "clear": {
+      "candidate_count": 153,
+      "label_counts": {
+        "ACCEPT": 118,
+        "CONDITIONAL": 31,
+        "REJECT": 4
+      }
+    },
+    "collision_or_multi_target": {
+      "candidate_count": 147,
+      "label_counts": {
+        "ACCEPT": 94,
+        "CONDITIONAL": 39,
+        "REJECT": 11,
+        "SPLIT_REQUIRED": 3
+      }
+    }
+  },
+  "c_e_evaluation_status": "READY_NOT_RUN",
+  "candidate_count": 450,
+  "effective_sense_count": 155,
+  "final_glossary_decision_count": 0,
+  "final_gold_label_count": 450,
+  "final_gold_label_counts": {
+    "ACCEPT": 328,
+    "CONDITIONAL": 100,
+    "REJECT": 16,
+    "SPLIT_REQUIRED": 6
+  },
+  "global_validator_status": "NOT_RUN",
+  "policy_id": "d2l-dataset-150-source-slots-450-candidates-stage-b-gold-v1.0",
+  "provider_call_count": 0,
+  "release_status": "STAGE_B_150X450_GOLD_COMPLETE_READY_FOR_C_E_EVALUATION",
+  "resolution_counts": {
+    "DUAL_REVIEW_CONSENSUS": 376,
+    "REVIEWER_3_ADJUDICATED": 74
+  },
+  "schema_id": "D2LStageB150x450GoldSummaryV1",
+  "schema_version": "1.0.0",
+  "source_slot_count": 150
+}

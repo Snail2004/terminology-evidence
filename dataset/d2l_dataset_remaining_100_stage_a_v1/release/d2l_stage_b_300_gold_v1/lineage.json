@@ -1,0 +1,20 @@
+{
+  "dataset_manifest_sha256": "db0a46fb4d38861ffd9f2bb048dbc614ad7148b8fc1a31eed427b6f7cec85021",
+  "final_glossary_decision_count": 0,
+  "policy_id": "d2l-remaining-300-candidates-stage-b-gold-v1.0",
+  "provider_call_count": 0,
+  "review_intake_manifest_sha256": "f0cc263c761d98730cb6257fd6e2b455470f87c391c302bfdaad14ec463dd807",
+  "review_result_sha256": {
+    "reviewer_1": "990283e635511bb4d10d32166814bb20e52ca0cc7b478256eac365aed3099358",
+    "reviewer_2": "f1310ddf9662ae595c51b0dee9292dfb7958e31124d0926e60c5ddcd76d321ea",
+    "reviewer_3": "629be622072a27ae3717d64361e51e59804e86f56e5de4791bad95f0d1d78b72"
+  },
+  "reviewer_3_case_count": 55,
+  "schema_id": "D2LRemainingStageBGoldLineageV1",
+  "schema_version": "1.0.0",
+  "source_inventory_sha256": {
+    "candidates": "4a020b50fb9567c9d83f26252a4fbf32324947336e847179c3a05d6b8f602161",
+    "contexts": "83e6c464c0a03b590dec0eb0d56045fc471f843c586dbd0734e55af669a77e7e",
+    "effective_senses": "a0b3b8925a50092d782e080d93f4fb8860febee1356dad43e35ca1ed0d5095e5"
+  }
+}

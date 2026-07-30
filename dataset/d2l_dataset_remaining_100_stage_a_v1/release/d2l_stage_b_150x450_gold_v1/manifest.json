@@ -1,0 +1,68 @@
+{
+  "adjudication_count": 74,
+  "artifact_name": "d2l_stage_b_150x450_gold_v1",
+  "baseline_stage_b_gold_manifest_sha256": "30aca9b841a70ac24c327be8a655e90c715a907261c22dc45c53a1f00c29cfc2",
+  "candidate_count": 450,
+  "effective_sense_count": 155,
+  "files": {
+    "CHECKSUMS.sha256": {
+      "sha256": "f7c138551fc55ea65c9a71d1421c03a920b7375ba6e00fd0eabab5cbd7e161ea",
+      "size_bytes": 1085
+    },
+    "RELEASE_REPORT.md": {
+      "sha256": "b0cddfeed44b53d307c712d78a8f8b79e3c8133ea1e8875716cbc916afacd890",
+      "size_bytes": 481
+    },
+    "lineage.json": {
+      "sha256": "b89d627b82e81c9e876fde46bcc3db479ca480983beac10520cb07caf5d35ff9",
+      "size_bytes": 765
+    },
+    "partitions/baseline_stage_b_gold_150.jsonl": {
+      "sha256": "92df782c0df476a4d0d7448298de93591e45c8bb121d3a38a8c8a1eeb2c73771",
+      "size_bytes": 249527
+    },
+    "partitions/remaining_stage_b_gold_300.jsonl": {
+      "sha256": "1fa404d0c9d7aa5e00aaa18226fbb03bcdae63ece398cbd9bed66d6d29e679b5",
+      "size_bytes": 490297
+    },
+    "source/tests/test_stage_b_150x450_gold.py": {
+      "sha256": "44394055ce1f91612cfbef50e2101e7d778b5eaf484c1b3eded5bfba8b2f23ff",
+      "size_bytes": 5997
+    },
+    "source/tools/__init__.py": {
+      "sha256": "05f9b315bc1d32ccfffe6f1447fd2dc92658bcd6fc6ac5ec09f2aa7f1bd5d09c",
+      "size_bytes": 76
+    },
+    "source/tools/build_stage_b_150x450_gold.py": {
+      "sha256": "da3d6fe3ed2aff085400d94e756069d1af129dfba9083581cf0fe05444eac361",
+      "size_bytes": 16910
+    },
+    "source/tools/validate_stage_b_150x450_gold.py": {
+      "sha256": "3f721ed41a4005074ae8ed804810eb1d243d493981c92ef912ba5b863298c747",
+      "size_bytes": 7835
+    },
+    "stage_a_source_slot_index_150.jsonl": {
+      "sha256": "148eabfd29a7327636f2a2a4030380970c3f40b2fd137789964775d9f6ce419b",
+      "size_bytes": 84725
+    },
+    "stage_b_gold_450.jsonl": {
+      "sha256": "a478d22b588c70cb73112237e92e62668cbb67de70adc6caf6b10b4a5a452696",
+      "size_bytes": 897174
+    },
+    "stage_b_gold_summary.json": {
+      "sha256": "0d56325addc3a40ab8f9f266576d7aa5771afb96a6a4d0fadc3bb311facbff0a",
+      "size_bytes": 2249
+    }
+  },
+  "final_glossary_decision_count": 0,
+  "final_gold_label_count": 450,
+  "manifest_sha256": "c1f2b1cd9d54430c432f3795ea4a231572b317ea66c9f1a3496fddd62f506938",
+  "policy_id": "d2l-dataset-150-source-slots-450-candidates-stage-b-gold-v1.0",
+  "provider_call_count": 0,
+  "release_status": "STAGE_B_150X450_GOLD_COMPLETE_READY_FOR_C_E_EVALUATION",
+  "remaining_stage_b_gold_manifest_sha256": "f02d6067b643693f17e94ee0e342c601dff9709f292fc89290616a4415e4ff9c",
+  "schema_id": "D2LStageB150x450GoldManifestV1",
+  "schema_version": "1.0.0",
+  "source_slot_count": 150,
+  "stage_a_complete_manifest_sha256": "003ca6ea07430f82ef497e0d40efa5dcaa235c569e34cfd231d1f38d5bee134f"
+}
