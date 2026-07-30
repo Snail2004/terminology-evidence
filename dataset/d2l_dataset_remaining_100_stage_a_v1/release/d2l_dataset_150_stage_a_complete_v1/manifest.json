@@ -1,0 +1,61 @@
+{
+  "artifact_name": "d2l_dataset_150_stage_a_complete_v1",
+  "created_at": "2026-07-30T00:00:00Z",
+  "file_count": 12,
+  "files": {
+    "RELEASE_REPORT.md": {
+      "sha256": "e8af3dfa0c70ca17fe82794fc36e2a31a9e790770a40499d730e82f7f49666d2",
+      "size_bytes": 436
+    },
+    "authority.json": {
+      "sha256": "1ba0f18a353dd8d0e62330bd043a80b32286944f2797efcf6786639aafe7c8b9",
+      "size_bytes": 901
+    },
+    "captured_reviews/reviewer_1.json": {
+      "sha256": "e8c20f5c3657176efd48c4e8ff919af9c1e535fc68be5ce371e653416a59445f",
+      "size_bytes": 13109
+    },
+    "captured_reviews/reviewer_2.json": {
+      "sha256": "ae3da774beca1a3b388a0dd9b6d29786859ea4a2c85c55cfe9f1ab9fd1fa041c",
+      "size_bytes": 13278
+    },
+    "completion_summary.json": {
+      "sha256": "9fc223448f877b64ce5196862c42346b4f684acee405c4abdfd71ca1c93e25ca",
+      "size_bytes": 905
+    },
+    "replacement_effective_sense_contract.json": {
+      "sha256": "c0d59353827ab181be356526d17a395f88b89a2da7dcd79bbf4093fd079e44c4",
+      "size_bytes": 11061
+    },
+    "review_input_inventory.json": {
+      "sha256": "e09f3f76fb43b106c48ebcaa2715d34e1dd1de4f8c2e4f6c369262ac09450f23",
+      "size_bytes": 778
+    },
+    "source/tests/test_switch_replacement_closure.py": {
+      "sha256": "050c313fb93c7471ccd9506ef53f10947ec4c9ec991a9daa95e7595ba205a612",
+      "size_bytes": 5019
+    },
+    "source/tools/build_switch_replacement_closure.py": {
+      "sha256": "f828d1c317a5ce25f5ef077e9b975d14deba98b3171ef1f90ce6ac31e343b3bf",
+      "size_bytes": 22220
+    },
+    "source/tools/validate_switch_replacement_closure.py": {
+      "sha256": "cb520b3f57abae8dc07a25ee8dd6d622b188e8b7bbd23da91067bc9d8fbeda6c",
+      "size_bytes": 10987
+    },
+    "source_term_inventory_150.json": {
+      "sha256": "82099304aa7cea877e67ed00fc827e3c15ecb0f0988c72c0639bd5c63ab81e77",
+      "size_bytes": 3594
+    },
+    "stage_a_source_slot_index_150.jsonl": {
+      "sha256": "148eabfd29a7327636f2a2a4030380970c3f40b2fd137789964775d9f6ce419b",
+      "size_bytes": 84725
+    }
+  },
+  "manifest_sha256": "003ca6ea07430f82ef497e0d40efa5dcaa235c569e34cfd231d1f38d5bee134f",
+  "policy_id": "d2l-dataset-150-stage-a-complete-v1.0",
+  "provider_call_count": 0,
+  "schema_id": "D2LDataset150StageACompleteManifestV1",
+  "schema_version": "1.0",
+  "status": "DATASET_150_SOURCE_SLOTS_STAGE_A_COMPLETE_ZERO_PROVIDER"
+}

@@ -1,0 +1,24 @@
+{
+  "candidate_instance_count": 450,
+  "effective_sense_count": 155,
+  "final_glossary_decision": null,
+  "integrity": {
+    "self_sha256": "0049a0fbe3a6a29f21f37ed279838bb3e37598372f1eab5dd9a40ed88a152b3f"
+  },
+  "original_source_slot_count": 150,
+  "policy_id": "d2l-dataset-150-stage-a-complete-v1.0",
+  "provider_call_count": 0,
+  "replacement_review_consensus": "ACCEPT_2_OF_2",
+  "schema_id": "D2LDataset150StageACompletionSummaryV1",
+  "schema_version": "1.0",
+  "split_child_sense_count": 9,
+  "split_source_slot_count": 4,
+  "stage_a_blocked_source_slot_count": 0,
+  "stage_a_ready_source_slot_count": 150,
+  "stage_b_complete_candidate_count": 150,
+  "stage_b_complete_effective_sense_count": 50,
+  "stage_b_gold_autofill_count": 0,
+  "stage_b_pending_candidate_count": 300,
+  "stage_b_pending_effective_sense_count": 105,
+  "status": "DATASET_150_SOURCE_SLOTS_STAGE_A_COMPLETE_ZERO_PROVIDER"
+}

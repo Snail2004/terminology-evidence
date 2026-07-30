@@ -1,0 +1,223 @@
+{
+  "allowed_sense_status": [
+    "READY_FOR_CONTRACT_CONSTRUCTION",
+    "REVISION_REQUIRED",
+    "SPLIT_REQUIRED",
+    "UNRESOLVED"
+  ],
+  "allowed_standard_decisions": [
+    "ACCEPT",
+    "REVISE",
+    "UNJUDGEABLE"
+  ],
+  "batch_id": "switch_replacement_reviewer_1",
+  "case_count": 1,
+  "cases": [
+    {
+      "batch_id": "switch_replacement_reviewer_1",
+      "case_id": "replacement_c83befeefd813bf1c534438a",
+      "final_glossary_decision": null,
+      "policy_id": "d2l-switch-replacement-stage-a-v1.0",
+      "provider_call_count": 0,
+      "review": {
+        "candidate_replacements": [],
+        "candidate_set_decision": "ACCEPT",
+        "corrected_definition_en": "",
+        "corrected_part_of_speech": "",
+        "corrected_scope": "",
+        "definition_decision": "ACCEPT",
+        "evidence_decision": "ACCEPT",
+        "invalid_evidence_context_ids": [],
+        "part_of_speech_decision": "ACCEPT",
+        "proposed_split_labels": [],
+        "review_notes": "Bảy context thật đều thuộc phụ lục thống kê và cùng mô tả hypothesis testing như một framework/thủ tục đánh giá evidence chống null hypothesis. C4 nêu trực tiếp null hypothesis, test statistic và reject region; C1/C5 xác nhận vai trò reasoning framework và inference. Definition, noun-phrase POS, scope cùng ba candidate “kiểm định/kiểm tra/phép thử giả thuyết” đều phù hợp; không cần split.",
+        "review_status": "COMPLETE",
+        "scope_decision": "ACCEPT",
+        "sense_status": "READY_FOR_CONTRACT_CONSTRUCTION"
+      },
+      "reviewer_slot": "reviewer_1",
+      "schema_id": "D2LSwitchReplacementStageAReviewCaseV1",
+      "schema_version": "1.0",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_09ab091c4ffee322ac58083c",
+            "candidate_instance_sha256": "288923a411732e34a8d6f5670faf5d7248a088853cd03743024a9c6835ad8791",
+            "candidate_slot": "candidate_slot_b39a1e6f7cad0a7f20aecf88",
+            "candidate_target_vi": "kiểm định giả thuyết"
+          },
+          {
+            "candidate_id": "candidate_5ea5c8b63ff5a3c9f983dc60",
+            "candidate_instance_sha256": "1f7027841228eefc1609770a89d6426efb89951510b6cea09fb1777ec5869854",
+            "candidate_slot": "candidate_slot_2d96f91f36fdcaa56320bc2e",
+            "candidate_target_vi": "kiểm tra giả thuyết"
+          },
+          {
+            "candidate_id": "candidate_e3ab0bd85b697a186de10fc9",
+            "candidate_instance_sha256": "3745cdb478cc358db76c7828329787c46b8bc11fca01a518603cc2d33ce0ee5c",
+            "candidate_slot": "candidate_slot_e415828583799a997ec63584",
+            "candidate_target_vi": "phép thử giả thuyết"
+          }
+        ],
+        "dataset_version": "d2l_switch_replacement_hypothesis_testing_v1",
+        "evidence_contexts": [
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_statistics_b055",
+            "boundary_only": false,
+            "content_sha256": "d6a29e058d09fb2a4b8c7712e1e1fdda36ac2c379f2c7876d0fff95d539f44a7",
+            "context_id": "ctxr_0d86e249dd8147be50e2f439",
+            "context_role": "PRIMARY",
+            "context_sha256": "2273ba7777c6f34f038d8a7da5e644a259a06812b8b14ceade011ddd84525632",
+            "context_slot": "C1",
+            "matched_surface": "hypothesis testing",
+            "positive_evidence_eligible": true,
+            "sense_relation": "SAME_SENSE",
+            "source_match_end_local": 31,
+            "source_match_start_local": 13,
+            "source_text": "In this way, hypothesis testing provides a framework for experimental design and reasoning about certainty in observed results.  If we can now show that the null hypothesis is very unlikely to be true, we may reject it with confidence.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_statistics_b056",
+            "boundary_only": false,
+            "content_sha256": "8832ddc124e48031404133c183878bf1a611d2d0bbaaa7949cc7437392b26138",
+            "context_id": "ctxr_b8bb268f874e8d2b9f34dfdc",
+            "context_role": "PRIMARY",
+            "context_sha256": "9e8ebaeab584d1cadfc48bf725f4760601db832f3e0083564b3ff7e1a3335dbf",
+            "context_slot": "C2",
+            "matched_surface": "hypothesis testing",
+            "positive_evidence_eligible": true,
+            "sense_relation": "SAME_SENSE",
+            "source_match_end_local": 60,
+            "source_match_start_local": 42,
+            "source_text": "To complete the story of how to work with hypothesis testing, we need to now introduce some additional terminology and make some of our concepts above formal.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_statistics_b080",
+            "boundary_only": false,
+            "content_sha256": "7b9acb0b0ba9f3820920dddeec8049223cc817b8be722fa9245deb7973e8688e",
+            "context_id": "ctxr_3e7cedc5613a2547c2cb1305",
+            "context_role": "PRIMARY",
+            "context_sha256": "b6dee8c044537e1e0bc5ac9df55fdf8eb440a83793297c9295d8c0394b86e5d2",
+            "context_slot": "C3",
+            "matched_surface": "hypothesis testing",
+            "positive_evidence_eligible": true,
+            "sense_relation": "SAME_SENSE",
+            "source_match_end_local": 105,
+            "source_match_start_local": 87,
+            "source_text": "After getting familiar with the above concepts, let us go through the general steps of hypothesis testing.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_statistics_b082",
+            "boundary_only": false,
+            "content_sha256": "857d96725849ea607c09aa9cbb3304d6f4dabe83288f477b964c17f222de8e7c",
+            "context_id": "ctxr_bd7d58b5a46b7e2e62aba763",
+            "context_role": "PRIMARY",
+            "context_sha256": "9a9ffe1b97efc1ad6f1a25088fb406a1ed47a061719e2c766000e4c1d4c4fe2b",
+            "context_slot": "C4",
+            "matched_surface": "hypothesis test",
+            "positive_evidence_eligible": true,
+            "sense_relation": "SAME_SENSE",
+            "source_match_end_local": 28,
+            "source_match_start_local": 13,
+            "source_text": "To conduct a hypothesis test, we start by defining a null hypothesis and a level of risk that we are willing to take. Then we calculate the test statistic of the sample, taking an extreme value of the test statistic as evidence against the null hypothesis. If the test statistic falls within the reject region, we may reject the null hypothesis in favor of the alternative.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_statistics_b114",
+            "boundary_only": false,
+            "content_sha256": "1b2268089c5d7e0dba56ab0be050e49f8c49aa6f35fbc8a2a31fb461a555544f",
+            "context_id": "ctxr_744dc37dbd71581cf3b92769",
+            "context_role": "PRIMARY",
+            "context_sha256": "91657d1bd411a2b5d41ef65c0e5c93f5dc46bf43ca7dad4100db691c20175b4f",
+            "context_slot": "C5",
+            "matched_surface": "Hypothesis testing",
+            "positive_evidence_eligible": true,
+            "sense_relation": "SAME_SENSE",
+            "source_match_end_local": 562,
+            "source_match_start_local": 544,
+            "source_text": "* Statistics focuses on inference problems, whereas deep learning emphasizes on making accurate predictions without explicitly programming and understanding.\n* There are three common statistics inference methods: evaluating and comparing estimators, conducting hypothesis tests, and constructing confidence intervals.\n* There are three most common estimators: statistical bias, standard deviation, and mean square error.\n* A confidence interval is an estimated range of a true population parameter that we can construct by given the samples.\n* Hypothesis testing is a way of evaluating some evidence against the default statement about a population.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_index_b009",
+            "boundary_only": false,
+            "content_sha256": "cf31322af518faf5161b28f6d3a347de76c8ae6447e02debd85e8c81e6554c84",
+            "context_id": "ctxr_40273ba6dc847500f702ce08",
+            "context_role": "BACKUP",
+            "context_sha256": "4dfd83502ef48ac43ca7051199b6543891748d43e900976376187624266e7548",
+            "context_slot": "C6",
+            "matched_surface": "hypothesis test",
+            "positive_evidence_eligible": true,
+            "sense_relation": "SAME_SENSE",
+            "source_match_end_local": 320,
+            "source_match_start_local": 305,
+            "source_text": "Closely related to probability theory is the study of statistics.  While statistics is far too large a field to do justice in a short section, we will introduce fundamental concepts that all machine learning practitioners should be aware of, in particular: evaluating and comparing estimators, conducting hypothesis tests, and constructing confidence intervals.",
+            "synthetic": false
+          },
+          {
+            "block_id": "d2l_appendix_mathematics_for_deep_learning_statistics_b069",
+            "boundary_only": false,
+            "content_sha256": "b826fbecfeed7e6fb4fff1cafa5c95a94edfafaa4a5bd440586dfe21084ae1bc",
+            "context_id": "ctxr_b3f181d7f5f99529fe8e0174",
+            "context_role": "BACKUP",
+            "context_sha256": "0c67dda5ac5ba245b9c966948992c5b141d8e5a0c912e153434a3756fe2732f5",
+            "context_slot": "C7",
+            "matched_surface": "hypothesis test",
+            "positive_evidence_eligible": true,
+            "sense_relation": "SAME_SENSE",
+            "source_match_end_local": 89,
+            "source_match_start_local": 74,
+            "source_text": "We can imagine the power as a water filter. In this analogy, a high power hypothesis test is like a high quality water filtration system that will reduce harmful substances in the water as much as possible. On the other hand, a smaller discrepancy is like a low quality water filter, where some relative small substances may easily escape from the gaps. Similarly, if the statistical power is not of enough high power, then the test may not catch the smaller discrepancy.",
+            "synthetic": false
+          }
+        ],
+        "parent_binding": {
+          "closure_manifest_sha256": "89d22f5e7f0315248cbd16451a634382b1bacfd4d3785dfbfa0cda3e80083516",
+          "glossary_record_hash": "49CD8465C863A7C66215B09C39E74C7FF855F21F9ED79847FA3663488C617BF4",
+          "replaced_closure_record_sha256": "4686dff5af35bbc55fb5a80cb512ebe262b0be3afefd2881a8227da046c21590",
+          "replacement_source_member_candidate_ids": [
+            "cand_51bbb94487ca4ade2afc23f3",
+            "cand_a13c1b81ada76bcdd1bc666c",
+            "cand_c2bca10f77520f4e129d3f3a"
+          ],
+          "v3_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce"
+        },
+        "policy_id": "d2l-switch-replacement-stage-a-v1.0",
+        "proposed_definition_en": "A statistical procedure and reasoning framework for evaluating evidence against a null hypothesis using a test statistic and a rejection rule.",
+        "proposed_part_of_speech": "noun_phrase",
+        "proposed_scope": "D2L statistics appendix; statistical hypothesis-testing procedure, excluding the natural-language-inference sense of hypothesis.",
+        "provider_call_count": 0,
+        "review_requirement": "TWO_INDEPENDENT_STAGE_A_REVIEWS",
+        "risk_class": "R0_CLEAR",
+        "schema_id": "D2LSwitchReplacementStageASourceV1",
+        "schema_version": "1.0",
+        "sense_id": "d2lce_bad32719ece6439b4716d093",
+        "source_review_status": {
+          "definition": "PENDING_INDEPENDENT_REVIEW",
+          "evidence": "CORPUS_BOUND_PENDING_INDEPENDENT_REVIEW",
+          "part_of_speech": "PENDING_INDEPENDENT_REVIEW"
+        },
+        "source_term": "hypothesis testing",
+        "stratum": "clear",
+        "term_id": "d2lce_bad32719ece6439b4716d093"
+      },
+      "source_payload_sha256": "17f68ef767d8b6f8dad6fe97783b212e9746515d49f060a9bf85c740e5304e3c",
+      "stage_b_gold_label": null
+    }
+  ],
+  "dataset_version": "d2l_switch_replacement_hypothesis_testing_v1",
+  "final_glossary_decision": null,
+  "independence_requirement": "DO_NOT_VIEW_OTHER_REVIEWER_OUTPUT",
+  "policy_id": "d2l-switch-replacement-stage-a-v1.0",
+  "provider_call_count": 0,
+  "return_contract": "Return switch_replacement_reviewer_1.json only.",
+  "reviewer_slot": "reviewer_1",
+  "schema_id": "D2LSwitchReplacementStageAReviewBatchV1",
+  "schema_version": "1.0",
+  "sense_count": 1,
+  "source_input_sha256": "17f68ef767d8b6f8dad6fe97783b212e9746515d49f060a9bf85c740e5304e3c",
+  "stage_b_gold_autofill_count": 0
+}
