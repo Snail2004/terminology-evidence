@@ -1,0 +1,91 @@
+{
+  "schema_id": "HarnessBatchAvailabilityAuthorityReleaseReceiptV1",
+  "schema_version": "1.0.0",
+  "status": "BATCH_AVAILABILITY_AUTHORITY_READY_FOR_REVIEW",
+  "implementation": {
+    "commit": "3caefd26634f1a73e319e55913b7eec98b2ba276",
+    "parent": "1197ff4933193d97104b872d52ab3f80db441d21",
+    "authorization_main": "7fd046cc6a9b8f78fd122549feaefa4b2ab83821",
+    "main_observed_at_handoff": "b79aab4359de0396c2c2481f50d949455673fb85",
+    "shared_contract_action": "NO_CHANGE"
+  },
+  "schemas": {
+    "ArtifactInventory50_150V1": "8df138b7edf1a0902d176d3cf5b6c6e214419479848c04ad878c866f623ebaee",
+    "HarnessCohortInventoryV1": "127f22be72400b9a22c6029eeac9185ca1190f077797ba872cdfc2b4dc9134b4",
+    "GlobalBatchAuthorityV1": "1f2cb78f10251457049e1758c0481e8a0ba0df9807a0c040a3806de244ed1771",
+    "EvidenceAvailabilityManifestV1": "808c2c966cf82ba3cbba8f24c3b69a1d4eb1d223f6701587543463bb58da044e",
+    "GlobalBatchReadinessReportV1": "a56113e8fdb5aa2cc2c3a68cd30f1ecd543e2bea669025e4fa7c9683ae1060e1"
+  },
+  "tests": {
+    "focused_adapter": {
+      "passed": 10,
+      "failed": 0,
+      "junit_sha256": "c1fd573a7c7e9a49d57e98439bf55c103d712d6b5aeca75156dcbdb019b31440"
+    },
+    "full_harness": {
+      "passed": 36,
+      "subtests_passed": 33,
+      "failed": 0,
+      "junit_sha256": "d0f8b3d56fef54fbef6d1cfe6e1bfc9c19240f0c2c82e6d59c3524db00f23c86"
+    },
+    "compatibility": {
+      "contracts_passed": 113,
+      "contracts_skipped": 2,
+      "global_validator_passed": 80,
+      "context_substitution_passed": 79,
+      "vietnamese_attestation_passed": 75
+    }
+  },
+  "evidence": {
+    "artifact_name": "system-integration-harness-batch-availability-v1-3caefd2-a",
+    "repeat_artifact_name": "system-integration-harness-batch-availability-v1-3caefd2-b",
+    "file_count": 692,
+    "repeat_tree_drift_count": 0,
+    "release_manifest_physical_sha256": "efcb34d0bf076262caf3eec727b16384c23d58930994942f9285c4eda77a56d4",
+    "release_manifest_self_sha256": "4c32ee289c619572c6464cc306a3a4f47ad93460418f00c1964a23542cffbe19",
+    "checksums_physical_sha256": "46664ecb70f1bafa6f1db89ac1a485136397020c81197e8fcf40877a506d3088",
+    "summary_physical_sha256": "e16948c252b7d5fbe4f44b9a0088ffc6b15e568d86fb741b443179418f210240",
+    "summary_self_sha256": "dc5e1f463b98c73dd4190216ffb862e3802308387c3f20fac9bf9ea34a920561",
+    "official_zip_sha256": "a59c29912050887044f0b9144d0595b46f67c05631e4fc11e21d0437b4ddf409",
+    "synthetic_zip_sha256": "1ded6babe92e3e7d184c4717eb71be90772bbcacd049f22a5114c478a2680155"
+  },
+  "official_5_15": {
+    "expected_candidates": 15,
+    "ready_for_global": 0,
+    "not_submitted": 15,
+    "availability_counts": {
+      "PRESENT": 0,
+      "EXTERNAL_HOLD": 0,
+      "MISSING": 30,
+      "INVALID": 0
+    },
+    "joined": 0,
+    "replay": "SEALED_ADAPTER_AVAILABILITY_HOLD_REPLAY_PASS"
+  },
+  "synthetic_50_150": {
+    "expected_candidates": 150,
+    "ready_for_global": 150,
+    "not_submitted": 0,
+    "availability_counts": {
+      "PRESENT": 300,
+      "EXTERNAL_HOLD": 0,
+      "MISSING": 0,
+      "INVALID": 0
+    },
+    "joined": 150,
+    "replay": "SEALED_ADAPTER_COMPLETE_REPLAY_PASS",
+    "official_authority": false
+  },
+  "invariants": {
+    "provider_calls": 0,
+    "network_calls": 0,
+    "gold_access": 0,
+    "auto_approved_count": 0,
+    "certificate_count": 0,
+    "final_glossary_decision": null,
+    "m6_executed": false
+  },
+  "integrity": {
+    "self_sha256": "6b54240304cb6a20398272c1c36d0e24c543a86317100a546e5469a102d35ac6"
+  }
+}

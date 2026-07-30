@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:terminology-evidence:HarnessCohortInventoryV1:1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_id", "schema_version", "adapter_mode", "run_id", "phase_id", "split_id", "candidate_count", "sense_count", "candidates", "final_glossary_decision", "integrity"],
+  "properties": {
+    "schema_id": {"const": "HarnessCohortInventoryV1"},
+    "schema_version": {"const": "1.0.0"},
+    "adapter_mode": {"enum": ["OFFICIAL_5_15_PREFLIGHT", "SYNTHETIC_50_150_CONFORMANCE"]},
+    "run_id": {"type": "string", "minLength": 1},
+    "phase_id": {"type": "string", "minLength": 1},
+    "split_id": {"type": "string", "minLength": 1},
+    "candidate_count": {"enum": [15, 150]},
+    "sense_count": {"enum": [5, 50]},
+    "candidates": {"type": "array", "items": {"$ref": "#/$defs/cohortCandidate"}},
+    "final_glossary_decision": {"type": "null"},
+    "integrity": {"$ref": "#/$defs/integrity"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "integrity": {"type": "object", "additionalProperties": false, "required": ["self_sha256"], "properties": {"self_sha256": {"$ref": "#/$defs/sha256"}}},
+    "candidateKey": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate_id", "candidate_version", "source_term", "candidate_vi", "sense_id", "scope_id", "sense_inventory_version", "dataset_manifest_sha256", "effective_sense_contract_sha256", "input_contract_sha256"],
+      "properties": {
+        "candidate_id": {"type": "string", "minLength": 1}, "candidate_version": {"type": "string", "minLength": 1}, "source_term": {"type": "string", "minLength": 1}, "candidate_vi": {"type": "string", "minLength": 1}, "sense_id": {"type": "string", "minLength": 1}, "scope_id": {"type": "string", "minLength": 1}, "sense_inventory_version": {"type": "string", "minLength": 1}, "dataset_manifest_sha256": {"$ref": "#/$defs/sha256"}, "effective_sense_contract_sha256": {"$ref": "#/$defs/sha256"}, "input_contract_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "artifactBinding": {"type": "object", "additionalProperties": false, "required": ["physical_sha256", "self_sha256"], "properties": {"physical_sha256": {"$ref": "#/$defs/sha256"}, "self_sha256": {"$ref": "#/$defs/sha256"}}},
+    "cohortCandidate": {
+      "type": "object", "additionalProperties": false, "required": ["candidate_key", "dataset_artifacts"],
+      "properties": {
+        "candidate_key": {"$ref": "#/$defs/candidateKey"},
+        "dataset_artifacts": {"type": "object", "additionalProperties": false, "required": ["effective_sense", "frozen_candidate", "constraints"], "properties": {"effective_sense": {"$ref": "#/$defs/artifactBinding"}, "frozen_candidate": {"$ref": "#/$defs/artifactBinding"}, "constraints": {"$ref": "#/$defs/artifactBinding"}}}
+      }
+    }
+  }
+}

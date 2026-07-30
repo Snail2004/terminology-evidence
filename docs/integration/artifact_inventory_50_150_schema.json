@@ -1,0 +1,287 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:terminology-evidence:ArtifactInventory50_150V1:1.0.0",
+  "title": "ArtifactInventory50_150V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "adapter_mode",
+    "status",
+    "candidate_count",
+    "sense_count",
+    "ready_candidate_count",
+    "not_submitted_count",
+    "availability_counts",
+    "dataset_binding",
+    "producer_sets",
+    "sidecar_bindings",
+    "source_authority",
+    "artifacts",
+    "holds",
+    "global_execution",
+    "final_glossary_decision",
+    "integrity"
+  ],
+  "properties": {
+    "schema_id": {"const": "ArtifactInventory50_150V1"},
+    "schema_version": {"const": "1.0.0"},
+    "adapter_mode": {
+      "enum": ["OFFICIAL_5_15_PREFLIGHT", "SYNTHETIC_50_150_CONFORMANCE"]
+    },
+    "status": {
+      "enum": [
+        "READY_FOR_15_CANDIDATE_ZERO_PROVIDER_RUN",
+        "READY_FOR_15_CANDIDATE_ZERO_PROVIDER_PREFLIGHT",
+        "SYNTHETIC_150_CANDIDATE_CONFORMANCE_PASS",
+        "SYNTHETIC_150_CANDIDATE_AVAILABILITY_HOLD"
+      ]
+    },
+    "candidate_count": {"enum": [15, 150]},
+    "sense_count": {"enum": [5, 50]},
+    "ready_candidate_count": {"type": "integer", "minimum": 0, "maximum": 150},
+    "not_submitted_count": {"type": "integer", "minimum": 0, "maximum": 150},
+    "availability_counts": {"$ref": "#/$defs/availabilityCounts"},
+    "dataset_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pin_self_sha256",
+        "zip_physical_sha256",
+        "manifest_self_sha256",
+        "manifest_physical_sha256",
+        "producer_commit",
+        "excluded_later_commit"
+      ],
+      "properties": {
+        "pin_self_sha256": {"$ref": "#/$defs/sha256"},
+        "zip_physical_sha256": {"$ref": "#/$defs/sha256"},
+        "manifest_self_sha256": {"$ref": "#/$defs/sha256"},
+        "manifest_physical_sha256": {"$ref": "#/$defs/sha256"},
+        "producer_commit": {"type": "string", "minLength": 1},
+        "excluded_later_commit": {
+          "oneOf": [{"$ref": "#/$defs/gitCommit"}, {"type": "null"}]
+        }
+      }
+    },
+    "producer_sets": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 2,
+      "items": {"$ref": "#/$defs/producerSet"}
+    },
+    "sidecar_bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "harness_cohort_inventory",
+        "global_batch_authority",
+        "evidence_availability_manifest",
+        "global_batch_readiness_report"
+      ],
+      "properties": {
+        "harness_cohort_inventory": {"$ref": "#/$defs/binding"},
+        "global_batch_authority": {"$ref": "#/$defs/binding"},
+        "evidence_availability_manifest": {"$ref": "#/$defs/binding"},
+        "global_batch_readiness_report": {"$ref": "#/$defs/binding"}
+      }
+    },
+    "source_authority": {
+      "type": "array",
+      "minItems": 7,
+      "items": {"$ref": "#/$defs/sourceAuthority"}
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 0,
+      "items": {"$ref": "#/$defs/artifact"}
+    },
+    "holds": {
+      "type": "array",
+      "maxItems": 0
+    },
+    "global_execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "mode",
+        "network_policy",
+        "approval_score",
+        "auto_approved_count",
+        "certificate_count"
+      ],
+      "properties": {
+        "status": {
+          "enum": ["READY_FOR_PUBLIC_GLOBAL_CLI", "HOLD_EVIDENCE_AVAILABILITY"]
+        },
+        "mode": {"const": "DEVELOPMENT_HEURISTIC"},
+        "network_policy": {"const": "FORBIDDEN"},
+        "approval_score": {"type": "null"},
+        "auto_approved_count": {"const": 0},
+        "certificate_count": {"const": 0}
+      }
+    },
+    "final_glossary_decision": {"type": "null"},
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["self_sha256"],
+      "properties": {"self_sha256": {"$ref": "#/$defs/sha256"}}
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "gitCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relative_path", "physical_sha256", "self_sha256"],
+      "properties": {
+        "relative_path": {"type": "string", "minLength": 1},
+        "physical_sha256": {"$ref": "#/$defs/sha256"},
+        "self_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "availabilityCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["PRESENT", "EXTERNAL_HOLD", "MISSING", "INVALID"],
+      "properties": {
+        "PRESENT": {"type": "integer", "minimum": 0},
+        "EXTERNAL_HOLD": {"type": "integer", "minimum": 0},
+        "MISSING": {"type": "integer", "minimum": 0},
+        "INVALID": {"type": "integer", "minimum": 0}
+      }
+    },
+    "candidateKey": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "candidate_version",
+        "source_term",
+        "candidate_vi",
+        "sense_id",
+        "scope_id",
+        "sense_inventory_version",
+        "dataset_manifest_sha256",
+        "effective_sense_contract_sha256",
+        "input_contract_sha256"
+      ],
+      "properties": {
+        "candidate_id": {"type": "string", "minLength": 1},
+        "candidate_version": {"type": "string", "minLength": 1},
+        "source_term": {"type": "string", "minLength": 1},
+        "candidate_vi": {"type": "string", "minLength": 1},
+        "sense_id": {"type": "string", "minLength": 1},
+        "scope_id": {"type": "string", "minLength": 1},
+        "sense_inventory_version": {"type": "string", "minLength": 1},
+        "dataset_manifest_sha256": {"$ref": "#/$defs/sha256"},
+        "effective_sense_contract_sha256": {"$ref": "#/$defs/sha256"},
+        "input_contract_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["component_id", "component_version", "run_id", "commit"],
+      "properties": {
+        "component_id": {"type": "string", "minLength": 1},
+        "component_version": {"type": "string", "minLength": 1},
+        "run_id": {"type": "string", "minLength": 1},
+        "commit": {"type": "string", "minLength": 1}
+      }
+    },
+    "producerSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "status",
+        "manifest_self_sha256",
+        "manifest_physical_sha256",
+        "package_count",
+        "hold_count",
+        "producer"
+      ],
+      "properties": {
+        "role": {"enum": ["context_evidence", "attestation_evidence"]},
+        "status": {
+          "enum": ["COMPLETE_ACCEPTED", "SYNTHETIC_LOCAL_CONFORMANCE"]
+        },
+        "manifest_self_sha256": {"$ref": "#/$defs/sha256"},
+        "manifest_physical_sha256": {"$ref": "#/$defs/sha256"},
+        "package_count": {"type": "integer", "minimum": 0},
+        "hold_count": {"const": 0},
+        "producer": {"$ref": "#/$defs/producer"}
+      }
+    },
+    "sourceAuthority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "relative_path", "physical_sha256", "declared_self_sha256"],
+      "properties": {
+        "role": {"type": "string", "minLength": 1},
+        "relative_path": {"type": "string", "minLength": 1},
+        "physical_sha256": {"$ref": "#/$defs/sha256"},
+        "declared_self_sha256": {
+          "oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]
+        }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "relative_path",
+        "schema_id",
+        "schema_version",
+        "producer",
+        "producer_commit",
+        "candidate_key",
+        "physical_sha256",
+        "declared_self_sha256"
+      ],
+      "properties": {
+        "role": {
+          "enum": [
+            "effective_sense",
+            "frozen_candidate",
+            "constraints",
+            "context_evidence",
+            "attestation_evidence"
+          ]
+        },
+        "relative_path": {"type": "string", "minLength": 1},
+        "schema_id": {"type": "string", "minLength": 1},
+        "schema_version": {"type": "string", "minLength": 1},
+        "producer": {"type": "string", "minLength": 1},
+        "producer_commit": {"type": "string", "minLength": 1},
+        "candidate_key": {"$ref": "#/$defs/candidateKey"},
+        "physical_sha256": {"$ref": "#/$defs/sha256"},
+        "declared_self_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "hold": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "candidate_key",
+        "relative_path",
+        "physical_sha256",
+        "declared_self_sha256"
+      ],
+      "properties": {
+        "role": {"enum": ["context_evidence", "attestation_evidence"]},
+        "candidate_key": {"$ref": "#/$defs/candidateKey"},
+        "relative_path": {"type": "string", "minLength": 1},
+        "physical_sha256": {"$ref": "#/$defs/sha256"},
+        "declared_self_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

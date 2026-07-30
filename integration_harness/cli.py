@@ -10,6 +10,13 @@ import zipfile
 from pathlib import Path
 from typing import Any, Sequence
 
+from .adapter_v1 import build_adapter_bundle, replay_adapter_bundle
+from .adapter_v1.availability import (
+    write_missing_availability_manifest,
+    write_present_availability_manifest,
+)
+from .adapter_v1.dataset import OFFICIAL_MODE, SYNTHETIC_MODE, load_dataset_release
+from .adapter_v1.trust import load_trusted_authority_profile
 from .assembler import GlobalCliAdapter
 from .authority import CONTRACTS_R2_CURRENT, SYNTHETIC_LOCAL_CONFORMANCE, resolve_authority
 from .contracts_verifier import PublicContractR2Verifier
@@ -32,6 +39,34 @@ def _common_authority(parser: argparse.ArgumentParser) -> None:
         "--authority-mode",
         choices=[SYNTHETIC_LOCAL_CONFORMANCE, CONTRACTS_R2_CURRENT],
         default=CONTRACTS_R2_CURRENT,
+    )
+
+
+def _common_trust_profile(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument("--authority-profile", type=Path)
+    parser.add_argument("--authority-profile-physical-sha256")
+    parser.add_argument("--authority-profile-self-sha256")
+    parser.add_argument("--authority-profile-issuer-id")
+    parser.add_argument("--authority-profile-authority-id")
+
+
+def _load_cli_trust_profile(args: argparse.Namespace):
+    if args.authority_profile is None:
+        return None
+    pins = (
+        args.authority_profile_physical_sha256,
+        args.authority_profile_self_sha256,
+        args.authority_profile_issuer_id,
+        args.authority_profile_authority_id,
+    )
+    if any(value is None for value in pins):
+        raise ValueError("authority profile requires all expected pins")
+    return load_trusted_authority_profile(
+        args.authority_profile,
+        expected_physical_sha256=args.authority_profile_physical_sha256,
+        expected_self_sha256=args.authority_profile_self_sha256,
+        expected_issuer_id=args.authority_profile_issuer_id,
+        expected_authority_id=args.authority_profile_authority_id,
     )
 
 
@@ -90,6 +125,59 @@ def build_parser() -> argparse.ArgumentParser:
     release.add_argument("--repository-root", type=Path, default=Path.cwd())
     release.add_argument("--output-dir", type=Path, required=True)
     release.set_defaults(handler=_release)
+
+    adapter_build = sub.add_parser("adapter-build")
+    adapter_build.add_argument("--dataset-zip", type=Path, required=True)
+    adapter_build.add_argument("--dataset-pin", type=Path, required=True)
+    adapter_build.add_argument("--dataset-git-receipt", type=Path)
+    adapter_build.add_argument("--availability-manifest", type=Path, required=True)
+    adapter_build.add_argument("--contracts-root", type=Path, required=True)
+    adapter_build.add_argument("--repository-root", type=Path, default=Path.cwd())
+    adapter_build.add_argument("--output", type=Path, required=True)
+    adapter_build.add_argument(
+        "--adapter-mode", choices=[OFFICIAL_MODE, SYNTHETIC_MODE], required=True
+    )
+    adapter_build.add_argument(
+        "--inventory-schema",
+        type=Path,
+        default=Path("docs/integration/artifact_inventory_exact_cohort_v2.schema.json"),
+    )
+    _common_trust_profile(adapter_build)
+    adapter_build.set_defaults(handler=_adapter_build)
+
+    adapter_replay = sub.add_parser("adapter-replay")
+    adapter_replay.add_argument("--bundle", type=Path, required=True)
+    adapter_replay.add_argument("--contracts-root", type=Path, required=True)
+    adapter_replay.add_argument("--repository-root", type=Path)
+    adapter_replay.set_defaults(handler=_adapter_replay)
+
+    for name, handler, present in (
+        ("adapter-create-missing-availability", _adapter_create_missing_availability, False),
+        ("adapter-create-present-availability", _adapter_create_present_availability, True),
+    ):
+        availability = sub.add_parser(name)
+        availability.add_argument("--dataset-zip", type=Path, required=True)
+        availability.add_argument("--dataset-pin", type=Path, required=True)
+        availability.add_argument("--dataset-git-receipt", type=Path)
+        availability.add_argument("--contracts-root", type=Path, required=True)
+        availability.add_argument("--repository-root", type=Path, default=Path.cwd())
+        availability.add_argument(
+            "--adapter-mode", choices=[OFFICIAL_MODE, SYNTHETIC_MODE], required=True
+        )
+        availability.add_argument("--run-id", required=True)
+        availability.add_argument("--phase-id", required=True)
+        availability.add_argument("--split-id", required=True)
+        availability.add_argument("--observed-at", required=True)
+        availability.add_argument("--output", type=Path, required=True)
+        if present:
+            availability.add_argument("--context-set-manifest", type=Path, required=True)
+            availability.add_argument("--attestation-set-manifest", type=Path, required=True)
+            availability.add_argument("--context-acceptance-receipt", type=Path)
+            availability.add_argument("--attestation-acceptance-receipt", type=Path)
+            _common_trust_profile(availability)
+        else:
+            availability.add_argument("--reason-code", required=True)
+        availability.set_defaults(handler=handler)
     return parser
 
 
@@ -196,6 +284,91 @@ def _release(args: argparse.Namespace) -> dict[str, Any]:
     manifest = {"schema_id": "SystemIntegrationReleaseManifestV1", "zip": zip_path.name, "zip_sha256": digest}
     dump_json(output_dir / "release_manifest.json", manifest)
     return {"status": "PASS", "zip": str(zip_path), "zip_sha256": digest}
+
+
+def _adapter_build(args: argparse.Namespace) -> dict[str, Any]:
+    return build_adapter_bundle(
+        dataset_zip=args.dataset_zip,
+        dataset_pin=args.dataset_pin,
+        dataset_git_receipt=args.dataset_git_receipt,
+        availability_manifest=args.availability_manifest,
+        contracts_root=args.contracts_root,
+        repository_root=args.repository_root,
+        output_root=args.output,
+        adapter_mode=args.adapter_mode,
+        inventory_schema_path=args.inventory_schema,
+        authority_profile_path=args.authority_profile,
+        authority_profile_expected_physical_sha256=args.authority_profile_physical_sha256,
+        authority_profile_expected_self_sha256=args.authority_profile_self_sha256,
+        authority_profile_expected_issuer_id=args.authority_profile_issuer_id,
+        authority_profile_expected_authority_id=args.authority_profile_authority_id,
+    )
+
+
+def _adapter_replay(args: argparse.Namespace) -> dict[str, Any]:
+    return replay_adapter_bundle(
+        args.bundle,
+        contracts_root=args.contracts_root,
+        repository_root=args.repository_root,
+    )
+
+
+def _load_cli_dataset(args: argparse.Namespace):
+    dataset = load_dataset_release(
+        args.dataset_zip,
+        args.dataset_pin,
+        git_receipt_path=args.dataset_git_receipt,
+        schema_root=args.contracts_root,
+        mode=args.adapter_mode,
+        repository_root=args.repository_root if args.adapter_mode == OFFICIAL_MODE else None,
+    )
+    return dataset
+
+
+def _adapter_create_missing_availability(args: argparse.Namespace) -> dict[str, Any]:
+    dataset = _load_cli_dataset(args)
+    manifest = write_missing_availability_manifest(
+        args.output,
+        candidates=dataset.candidates,
+        adapter_mode=args.adapter_mode,
+        run_id=args.run_id,
+        phase_id=args.phase_id,
+        split_id=args.split_id,
+        observed_at=args.observed_at,
+        reason_code=args.reason_code,
+    )
+    return {
+        "status": "PASS",
+        "manifest": str(manifest),
+        "candidate_count": dataset.candidate_count,
+        "availability": "MISSING",
+    }
+
+
+def _adapter_create_present_availability(args: argparse.Namespace) -> dict[str, Any]:
+    dataset = _load_cli_dataset(args)
+    trust_profile = _load_cli_trust_profile(args)
+    manifest = write_present_availability_manifest(
+        args.output,
+        candidates=dataset.candidates,
+        adapter_mode=args.adapter_mode,
+        context_set_manifest=args.context_set_manifest,
+        attestation_set_manifest=args.attestation_set_manifest,
+        context_acceptance_receipt=args.context_acceptance_receipt,
+        attestation_acceptance_receipt=args.attestation_acceptance_receipt,
+        schema_root=args.contracts_root,
+        run_id=args.run_id,
+        phase_id=args.phase_id,
+        split_id=args.split_id,
+        observed_at=args.observed_at,
+        trust_profile=trust_profile,
+    )
+    return {
+        "status": "PASS",
+        "manifest": str(manifest),
+        "candidate_count": dataset.candidate_count,
+        "availability": "PRESENT",
+    }
 
 
 def main(argv: Sequence[str] | None = None) -> int:

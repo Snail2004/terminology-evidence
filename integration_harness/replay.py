@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
+import copy
 import tempfile
 from dataclasses import replace
 from pathlib import Path
 from typing import Any
 
 from .assembler import GlobalCliAdapter
+from .adapter_v1.replay import verify_adapter_inventory_source_binding
 from .authority import (
     CONTRACTS_R1_HISTORICAL_REPLAY,
     CONTRACTS_R2_CURRENT,
@@ -19,7 +21,13 @@ from .contracts_verifier import PublicContractR2Verifier
 from .errors import ReplayError
 from .hashing import sha256_file, self_sha256
 from .identity import CandidateIdentity
-from .inventory import ArtifactInventory, ArtifactRecord
+from .inventory import (
+    ADAPTER_INVENTORY_SCHEMA,
+    LEGACY_ADAPTER_INVENTORY_SCHEMA,
+    ArtifactInventory,
+    ArtifactRecord,
+    SourceAuthorityRecord,
+)
 from .join import validate_and_join
 from .jsonio import load_json
 from .paths import ensure_no_symlink, safe_relative_path
@@ -60,7 +68,21 @@ def _sealed_inventory(run_dir: Path) -> ArtifactInventory:
             raise ReplayError("join report has no candidate identity")
         candidate_id = identity.get("candidate_id")
         for role in ("effective_sense", "frozen_candidate", "constraints", "context_evidence", "attestation_evidence"):
-            path = run_dir / "input" / "packages" / str(candidate_id) / f"{role}.json"
+            if role == "effective_sense":
+                effective_sha = identity.get("effective_sense_contract_sha256")
+                shared = (
+                    run_dir
+                    / "input"
+                    / "shared"
+                    / "effective_sense"
+                    / f"{effective_sha}.json"
+                )
+                legacy = (
+                    run_dir / "input" / "packages" / str(candidate_id) / f"{role}.json"
+                )
+                path = shared if shared.is_file() else legacy
+            else:
+                path = run_dir / "input" / "packages" / str(candidate_id) / f"{role}.json"
             if not path.is_file():
                 raise ReplayError(f"sealed package is missing: {path}")
             value = load_json(path, require_object=True)
@@ -137,8 +159,17 @@ def replay_run(
         raise ReplayError("sealed run records network calls")
     if execution.get("auto_approved_count") != 0 or execution.get("certificate_count") != 0:
         raise ReplayError("development run violates approval/certificate invariant")
-    package_count = len(list((run_dir / "input" / "packages").rglob("*.json")))
-    if package_count != join_report.get("candidate_count", 0) * 5:
+    candidate_count = join_report.get("candidate_count", 0)
+    candidate_package_count = len(list((run_dir / "input" / "packages").rglob("*.json")))
+    shared_effective_count = len(
+        list((run_dir / "input" / "shared" / "effective_sense").glob("*.json"))
+    )
+    expected_package_count = (
+        candidate_count * 4 + shared_effective_count
+        if shared_effective_count
+        else candidate_count * 5
+    )
+    if candidate_package_count + shared_effective_count != expected_package_count:
         raise ReplayError("sealed package count does not match join report")
     sealed_authority = run_dir / "input" / "authority"
     sealed_receipt = sealed_authority / "authority_receipt.json"
@@ -202,13 +233,23 @@ def replay_run(
             if sha256_file(report_path) != authority_expected.get("contract_verifier_report_physical_sha256"):
                 raise ReplayError("sealed public Contract verifier report physical hash mismatch")
         if adapter is not None:
-            replay_adapter = replace(
+            replay_adapter = _bind_replay_authority(
                 adapter,
                 authority_receipt=sealed_receipt,
                 action_policy=sealed_policy,
             )
             try:
-                validate_and_join(_sealed_inventory(run_dir), schema_root=replay_adapter.contracts_root)
+                sealed_inventory = _sealed_inventory(run_dir)
+                validate_and_join(
+                    sealed_inventory, schema_root=replay_adapter.contracts_root
+                )
+                _verify_adapter_sources_if_present(
+                    run_dir,
+                    run_spec=run_spec,
+                    sealed_packages=sealed_inventory,
+                    contracts_root=replay_adapter.contracts_root,
+                    repository_root=repository_root,
+                )
             except Exception as exc:
                 raise ReplayError(f"sealed package rejoin failed: {exc}") from exc
             expected = {item.get("candidate_id"): item for item in execution.get("results", [])}
@@ -240,3 +281,92 @@ def replay_run(
         "authority_mode": authority_mode,
         "compatibility_mode": compatibility_mode,
     }
+
+
+def _verify_adapter_sources_if_present(
+    run_dir: Path,
+    *,
+    run_spec: dict[str, Any],
+    sealed_packages: ArtifactInventory,
+    contracts_root: Path,
+    repository_root: Path | None,
+) -> None:
+    binding = run_spec.get("adapter_inventory_binding")
+    if (
+        not isinstance(binding, dict)
+        or binding.get("schema_id")
+        not in {ADAPTER_INVENTORY_SCHEMA, LEGACY_ADAPTER_INVENTORY_SCHEMA}
+    ):
+        return
+    manifest_path = run_dir / "input" / "inventory" / "artifact_manifest.json"
+    manifest = load_json(manifest_path, require_object=True)
+    if manifest.get("integrity", {}).get("self_sha256") != binding.get(
+        "manifest_self_sha256"
+    ):
+        raise ReplayError("sealed adapter inventory self-hash binding mismatch")
+    if sha256_file(manifest_path) != binding.get("manifest_physical_sha256"):
+        raise ReplayError("sealed adapter inventory physical binding mismatch")
+    audit = load_json(run_dir / "audit" / "artifact_inventory.json", require_object=True)
+    raw_sources = audit.get("source_authority")
+    if not isinstance(raw_sources, list) or len(raw_sources) != binding.get(
+        "source_authority_count"
+    ):
+        raise ReplayError("sealed adapter source authority count mismatch")
+    records: list[SourceAuthorityRecord] = []
+    source_paths: dict[str, Path] = {}
+    for raw in raw_sources:
+        if not isinstance(raw, dict):
+            raise ReplayError("sealed adapter source authority record is invalid")
+        relative = safe_relative_path(str(raw.get("sealed_relative_path")))
+        path = ensure_no_symlink(run_dir, relative)
+        if not path.is_file() or sha256_file(path) != raw.get("physical_sha256"):
+            raise ReplayError("sealed adapter source authority hash mismatch")
+        role = str(raw.get("role"))
+        if role in source_paths:
+            raise ReplayError("duplicate sealed adapter source authority role")
+        source_paths[role] = path
+        records.append(
+            SourceAuthorityRecord(
+                role=role,
+                path=path,
+                relative_path=relative.as_posix(),
+                physical_sha256=str(raw.get("physical_sha256")),
+                declared_self_sha256=raw.get("declared_self_sha256"),
+            )
+        )
+    adapter_inventory = ArtifactInventory(
+        manifest_path=manifest_path,
+        manifest=manifest,
+        records=sealed_packages.records,
+        manifest_sha256=sha256_file(manifest_path),
+        source_authority=tuple(records),
+        holds=(),
+    )
+    verify_adapter_inventory_source_binding(
+        adapter_inventory,
+        source_paths=source_paths,
+        contracts_root=contracts_root,
+        repository_root=repository_root,
+    )
+
+
+def _bind_replay_authority(
+    adapter: Any,
+    *,
+    authority_receipt: Path,
+    action_policy: Path,
+) -> Any:
+    try:
+        return replace(
+            adapter,
+            authority_receipt=authority_receipt,
+            action_policy=action_policy,
+        )
+    except TypeError:
+        # Public test/conformance adapters may be ordinary objects rather than dataclasses.
+        clone = copy.copy(adapter)
+        if not hasattr(clone, "authority_receipt") or not hasattr(clone, "action_policy"):
+            raise ReplayError("adapter cannot be rebound to sealed authority")
+        clone.authority_receipt = authority_receipt
+        clone.action_policy = action_policy
+        return clone

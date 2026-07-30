@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:terminology-evidence:GlobalBatchReadinessReportV1:1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "run_id",
+    "phase_id",
+    "split_id",
+    "batch_authority",
+    "availability_manifest",
+    "counts",
+    "ready_for_global_candidate_ids",
+    "not_submitted",
+    "global_mode",
+    "network_calls",
+    "provider_calls",
+    "auto_approved_count",
+    "certificate_count",
+    "final_glossary_decision",
+    "integrity"
+  ],
+  "properties": {
+    "schema_id": {"const": "GlobalBatchReadinessReportV1"},
+    "schema_version": {"const": "1.0.0"},
+    "run_id": {"type": "string", "minLength": 1},
+    "phase_id": {"type": "string", "minLength": 1},
+    "split_id": {"type": "string", "minLength": 1},
+    "batch_authority": {"$ref": "#/$defs/binding"},
+    "availability_manifest": {"$ref": "#/$defs/binding"},
+    "counts": {"$ref": "#/$defs/readinessCounts"},
+    "ready_for_global_candidate_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "not_submitted": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/notSubmitted"}
+    },
+    "global_mode": {"const": "DEVELOPMENT_HEURISTIC"},
+    "network_calls": {"const": 0},
+    "provider_calls": {"const": 0},
+    "auto_approved_count": {"const": 0},
+    "certificate_count": {"const": 0},
+    "final_glossary_decision": {"type": "null"},
+    "integrity": {"$ref": "#/$defs/integrity"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["self_sha256", "physical_sha256"],
+      "properties": {
+        "self_sha256": {"$ref": "#/$defs/sha256"},
+        "physical_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "availabilityCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["PRESENT", "EXTERNAL_HOLD", "MISSING", "INVALID"],
+      "properties": {
+        "PRESENT": {"type": "integer", "minimum": 0},
+        "EXTERNAL_HOLD": {"type": "integer", "minimum": 0},
+        "MISSING": {"type": "integer", "minimum": 0},
+        "INVALID": {"type": "integer", "minimum": 0}
+      }
+    },
+    "readinessCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expected_candidates",
+        "ready_for_global",
+        "not_submitted",
+        "identity_rejected",
+        "availability"
+      ],
+      "properties": {
+        "expected_candidates": {"enum": [15, 150]},
+        "ready_for_global": {"type": "integer", "minimum": 0},
+        "not_submitted": {"type": "integer", "minimum": 0},
+        "identity_rejected": {"type": "integer", "minimum": 0},
+        "availability": {"$ref": "#/$defs/availabilityCounts"}
+      }
+    },
+    "notSubmitted": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate_id", "reasons"],
+      "properties": {
+        "candidate_id": {"type": "string", "minLength": 1},
+        "reasons": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/notSubmittedReason"}
+        }
+      }
+    },
+    "notSubmittedReason": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "status", "reason_code", "validation_error_code"],
+      "properties": {
+        "role": {"enum": ["context_evidence", "attestation_evidence"]},
+        "status": {"enum": ["EXTERNAL_HOLD", "MISSING", "INVALID"]},
+        "reason_code": {"type": ["string", "null"]},
+        "validation_error_code": {"type": ["string", "null"]}
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["self_sha256"],
+      "properties": {"self_sha256": {"$ref": "#/$defs/sha256"}}
+    }
+  }
+}

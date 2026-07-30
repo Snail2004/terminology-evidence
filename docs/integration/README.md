@@ -61,6 +61,28 @@ strict-loaded, schema-checked, self-hash checked, and joined by the complete
 candidate identity tuple. Missing, duplicate, foreign, or drifted packages
 fail closed.
 
+## Dataset exact-cohort adapter
+
+`ArtifactInventoryExactCohortV2` is the active Harness-owned intake projection.
+Its cardinality is derived from the exact candidate inventory and has tested
+coverage for 1, 3, 15, 30, 90, and 150 candidates. The immutable V1 schemas
+remain accepted for historical replay. The adapter verifies the Dataset ZIP,
+pin, manifest, candidate index, producer Git receipt, and C/E package-set
+bindings without importing producer internals.
+
+Availability is represented only as `PRESENT`, `EXTERNAL_HOLD`, `MISSING`, or
+`INVALID`. `EXTERNAL_HOLD` requires a typed Harness receipt that binds the
+authoritative run authorization and `STOP_EVENT`; it is never represented as a
+C/E evidence package. Only candidates with both roles `PRESENT` enter Global.
+Official `PRESENT` additionally requires a typed producer-set acceptance
+receipt bound to exact manifest, producer Git tree, cohort, and approval bytes.
+
+The accepted Main Dataset pin is kept read-only at
+`review_evidence/dataset/d2l-stage-a-official-5-sense-pilot-v1/`. The current
+official Dataset is therefore `OFFICIAL_5_15_PREFLIGHT` until Main accepts both
+producer package sets. The 50/150 release schema is not inferred from the
+dirty Dataset worktree; an official 50/150 pin must be published separately.
+
 ## Public CLI
 
 ```powershell
@@ -72,6 +94,9 @@ python -B -m integration_harness join --manifest <manifest.json> --contracts-roo
 python -B -m integration_harness authority-verify --contracts-root terminology_contracts_v1 --authority-receipt terminology_contracts_v1/release/v1.1.0-final/contracts_v1_1_0_authority_receipt_r2.json --approval-root review_evidence/contracts/contracts-v1.1.0/authority-r2 --authority-mode CONTRACTS_R2_CURRENT
 python -B -m integration_harness run --manifest <manifest.json> --contracts-root terminology_contracts_v1 --authority-receipt terminology_contracts_v1/release/v1.1.0-final/contracts_v1_1_0_authority_receipt_r2.json --approval-root review_evidence/contracts/contracts-v1.1.0/authority-r2 --authority-mode CONTRACTS_R2_CURRENT --mode REAL_DEVELOPMENT_ZERO_NETWORK --run-id integration-dev-001 --output runs/integration-dev-001
 python -B -m integration_harness replay --run-dir runs/integration-dev-001 --repository-root . --contracts-root terminology_contracts_v1
+python -B -m integration_harness adapter-create-present-availability --dataset-zip <dataset.zip> --dataset-pin <dataset-pin.json> --dataset-git-receipt <git-receipt.json> --contracts-root terminology_contracts_v1 --adapter-mode OFFICIAL_5_15_PREFLIGHT --context-set-manifest <c-set/manifest.json> --context-acceptance-receipt <c-acceptance.json> --attestation-set-manifest <e-set/manifest.json> --attestation-acceptance-receipt <e-acceptance.json> --run-id <run> --phase-id <phase> --split-id <split> --observed-at <timestamp> --output <availability>
+python -B -m integration_harness adapter-build --dataset-zip <dataset.zip> --dataset-pin <dataset-pin.json> --dataset-git-receipt <git-receipt.json> --availability-manifest <availability/manifest.json> --contracts-root terminology_contracts_v1 --adapter-mode OFFICIAL_5_15_PREFLIGHT --output <adapter-bundle>
+python -B -m integration_harness adapter-replay --bundle <adapter-bundle> --contracts-root terminology_contracts_v1
 ```
 
 `run` calls the public `global_validator.v1.cli` subprocess. Authority,
@@ -80,8 +105,9 @@ configuration cannot override persisted pins.
 
 ## Current readiness
 
-M0-M5 are implemented. The test suite exercises a 15-candidate synthetic
-zero-network fixture, exact current-R2 authority admission, detached AR-1
-validation, current-R2 sealed replay, and explicit historical-R1 replay. The
+M0-M5 and the Dataset exact-cohort adapter conformance layer are implemented.
+The adapter gate exercises the accepted official 5/15 Dataset pin as an
+availability preflight and synthetic exact cohorts with deterministic
+seal/replay. The
 real M6 pilot remains on hold until complete official Dataset/C/E packages are
-supplied. No synthetic fixture is promoted as a producer release.
+supplied and accepted. No synthetic fixture is promoted as a producer release.

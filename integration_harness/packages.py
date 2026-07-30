@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -21,7 +22,7 @@ ROLE_SCHEMA = {
 }
 
 
-def _validate_jsonschema(value: dict[str, Any], schema_root: Path | None) -> None:
+def validate_contract_schema(value: dict[str, Any], schema_root: Path | None) -> None:
     if schema_root is None:
         return
     try:
@@ -29,23 +30,31 @@ def _validate_jsonschema(value: dict[str, Any], schema_root: Path | None) -> Non
         from referencing import Registry, Resource
     except ImportError as exc:  # pragma: no cover - environment gate reports this
         raise ValidationError("jsonschema is required for schema validation") from exc
-    schema_path = (schema_root / "schemas" / "current" / _schema_filename(value["schema_id"])).resolve()
+    validator = _cached_validator(schema_root.resolve(), value["schema_id"], jsonschema, Registry, Resource)
+    try:
+        validator.validate(value)
+    except jsonschema.ValidationError as exc:
+        raise ValidationError(f"schema validation failed: {exc.message}") from exc
+
+
+@lru_cache(maxsize=32)
+def _cached_validator(schema_root: Path, schema_id: str, jsonschema: Any, Registry: Any, Resource: Any) -> Any:
+    """Cache immutable schema validators across the many 50/150 package checks."""
+
+    schema_path = schema_root / "schemas" / "current" / _schema_filename(schema_id)
     if not schema_path.is_file():
         raise ValidationError(f"schema is unavailable: {schema_path}")
     schema = load_json(schema_path, require_object=True)
     store: dict[str, dict[str, Any]] = {}
     for candidate in schema_path.parent.glob("*.schema.json"):
         loaded = load_json(candidate, require_object=True)
-        schema_id = loaded.get("$id")
-        if isinstance(schema_id, str):
-            store[schema_id] = loaded
+        loaded_id = loaded.get("$id")
+        if isinstance(loaded_id, str):
+            store[loaded_id] = loaded
     registry = Registry()
-    for schema_id, loaded in store.items():
-        registry = registry.with_resource(schema_id, Resource.from_contents(loaded))
-    try:
-        jsonschema.Draft202012Validator(schema, registry=registry).validate(value)
-    except jsonschema.ValidationError as exc:
-        raise ValidationError(f"schema validation failed: {exc.message}") from exc
+    for loaded_id, loaded in store.items():
+        registry = registry.with_resource(loaded_id, Resource.from_contents(loaded))
+    return jsonschema.Draft202012Validator(schema, registry=registry)
 
 
 def _schema_filename(schema_id: str) -> str:
@@ -74,7 +83,7 @@ def validate_package(record: ArtifactRecord, *, schema_root: Path | None = None)
     integrity = value.get("integrity")
     if not isinstance(integrity, dict) or integrity.get("self_sha256") != self_sha256(value):
         raise ValidationError(f"{record.relative_path}: self hash mismatch")
-    _validate_jsonschema(value, schema_root)
+    validate_contract_schema(value, schema_root)
     if record.role == "effective_sense":
         if not isinstance(record.candidate_key, dict):
             raise ValidationError(f"{record.relative_path}: effective sense requires manifest candidate_key")

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:terminology-evidence:SystemIntegrationD0ReviewReceiptV1:1.0.0",
+  "title": "SystemIntegrationD0ReviewReceiptV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_id", "schema_version", "status", "live_status", "base_commit", "child_commit", "child_tree", "changed_paths", "gates", "dataset_authority", "evaluation_producer_handoff", "main01_dependency", "invariants", "integrity"],
+  "properties": {
+    "schema_id": {"const": "SystemIntegrationD0ReviewReceiptV1"},
+    "schema_version": {"const": "1.0.0"},
+    "status": {"const": "SI_EV02_PRODUCER_SAFE_BOUNDARY_READY_FOR_INDEPENDENT_REVIEW"},
+    "live_status": {"const": "REVIEW_ONLY_DRAFT_INPUT"},
+    "base_commit": {"$ref": "#/$defs/gitOid"},
+    "child_commit": {"$ref": "#/$defs/gitOid"},
+    "child_tree": {"$ref": "#/$defs/gitOid"},
+    "changed_paths": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "gates": {"type": "object", "minProperties": 1},
+    "dataset_authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "zip_sha256", "manifest_self_sha256", "candidate_identity_sha256", "sense_identity_sha256", "context_identity_sha256", "candidate_count", "sense_count", "context_count"],
+      "properties": {
+        "status": {"const": "PRODUCER_SAFE_PAYLOAD_ACCEPTED_ZERO_PROVIDER"},
+        "zip_sha256": {"const": "8a39dce822dcb6aa228da25a5a10b7df07b6ac60ef68bca3e5466aba49449d73"},
+        "manifest_self_sha256": {"const": "194dd421ad7aef9272e90d1dff2ef96c5a8c8bf1ded7faba74283777e279ddc2"},
+        "candidate_identity_sha256": {"const": "ea80716a38d443afa954f110b3a8346f17073f7e76aa6ea6f2fce377490dd77b"},
+        "sense_identity_sha256": {"const": "db2e5298324981c96bb83c5318fc219e2bd0c341273e439a3bae3900fe9a5708"},
+        "context_identity_sha256": {"const": "eef660f3eff8dcec277ec607d0b56f16f66cdf55e708bb39cd6118167d7dd9fb"},
+        "candidate_count": {"const": 150}, "sense_count": {"const": 50}, "context_count": {"const": 386}
+      }
+    },
+    "evaluation_producer_handoff": {
+      "type": "object", "additionalProperties": false,
+      "required": ["child_commit", "child_tree", "producer_handoff_zip_sha256", "acceptance_receipt_physical_sha256", "acceptance_receipt_self_sha256", "cohort_physical_sha256", "cohort_self_sha256", "candidate_set_sha256", "selection_authority_sha256", "canary_candidate_id", "candidate_count", "sense_count"],
+      "properties": {
+        "child_commit": {"const": "7de0ecab74bc8439724e419743c18fee46cb885c"},
+        "child_tree": {"const": "7d2ebf8f65051e8e0326350eb32301954fb62dfc"},
+        "producer_handoff_zip_sha256": {"const": "f44df544383b240f3d5d3b8a2ae93d4ce7665b94d0ce92f79400e56bd379e3f0"},
+        "acceptance_receipt_physical_sha256": {"const": "668e65fbe34ce410e699a90ba53e64724c054ab4cc81e307753549bb84d7dab7"},
+        "acceptance_receipt_self_sha256": {"const": "dd768c8382ca521735df3110055fc58fd13727f058748ab1ba54b634d9413e0c"},
+        "cohort_physical_sha256": {"const": "df19e7e605f50190e389b374d5a08589858e1ce043b935c69646a3223daa8705"},
+        "cohort_self_sha256": {"const": "206f5770c7ea32d5a232f986240cfdf5655700b6a15b614a2251d6caba218fad"},
+        "candidate_set_sha256": {"const": "e72286e06201297864d3163311336515092d841181e484c01276faa9b989fa0b"},
+        "selection_authority_sha256": {"const": "0d52dd27e2657b9e9b0d353a5c66cc984b24dfbd6c8f6e79c98a99f69303745f"},
+        "canary_candidate_id": {"const": "candidate_479fdd8ff6d15304debec117"},
+        "candidate_count": {"const": 15}, "sense_count": {"const": 5}
+      }
+    },
+    "main01_dependency": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "review_zip_sha256", "profile_physical_sha256", "profile_self_sha256", "run_spec_physical_sha256", "run_spec_self_sha256", "activates_live_authority"],
+      "properties": {
+        "status": {"const": "REVIEW_ONLY_DRAFT_INPUT"},
+        "review_zip_sha256": {"const": "423c063e1533e5c1e044a21d1b17b196b523d2615c0fd250d9687e4406f319da"},
+        "profile_physical_sha256": {"const": "b9b56ce5d736a75c2084ff7f41e98f044f2d066b49e2f1e14ab3035087f8059a"},
+        "profile_self_sha256": {"const": "f25afa9aa1a28de431bc9e3c8422543b95820d6d31198da8fb9437d86e2da995"},
+        "run_spec_physical_sha256": {"const": "497ec63b9d4acdd88773b4f9dcc43b491efafe853af6b0750868694761ce4df7"},
+        "run_spec_self_sha256": {"const": "7a409a656e86f4597997b87b2e666a35c52ae1a647d08c430fcb7faef43f1aff"},
+        "activates_live_authority": {"const": false}
+      }
+    },
+    "invariants": {
+      "type": "object", "additionalProperties": false,
+      "required": ["provider_calls", "network_calls", "gold_access", "auto_approved", "certificates", "official_live_authority", "run_authorized"],
+      "properties": {"provider_calls": {"const": 0}, "network_calls": {"const": 0}, "gold_access": {"const": 0}, "auto_approved": {"const": 0}, "certificates": {"const": 0}, "official_live_authority": {"const": "HOLD"}, "run_authorized": {"const": false}}
+    },
+    "integrity": {"type": "object", "additionalProperties": false, "required": ["self_sha256"], "properties": {"self_sha256": {"$ref": "#/$defs/sha"}}}
+  },
+  "$defs": {"sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "gitOid": {"type": "string", "pattern": "^[0-9a-f]{40}$"}}
+}
