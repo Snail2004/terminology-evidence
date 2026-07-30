@@ -123,7 +123,9 @@ def validate_provider_transport_result(value: Mapping[str, Any], *, request_sha2
         "provider_request_id", "outcome", "response", "request_sha256",
         "response_physical_sha256", "response_canonical_sha256", "started_at", "completed_at",
         "latency_ms", "input_tokens", "output_tokens", "reasoning_tokens", "total_tokens",
-        "cost", "currency", "physical_request_count", "retry_index",
+        "cost", "currency", "cost_status", "physical_request_count",
+        "network_request_count", "retry_index", "generation_config",
+        "generation_contract_sha256", "token_accounting_authority_sha256",
     })
     provider_request_id = require_string(value["provider_request_id"], path="$.provider_request_id")
     if provider_request_id.startswith("fixture-"):
@@ -134,17 +136,47 @@ def validate_provider_transport_result(value: Mapping[str, Any], *, request_sha2
         raise LiveSchemaError("provider transport request hash mismatch")
     for key in ("request_sha256", "response_physical_sha256", "response_canonical_sha256"):
         require_sha256(value[key], path=f"$.{key}")
-    for key in ("started_at", "completed_at", "currency"):
+    for key in ("started_at", "completed_at", "cost_status"):
         require_string(value[key], path=f"$.{key}")
-    for key in ("latency_ms", "input_tokens", "output_tokens", "reasoning_tokens", "total_tokens", "physical_request_count", "retry_index"):
+    for key in (
+        "latency_ms", "input_tokens", "output_tokens", "reasoning_tokens",
+        "total_tokens", "physical_request_count", "network_request_count",
+        "retry_index",
+    ):
         if isinstance(value[key], bool) or not isinstance(value[key], int) or value[key] < 0:
             raise LiveSchemaError(f"provider transport {key} must be a nonnegative integer")
     if value["physical_request_count"] != 1:
         raise LiveSchemaError("one transport result must describe exactly one physical attempt")
+    if value["network_request_count"] not in {0, 1}:
+        raise LiveSchemaError("one transport result has invalid network request count")
     if value["total_tokens"] != value["input_tokens"] + value["output_tokens"] + value["reasoning_tokens"]:
         raise LiveSchemaError("provider transport token total mismatch")
-    if isinstance(value["cost"], bool) or not isinstance(value["cost"], (int, float)) or value["cost"] < 0:
-        raise LiveSchemaError("provider transport cost must be nonnegative")
+    if value["cost_status"] == "TOKEN_ONLY_COST_UNAVAILABLE":
+        if value["cost"] is not None or value["currency"] is not None:
+            raise LiveSchemaError("unknown provider cost must use null cost/currency")
+    elif value["cost_status"] == "PROVIDER_BILLED_COST_REPORTED":
+        if (
+            isinstance(value["cost"], bool)
+            or not isinstance(value["cost"], (int, float))
+            or value["cost"] < 0
+        ):
+            raise LiveSchemaError("provider billed cost must be nonnegative")
+        require_string(value["currency"], path="$.currency")
+    else:
+        raise LiveSchemaError("provider transport cost status is unsupported")
+    if value["generation_config"] != {
+        "reasoning": "minimal",
+        "thinking_level": "minimal",
+    }:
+        raise LiveSchemaError("provider transport generation config mismatch")
+    require_sha256(
+        value["generation_contract_sha256"],
+        path="$.generation_contract_sha256",
+    )
+    require_sha256(
+        value["token_accounting_authority_sha256"],
+        path="$.token_accounting_authority_sha256",
+    )
     if value["outcome"] == "SUCCESS":
         if not isinstance(value["response"], Mapping):
             raise LiveSchemaError("successful provider transport lacks response")
@@ -168,7 +200,7 @@ def validate_provider_transport_result(value: Mapping[str, Any], *, request_sha2
         raise LiveSchemaError("provider transport timestamp interval is invalid")
     if int((completed - started).total_seconds() * 1000) != value["latency_ms"]:
         raise LiveSchemaError("provider transport latency does not match timestamps")
-    if not math.isfinite(float(value["cost"])):
+    if value["cost"] is not None and not math.isfinite(float(value["cost"])):
         raise LiveSchemaError("provider transport cost must be finite")
     return dict(value)
 

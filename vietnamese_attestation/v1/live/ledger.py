@@ -53,7 +53,7 @@ class EventLedger:
             "retry_of": retry_of,
             "payload": dict(payload or {}),
             "failure_disposition": failure_disposition,
-            "usage": dict(usage or {"input_tokens": 0, "output_tokens": 0, "reasoning_tokens": 0, "total_tokens": 0, "cost": 0.0, "currency": "USD"}),
+            "usage": _normalized_usage(usage),
             "created_at": created_at or self.clock(),
         }
         event["event_sha256"] = _event_hash(event)
@@ -80,7 +80,10 @@ class EventLedger:
         outcome: str = "SUCCESS",
         latency_ms: int = 0,
         physical_request_count: int = 1,
+        network_request_count: int = 0,
         response_physical_sha256: str | None = None,
+        generation_contract_sha256: str | None = None,
+        token_accounting_authority_sha256: str | None = None,
         started_at: str | None = None,
         completed_at: str | None = None,
         retry_index: int = 0,
@@ -91,6 +94,18 @@ class EventLedger:
             require_sha256(value, path=f"$.payload.{name}")
         physical_response = response_physical_sha256 or response_sha256
         require_sha256(physical_response, path="$.payload.response_physical_sha256")
+        generation_contract = generation_contract_sha256 or canonical_sha256(
+            {"generation_config": dict(generation_config)}
+        )
+        token_authority = token_accounting_authority_sha256 or canonical_sha256(
+            {"status": "LOCAL_FIXTURE_TOKEN_ACCOUNTING"}
+        )
+        require_sha256(
+            generation_contract, path="$.payload.generation_contract_sha256"
+        )
+        require_sha256(
+            token_authority, path="$.payload.token_accounting_authority_sha256"
+        )
         return self.append(
             "E_MODEL_REQUEST",
             candidate_replicate_id=candidate_id,
@@ -118,6 +133,9 @@ class EventLedger:
                 "outcome": outcome,
                 "latency_ms": latency_ms,
                 "physical_request_count": physical_request_count,
+                "network_request_count": network_request_count,
+                "generation_contract_sha256": generation_contract,
+                "token_accounting_authority_sha256": token_authority,
                 "response_physical_sha256": physical_response,
                 "started_at": started_at or self.clock(),
                 "completed_at": completed_at or self.clock(),
@@ -153,6 +171,28 @@ def verify_event_chain(events: Sequence[Mapping[str, Any]], *, run_id: str | Non
 def _event_hash(event: Mapping[str, Any]) -> str:
     body = {key: value for key, value in event.items() if key != "event_sha256"}
     return canonical_sha256(body)
+
+
+def _normalized_usage(value: Mapping[str, Any] | None) -> dict[str, Any]:
+    usage = dict(
+        value
+        or {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "reasoning_tokens": 0,
+            "total_tokens": 0,
+            "cost": 0.0,
+            "currency": "USD",
+            "cost_status": "LOCAL_FIXTURE_COST_RECORDED",
+        }
+    )
+    if "cost_status" not in usage:
+        usage["cost_status"] = (
+            "TOKEN_ONLY_COST_UNAVAILABLE"
+            if usage.get("cost") is None and usage.get("currency") is None
+            else "LOCAL_FIXTURE_COST_RECORDED"
+        )
+    return usage
 
 
 __all__ = ["EventLedger", "GENESIS_SHA256", "verify_event_chain"]

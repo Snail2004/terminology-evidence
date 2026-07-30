@@ -91,12 +91,21 @@ class Draft4LifecycleAdapter:
     ) -> dict[str, Any]:
         checked = self.validate_event_chain(events)
         usages = [event["usage"] for event in checked if event.get("usage") is not None]
-        currencies = {str(usage["currency"]) for usage in usages}
-        price_tables = {str(usage["price_table_sha256"]) for usage in usages}
-        if len(currencies) > 1 or len(price_tables) > 1:
-            raise LiveSchemaError("Draft4 usage events have mixed currency or pricing identity")
-        currency = next(iter(currencies), "USD")
-        price_table = next(iter(price_tables), EXTERNAL_HOLD_PRICE_TABLE_SHA256)
+        token_authorities = {
+            str(usage["token_accounting_authority_sha256"]) for usage in usages
+        }
+        expected_token_authority = self.inputs.token_accounting.authority["integrity"][
+            "self_sha256"
+        ]
+        if token_authorities and token_authorities != {expected_token_authority}:
+            raise LiveSchemaError("Draft4 usage events have mixed token authority")
+        if any(
+            usage["currency"] is not None
+            or usage["cost"] is not None
+            or usage["usage_status"] != "TOKEN_ONLY_COST_UNAVAILABLE"
+            for usage in usages
+        ):
+            raise LiveSchemaError("Draft4 token-only usage contains a cost claim")
         rate_windows: dict[str, dict[str, int]] = {}
         for event in checked:
             window = event.get("rate_window_id")
@@ -114,8 +123,10 @@ class Draft4LifecycleAdapter:
                 "schema_id": "UsageSnapshotV1",
                 "schema_version": DRAFT4_SCHEMA_VERSION,
                 "phase_id": self.inputs.integration_run_spec["phase_id"],
-                "currency": currency,
-                "price_table_sha256": price_table,
+                "accounting_mode": "TOKEN_ONLY",
+                "currency": None,
+                "cost_status": "TOKEN_ONLY_COST_UNAVAILABLE",
+                "token_accounting_authority_sha256": expected_token_authority,
                 "rate_window_seconds": float(rate_window_seconds),
                 "totals": {
                     "replicates": len(
@@ -135,6 +146,10 @@ class Draft4LifecycleAdapter:
                         1 for event in physical_events if event.get("transport_retry_id") is not None
                     ),
                     "physical_requests": len(physical_events),
+                    "network_requests": _sum_usage(
+                        [event["usage"] for event in physical_events],
+                        "network_request_count",
+                    ),
                     "c_model_requests": sum(
                         1 for event in checked if event["event_kind"] == "C_MODEL_REQUEST"
                     ),
@@ -172,7 +187,7 @@ class Draft4LifecycleAdapter:
                     "cached_input_tokens": _sum_usage(usages, "cached_input_tokens"),
                     "total_tokens": _sum_usage(usages, "total_tokens"),
                     "download_bytes": _sum_usage(usages, "download_bytes"),
-                    "cost": sum(float(usage["cost"] or 0.0) for usage in usages),
+                    "cost": None,
                     "max_request_duration_seconds": max(
                         (float(event.get("request_duration_seconds") or 0.0) for event in checked),
                         default=0.0,
@@ -364,7 +379,13 @@ class Draft4LifecycleAdapter:
                 "rate_window_id": f"{event['run_id']}:{event['phase_id']}",
                 "request_duration_seconds": float(payload.get("latency_ms", 0)) / 1000.0,
                 "failure_disposition": _failure_disposition(source, payload),
-                "usage": _draft4_usage(source.get("usage")),
+                "usage": _draft4_usage(
+                    source.get("usage"),
+                    network_request_count=int(payload.get("network_request_count", 0)),
+                    token_accounting_authority_sha256=self.inputs.token_accounting.authority[
+                        "integrity"
+                    ]["self_sha256"],
+                ),
             }
         )
         if event["event_kind"] in _MODEL_EVENTS:
@@ -381,7 +402,12 @@ class Draft4LifecycleAdapter:
             event["response_artifact"] = _response_artifact(root, payload)
 
 
-def _draft4_usage(usage: Any) -> dict[str, Any]:
+def _draft4_usage(
+    usage: Any,
+    *,
+    network_request_count: int,
+    token_accounting_authority_sha256: str,
+) -> dict[str, Any]:
     if not isinstance(usage, Mapping):
         usage = {}
     return {
@@ -391,13 +417,11 @@ def _draft4_usage(usage: Any) -> dict[str, Any]:
         "cached_input_tokens": 0,
         "total_tokens": int(usage.get("total_tokens", 0)),
         "download_bytes": 0,
-        "cost": float(usage.get("cost", 0.0)),
-        "currency": str(usage.get("currency", "USD")),
-        # E-05 deliberately carries an external pricing hold. Tokens remain
-        # visible, but the combined usage/cost claim stays unjudgeable until
-        # Main publishes a pricing authority.
-        "usage_status": "USAGE_UNJUDGEABLE",
-        "price_table_sha256": EXTERNAL_HOLD_PRICE_TABLE_SHA256,
+        "network_request_count": network_request_count,
+        "cost": None,
+        "currency": None,
+        "usage_status": "TOKEN_ONLY_COST_UNAVAILABLE",
+        "token_accounting_authority_sha256": token_accounting_authority_sha256,
     }
 
 

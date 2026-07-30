@@ -952,16 +952,30 @@ class ELiveService:
             raw_path = Path(self.runs[request["run_id"]]["run_root"]).joinpath(*raw_ref.split("/"))
             raw_path.parent.mkdir(parents=True, exist_ok=True)
             raw_path.write_bytes(canonical_bytes(raw))
-            usage = {key: result[key] for key in ("input_tokens", "output_tokens", "reasoning_tokens", "total_tokens", "cost", "currency")}
+            usage = {
+                key: result[key]
+                for key in (
+                    "input_tokens",
+                    "output_tokens",
+                    "reasoning_tokens",
+                    "total_tokens",
+                    "cost",
+                    "currency",
+                    "cost_status",
+                )
+            }
             ledger.append_model_request(
                 candidate_id=request["candidate_id"], sense_id=request["sense_id"],
                 semantic_call_id=evidence["evidence_id"], provider_request_id=result["provider_request_id"],
                 provider_id=str(role_config["provider_id"]), model_id=str(role_config["model_id"]), route=role,
                 prompt_sha256=str(role_config["prompt_sha256"]), request_sha256=request_sha,
                 response_sha256=result["response_canonical_sha256"], response_physical_sha256=result["response_physical_sha256"],
-                raw_response_locator=raw_ref, generation_config=role_config["generation_config"],
+                raw_response_locator=raw_ref, generation_config=result["generation_config"],
+                generation_contract_sha256=result["generation_contract_sha256"],
+                token_accounting_authority_sha256=result["token_accounting_authority_sha256"],
                 provider_role_plan_sha256=request["provider_role_plan_sha256"], retry_index=retry_index,
                 outcome=result["outcome"], latency_ms=result["latency_ms"], physical_request_count=result["physical_request_count"],
+                network_request_count=result["network_request_count"],
                 started_at=result["started_at"], completed_at=result["completed_at"], usage=usage,
                 failure_disposition="NONE" if result["outcome"] == "SUCCESS" else result["outcome"],
             )
@@ -1023,17 +1037,32 @@ def summarize_provider_telemetry(events: Sequence[Mapping[str, Any]]) -> dict[st
         and not str(row.get("payload", {}).get("provider_request_id", "")).startswith("fixture-")
     ]
     physical_requests = sum(int(row["payload"]["physical_request_count"]) for row in model_events)
+    network_requests = sum(
+        int(row["payload"].get("network_request_count", 0)) for row in model_events
+    )
+    costs = [row["usage"]["cost"] for row in model_events]
+    currencies = {
+        str(row["usage"]["currency"])
+        for row in model_events
+        if row["usage"]["currency"] is not None
+    }
+    cost_statuses = {str(row["usage"]["cost_status"]) for row in model_events}
+    if len(currencies) > 1 or len(cost_statuses) > 1:
+        raise LiveSchemaError("provider telemetry has mixed cost authority")
     return {
         "provider_calls": physical_requests,
-        "network_calls": physical_requests,
+        "network_calls": network_requests,
         "physical_requests": physical_requests,
         "retry_count": sum(1 for row in model_events if int(row["payload"]["retry_index"]) > 0),
         "input_tokens": sum(int(row["usage"]["input_tokens"]) for row in model_events),
         "output_tokens": sum(int(row["usage"]["output_tokens"]) for row in model_events),
         "reasoning_tokens": sum(int(row["usage"]["reasoning_tokens"]) for row in model_events),
         "total_tokens": sum(int(row["usage"]["total_tokens"]) for row in model_events),
-        "total_cost": sum(float(row["usage"]["cost"]) for row in model_events),
-        "currency": model_events[0]["usage"]["currency"] if model_events else "USD",
+        "total_cost": (
+            None if any(item is None for item in costs) else sum(float(item) for item in costs)
+        ),
+        "currency": next(iter(currencies), None),
+        "cost_status": next(iter(cost_statuses), "TOKEN_ONLY_COST_UNAVAILABLE"),
         "latency_total_ms": sum(int(row["payload"]["latency_ms"]) for row in model_events),
         "latency_measurements": [int(row["payload"]["latency_ms"]) for row in model_events],
     }

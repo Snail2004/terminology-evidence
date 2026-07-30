@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import io
+import os
 import re
 import stat
 import zipfile
@@ -22,6 +23,10 @@ from ..common import (
     verify_seal,
 )
 from ..schemas import validate_provider_role_plan
+from ..provider_adapters.token_accounting import (
+    VerifiedTokenAccountingAuthority,
+    load_main_token_accounting_authority,
+)
 
 
 E05_DELIVERY_SHA256 = "2fe7ce1aa2bbe5c25915b9a885b74dee7ede232d3d468982093a5247f7d343e6"
@@ -43,6 +48,38 @@ E05_PROVIDER_PLAN_PHYSICAL_SHA256 = "fb70908ba9826fff4518c9e0f5c380648d610dd04dd
 
 DRAFT4_COMMIT = "c28b3ad3b60627f1bcd7722404b16aca88754ec7"
 DRAFT4_TREE = "ac8d3489f67f4fec212009523b9ae9ce90dfbdab"
+DRAFT4_TOKEN_ACCOUNTING_COMMIT = "0acb5a82106dbcefa13fcb998590f7ce04af852f"
+DRAFT4_TOKEN_ACCOUNTING_PARENT = "a6b6c3cbb9ed0c331723d18b30f319b22095be94"
+DRAFT4_TOKEN_ACCOUNTING_TREE = "f315548679756e671a227436d705487ce53f4408"
+
+_DEFAULT_TOKEN_ACCOUNTING_PACKAGE = Path(
+    r"C:\work\terminology-evidence-artifacts\D0_API_Execution_Plan_Operations_V1\main-token-accounting-v1\release\build-a.zip"
+)
+_DEFAULT_TOKEN_DRAFT4_ROOT = Path(
+    r"C:\work\terminology_evidence-worktrees\live-run-protocol-v1-1-draft\docs\live-run-protocol\v1_1"
+)
+_TOKEN_DRAFT4_FILES = {
+    "LIVE_AUTHORIZATION_RECEIPT": (
+        "LIVE_AUTHORIZATION_RECEIPT_V1_1.schema.json",
+        "3008a4849b65e681ead9f331430bb2d7e7db1a83858519bb834427eed21b7d15",
+    ),
+    "LIVE_LEDGER_EVENT": (
+        "LIVE_LEDGER_EVENT_V1_1.schema.json",
+        "2e1417285e6a428c83e7e27a4b8a42b032b362791ec7af927d43c4d67566f489",
+    ),
+    "USAGE_SNAPSHOT": (
+        "USAGE_SNAPSHOT_V1.schema.json",
+        "f5a7fd6690adc48e6459fa60a503b91bfda1704de46bc79afacb8e0fae1157e7",
+    ),
+    "LIVE_BUDGET_SPEC": (
+        "LIVE_BUDGET_SPEC_V1.schema.json",
+        "5dad6fe9072c56874fe5a55db4b6dfda1e4b2e0728e90672f629007bc8454fb4",
+    ),
+    "LIVE_PHASE_RUN_SPEC": (
+        "LIVE_PHASE_RUN_SPEC_V1_1.schema.json",
+        "99cb3c76a8fbc93f92c2e6245fffe0724b2c52eff822256973d95de9ac0ce461",
+    ),
+}
 
 _SHA256_ROW = re.compile(r"([0-9a-f]{64})  (.+)")
 _DELIVERY_MEMBERS = frozenset(
@@ -85,6 +122,9 @@ class E05ExactIntegrationInputs:
     owner_binding_receipt: Mapping[str, Any]
     protocol_schemas: Mapping[str, Mapping[str, Any]]
     protocol_schema_bytes: Mapping[str, bytes]
+    token_accounting: VerifiedTokenAccountingAuthority
+    token_protocol_schemas: Mapping[str, Mapping[str, Any]]
+    token_protocol_schema_bytes: Mapping[str, bytes]
     profile_member_bytes: Mapping[str, bytes]
 
     @property
@@ -97,6 +137,9 @@ class E05ExactIntegrationInputs:
 
 def load_e05_exact_integration_inputs(
     delivery_path: str | Path,
+    *,
+    token_accounting_package_path: str | Path | None = None,
+    token_draft4_root: str | Path | None = None,
 ) -> E05ExactIntegrationInputs:
     """Load the single exact Main delivery without accepting caller-owned hashes."""
 
@@ -288,6 +331,29 @@ def load_e05_exact_integration_inputs(
             if value.get("event_sha256") != expected:
                 raise LiveSchemaError("Draft4 example event hash mismatch")
 
+    token_package = token_accounting_package_path or os.environ.get(
+        "E05_TOKEN_ACCOUNTING_PACKAGE", str(_DEFAULT_TOKEN_ACCOUNTING_PACKAGE)
+    )
+    token_accounting = load_main_token_accounting_authority(token_package)
+    token_schema_root = token_draft4_root or os.environ.get(
+        "E05_DRAFT4_TOKEN_SCHEMA_ROOT", str(_DEFAULT_TOKEN_DRAFT4_ROOT)
+    )
+    token_protocol_schemas, token_protocol_schema_bytes = (
+        _load_token_draft4_schemas(token_schema_root)
+    )
+    # The current authorization receipt remains an immutable synthetic hold.
+    # New E ledger and usage projections use the exact token-only Draft4 child.
+    protocol_schemas["LIVE_LEDGER_EVENT"] = token_protocol_schemas[
+        "LIVE_LEDGER_EVENT"
+    ]
+    protocol_schema_bytes["LIVE_LEDGER_EVENT"] = token_protocol_schema_bytes[
+        "LIVE_LEDGER_EVENT"
+    ]
+    protocol_schemas["USAGE_SNAPSHOT"] = token_protocol_schemas["USAGE_SNAPSHOT"]
+    protocol_schema_bytes["USAGE_SNAPSHOT"] = token_protocol_schema_bytes[
+        "USAGE_SNAPSHOT"
+    ]
+
     return E05ExactIntegrationInputs(
         delivery_path=delivery_file,
         input_manifest=input_manifest,
@@ -301,6 +367,9 @@ def load_e05_exact_integration_inputs(
         owner_binding_receipt=owner_binding,
         protocol_schemas=protocol_schemas,
         protocol_schema_bytes=protocol_schema_bytes,
+        token_accounting=token_accounting,
+        token_protocol_schemas=token_protocol_schemas,
+        token_protocol_schema_bytes=token_protocol_schema_bytes,
         profile_member_bytes=profile_members,
     )
 
@@ -335,6 +404,42 @@ def validate_e05_protocol_instance_from_schema(
             f"E-05 Draft4 instance is invalid for {role}: {errors[0].message}"
         )
     return dict(value)
+
+
+def _load_token_draft4_schemas(
+    root: str | Path,
+) -> tuple[dict[str, Mapping[str, Any]], dict[str, bytes]]:
+    supplied = Path(root).absolute()
+    try:
+        reject_link(supplied)
+        resolved = supplied.resolve(strict=True)
+        reject_link(resolved)
+    except (OSError, ValueError) as exc:
+        raise LiveSchemaError("cannot resolve exact Draft4 token schema root") from exc
+    if not resolved.is_dir():
+        raise LiveSchemaError("Draft4 token schema root is not a directory")
+    schemas: dict[str, Mapping[str, Any]] = {}
+    schema_bytes: dict[str, bytes] = {}
+    for role, (filename, expected_sha) in _TOKEN_DRAFT4_FILES.items():
+        path = resolved / filename
+        try:
+            reject_link(path)
+            file_path = path.resolve(strict=True)
+            file_path.relative_to(resolved)
+            reject_link(file_path)
+        except (OSError, ValueError) as exc:
+            raise LiveSchemaError(f"Draft4 token schema path is unsafe: {role}") from exc
+        raw = file_path.read_bytes()
+        if hashlib.sha256(raw).hexdigest() != expected_sha:
+            raise LiveSchemaError(f"Draft4 token schema physical hash mismatch: {role}")
+        schema = _json_object(raw, label=f"Draft4 token schema {role}")
+        try:
+            Draft202012Validator.check_schema(schema)
+        except Exception as exc:
+            raise LiveSchemaError(f"Draft4 token schema is invalid: {role}") from exc
+        schemas[role] = schema
+        schema_bytes[role] = raw
+    return schemas, schema_bytes
 
 
 def _validate_profile_anchor(value: Mapping[str, Any]) -> None:
@@ -673,6 +778,9 @@ def _require_seal(value: Mapping[str, Any], expected: str, label: str) -> None:
 
 __all__ = [
     "DRAFT4_COMMIT",
+    "DRAFT4_TOKEN_ACCOUNTING_COMMIT",
+    "DRAFT4_TOKEN_ACCOUNTING_PARENT",
+    "DRAFT4_TOKEN_ACCOUNTING_TREE",
     "DRAFT4_TREE",
     "E05_BASE_COMMIT",
     "E05_BASE_TREE",

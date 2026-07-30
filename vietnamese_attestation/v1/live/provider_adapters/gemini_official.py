@@ -13,16 +13,7 @@ from datetime import datetime, timezone
 from typing import Any, Mapping, Protocol
 
 from ...strict_json import strict_json_loads
-from ..authority_adapter.e05 import E05_PROVIDER_PLAN_SELF_SHA256
-from ..common import (
-    LiveSchemaError,
-    canonical_bytes,
-    canonical_sha256,
-    require_exact_keys,
-    require_string,
-    seal,
-    verify_seal,
-)
+from ..common import LiveSchemaError, canonical_bytes, canonical_sha256, require_exact_keys, require_string
 from ..judge import judge_request_sha256, validate_provider_transport_result
 from ..schemas import (
     CONCEPT_RELATIONS,
@@ -35,13 +26,21 @@ from ..schemas import (
     validate_judge_response,
     validate_provider_role_plan,
 )
+from .token_accounting import (
+    E05_PROVIDER_PLAN_SELF_SHA256,
+    MAIN_GENERATION_CONTRACT_SELF_SHA256,
+    TOKEN_ONLY_COST_UNAVAILABLE,
+    VerifiedTokenAccountingAuthority,
+    canonical_generation_config,
+    canonical_generation_contract_sha256,
+    validate_recorded_token_accounting_authority,
+)
 
 
 GEMINI_PROVIDER_ID = "gemini_official"
 GEMINI_MODEL_ID = "gemini-3.5-flash"
 GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta"
 _RETRYABLE_HTTP = frozenset({408, 429, 500, 502, 503, 504})
-_PRICING_SCHEMA_ID = "EGeminiPricingAuthorityV1"
 _SYSTEM_PROMPT = (
     "You are the Vietnamese Attestation Judge. Compare the frozen English sense "
     "with the supplied Vietnamese evidence. Do not choose a glossary term or emit "
@@ -50,6 +49,8 @@ _SYSTEM_PROMPT = (
 
 
 class GeminiTransport(Protocol):
+    networked: bool
+
     def post_json(
         self,
         *,
@@ -79,6 +80,8 @@ class GeminiUnknownPhysicalOutcome(RuntimeError):
 
 class UrllibGeminiTransport:
     """Actual HTTP transport. E-05 tests inject a recorder and never call this."""
+
+    networked = True
 
     def post_json(
         self,
@@ -132,7 +135,8 @@ class GeminiOfficialAdapter:
         *,
         role_plan: Mapping[str, Any],
         api_key: str,
-        pricing_authority: Mapping[str, Any],
+        token_accounting_authority: VerifiedTokenAccountingAuthority
+        | Mapping[str, Any],
         transport: GeminiTransport | None = None,
         base_url: str = GEMINI_BASE_URL,
         timeout_seconds: float = 120.0,
@@ -144,16 +148,51 @@ class GeminiOfficialAdapter:
             raise LiveSchemaError("Gemini official API key is missing")
         if not isinstance(timeout_seconds, (int, float)) or timeout_seconds <= 0:
             raise LiveSchemaError("Gemini timeout must be positive")
-        checked_pricing = _validate_pricing_authority(pricing_authority)
-        if transport is None and checked_pricing["status"] != "MAIN_PINNED_APPROVED":
-            raise LiveSchemaError("real Gemini transport requires Main-approved pricing authority")
+        selected_transport = transport or UrllibGeminiTransport()
+        networked = getattr(selected_transport, "networked", None)
+        if not isinstance(networked, bool):
+            raise LiveSchemaError("Gemini transport must declare whether it uses network")
+        if isinstance(token_accounting_authority, VerifiedTokenAccountingAuthority):
+            checked_accounting = dict(token_accounting_authority.authority)
+            generation_contract_sha256 = token_accounting_authority.generation_contract[
+                "integrity"
+            ]["self_sha256"]
+        else:
+            if networked:
+                raise LiveSchemaError(
+                    "real Gemini transport requires exact Main token-accounting authority"
+                )
+            checked_accounting = validate_recorded_token_accounting_authority(
+                token_accounting_authority
+            )
+            generation_contract_sha256 = checked_accounting[
+                "generation_contract_self_sha256"
+            ]
+        if networked and not isinstance(
+            token_accounting_authority, VerifiedTokenAccountingAuthority
+        ):
+            raise LiveSchemaError(
+                "real Gemini transport requires exact Main token-accounting authority"
+            )
+        expected_generation_sha = (
+            MAIN_GENERATION_CONTRACT_SELF_SHA256
+            if networked
+            else canonical_generation_contract_sha256()
+        )
+        if generation_contract_sha256 != expected_generation_sha:
+            raise LiveSchemaError("Gemini generation-contract identity mismatch")
         self._roles = {
             str(row["semantic_role"]): dict(row) for row in checked_plan["roles"]
         }
         self._api_key = api_key
-        self._pricing = checked_pricing
-        self._transport = transport or UrllibGeminiTransport()
-        self.zero_network = transport is not None
+        self._token_accounting = checked_accounting
+        self._token_accounting_sha256 = checked_accounting["integrity"][
+            "self_sha256"
+        ]
+        self._generation_contract_sha256 = generation_contract_sha256
+        self._transport = selected_transport
+        self._networked = networked
+        self.zero_network = not networked
         self._base_url = base_url.rstrip("/")
         self._timeout_seconds = float(timeout_seconds)
         self._attempts: dict[tuple[str, str], int] = {}
@@ -208,6 +247,9 @@ class GeminiOfficialAdapter:
                 started_at=exc.started_at,
                 completed_at=exc.completed_at,
                 retry_index=retry_index,
+                networked=self._networked,
+                generation_contract_sha256=self._generation_contract_sha256,
+                token_accounting_authority_sha256=self._token_accounting_sha256,
             )
             return validate_provider_transport_result(result, request_sha256=request_sha)
         except Exception as exc:
@@ -219,6 +261,9 @@ class GeminiOfficialAdapter:
                 started_at=now,
                 completed_at=now,
                 retry_index=retry_index,
+                networked=self._networked,
+                generation_contract_sha256=self._generation_contract_sha256,
+                token_accounting_authority_sha256=self._token_accounting_sha256,
             )
             # An unclassified transport exception is physically ambiguous. Its
             # type is intentionally not serialized because it may contain
@@ -246,7 +291,6 @@ class GeminiOfficialAdapter:
                 if provider_request_id.startswith("gemini-request-id-missing-"):
                     outcome = "TERMINAL_FAILURE"
                 else:
-                    cost = _cost(usage, self._pricing)
                     result = {
                         "provider_request_id": provider_request_id,
                         "outcome": "SUCCESS",
@@ -265,10 +309,15 @@ class GeminiOfficialAdapter:
                         "output_tokens": usage["output_tokens"],
                         "reasoning_tokens": usage["reasoning_tokens"],
                         "total_tokens": usage["total_tokens"],
-                        "cost": cost,
-                        "currency": self._pricing["currency"],
+                        "cost": None,
+                        "currency": None,
+                        "cost_status": TOKEN_ONLY_COST_UNAVAILABLE,
                         "physical_request_count": 1,
+                        "network_request_count": 1 if self._networked else 0,
                         "retry_index": retry_index,
+                        "generation_config": canonical_generation_config(),
+                        "generation_contract_sha256": self._generation_contract_sha256,
+                        "token_accounting_authority_sha256": self._token_accounting_sha256,
                     }
                     return validate_provider_transport_result(
                         result, request_sha256=request_sha
@@ -281,32 +330,11 @@ class GeminiOfficialAdapter:
             started_at=normalized["started_at"],
             completed_at=normalized["completed_at"],
             retry_index=retry_index,
+            networked=self._networked,
+            generation_contract_sha256=self._generation_contract_sha256,
+            token_accounting_authority_sha256=self._token_accounting_sha256,
         )
         return validate_provider_transport_result(result, request_sha256=request_sha)
-
-
-def make_recorded_pricing_authority(
-    *,
-    input_per_million: float = 0.1,
-    output_per_million: float = 0.4,
-    reasoning_per_million: float = 0.4,
-) -> dict[str, Any]:
-    """Create an explicitly test-only price table for recorded transport fixtures."""
-
-    return seal(
-        {
-            "schema_id": _PRICING_SCHEMA_ID,
-            "schema_version": "1.0.0",
-            "status": "TEST_ONLY_RECORDED",
-            "currency": "USD",
-            "rates_per_million": {
-                "input": float(input_per_million),
-                "output": float(output_per_million),
-                "reasoning": float(reasoning_per_million),
-            },
-            "integrity": {},
-        }
-    )
 
 
 def _api_payload(
@@ -342,8 +370,7 @@ def _api_payload(
             }
         ],
         "generationConfig": {
-            "temperature": 0,
-            "thinkingConfig": {"thinkingBudget": 0},
+            "thinkingConfig": {"thinkingLevel": "minimal"},
             "responseMimeType": "application/json",
             "responseJsonSchema": _judge_response_json_schema(),
         },
@@ -415,8 +442,6 @@ def _semantic_response(
     output_tokens = _token(usage, "candidatesTokenCount", required=True)
     reasoning_tokens = _token(usage, "thoughtsTokenCount", required=False)
     total_tokens = _token(usage, "totalTokenCount", required=True)
-    if reasoning_tokens != 0:
-        raise LiveSchemaError("Gemini returned reasoning tokens under reasoning=none")
     if total_tokens != input_tokens + output_tokens + reasoning_tokens:
         raise LiveSchemaError("Gemini usage token total is inconsistent")
     return response, {
@@ -476,6 +501,9 @@ def _failure_result(
     started_at: str,
     completed_at: str,
     retry_index: int,
+    networked: bool,
+    generation_contract_sha256: str,
+    token_accounting_authority_sha256: str,
 ) -> dict[str, Any]:
     null_sha = canonical_sha256(None)
     return {
@@ -492,52 +520,16 @@ def _failure_result(
         "output_tokens": 0,
         "reasoning_tokens": 0,
         "total_tokens": 0,
-        "cost": 0.0,
-        "currency": "USD",
+        "cost": None,
+        "currency": None,
+        "cost_status": TOKEN_ONLY_COST_UNAVAILABLE,
         "physical_request_count": 1,
+        "network_request_count": 1 if networked else 0,
         "retry_index": retry_index,
+        "generation_config": canonical_generation_config(),
+        "generation_contract_sha256": generation_contract_sha256,
+        "token_accounting_authority_sha256": token_accounting_authority_sha256,
     }
-
-
-def _validate_pricing_authority(value: Mapping[str, Any]) -> dict[str, Any]:
-    require_exact_keys(
-        value,
-        {
-            "schema_id",
-            "schema_version",
-            "status",
-            "currency",
-            "rates_per_million",
-            "integrity",
-        },
-        path="$.pricing_authority",
-    )
-    if value["schema_id"] != _PRICING_SCHEMA_ID or value["schema_version"] != "1.0.0":
-        raise LiveSchemaError("Gemini pricing authority identity mismatch")
-    if value["status"] not in {"TEST_ONLY_RECORDED", "MAIN_PINNED_APPROVED"}:
-        raise LiveSchemaError("Gemini pricing authority status is unsupported")
-    if value["currency"] != "USD":
-        raise LiveSchemaError("Gemini pricing currency must be USD")
-    rates = value["rates_per_million"]
-    if not isinstance(rates, Mapping):
-        raise LiveSchemaError("Gemini pricing rates must be an object")
-    require_exact_keys(rates, {"input", "output", "reasoning"}, path="$.rates_per_million")
-    for key, item in rates.items():
-        if isinstance(item, bool) or not isinstance(item, (int, float)) or item < 0:
-            raise LiveSchemaError(f"Gemini pricing rate is invalid: {key}")
-    if not verify_seal(value):
-        raise LiveSchemaError("Gemini pricing authority self hash mismatch")
-    return dict(value)
-
-
-def _cost(usage: Mapping[str, int], pricing: Mapping[str, Any]) -> float:
-    rates = pricing["rates_per_million"]
-    amount = (
-        usage["input_tokens"] * float(rates["input"])
-        + usage["output_tokens"] * float(rates["output"])
-        + usage["reasoning_tokens"] * float(rates["reasoning"])
-    ) / 1_000_000.0
-    return round(amount, 12)
 
 
 def _token(value: Mapping[str, Any], key: str, *, required: bool) -> int:
@@ -589,5 +581,4 @@ __all__ = [
     "GeminiTransport",
     "GeminiUnknownPhysicalOutcome",
     "UrllibGeminiTransport",
-    "make_recorded_pricing_authority",
 ]

@@ -34,12 +34,22 @@ from vietnamese_attestation.v1.live.provider_adapters.gemini_official import (
     GEMINI_PROVIDER_ID,
     GeminiOfficialAdapter,
     GeminiUnknownPhysicalOutcome,
-    make_recorded_pricing_authority,
+)
+from vietnamese_attestation.v1.live.provider_adapters.token_accounting import (
+    MAIN_GENERATION_CONTRACT_SELF_SHA256,
+    MAIN_TOKEN_AUTHORITY_SELF_SHA256,
+    TOKEN_ONLY_COST_UNAVAILABLE,
+    canonical_generation_config,
+    load_main_token_accounting_authority,
+    make_recorded_token_accounting_authority,
 )
 
 
 DEFAULT_DELIVERY = Path(
     r"C:\work\terminology-evidence-artifacts\e05-exact-integration-input-v1\delivery.zip"
+)
+DEFAULT_TOKEN_PACKAGE = Path(
+    r"C:\work\terminology-evidence-artifacts\D0_API_Execution_Plan_Operations_V1\main-token-accounting-v1\release\build-a.zip"
 )
 
 
@@ -100,6 +110,27 @@ def test_exact_provider_plan_authorizes_only_gemini_official() -> None:
     serialized = json.dumps(plan, sort_keys=True)
     assert "shopai" not in serialized.casefold()
     assert "ckey" not in serialized.casefold()
+
+
+def test_exact_main_token_accounting_package_and_generation_contract() -> None:
+    token = load_main_token_accounting_authority(DEFAULT_TOKEN_PACKAGE)
+    assert token.authority["integrity"]["self_sha256"] == MAIN_TOKEN_AUTHORITY_SELF_SHA256
+    assert token.generation_contract["integrity"]["self_sha256"] == MAIN_GENERATION_CONTRACT_SELF_SHA256
+    assert token.authority["unknown_cost_representation"] == {
+        "cost": None,
+        "cost_status": TOKEN_ONLY_COST_UNAVAILABLE,
+        "currency": None,
+    }
+    assert token.anchor["run_authorized"] is False
+
+
+def test_exact_main_token_accounting_package_rejects_tamper(tmp_path: Path) -> None:
+    raw = bytearray(DEFAULT_TOKEN_PACKAGE.read_bytes())
+    raw[-1] ^= 1
+    path = tmp_path / "token-accounting-self-issued.zip"
+    path.write_bytes(raw)
+    with pytest.raises(LiveSchemaError, match="physical SHA-256 mismatch"):
+        load_main_token_accounting_authority(path)
 
 
 def test_exact_draft4_authorization_rejects_legacy_e_execution_binding() -> None:
@@ -173,7 +204,9 @@ def test_draft4_event_usage_and_lifecycle_projection(tmp_path: Path) -> None:
         response_sha256=canonical_sha256(response),
         response_physical_sha256=response_sha,
         raw_response_locator=f"raw_responses/{response_sha}.json",
-        generation_config=primary["generation_config"],
+        generation_config=canonical_generation_config(),
+        generation_contract_sha256=MAIN_GENERATION_CONTRACT_SELF_SHA256,
+        token_accounting_authority_sha256=MAIN_TOKEN_AUTHORITY_SELF_SHA256,
         provider_role_plan_sha256=inputs.provider_role_plan["integrity"]["self_sha256"],
         outcome="SUCCESS",
         latency_ms=25,
@@ -183,10 +216,11 @@ def test_draft4_event_usage_and_lifecycle_projection(tmp_path: Path) -> None:
         usage={
             "input_tokens": 10,
             "output_tokens": 5,
-            "reasoning_tokens": 0,
-            "total_tokens": 15,
-            "cost": 0.000003,
-            "currency": "USD",
+            "reasoning_tokens": 2,
+            "total_tokens": 17,
+            "cost": None,
+            "currency": None,
+            "cost_status": TOKEN_ONLY_COST_UNAVAILABLE,
         },
     )
     adapter = Draft4LifecycleAdapter(inputs)
@@ -199,7 +233,10 @@ def test_draft4_event_usage_and_lifecycle_projection(tmp_path: Path) -> None:
     assert events[0]["provider"] == GEMINI_PROVIDER_ID
     usage = adapter.make_usage_snapshot(events)
     assert usage["totals"]["physical_requests"] == 1
-    assert usage["totals"]["total_tokens"] == 15
+    assert usage["totals"]["total_tokens"] == 17
+    assert usage["totals"]["network_requests"] == 0
+    assert usage["totals"]["cost"] is None
+    assert usage["currency"] is None
     start = adapter.make_run_start_receipt(
         issued_at="2026-07-30T10:00:00Z"
     )
@@ -269,7 +306,7 @@ def test_gemini_adapter_success_uses_exact_route_and_redacts_credential() -> Non
     adapter = GeminiOfficialAdapter(
         role_plan=inputs.provider_role_plan,
         api_key="recorded-secret-google",
-        pricing_authority=make_recorded_pricing_authority(),
+        token_accounting_authority=make_recorded_token_accounting_authority(),
         transport=transport,
     )
     result = adapter.invoke(
@@ -278,16 +315,21 @@ def test_gemini_adapter_success_uses_exact_route_and_redacts_credential() -> Non
     )
     assert result["outcome"] == "SUCCESS"
     assert result["provider_request_id"] == "gemini-provider-request-1"
-    assert result["total_tokens"] == 15
-    assert result["reasoning_tokens"] == 0
-    assert result["cost"] == pytest.approx(0.000003)
+    assert result["total_tokens"] == 17
+    assert result["reasoning_tokens"] == 2
+    assert result["cost"] is None
+    assert result["currency"] is None
+    assert result["cost_status"] == TOKEN_ONLY_COST_UNAVAILABLE
+    assert result["network_request_count"] == 0
     assert transport.calls[0]["url"].endswith(
         "/models/gemini-3.5-flash:generateContent"
     )
     assert transport.calls[0]["headers"]["x-goog-api-key"] == "recorded-secret-google"
     generation = transport.calls[0]["payload"]["generationConfig"]
-    assert generation["temperature"] == 0
-    assert generation["thinkingConfig"] == {"thinkingBudget": 0}
+    assert generation["thinkingConfig"] == {"thinkingLevel": "minimal"}
+    assert set(generation).isdisjoint(
+        {"temperature", "top_p", "topP", "top_k", "topK", "thinkingBudget"}
+    )
     assert "recorded-secret-google" not in repr(adapter)
     assert "recorded-secret-google" not in json.dumps(result, sort_keys=True)
 
@@ -331,14 +373,26 @@ def test_gemini_adapter_unknown_physical_outcome_never_retries_implicitly() -> N
     assert transport.calls == 1
 
 
-def test_gemini_real_transport_remains_blocked_by_pricing_authority_hold() -> None:
+def test_gemini_real_transport_requires_exact_main_token_authority() -> None:
     inputs = _inputs()
-    with pytest.raises(LiveSchemaError, match="Main-approved pricing authority"):
+    with pytest.raises(LiveSchemaError, match="exact Main token-accounting authority"):
         GeminiOfficialAdapter(
             role_plan=inputs.provider_role_plan,
             api_key="never-used-secret",
-            pricing_authority=make_recorded_pricing_authority(),
+            token_accounting_authority=make_recorded_token_accounting_authority(),
         )
+
+
+def test_gemini_real_transport_accepts_pinned_authority_without_calling_network() -> None:
+    inputs = _inputs()
+    adapter = GeminiOfficialAdapter(
+        role_plan=inputs.provider_role_plan,
+        api_key="never-used-secret",
+        token_accounting_authority=load_main_token_accounting_authority(
+            DEFAULT_TOKEN_PACKAGE
+        ),
+    )
+    assert adapter.zero_network is False
 
 
 def test_gemini_missing_provider_request_id_is_terminal() -> None:
@@ -358,7 +412,7 @@ def test_gemini_missing_provider_request_id_is_terminal() -> None:
     assert result["response"] is None
 
 
-@pytest.mark.parametrize("failure", ["malformed", "missing_usage", "reasoning_drift"])
+@pytest.mark.parametrize("failure", ["malformed", "missing_usage", "token_total_drift"])
 def test_gemini_adapter_rejects_malformed_or_usage_drift(failure: str) -> None:
     inputs = _inputs()
     body = _gemini_body(_judge_response())
@@ -367,8 +421,7 @@ def test_gemini_adapter_rejects_malformed_or_usage_drift(failure: str) -> None:
     elif failure == "missing_usage":
         body.pop("usageMetadata")
     else:
-        body["usageMetadata"]["thoughtsTokenCount"] = 2
-        body["usageMetadata"]["totalTokenCount"] = 17
+        body["usageMetadata"]["totalTokenCount"] = 18
     adapter = _gemini_adapter(
         inputs,
         RecordedTransport(
@@ -402,6 +455,8 @@ def test_gemini_adapter_rejects_route_model_and_generation_drift() -> None:
 
 
 class RecordedTransport:
+    networked = False
+
     def __init__(self, exchanges: list[Mapping[str, Any]]) -> None:
         self.exchanges = [dict(row) for row in exchanges]
         self.calls: list[dict[str, Any]] = []
@@ -428,6 +483,8 @@ class RecordedTransport:
 
 
 class UnknownTransport:
+    networked = False
+
     def __init__(self) -> None:
         self.calls = 0
 
@@ -510,8 +567,8 @@ def _gemini_body(response: Mapping[str, Any]) -> dict[str, Any]:
         "usageMetadata": {
             "promptTokenCount": 10,
             "candidatesTokenCount": 5,
-            "thoughtsTokenCount": 0,
-            "totalTokenCount": 15,
+            "thoughtsTokenCount": 2,
+            "totalTokenCount": 17,
         },
     }
 
@@ -532,6 +589,6 @@ def _gemini_adapter(inputs, transport):
     return GeminiOfficialAdapter(
         role_plan=inputs.provider_role_plan,
         api_key="recorded-secret-google",
-        pricing_authority=make_recorded_pricing_authority(),
+        token_accounting_authority=make_recorded_token_accounting_authority(),
         transport=transport,
     )

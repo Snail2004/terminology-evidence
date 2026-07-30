@@ -41,12 +41,15 @@ def test_recorded_provider_conformance_and_nonzero_telemetry(tmp_path: Path) -> 
     assert result["status"] == "COMPLETED"
     assert adapter.call_count == 2
     assert result["provider_calls"] == 2
+    assert result["network_calls"] == 0
     assert result["physical_requests"] == 2
     assert result["input_tokens"] == 22
     assert result["output_tokens"] == 14
     assert result["reasoning_tokens"] == 6
     assert result["total_tokens"] == 42
-    assert result["total_cost"] == pytest.approx(0.04)
+    assert result["total_cost"] is None
+    assert result["currency"] is None
+    assert result["cost_status"] == "TOKEN_ONLY_COST_UNAVAILABLE"
     assert result["latency_total_ms"] == 50
     evidence_ledger = load_object(Path(result["run_root"]) / "evidence_ledger.json")
     assert evidence_ledger["provider_calls"] == result["provider_calls"]
@@ -72,8 +75,8 @@ def test_known_retryable_failure_is_bounded_and_accounted(tmp_path: Path) -> Non
     assert adapter.call_count == 4
     assert result["provider_calls"] == 4
     assert result["retry_count"] == 2
-    assert result["total_tokens"] == 84
-    assert result["total_cost"] == pytest.approx(0.08)
+    assert result["total_tokens"] == 42
+    assert result["total_cost"] is None
 
 
 def test_production_rejects_ram_bundle_and_arbitrary_schema(tmp_path: Path) -> None:
@@ -153,13 +156,21 @@ def _recorded_conformance_service(tmp_path: Path, *, unknown: bool, retry: bool 
             "response_canonical_sha256": response_sha,
             "started_at": f"2026-07-30T00:00:0{index}.000Z", "completed_at": f"2026-07-30T00:00:0{index}.025Z",
             "latency_ms": 25, "input_tokens": 11, "output_tokens": 7, "reasoning_tokens": 3,
-            "total_tokens": 21, "cost": 0.02, "currency": "USD", "physical_request_count": 1, "retry_index": 0,
+            "total_tokens": 21, "cost": None, "currency": None,
+            "cost_status": "TOKEN_ONLY_COST_UNAVAILABLE",
+            "physical_request_count": 1, "network_request_count": 0,
+            "retry_index": 0,
+            "generation_config": {"reasoning": "minimal", "thinking_level": "minimal"},
+            "generation_contract_sha256": canonical_sha256({"generation": "minimal"}),
+            "token_accounting_authority_sha256": canonical_sha256({"authority": "recorded"}),
         }
         if retry:
             first = dict(success)
             first.update({"provider_request_id": f"provider-retry-{index + 1}", "outcome": "RETRYABLE_FAILURE", "response": None,
                           "response_physical_sha256": hashlib.sha256(canonical_bytes(None)).hexdigest(),
-                          "response_canonical_sha256": canonical_sha256(None)})
+                          "response_canonical_sha256": canonical_sha256(None),
+                          "input_tokens": 0, "output_tokens": 0,
+                          "reasoning_tokens": 0, "total_tokens": 0})
             success["retry_index"] = 1
             results[row["evidence_id"]] = [first, success]
         else:
