@@ -1,0 +1,1363 @@
+{
+  "allowed_repair_status": [
+    "COMPLETE"
+  ],
+  "batch_id": "high_risk_proposal_repair_reviewer_2",
+  "case_count": 3,
+  "cases": [
+    {
+      "audit": {
+        "audit_decision": "REVISE",
+        "audit_notes": "The architectural child tmpchild_801c89275cce12b4e22f6324 is fully supported by seven real neural-network contexts and its candidate bindings are appropriate. The second child has one real context that supports blocks of a matrix moved into cache, but its definition broadens this to 'matrix or data' without supplied positive evidence for generic data blocks; the synthetic city-block context is boundary only and cannot close that expansion. Narrow tmpchild_364c5b00afc2967be5336782 to a chunk of a matrix moved and processed as a unit, while retaining the synthetic context only as contrastive boundary evidence.",
+        "audit_status": "COMPLETE",
+        "invalid_child_sense_ids": [
+          "tmpchild_364c5b00afc2967be5336782"
+        ]
+      },
+      "audit_result_role": "reviewer_4",
+      "audit_result_sha256": "6285be421a9f1e6feb3c5a2f30da15b81c8128058d844a543b21f6017fc74943",
+      "batch_id": "high_risk_proposal_repair_reviewer_2",
+      "case_id": "highrisk_proposal_repair_6f62560554e2091b61b83e86",
+      "original_proposal": {
+        "child_sense_repairs": [
+          {
+            "candidate_assignments": [
+              {
+                "candidate_id": "candidate_6b64b809b4317a104ff865c3",
+                "candidate_slot": "candidate_slot_7991814058ea170c1754c224",
+                "target_vi": "khối mô-đun"
+              },
+              {
+                "candidate_id": "candidate_fe4d3ab70bd7cd796ae89245",
+                "candidate_slot": "candidate_slot_d034690ccd5846348c201555",
+                "target_vi": "khối"
+              }
+            ],
+            "context_ids": [
+              "ctx_0c72a2d7feb8a2a7f2b17bfd",
+              "ctx_20b4a3b3e9da0f80ed6d5279",
+              "ctx_26916f0b3985aa996c0cee2c",
+              "ctx_46d4831aad13e3c413d4aaef",
+              "ctx_6481a5fd90279243349a9cd9",
+              "ctx_8e452eff442f6f0cb419316b",
+              "ctx_f7e9706f82de50c8f6380d6c"
+            ],
+            "definition_en": "A modular architectural unit composed of layers or operations in a neural network.",
+            "part_of_speech": "noun",
+            "scope": "d2l_selected_campaign_scope_v1",
+            "temporary_child_sense_id": "tmpchild_801c89275cce12b4e22f6324"
+          },
+          {
+            "candidate_assignments": [
+              {
+                "candidate_id": "candidate_2e0a5147febe8b4142fc8a26",
+                "candidate_slot": "candidate_slot_1ddd7759b40b9b2be4cc5f15",
+                "target_vi": "khối ma trận"
+              }
+            ],
+            "context_ids": [
+              "ctx_b9ce0a059491eaaa6fbf542f",
+              "ctxx_09ae76f62d4c4c6032674315"
+            ],
+            "definition_en": "A chunk of matrix or data moved and processed as a unit in a computation.",
+            "part_of_speech": "noun",
+            "scope": "d2l_selected_campaign_scope_v1",
+            "temporary_child_sense_id": "tmpchild_364c5b00afc2967be5336782"
+          }
+        ],
+        "proposal_type": "SPLIT_PROPOSAL"
+      },
+      "policy_id": "d2l-remaining-100-high-risk-proposal-repair-v1.0",
+      "proposal_record_sha256": "a60e0b0ceb89955e2d26fb81e7bbd570755c0114b17ec03f1b60d40f8b7d1581",
+      "provider_call_count": 0,
+      "repair": {
+        "repair_notes": "Changed only definition_en for tmpchild_364c5b00afc2967be5336782: the sole real positive matrix context ctx_b9ce0a059491eaaa6fbf542f supports a matrix block moved into cache, not generic data blocks. The definition is therefore narrowed to a chunk of a matrix; ctxx_09ae76f62d4c4c6032674315 remains only a synthetic contrastive boundary. All assignments, partitions, POS, scope, and temporary child IDs are unchanged.",
+        "repair_status": "COMPLETE",
+        "revised_proposal": {
+          "child_sense_repairs": [
+            {
+              "candidate_assignments": [
+                {
+                  "candidate_id": "candidate_6b64b809b4317a104ff865c3",
+                  "candidate_slot": "candidate_slot_7991814058ea170c1754c224",
+                  "target_vi": "khối mô-đun"
+                },
+                {
+                  "candidate_id": "candidate_fe4d3ab70bd7cd796ae89245",
+                  "candidate_slot": "candidate_slot_d034690ccd5846348c201555",
+                  "target_vi": "khối"
+                }
+              ],
+              "context_ids": [
+                "ctx_0c72a2d7feb8a2a7f2b17bfd",
+                "ctx_20b4a3b3e9da0f80ed6d5279",
+                "ctx_26916f0b3985aa996c0cee2c",
+                "ctx_46d4831aad13e3c413d4aaef",
+                "ctx_6481a5fd90279243349a9cd9",
+                "ctx_8e452eff442f6f0cb419316b",
+                "ctx_f7e9706f82de50c8f6380d6c"
+              ],
+              "definition_en": "A modular architectural unit composed of layers or operations in a neural network.",
+              "part_of_speech": "noun",
+              "scope": "d2l_selected_campaign_scope_v1",
+              "temporary_child_sense_id": "tmpchild_801c89275cce12b4e22f6324"
+            },
+            {
+              "candidate_assignments": [
+                {
+                  "candidate_id": "candidate_2e0a5147febe8b4142fc8a26",
+                  "candidate_slot": "candidate_slot_1ddd7759b40b9b2be4cc5f15",
+                  "target_vi": "khối ma trận"
+                }
+              ],
+              "context_ids": [
+                "ctx_b9ce0a059491eaaa6fbf542f",
+                "ctxx_09ae76f62d4c4c6032674315"
+              ],
+              "definition_en": "A chunk of a matrix moved and processed as a unit in a computation.",
+              "part_of_speech": "noun",
+              "scope": "d2l_selected_campaign_scope_v1",
+              "temporary_child_sense_id": "tmpchild_364c5b00afc2967be5336782"
+            }
+          ],
+          "proposal_type": "SPLIT_PROPOSAL"
+        }
+      },
+      "schema_id": "D2LRemaining100HighRiskProposalRepairCaseV1",
+      "schema_version": "1.0",
+      "sense_id": "d2lce_20c658fd4e221ee551790ec2",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_2e0a5147febe8b4142fc8a26",
+            "candidate_instance_sha256": "778991517e582adc6cd2e32b2d3b7fc1bc3006c91dfe20e8d287be738ccf8e7c",
+            "candidate_slot": "candidate_slot_1ddd7759b40b9b2be4cc5f15",
+            "candidate_target_vi": "khối dữ liệu"
+          },
+          {
+            "candidate_id": "candidate_6b64b809b4317a104ff865c3",
+            "candidate_instance_sha256": "7af02db30e671f29507e9fc033027f85aec4eff3c3630c682ac64c86235f3376",
+            "candidate_slot": "candidate_slot_7991814058ea170c1754c224",
+            "candidate_target_vi": "khối thành phần"
+          },
+          {
+            "candidate_id": "candidate_fe4d3ab70bd7cd796ae89245",
+            "candidate_instance_sha256": "f59f2df0818c166f18d4757cae510e24ff5d39f8a6e419588dae34a2f7e61158",
+            "candidate_slot": "candidate_slot_d034690ccd5846348c201555",
+            "candidate_target_vi": "khối"
+          }
+        ],
+        "dataset_version": "d2l_dataset_remaining_100_stage_a_v1",
+        "evidence_contexts": [
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "c8eb1694fb53f9b935fa5e92a7b5bfb22023f1aec1adcd59a468cba416f7e682",
+            "context_id": "ctx_0c72a2d7feb8a2a7f2b17bfd",
+            "context_role": "BACKUP",
+            "context_sha256": "8e6eaed62b0aff9cab5e81e0408aa147b434489a735fa2d0e50329aafda7cc79",
+            "context_slot": "B3",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "blocks",
+            "provenance": {
+              "block_id": "d2l_computational_performance_hybridize_b017",
+              "block_index": 19,
+              "block_text_sha256": "2f784e45bb587684bc8127887df36db7671bf8d66070f070b468d22a0365e695",
+              "chapter_id": "d2l_computational_performance",
+              "chapter_index": 14,
+              "document_id": "document",
+              "sentence_id": "sentence_ffa46200f8835c1f6cbc6a78",
+              "sentence_index": 5,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 640,
+              "source_start": 560
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 639,
+            "source_match_start_absolute": 633,
+            "source_text": "We will illustrate the benefits below, focusing on sequential models and blocks.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "5b1c5c4228b19693820ceddc77624b84a9a795621528c6a77bd8afc407cb86bd",
+            "context_id": "ctx_20b4a3b3e9da0f80ed6d5279",
+            "context_role": "PRIMARY",
+            "context_sha256": "c4f7634205928e32c122733b155b86ae7246181ccbdf24db30453acde0868d61",
+            "context_slot": "C1",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "blocks",
+            "provenance": {
+              "block_id": "d2l_natural_language_processing_pretraining_bert_pretraining_b008",
+              "block_index": 435,
+              "block_text_sha256": "8521c9e3806e02643b7f142ee11cf862f441eec7e79ac703c489999e06a4250b",
+              "chapter_id": "d2l_natural_language_processing_pretraining",
+              "chapter_index": 16,
+              "document_id": "document",
+              "sentence_id": "sentence_b65eeb63d11733b4c6b1e7ca",
+              "sentence_index": 1,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 247,
+              "source_start": 94
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 181,
+            "source_match_start_absolute": 175,
+            "source_text": "The base model ($\\text{BERT}_{\\text{BASE}}$) uses 12 layers (transformer encoder blocks)\nwith 768 hidden units (hidden size) and 12 self-attention heads.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "68a7d333ca53cdddfc627f719e3495e07fee44c374e44635e483a833d1e8547b",
+            "context_id": "ctx_26916f0b3985aa996c0cee2c",
+            "context_role": "BACKUP",
+            "context_sha256": "4e083f3d0270da2f7582c6d5e9ff105d277cf92b6bdc891e1e4095992b52518b",
+            "context_slot": "B2",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "blocks",
+            "provenance": {
+              "block_id": "d2l_convolutional_modern_index_b003",
+              "block_index": 2,
+              "block_text_sha256": "68a7d333ca53cdddfc627f719e3495e07fee44c374e44635e483a833d1e8547b",
+              "chapter_id": "d2l_convolutional_modern",
+              "chapter_index": 9,
+              "document_id": "document",
+              "sentence_id": "sentence_df7daf6167d7f8876fa764d2",
+              "sentence_index": 0,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 599,
+              "source_start": 0
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 214,
+            "source_match_start_absolute": 208,
+            "source_text": "These models include AlexNet, the first large-scale network deployed \nto beat conventional computer vision methods on a large-scale vision challenge;\nthe VGG network, which makes use of a number of repeating blocks of elements; the network in network (NiN) which convolves \nwhole neural networks patch-wise over inputs; \nGoogLeNet, which uses networks with parallel concatenations;\nresidual networks (ResNet), which remain the most popular \noff-the-shelf architecture in computer vision;\nand densely connected networks (DenseNet), \nwhich are expensive to compute but have set some recent benchmarks.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "bc5f766b04a736d12184757f979c55f8be8d9706e355a4b978bdcb7766251046",
+            "context_id": "ctx_46d4831aad13e3c413d4aaef",
+            "context_role": "PRIMARY",
+            "context_sha256": "ce662ffc6bda564969b171d16c4ada31c5d785b0ff9987bc26b9816f052b7dfc",
+            "context_slot": "C3",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "blocks",
+            "provenance": {
+              "block_id": "d2l_generative_adversarial_networks_dcgan_b034",
+              "block_index": 94,
+              "block_text_sha256": "75cf5619c8c583345f9522b152e41cd38a339ac0b80277b6741cb92127b91e50",
+              "chapter_id": "d2l_generative_adversarial_networks",
+              "chapter_index": 19,
+              "document_id": "document",
+              "sentence_id": "sentence_b1cdd0bc4046ae882fec6217",
+              "sentence_index": 0,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 101,
+              "source_start": 0
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 43,
+            "source_match_start_absolute": 37,
+            "source_text": "The generator consists of four basic blocks that increase input's both width and height from 1 to 32.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "497692e1c0cdab1a0984cfe8b3ba55cb791017b5ee77fe1658cfe211c86ddd31",
+            "context_id": "ctx_6481a5fd90279243349a9cd9",
+            "context_role": "BACKUP",
+            "context_sha256": "143660c53e3222544cc9442385089651a7261a0c72aceeac09dd4c75118e667d",
+            "context_slot": "B1",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "blocks",
+            "provenance": {
+              "block_id": "d2l_computer_vision_ssd_b004",
+              "block_index": 313,
+              "block_text_sha256": "6b72e7bb733ee7bfc67c2cdfaebae3ee6a0bbe2b40aee501c21718364afdea37",
+              "chapter_id": "d2l_computer_vision",
+              "chapter_index": 15,
+              "document_id": "document",
+              "sentence_id": "sentence_c16ea798fd50b3db822898fb",
+              "sentence_index": 1,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 185,
+              "source_start": 90
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 184,
+            "source_match_start_absolute": 178,
+            "source_text": "This model mainly consists of\na base network\nfollowed by\nseveral multiscale feature map blocks.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "cc3ce8f8457b48a13d0ac7bdd7395e47a29a1789f355fc7f98959c5a8703b834",
+            "context_id": "ctx_8e452eff442f6f0cb419316b",
+            "context_role": "PRIMARY",
+            "context_sha256": "897c8cddc02cc8322b50e49cd9d1f239896e5fdcb9aa0db369477dddff48a8f2",
+            "context_slot": "C4",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "blocks",
+            "provenance": {
+              "block_id": "d2l_convolutional_neural_networks_lenet_b036",
+              "block_index": 292,
+              "block_text_sha256": "25cb3ef1d6aa5fc78509ea5ea9f6d3c9a0e44947b9d77a12ac090e40dbba4dca",
+              "chapter_id": "d2l_convolutional_neural_networks",
+              "chapter_index": 8,
+              "document_id": "document",
+              "sentence_id": "sentence_9df664a11e466597dc4bffac",
+              "sentence_index": 3,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 476,
+              "source_start": 320
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 398,
+            "source_match_start_absolute": 392,
+            "source_text": "* In traditional CNNs, the representations encoded by the convolutional blocks are processed by one or more fully-connected layers prior to emitting output.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "1431de6a65467787b06c07821d6740f88fef30e130cabebfa50d6d7b52f913fb",
+            "context_id": "ctx_b9ce0a059491eaaa6fbf542f",
+            "context_role": "PRIMARY",
+            "context_sha256": "e420ed3ca5138369d7b8ddaf82a6b84f469c1ffc391840270a5fefd30fcf1db9",
+            "context_slot": "C2",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "blocks",
+            "provenance": {
+              "block_id": "d2l_optimization_minibatch_sgd_b009",
+              "block_index": 306,
+              "block_text_sha256": "c515457778ac768181b6d1e2a60da16db5756a84294a26776875b4ddc8fc7960",
+              "chapter_id": "d2l_optimization",
+              "chapter_index": 13,
+              "document_id": "document",
+              "sentence_id": "sentence_21d6f1b69069381ff705d258",
+              "sentence_index": 7,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 859,
+              "source_start": 730
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 807,
+            "source_match_start_absolute": 801,
+            "source_text": "However, option 4 offers a practically useful alternative: we can move blocks of the matrix into cache and multiply them locally.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "26806242c4565d7ed2f6ae4bd9cc92bf611e1c5f4d45681da0672285f1871abe",
+            "context_id": "ctx_f7e9706f82de50c8f6380d6c",
+            "context_role": "PRIMARY",
+            "context_sha256": "8161a678ce7da375f31f58b7628b991b579a535b56e17c40a43df4275577a82d",
+            "context_slot": "C5",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "blocks",
+            "provenance": {
+              "block_id": "d2l_deep_learning_computation_index_b002",
+              "block_index": 1,
+              "block_text_sha256": "c96e5f356377101ecf3bbf0ecc23ef020b8c7dc2696143274a75a613546ed86d",
+              "chapter_id": "d2l_deep_learning_computation",
+              "chapter_index": 7,
+              "document_id": "document",
+              "sentence_id": "sentence_7cf4429a6f0297a7a3c96268",
+              "sentence_index": 3,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 838,
+              "source_start": 510
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 828,
+            "source_match_start_absolute": 822,
+            "source_text": "Just as semiconductor designers went from specifying transistors\nto logical circuits to writing code,\nneural networks researchers have moved from thinking about\nthe behavior of individual artificial neurons\nto conceiving of networks in terms of whole layers,\nand now often design architectures with far coarser *blocks* in mind.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "9fb61fce3e5cbb2d3ddff69129bdbbfb1d6eadfbfa361df139e27f818043c13b",
+            "context_id": "ctxx_09ae76f62d4c4c6032674315",
+            "context_role": "CONTRASTIVE",
+            "context_sha256": "f19e51570ba2e0b85cb93495564c7e05d2e729961136e45096ba14d221f8b1f9",
+            "context_slot": "X1",
+            "context_type": "CONTRASTIVE",
+            "context_type_review_status": "NOT_APPLICABLE",
+            "matched_surface": "blocks",
+            "provenance": {
+              "audit_ref": "model_evidence/batch_027_1ff7ed7e51867f514ed2638be59a18ffdfcc3ef5707d26a39f207455042b1539.json",
+              "audit_sha256": "02d33a2086bd0312d38f97120a42c81cadffaa0e9c33389d32647ad249e419ce",
+              "source_kind": "MODEL_GENERATED_SYNTHETIC"
+            },
+            "sense_relation": "CONTRASTIVE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": null,
+            "source_match_start_absolute": null,
+            "source_text": "Synthetic: The city planner divided the street into blocks for navigation.",
+            "synthetic": true
+          }
+        ],
+        "parent_binding": {
+          "parent_candidate_instance_sha256": [
+            "778991517e582adc6cd2e32b2d3b7fc1bc3006c91dfe20e8d287be738ccf8e7c",
+            "7af02db30e671f29507e9fc033027f85aec4eff3c3630c682ac64c86235f3376",
+            "f59f2df0818c166f18d4757cae510e24ff5d39f8a6e419588dae34a2f7e61158"
+          ],
+          "parent_context_sha256": [
+            "8e6eaed62b0aff9cab5e81e0408aa147b434489a735fa2d0e50329aafda7cc79",
+            "c4f7634205928e32c122733b155b86ae7246181ccbdf24db30453acde0868d61",
+            "4e083f3d0270da2f7582c6d5e9ff105d277cf92b6bdc891e1e4095992b52518b",
+            "ce662ffc6bda564969b171d16c4ada31c5d785b0ff9987bc26b9816f052b7dfc",
+            "143660c53e3222544cc9442385089651a7261a0c72aceeac09dd4c75118e667d",
+            "897c8cddc02cc8322b50e49cd9d1f239896e5fdcb9aa0db369477dddff48a8f2",
+            "e420ed3ca5138369d7b8ddaf82a6b84f469c1ffc391840270a5fefd30fcf1db9",
+            "8161a678ce7da375f31f58b7628b991b579a535b56e17c40a43df4275577a82d",
+            "f19e51570ba2e0b85cb93495564c7e05d2e729961136e45096ba14d221f8b1f9"
+          ],
+          "parent_dataset": "d2l_context_support_set_validation_ready_v3",
+          "parent_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+          "parent_term_sense_sha256": "02006fba3aeca4d8d13b833b3956302c71e62eb410ce51bdbaa3b8b583f29f32"
+        },
+        "policy_id": "d2l-dataset-remaining-100-stage-a-v1.0",
+        "proposed_definition_en": "modular units or chunks treated as grouped components in a model, program, or computation",
+        "proposed_part_of_speech": "noun",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "schema_id": "D2LRemaining100StageAReviewSourceV1",
+        "schema_version": "1.0.0",
+        "sense_id": "d2lce_20c658fd4e221ee551790ec2",
+        "source_term": "blocks",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_20c658fd4e221ee551790ec2"
+      },
+      "source_payload_sha256": "9081ab1bfe6b754acb6545b831e985385ec5c7638c323768f4c20b9657a4c691",
+      "source_result_role": "reviewer_2",
+      "source_term": "blocks"
+    },
+    {
+      "audit": {
+        "audit_decision": "REVISE",
+        "audit_notes": "The ordinary-attention child tmpchild_c51f5b4eddf906b2d8ef7172 is supported by the real pay-attention contexts ctx_0226e0426283375d7ada52a5 and ctx_9b75794de1b3d229a80c72a0, and its two candidate assignments are faithful. The technical child tmpchild_a1585e6f8d0bce2e7f64ff84 has real support for an attention-mechanism model class in ctx_05ff6c3d6948601de78e83f7, ctx_31a4a8b87d7c576fc191dfeb, and ctx_dcce5005701acc61787285d0, and those contexts support the corrected candidate cơ chế chú ý. However, none of those real contexts states that the concept assigns context-dependent weights to information; that weighting detail appears only in synthetic, boundary-only ctxx_38fbfb8ab20bbaae0ce535cb, which cannot be positive proof. Revise the technical definition to the narrower concept established by the real contexts or supply real positive evidence for the weighting claim. The synthetic context was not used as positive evidence in this audit.",
+        "audit_status": "COMPLETE",
+        "invalid_child_sense_ids": [
+          "tmpchild_a1585e6f8d0bce2e7f64ff84"
+        ]
+      },
+      "audit_result_role": "reviewer_5",
+      "audit_result_sha256": "98875182a41acd853d0b80fb74d93ac2c2a0bf45b6c3d6aefe09525e6d37b1dd",
+      "batch_id": "high_risk_proposal_repair_reviewer_2",
+      "case_id": "highrisk_proposal_repair_f24995915ee017a9d45d491c",
+      "original_proposal": {
+        "child_sense_repairs": [
+          {
+            "candidate_assignments": [
+              {
+                "candidate_id": "candidate_258a1ca2540dd0ce8524c052",
+                "candidate_slot": "candidate_slot_4daf92548ab1947c12e54f3e",
+                "target_vi": "sự tập trung"
+              },
+              {
+                "candidate_id": "candidate_321a292b5c98be516cae8c65",
+                "candidate_slot": "candidate_slot_6ac9f55664101072a0bb2906",
+                "target_vi": "sự chú ý"
+              }
+            ],
+            "context_ids": [
+              "ctx_0226e0426283375d7ada52a5",
+              "ctx_9b75794de1b3d229a80c72a0"
+            ],
+            "definition_en": "Focused notice or concentration directed toward a topic, task, or aspect under consideration.",
+            "part_of_speech": "noun",
+            "scope": "d2l_selected_campaign_scope_v1",
+            "temporary_child_sense_id": "tmpchild_c51f5b4eddf906b2d8ef7172"
+          },
+          {
+            "candidate_assignments": [
+              {
+                "candidate_id": "candidate_482e3946916aa3c448e1ee83",
+                "candidate_slot": "candidate_slot_babf68a78e3bb0a8b94724bf",
+                "target_vi": "cơ chế chú ý"
+              }
+            ],
+            "context_ids": [
+              "ctx_05ff6c3d6948601de78e83f7",
+              "ctx_31a4a8b87d7c576fc191dfeb",
+              "ctx_dcce5005701acc61787285d0",
+              "ctxx_38fbfb8ab20bbaae0ce535cb"
+            ],
+            "definition_en": "The neural-network modeling concept used in attention mechanisms to assign context-dependent weights to information.",
+            "part_of_speech": "noun",
+            "scope": "d2l_selected_campaign_scope_v1",
+            "temporary_child_sense_id": "tmpchild_a1585e6f8d0bce2e7f64ff84"
+          }
+        ],
+        "proposal_type": "SPLIT_PROPOSAL"
+      },
+      "policy_id": "d2l-remaining-100-high-risk-proposal-repair-v1.0",
+      "proposal_record_sha256": "255ce9606b254b58e9a1b3baa600a1c9d8080eeb2327f5b9446a2330d270c818",
+      "provider_call_count": 0,
+      "repair": {
+        "repair_notes": "Changed only definition_en for tmpchild_a1585e6f8d0bce2e7f64ff84 by removing the unsupported context-dependent weighting claim. Real contexts ctx_05ff6c3d6948601de78e83f7, ctx_31a4a8b87d7c576fc191dfeb, and ctx_dcce5005701acc61787285d0 establish attention mechanisms and a model class based on them; ctxx_38fbfb8ab20bbaae0ce535cb remains only a synthetic contrastive boundary. All assignments, partitions, POS, scope, and temporary child IDs are unchanged.",
+        "repair_status": "COMPLETE",
+        "revised_proposal": {
+          "child_sense_repairs": [
+            {
+              "candidate_assignments": [
+                {
+                  "candidate_id": "candidate_258a1ca2540dd0ce8524c052",
+                  "candidate_slot": "candidate_slot_4daf92548ab1947c12e54f3e",
+                  "target_vi": "sự tập trung"
+                },
+                {
+                  "candidate_id": "candidate_321a292b5c98be516cae8c65",
+                  "candidate_slot": "candidate_slot_6ac9f55664101072a0bb2906",
+                  "target_vi": "sự chú ý"
+                }
+              ],
+              "context_ids": [
+                "ctx_0226e0426283375d7ada52a5",
+                "ctx_9b75794de1b3d229a80c72a0"
+              ],
+              "definition_en": "Focused notice or concentration directed toward a topic, task, or aspect under consideration.",
+              "part_of_speech": "noun",
+              "scope": "d2l_selected_campaign_scope_v1",
+              "temporary_child_sense_id": "tmpchild_c51f5b4eddf906b2d8ef7172"
+            },
+            {
+              "candidate_assignments": [
+                {
+                  "candidate_id": "candidate_482e3946916aa3c448e1ee83",
+                  "candidate_slot": "candidate_slot_babf68a78e3bb0a8b94724bf",
+                  "target_vi": "cơ chế chú ý"
+                }
+              ],
+              "context_ids": [
+                "ctx_05ff6c3d6948601de78e83f7",
+                "ctx_31a4a8b87d7c576fc191dfeb",
+                "ctx_dcce5005701acc61787285d0",
+                "ctxx_38fbfb8ab20bbaae0ce535cb"
+              ],
+              "definition_en": "The neural-network modeling concept instantiated in attention mechanisms and models based on them.",
+              "part_of_speech": "noun",
+              "scope": "d2l_selected_campaign_scope_v1",
+              "temporary_child_sense_id": "tmpchild_a1585e6f8d0bce2e7f64ff84"
+            }
+          ],
+          "proposal_type": "SPLIT_PROPOSAL"
+        }
+      },
+      "schema_id": "D2LRemaining100HighRiskProposalRepairCaseV1",
+      "schema_version": "1.0",
+      "sense_id": "d2lce_4a5f20bb32b66b1f07d9f37a",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_258a1ca2540dd0ce8524c052",
+            "candidate_instance_sha256": "c44a02a8394a99594fb5e995e085a204dbac7019689cb92c8fd9f53e1bad67e7",
+            "candidate_slot": "candidate_slot_4daf92548ab1947c12e54f3e",
+            "candidate_target_vi": "sự tập trung"
+          },
+          {
+            "candidate_id": "candidate_321a292b5c98be516cae8c65",
+            "candidate_instance_sha256": "034c06be50c460c20a3a17fd78b80280d5ea5a56cb8f01a3727dc6f0c39c5d41",
+            "candidate_slot": "candidate_slot_6ac9f55664101072a0bb2906",
+            "candidate_target_vi": "sự chú ý"
+          },
+          {
+            "candidate_id": "candidate_482e3946916aa3c448e1ee83",
+            "candidate_instance_sha256": "d469c17b2f618a8907962d80a2e351625d65a356c47259aaefd1d4bacfd445f4",
+            "candidate_slot": "candidate_slot_babf68a78e3bb0a8b94724bf",
+            "candidate_target_vi": "mức độ chú ý"
+          }
+        ],
+        "dataset_version": "d2l_dataset_remaining_100_stage_a_v1",
+        "evidence_contexts": [
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "9c9e109f12a44e3536407a269d537f7c4a57fa9d1873050ab475ad5c013f5ea2",
+            "context_id": "ctx_0226e0426283375d7ada52a5",
+            "context_role": "PRIMARY",
+            "context_sha256": "2ec0a133f4f447ec86c4c9f10b5ce9dd79e8af8e12326b36e8b08be19fe2bd34",
+            "context_slot": "C4",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "attention",
+            "provenance": {
+              "block_id": "d2l_optimization_optimization_intro_b004",
+              "block_index": 8,
+              "block_text_sha256": "a4298ab44ad04bd152d722167e1b92a890784ee8bd05693c6d9cf1e39e19c5ae",
+              "chapter_id": "d2l_optimization",
+              "chapter_index": 13,
+              "document_id": "document",
+              "sentence_id": "sentence_2ac404729fcbee6108a3f154",
+              "sentence_index": 5,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 929,
+              "source_start": 787
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 836,
+            "source_match_start_absolute": 827,
+            "source_text": "To accomplish the latter we need to pay\nattention to overfitting in addition to using the optimization algorithm to\nreduce the training error.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "3d618b298efcc5d44dc2967be6754b85f8e9af83aca7287f3cc8d9b7ac0daa7b",
+            "context_id": "ctx_05ff6c3d6948601de78e83f7",
+            "context_role": "PRIMARY",
+            "context_sha256": "b8711b99fb0400b403f48a851897e14f139f6ad8ced840b18010c4a251825ded",
+            "context_slot": "C1",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "attention",
+            "provenance": {
+              "block_id": "d2l_introduction_index_b134",
+              "block_index": 133,
+              "block_text_sha256": "c4217148a1d1354068f615ed1bc9a5d63c289d3877fe1638e4945289fbe6ce70",
+              "chapter_id": "d2l_introduction",
+              "chapter_index": 3,
+              "document_id": "document",
+              "sentence_id": "sentence_00469bfcc72fe3b78beca64b",
+              "sentence_index": 2,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 530,
+              "source_start": 321
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 332,
+            "source_match_start_absolute": 323,
+            "source_text": "* Attention mechanisms solved a second problem\n  that had plagued statistics for over a century:\n  how to increase the memory and complexity of a system without\n  increasing the number of learnable parameters.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "d18591ae587c7cef81a77943a45912c0ecb0933f2159ac758279e5ac5db1da0d",
+            "context_id": "ctx_31a4a8b87d7c576fc191dfeb",
+            "context_role": "PRIMARY",
+            "context_sha256": "73930531a842865714ef717080d7baef14f38050a7ec2b238b39337e5cec6506",
+            "context_slot": "C2",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "attention",
+            "provenance": {
+              "block_id": "d2l_attention_mechanisms_index_b001",
+              "block_index": 0,
+              "block_text_sha256": "d18591ae587c7cef81a77943a45912c0ecb0933f2159ac758279e5ac5db1da0d",
+              "chapter_id": "d2l_attention_mechanisms",
+              "chapter_index": 12,
+              "document_id": "document",
+              "sentence_id": "sentence_35f768695f9791b1aeb8707f",
+              "sentence_index": 0,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 46,
+              "source_start": 0
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 11,
+            "source_match_start_absolute": 2,
+            "source_text": "# Attention Mechanisms\n:label:`chap_attention`",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "431dfae4ad0f7c807c8e39aa7de31b6fcff0c0a6a33f92cfe7b7ad45a2f6ffdc",
+            "context_id": "ctx_9b75794de1b3d229a80c72a0",
+            "context_role": "PRIMARY",
+            "context_sha256": "3041d994995368251698390e9a350674cd58fd6843a0074951b2f749f28462d8",
+            "context_slot": "C5",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "attention",
+            "provenance": {
+              "block_id": "d2l_recurrent_modern_lstm_b062",
+              "block_index": 128,
+              "block_text_sha256": "77413c5f3324e99782b1ef83b82077a6f559406110b09022c00f191496971c59",
+              "chapter_id": "d2l_recurrent_modern",
+              "chapter_index": 11,
+              "document_id": "document",
+              "sentence_id": "sentence_bade97cf1b5d2b76a35c0ec6",
+              "sentence_index": 6,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 377,
+              "source_start": 320
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 341,
+            "source_match_start_absolute": 332,
+            "source_text": "Pay special attention to the training and inference cost.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "dbd1de5e38478e2e9b1c01c3c8e5b63336e5fbab559b44fede33fe1e1092c6a4",
+            "context_id": "ctx_dcce5005701acc61787285d0",
+            "context_role": "PRIMARY",
+            "context_sha256": "f21f6d602effa58b2721a43c2f1edc1cab5fc69ffb7a8469e87f244d982b053d",
+            "context_slot": "C3",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "attention",
+            "provenance": {
+              "block_id": "d2l_preface_index_b022",
+              "block_index": 21,
+              "block_text_sha256": "b236df3c1f48e546cd6dc25c7226090ced1ec58ad887cf07a9aaf6b2a92d6766",
+              "chapter_id": "d2l_preface",
+              "chapter_index": 0,
+              "document_id": "document",
+              "sentence_id": "sentence_d9a3b4c3a07fa95181b93414",
+              "sentence_index": 4,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 898,
+              "source_start": 686
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 790,
+            "source_match_start_absolute": 781,
+            "source_text": "In :numref:`chap_attention`, \nwe introduce a relatively new class of models\nbased on so-called attention mechanisms\nthat has displaced RNNs as the dominant architecture\nfor most natural language processing tasks.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "2b0a277bc2beb13a25d76c573246cf137fe43a3c7f039a774d098d2753702802",
+            "context_id": "ctxx_38fbfb8ab20bbaae0ce535cb",
+            "context_role": "CONTRASTIVE",
+            "context_sha256": "c257d59af01695db63b7924ac6e3fcacc27b24d442e9b9e298e462ad0516d0a1",
+            "context_slot": "X1",
+            "context_type": "CONTRASTIVE",
+            "context_type_review_status": "NOT_APPLICABLE",
+            "matched_surface": "attention",
+            "provenance": {
+              "audit_ref": "model_evidence/batch_019_b2e86d743d5c7c8841897ece7f736f823e1c90a5997e21c5235515c25d6580d9.json",
+              "audit_sha256": "8f88657baa831b7ff86f70501d853a8065c29086ad447f8034c0414551196c75",
+              "source_kind": "MODEL_GENERATED_SYNTHETIC"
+            },
+            "sense_relation": "CONTRASTIVE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": null,
+            "source_match_start_absolute": null,
+            "source_text": "Synthetic: Here, attention refers to a focus-weighting idea in models, not to legal or medical emergency attention.",
+            "synthetic": true
+          }
+        ],
+        "parent_binding": {
+          "parent_candidate_instance_sha256": [
+            "c44a02a8394a99594fb5e995e085a204dbac7019689cb92c8fd9f53e1bad67e7",
+            "034c06be50c460c20a3a17fd78b80280d5ea5a56cb8f01a3727dc6f0c39c5d41",
+            "d469c17b2f618a8907962d80a2e351625d65a356c47259aaefd1d4bacfd445f4"
+          ],
+          "parent_context_sha256": [
+            "2ec0a133f4f447ec86c4c9f10b5ce9dd79e8af8e12326b36e8b08be19fe2bd34",
+            "b8711b99fb0400b403f48a851897e14f139f6ad8ced840b18010c4a251825ded",
+            "73930531a842865714ef717080d7baef14f38050a7ec2b238b39337e5cec6506",
+            "3041d994995368251698390e9a350674cd58fd6843a0074951b2f749f28462d8",
+            "f21f6d602effa58b2721a43c2f1edc1cab5fc69ffb7a8469e87f244d982b053d",
+            "c257d59af01695db63b7924ac6e3fcacc27b24d442e9b9e298e462ad0516d0a1"
+          ],
+          "parent_dataset": "d2l_context_support_set_validation_ready_v3",
+          "parent_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+          "parent_term_sense_sha256": "d98c46f7d96594c0e950d4519d03646a99be34423212c46f3b85ef4f4a9f847e"
+        },
+        "policy_id": "d2l-dataset-remaining-100-stage-a-v1.0",
+        "proposed_definition_en": "focused notice or concentration; in this book also the named modeling idea behind attention mechanisms",
+        "proposed_part_of_speech": "noun",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "schema_id": "D2LRemaining100StageAReviewSourceV1",
+        "schema_version": "1.0.0",
+        "sense_id": "d2lce_4a5f20bb32b66b1f07d9f37a",
+        "source_term": "attention",
+        "stratum": "ambiguous",
+        "term_id": "d2lce_4a5f20bb32b66b1f07d9f37a"
+      },
+      "source_payload_sha256": "923641189a8d4e2542a2bda9865d7fcfba9b97a355e4171cd35c0fdb57ee9048",
+      "source_result_role": "reviewer_2",
+      "source_term": "attention"
+    },
+    {
+      "audit": {
+        "audit_decision": "REVISE",
+        "audit_notes": "The general mathematical noun child tmpchild_6f729618715e0c985a29a600 is supported by the real inverse-object contexts, and the converse-task child tmpchild_211e194a7d2a825da6e5c132 is directly supported by ctx_75eb945ba12ad0637aee80b1 with the corrected candidate bài toán ngược. The adjective child tmpchild_476bdb3ebcc9f7fd146650ff is not candidate-complete: its assigned target ma trận nghịch đảo fits ctx_47dd346896be4b4baac91c16 but does not translate the same child's inverse offset transformation, inverse square root, inverse norm, or inverse operation contexts ctx_8cf7fef52d9596f550b824ee, ctx_9860b0e4dbe6809813dc296b, ctx_a3264cf3bd2a35a74a627146, and ctx_f3b8e197930d717e638aae95. Revise that child to use a general adjectival target such as nghịch đảo, or split the matrix-specific phrase from the broader adjectival uses. ctxx_bed233cf120704e15cfd064e is synthetic and boundary-only and was not used as positive evidence.",
+        "audit_status": "COMPLETE",
+        "invalid_child_sense_ids": [
+          "tmpchild_476bdb3ebcc9f7fd146650ff"
+        ]
+      },
+      "audit_result_role": "reviewer_5",
+      "audit_result_sha256": "98875182a41acd853d0b80fb74d93ac2c2a0bf45b6c3d6aefe09525e6d37b1dd",
+      "batch_id": "high_risk_proposal_repair_reviewer_2",
+      "case_id": "highrisk_proposal_repair_195a2011688c3e3504b3a3d4",
+      "original_proposal": {
+        "child_sense_repairs": [
+          {
+            "candidate_assignments": [
+              {
+                "candidate_id": "candidate_9dfc9e1aba25a6e77f59ec41",
+                "candidate_slot": "candidate_slot_33764c6810b0e75bb89c81fd",
+                "target_vi": "nghịch đảo"
+              }
+            ],
+            "context_ids": [
+              "ctx_5c43b025af57aef403bb8489",
+              "ctx_b25612872c99360702920048"
+            ],
+            "definition_en": "A mathematical inverse operation, quantity, or object that reverses or reciprocates another.",
+            "part_of_speech": "noun",
+            "scope": "d2l_selected_campaign_scope_v1",
+            "temporary_child_sense_id": "tmpchild_6f729618715e0c985a29a600"
+          },
+          {
+            "candidate_assignments": [
+              {
+                "candidate_id": "candidate_222f6697b5d4fb13ca0fd249",
+                "candidate_slot": "candidate_slot_ba1fc7f6ffaaedf18faa719b",
+                "target_vi": "ma trận nghịch đảo"
+              }
+            ],
+            "context_ids": [
+              "ctx_47dd346896be4b4baac91c16",
+              "ctx_8cf7fef52d9596f550b824ee",
+              "ctx_9860b0e4dbe6809813dc296b",
+              "ctx_a3264cf3bd2a35a74a627146",
+              "ctx_f3b8e197930d717e638aae95",
+              "ctxx_bed233cf120704e15cfd064e"
+            ],
+            "definition_en": "Denoting a reversing or reciprocal mathematical operation, quantity, object, transformation, or relation.",
+            "part_of_speech": "adjective",
+            "scope": "d2l_selected_campaign_scope_v1",
+            "temporary_child_sense_id": "tmpchild_476bdb3ebcc9f7fd146650ff"
+          },
+          {
+            "candidate_assignments": [
+              {
+                "candidate_id": "candidate_730b2972e7ae131da2b83621",
+                "candidate_slot": "candidate_slot_97e1090fae37609ba49bbd58",
+                "target_vi": "bài toán ngược"
+              }
+            ],
+            "context_ids": [
+              "ctx_75eb945ba12ad0637aee80b1"
+            ],
+            "definition_en": "A converse task or process that reverses the direction of another task.",
+            "part_of_speech": "noun",
+            "scope": "d2l_selected_campaign_scope_v1",
+            "temporary_child_sense_id": "tmpchild_211e194a7d2a825da6e5c132"
+          }
+        ],
+        "proposal_type": "SPLIT_PROPOSAL"
+      },
+      "policy_id": "d2l-remaining-100-high-risk-proposal-repair-v1.0",
+      "proposal_record_sha256": "c7d960b6e00f10dcb6c1c31bada6df4b73043f3b9ab75754bd1fbb44b5cd8ecd",
+      "provider_call_count": 0,
+      "repair": {
+        "repair_notes": "Changed only target_vi for candidate_222f6697b5d4fb13ca0fd249 in tmpchild_476bdb3ebcc9f7fd146650ff from ma trận nghịch đảo to the general adjectival target nghịch đảo. Real contexts ctx_47dd346896be4b4baac91c16, ctx_8cf7fef52d9596f550b824ee, ctx_9860b0e4dbe6809813dc296b, ctx_a3264cf3bd2a35a74a627146, and ctx_f3b8e197930d717e638aae95 require a general modifier across inverse-matrix, inverse-offset, inverse-square-root, inverse-norm, and inverse-operation uses; ctxx_bed233cf120704e15cfd064e remains only a synthetic contrastive boundary. All partitions, definitions, POS, scope, and temporary child IDs are unchanged.",
+        "repair_status": "COMPLETE",
+        "revised_proposal": {
+          "child_sense_repairs": [
+            {
+              "candidate_assignments": [
+                {
+                  "candidate_id": "candidate_9dfc9e1aba25a6e77f59ec41",
+                  "candidate_slot": "candidate_slot_33764c6810b0e75bb89c81fd",
+                  "target_vi": "nghịch đảo"
+                }
+              ],
+              "context_ids": [
+                "ctx_5c43b025af57aef403bb8489",
+                "ctx_b25612872c99360702920048"
+              ],
+              "definition_en": "A mathematical inverse operation, quantity, or object that reverses or reciprocates another.",
+              "part_of_speech": "noun",
+              "scope": "d2l_selected_campaign_scope_v1",
+              "temporary_child_sense_id": "tmpchild_6f729618715e0c985a29a600"
+            },
+            {
+              "candidate_assignments": [
+                {
+                  "candidate_id": "candidate_222f6697b5d4fb13ca0fd249",
+                  "candidate_slot": "candidate_slot_ba1fc7f6ffaaedf18faa719b",
+                  "target_vi": "nghịch đảo"
+                }
+              ],
+              "context_ids": [
+                "ctx_47dd346896be4b4baac91c16",
+                "ctx_8cf7fef52d9596f550b824ee",
+                "ctx_9860b0e4dbe6809813dc296b",
+                "ctx_a3264cf3bd2a35a74a627146",
+                "ctx_f3b8e197930d717e638aae95",
+                "ctxx_bed233cf120704e15cfd064e"
+              ],
+              "definition_en": "Denoting a reversing or reciprocal mathematical operation, quantity, object, transformation, or relation.",
+              "part_of_speech": "adjective",
+              "scope": "d2l_selected_campaign_scope_v1",
+              "temporary_child_sense_id": "tmpchild_476bdb3ebcc9f7fd146650ff"
+            },
+            {
+              "candidate_assignments": [
+                {
+                  "candidate_id": "candidate_730b2972e7ae131da2b83621",
+                  "candidate_slot": "candidate_slot_97e1090fae37609ba49bbd58",
+                  "target_vi": "bài toán ngược"
+                }
+              ],
+              "context_ids": [
+                "ctx_75eb945ba12ad0637aee80b1"
+              ],
+              "definition_en": "A converse task or process that reverses the direction of another task.",
+              "part_of_speech": "noun",
+              "scope": "d2l_selected_campaign_scope_v1",
+              "temporary_child_sense_id": "tmpchild_211e194a7d2a825da6e5c132"
+            }
+          ],
+          "proposal_type": "SPLIT_PROPOSAL"
+        }
+      },
+      "schema_id": "D2LRemaining100HighRiskProposalRepairCaseV1",
+      "schema_version": "1.0",
+      "sense_id": "d2lce_98211ac6b2c27c6359ce6dae",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_222f6697b5d4fb13ca0fd249",
+            "candidate_instance_sha256": "4283af50caa2b474ddf04f0bd722402c5ad58ccc4bf9d700c2e8e00570c42f0e",
+            "candidate_slot": "candidate_slot_ba1fc7f6ffaaedf18faa719b",
+            "candidate_target_vi": "ma trận nghịch đảo"
+          },
+          {
+            "candidate_id": "candidate_730b2972e7ae131da2b83621",
+            "candidate_instance_sha256": "e2bf5311d1d14a8ceb2b676722931c5594d6063d771faf80c11087570dc31a0b",
+            "candidate_slot": "candidate_slot_97e1090fae37609ba49bbd58",
+            "candidate_target_vi": "phép nghịch đảo"
+          },
+          {
+            "candidate_id": "candidate_9dfc9e1aba25a6e77f59ec41",
+            "candidate_instance_sha256": "56d445a0b31e16442d63db11c337f41d2c67c49e11cda73acc8630301c68386c",
+            "candidate_slot": "candidate_slot_33764c6810b0e75bb89c81fd",
+            "candidate_target_vi": "nghịch đảo"
+          }
+        ],
+        "dataset_version": "d2l_dataset_remaining_100_stage_a_v1",
+        "evidence_contexts": [
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "bdcf7fcdfc8ae5e776e1131d0f93a429fd014a543e794299eded66684c4b5899",
+            "context_id": "ctx_47dd346896be4b4baac91c16",
+            "context_role": "PRIMARY",
+            "context_sha256": "0a33630ccf27de0fb480fb7dfbfad2381c8d9df6b530eda1c26c675958d6c2e1",
+            "context_slot": "C3",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "inverse",
+            "provenance": {
+              "block_id": "d2l_appendix_mathematics_for_deep_learning_geometry_linear_algebraic_ops_b105",
+              "block_index": 116,
+              "block_text_sha256": "47e391b430b403debcb9c1facb4575519476d115598c0022b20fbc5fb9cce7ff",
+              "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+              "chapter_index": 20,
+              "document_id": "document",
+              "sentence_id": "sentence_49f06dcb6c041b3d520a1320",
+              "sentence_index": 2,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 537,
+              "source_start": 476
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 528,
+            "source_match_start_absolute": 521,
+            "source_text": "We call such a matrix $\\mathbf{A}^{-1}$ the *inverse* matrix.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "c1a28d65c48d91dc322ecabab05c5629c0305ed2da84ad892b7eb6d22f80bb92",
+            "context_id": "ctx_5c43b025af57aef403bb8489",
+            "context_role": "PRIMARY",
+            "context_sha256": "2e0fea989ff7a4db3e9aadd775116b8939ed179c35ca8540f52e313a221766c0",
+            "context_slot": "C4",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "inverse",
+            "provenance": {
+              "block_id": "d2l_appendix_mathematics_for_deep_learning_geometry_linear_algebraic_ops_b107",
+              "block_index": 118,
+              "block_text_sha256": "c1a28d65c48d91dc322ecabab05c5629c0305ed2da84ad892b7eb6d22f80bb92",
+              "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+              "chapter_index": 20,
+              "document_id": "document",
+              "sentence_id": "sentence_c9ba6db67c4a250a46170adb",
+              "sentence_index": 0,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 35,
+              "source_start": 0
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 32,
+            "source_match_start_absolute": 25,
+            "source_text": "then we can see that the inverse is",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "16e9cce99dade683984255f4915ee466f7840727f72389daeb4516ecea5d50ba",
+            "context_id": "ctx_75eb945ba12ad0637aee80b1",
+            "context_role": "BACKUP",
+            "context_sha256": "3d7c440f933f377602cd4cae3b8c054abadaa577af8efb127cc8209952d156fa",
+            "context_slot": "B2",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "inverse",
+            "provenance": {
+              "block_id": "d2l_introduction_index_b089",
+              "block_index": 88,
+              "block_text_sha256": "7773e9492c8541d63007bbdeda3abf996ae1f48223375fa211d771a7d92181ec",
+              "chapter_id": "d2l_introduction",
+              "chapter_index": 3,
+              "document_id": "document",
+              "sentence_id": "sentence_4553b1a9c19173b45a0b67e8",
+              "sentence_index": 1,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 72,
+              "source_start": 20
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 39,
+            "source_match_start_absolute": 32,
+            "source_text": "This is the inverse of automatic speech recognition.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "51a1ecbd1c81fb24a5ec17e4d05e436396625b883b64f2ab399ee4eca6851187",
+            "context_id": "ctx_8cf7fef52d9596f550b824ee",
+            "context_role": "PRIMARY",
+            "context_sha256": "085909d1e8014653b9e15594b4e5001f23c90d2908a2277a54178e289a8c240d",
+            "context_slot": "C5",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "inverse",
+            "provenance": {
+              "block_id": "d2l_computer_vision_anchor_b063",
+              "block_index": 222,
+              "block_text_sha256": "9f94e585acf34409f638bec3f099a1e94f10db3da44724a2694ee63c9d514e2c",
+              "chapter_id": "d2l_computer_vision",
+              "chapter_index": 15,
+              "document_id": "document",
+              "sentence_id": "sentence_2a16238578194a7be19e8abd",
+              "sentence_index": 2,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 418,
+              "source_start": 216
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 342,
+            "source_match_start_absolute": 335,
+            "source_text": "Below we implement the `offset_inverse` function\nthat takes in anchors and\noffset predictions as inputs and [**applies inverse offset transformations to\nreturn the predicted bounding box coordinates**].",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "8329ddc91baa31ab18d1127a71522dd2d148268defa807c7f85b0b297ada4a87",
+            "context_id": "ctx_9860b0e4dbe6809813dc296b",
+            "context_role": "BACKUP",
+            "context_sha256": "cf0939bcbcc36cf956c572d3172f46fa6ccbace4b6f09ce166bc3434fa49a6ff",
+            "context_slot": "B1",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "inverse",
+            "provenance": {
+              "block_id": "d2l_optimization_sgd_b030",
+              "block_index": 253,
+              "block_text_sha256": "40be6d130c1bc5991d5dfef2700d608f0a73ec9b2e6c6ee481a9548366d63467",
+              "chapter_id": "d2l_optimization",
+              "chapter_index": 13,
+              "document_id": "document",
+              "sentence_id": "sentence_f53ca332e6c2e1c20757da10",
+              "sentence_index": 4,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 489,
+              "source_start": 313
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 408,
+            "source_match_start_absolute": 401,
+            "source_text": "On the other hand, if we use a polynomial decay where the learning rate decays with the inverse square root of the number of steps, convergence gets better after only 50 steps.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "6b9c496cb2d390538e4a4cc08ae5b230842b98a83986ef9ae35c1b1aa654a2e1",
+            "context_id": "ctx_a3264cf3bd2a35a74a627146",
+            "context_role": "BACKUP",
+            "context_sha256": "57ab7ec7610d71a9f87147003b981faa401770b151900c5326db544a240c8a0b",
+            "context_slot": "B3",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "inverse",
+            "provenance": {
+              "block_id": "d2l_multilayer_perceptrons_dropout_b010",
+              "block_index": 309,
+              "block_text_sha256": "fe309715e9b88d2d7651556136afd1ae66367006adf223c75bb8ec3e9718bd2e",
+              "chapter_id": "d2l_multilayer_perceptrons",
+              "chapter_index": 6,
+              "document_id": "document",
+              "sentence_id": "sentence_14808c8e255d05cd0c9caa3d",
+              "sentence_index": 5,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 616,
+              "source_start": 425
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 544,
+            "source_match_start_absolute": 537,
+            "source_text": "Additionally, as we saw when discussing weight decay\n($L_2$ regularization) in :numref:`sec_weight_decay`,\nthe (inverse) norm of the parameters also\nrepresents a useful measure of simplicity.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "9dd8f9b830ae81f33b9b41093676f578294ee1239e4c1287ce1613c5dd43738b",
+            "context_id": "ctx_b25612872c99360702920048",
+            "context_role": "PRIMARY",
+            "context_sha256": "b134a5fa191bf8b6b10e5aed4ca66a06b0b3dd645e5fc777b87b1a6d6ce38ee8",
+            "context_slot": "C1",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "inverse",
+            "provenance": {
+              "block_id": "d2l_notation_index_b008",
+              "block_index": 7,
+              "block_text_sha256": "9dd8f9b830ae81f33b9b41093676f578294ee1239e4c1287ce1613c5dd43738b",
+              "chapter_id": "d2l_notation",
+              "chapter_index": 2,
+              "document_id": "document",
+              "sentence_id": "sentence_ccd68dd16a68a1e6a6cf0b7b",
+              "sentence_index": 0,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 976,
+              "source_start": 0
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 522,
+            "source_match_start_absolute": 515,
+            "source_text": "* $f(\\cdot)$: a function\n* $\\log(\\cdot)$: the natural logarithm (base $e$)\n* $\\log_2(\\cdot)$: logarithm with base $2$\n* $\\exp(\\cdot)$: the exponential function\n* $\\mathbf{1}(\\cdot)$: the indicator function, evaluates to $1$ if the boolean argument is true and $0$ otherwise\n* $\\mathbf{1}_{\\mathcal{X}}(z)$: the set-membership indicator function, evaluates to $1$ if the element $z$ belongs to the set $\\mathcal{X}$ and $0$ otherwise\n* $\\mathbf{(\\cdot)}^\\top$: transpose of a vector or a matrix\n* $\\mathbf{X}^{-1}$: inverse of matrix $\\mathbf{X}$\n* $\\odot$: Hadamard (elementwise) product\n* $[\\cdot, \\cdot]$: concatenation\n* $\\|\\cdot\\|_p$: $L_p$ norm\n* $\\|\\cdot\\|$: $L_2$ norm\n* $\\langle \\mathbf{x}, \\mathbf{y} \\rangle$: dot product of vectors $\\mathbf{x}$ and $\\mathbf{y}$\n* $\\sum$: summation over a collection of elements\n* $\\prod$: product over a collection of elements\n* $\\stackrel{\\mathrm{def}}{=}$: an equality asserted as a definition of the symbol on the left-hand side",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "7e38f1ec77cfcc7f501a406b484811444451cfb27837765c897f77debc293bd1",
+            "context_id": "ctx_f3b8e197930d717e638aae95",
+            "context_role": "PRIMARY",
+            "context_sha256": "c4b5349b3addf61362c48f98d4ac51eb6a20853628b3724f47cf29e54d6f65a7",
+            "context_slot": "C2",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "inverse",
+            "provenance": {
+              "block_id": "d2l_appendix_mathematics_for_deep_learning_geometry_linear_algebraic_ops_b101",
+              "block_index": 112,
+              "block_text_sha256": "2b1a0dd0faa907d76c792fa91a667b433586aab96ad6ad9a892035b0d3fb4352",
+              "chapter_id": "d2l_appendix_mathematics_for_deep_learning",
+              "chapter_index": 20,
+              "document_id": "document",
+              "sentence_id": "sentence_c27fd56bddaac93a349c43b0",
+              "sentence_index": 0,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 171,
+              "source_start": 0
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 126,
+            "source_match_start_absolute": 119,
+            "source_text": "We have seen above that multiplication by a matrix with linearly dependent columns\ncannot be undone, i.e., there is no inverse operation that can always recover the input.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "d9465800268ee84526ee022fc512aec7f6245353d625e058626c082125a5f4e8",
+            "context_id": "ctxx_bed233cf120704e15cfd064e",
+            "context_role": "CONTRASTIVE",
+            "context_sha256": "6e057303242fbf4e3a746748841ffdbbe65eefff83bfac8734085558b84e08e4",
+            "context_slot": "X1",
+            "context_type": "CONTRASTIVE",
+            "context_type_review_status": "NOT_APPLICABLE",
+            "matched_surface": "inverse",
+            "provenance": {
+              "audit_ref": "model_evidence/batch_028_e1f91d924e7ccd84a008e605345a34677ac84051a6e3a5e147481aada4f7d01c.json",
+              "audit_sha256": "237308c2208d2b5db3ee34866f0222ff59b759d8a459054e091e7cf65d5dd229",
+              "source_kind": "MODEL_GENERATED_SYNTHETIC"
+            },
+            "sense_relation": "CONTRASTIVE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": null,
+            "source_match_start_absolute": null,
+            "source_text": "Synthetic: In the sentence, the inverse word order sounds poetic.",
+            "synthetic": true
+          }
+        ],
+        "parent_binding": {
+          "parent_candidate_instance_sha256": [
+            "4283af50caa2b474ddf04f0bd722402c5ad58ccc4bf9d700c2e8e00570c42f0e",
+            "e2bf5311d1d14a8ceb2b676722931c5594d6063d771faf80c11087570dc31a0b",
+            "56d445a0b31e16442d63db11c337f41d2c67c49e11cda73acc8630301c68386c"
+          ],
+          "parent_context_sha256": [
+            "0a33630ccf27de0fb480fb7dfbfad2381c8d9df6b530eda1c26c675958d6c2e1",
+            "2e0fea989ff7a4db3e9aadd775116b8939ed179c35ca8540f52e313a221766c0",
+            "3d7c440f933f377602cd4cae3b8c054abadaa577af8efb127cc8209952d156fa",
+            "085909d1e8014653b9e15594b4e5001f23c90d2908a2277a54178e289a8c240d",
+            "cf0939bcbcc36cf956c572d3172f46fa6ccbace4b6f09ce166bc3434fa49a6ff",
+            "57ab7ec7610d71a9f87147003b981faa401770b151900c5326db544a240c8a0b",
+            "b134a5fa191bf8b6b10e5aed4ca66a06b0b3dd645e5fc777b87b1a6d6ce38ee8",
+            "c4b5349b3addf61362c48f98d4ac51eb6a20853628b3724f47cf29e54d6f65a7",
+            "6e057303242fbf4e3a746748841ffdbbe65eefff83bfac8734085558b84e08e4"
+          ],
+          "parent_dataset": "d2l_context_support_set_validation_ready_v3",
+          "parent_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+          "parent_term_sense_sha256": "b1fbf1310442a5ef6536459c8e3a12ca7fbcdf56922a0db19c16dee287ba8018"
+        },
+        "policy_id": "d2l-dataset-remaining-100-stage-a-v1.0",
+        "proposed_definition_en": "an operation, quantity, or object that reverses another; in linear algebra, especially a matrix that undoes multiplication",
+        "proposed_part_of_speech": "noun",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "schema_id": "D2LRemaining100StageAReviewSourceV1",
+        "schema_version": "1.0.0",
+        "sense_id": "d2lce_98211ac6b2c27c6359ce6dae",
+        "source_term": "inverse",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_98211ac6b2c27c6359ce6dae"
+      },
+      "source_payload_sha256": "af815ff98629d48f8a6bcf9cc9ac57ddee4c90e670e1c097d437bcee8535a7f3",
+      "source_result_role": "reviewer_2",
+      "source_term": "inverse"
+    }
+  ],
+  "policy_id": "d2l-remaining-100-high-risk-proposal-repair-v1.0",
+  "provider_call_count": 0,
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_REPAIR_OBJECTS_FILLED",
+  "reviewer_slot": "reviewer_2",
+  "schema_id": "D2LRemaining100HighRiskProposalRepairBatchV1",
+  "schema_version": "1.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "AWAITING_NARROW_PROPOSAL_REPAIR"
+}

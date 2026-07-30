@@ -1,0 +1,496 @@
+{
+  "allowed_repair_status": [
+    "COMPLETE"
+  ],
+  "batch_id": "high_risk_proposal_repair_reviewer_3",
+  "case_count": 1,
+  "cases": [
+    {
+      "audit": {
+        "audit_decision": "REVISE",
+        "audit_notes": "The dimensional-shape child tmpchild_3a68024c8ed386fe4e426223 is well bound to real tensor, image-grid, convolution-window, and input/output contexts, including ctx_eaaf8f351dd451d99604be0e, ctx_0f178aa4816b9e54f151c714, ctx_662c35c799f161b9c9cc657e, and ctx_f57f479949897e554691786b; its candidate kích thước is faithful. The form-shape child tmpchild_c78dbba5b5dca1bf4e130423 has only one real assigned context, ctx_0485eb5efda3441a68d374c6, which supports the form of a function or curve. It does not support the broader definition covering arbitrary objects and images. ctxx_f6ff268edebdf6e4c03c0f91 is synthetic and boundary-only and cannot close that gap. Narrow the second definition to functional or curve form, or bind additional real positive contexts for the broader wording. The synthetic context was not used as positive evidence in this audit.",
+        "audit_status": "COMPLETE",
+        "invalid_child_sense_ids": [
+          "tmpchild_c78dbba5b5dca1bf4e130423"
+        ]
+      },
+      "audit_result_role": "reviewer_5",
+      "audit_result_sha256": "98875182a41acd853d0b80fb74d93ac2c2a0bf45b6c3d6aefe09525e6d37b1dd",
+      "batch_id": "high_risk_proposal_repair_reviewer_3",
+      "case_id": "highrisk_proposal_repair_7ae3320d11693f04679cd993",
+      "original_proposal": {
+        "child_sense_repairs": [
+          {
+            "candidate_assignments": [
+              {
+                "candidate_id": "candidate_0982ed2ca3019b74f56d40ff",
+                "candidate_slot": "candidate_slot_470955466e40091d7f9dd60c",
+                "target_vi": "kích thước"
+              }
+            ],
+            "context_ids": [
+              "ctx_0ca0c7867a08cb23a7e74953",
+              "ctx_0f178aa4816b9e54f151c714",
+              "ctx_178ff737d193d16c637c5384",
+              "ctx_5a8d5f2e80e768f19b56cf52",
+              "ctx_662c35c799f161b9c9cc657e",
+              "ctx_eaaf8f351dd451d99604be0e",
+              "ctx_f57f479949897e554691786b"
+            ],
+            "definition_en": "the tuple of lengths along each axis of a tensor, array, image grid, convolution window, or model input or output",
+            "part_of_speech": "noun",
+            "scope": "d2l_selected_campaign_scope_v1",
+            "temporary_child_sense_id": "tmpchild_3a68024c8ed386fe4e426223"
+          },
+          {
+            "candidate_assignments": [
+              {
+                "candidate_id": "candidate_02fd8cebfe75674a17ecf88d",
+                "candidate_slot": "candidate_slot_9535d779a954b387fa6be24a",
+                "target_vi": "dạng"
+              },
+              {
+                "candidate_id": "candidate_54c7a5be171a441139675a5c",
+                "candidate_slot": "candidate_slot_efaa47bf0b4e5f71ec98aa23",
+                "target_vi": "hình dạng"
+              }
+            ],
+            "context_ids": [
+              "ctx_0485eb5efda3441a68d374c6",
+              "ctxx_f6ff268edebdf6e4c03c0f91"
+            ],
+            "definition_en": "the geometric, visual, or functional form of an object, image, function, or curve",
+            "part_of_speech": "noun",
+            "scope": "d2l_selected_campaign_scope_v1",
+            "temporary_child_sense_id": "tmpchild_c78dbba5b5dca1bf4e130423"
+          }
+        ],
+        "proposal_type": "SPLIT_PROPOSAL"
+      },
+      "policy_id": "d2l-remaining-100-high-risk-proposal-repair-v1.0",
+      "proposal_record_sha256": "69ca3ef07b7bc68761f0a1c5a79ca29cb7c7f95301bac0156dc0d898877408b4",
+      "provider_call_count": 0,
+      "repair": {
+        "repair_notes": "Narrowed only definition_en for child tmpchild_c78dbba5b5dca1bf4e130423 to the functional or curve-form meaning supported by its sole nonsynthetic positive context, ctx_0485eb5efda3441a68d374c6. The synthetic boundary-only context was not treated as positive evidence. The other child and all temporary child IDs, context assignments, candidate assignments, POS, scope, and proposal type are unchanged, preserving the exact one-time partition.",
+        "repair_status": "COMPLETE",
+        "revised_proposal": {
+          "child_sense_repairs": [
+            {
+              "candidate_assignments": [
+                {
+                  "candidate_id": "candidate_0982ed2ca3019b74f56d40ff",
+                  "candidate_slot": "candidate_slot_470955466e40091d7f9dd60c",
+                  "target_vi": "kích thước"
+                }
+              ],
+              "context_ids": [
+                "ctx_0ca0c7867a08cb23a7e74953",
+                "ctx_0f178aa4816b9e54f151c714",
+                "ctx_178ff737d193d16c637c5384",
+                "ctx_5a8d5f2e80e768f19b56cf52",
+                "ctx_662c35c799f161b9c9cc657e",
+                "ctx_eaaf8f351dd451d99604be0e",
+                "ctx_f57f479949897e554691786b"
+              ],
+              "definition_en": "the tuple of lengths along each axis of a tensor, array, image grid, convolution window, or model input or output",
+              "part_of_speech": "noun",
+              "scope": "d2l_selected_campaign_scope_v1",
+              "temporary_child_sense_id": "tmpchild_3a68024c8ed386fe4e426223"
+            },
+            {
+              "candidate_assignments": [
+                {
+                  "candidate_id": "candidate_02fd8cebfe75674a17ecf88d",
+                  "candidate_slot": "candidate_slot_9535d779a954b387fa6be24a",
+                  "target_vi": "dạng"
+                },
+                {
+                  "candidate_id": "candidate_54c7a5be171a441139675a5c",
+                  "candidate_slot": "candidate_slot_efaa47bf0b4e5f71ec98aa23",
+                  "target_vi": "hình dạng"
+                }
+              ],
+              "context_ids": [
+                "ctx_0485eb5efda3441a68d374c6",
+                "ctxx_f6ff268edebdf6e4c03c0f91"
+              ],
+              "definition_en": "the geometric or functional form of a function or curve",
+              "part_of_speech": "noun",
+              "scope": "d2l_selected_campaign_scope_v1",
+              "temporary_child_sense_id": "tmpchild_c78dbba5b5dca1bf4e130423"
+            }
+          ],
+          "proposal_type": "SPLIT_PROPOSAL"
+        }
+      },
+      "schema_id": "D2LRemaining100HighRiskProposalRepairCaseV1",
+      "schema_version": "1.0",
+      "sense_id": "d2lce_7d91b65d1e0031ab994be237",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_02fd8cebfe75674a17ecf88d",
+            "candidate_instance_sha256": "7ee1852fe071e0d1f1d38000f1cfe780d49e906b2f5627b7a2b0bd40b8e9c2b4",
+            "candidate_slot": "candidate_slot_9535d779a954b387fa6be24a",
+            "candidate_target_vi": "dạng"
+          },
+          {
+            "candidate_id": "candidate_0982ed2ca3019b74f56d40ff",
+            "candidate_instance_sha256": "cc1df017326ad59b7797c7869a4081ead5fb4c63e960cc70afe206325e402975",
+            "candidate_slot": "candidate_slot_470955466e40091d7f9dd60c",
+            "candidate_target_vi": "kích thước"
+          },
+          {
+            "candidate_id": "candidate_54c7a5be171a441139675a5c",
+            "candidate_instance_sha256": "5f890ddaee5a6f1a4a8337ef013e4f49b7e044e5f55fa7f062250006402d2e93",
+            "candidate_slot": "candidate_slot_efaa47bf0b4e5f71ec98aa23",
+            "candidate_target_vi": "hình dạng"
+          }
+        ],
+        "dataset_version": "d2l_dataset_remaining_100_stage_a_v1",
+        "evidence_contexts": [
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "1e8d946f9a61be7b965677d39e335b9cafba211590f161fa29e0bfbd60d09120",
+            "context_id": "ctx_0485eb5efda3441a68d374c6",
+            "context_role": "BACKUP",
+            "context_sha256": "13f9b6c2822783eed27d6c2703a3cb6d8de4571c1501225b0fdbda740d74be2c",
+            "context_slot": "B2",
+            "context_type": "C3",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "shape",
+            "provenance": {
+              "block_id": "d2l_multilayer_perceptrons_mlp_b064",
+              "block_index": 66,
+              "block_text_sha256": "403f54f6ccad3bb5cf986b74695c1e075353d46ac756d7a141d6c00006f4bab9",
+              "chapter_id": "d2l_multilayer_perceptrons",
+              "chapter_index": 6,
+              "document_id": "document",
+              "sentence_id": "sentence_dbb2ebebac3bc09bec4fcc11",
+              "sentence_index": 2,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 282,
+              "source_start": 119
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 137,
+            "source_match_start_absolute": 132,
+            "source_text": "Although the shape of the function is similar to that of the sigmoid function, the tanh function exhibits point symmetry about the origin of the coordinate system.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "f9a90f8cb14c33a5c5eee61e3482038abc92e452835b8f869909a3859eacd640",
+            "context_id": "ctx_0ca0c7867a08cb23a7e74953",
+            "context_role": "BACKUP",
+            "context_sha256": "084a41f6831bee9326813e248c11955f0267af1e4dacfa536879eac2c3b00cc0",
+            "context_slot": "B3",
+            "context_type": "C3",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "shape",
+            "provenance": {
+              "block_id": "d2l_introduction_index_b026",
+              "block_index": 25,
+              "block_text_sha256": "6d495aadf5d49b0efc7e833118845217467e45ceb1c3c6b9c9664908e081e3ad",
+              "chapter_id": "d2l_introduction",
+              "chapter_index": 3,
+              "document_id": "document",
+              "sentence_id": "sentence_9f7f7ece85ee22576927a152",
+              "sentence_index": 1,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 246,
+              "source_start": 76
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 245,
+            "source_match_start_absolute": 240,
+            "source_text": "While we might expect microscope images to come from standard equipment,\nwe cannot expect images mined from the Internet\nto all show up with the same resolution or shape.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "25fd03ae4de64e4f7fa856b5915085e536d101ff4b0442e07bf3a32d819c4525",
+            "context_id": "ctx_0f178aa4816b9e54f151c714",
+            "context_role": "PRIMARY",
+            "context_sha256": "2d73f0793fa523b1722bace3f8ba3134e2161c313205597b015e81e344fe8b7e",
+            "context_slot": "C3",
+            "context_type": "C3",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "shape",
+            "provenance": {
+              "block_id": "d2l_convolutional_neural_networks_why_conv_b013",
+              "block_index": 18,
+              "block_text_sha256": "c277c5a9707de3ba3dfea6faed59e2decc77061b9b8f977da471551b8a3481ab",
+              "chapter_id": "d2l_convolutional_neural_networks",
+              "chapter_index": 8,
+              "document_id": "document",
+              "sentence_id": "sentence_a91505796fbe69a914de6596",
+              "sentence_index": 0,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 294,
+              "source_start": 0
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 293,
+            "source_match_start_absolute": 288,
+            "source_text": "To start off, we can consider an MLP\nwith two-dimensional images $\\mathbf{X}$ as inputs\nand their immediate hidden representations\n$\\mathbf{H}$ similarly represented as matrices in mathematics and as two-dimensional tensors in code, where both $\\mathbf{X}$ and $\\mathbf{H}$ have the same shape.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "a5b33cafeadbe3e6c932a0b395489b1005b338f8be55593d7b877c2c5dd7b10a",
+            "context_id": "ctx_178ff737d193d16c637c5384",
+            "context_role": "PRIMARY",
+            "context_sha256": "af4a9f5c9aec9cb19d7e0a25cfeb921f7af92865788dd68d37ad40e8e35fb653",
+            "context_slot": "C4",
+            "context_type": "C3",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "shape",
+            "provenance": {
+              "block_id": "d2l_linear_networks_linear_regression_scratch_b011",
+              "block_index": 117,
+              "block_text_sha256": "a5b33cafeadbe3e6c932a0b395489b1005b338f8be55593d7b877c2c5dd7b10a",
+              "chapter_id": "d2l_linear_networks",
+              "chapter_index": 5,
+              "document_id": "document",
+              "sentence_id": "sentence_ee6eca88556022c90d1a7dc2",
+              "sentence_index": 0,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 285,
+              "source_start": 0
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 242,
+            "source_match_start_absolute": 237,
+            "source_text": "```{.python .input}\n#@tab mxnet, pytorch\ndef synthetic_data(w, b, num_examples):  #@save\n    \"\"\"Generate y = Xw + b + noise.\"\"\"\n    X = d2l.normal(0, 1, (num_examples, len(w)))\n    y = d2l.matmul(X, w) + b\n    y += d2l.normal(0, 0.01, y.shape)\n    return X, d2l.reshape(y, (-1, 1))\n```",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "6caa36ef36c630f70ea412a1bf3df762ca087299ba4b4b2d5836c656a6a2c621",
+            "context_id": "ctx_5a8d5f2e80e768f19b56cf52",
+            "context_role": "PRIMARY",
+            "context_sha256": "06202eff665f9541471c829ab6781c762a6de5aa79f072ae985fa3232f97d09c",
+            "context_slot": "C5",
+            "context_type": "C3",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "shape",
+            "provenance": {
+              "block_id": "d2l_recurrent_neural_networks_language_models_and_dataset_b055",
+              "block_index": 111,
+              "block_text_sha256": "6caa36ef36c630f70ea412a1bf3df762ca087299ba4b4b2d5836c656a6a2c621",
+              "chapter_id": "d2l_recurrent_neural_networks",
+              "chapter_index": 10,
+              "document_id": "document",
+              "sentence_id": "sentence_842b1991209c48246ad42a97",
+              "sentence_index": 0,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 746,
+              "source_start": 0
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 576,
+            "source_match_start_absolute": 571,
+            "source_text": "```{.python .input}\n#@tab mxnet, pytorch\ndef seq_data_iter_sequential(corpus, batch_size, num_steps):  #@save\n    \"\"\"Generate a minibatch of subsequences using sequential partitioning.\"\"\"\n    # Start with a random offset to partition a sequence\n    offset = random.randint(0, num_steps)\n    num_tokens = ((len(corpus) - offset - 1) // batch_size) * batch_size\n    Xs = d2l.tensor(corpus[offset: offset + num_tokens])\n    Ys = d2l.tensor(corpus[offset + 1: offset + 1 + num_tokens])\n    Xs, Ys = Xs.reshape(batch_size, -1), Ys.reshape(batch_size, -1)\n    num_batches = Xs.shape[1] // num_steps\n    for i in range(0, num_steps * num_batches, num_steps):\n        X = Xs[:, i: i + num_steps]\n        Y = Ys[:, i: i + num_steps]\n        yield X, Y\n```",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "f773b59e575a27cdad67af56ce5d70262d6ee6eeb4912f3c4dac5963fee75e46",
+            "context_id": "ctx_662c35c799f161b9c9cc657e",
+            "context_role": "BACKUP",
+            "context_sha256": "4047b6822ec6e64fae561e1439558a9b52025f93440f5116a4f60ee946a02119",
+            "context_slot": "B1",
+            "context_type": "C3",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "shape",
+            "provenance": {
+              "block_id": "d2l_convolutional_modern_alexnet_b030",
+              "block_index": 34,
+              "block_text_sha256": "058db2ef3950bdd211502183ad9ff8be8af4e71baa1166331dddf840063649a3",
+              "chapter_id": "d2l_convolutional_modern",
+              "chapter_index": 9,
+              "document_id": "document",
+              "sentence_id": "sentence_2e2cd6a30a975466c434e3a1",
+              "sentence_index": 3,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 392,
+              "source_start": 294
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 322,
+            "source_match_start_absolute": 317,
+            "source_text": "The convolution window shape in the second layer\nis reduced to $5\\times5$, followed by $3\\times3$.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "1c6114818a58416a4d235eed361057f2e649031b3c7540d90424a3f4b55fe685",
+            "context_id": "ctx_eaaf8f351dd451d99604be0e",
+            "context_role": "PRIMARY",
+            "context_sha256": "352b1b64f814cae157f053ab95d1e9b53ffede4cd7944ff35b119e518da70c2e",
+            "context_slot": "C1",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "shape",
+            "provenance": {
+              "block_id": "d2l_preliminaries_ndarray_b019",
+              "block_index": 26,
+              "block_text_sha256": "1c6114818a58416a4d235eed361057f2e649031b3c7540d90424a3f4b55fe685",
+              "chapter_id": "d2l_preliminaries",
+              "chapter_index": 4,
+              "document_id": "document",
+              "sentence_id": "sentence_809b981c15da22dbe29d3a1b",
+              "sentence_index": 0,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 142,
+              "source_start": 0
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 34,
+            "source_match_start_absolute": 29,
+            "source_text": "(**We can access a tensor's *shape***) (~~and the total number of elements~~) (the length along each axis)\nby inspecting its `shape` property.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "1cc1bc8b6b51abe9986e3236ac8a2342402ea7b050e1b5c8888bf53e07dde226",
+            "context_id": "ctx_f57f479949897e554691786b",
+            "context_role": "PRIMARY",
+            "context_sha256": "c4848b8a84db8e651f7c3527f9115fe6d195642717047bf09ecf8c215c1a647e",
+            "context_slot": "C2",
+            "context_type": "C3",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "shape",
+            "provenance": {
+              "block_id": "d2l_deep_learning_computation_model_construction_b018",
+              "block_index": 21,
+              "block_text_sha256": "fb2ba15a0431d0639982254ecdf953bdede9fe0d6f7971f0fca7251a56cebfd9",
+              "chapter_id": "d2l_deep_learning_computation",
+              "chapter_index": 7,
+              "document_id": "document",
+              "sentence_id": "sentence_f74d1f2165be12da4f1d80d3",
+              "sentence_index": 4,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 215,
+              "source_start": 152
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 199,
+            "source_match_start_absolute": 194,
+            "source_text": "Note that the output may have a different shape from the input.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "4bac7fc5608604cbd04b04dcc9edf2b08685969673c948f39173f2f9e21886bb",
+            "context_id": "ctxx_f6ff268edebdf6e4c03c0f91",
+            "context_role": "CONTRASTIVE",
+            "context_sha256": "28acfe5b6ce363e2615956c5da7acbef3eba135f5b8b8b005d7dcc4e00f1ef9a",
+            "context_slot": "X1",
+            "context_type": "CONTRASTIVE",
+            "context_type_review_status": "NOT_APPLICABLE",
+            "matched_surface": "shape",
+            "provenance": {
+              "audit_ref": "model_evidence/batch_012_01980027e39b64807cc882da1f0de78d05e7328d62768a238aa514fc3d49eccc.json",
+              "audit_sha256": "9e742841bf4224c7a67a77863420df75290cc4f55d1bd3e4aa595fe4443b7b56",
+              "source_kind": "MODEL_GENERATED_SYNTHETIC"
+            },
+            "sense_relation": "CONTRASTIVE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": null,
+            "source_match_start_absolute": null,
+            "source_text": "[Synthetic] The shape of the tensor is (2, 3), whereas the shape of the curve is S-like.",
+            "synthetic": true
+          }
+        ],
+        "parent_binding": {
+          "parent_candidate_instance_sha256": [
+            "7ee1852fe071e0d1f1d38000f1cfe780d49e906b2f5627b7a2b0bd40b8e9c2b4",
+            "cc1df017326ad59b7797c7869a4081ead5fb4c63e960cc70afe206325e402975",
+            "5f890ddaee5a6f1a4a8337ef013e4f49b7e044e5f55fa7f062250006402d2e93"
+          ],
+          "parent_context_sha256": [
+            "13f9b6c2822783eed27d6c2703a3cb6d8de4571c1501225b0fdbda740d74be2c",
+            "084a41f6831bee9326813e248c11955f0267af1e4dacfa536879eac2c3b00cc0",
+            "2d73f0793fa523b1722bace3f8ba3134e2161c313205597b015e81e344fe8b7e",
+            "af4a9f5c9aec9cb19d7e0a25cfeb921f7af92865788dd68d37ad40e8e35fb653",
+            "06202eff665f9541471c829ab6781c762a6de5aa79f072ae985fa3232f97d09c",
+            "4047b6822ec6e64fae561e1439558a9b52025f93440f5116a4f60ee946a02119",
+            "352b1b64f814cae157f053ab95d1e9b53ffede4cd7944ff35b119e518da70c2e",
+            "c4848b8a84db8e651f7c3527f9115fe6d195642717047bf09ecf8c215c1a647e",
+            "28acfe5b6ce363e2615956c5da7acbef3eba135f5b8b8b005d7dcc4e00f1ef9a"
+          ],
+          "parent_dataset": "d2l_context_support_set_validation_ready_v3",
+          "parent_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+          "parent_term_sense_sha256": "4bdbaba28cb7509e978ab85b8e1a76121c0cd21c062ffa430fbf46503427f990"
+        },
+        "policy_id": "d2l-dataset-remaining-100-stage-a-v1.0",
+        "proposed_definition_en": "the dimensions or form of an object, especially the length along each axis of a tensor or array",
+        "proposed_part_of_speech": "noun",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "schema_id": "D2LRemaining100StageAReviewSourceV1",
+        "schema_version": "1.0.0",
+        "sense_id": "d2lce_7d91b65d1e0031ab994be237",
+        "source_term": "shape",
+        "stratum": "ambiguous",
+        "term_id": "d2lce_7d91b65d1e0031ab994be237"
+      },
+      "source_payload_sha256": "ae6af698dbf18c708c966f2e6240a02740083c655a13444f5093347096c67444",
+      "source_result_role": "reviewer_3",
+      "source_term": "shape"
+    }
+  ],
+  "policy_id": "d2l-remaining-100-high-risk-proposal-repair-v1.0",
+  "provider_call_count": 0,
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_REPAIR_OBJECTS_FILLED",
+  "reviewer_slot": "reviewer_3",
+  "schema_id": "D2LRemaining100HighRiskProposalRepairBatchV1",
+  "schema_version": "1.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "AWAITING_NARROW_PROPOSAL_REPAIR"
+}

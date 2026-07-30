@@ -1,0 +1,502 @@
+{
+  "allowed_audit_decisions": [
+    "APPROVE",
+    "REVISE",
+    "BLOCK"
+  ],
+  "batch_id": "proposal_reaudit_reviewer_4",
+  "case_count": 1,
+  "cases": [
+    {
+      "audit": {
+        "audit_decision": "",
+        "audit_notes": "",
+        "audit_status": "",
+        "invalid_child_sense_ids": []
+      },
+      "batch_id": "proposal_reaudit_reviewer_4",
+      "case_id": "highrisk_proposal_reaudit_f4c65631f060d212af314c02",
+      "parent_repair_record_sha256": "8db78c71bdf47533a6320a8a0b1605d4d4f4fd88e648953630ee5fc33f529a2a",
+      "policy_id": "d2l-remaining-100-high-risk-proposal-reaudit-v1.0",
+      "prior_audit": {
+        "audit_decision": "REVISE",
+        "audit_notes": "The architectural child tmpchild_801c89275cce12b4e22f6324 is fully supported by seven real neural-network contexts and its candidate bindings are appropriate. The second child has one real context that supports blocks of a matrix moved into cache, but its definition broadens this to 'matrix or data' without supplied positive evidence for generic data blocks; the synthetic city-block context is boundary only and cannot close that expansion. Narrow tmpchild_364c5b00afc2967be5336782 to a chunk of a matrix moved and processed as a unit, while retaining the synthetic context only as contrastive boundary evidence.",
+        "audit_status": "COMPLETE",
+        "invalid_child_sense_ids": [
+          "tmpchild_364c5b00afc2967be5336782"
+        ]
+      },
+      "proposal_repair": {
+        "repair_notes": "Changed only definition_en for tmpchild_364c5b00afc2967be5336782: the sole real positive matrix context ctx_b9ce0a059491eaaa6fbf542f supports a matrix block moved into cache, not generic data blocks. The definition is therefore narrowed to a chunk of a matrix; ctxx_09ae76f62d4c4c6032674315 remains only a synthetic contrastive boundary. All assignments, partitions, POS, scope, and temporary child IDs are unchanged.",
+        "repair_status": "COMPLETE",
+        "revised_proposal": {
+          "child_sense_repairs": [
+            {
+              "candidate_assignments": [
+                {
+                  "candidate_id": "candidate_6b64b809b4317a104ff865c3",
+                  "candidate_slot": "candidate_slot_7991814058ea170c1754c224",
+                  "target_vi": "khối mô-đun"
+                },
+                {
+                  "candidate_id": "candidate_fe4d3ab70bd7cd796ae89245",
+                  "candidate_slot": "candidate_slot_d034690ccd5846348c201555",
+                  "target_vi": "khối"
+                }
+              ],
+              "context_ids": [
+                "ctx_0c72a2d7feb8a2a7f2b17bfd",
+                "ctx_20b4a3b3e9da0f80ed6d5279",
+                "ctx_26916f0b3985aa996c0cee2c",
+                "ctx_46d4831aad13e3c413d4aaef",
+                "ctx_6481a5fd90279243349a9cd9",
+                "ctx_8e452eff442f6f0cb419316b",
+                "ctx_f7e9706f82de50c8f6380d6c"
+              ],
+              "definition_en": "A modular architectural unit composed of layers or operations in a neural network.",
+              "part_of_speech": "noun",
+              "scope": "d2l_selected_campaign_scope_v1",
+              "temporary_child_sense_id": "tmpchild_801c89275cce12b4e22f6324"
+            },
+            {
+              "candidate_assignments": [
+                {
+                  "candidate_id": "candidate_2e0a5147febe8b4142fc8a26",
+                  "candidate_slot": "candidate_slot_1ddd7759b40b9b2be4cc5f15",
+                  "target_vi": "khối ma trận"
+                }
+              ],
+              "context_ids": [
+                "ctx_b9ce0a059491eaaa6fbf542f",
+                "ctxx_09ae76f62d4c4c6032674315"
+              ],
+              "definition_en": "A chunk of a matrix moved and processed as a unit in a computation.",
+              "part_of_speech": "noun",
+              "scope": "d2l_selected_campaign_scope_v1",
+              "temporary_child_sense_id": "tmpchild_364c5b00afc2967be5336782"
+            }
+          ],
+          "proposal_type": "SPLIT_PROPOSAL"
+        }
+      },
+      "provider_call_count": 0,
+      "repaired_proposal": {
+        "child_sense_repairs": [
+          {
+            "candidate_assignments": [
+              {
+                "candidate_id": "candidate_6b64b809b4317a104ff865c3",
+                "candidate_slot": "candidate_slot_7991814058ea170c1754c224",
+                "target_vi": "khối mô-đun"
+              },
+              {
+                "candidate_id": "candidate_fe4d3ab70bd7cd796ae89245",
+                "candidate_slot": "candidate_slot_d034690ccd5846348c201555",
+                "target_vi": "khối"
+              }
+            ],
+            "context_ids": [
+              "ctx_0c72a2d7feb8a2a7f2b17bfd",
+              "ctx_20b4a3b3e9da0f80ed6d5279",
+              "ctx_26916f0b3985aa996c0cee2c",
+              "ctx_46d4831aad13e3c413d4aaef",
+              "ctx_6481a5fd90279243349a9cd9",
+              "ctx_8e452eff442f6f0cb419316b",
+              "ctx_f7e9706f82de50c8f6380d6c"
+            ],
+            "definition_en": "A modular architectural unit composed of layers or operations in a neural network.",
+            "part_of_speech": "noun",
+            "scope": "d2l_selected_campaign_scope_v1",
+            "temporary_child_sense_id": "tmpchild_801c89275cce12b4e22f6324"
+          },
+          {
+            "candidate_assignments": [
+              {
+                "candidate_id": "candidate_2e0a5147febe8b4142fc8a26",
+                "candidate_slot": "candidate_slot_1ddd7759b40b9b2be4cc5f15",
+                "target_vi": "khối ma trận"
+              }
+            ],
+            "context_ids": [
+              "ctx_b9ce0a059491eaaa6fbf542f",
+              "ctxx_09ae76f62d4c4c6032674315"
+            ],
+            "definition_en": "A chunk of a matrix moved and processed as a unit in a computation.",
+            "part_of_speech": "noun",
+            "scope": "d2l_selected_campaign_scope_v1",
+            "temporary_child_sense_id": "tmpchild_364c5b00afc2967be5336782"
+          }
+        ],
+        "proposal_type": "SPLIT_PROPOSAL"
+      },
+      "schema_id": "D2LRemaining100HighRiskProposalReauditCaseV1",
+      "schema_version": "1.0",
+      "sense_id": "d2lce_20c658fd4e221ee551790ec2",
+      "source_payload": {
+        "candidates": [
+          {
+            "candidate_id": "candidate_2e0a5147febe8b4142fc8a26",
+            "candidate_instance_sha256": "778991517e582adc6cd2e32b2d3b7fc1bc3006c91dfe20e8d287be738ccf8e7c",
+            "candidate_slot": "candidate_slot_1ddd7759b40b9b2be4cc5f15",
+            "candidate_target_vi": "khối dữ liệu"
+          },
+          {
+            "candidate_id": "candidate_6b64b809b4317a104ff865c3",
+            "candidate_instance_sha256": "7af02db30e671f29507e9fc033027f85aec4eff3c3630c682ac64c86235f3376",
+            "candidate_slot": "candidate_slot_7991814058ea170c1754c224",
+            "candidate_target_vi": "khối thành phần"
+          },
+          {
+            "candidate_id": "candidate_fe4d3ab70bd7cd796ae89245",
+            "candidate_instance_sha256": "f59f2df0818c166f18d4757cae510e24ff5d39f8a6e419588dae34a2f7e61158",
+            "candidate_slot": "candidate_slot_d034690ccd5846348c201555",
+            "candidate_target_vi": "khối"
+          }
+        ],
+        "dataset_version": "d2l_dataset_remaining_100_stage_a_v1",
+        "evidence_contexts": [
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "c8eb1694fb53f9b935fa5e92a7b5bfb22023f1aec1adcd59a468cba416f7e682",
+            "context_id": "ctx_0c72a2d7feb8a2a7f2b17bfd",
+            "context_role": "BACKUP",
+            "context_sha256": "8e6eaed62b0aff9cab5e81e0408aa147b434489a735fa2d0e50329aafda7cc79",
+            "context_slot": "B3",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "blocks",
+            "provenance": {
+              "block_id": "d2l_computational_performance_hybridize_b017",
+              "block_index": 19,
+              "block_text_sha256": "2f784e45bb587684bc8127887df36db7671bf8d66070f070b468d22a0365e695",
+              "chapter_id": "d2l_computational_performance",
+              "chapter_index": 14,
+              "document_id": "document",
+              "sentence_id": "sentence_ffa46200f8835c1f6cbc6a78",
+              "sentence_index": 5,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 640,
+              "source_start": 560
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 639,
+            "source_match_start_absolute": 633,
+            "source_text": "We will illustrate the benefits below, focusing on sequential models and blocks.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "5b1c5c4228b19693820ceddc77624b84a9a795621528c6a77bd8afc407cb86bd",
+            "context_id": "ctx_20b4a3b3e9da0f80ed6d5279",
+            "context_role": "PRIMARY",
+            "context_sha256": "c4f7634205928e32c122733b155b86ae7246181ccbdf24db30453acde0868d61",
+            "context_slot": "C1",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "blocks",
+            "provenance": {
+              "block_id": "d2l_natural_language_processing_pretraining_bert_pretraining_b008",
+              "block_index": 435,
+              "block_text_sha256": "8521c9e3806e02643b7f142ee11cf862f441eec7e79ac703c489999e06a4250b",
+              "chapter_id": "d2l_natural_language_processing_pretraining",
+              "chapter_index": 16,
+              "document_id": "document",
+              "sentence_id": "sentence_b65eeb63d11733b4c6b1e7ca",
+              "sentence_index": 1,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 247,
+              "source_start": 94
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 181,
+            "source_match_start_absolute": 175,
+            "source_text": "The base model ($\\text{BERT}_{\\text{BASE}}$) uses 12 layers (transformer encoder blocks)\nwith 768 hidden units (hidden size) and 12 self-attention heads.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "68a7d333ca53cdddfc627f719e3495e07fee44c374e44635e483a833d1e8547b",
+            "context_id": "ctx_26916f0b3985aa996c0cee2c",
+            "context_role": "BACKUP",
+            "context_sha256": "4e083f3d0270da2f7582c6d5e9ff105d277cf92b6bdc891e1e4095992b52518b",
+            "context_slot": "B2",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "blocks",
+            "provenance": {
+              "block_id": "d2l_convolutional_modern_index_b003",
+              "block_index": 2,
+              "block_text_sha256": "68a7d333ca53cdddfc627f719e3495e07fee44c374e44635e483a833d1e8547b",
+              "chapter_id": "d2l_convolutional_modern",
+              "chapter_index": 9,
+              "document_id": "document",
+              "sentence_id": "sentence_df7daf6167d7f8876fa764d2",
+              "sentence_index": 0,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 599,
+              "source_start": 0
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 214,
+            "source_match_start_absolute": 208,
+            "source_text": "These models include AlexNet, the first large-scale network deployed \nto beat conventional computer vision methods on a large-scale vision challenge;\nthe VGG network, which makes use of a number of repeating blocks of elements; the network in network (NiN) which convolves \nwhole neural networks patch-wise over inputs; \nGoogLeNet, which uses networks with parallel concatenations;\nresidual networks (ResNet), which remain the most popular \noff-the-shelf architecture in computer vision;\nand densely connected networks (DenseNet), \nwhich are expensive to compute but have set some recent benchmarks.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "bc5f766b04a736d12184757f979c55f8be8d9706e355a4b978bdcb7766251046",
+            "context_id": "ctx_46d4831aad13e3c413d4aaef",
+            "context_role": "PRIMARY",
+            "context_sha256": "ce662ffc6bda564969b171d16c4ada31c5d785b0ff9987bc26b9816f052b7dfc",
+            "context_slot": "C3",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "blocks",
+            "provenance": {
+              "block_id": "d2l_generative_adversarial_networks_dcgan_b034",
+              "block_index": 94,
+              "block_text_sha256": "75cf5619c8c583345f9522b152e41cd38a339ac0b80277b6741cb92127b91e50",
+              "chapter_id": "d2l_generative_adversarial_networks",
+              "chapter_index": 19,
+              "document_id": "document",
+              "sentence_id": "sentence_b1cdd0bc4046ae882fec6217",
+              "sentence_index": 0,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 101,
+              "source_start": 0
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 43,
+            "source_match_start_absolute": 37,
+            "source_text": "The generator consists of four basic blocks that increase input's both width and height from 1 to 32.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "497692e1c0cdab1a0984cfe8b3ba55cb791017b5ee77fe1658cfe211c86ddd31",
+            "context_id": "ctx_6481a5fd90279243349a9cd9",
+            "context_role": "BACKUP",
+            "context_sha256": "143660c53e3222544cc9442385089651a7261a0c72aceeac09dd4c75118e667d",
+            "context_slot": "B1",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "blocks",
+            "provenance": {
+              "block_id": "d2l_computer_vision_ssd_b004",
+              "block_index": 313,
+              "block_text_sha256": "6b72e7bb733ee7bfc67c2cdfaebae3ee6a0bbe2b40aee501c21718364afdea37",
+              "chapter_id": "d2l_computer_vision",
+              "chapter_index": 15,
+              "document_id": "document",
+              "sentence_id": "sentence_c16ea798fd50b3db822898fb",
+              "sentence_index": 1,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 185,
+              "source_start": 90
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 184,
+            "source_match_start_absolute": 178,
+            "source_text": "This model mainly consists of\na base network\nfollowed by\nseveral multiscale feature map blocks.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "cc3ce8f8457b48a13d0ac7bdd7395e47a29a1789f355fc7f98959c5a8703b834",
+            "context_id": "ctx_8e452eff442f6f0cb419316b",
+            "context_role": "PRIMARY",
+            "context_sha256": "897c8cddc02cc8322b50e49cd9d1f239896e5fdcb9aa0db369477dddff48a8f2",
+            "context_slot": "C4",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "blocks",
+            "provenance": {
+              "block_id": "d2l_convolutional_neural_networks_lenet_b036",
+              "block_index": 292,
+              "block_text_sha256": "25cb3ef1d6aa5fc78509ea5ea9f6d3c9a0e44947b9d77a12ac090e40dbba4dca",
+              "chapter_id": "d2l_convolutional_neural_networks",
+              "chapter_index": 8,
+              "document_id": "document",
+              "sentence_id": "sentence_9df664a11e466597dc4bffac",
+              "sentence_index": 3,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 476,
+              "source_start": 320
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 398,
+            "source_match_start_absolute": 392,
+            "source_text": "* In traditional CNNs, the representations encoded by the convolutional blocks are processed by one or more fully-connected layers prior to emitting output.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "1431de6a65467787b06c07821d6740f88fef30e130cabebfa50d6d7b52f913fb",
+            "context_id": "ctx_b9ce0a059491eaaa6fbf542f",
+            "context_role": "PRIMARY",
+            "context_sha256": "e420ed3ca5138369d7b8ddaf82a6b84f469c1ffc391840270a5fefd30fcf1db9",
+            "context_slot": "C2",
+            "context_type": "C2",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "blocks",
+            "provenance": {
+              "block_id": "d2l_optimization_minibatch_sgd_b009",
+              "block_index": 306,
+              "block_text_sha256": "c515457778ac768181b6d1e2a60da16db5756a84294a26776875b4ddc8fc7960",
+              "chapter_id": "d2l_optimization",
+              "chapter_index": 13,
+              "document_id": "document",
+              "sentence_id": "sentence_21d6f1b69069381ff705d258",
+              "sentence_index": 7,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 859,
+              "source_start": 730
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 807,
+            "source_match_start_absolute": 801,
+            "source_text": "However, option 4 offers a practically useful alternative: we can move blocks of the matrix into cache and multiply them locally.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": false,
+            "chapter_id": null,
+            "content_sha256": "26806242c4565d7ed2f6ae4bd9cc92bf611e1c5f4d45681da0672285f1871abe",
+            "context_id": "ctx_f7e9706f82de50c8f6380d6c",
+            "context_role": "PRIMARY",
+            "context_sha256": "8161a678ce7da375f31f58b7628b991b579a535b56e17c40a43df4275577a82d",
+            "context_slot": "C5",
+            "context_type": "C1",
+            "context_type_review_status": "PENDING_HUMAN_REVIEW",
+            "matched_surface": "blocks",
+            "provenance": {
+              "block_id": "d2l_deep_learning_computation_index_b002",
+              "block_index": 1,
+              "block_text_sha256": "c96e5f356377101ecf3bbf0ecc23ef020b8c7dc2696143274a75a613546ed86d",
+              "chapter_id": "d2l_deep_learning_computation",
+              "chapter_index": 7,
+              "document_id": "document",
+              "sentence_id": "sentence_7cf4429a6f0297a7a3c96268",
+              "sentence_index": 3,
+              "source_artifact_ref": "C:/work/agent-based-translation-d2l-direct-builder-v1/jobs/src_d2l_full_book_local_b858af3a5252/source_package_snapshot/document.json",
+              "source_artifact_sha256": "c22620a96e3fbd97526f13ea9ccf508307d1175ea9bb8d3a5b6dfefb098a3f7f",
+              "source_end": 838,
+              "source_start": 510
+            },
+            "sense_relation": "SAME_SENSE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": 828,
+            "source_match_start_absolute": 822,
+            "source_text": "Just as semiconductor designers went from specifying transistors\nto logical circuits to writing code,\nneural networks researchers have moved from thinking about\nthe behavior of individual artificial neurons\nto conceiving of networks in terms of whole layers,\nand now often design architectures with far coarser *blocks* in mind.",
+            "synthetic": false
+          },
+          {
+            "block_id": null,
+            "boundary_only": true,
+            "chapter_id": null,
+            "content_sha256": "9fb61fce3e5cbb2d3ddff69129bdbbfb1d6eadfbfa361df139e27f818043c13b",
+            "context_id": "ctxx_09ae76f62d4c4c6032674315",
+            "context_role": "CONTRASTIVE",
+            "context_sha256": "f19e51570ba2e0b85cb93495564c7e05d2e729961136e45096ba14d221f8b1f9",
+            "context_slot": "X1",
+            "context_type": "CONTRASTIVE",
+            "context_type_review_status": "NOT_APPLICABLE",
+            "matched_surface": "blocks",
+            "provenance": {
+              "audit_ref": "model_evidence/batch_027_1ff7ed7e51867f514ed2638be59a18ffdfcc3ef5707d26a39f207455042b1539.json",
+              "audit_sha256": "02d33a2086bd0312d38f97120a42c81cadffaa0e9c33389d32647ad249e419ce",
+              "source_kind": "MODEL_GENERATED_SYNTHETIC"
+            },
+            "sense_relation": "CONTRASTIVE",
+            "sentence_id": null,
+            "source_artifact_sha256": null,
+            "source_match_end_absolute": null,
+            "source_match_start_absolute": null,
+            "source_text": "Synthetic: The city planner divided the street into blocks for navigation.",
+            "synthetic": true
+          }
+        ],
+        "parent_binding": {
+          "parent_candidate_instance_sha256": [
+            "778991517e582adc6cd2e32b2d3b7fc1bc3006c91dfe20e8d287be738ccf8e7c",
+            "7af02db30e671f29507e9fc033027f85aec4eff3c3630c682ac64c86235f3376",
+            "f59f2df0818c166f18d4757cae510e24ff5d39f8a6e419588dae34a2f7e61158"
+          ],
+          "parent_context_sha256": [
+            "8e6eaed62b0aff9cab5e81e0408aa147b434489a735fa2d0e50329aafda7cc79",
+            "c4f7634205928e32c122733b155b86ae7246181ccbdf24db30453acde0868d61",
+            "4e083f3d0270da2f7582c6d5e9ff105d277cf92b6bdc891e1e4095992b52518b",
+            "ce662ffc6bda564969b171d16c4ada31c5d785b0ff9987bc26b9816f052b7dfc",
+            "143660c53e3222544cc9442385089651a7261a0c72aceeac09dd4c75118e667d",
+            "897c8cddc02cc8322b50e49cd9d1f239896e5fdcb9aa0db369477dddff48a8f2",
+            "e420ed3ca5138369d7b8ddaf82a6b84f469c1ffc391840270a5fefd30fcf1db9",
+            "8161a678ce7da375f31f58b7628b991b579a535b56e17c40a43df4275577a82d",
+            "f19e51570ba2e0b85cb93495564c7e05d2e729961136e45096ba14d221f8b1f9"
+          ],
+          "parent_dataset": "d2l_context_support_set_validation_ready_v3",
+          "parent_manifest_sha256": "258ebe5d907a0a108a1b80a1ec1aad3c6e265ed1a8edbd5701cc128e273122ce",
+          "parent_term_sense_sha256": "02006fba3aeca4d8d13b833b3956302c71e62eb410ce51bdbaa3b8b583f29f32"
+        },
+        "policy_id": "d2l-dataset-remaining-100-stage-a-v1.0",
+        "proposed_definition_en": "modular units or chunks treated as grouped components in a model, program, or computation",
+        "proposed_part_of_speech": "noun",
+        "proposed_scope": "d2l_selected_campaign_scope_v1",
+        "provider_call_count": 0,
+        "schema_id": "D2LRemaining100StageAReviewSourceV1",
+        "schema_version": "1.0.0",
+        "sense_id": "d2lce_20c658fd4e221ee551790ec2",
+        "source_term": "blocks",
+        "stratum": "collision_or_multi_target",
+        "term_id": "d2lce_20c658fd4e221ee551790ec2"
+      },
+      "source_payload_sha256": "9081ab1bfe6b754acb6545b831e985385ec5c7638c323768f4c20b9657a4c691",
+      "source_term": "blocks"
+    }
+  ],
+  "independence_mode": "DISTINCT_FROM_PROPOSAL_REPAIR_AUTHOR",
+  "policy_id": "d2l-remaining-100-high-risk-proposal-reaudit-v1.0",
+  "provider_call_count": 0,
+  "return_contract": "RETURN_THIS_JSON_WITH_ONLY_AUDIT_OBJECTS_FILLED",
+  "reviewer_slot": "reviewer_4",
+  "schema_id": "D2LRemaining100HighRiskProposalReauditBatchV1",
+  "schema_version": "1.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "AWAITING_DISTINCT_PROPOSAL_REAUDIT"
+}

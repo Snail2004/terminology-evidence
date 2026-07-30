@@ -1,0 +1,3 @@
+# Independent repaired-proposal re-audit
+
+Re-audit every repaired proposal against the supplied real source contexts, the prior audit, and the narrow repair. Fill only `audit` and preserve every other field. Use APPROVE only if the prior issue is fully closed, child IDs and the exact candidate/context partition remain valid, and no synthetic or boundary-only context is treated as positive evidence. Use REVISE for a specific remaining repairable issue and BLOCK if the supplied real evidence cannot close it. Do not add Stage B gold, ranks, winners, or final glossary decisions. Return the completed JSON file only.
