@@ -1,0 +1,94 @@
+{
+  "artifact_name": "d2l_switch_replacement_hypothesis_testing_v1",
+  "base_authority_commit": "0603573c8934fe457398554d33411d84709473f1",
+  "created_at": "2026-07-30T00:00:00Z",
+  "file_count": 20,
+  "files": {
+    "RELEASE_REPORT.md": {
+      "sha256": "390edf2a05b5f46739e4735e562994e86e7f2fb3aecd1e4904558126757bfc20",
+      "size_bytes": 363
+    },
+    "authority.json": {
+      "sha256": "e1e0052b4dd43a4281867d435e5d9c22070100a377bbbb9457a3314636aa6462",
+      "size_bytes": 719
+    },
+    "candidate_provenance_3.jsonl": {
+      "sha256": "6faf3d67b26e77e04bfce511b2b825851ca1640a98efbb2b3c8ca91a8abf3328",
+      "size_bytes": 1287
+    },
+    "context_provenance_7.jsonl": {
+      "sha256": "5916150845e9735ce8bd9b5796cd0c7cded0f9d19f502efe2df59929efcd3f98",
+      "size_bytes": 3873
+    },
+    "current_source_term_inventory_150.json": {
+      "sha256": "a2eb8537fad6e86b06d06966d6c9a9ad8589b93dff8bd28b7951a409c8559e0d",
+      "size_bytes": 3581
+    },
+    "handoff/REVIEWER_1_MESSAGE.md": {
+      "sha256": "623ecf483748e03e77bb41393a8dc915ea9f753ee2ffb4defdf1bd414c0e4318",
+      "size_bytes": 179
+    },
+    "handoff/REVIEWER_2_MESSAGE.md": {
+      "sha256": "93b81d9feb988cf408d715efba54c6369aa3bddfdd83595f2168f353f441ab89",
+      "size_bytes": 179
+    },
+    "handoff/switch_replacement_reviewer_1.zip": {
+      "sha256": "b09802f0ca53952cd85c40f3b34750e668aa2f20309f29d81b293575771ccc70",
+      "size_bytes": 4320
+    },
+    "handoff/switch_replacement_reviewer_2.zip": {
+      "sha256": "10d264434ac36e368a100ef07a8b6d138279b9752908cb2b0cc8d09fca75e004",
+      "size_bytes": 4319
+    },
+    "replacement_selection.json": {
+      "sha256": "0fe4e9cafdeb9fda6aeebae8cb148c239d7e78ef2f1a5b4600ffcc710b6a53dd",
+      "size_bytes": 643
+    },
+    "replacement_source.json": {
+      "sha256": "d53259556003573f00d15ac4964785017aa11cd9a0327d93a4b1d4bb41280d4a",
+      "size_bytes": 9745
+    },
+    "review_batches/reviewer_1/INSTRUCTIONS.md": {
+      "sha256": "deb7fcdf32e80c26d1a565606124aeac6e6887ce5d0a97ce3ed09221308cad42",
+      "size_bytes": 227
+    },
+    "review_batches/reviewer_1/reviewer_input.json": {
+      "sha256": "8f0c53c8ba0f042333fe92770bc578513c03b999d1c3317ddd56c0ea5780aae3",
+      "size_bytes": 12577
+    },
+    "review_batches/reviewer_2/INSTRUCTIONS.md": {
+      "sha256": "deb7fcdf32e80c26d1a565606124aeac6e6887ce5d0a97ce3ed09221308cad42",
+      "size_bytes": 227
+    },
+    "review_batches/reviewer_2/reviewer_input.json": {
+      "sha256": "05d4b1ef0ebd48d3d8705c262526aabfc2324c4b1ddc0d8860007f88420c7edc",
+      "size_bytes": 12577
+    },
+    "source/tests/test_switch_replacement.py": {
+      "sha256": "70513e57c6e2393bb7e9845aff600734e934c1d0ed9b05e77873f15b3a67150f",
+      "size_bytes": 4725
+    },
+    "source/tools/build_switch_replacement.py": {
+      "sha256": "b8adbe64e334153fd07e8de4823287059f613b43477e409b385f71f0eb01a812",
+      "size_bytes": 23231
+    },
+    "source/tools/validate_switch_replacement.py": {
+      "sha256": "8a3ea551d8860f53b2026438b91466973d384724a50db1101cda7f849c17f82b",
+      "size_bytes": 13427
+    },
+    "source_evidence.json": {
+      "sha256": "58de528d402d3e879c4ef27e65645c33360a9a17774adec28b11c031e5087bb8",
+      "size_bytes": 10259
+    },
+    "validation_report.json": {
+      "sha256": "adfbe2b1173323d8b161205ff662f16f87449e8ca040ce3c544fe8290a262366",
+      "size_bytes": 610
+    }
+  },
+  "manifest_sha256": "8342ec5255f4cd1508620ade0923af671d9c0c6fafcc20a9d5647514e6c6b1e2",
+  "policy_id": "d2l-switch-replacement-stage-a-v1.0",
+  "provider_call_count": 0,
+  "schema_id": "D2LSwitchReplacementManifestV1",
+  "schema_version": "1.0",
+  "status": "REPLACEMENT_SELECTED_PENDING_TWO_INDEPENDENT_REVIEWS_ZERO_PROVIDER"
+}
