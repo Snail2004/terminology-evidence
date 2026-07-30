@@ -29,6 +29,8 @@ from evaluation.v1.analysis_plan.publication import (
 )
 from evaluation.v1.analysis_plan.verifier import AnalysisPlanError, verify_analysis_plan_content
 from evaluation.v1.jsonio import read_json, sha256_value, write_json
+from evaluation.v1.d0_preparation.builder import build_d0_content
+from evaluation.v1.d0_preparation.verifier import verify_d0_content
 
 
 class AnalysisPlanFreezeTests(unittest.TestCase):
@@ -59,6 +61,18 @@ class AnalysisPlanFreezeTests(unittest.TestCase):
         self.assertEqual(plan["confidence_interval_policy"]["proportions"], "wilson")
         self.assertEqual([row["stage"] for row in plan["access_order"]], ["D0", "D1", "V1", "T1"])
 
+        with TemporaryDirectory() as temp:
+            content = Path(temp) / "d0-content"
+            result = build_d0_content(self.repo, content)
+            verified = verify_d0_content(self.repo, content)
+            self.assertEqual(result["status"], "PASS")
+            self.assertEqual(verified["status"], "PASS")
+            self.assertEqual(verified["sense_count"], 5)
+            self.assertEqual(verified["candidate_count"], 15)
+            self.assertFalse(verified["gold_access"])
+            self.assertEqual(verified["provider_calls"], 0)
+            self.assertEqual(verified["network_calls"], 0)
+
     def test_planned_tables_and_builder_are_result_free_and_deterministic(self):
         plan = read_json(self.content / PLAN_FILE)
         tables = read_json(self.content / TABLES_FILE)
@@ -78,6 +92,13 @@ class AnalysisPlanFreezeTests(unittest.TestCase):
             )
             for filename in (PLAN_FILE, TABLES_FILE, ACCESS_TEMPLATES_FILE):
                 self.assertEqual((output / filename).read_bytes(), (self.content / filename).read_bytes())
+
+            d0_one = Path(temp) / "d0-one"
+            d0_two = Path(temp) / "d0-two"
+            build_d0_content(self.repo, d0_one)
+            build_d0_content(self.repo, d0_two)
+            for path in sorted(d0_one.iterdir()):
+                self.assertEqual(path.read_bytes(), (d0_two / path.name).read_bytes())
 
         receipt = read_json(self.content / FREEZE_RECEIPT_FILE)
         with TemporaryDirectory() as temp:
@@ -133,6 +154,18 @@ class AnalysisPlanFreezeTests(unittest.TestCase):
             with self.assertRaises(AnalysisPlanPublicationError):
                 verify_analysis_plan_publication(self.repo, bundle_root=publication)
 
+        with TemporaryDirectory() as temp:
+            content = Path(temp) / "d0-content"
+            build_d0_content(self.repo, content)
+            cohort_path = content / "d0_blind_cohort_authority_v1.json"
+            cohort = read_json(cohort_path)
+            cohort["candidate_ids"] = list(reversed(cohort["candidate_ids"]))
+            cohort["integrity"]["self_sha256"] = ""
+            cohort["integrity"]["self_sha256"] = sha256_value({**cohort, "integrity": {}})
+            write_json(cohort_path, cohort)
+            with self.assertRaises(ValueError):
+                verify_d0_content(self.repo, content)
+
     def test_gold_access_receipts_enforce_order_hashes_and_time(self):
         freeze_sha = "a" * 64
 
@@ -176,3 +209,12 @@ class AnalysisPlanFreezeTests(unittest.TestCase):
         tampered["purpose"] = "changed after sealing"
         with self.assertRaises(GoldAccessError):
             verify_gold_access_ledger([d0, tampered], analysis_plan_freeze_receipt_sha256=freeze_sha)
+
+        with TemporaryDirectory() as temp:
+            content = Path(temp) / "d0-content"
+            build_d0_content(self.repo, content)
+            ledger = (content / "pre_d0_amendment_ledger_v1.jsonl").read_text(encoding="utf-8")
+            self.assertEqual(ledger.count("PRE_D0_AMENDMENT"), 1)
+            self.assertEqual(ledger.count("PRE_D0_REFREEZE"), 1)
+            cohort = read_json(content / "d0_blind_cohort_authority_v1.json")
+            self.assertFalse(cohort["gold_access_authorized"])
