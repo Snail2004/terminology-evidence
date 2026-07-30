@@ -1,0 +1,86 @@
+{
+  "candidate_count": 1,
+  "candidate_id": "candidate_479fdd8ff6d15304debec117",
+  "claims": {
+    "e_live_runtime_authority_active": false,
+    "e_token_only_provider_integration_accepted_for_zero_provider_canary_preparation": true,
+    "global_d0_development_preflight_pass": false,
+    "run_authorized": false
+  },
+  "integrity": {
+    "self_sha256": "761186c4eeea51628603aaaf4efc96da665f2af8d67ef956da220a1ea49027d5"
+  },
+  "invariants": {
+    "approval_score": null,
+    "auto_approved_count": 0,
+    "certificate_count": 0,
+    "corpus_access": 0,
+    "gold_access": 0,
+    "network_calls": 0,
+    "provider_calls": 0
+  },
+  "mode": "DEVELOPMENT_HEURISTIC",
+  "schema_id": "GlobalD0OneCandidateProvisionalPreflightV1",
+  "schema_version": "1.0.0",
+  "status": "GLOBAL_D0_ONE_CANDIDATE_ZERO_PROVIDER_PREFLIGHT_READY_FOR_MAIN_ACCEPTANCE",
+  "surfaces": {
+    "c01": {
+      "commit": "a9965c93782834fd8d913df370f437a26059d267",
+      "final_decision_owner": "GLOBAL_TERMINOLOGY_VALIDATOR",
+      "final_glossary_decision": null,
+      "output_schema_id": "ContextEvidencePackageV1",
+      "provider_role_plan_self_sha256": "155261fc2c80e54b6e22e266104fa6a5a2040fa6faf4b8d7865bb970a763e815",
+      "status": "ACCEPTED_OUTPUT_SURFACE"
+    },
+    "e05": {
+      "draft4_schema_version": "1.1.0-draft.4",
+      "draft4_token_accounting_binding_status": "TOKEN_ACCOUNTING_AUTHORITY_ACCEPTED_FOR_CANARY_PREPARATION",
+      "draft4_token_accounting_commit": "0acb5a82106dbcefa13fcb998590f7ce04af852f",
+      "draft4_token_accounting_tree": "f315548679756e671a227436d705487ce53f4408",
+      "e05_authority_adapter_blob_oid": "5d272300c21be990c51b2129f67eba9fab129173",
+      "final_e_complete_bundle_sha256": "3ad42c58ec8f57b77425d111a63197d53200d49b0c2566b6e24d61a25f85df19",
+      "final_e_narrow_child": "0888bfd180fcd00b43848977a0576160ad471400",
+      "final_e_narrow_parent": "894bd1cc9f11e00322aeb9e7fc0120f440ca2a37",
+      "final_e_narrow_tree": "345d1f837767f26d9154d4d287c3507c66aaa842",
+      "final_e_review_package_sha256": "b8c5a02323ff04c2f0a8bdf22b60495c9cd22deeb23428f8dcbbb309c0b64836",
+      "ledger_schema_id": "ELiveLedgerEventV1",
+      "live_ledger_schema_physical_sha256": "2e1417285e6a428c83e7e27a4b8a42b032b362791ec7af927d43c4d67566f489",
+      "live_execution_authorized": false,
+      "network_request_count_durable": true,
+      "price_table_interpretation": null,
+      "status": "E_TOKEN_ONLY_PROVIDER_INTEGRATION_ACCEPTED_FOR_ZERO_PROVIDER_CANARY_PREPARATION",
+      "surface_commit": "894bd1cc9f11e00322aeb9e7fc0120f440ca2a37",
+      "token_accounting_adapter_blob_oid": "2cf692a3f1def051aa9807b604d0adee1567cfce",
+      "token_accounting_acceptance_anchor_self_sha256": "1c0ba8d193ff15d4a61094855dd8e266ea63793b43ceea13433c693774eb7a0c",
+      "token_accounting_authority_physical_sha256": "b9b8186aa1bb92f1226fa187e016e9455dc055450e6299d49b50195da6a55e73",
+      "token_accounting_authority_self_sha256": "467eaad13fe23b08be15ee86bc1777e66faae9eb06c407f596e3c9b273155e80",
+      "token_only_provider_integration_accepted_for_zero_provider_canary_preparation": true,
+      "usage_snapshot_schema_physical_sha256": "f5a7fd6690adc48e6459fa60a503b91bfda1704de46bc79afacb8e0fae1157e7"
+    },
+    "si": {
+      "canary_candidate_id": "candidate_479fdd8ff6d15304debec117",
+      "candidate_set_sha256": "e72286e06201297864d3163311336515092d841181e484c01276faa9b989fa0b",
+      "commit": "2d4aac1341561057e45e61f691cb2062413ede9c",
+      "final_glossary_decision": null,
+      "gold_access": 0,
+      "network_calls": 0,
+      "provider_calls": 0,
+      "release_schema_id": "HarnessProducerSafeCohortAuthorityReleaseV1",
+      "status": "SI_EV02_OWNER_BINDING_ACCEPTED",
+      "supported_candidate_counts": [
+        1,
+        15
+      ]
+    }
+  },
+  "token_accounting": {
+    "cost": null,
+    "currency": null,
+    "input_tokens": 0,
+    "network_request_count": 0,
+    "output_tokens": 0,
+    "reasoning_tokens": 0,
+    "status": "TOKEN_ONLY_COST_UNAVAILABLE",
+    "total_tokens": 0
+  }
+}
