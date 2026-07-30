@@ -49,6 +49,10 @@ from .retrieval import (
 )
 from .judge import ProviderAdapter
 from .authority_adapter.production import load_production_authority
+from .authority_adapter.e05 import (
+    E05ExactIntegrationInputs,
+    load_e05_exact_integration_inputs,
+)
 from .schemas import (
     PREFLIGHT_RESPONSE_SCHEMA_ID,
     compute_run_spec_id,
@@ -60,6 +64,7 @@ from ..strict_json import reject_link
 
 AUTHORIZATION_SCHEMA_ID = "ELocalCanaryAuthorizationReceiptV1"
 RUN_SCHEMA_ID = "ELiveRunRecordV1"
+RECORDED_PROVIDER_CONFORMANCE = "RECORDED_PROVIDER_CONFORMANCE"
 
 
 class RunBlocked(LiveSchemaError):
@@ -215,6 +220,7 @@ class ELiveService:
         authority_bundle: Mapping[str, Any] | None = None,
         production_authorization_schema: str | Path | None = None,
         production_authority_inputs: Mapping[str, Any] | None = None,
+        e05_delivery_path: str | Path | None = None,
         provider_adapter: ProviderAdapter | None = None,
         clock=utc_now,
     ) -> None:
@@ -226,26 +232,59 @@ class ELiveService:
         self.snapshot = verify_snapshot(self.snapshot_root)
         self.policy_bundle = {key: dict(value) for key, value in policy_bundle.items()}
         self.policy_hashes = validate_policy_bundle(self.policy_bundle)
-        if execution_mode not in {"LOCAL_FIXTURE_ONLY", "PRODUCTION_AUTHORITY"}:
+        if execution_mode not in {
+            "LOCAL_FIXTURE_ONLY",
+            RECORDED_PROVIDER_CONFORMANCE,
+            "PRODUCTION_AUTHORITY",
+        }:
             raise LiveSchemaError("unsupported E Live execution mode")
         self.execution_mode = execution_mode
         self.authority_bundle = dict(authority_bundle) if authority_bundle is not None else None
         self.production_authority: dict[str, Any] | None = None
+        self.e05_inputs: E05ExactIntegrationInputs | None = None
         if self.execution_mode == "PRODUCTION_AUTHORITY":
+            if (
+                authority_bundle is not None
+                or production_authorization_schema is not None
+                or production_authority_inputs is not None
+            ):
+                raise LiveSchemaError(
+                    "production authority accepts only the exact E-05 Main delivery"
+                )
+            if e05_delivery_path is None:
+                raise LiveSchemaError("production execution requires the exact E-05 Main delivery")
+            self.e05_inputs = load_e05_exact_integration_inputs(e05_delivery_path)
+            self.authority_bundle = None
+            self.authorization_receipt = dict(self.e05_inputs.authorization_receipt)
+        elif self.execution_mode == RECORDED_PROVIDER_CONFORMANCE:
             if authority_bundle is not None or production_authorization_schema is not None:
-                raise LiveSchemaError("production authority cannot be supplied as an in-memory bundle or arbitrary schema")
-            if production_authority_inputs is None:
-                raise LiveSchemaError("production execution requires externally pinned authority inputs")
+                raise LiveSchemaError(
+                    "recorded provider conformance cannot use an in-memory bundle or arbitrary schema"
+                )
+            if e05_delivery_path is not None or production_authority_inputs is None:
+                raise LiveSchemaError(
+                    "recorded provider conformance requires its explicit test authority fixture"
+                )
             self.production_authority = load_production_authority(production_authority_inputs)
             self.authority_bundle = self.production_authority["bundle"]
             self.authorization_receipt = self.production_authority["receipt"]
             if provider_adapter is None:
-                raise LiveSchemaError("production execution requires provider adapter")
+                raise LiveSchemaError("recorded provider conformance requires provider adapter")
+            if getattr(provider_adapter, "zero_network", False) is not True:
+                raise LiveSchemaError(
+                    "recorded provider conformance requires a zero-network adapter"
+                )
         else:
+            if e05_delivery_path is not None or production_authority_inputs is not None:
+                raise LiveSchemaError("local fixture mode cannot accept production authority inputs")
             if self.authority_bundle is not None:
                 self.authority_bundle = validate_loaded_authority_bundle(self.authority_bundle)
             self.authorization_receipt = validate_authorization_receipt(authorization_receipt)
-        if self.authority_bundle is not None and self.authority_bundle.get("execution_mode") != self.execution_mode:
+        if (
+            self.authority_bundle is not None
+            and self.execution_mode != RECORDED_PROVIDER_CONFORMANCE
+            and self.authority_bundle.get("execution_mode") != self.execution_mode
+        ):
             raise LiveSchemaError("authority bundle execution mode mismatch")
         self.authorized_cohort_id = authorized_cohort_id
         self.authorized_candidate_ids = frozenset(str(item) for item in authorized_candidate_ids)
@@ -292,8 +331,17 @@ class ELiveService:
         if self.execution_mode == "LOCAL_FIXTURE_ONLY":
             if not verify_seal(receipt) or receipt.get("cohort_id") != self.authorized_cohort_id or set(receipt.get("candidate_ids", ())) != set(self.authorized_candidate_ids):
                 blockers.append("AUTHORIZATION_RECEIPT_MISMATCH")
-        elif receipt.get("authorization_status") != "RUN_AUTHORIZED" or receipt.get("test_only") is not False:
+        elif self.execution_mode == RECORDED_PROVIDER_CONFORMANCE:
+            if receipt.get("authorization_status") != "RUN_AUTHORIZED" or receipt.get("test_only") is not False:
+                blockers.append("AUTHORIZATION_RECEIPT_MISMATCH")
+        elif (
+            self.e05_inputs is None
+            or not self.e05_inputs.live_execution_authorized
+            or receipt.get("authorization_status") != "RUN_AUTHORIZED"
+            or receipt.get("test_only") is not False
+        ):
             blockers.append("AUTHORIZATION_RECEIPT_MISMATCH")
+            blockers.append("E05_RUN_AUTHORIZED_NO")
         try:
             current_registry = validate_registry(self.registry)
             current_snapshot = verify_snapshot(self.snapshot_root, expected_registry_self_sha256=current_registry["integrity"]["self_sha256"], expected_retrieval_policy_self_sha256=self.policy_hashes["retrieval_policy"])
@@ -324,7 +372,7 @@ class ELiveService:
                 blockers.append("AUTHORITY_BINDING_MISMATCH")
             if dict(receipt.get("policy_hashes", {})) != current_policy_hashes:
                 blockers.append("AUTHORITY_POLICY_BINDING_MISMATCH")
-        else:
+        elif self.execution_mode == RECORDED_PROVIDER_CONFORMANCE:
             binding = self.production_authority["execution_binding"] if self.production_authority else {}
             exact_production = {
                 "cohort_id": self.authorized_cohort_id,
@@ -341,8 +389,43 @@ class ELiveService:
             for field, expected_value in exact_production.items():
                 if binding.get(field) != expected_value:
                     blockers.append(f"PRODUCTION_{field.upper()}_MISMATCH")
+        else:
+            integration = self.e05_inputs.integration_run_spec if self.e05_inputs else {}
+            exact_e05 = {
+                "run_id": checked.get("run_id"),
+                "phase_id": checked.get("phase_id"),
+                "candidate_ids": sorted(self.authorized_candidate_ids),
+                "provider_role_plan_sha256": current_policy_hashes.get(
+                    "provider_role_plan"
+                ),
+            }
+            expected_e05 = {
+                "run_id": integration.get("run_id"),
+                "phase_id": integration.get("phase_id"),
+                "candidate_ids": sorted(
+                    row["candidate_id"]
+                    for row in (
+                        self.e05_inputs.candidate_set["ordered_candidates"]
+                        if self.e05_inputs
+                        else []
+                    )
+                ),
+                "provider_role_plan_sha256": (
+                    self.e05_inputs.provider_role_plan["integrity"]["self_sha256"]
+                    if self.e05_inputs
+                    else None
+                ),
+            }
+            for field, expected_value in expected_e05.items():
+                if exact_e05.get(field) != expected_value:
+                    blockers.append(f"E05_{field.upper()}_MISMATCH")
         checks["authorization_receipt"] = "PASS" if "AUTHORIZATION_RECEIPT_MISMATCH" not in blockers else "FAIL"
-        checks["authority_adapter"] = "PASS_LOCAL_FIXTURE_ONLY" if self.execution_mode == "LOCAL_FIXTURE_ONLY" else "PASS_RUN_AUTHORIZED"
+        if self.execution_mode == "LOCAL_FIXTURE_ONLY":
+            checks["authority_adapter"] = "PASS_LOCAL_FIXTURE_ONLY"
+        elif self.execution_mode == RECORDED_PROVIDER_CONFORMANCE:
+            checks["authority_adapter"] = "PASS_RECORDED_PROVIDER_CONFORMANCE"
+        else:
+            checks["authority_adapter"] = "PASS_EXACT_E05_INPUTS_RUN_AUTHORIZED_NO"
         expected = {
             "retrieval_policy_sha256": self.policy_hashes.get("retrieval_policy"),
             "query_template_set_sha256": self.policy_hashes.get("query_template_set"),
@@ -771,7 +854,7 @@ class ELiveService:
             raise LiveSchemaError("provider role identity mismatch")
         if self.execution_mode == "LOCAL_FIXTURE_ONLY" and role_config["mode"] != "ZERO_PROVIDER_FIXTURE":
             raise LiveSchemaError("zero-provider execution refuses the selected provider role")
-        if self.execution_mode == "PRODUCTION_AUTHORITY" and role_config["mode"] != "LIVE_PROVIDER":
+        if self.execution_mode in {RECORDED_PROVIDER_CONFORMANCE, "PRODUCTION_AUTHORITY"} and role_config["mode"] != "LIVE_PROVIDER":
             raise LiveSchemaError("production execution requires LIVE_PROVIDER role")
         counts = role_counts.setdefault(role, {"semantic": 0, "physical": 0})
         if counts["semantic"] >= int(role_config["max_semantic_calls"]) or counts["physical"] >= int(role_config["max_physical_requests"]):
@@ -792,7 +875,7 @@ class ELiveService:
             source_tier=evidence["source_tier"],
             semantic_role=role,
         )
-        if self.execution_mode == "PRODUCTION_AUTHORITY":
+        if self.execution_mode in {RECORDED_PROVIDER_CONFORMANCE, "PRODUCTION_AUTHORITY"}:
             return self._invoke_production_judge(
                 request=request, evidence=evidence, role=role, role_config=role_config,
                 role_counts=role_counts, judge_attempts=judge_attempts, ledger=ledger,
@@ -956,4 +1039,14 @@ def summarize_provider_telemetry(events: Sequence[Mapping[str, Any]]) -> dict[st
     }
 
 
-__all__ = ["AUTHORIZATION_SCHEMA_ID", "ELiveService", "RUN_SCHEMA_ID", "RunBlocked", "make_authorization_receipt", "make_run_request", "summarize_provider_telemetry", "validate_authorization_receipt"]
+__all__ = [
+    "AUTHORIZATION_SCHEMA_ID",
+    "ELiveService",
+    "RECORDED_PROVIDER_CONFORMANCE",
+    "RUN_SCHEMA_ID",
+    "RunBlocked",
+    "make_authorization_receipt",
+    "make_run_request",
+    "summarize_provider_telemetry",
+    "validate_authorization_receipt",
+]

@@ -2,6 +2,7 @@
 
 from .aggregation import aggregate_candidate, build_attestation_package
 from .common import LIVE_TOOL_SCHEMA_VERSION, LiveSchemaError
+from .protocol_adapter import Draft4LifecycleAdapter
 from .judge import FixtureJudge, make_judge_request, make_judge_response
 from .ledger import EventLedger, verify_event_chain
 from .policies import (
@@ -12,6 +13,7 @@ from .policies import (
     make_retrieval_policy,
 )
 from .registry import admit_source, make_registry, validate_registry
+from .provider_adapters import GeminiOfficialAdapter
 from .retrieval import FixtureDiscovery, FixtureFetcher, extract_snapshot_evidence
 from .schemas import *
 from .service import ELiveService
@@ -19,10 +21,12 @@ from .snapshot import build_snapshot, inspect_snapshot, verify_snapshot, zip_sna
 
 __all__ = [
     "ELiveService",
+    "Draft4LifecycleAdapter",
     "EventLedger",
     "FixtureDiscovery",
     "FixtureFetcher",
     "FixtureJudge",
+    "GeminiOfficialAdapter",
     "LIVE_TOOL_SCHEMA_VERSION",
     "LiveSchemaError",
     "admit_source",

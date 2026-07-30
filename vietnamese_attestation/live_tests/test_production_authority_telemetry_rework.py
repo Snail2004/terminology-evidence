@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import hashlib
+import os
 from pathlib import Path
 
 import pytest
@@ -17,15 +18,25 @@ from vietnamese_attestation.v1.live.fixtures import build_fixture_workspace
 from vietnamese_attestation.v1.live.judge import MockProviderAdapter, judge_request_sha256, make_judge_request
 from vietnamese_attestation.v1.live.policies import validate_policy_bundle
 from vietnamese_attestation.v1.live.retrieval import extract_snapshot_evidence
-from vietnamese_attestation.v1.live.service import ELiveService, compute_run_spec_id
+from vietnamese_attestation.v1.live.service import (
+    RECORDED_PROVIDER_CONFORMANCE,
+    ELiveService,
+    compute_run_spec_id,
+)
 
 
 E_COMMIT = "6ff12925c3721ffeae5fced008fddc798cf095df"
 E_TREE = "ff36542afa8d78b496d2404793c09ab9f6c8ad68"
+E05_DELIVERY = Path(
+    os.environ.get(
+        "E05_EXACT_INPUT_DELIVERY",
+        r"C:\work\terminology-evidence-artifacts\e05-exact-integration-input-v1\delivery.zip",
+    )
+)
 
 
-def test_production_authority_and_nonzero_telemetry(tmp_path: Path) -> None:
-    service, request, adapter = _production_service(tmp_path, unknown=False)
+def test_recorded_provider_conformance_and_nonzero_telemetry(tmp_path: Path) -> None:
+    service, request, adapter = _recorded_conformance_service(tmp_path, unknown=False)
     result = service.create_run(request)
     assert result["status"] == "COMPLETED"
     assert adapter.call_count == 2
@@ -44,7 +55,7 @@ def test_production_authority_and_nonzero_telemetry(tmp_path: Path) -> None:
 
 
 def test_unknown_physical_outcome_stops_without_retry(tmp_path: Path) -> None:
-    service, request, adapter = _production_service(tmp_path, unknown=True)
+    service, request, adapter = _recorded_conformance_service(tmp_path, unknown=True)
     result = service.create_run(request)
     assert result["status"] == "STOPPED"
     assert adapter.call_count == 1
@@ -55,7 +66,7 @@ def test_unknown_physical_outcome_stops_without_retry(tmp_path: Path) -> None:
 
 
 def test_known_retryable_failure_is_bounded_and_accounted(tmp_path: Path) -> None:
-    service, request, adapter = _production_service(tmp_path, unknown=False, retry=True)
+    service, request, adapter = _recorded_conformance_service(tmp_path, unknown=False, retry=True)
     result = service.create_run(request)
     assert result["status"] == "COMPLETED"
     assert adapter.call_count == 4
@@ -67,7 +78,7 @@ def test_known_retryable_failure_is_bounded_and_accounted(tmp_path: Path) -> Non
 
 def test_production_rejects_ram_bundle_and_arbitrary_schema(tmp_path: Path) -> None:
     workspace = build_fixture_workspace(tmp_path / "workspace")
-    with pytest.raises(Exception, match="in-memory bundle or arbitrary schema"):
+    with pytest.raises(Exception, match="only the exact E-05 Main delivery"):
         ELiveService(
             root=tmp_path / "runs",
             registry=workspace["registry"], snapshot_root=workspace["snapshot_root"],
@@ -79,7 +90,29 @@ def test_production_rejects_ram_bundle_and_arbitrary_schema(tmp_path: Path) -> N
         )
 
 
-def _production_service(tmp_path: Path, *, unknown: bool, retry: bool = False) -> tuple[ELiveService, dict, MockProviderAdapter]:
+def test_production_exact_e05_delivery_remains_run_authorized_hold(
+    tmp_path: Path,
+) -> None:
+    workspace = build_fixture_workspace(tmp_path / "workspace")
+    service = ELiveService(
+        root=tmp_path / "runs",
+        registry=workspace["registry"],
+        snapshot_root=workspace["snapshot_root"],
+        policy_bundle=workspace["policy_bundle"],
+        authorization_receipt={},
+        authorized_cohort_id="fixture-cohort-v1",
+        authorized_candidate_ids=["candidate_model"],
+        execution_mode="PRODUCTION_AUTHORITY",
+        e05_delivery_path=E05_DELIVERY,
+    )
+    result = service.preflight(workspace["request"])
+    assert result["status"] == "BLOCKED"
+    assert "E05_RUN_AUTHORIZED_NO" in result["blockers"]
+    assert result["provider_calls"] == 0
+    assert result["checks"]["network_calls"] == 0
+
+
+def _recorded_conformance_service(tmp_path: Path, *, unknown: bool, retry: bool = False) -> tuple[ELiveService, dict, MockProviderAdapter]:
     workspace = build_fixture_workspace(tmp_path / "workspace")
     policies = copy.deepcopy(workspace["policy_bundle"])
     for role in policies["provider_role_plan"]["roles"]:
@@ -92,7 +125,7 @@ def _production_service(tmp_path: Path, *, unknown: bool, retry: bool = False) -
     request["provider_role_plan_sha256"] = policy_hashes["provider_role_plan"]
     request["run_spec_id"] = compute_run_spec_id(request)
 
-    authority = _production_authority_fixture(
+    authority = _recorded_authority_fixture(
         tmp_path / "authority", request=request, workspace=workspace,
         policy_hashes=policy_hashes,
     )
@@ -135,13 +168,13 @@ def _production_service(tmp_path: Path, *, unknown: bool, retry: bool = False) -
     service = ELiveService(
         root=tmp_path / "production-runs", registry=workspace["registry"], snapshot_root=workspace["snapshot_root"],
         policy_bundle=policies, authorization_receipt={}, authorized_cohort_id="fixture-cohort-v1",
-        authorized_candidate_ids=["candidate_model"], execution_mode="PRODUCTION_AUTHORITY",
+        authorized_candidate_ids=["candidate_model"], execution_mode=RECORDED_PROVIDER_CONFORMANCE,
         production_authority_inputs=authority, provider_adapter=adapter,
     )
     return service, request, adapter
 
 
-def _production_authority_fixture(root: Path, *, request: dict, workspace: dict, policy_hashes: dict) -> dict:
+def _recorded_authority_fixture(root: Path, *, request: dict, workspace: dict, policy_hashes: dict) -> dict:
     fixture = _authority_fixture(root, production=True)
     auth_role = "LIVE_AUTHORIZATION_RECEIPT"
     auth_schema = _authorization_schema()

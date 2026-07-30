@@ -176,6 +176,8 @@ def validate_provider_transport_result(value: Mapping[str, Any], *, request_sha2
 class MockProviderAdapter:
     """Production-shaped deterministic adapter used only by zero-network tests."""
 
+    zero_network = True
+
     def __init__(self, responses: Mapping[str, Any]) -> None:
         self.responses = {str(key): value for key, value in responses.items()}
         self.call_count = 0
