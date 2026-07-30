@@ -27,6 +27,7 @@ from dataset.d2l_dataset_remaining_100_stage_a_v1.tools.followup_validation impo
     sanitize_for_blind_review,
     source_payload_sha256,
     validate_blind_result,
+    validate_high_risk_audit,
     validate_high_risk_repair,
     validate_r0_repair,
 )
@@ -170,6 +171,52 @@ def blind_payload(batch_id: str = "blind_batch_001") -> dict[str, object]:
     }
 
 
+def high_risk_audit_payload() -> dict[str, object]:
+    source = source_payload()
+    return {
+        "allowed_audit_decisions": ["APPROVE", "REVISE", "BLOCK"],
+        "batch_id": "high_risk_audit_batch_001",
+        "case_count": 1,
+        "cases": [
+            {
+                "audit": blank_proposal_audit(),
+                "batch_id": "high_risk_audit_batch_001",
+                "case_id": "audit_1",
+                "policy_id": "test",
+                "proposal": {
+                    "child_sense_repairs": [
+                        {
+                            "candidate_assignments": [],
+                            "context_ids": ["ctx_1"],
+                            "definition_en": "first",
+                            "part_of_speech": "noun",
+                            "scope": "scope",
+                            "temporary_child_sense_id": "child_1",
+                        }
+                    ],
+                    "proposal_type": "SPLIT_PROPOSAL",
+                },
+                "proposal_record_sha256": "f" * 64,
+                "provider_call_count": 0,
+                "schema_id": "TestAuditCase",
+                "schema_version": "1.0",
+                "sense_id": "sense_1",
+                "source_payload": source,
+                "source_payload_sha256": source_payload_sha256(source),
+                "source_term": "term",
+            }
+        ],
+        "independence_mode": "DISTINCT_FROM_PROPOSAL_AUTHOR",
+        "policy_id": "test",
+        "provider_call_count": 0,
+        "return_contract": "test",
+        "schema_id": "TestAuditBatch",
+        "schema_version": "1.0",
+        "stage_b_gold_autofill_count": 0,
+        "status": "AWAITING_INDEPENDENT_HIGH_RISK_PROPOSAL_AUDIT",
+    }
+
+
 class FollowupValidationTests(unittest.TestCase):
     def setUp(self) -> None:
         self.temp = tempfile.TemporaryDirectory(prefix="followup-intake-test-")
@@ -282,6 +329,48 @@ class FollowupValidationTests(unittest.TestCase):
         review["review_status"] = "COMPLETE"
         input_path, response_path = self._write_pair("blind", source, response)
         self.assertEqual(validate_blind_result(input_path, response_path), [])
+
+    def test_blind_result_uses_input_reviewer_slot(self) -> None:
+        source = blind_payload("followup_reaudit_batch_001")
+        source["reviewer_slot"] = "followup_blind_reauditor"
+        source["cases"][0]["reviewer_slot"] = "followup_blind_reauditor"
+        response = copy.deepcopy(source)
+        review = response["cases"][0]["review"]
+        for field in REVIEW_FIELDS:
+            if field.endswith("_decision"):
+                review[field] = "ACCEPT"
+        review["sense_status"] = "READY_FOR_CONTRACT_CONSTRUCTION"
+        review["review_notes"] = "All eligible evidence supports this sense."
+        review["review_status"] = "COMPLETE"
+        input_path, response_path = self._write_pair("followup_blind", source, response)
+        self.assertEqual(validate_blind_result(input_path, response_path), [])
+
+    def test_high_risk_audit_accepts_bound_revision(self) -> None:
+        source = high_risk_audit_payload()
+        response = copy.deepcopy(source)
+        response["cases"][0]["audit"] = {
+            "audit_decision": "REVISE",
+            "audit_notes": "The child definition is broader than the real evidence.",
+            "audit_status": "COMPLETE",
+            "invalid_child_sense_ids": ["child_1"],
+        }
+        input_path, response_path = self._write_pair("high_audit", source, response)
+        self.assertEqual(validate_high_risk_audit(input_path, response_path), [])
+
+    def test_high_risk_audit_rejects_source_change_and_unbound_child(self) -> None:
+        source = high_risk_audit_payload()
+        response = copy.deepcopy(source)
+        response["cases"][0]["source_term"] = "changed"
+        response["cases"][0]["audit"] = {
+            "audit_decision": "REVISE",
+            "audit_notes": "Revision is required.",
+            "audit_status": "COMPLETE",
+            "invalid_child_sense_ids": ["foreign_child"],
+        }
+        input_path, response_path = self._write_pair("bad_high_audit", source, response)
+        errors = validate_high_risk_audit(input_path, response_path)
+        self.assertTrue(any("immutable field changed" in error for error in errors))
+        self.assertTrue(any("not in the proposal" in error for error in errors))
 
     def test_capture_rejects_source_drift_before_output_is_accepted(self) -> None:
         source = r0_payload()

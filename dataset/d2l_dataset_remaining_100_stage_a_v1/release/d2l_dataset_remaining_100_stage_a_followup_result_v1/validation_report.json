@@ -1,0 +1,37 @@
+{
+  "blocked_case_count": 1,
+  "created_at": "2026-07-30T00:00:00Z",
+  "final_glossary_decision": null,
+  "high_risk_approved_case_count": 6,
+  "high_risk_revision_required_case_count": 4,
+  "integrity": {
+    "self_sha256": "af8ffe0a7230820f31ac3c45c0a80bd7eca444bd5f839d338bf8238ff4056f7c"
+  },
+  "policy_id": "d2l-remaining-100-stage-a-followup-result-v1.0",
+  "provider_call_count": 0,
+  "ready_stage_a_source_sense_count": 95,
+  "reaudit_ready_case_count": 12,
+  "repair_handoffs": [
+    {
+      "batch_id": "high_risk_proposal_repair_reviewer_2",
+      "case_count": 3,
+      "handoff_zip": "handoff/high_risk_proposal_repair_reviewer_2.zip",
+      "input_path": "repair_batches/high_risk_proposal_repair_reviewer_2/repair_input.json",
+      "reviewer_slot": "reviewer_2"
+    },
+    {
+      "batch_id": "high_risk_proposal_repair_reviewer_3",
+      "case_count": 1,
+      "handoff_zip": "handoff/high_risk_proposal_repair_reviewer_3.zip",
+      "input_path": "repair_batches/high_risk_proposal_repair_reviewer_3/repair_input.json",
+      "reviewer_slot": "reviewer_3"
+    }
+  ],
+  "schema_id": "D2LRemaining100FollowupResultReportV1",
+  "schema_version": "1.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "FOLLOWUP_RESULTS_ACCEPTED_REPAIR_REQUIRED_ZERO_PROVIDER",
+  "total_source_sense_count": 100,
+  "validated_followup_case_count": 22,
+  "validated_result_file_count": 6
+}

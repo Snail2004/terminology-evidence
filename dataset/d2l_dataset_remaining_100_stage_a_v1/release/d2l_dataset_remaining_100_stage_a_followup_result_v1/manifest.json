@@ -1,0 +1,142 @@
+{
+  "artifact_name": "d2l_dataset_remaining_100_stage_a_followup_result_v1",
+  "base_authority_commit": "d748fcd8e7c26f48d760cbfbd2ae5ad75aac7787",
+  "created_at": "2026-07-30T00:00:00Z",
+  "file_count": 32,
+  "files": {
+    "RELEASE_REPORT.md": {
+      "sha256": "53d3868b2d4f4acd66b855d573c5441903c88aae85e6293c85b08847ef9df477",
+      "size_bytes": 473
+    },
+    "authority.json": {
+      "sha256": "9cacdfabdfc17fd1d3c4263999d1bfd910fe915ac892624d4d3f88b7916e6daf",
+      "size_bytes": 1051
+    },
+    "captures/followup_reaudit/reviewer_4/followup_reaudit_batch_001_reviewer_4.json": {
+      "sha256": "c89f672c97c8ee1ee7e5346006b4025ff3654bd0226a4c597680f9b9aebd68f5",
+      "size_bytes": 106605
+    },
+    "captures/followup_reaudit/reviewer_4/followup_reaudit_batch_003_reviewer_4.json": {
+      "sha256": "7af089db660e8d89ef01223da19fcd3aeacbb5091412aaea6ffe39f826955d33",
+      "size_bytes": 42102
+    },
+    "captures/followup_reaudit/reviewer_5/followup_reaudit_batch_002_reviewer_5.json": {
+      "sha256": "7879f0e27905041ee3e646281399631433f8a9e054f444061c15a9137dee9112",
+      "size_bytes": 106080
+    },
+    "captures/high_risk_audit/reviewer_4/high_risk_audit_batch_001_reviewer_4.json": {
+      "sha256": "6285be421a9f1e6feb3c5a2f30da15b81c8128058d844a543b21f6017fc74943",
+      "size_bytes": 112709
+    },
+    "captures/high_risk_audit/reviewer_5/high_risk_audit_batch_002_reviewer_5.json": {
+      "sha256": "98875182a41acd853d0b80fb74d93ac2c2a0bf45b6c3d6aefe09525e6d37b1dd",
+      "size_bytes": 88395
+    },
+    "captures/high_risk_audit/reviewer_5/high_risk_audit_batch_003_reviewer_5.json": {
+      "sha256": "ca42775ea36344fc2071beb24f571ee86daf26bdd2a704009c457e8e8b4c86f6",
+      "size_bytes": 48301
+    },
+    "closure_index_100.jsonl": {
+      "sha256": "5b72a2284377dfdd5543c7a51e8bead65fe9d8f39121b6a2f06226c85f1aaa5a",
+      "size_bytes": 62982
+    },
+    "handoff/ASSIGNMENT.md": {
+      "sha256": "4ecaa6cc8c6ca65b8eae79424316e6328b61255c0446effb79f649db46baa5a9",
+      "size_bytes": 326
+    },
+    "handoff/REVIEWER_2_MESSAGE.md": {
+      "sha256": "8a8cef3d91a7427616fa1d3eae66d55ba161b9127a8c2a7b9497c90a9a27010a",
+      "size_bytes": 198
+    },
+    "handoff/REVIEWER_3_MESSAGE.md": {
+      "sha256": "4234b683b95cba1552f06e2836d571869db52879c7372b10fba49a53ee80725d",
+      "size_bytes": 200
+    },
+    "handoff/high_risk_proposal_repair_reviewer_2.zip": {
+      "sha256": "444eaef4c90ddeb16c9417835ca67258919103fb857a5a190604377b6f2db3e7",
+      "size_bytes": 13560
+    },
+    "handoff/high_risk_proposal_repair_reviewer_3.zip": {
+      "sha256": "67bfcd19b518e08a260d712304032ada5a0ef5b44d3719b365be38250b5715d6",
+      "size_bytes": 6451
+    },
+    "input_inventory.json": {
+      "sha256": "9a1193a3b60a9cf3c366db07aeda40b9b9108686a4f9231ef030b77d641da168",
+      "size_bytes": 3393
+    },
+    "references/direct_adjudication_36.jsonl": {
+      "sha256": "5fde45a4d9bb0371ac972a3a8e3f41efde888118bc18b6fa9e5c93feb4100200",
+      "size_bytes": 651638
+    },
+    "references/direct_r3_agreement_18.jsonl": {
+      "sha256": "0e86754dfdb4849e98b048248d9fa68ef48ba15334b75b172b8e01588f7bd511",
+      "size_bytes": 295756
+    },
+    "repair_batches/high_risk_proposal_repair_reviewer_2/REPAIR_INSTRUCTIONS.md": {
+      "sha256": "8234e6d2a9561ffa80c7d9a796b58db0106826b7e574d3e4acf388a319e31afc",
+      "size_bytes": 598
+    },
+    "repair_batches/high_risk_proposal_repair_reviewer_2/repair_input.json": {
+      "sha256": "ae2e51c119c4f52c12619ce4a0e9ce5f604fd6c1ecc0ae5baf45f19eb20aa093",
+      "size_bytes": 72619
+    },
+    "repair_batches/high_risk_proposal_repair_reviewer_3/REPAIR_INSTRUCTIONS.md": {
+      "sha256": "8234e6d2a9561ffa80c7d9a796b58db0106826b7e574d3e4acf388a319e31afc",
+      "size_bytes": 598
+    },
+    "repair_batches/high_risk_proposal_repair_reviewer_3/repair_input.json": {
+      "sha256": "6207bbb7a0e784b66e4c73f25b054cdfeb689005d680a5b20184ad8fc39cf212",
+      "size_bytes": 26683
+    },
+    "routing/high_risk_approved_6.jsonl": {
+      "sha256": "9ceec0cbfa08e08da2542a4f378ca89462596b639e92768084ddd0ccdf5a1ebd",
+      "size_bytes": 120237
+    },
+    "routing/high_risk_revision_required_4.jsonl": {
+      "sha256": "514f904f0189df026ff11510f5575e303d4189f33103d65d7e6ce95b003f9e06",
+      "size_bytes": 67378
+    },
+    "routing/prior_accepted_blind_23.jsonl": {
+      "sha256": "c739c8cf5cff7e739860d1027f85e31997bf7067d1d1a33c1738905b71938ad0",
+      "size_bytes": 366906
+    },
+    "routing/prior_blocked_1.jsonl": {
+      "sha256": "8c9b8b38c1e52042a664e0a1a8a98b47b48a5e07a92f51f062854e1d756f6269",
+      "size_bytes": 1067
+    },
+    "routing/reaudit_ready_12.jsonl": {
+      "sha256": "4e86a20345422b9123b8ace4798275bdca32f71f90f3ed81a114c9b0ffb4d5a7",
+      "size_bytes": 194146
+    },
+    "source/tests/test_followup_result.py": {
+      "sha256": "1fc1231038d7a1a95d7a92b49c7859cfe155e7f484c415fbe08b9f3501369c81",
+      "size_bytes": 5887
+    },
+    "source/tools/build_followup_result.py": {
+      "sha256": "f5011ef9202a460d50fc25855e1ef045c0c034edee9a71b5aaec029439cc1d9e",
+      "size_bytes": 26929
+    },
+    "source/tools/followup_result_handoffs.py": {
+      "sha256": "695f54b38831ee182011a915f6a573d9ff26335341a18ac28c93f5a28e21abf7",
+      "size_bytes": 5148
+    },
+    "source/tools/followup_validation.py": {
+      "sha256": "dbc4b8319430e85b5335234481f7584ae1dc2c5877a8dd523038a1794a8a40f9",
+      "size_bytes": 23080
+    },
+    "source/tools/validate_followup_result.py": {
+      "sha256": "7114ddde9cac532f39e72c0bd11f91d03958f9b65f4198262917746f0c6e1144",
+      "size_bytes": 12965
+    },
+    "validation_report.json": {
+      "sha256": "e8ec7083d01788ac23670dbc80bccf063e200d8ab4300010607a2e6407f9e641",
+      "size_bytes": 1386
+    }
+  },
+  "manifest_sha256": "37853f6d13092dc07190d826d615725d040bda1a415d65d16cb2a7855d943f06",
+  "policy_id": "d2l-remaining-100-stage-a-followup-result-v1.0",
+  "provider_call_count": 0,
+  "schema_id": "D2LRemaining100FollowupResultManifestV1",
+  "schema_version": "1.0",
+  "status": "FOLLOWUP_RESULTS_ACCEPTED_REPAIR_REQUIRED_ZERO_PROVIDER"
+}
