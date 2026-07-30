@@ -2,8 +2,40 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:terminology-evidence:HarnessProducerSafeCohortAuthorityReleaseV1:1.0.0",
   "title": "HarnessProducerSafeCohortAuthorityReleaseV1",
-  "type": "object", "additionalProperties": false,
-  "required": ["schema_id", "schema_version", "status", "parent_payload_authority", "publication_receipt", "cohorts", "supported_candidate_counts", "canary_candidate_id", "publication_status", "provider_calls", "network_calls", "gold_access", "final_glossary_decision", "integrity"],
-  "properties": {"schema_id": {"const": "HarnessProducerSafeCohortAuthorityReleaseV1"}, "schema_version": {"const": "1.0.0"}, "status": {"const": "PRODUCER_SAFE_EXACT_COHORTS_READY_FOR_REVIEW"}, "parent_payload_authority": {"$ref": "#/$defs/binding"}, "publication_receipt": {"$ref": "#/$defs/binding"}, "cohorts": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/cohortBinding"}}, "supported_candidate_counts": {"const": [1, 15]}, "canary_candidate_id": {"type": "string", "minLength": 1}, "publication_status": {"const": "FINAL_GIT_PUBLICATION_RECEIPT_ACCEPTED_ZERO_PROVIDER"}, "provider_calls": {"const": 0}, "network_calls": {"const": 0}, "gold_access": {"const": 0}, "final_glossary_decision": {"type": "null"}, "integrity": {"$ref": "#/$defs/integrity"}},
-  "$defs": {"sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "integrity": {"type": "object", "additionalProperties": false, "required": ["self_sha256"], "properties": {"self_sha256": {"$ref": "#/$defs/sha"}}}, "binding": {"type": "object", "additionalProperties": false, "required": ["relative_path", "physical_sha256", "self_sha256"], "properties": {"relative_path": {"type": "string", "minLength": 1}, "physical_sha256": {"$ref": "#/$defs/sha"}, "self_sha256": {"$ref": "#/$defs/sha"}}}, "cohortBinding": {"type": "object", "additionalProperties": false, "required": ["candidate_count", "relative_path", "physical_sha256", "self_sha256", "candidate_set_sha256"], "properties": {"candidate_count": {"enum": [1, 15]}, "relative_path": {"type": "string", "minLength": 1}, "physical_sha256": {"$ref": "#/$defs/sha"}, "self_sha256": {"$ref": "#/$defs/sha"}, "candidate_set_sha256": {"$ref": "#/$defs/sha"}}}}
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_id", "schema_version", "status", "parent_payload_authority", "evaluation_authority", "publication_receipt", "cohorts", "supported_candidate_counts", "canary_candidate_id", "publication_status", "provider_calls", "network_calls", "gold_access", "final_glossary_decision", "integrity"],
+  "properties": {
+    "schema_id": {"const": "HarnessProducerSafeCohortAuthorityReleaseV1"},
+    "schema_version": {"const": "1.0.0"},
+    "status": {"const": "PRODUCER_SAFE_EXACT_COHORTS_READY_FOR_REVIEW"},
+    "parent_payload_authority": {"$ref": "#/$defs/binding"},
+    "evaluation_authority": {"$ref": "#/$defs/evaluationBinding"},
+    "publication_receipt": {"$ref": "#/$defs/binding"},
+    "cohorts": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/cohortBinding"}},
+    "supported_candidate_counts": {"const": [1, 15]},
+    "canary_candidate_id": {"type": "string", "minLength": 1},
+    "publication_status": {"const": "FINAL_GIT_PUBLICATION_RECEIPT_ACCEPTED_ZERO_PROVIDER"},
+    "provider_calls": {"const": 0}, "network_calls": {"const": 0}, "gold_access": {"const": 0},
+    "final_glossary_decision": {"type": "null"}, "integrity": {"$ref": "#/$defs/integrity"}
+  },
+  "$defs": {
+    "sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "gitOid": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "integrity": {"type": "object", "additionalProperties": false, "required": ["self_sha256"], "properties": {"self_sha256": {"$ref": "#/$defs/sha"}}},
+    "binding": {"type": "object", "additionalProperties": false, "required": ["relative_path", "physical_sha256", "self_sha256"], "properties": {"relative_path": {"type": "string", "minLength": 1}, "physical_sha256": {"$ref": "#/$defs/sha"}, "self_sha256": {"$ref": "#/$defs/sha"}}},
+    "evaluationBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["child_commit", "parent_commit", "child_tree", "relative_path", "physical_sha256", "cohort_member_path", "cohort_physical_sha256", "cohort_self_sha256", "candidate_set_sha256", "selection_authority_sha256", "selection_policy_id", "canary_candidate_id"],
+      "properties": {
+        "child_commit": {"$ref": "#/$defs/gitOid"}, "parent_commit": {"$ref": "#/$defs/gitOid"}, "child_tree": {"$ref": "#/$defs/gitOid"},
+        "relative_path": {"type": "string", "minLength": 1}, "physical_sha256": {"$ref": "#/$defs/sha"},
+        "cohort_member_path": {"type": "string", "minLength": 1}, "cohort_physical_sha256": {"$ref": "#/$defs/sha"},
+        "cohort_self_sha256": {"$ref": "#/$defs/sha"}, "candidate_set_sha256": {"$ref": "#/$defs/sha"},
+        "selection_authority_sha256": {"$ref": "#/$defs/sha"}, "selection_policy_id": {"type": "string", "minLength": 1},
+        "canary_candidate_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "cohortBinding": {"type": "object", "additionalProperties": false, "required": ["candidate_count", "relative_path", "physical_sha256", "self_sha256", "candidate_set_sha256"], "properties": {"candidate_count": {"enum": [1, 15]}, "relative_path": {"type": "string", "minLength": 1}, "physical_sha256": {"$ref": "#/$defs/sha"}, "self_sha256": {"$ref": "#/$defs/sha"}, "candidate_set_sha256": {"$ref": "#/$defs/sha"}}}
+  }
 }
