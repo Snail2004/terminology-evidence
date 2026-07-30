@@ -1,0 +1,17 @@
+{
+  "adjudication_case_count": 55,
+  "agreement_count": 245,
+  "final_glossary_decision": null,
+  "policy_id": "d2l-remaining-300-stage-b-reviewer1-repair-intake-v1.0",
+  "provider_call_count": 0,
+  "repair_response_sha256": "330a65ecf9b7181bb0c1eab32b10b281e19a2741f7d5f2742584583da52b0b09",
+  "repaired_candidate_id": "candidate_811346453db4d899687a814f",
+  "repaired_field": "allowed_scope",
+  "reviewer_1_valid_case_count": 300,
+  "reviewer_2_valid_case_count": 300,
+  "reviewer_3_handoff_preserved": true,
+  "schema_id": "D2LRemainingStageBReviewer1RepairIntakeReportV1",
+  "schema_version": "1.0.0",
+  "stage_b_gold_autofill_count": 0,
+  "status": "REVIEWER_1_REPAIR_APPLIED_REVIEWER_3_ADJUDICATION_PENDING"
+}
